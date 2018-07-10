@@ -1,0 +1,66 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , chúng_ta tìm_hiểu một_số cách giải công_thức truy_hồi mà chúng_ta hay gặp trong phân_tích thuật_toán .
+Mục_tiêu chính của bài viết là cung_cấp một_số công_cụ chuẩn để bạn_đọc có_thể ước_lượng được nhanh_chóng giá_trị tiệm_cận của hàm truy_hồi mà bạn_đọc quan_tâm .
+Bài viết này chủ_yếu tóm_lược lại note của Jeff_Erickson 1 .
+Mình khuyến_khích bạn_đọc xem bản_gốc . Rất nhiều hệ_thức truy_hồi xuất_hiện trong phân_tích thuật_toán có_thể quy được về một trong hai bài_toán tổng_quát sau : T(n) = aT(\fracnb) + f(n) \qquad (1) trong đó a , b là các hằng_số_dương .
+T(n) = \sum_i=1k a_iT(\fracnb_i) + f(n)\qquad (2) trong đó a_i , b_i , i = 1 , \ldots , k là các hằng_số_dương .
+Đây có_lẽ là phương_pháp mà chúng_ta thường hay nghĩ tới khi bắt_gặp một hệ_thức truy_hồi .
+: dự_đoán kết qủa và chứng_minh bằng phương_pháp quy_nạp T(n) = 2T(n-1) + 1 \qquad \qquad T(1) = 1 Thử một_vài giá_trị đầu_tiên , ta thấy : T(2) = 3 , T(3) = 7 , T(4) = 15 , \ldots Dự_đoán : T(n) = 2n -1 T(n) = 2T(n-1) + 1 = 2(2n-1-1) + 1 = 2n -1 Bây_giờ chúng_ta thử áp_dụng cho bài_toán khó hơn T(n) = \sqrtnT(\sqrtn) + n \qquad \qquad T(1) = \Theta(1) Ở bài_toán này , chúng_ta tìm vì giá_trị ban_đầu của bài_toán là hàm tiệm_cận \Theta .
+T(n) = O(n \log n) .
+Chúng_ta dự_đoán như_vậy vì ở mỗi mức của cây đệ_quy (sẽ giới_thiệu ở dưới) bài_toán có kích_thước n .
+Thử chứng_minh T(n) \leq a n\log n .
+Điểm mấu_chốt ở đây là khái_niệm O( . ) cho_phép ta tùy_ý chọn chọn hằng_số a và giá_trị bé nhất của n để dự_đoán của chúng_ta là đúng .
+T(n) = \sqrtnT(\sqrtn) + n \leq \sqrtn\cdot a\sqrtn\log \sqrtn +n \leq a n\log n Ở bất_đẳng_thức cuối , ta giả_sử n \geq 22/a .
+Như_vậy , dự_đoán của chúng_ta là đúng .
+Bây_giờ chúng_ta thử chứng_minh cận_dưới T(n) \geq bn\log n bằng quy_nạp .
+T(n) = \sqrtnT(\sqrtn) + n \geq \sqrtn\cdot b\sqrtn\log \sqrtn +n = \fracb2 n\log n + n Giá_trị này lớn hơn b n \log n khi và chỉ khi n \geq b/2 n\log n .
+Điều này là không_thể vì giá_trị của hằng_số b , luôn n đủ lớn để b/2 n\log n > n .
+Như_vậy , cận_trên O(n\log n) vẫn chưa chặt .
+T(n) = O(n) .
+Ta lặp_lại ý_tưởng ở trên , thử chứng_minh T(n) \leq a n .
+T(n) = \sqrtnT(\sqrtn) + n \leq \sqrtn\cdot a\sqrtn +n = (a+1) n \nleq a n Như_vậy dự_đoán chúng_ta là sai .
+T(n) = O(n\sqrtn) .
+Chứng_minh tương_tự ta thấy dự_đoán này đúng .
+Tuy_nhiên , nếu cố_gắng chứng_minh cận_dưới T(n) = \Omega (n\sqrtn) chúng_ta sẽ gặp vấn_đề T(n) = O(n\log\log n) .
+Chứng_minh cận_trên T(n) \leq a n\log\log n : \beginarray lcl T(n) = \sqrtnT(\sqrtn) + n \\ \leq \sqrtn\cdot a\sqrtn \log\log \sqrtn +n \\ = a n\log\log n -a n + n \\ \leq a n \log\log n\endarraykhi a \geq 2 .
+Giờ ta chỉ_cần chứng_minh cận_dưới T(n) \geq b n\log\log n : \beginarray lcl T(n) = \sqrtnT(\sqrtn) + n \\ \geq \sqrtn\cdot b\sqrtn \log\log \sqrtn +n \\ = b n\log\log n -b n + n \\ \geq b n \log\log n \qquad \mboxnếu b \leq 1\endarrayDo đó , ta có_thể kết_luận T(n) = \Theta(n\log\log n) .
+Định_lý thợ (master theorem) là một công_cụ giúp ta giải các hệ_thức truy_hồi có dạng trong .
+Định_lý dài và khó nhớ và theo mình bạn_đọc cũng không cần nhớ làm_gì .
+Chỉ_cần nhớ dạng bài_toán mà định_lý này có_thể áp_dụng để giải .
+Nếu có_thể thì chỉ_cần nhớ phương_pháp chứng_minh định_lý .
+T(n) = aT(\fracnb) + f(n) Chúng_ta sử_dụng phương_pháp (recursion tree) .
+Cây đệ_quy có nút gốc có_giá trị và nút con .
+Mỗi nút con của nút gốc sẽ là gốc của một cây cho hàm đệ_quy .
+Như_vậy , ở độ sâu thứ , gía_trị của hàm của các nút là .
+Minh_họa ở hình sau : Nhìn vào cây đệ_quy ta sẽ thấy : T(n) = \sum_i=1L ai f(\fracnbi) Ở đây L là độ sâu của cây đệ_quy .
+Dễ thấy , L = \log_b n .
+Xét trường_hợp : () : T(n) = 2T(n/2) + n .
+Do af(n/b) = 2(n/2) = n = f(n) , theo định_lý thợ , ta có T(n) = O(f(n)\log n) = O(n\log n) .
+Ta cũng có_thể dùng công_thức tổng_quát để tính .
+Cụ_thể , T(n) = \sum_i=1L 2i n/2i = \sum_i=1L n = \Theta(n\log n) .
+() : T(n) = 3T(n/2) + n .
+Do af(n/b) = 3(n/2) = 1 . 5 n = Kf(n) với K = 1 . 5 , theo định_lý thợ , ta có T(n) = O(n\log_b a) =O( n\log_2 3) .
+Hoặc sử_dụng công_thức tổng_quát , ta có T(n) = \sum_i=1L 3i n/2i = n\sum_i=1\log_2 n (3/2)i = n (3/2)\log_2n = n\log_2 3 . : T(n) = \sqrtnT(\sqrtn) + n .
+Do dạng của phương_trình đệ_quy này không giống với dạng trong định_lý thợ , ta không_thể áp_dụng công_thức tổng_quát của định_lý thợ .
+Tuy_nhiên , ta có_thể áp_dụng phương_pháp cây đệ_quy .
+Nhìn vào cây nhị_phân , ta thấy tổng_giá trị mỗi mức là n , T(n) = \sum_i=1L n với chiều_cao cây L thỏa_mãn n2-L = \Theta(1) .
+Giải ra ta được L = \Theta(\log\log n) .
+Như_vậy T(n) = \Theta (n \log\log n) . Trong phần này chúng_ta sẽ tìm_hiểu một công_cụ khác công_thức đệ_quy có dạng trong .
+Phương phápđược đề_xuất bởi Mohamad_Akra và Louay_Bazzi năm 1998 .
+Với điều_kiện k , a_i , b_i là các hằng_số , lời_giải của có dạng như_sau : T(n) = \Theta (n\rho(1 + \int_1n \fracf(u)u\rho +1du)) Trong đó \rho thỏa_mãn phương_trình : \sum_i=1k a_i/b_i\rho = 1 Bạn_đọc có_thể tham_khảo chứng_minh của định_lí này trong 2 .
+(Randomized Quicksort) : T(n) = T(3n/4) + T(n/4) + n .
+Áp_dụng công_thức tổng_quát , ta tìm \rho thỏa_mãn : (3/4)\rho + (1/4)\rho = 1 .
+Dễ thấy \rho = 1 .
+Do_đó , ta có : T(n) = \Theta(n(1 + \int_1n \frac1udu)) = O(n\log n) (Deterministic Selection)_T(n) = T(n/5) + T(7n/10) + n .
+Ta tìm \rho thỏa_mãn : (1/5)\rho + (7/10)\rho = 1 .
+Ta sẽ tìm được một giá_trị (sử dụng ) \rho thỏa_mãn 0 < \rho < 1 .
+Áp_dụng công_thức tổng_quát ta có : T(n) = \Theta(n\rho(1 + \int_1n \fracuu\rho + 1du)) = \Theta(n\rho(1 + \Theta(n1 -\rho) ) = \Theta(n) 1 J .
+Erickson , , UIUC , Fall 2013 .
+, Manuscript .
+MIT , 1996 .
+: Tìm giá_trị tiệm_cận của các hàm sau : (a) (b) (c) (d) (e) (gợi ý : Viết lời_giải dưới dạng dãy_số Fibonacci) (f) : Sử_dụng cây đệ_quy hoặc phương_pháp bom tấn để tìm giá_trị tiệm_cận của các hàm sau : (a) (b) (c) (d) (e) (f) Bài_tập 1 được lấy từ Jeff_Erickson_Notes và bài_tập 2 lấy từ Introduction to Algorithm , 2nd .
+, , , Trackback link : on Cái chỗ Công_thức tổng_quát trong ô_vuông phải là f(n/bi) chứ không_phải T(n/bi) anh à .
+Góp_ý nhỏ thôi on Ừ_nhỉ .
+Mình gõ sai .
+Cám_ơn bạn đã góp_ý .
+(Góp ý này không_hề nhỏ như bạn nghĩ : D) . HùngPowered by and

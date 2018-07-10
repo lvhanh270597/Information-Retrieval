@@ -1,0 +1,128 @@
+Bài viết gốc : The_Importance of_Algorithms - đăng bởi lbackstrom trên Topcoder Mở_đầu Để hiểu được tầm quan_trọng của việc học và hiểu về thuật_toán , đầu_tiên_ta cần_định_nghĩa chính_xác "Thuật toán là gì ? " .
+Theo_như cuốn sách nổi_tiếng Introduction to Algorithms (Mở đầu về thuật toán) , thì "thuật toán" là "một quá_trình tính_toán cụ_thể , trong đó lấy một hay nhiều giá_trị làm_đầu vào ( input ) và cho ra một hay nhiều giá_trị kết_quả ( output )" .
+Nói_cách_khác , thuật_toán giống_như bản_đồ chỉ đường giúp ta giải_quyết một vấn_đề rõ_ràng , cụ_thể .
+Ví_dụ , nhiều dòng code để tính dãy Fibonacci là một_cách cài_đặt của một thuật_toán nào_đó .
+Một hàm để cộng hai số cũng được gọi_là một thuật_toán , mặc_dù nó rất đơn_giản .
+Một_số thuật_toán , như thuật để tính dãy Fibonacci , khá trực_quan và ta có_thể suy ra nhờ vào suy_luận logic cũng_như kĩ_năng giải bài .
+Tuy_nhiên , đối_với những thuật_toán phức_tạp hơn , chúng_ta cần học và hiểu , để làm nền_tảng cho việc giải_quyết những bài_toán khó hơn .
+Trong cuộc_sống hàng_ngày , những việc tưởng_chừng_như đơn_giản như kiểm_tra email hay nghe nhạc đều đòi_hỏi những thuật_toán rất phức_tạp .
+Trong bài viết này , chúng_ta sẽ cùng xem một_vài ví_dụ về cách áp_dụng thuật_toán .
+Phân_tích thời_gian_thực hiện thuật_toán Một trong những yếu_tố quan_trọng nhất của một thuật_toán là việc nó chạy nhanh hay chậm .
+Nghĩ_ra một thuật để giải một bài_toán là việc dễ , nhưng để nó có_ý nghĩa trong thực_tế , thì thuật_toán phải chạy đủ nhanh .
+Tốc_độ của một thuật tùy thuộc vào tốc_độ máy cũng_như chi_tiết cài_đặt , các nhà_khoa_học máy_tính thường đề_cập đến runtime (thời gian chạy) tương_ứng với kích_thước input .
+Ví_dụ , nếu input gồm N số , một thuật_toán có thời_gian chạy tỉ_lệ_thuận với N2 được kí_hiệu là O(N2) .
+Ký_hiệu này nghĩa_là , khi máy_tính chạy một chương_trình cài_đặt thuật_toán trên với độ lớn input là N , chương_trình sẽ tốn CN2 giây , với C là một hằng_số không phụ_thuộc vào kích_thước input .
+Tuy_nhiên , thời_gian chạy thực_tế của nhiều thuật_toán phức_tạp còn phụ_thuộc nhiều yếu_tố khác ngoài độ lớn input .
+Ví_dụ , một thuật_toán sắp_xếp sẽ chạy nhanh hơn nhiều khi được xử_lí một dãy_số đã sắp_xếp sẵn so_với khi phải giải_quyết một dãy_số lộn_xộn .
+Từ_đó sinh_ra hai khái_niệm : thời_gian chạy tối_đa và thời_gian chạy trung_bình .
+Thời_gian chạy tối_đa là thời_gian thuật_toán cần để xử_lí input trong trường_hợp tồi nhất .
+Thời_gian chạy trung_bình là thời_gian trung_bình cho mọi input có_thể xuất_hiện .
+Trong 2 thuật_ngữ , thời_gian tối_đa thường dễ phân_tích hơn , nên nó thường được sử_dụng để đánh_giá các thuật_toán .
+Việc tính_toán độ phức_tạp nhiều lúc không đơn_giản vì ta không_thể kiểm_tra được hết mọi trường_hợp .
+Bạn có_thể tìm đọc thêm về một_số kĩ_năng tính_toán độ phức_tạp ở các nguồn khác .
+Ước_tính thời_gian chạy_của các thuật , N = 100 O(Log(N)) : 10-7 giây O(N) : 10-6 giây O(NLog(N)) : 10-5 giây O(N2) : 10-4 giây O(N6) : 3 phút O(2N) : 1014 năm O(N ! ) : 10142 năm Sắp_xếp Thuật_toán sắp_xếp là một thuật_toán rất hay được sử_dụng trong khoa_học máy_tính .
+Cách đơn_giản nhất để sắp_xếp một nhóm đồ_vật là lấy ra món đồ nhỏ nhất và đặt lên đầu .
+Ta lại lấy ra món đồ nhỏ thứ_hai và đặt cạnh món đầu tiên; cứ thế tiếp_tục .
+Đáng_tiếc , độ phức_tạp của thuật_toán này là O(N2) , tức_thời gian chạy_của thuật sẽ tương_ứng với bình_phương độ lớn input .
+Nếu_cần sắp_xếp 1 tỉ_số , thuật sẽ cần 1018 câu_lệnh máy_tính (instructions) .
+Để dễ hình_dung thì một chiếc máy_tính hiện_đại mỗi giây chỉ giải_quyết được gần 109 câu_lệnh , và sẽ cần nhiều năm_mới sắp_xếp xong 1 tỉ con_số nói trên .
+May_thay , có nhiều thuật_toán sắp_xếp khác hiệu_quả hơn như Quick_Sort , Heap_Sort , Merge_Sort , . . .
+Nhiều thuật có độ phức_tạp chỉ O(NLog(N)) .
+Độ phức_tạp nhỏ hơn rút_ngắn rất nhiều thời_gian để sắp_xếp 1 tỉ con_số , đến_mức một chiếc máy_tính bình_thường nhất cũng thực_hiện được trong chưa đến một phút .
+Thay_vì 1018 câu_lệnh , máy chỉ phải thực_hiện 1010 .
+Đường_đi ngắn nhất Thuật_toán tìm đường_đi ngắn nhất giữa hai điểm đã được nghiên_cứu từ rất lâu .
+Ứng_dụng của thuật_toán này rất nhiều , nhưng tạm_thời hãy xét bài_toán cơ_bản nhất : tìm đường_đi ngắn nhất từ A đến B trong một thành_phố với một_số con_đường và giao_lộ .
+Có rất nhiều thuật_toán được phát_triển để giải_quyết các bài kiểu này , với mỗi phương_pháp có ưu nhược_điểm riêng .
+Trước_khi tìm_hiểu về chúng , hãy xem thử "thuật trâu" - xét hết các khả_năng - sẽ mất bao_lâu để giải .
+Đáng_tiếc , ta sẽ không sống đủ lâu để biết kết_quả từ phương_pháp này - cho_dù A và B đều ở trong một thị_trấn nhỏ , bởi độ phức_tạp của thuật là O(C_N) , với C là hằng_số .
+Dù_C có nhỏ , C_N sẽ trở_nên lớn khủng_khiếp ngay_cả với các giá_trị vừa_phải của N .
+Một trong những thuật_toán nhanh nhất để giải_quyết bài_toán này có độ phức_tạp O(E_Log(V)) , với E là số đường_đi , V là số giao_lộ .
+Để dễ hình_dung , thuật_toán sẽ mất 2 giây để tìm đường_đi ngắn nhất trong thành_phố có 10000 giao_lộ và 20000 con_đường .
+Thuật_toán này - Djikstra - khá phức_tạp và đòi_hỏi sử_dụng cấu_trúc dữ_liệu Hàng đợi ưu_tiên (Priority Queue) .
+Tuy_nhiên có những trường_hợp mà ngay_cả Djisktra cũng trở_nên quá chậm (ví dụ đường_đi ngắn nhất từ Hà_Nội đến Sillicon_Valley - có đến hàng tỉ giao lộ) , các lập_trình_viên sẽ sử_dụng heuristics .
+Heuristics là một hàm xấp_xỉ của một tính_chất của bài_toán .
+Ví_dụ , trong bài_toán này , 1 heuristic có_thể là khoảng_cách đường_chim_bay giữa 2 điểm .
+Sử_dụng heuristic , chúng_ta có_thể tìm được_lời giải nhanh hơn , ví_dụ thuật_toán A có_thể chạy nhanh hơn Dijkstra trong nhiều trường_hợp .
+Phương_pháp này không_phải lúc nào cũng rút_ngắn thời_gian chạy_của thuật trong trường_hợp tệ nhất , nhưng nó hiệu_quả với phần_lớn trường_hợp trong thực_tế .
+Thuật_toán xấp_xỉ Thế_nhưng đôi_khi , ngay_cả với thuật mạnh nhất , dùng heuristics tốt nhất , chạy trên máy_tính nhanh nhất cũng trở_nên quá chậm .
+Đối_với các trường_hợp này ta buộc phải hi_sinh phần_nào sự chính_xác của kết_quả .
+Thay_vì cố đi tìm đường_đi ngắn nhất , ta đã có_thể thỏa_mãn với một con_đường không dài hơn 10% so_với kết_quả tối_ưu .
+Thực_tế , có nhiều bài_toán quan_trọng mà thuật tối_ưu của chúng quá chậm và không sử_dụng được .
+Nhóm bài nổi_tiếng nhất cho tính_cách này được gọi_là NP - non-deterministic polynomial .
+Khi một bài_toán nào_đó được cho_là NP-hard hay NP-complete , đồng_nghĩa không_ai biết thuật_toán tối_ưu của nó .
+Hơn_nữa , nếu ai đó nghĩ_ra được thuật tối_ưu cho một bài_toán NP-complete , thuật đó cũng áp_dụng được cho mọi bài_toán NP-complete khác .
+Một ví_dụ nổi_tiếng của NP-hard là bài_toán Người bán_hàng (Traveling Salesman_Problem - TSP) .
+Một người bán_hàng cần đi đến N thành_phố , và anh ta biết cần bao_lâu để đi từ một thành_phố đến một thành_phố khác .
+Câu_hỏi đặt ra là , nhanh nhất_thì mất bao_lâu để anh ta đi hết N thành_phố ?
+Bởi thuật_toán nhanh nhất cho TSP vẫn quá chậm - nhiều người tin là điều này sẽ luôn đúng - ta tìm đến những phương_pháp đủ nhanh mà đưa_ra được kết_quả gần đúng , thay_vì thuật_toán tối_ưu .
+Thuật_toán ngẫu_nhiên Một_cách tiếp_cận vấn_đề khác đó là thử "random" theo một_cách nào_đó .
+Tuy không cải_thiện tốc_độ trong trường_hợp xấu nhất , biện_pháp này sẽ có hiệu_quả với những trường_hợp bình_thường .
+QuickSort là một ví_dụ điển_hình cho việc random như_vậy .
+Khi "suy biến" , QuickSort sẽ sắp_xếp một dãy trong O(N2) , với N là số phần_tử của dãy .
+Nhưng nếu áp_dụng random vào thuật_toán , xác_suất xảy_ra suy_biến là cực_kì thấp , và độ phức_tạp trung_bình của QuickSort trở_thành O(N_Log(N)) .
+Có những thuật có độ phức_tạp O(N\_Log(N)) kể_cả ở trường_hợp xấu , nhưng chúng sẽ chậm hơn ở trường_hợp bình_thường .
+Dù độ phức_tạp cùng là O(NLog(N)) , QuickSort có hằng_số C nhỏ hơn nhiều , tức số phép_tính cần thực_hiện nhỏ hơn .
+Một thuật_toán khác dùng random để tìm trung_vị của một dãy với độ phức_tạp trung_bình O(N) .
+Đây là cải_tiến rất lớn so_với việc sắp_xếp lại dãy và chọn ra phần_tử giữa vốn có độ phức_tạp O(NLog(N)) .
+Thêm nữa , cho_dù vẫn có các thuật_toán tìm trung_vị không-random với độ phức_tạp O(N) , thuật_toán này vẫn được áp_dụng nhiều hơn nhờ cài_đặt giản và tốc_độ chạy nhanh hơn .
+Ý_tưởng chính của Thuật_toán trung_vị này là chọn ngẫu_nhiên một_số X bất_kì trong dãy , và đếm xem có bao_nhiêu số nhỏ hơn nó .
+Giả_sử dãy có N số , và có K số nhỏ hơn hoặc bằng X .
+Nếu_Klt;N/2 , vậy_ta biết trung_vị sẽ là số thứ (N/2 - K) lớn hơn X .
+Ta bỏ_đi K số nhỏ hơn hoặc bằng X .
+Bây_giờ ta phải tìm số nhỏ thứ (N/2-K) , thay_vì số trung_vị .
+Ta tiếp_tục random một_số X khác , và lặp_lại .
+Compression - Nén_Một lớp khác của thuật_toán sẽ xử_lí những vấn_đề như data compression (nén dữ liệu) .
+Loại thuật_toán này không có output xác_định mà thay vào đó cố_gắng tối_ưu ở những tiêu_chí khác .
+Với data compression , thuật (như LZW ) sẽ cố_gắng để_cho output nhỏ nhất có_thể , và vẫn có khả_năng phục_hồi lại trạng_thái ban_đầu .
+Những thuật_toán kiểu này cho ra kết_quả có_thể chấp_nhận được , nhưng không_phải tối_ưu nhất .
+Ví_dụ thuật_toán của JPG và MP3 , dù khiến dữ_liệu bị giảm chất_lượng đi_đôi chút , sẽ tạo ra những files nhỏ hơn files gốc rất nhiều .
+Files_MP3 không cố_gắng giữ_lại mọi âm_thanh của bài_hát mà ghi vừa đủ thông_tin để chất_lượng vừa tốt , dung_lượng files lại nhỏ .
+Files_JPG cũng dựa trên ý_tưởng tương_tự .
+Tầm quan_trọng của thuật_toán Với một lập_trình_viên , hay một nhà_khoa_học máy_tính , hiểu rõ về các thuật_toán vừa nêu là rất quan_trọng để có_thể áp_dụng thực_tiễn .
+Nếu ta viết một phần_mềm , ta sẽ phải đánh_giá được phần_mềm đó sẽ hoạt_động nhanh chậm ra_sao .
+Những đánh_giá như_vậy sẽ kém chính_xác hơn nhiều nếu ta không có hiểu_biết về thời_gian chạy hay độ phức_tạp .
+Thêm nữa , hiểu_biết về thuật_toán của những gì ta đang làm sẽ giúp ta dự_đoán những trường_hợp đặc_biệt khiến phần_mềm chạy chậm đi hay xảy_ra lỗi .
+Tất_nhiên , ta sẽ thường_xuyên gặp những bài_toán chưa được nghiên_cứu trước đó .
+Lúc_này ta phải tự nghĩ_ra thuật mới , hoặc áp_dụng thuật cũ một_cách sáng_tạo hơn .
+Càng có kiến_thức về thuật_toán , ta càng có khả_năng giải_quyết thành_công vấn_đề .
+Trong nhiều trường_hợp , một vấn_đề mới có_thể được đưa về một vấn_đề cũ hơn mà không cần quá nhiều sức_lực , với điều_kiện ta phải có kiến_thức đủ sâu về vấn_đề cũ này .
+Để minh_họa , hãy tưởng_tượng về công_việc của một "switch" internet .
+Một switch có N sợi dây_cáp , và sẽ nhận các gói data từ các sợi cáp này .
+Switch sẽ phải phân_tích các gói data này rồi trả chúng về đúng dây_cáp cũ .
+Cái switch này cũng giống_như một chiếc máy_tính , làm_việc dựa trên các xung nhịp với các bước rành mạch; các gói dữ_liệu được gửi ra ở các quãng nghỉ - intervals - thay_vì liên_tục .
+Ở một switch nhanh , chúng_ta cần gửi các gói dữ_liệu này càng nhanh càng tốt ở mỗi quãng nghỉ để chúng không ứ_đọng và bị bỏ_qua .
+Vậy mục_tiêu của thuật_toán là gửi càng nhiều gói data càng tốt ở mỗi quãng nghỉ , và gói nào đến trước thì được chuyển đi trước .
+Hóa ra , một thuật_toán có tên " stable matching " có liên_hệ trực_tiếp tới vấn_đề này và hoàn_toàn có_thể áp_dụng , dù nhìn sơ mối tương_quan giữa vấn_đề và thuật_toán có_vẻ không rõ_ràng .
+Chỉ_có nền_tảng thuật_toán vững_vàng mới giúp ta đi đến_lời giải cho những trường_hợp như_vậy .
+Một_vài ví_dụ thực_tế Có rất nhiều ví_dụ cho thấy các vấn_đề thực_tế đòi_hỏi hiểu_biết về thuật_toán .
+Gần_như mọi thứ bạn đang làm với máy_tính được dựa trên một thuật_toán nào_đó mà có_người phải rất vất_vả mới tìm_ra .
+Cho_dù là ứng_dụng đơn_giản nhất của máy_tính hiện_đại cũng cần đến thuật_toán để quản_lí dữ bộ_nhớ và truy_xuất thông_tin từ hard drive (ổ cứng) .
+Có rất nhiều ví_dụ trong đời_sống , ở đây tôi sẽ giới_thiệu 2 bài_toán thực_tế có cùng độ khó với các bài ở TopCoder .
+Bài đầu là Maximum_Flow_Problem (Luồng Cực_Đại) , và bài sau có liên_quan đến Dynamic_Programming (Quy Hoạch_Động) - một kĩ_thuật giải_quyết được những vấn_đề tưởng như_không thể với tốc_độ cao .
+Maximum_Flow - Luồng cực_đại Bài_toán luồng cực_đại liên_quan đến bài_toán tìm đường_đi ngắn nhất đã được nói ở trên .
+Vào những năm 1950 , bài_toán lần đầu được nghiên_cứu , để áp_dụng với mạng_lưới đường_sắt của Liên_Xô .
+Mỹ muốn biết Liên_Xô có_thể tiếp_tế cho các nước vệ_tinh ở Đông_Âu thông_qua mạng_lưới đường_sắt nhanh như_thế nào .
+Thêm vào đó , Mỹ còn muốn biết tuyến_đường nào có_thể bị phá_hoại dễ_dàng nhất nhằm chia_cắt các nước này khỏi Liên_Bang .
+Hóa ra , 2 vấn_đề này liên_quan mật_thiết , và giải_quyết được bài_toán về tiếp_tế sẽ giải_quyết luôn vấn_đề thứ_hai .
+Thuật_toán hiệu_quả đầu_tiên cho bài_toán tìm luồng cực_đại được phát_triển bởi Ford và Fulkerson; thuật_toán được đặt_tên 2 nhà_khoa_học máy_tính này và đã trở_thành một trong những thuật_toán nổi_tiếng nhất ngành .
+Trong 50 năm_qua , một_số cải_tiến đã được áp_dụng để thuật nhanh hơn , nhiều trong số đó vô_cùng tinh_tế .
+Từ lúc bài_toán được nghiên_cứu , có nhiều ứng_dụng đã được đưa_ra .
+Ví_dụ trong mạng máy_tính , ta cần truyền thật nhiều dữ_liệu từ một điểm đến một điểm khác .
+Trong kinh_doanh , thuật_toán này được áp_dụng trong nghiên_cứu vận_hành (operations research) .
+Ví_dụ , nếu bạn có N nhân_viên và N công_việc cần làm , nhưng không_phải ai cũng làm được tất_cả mọi công_việc , thuật_toán tìm luồng cực_đại sẽ chỉ ra cách giao việc để các công_việc đều hoàn_thành , miễn_là có phương_án khả_thi .
+Sequence_Comparison - So_sánh chuỗi Nhiều coder đi_làm cả đời mà không từng phải cài một thuật_toán quy_hoạch_động nào .
+Thế_nhưng quy_hoạch_động là cần_thiết cho nhiều thuật_toán quan_trọng .
+Một thuật_toán có_lẽ nhiều người đã từng sử_dụng qua mà không biết , là tìm khoảng_cách của 2 chuỗi .
+Cụ_thể hơn , tính_toán xem sau bao_nhiêu lần thêm , xóa hay sửa thì xâu A sẽ trở_thành xâu B .
+Ví_dụ , có 2 xâu "AABAA" và "AAAB" .
+Để chuyển xâu đầu thành xâu sau , đơn_giản nhất_là xóa kí_tự B ở giữa rồi chuyển A cuối xâu thành B .
+Thuật_toán này có rất nhiều ứng_dụng , ví_dụ như trong các vấn_đề liên_quan đến DNA hay chống đạo_văn .
+Với các lập_trình_viên , thuật_toán này thường được dùng trong việc so_sánh 2 phiên_bản source code (mã nguồn) của cùng 1 file .
+Nếu các phần_tử của chuỗi là các dòng của file , thuật sẽ cho ta biết dòng code nào bị xóa , dòng nào bị thêm vào hay sửa đi trong các phiên_bản đó .
+Không có quy_hoạch_động , ta sẽ phải xét các trường_hợp theo cấp_số mũ để biến một xâu thành xâu khác .
+Với quy_hoạch_động , bài_toán này được giải_quyết với độ phức_tạp chỉ O(NM) , trong đó N và M là số phần_tử của mỗi xâu .
+Kết_luận Số thuật_toán khác_nhau mà con_người học cũng nhiều như số bài_toán khác_nhau mà ta cần giải .
+Thế_nhưng khả_năng cao là bài_toán bạn đang cố_gắng giải có liên_quan đến một bài_toán khác , theo một_cách nào_đó .
+Có_một vốn hiểu_biết sâu và rộng về các thuật_toán sẽ giúp bạn chọn_lựa được hướng đi đúng và áp_dụng thành_công .
+Khi nghiên_cứu thuật_toán , nhiều bài_toán nhìn có_vẻ không thực_tế , nhưng kĩ_năng giải_quyết đó lại được áp_dụng trong những bài_toán mà chúng_ta gặp hàng_ngày .
+

@@ -1,0 +1,54 @@
+Tác_giả : Nguyễn_Đình Trí_Cường_Table of_Contents Thuật_toán phân_tách cây Cập_nhật và truy_vấn một đường_đi trên cây Độ phức_tạp Bài_tập áp_dụng Tham_khảo Heavy-light decomposition (HLD) là kĩ_thuật phân_tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau .
+Sau_đó , chúng_ta có_thể áp_dụng các cấu_trúc dữ_liệu như Interval_Tree hay Binary-Indexed_Tree lên những chuỗi này để có_thể cập_nhật dữ_liệu hoặc trả_lời các truy_vấn trên một đường_đi giữa 2 đỉnh trong cây .
+Thuật_toán phân_tách cây Trước_hết , chúng_ta có các định_nghĩa như_sau : Đỉnh con đặc_biệt ( heavy vertex ) : Trong số những đỉnh con của một đỉnh u không_phải là lá , đỉnh đặc_biệt v là gốc của cây_con có kích_thước lớn nhất .
+Cạnh đặc_biệt ( heavy edge ) : Là cạnh nối giữa u và v , với v là đỉnh đặc_biệt và u là cha của v .
+Những đỉnh con còn_lại của u gọi_là đỉnh thường ( light vertex ) và những cạnh nối giữa u đến các đỉnh đó gọi_là cạnh thường ( light edge ) .
+Dễ thấy là với mỗi đỉnh không_phải là lá đều có_thể chọn được đúng một cạnh và một đỉnh con đặc_biệt của nó .
+Để tạo các chuỗi đỉnh , chúng_ta làm như_sau : bắt_đầu_từ đỉnh gốc , di_chuyển xuống đỉnh con đặc_biệt của nó và tiếp_tục di_chuyển xuống các đỉnh con tiếp_theo đến khi gặp đỉnh lá thì kết_thúc .
+Đường_đi từ đỉnh gốc đến đỉnh lá này tạo_thành một chuỗi đỉnh .
+Chúng_ta lại lặp_lại thao_tác này với các đỉnh còn_lại đến khi tất_cả các đỉnh đều thuộc đúng một chuỗi nào_đó .
+Để_cho dễ_hiểu , chúng_ta có ví_dụ sau : Từ đỉnh 1 di_chuyển xuống đỉnh 2 .
+Đỉnh đặc_biệt của đỉnh 1 là đỉnh 2 vì cây_con có đỉnh 2 làm gốc có kích_thước lớn nhất .
+Từ đỉnh 2 di_chuyển xuống đỉnh 4 vì cây_con có gốc là đỉnh 4 có kích_thước lớn nhất .
+Từ đỉnh 4 di_chuyển xuống đỉnh số 7 .
+Tại đây 2 cây_con có gốc là đỉnh 7 và đỉnh 5 đều có kích_thước như_nhau nên ta có_thể chọn bất_kì đỉnh nào .
+Tiếp_tục thực_hiện cho_đến khi gặp đỉnh lá .
+Như_vậy là chúng_ta đã có được một chuỗi đỉnh .
+Chúng_ta bắt_đầu chuỗi mới ở một đỉnh gần nhất và lặp_lại quá_trình trên .
+Cuối_cùng chúng_ta sẽ có_một tập các chuỗi đỉnh rời nhau .
+Những cạnh được tô_màu là cạnh đặc_biệt và cạnh không được tô_màu là cạnh thường .
+// nChain chuỗi hiện_tại .
+Sau khi kết_thúc việc phân_tách thì đây sẽ là tổng_số chuỗi .
+// chainHeadc đỉnh_đầu của chuỗi c // chainIndu chuỗi mà đỉnh u nằm trong .
+void hld ( int u ) // Nếu chuỗi hiện_tại chưa có đỉnh_đầu (đỉnh gần gốc nhất) thì đặt u làm đỉnh_đầu của nó .
+if ( chainHead nChain == 0 ) chainHead nChain = u ; // Gán chuỗi hiện_tại cho u chainInd u = nChain ; // Giải_thích bên_dưới posInBase u = ++ nBase ; // Biến lưu đỉnh con đặc_biệt của u int mxVtx = - 1 ; // Tìm đỉnh con đặc_biệt trong số những đỉnh con của u for ( int i = 0 ; i lt; adj u .
+size (); i ++ ) int v = adj u i ; if ( v ! = parent u ) if ( mxVtx == - 1 nChild v gt; nChild mxVtx ) mxVtx = v ; // Nếu tìm_ra đỉnh con đặc_biệt (u không_phải là đỉnh lá) thì di_chuyển đến đỉnh đó if ( mxVtx gt; - 1 ) hld ( mxVtx ); // Sau khi đi hết một chuỗi thì tăng nChain lên và bắt_đầu một chuỗi mới for ( int i = 0 ; i lt; adj u .
+size (); i ++ ) int v = adj u i ; if ( v ! = parent u amp;amp; v ! = mxVtx ) nChain ++ ; hld ( v ); Để có_thể tiếp_tục , chúng_ta cần biết ít_nhất các thông_tin sau : Với một chuỗi , đỉnh_đầu (đỉnh gần đỉnh gốc nhất) của nó là đỉnh nào .
+Với một đỉnh , chuỗi mà nó nằm trong là chuỗi nào .
+Ngoài_ra chúng_ta còn có mảng posInBase .
+Đây là mảng lưu lại vị_trí của các đỉnh sau khi chúng_ta "trải" các chuỗi trên lên một đường_thẳng .
+Điều này sẽ giúp cho việc cài_đặt các cấu_trúc dữ_liệu như Interval_Tree hoặc Binary_Indexed_Tree một_cách gọn_gàng hơn .
+Giả_sử với hình trên thì posInBase7 = 4 ; posInBase14 = 8 . . .
+Cập_nhật và truy_vấn một đường_đi trên cây Thay_vì cập_nhật hoặc truy_vấn một đường_đi từ đỉnh u đến đỉnh v trên cây , chúng_ta có_thể thực_hiện các thao_tác này trên 2 đường_đi từ u đến lca(u , v) và từ v đến lca(u , v) (lca là hàm tìm cha chung gần nhất của 2 đỉnh) .
+Giả_sử chúng_ta cần cập_nhật đường_đi từ u đến lca(u , v) (gọi tắt là a) .
+Nếu a và u không_cùng một chuỗi , chúng_ta thực_hiện thao_tác cập_nhật lên_đường đi từ đỉnh u đến đỉnh_đầu của chuỗi hiện_tại .
+Sau_đó cho u nhảy lên đỉnh cha của đỉnh_đầu này rồi lặp_lại thao_tác cập_nhật .
+Đến khi u và a nằm trên cùng một chuỗi , chúng_ta chỉ_cần cập_nhật đoạn từ u đến a và kết_thúc .
+Thao_tác truy_vấn được thực_hiện tương_tự .
+Ví_dụ : Chúng_ta cần thực_hiện cập_nhật trên đường_đi từ u = 16 đến a = 1 .
+Gọi hàm update interval tree cho đoạn từ đỉnh 8 đến đỉnh 16 .
+Nhảy lên đỉnh cha của đỉnh_đầu của chuỗi hiện_tại .
+Lúc_này u = 11 .
+Gọi hàm update interval tree cho đoạn từ đỉnh 11 đến đỉnh 5 .
+Nhảy lên đỉnh cha của đỉnh_đầu của chuỗi hiện_tại .
+Lúc_này u = 4 .
+Gọi hàm update interval tree cho đoạn từ đỉnh 4 đến đỉnh 1 và kết_thúc .
+void update ( int u , int a ) // uchain chuỗi hiện_tại của u // achain chuỗi của a int uchain = chainInd u , achain = chainInd a ; while ( 1 ) // Nếu u và a cùng nằm trên một chuỗi thì update đoạn từ u đến a và kết_thúc .
+if ( uchain == achain ) updateIntervalTree ( . . . , posInBase a , posInBase u , . . . ); break ; // Nếu u và a không nằm trên cùng một chuỗi thì update đoạn từ u đến đỉnh_đầu của chuỗi hiện_tại .
+updateIntervalTree ( . . . , posInBase chainHead uchain , posInBase u , . . . ); // Nhảy lên đỉnh cha của đỉnh_đầu hiện_tại .
+u = parent chainHead uchain ; uchain = chainInd u ; Độ phức_tạp Với một cây có n đỉnh , khi đi từ đỉnh gốc đến một đỉnh lá bằng một đường_đi bất_kì thì số lần chúng_ta phải nhảy chuỗi sẽ không vượt_quá log(n) .
+Để chứng_minh điều này , chúng_ta có_thể thấy rằng , khi nhảy từ một đỉnh bất_kì đến đỉnh con thường của nó thông_qua cạnh thường thì số_lượng đỉnh con có_thể đi được sẽ giảm đi xuống còn tối_đa một_nửa so_với ban_đầu (nếu số đỉnh con còn_lại nhiều hơn một_nửa số đỉnh ban_đầu thì đỉnh chúng_ta nhảy tới đã_là đỉnh con đặc biệt) .
+Và nếu chúng_ta tiếp_tục nhảy qua nhiều chuỗi mới thì số_lượng đỉnh sẽ giảm theo bội của 2 .
+Bên_cạnh đó , chúng_ta sử_dụng cấu_trúc dữ_liệu đặc_biệt cho việc cập_nhật hoặc truy_vấn thông_tin các đỉnh trong cùng một chuỗi nên độ phức_tạp của thao_tác này cũng là O(log(n)) .
+Như_vậy độ phức_tạp của một thao_tác cập_nhật hoặc truy_vấn một đường_đi trên cây sẽ là O(log(n)) .
+Bài_tập áp_dụng HLD có_thể áp_dụng để giải bài_toán LCA_QTREE_QTREE3_QTREEX_EpicTree Tham_khảo wcipeg Blog_Anudeep

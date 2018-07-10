@@ -1,0 +1,71 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta sẽ tìm_hiểu thuật_toán Rabin-Karp áp_dụng trong bài_toán tìm_kiếm xâu .
+Thuật_toán được phát_triển bởi Richard_Karp và Michael_Rabin 1 vào năm 1987 .
+Ý_tưởng trung_tâm của thuật_toán là coi và phép_toán so_sánh hai xâu được đưa về phép_toán so_sánh các số_nguyên .
+Trước_hết ta nhắc_lại bài tìm_kiếm xâu : Trước_hết chúng_ta xét ví_dụ : văn_bản và xâu mẫu .
+Coi xâu mẫu là một_số nguyên , và thực_hiện so_sánh với theo thứ_tự từ trái sang phải .
+Khi so_sánh với , ta sẽ so_sánh hai số_nguyên và , thay_vì so_sánh hai xâu .
+Tương_tự như_vậy với các bước tiếp_theo .
+Cuối_cùng ta sẽ tìm được . Tổng_quát_hóa , giả_sử , gọi_là số_nguyên ứng với mẫu : và là số_nguyên ứng với xâu con .
+Bài_toán tìm_kiếm xâu trở_thành : Để chuyển thành 1 số_nguyên , thay_vì tính các lũy_thừa của 10 , ta sẽ sử_dụng .
+Ta có : Đặt : Suy ra .
+Dựa vào định_nghĩa đệ_quy của , ta có_thể tính sử_dụng , phép_toán cơ_bản (cộng , trừ , nhân , chia) , ta có_thể tính được sử_dụng phép_toán cơ_bản . Tương_tự , với mỗi chỉ_số , sử_dụng phương_pháp Horner , ta có_thể tính được sử_dụng phép_toán cơ_bản .
+Do_đó , ta có_thể tính tất_cả các số sử_dụng phép_toán cơ_bản .
+Tuy_nhiên , đó chưa phải là cách tốt nhất .
+Nhận_thấy chữ_số cuối của và chữ_số đầu của giống nhau .
+Do_đó ta có : Do_đó , có_thể tính_từ sử_dụng phép_toán cơ_bản .
+Giả mã của thuật_toán : Để tính , ta sử_dụng phép_toán cơ_bản .
+Tính tất_cả các gía_trị , ta sử_dụng phép_toán cơ_bản .
+Do_đó số phép_toán cơ_bản là .
+Tuy_nhiên , do các số có độ_dài chữ_số .
+Do_đó , để thực_hiện các phép_toán cơ_bản , ta phải sử_dụng thao_tác bít .
+Do_đó tổng thời_gian của thuật_toán vẫn là , không tốt hơn thuật_toán trâu_bò . Vấn_đề của thuật_toán nằm ở chỗ các số biểu_diễn xâu và các xâu con độ_dài của là các số qúa lớn .
+Dưới góc nhìn của hàm_băm , hàm chuyển_đổi xâu và các xâu con của thành các số ở trên là một hàm_băm .
+Hàm_băm này luôn đảm_bảo các xâu con khác_nhau độ_dài luôn được băm về các giá_trị khác nha .
+Do_đó , giá_trị đầu_ra của hàm_băm là các số rất lớn .
+Do_đó , Karp và Rabin đề_xuất nới_lỏng tính_chất của hàm_băm trên : : Chọn một hàm_băm sao_cho các thao_tác cơ_bản được thực_hiện hiệu_quả và khi băm hai xâu con khác_nhau có cùng độ_dài , xác_suất hai giá_trị băm giống nhau là nhỏ . Để các thao_tác cơ_bản được thực_hiện hiệu qủa , đầu_ra của hàm_băm phải là các số_nguyên không quá lớn .
+Thông_thường các số_nguyên đầu_ra có độ lớn được biểu_diễn bởi bít được coi là không quá lớn .
+Trong thực_tế , các giá_trị này sẽ được chọn sao_cho đầu_ra có_thể biểu_diễn được bằng số_nguyên hoặc bít , do_đó các thao_tác cơ_bản coi_như hằng_số . Xác xuất trùng nhau (còn gọi_là xác_suất đụng độ) của hai giá tri băm của hai xâu con khác_nhau độ_dài , gọi_là , được coi là nhỏ nếu : Giả_sử chúng_ta đã tìm được hàm_băm tốt , gọi : là tập các xâu con của độ_dài có cùng giá_trị băm với .
+Với mỗi xâu con trong tập , ta sẽ phải so_sánh với (mất thời_gian ) để kiểm_tra xâu con đó có thực_sự là hay_không .
+Do_đó , tổng thời_gian của thuật_toán là trong đó là thời_gian để tính và là thời_gian so_sánh với các xâu con trong .
+Theo , về_mặt kì_vọng , số_lượng các xâu con trong là : Do_đó , ta có : Gọi_là hàm_băm modulo trong đó là một_số nguyên_tố .
+Karp-Rabin đề_xuất chọn hàm_băm một_cách ngẫu_nhiên từ một họ các hàm_băm : .
+Do đầu_ra của hàm_băm là một_số nguyên , do_đó có_thể biểu_diễn bằng bít , thỏa_mãn tính_chất của hàm_băm tốt .
+Áp_dụng hàm_băm , các thao_tác cơ_bản đều được lấy theo modulo .
+Giả mã của thuật_toán như_sau : Code của giả mã bằng C : Tính có_thể thực_hiện nhanh bằng hàm () trong .
+Hàm_băm chọn theo thuật_toán Rabin-Karp thỏa_mãn tính_chất .
+Ta chỉ_cần chứng_minh tính_chất .
+Trước_hết ta có 2 Claim sau : Số ước_số nguyên_tố của một_số nguyên ít_hơn Thật_vậy , gọi_là các ước nguyên_tố của , ta có .
+Từ_đó dễ_dàng suy ra Claim 1 .
+Gọi_là số_lượng các số_nguyên_tố có độ lớn , ta có . Gọi_là gía_trị (khi chưa lấy modulo) tương_ứng với hai xâu kí_tự độ_dài .
+Do , ta có .
+Hay nói_cách_khác , là một ước nguyên_tố của .
+Do , theo Claim 1 , số ước nguyên_tố của nhỏ hơn .
+Theo_Claim 2 , có lựa_chọn của vì_là số_nguyên_tố .
+Do_đó , xác_suất chọn là ước của là : Như_vậy , hàm_băm chọn ngẫu_nhiên từ họ thỏa_mãn tính_chất , do_đó theo Theorem 1 , thời_gian kì_vọng của thuật_toán Rabin-Karp là . Sinh số_nguyên_tố trong đoạn không_phải là vấn_đề đơn_giản .
+Trong thực_tế thực_thi , để đơn_giản , chúng_ta có_thể thay bước sinh số_nguyên_tố bằng cách chọn cố_định một_số nguyên_tố đủ lớn .
+Tất_nhiên với cách này về_mặt lý_thuyết , chúng_ta không_thể đảm_bảo thời_gian kì_vọng của thuật_toán là tuyến_tính . Về_mặt lý_thuyết , chúng_ta có_thể sinh số_nguyên_tố ngẫu_nhiên bằng cách sinh một_số ngẫu_nhiên , kiểm_tra nó có_phải là số_nguyên_tố hay_không .
+Nếu_không phải là số_nguyên_tố , ta sẽ thử lại : Code của giả mã bằng C : Trước_hết phân_tích xem thuật_toán sẽ dừng sau bao_nhiêu phép chọn ngẫu_nhiên .
+Theo_Claim 2 (Prime Number_Theorem) , trong mỗi bước chọn ngẫu_nhiên , xác_suất chọn được một_số nguyên_tố là : Do_đó , sau bước , xác_suất chọn được một_số nguyên_tố là : Ở công_thức trên ta sử_dụng xấp_xỉ .
+Để kiểm_tra có_phải là số_nguyên_tố hay_không , ta có_thể sử_dụng thuật_toán .
+Thuật_toán Rabin-Miller có độ phức_tạp , do_đó , thuật_toán () có thời_gian .
+Với , ta có_thể sinh số_nguyên_tố ngẫu_nhiên với thời_gian .
+Trong trường_hợp các kí_tự không_phải là các số_từ đến , ta có_thể sử_dụng cơ_số thay_vì , trong đó là số_lượng các kí_tự trong bảng_chữ_cái .
+Mọi phân_tích với cơ_số khác vẫn không thay_đổi . Nếu áp_dụng thuật_toán Rabin-Karp để tìm_kiếm tất_cả các_vị trí xuất_hiện của trong , thuật_toán Rabin-Karp có thời_gian kì_vọng là trong đó là số lần xuất_hiện trong do mỗi lần so_sánh hai giá_trị băm , nếu bằng_nhau ta phải mất thời_gian để kiểm_tra xem hai xâu có bằng_nhau hay_không .
+Trong trường_hợp , thuật_toán mất thời_gian .
+Do_đó , để thuật_toán có_thể được thực_hiện nhanh , ta phải chấp_nhận lỗi .
+Có_nghĩa là mỗi lần thấy hai gía_trị băm bằng_nhau , chúng_ta sẽ trả về vị_trí xuất_hiện mà không kiểm_tra lại xem hai xâu có bằng_nhau thật không .
+Để thuật_toán có độ_chính_xác cao , chúng_ta phải giảm_thiểu lỗi .
+Một_cách để giảm_thiểu lỗi là tăng_tập lựa_chọn của .
+Ví_dụ thay_vì chọn ngẫu_nhiên trong_khoảng , ta chọn trong_khoảng trong đó .
+Bằng phân_tích như_trên , ta sẽ có xác_suất đụng_độ là và do_đó , số_lượng xâu con của khác mà có cùng giá_trị băm sẽ là .
+Cách khác là ta có_thể áp_dụng vài hàm_băm khác_nhau cùng một_lúc .
+Mình khuyến_khích bạn_đọc thử thực_thi thuật_toán và nộp bài .
+Code submit cho bài này mình đính ở cuối bài . Code : , . 1 Karp , Richard_M . , and Michael_O .
+Rabin .
+IBM_Journal of Research and Development 31 . 2 (1987) : 249-260 .
+2 Jeff_Erickson , , UIUC , 2015 .
+3 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 32 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 , , Trackback link : Powered by and

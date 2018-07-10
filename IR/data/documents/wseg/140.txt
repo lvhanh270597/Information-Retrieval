@@ -1,0 +1,116 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , mình giới thiêu 5 công_cụ cơ_bản từ lý_thuyết xác_suất để phân_tích các giải_thuật ngẫu_nhiên .
+Nếu theo_dõi các bài vết về giải_thuật ngẫu_nhiên trong blog của mình ( , , v . v . ) bạn sẽ thấy hầu_hết các bài viết chỉ sử_dụng 5 công_cụ này thôi .
+Bài này chủ_yếu viết lại note của Tim_Roughgarden 1 .
+Mình khuyến_khích các bạn_đọc bản_gốc .
+Trước_đây mình có viết một bài về đề_cập tới một_số khái_niệm như_thế nào_là một biến ngẫu_nhiên , kì_vọng , etc .
+Mình sẽ không nhắc_lại các khái_niệm đó tại đây . Gọi X_1 , X_2 , \ldots , X_n là n biến ngẫu_nhiên trong cùng một không_gian xác_suất \Omega .
+Gọi_X = \sum_i=1n X_i , ta có : EX = \sum_i=1n EX_i \qquad (1) Điều đặc_biệt quan_trọng khiến đẳng_thức (1) trở_thành một cung cụ mạnh đó là nó đúng ngay_cả khi các biến ngẫu_nhiên X_1 , X_2 , \ldots , X_n lẫn_nhau .
+Trong các công_cụ sẽ giới_thiệu dưới_đây , một_số công_cụ yêu_cầu các biến ngẫu_nhiên phải có tính độc_lập cao .
+Ta sẽ minh_họa ứng_dụng của tính tuyến_tính của kì_vọng trong bài_toán -3- .
+Ta gọi một mệnh_đề có_giá trị là một mệnh_đề được thỏa_mãn (satisfied) .
+Ví_dụ ta có 3 biến boolean và \Phi = \ (x_1 \vee x_2 \vee \barx_3) , (\barx_1 \vee x_2 \vee \barx_3) , (\barx_1 \vee \barx_2 \vee x_3)\ , ta có_thể gán (x_1 , x_2 , x_3) = ( , , ) .
+Khi đó toàn_bộ các mệnh_đề của \Phi đều được thỏa_mãn .
+Gán cho mỗi biến ngẫu_nhiên giá_trị / .
+Gọi X_i là biến ngẫu_nhiên 0/1 cho sự_kiện mệnh_đề thứ i , \varphi_i , được thỏa_mãn (X_i = 1 nếu \varphi_i được thỏa_mãn và ngược_lại , X_i= 0) .
+Số_mệnh đề được thỏa_mãn của \Phi là : X = \sum_i=1m X_i \qquad (2) Do \varphi_i có đúng 3 literals , \varphi_i thỏa_mãn nếu ít_nhất một trong 3 literals có_giá trị .
+Do_đó , ta có : \mathrmPrX_i = 1 = 1 - \frac18 = 7/8 \qquad (3) Vì X_i là biến ngẫu_nhiên 0/1 , EX_i = \mathrmPrX_i = 1 = 7/8 .
+Theo tính tuyến_tính của kì_vọng , ta có : EX = \sum_i=1m X_i = \frac7m8 \qquad (4) Nhận_xét thấy , với mọi biến ngẫu_nhiên , luôn tồn_tại một giá tri của biến lớn hơn hoặc bằng kì_vọng .
+Do_đó , luôn tồn_tại một_cách gán sao_cho X \geq EX = \frac7m8 . Chứng_minh trên cũng cho chúng_ta một giải_thuật ngẫu_nhiên khá đơn_giản với thời_gian đa_thức tìm một_cách gán thỏa_mãn ít_nhất 7/8 số_mệnh đề của \Phi .
+Håstad 4 chứng_minh rằng nếu , không có giải_thuật nào có_thể thực_hiện tốt hơn giải_thuật ngẫu_nhiên trên trong thời_gian đa_thức .
+Trong nhiều trường_hợp , kì_vọng của một biến ngẫu_nhiên cũng không cho chúng_ta quá nhiều thông_tin .
+Thông_tin quan_trọng hơn đó là giá_trị của biến ngẫu_nhiên thay_đổi như_thế nào so_với kì_vọng của chúng .
+Ba công_cụ tiếp_theo cho_phép chúng_ta ước_lượng được sự thay_đổi này dựa trên những thông_tin mà ta có , bên_cạnh kì_vọng , của các biến ngẫu_nhiên .
+\mathrmPrX \geq c EX \leq \frac1c \qquad (5) Gọi f(x) là hàm mật_độ xác_suất .
+Theo định_nghĩa của kì_vọng , ta có : \beginarray l EX = \int_-\infty+\infty f(x) x dx\\ \geq \int_cEX+\infty f(x) x dx \\ \geq cEX\int_cEX+\infty f(x) dx \\ = cEX \mathrmPrX \geq c EX \endarray Liệu bất_đẳng_thức Markov đã thực_sự chặt ?
+Câu trả_lời là có .
+Nếu_không có thông_tin gì thêm ngoại_trừ kì_vọng thì bất_đẳng_thức Markov là tốt nhất có_thể (xem bài_tập 1) .
+Trong hầu_hết các trường_hợp , bất_đẳng_thức Markov không cho chúng_ta nhiều thông_tin giá_trị .
+Tuy_nhiên , bất_đẳng_thức Markov lại là công_cụ phổ_biến để chứng_minh các bất_đẳng_thức khác khi chúng_ta có thêm thông_tin về biến ngẫu_nhiên .
+Giả_sử ngoài giá_trị kì vong EX , ta còn có ước_lượng của phương_sai (variance) VarX .
+Gọi \sigma(X) = \sqrtVarX là độ_lệch tiêu_chuẩn (standard deviation) của X .
+\mathrmPrX - EX \geq c \cdot \sigma(X) \leq \frac1c2 \qquad (6) Gọi_Y = (X - EX)2 .
+Y là một biến ngẫu_nhiên với kì_vọng EY = EX2 - (EX)2 = VarX .
+Do_đó , ta có : \beginarray l \mathrmPrX - EX \geq c \cdot \sigma(X) = \mathrmPr(X - EX)2 \geq c2 VarX \\ = \mathrmPrY \geq c2 EY \\ \leq \frac1c2 \endarray Bất_đẳng_thức cuối_cùng là do ta sử_dụng bất_đẳng_thức Markov . Bất_đẳng_thức Chebyshev cũng là tốt nhất có_thể nếu bạn chỉ_có ước_lượng về kì_vọng và phương_sai (xem bài_tập 2) .
+Giả_sử bạn đang thiết_kế lại một trang_web bán_hàng của bạn .
+Trang_web này có khoảng 1 triệu khách_hàng viếng_thăm và bạn muốn kiểm_tra xem bao_nhiêu khách_hàng sẽ thích giao_diện mới .
+Tuy_nhiên , bạn không_thể thay_đổi luôn giao_diện và đếm thử vì nếu trong trường_hợp rất nhiều khách_hàng không thích , bạn có_thể mất một lượng lớn khách_hàng .
+Các bạn làm là lấy mẫu ra một_số lượng khách_hàng rất nhỏ n và hỏi họ xem họ thích hay_không thích , và từ_đó tính được ước_lượng số khách_hàng thích trong một triệu khách_hàng bằng cách chia tỉ_lệ .
+Nếu bạn muốn ước_lượng của bạn , với xác_suất ít_nhất 3/4 , lệch không quá 10\% thì bạn cần phải lấy mẫu bao_nhiêu người ?
+Giả_sử xác_suất một người thích giao_diện mới của bạn là p (106p là số người thích giao_diện mới trong 1 triệu người) .
+Gọi X_i là sự_kiện người thứ i trong tập n người ngẫu_nhiên thích giao_diện mới .
+Ta có EX_i = p và VarX_i = p(1-p) .
+Gọi_X là số người trong n người chọn ra thích giao_diện mới .
+Ta có : X = \sum_i=1n X_i \qquad (7) Theo tính tuyến_tính của kì_vọng , EX = np .
+Do X_i là các biến ngẫu_nhiên độc_lập , ta có VarX = \sum_i=1n VarX_i = np(1-p) .
+Theo bất_đẳng_thức Chebyshev , ta có : \beginarrayl \mathrmPrX - EX \geq 0 . 01 n = \mathrmPrX - EX\geq \frac0 . 01 n\sqrtnp(1-p) \sqrtnp(1-p) \\ \leq \fracnp(1-p)0 . 012 n2 \\ \leq \frac14\cdot 0 . 012 \cdot n\endarray \qquad (8) Để xác_suất này không quá 1/4 , ta chọn n = 1002 = 10000 .
+Như_vậy , nếu bạn lấy mẫu khoảng 10 . 000 người thì ước_lượng của bạn sai_lệch khoảng 1\% với xác_suất ít_nhất 75\% . Tổng_quát_hóa ví_dụ trên , nếu bạn muốn ước_lượng chính_xác tới một hằng_số \delta \geq 1/2 với xác_suất ít_nhất 1-\epsilon (\epsilon \geq 1/2) , áp_dụng bất_đẳng_thức Chebyshev , bạn nên lấy mẫu khoảng : n = \frac14\epsilon\delta2 \qquad (9) Chi_tiết chứng_minh coi_như bài_tập cho bạn_đọc (bài tập 3) .
+Áp_dụng (9) cho ví_dụ ban_đầu với \delta = 0 . 01 và \epsilon = 1/4 , ta được n = 1002 .
+Bất_đẳng_thức Chernoff cho_phép chúng_ta ước_lượng sự thay_đổi giá_trị của một biến ngẫu_nhiên xung_quanh kì_vọng của nó khi biết rằng biến đó là tổng của nhiều biến ngẫu_nhiên độc_lập .
+Bất_đẳng_thức (10) trông không được đẹp .
+Trong nhiều trường_hợp , ta chủ_yếu ước_lượng cả cận_trên và cận_dưới của X với \delta \in (0 , 1) .
+Khi đó , người_ta thường sử_dụng hệ_quả sau của Chernoff bound .
+\mathrmPrX - \mu \geq \delta \mu \leq 2 e-\delta2\mu/3\qquad (12) Khi \delta \gg 1 , hệ_quả sau thường được sử_dụng : \mathrmPrX \geq(1+\delta) \mu \leq e-\delta2\mu/(2+\delta)\qquad (13) Mình sẽ không chứng_minh các bất_đẳng_thức này .
+Thay vào đó , mình sẽ hướng_dẫn chi_tiết từng bước trong bài_tập 4 để các bạn có_thể tự chứng_minh .
+Trường_hợp các bạn các bạn cần lời_giải thì_có thể xem trong note của Goemans 5 .
+Trở_lại ví_dụ trong phần 4 , để_ý thấy X là tổng của các biến ngẫu_nhiên độc_lập X_i , i = 1 , \ldots , n cùng nhận giá_trị \0 , 1\ và có cùng xác_suất \mathrmPrX_i = 1 = p .
+Theo_Chernoff bound (12) , ta có : \beginarrayl \mathrmPrX - EX \geq \delta n = \mathrmPrX - EX\geq \frac\delta p np \\ \leq 2e-3\frac\delta2 npp2 \\ = 2e-3\frac\delta2 np \\ \leq 2e-3\delta2 n\endarray Do_đó , để xác_suất này không quá \epsilon , ta chỉ_cần chọn n sao_cho : 2e-3\delta2 n = \epsilon Từ_đó ta suy ra : n = \ln(\frac2\epsilon) \frac1\delta2 \qquad (14) So_với (9) thì phụ_thuộc của n vào \epsilon trong (14) tốt hơn theo hàm mũ , còn sự phụ_thuộc vào \delta không thay_đổi .
+Do_đó , khi ta biết các biến ngẫu_nhiên độc_lập với_nhau thì ta nên sử_dụng Chernoff bound .
+Xét bài_toán sau : ném n quả_bóng vào n cái rổ một_cách ngẫu_nhiên .
+Hỏi rổ đầy nhất có bao_nhiêu quả_bóng (với xác_suất cao) ?
+Tất_nhiên là rổ đầy nhất có_thể có đến n quả_bóng , nhưng xác_suất xảy_ra trường_hợp này cực_kì nhỏ .
+Ta đã xét bài_toán này trong phần .
+Sau một loạt các câu_hỏi thì kết_quả cuối_cùng là : Trong bài này , ta sẽ chứng_minh Theorem 2 sử_dụng Chernoff_Bound . Ta sẽ tìm xác_suất rổ đầu_tiên có nhiều hơn \frac3\ln n\ln \ln n quả_bóng .
+Gọi X_i là sự_kiện quả thứ i được ném vào rổ 1 .
+\mathrmPrX_i = \frac1n = EX_i .
+Gọi_X = \sum_i=1n X_i .
+Theo tính tuyến_tính của kì_vọng EX = 1 .
+Do các biến X_i là độc_lập , theo Chernoff_Bound (10) , ta có : \mathrmPrX \geq \frac3\ln n\ln \ln n \leq (\frac3\ln\ln n \ln n)\frace \ln\ln n3\ln n \leq \frac1n2 \qquad (15) Trong (15) , ta sử_dụng tính_chất \frac\ln n\ln \ln n xấp_xỉ là nghiệm của xx = n .
+Theo (15) , xác_suất để một rổ bất_kì có nhiều hơn \frac3\ln n\ln \ln n quả_bóng là không quá 1/n2 .
+Do_đó , xác_suất để một rổ nào_đó có nhiều hơn \frac3\ln n\ln \ln n quả_bóng là không quá 1/n .
+Như_vậy , với xác_suất 1-\frac1n , mọi rổ (do đó , rổ đầy nhất) đều có không quá \frac3\ln n\ln \ln n quả_bóng .
+Trong bài_tập 5 , ta sẽ chứng_minh rằng nếu ném ngẫu_nhiên n\log n quả_bóng vào n rổ thì với xác suấ ít_nhất 1 - 1/n , rổ đầy nhất có không quá O(\log n) quả_bóng .
+Trong trường_hợp này , số quả_bóng trong trường_hợp xấu nhất cũng chỉ lớn hơn kì_vọng hằng_số lần mà_thôi ! ! ! \mathrmPr\mbox ít_nhất một sự_kiện E_i \mbox xảy_ra \leq \sum_i=1n \mathrmPrE_i \qquad (16) Bạn_đọc có_thể hỏi : tại_sao lại phát_biểu (16) thành một công_cụ riêng .
+Chả phải (16) rất hiển_nhiên sao , ít nhát là đối_với các bạn có kiến_thức sơ_khai về xác_suất ?
+Đúng là (16) rất hiển_nhiên , và nó đúng ngay_cả khi các sự_kiện E_i phụ_thuộc vào nhau .
+Đó cũng chính là sức_mạnh của_công cụ này . Thông_thường , theo kinh_nghiệm của mình , các bài_toán mà ta quan_tâm đòi_hỏi tìm xác_suất để một_tập các sự_kiện A_1 , A_2 , \ldots , A_k xảy_ra .
+Nhưng các sự_kiện đó có_thể phụ_thuộc , nên ta không_thể áp_dụng công_thức nhân xác_suất \mathrmPrA_i \wedge A_j = \mathrmPrA_i \cdot \mathrmPrA_j .
+Cách làm là ta sẽ chuyển về sử_dụng union bound thông_qua .
+Để mình minh_họa thông_qua ví_dụ ném bóng vào rổ ở trên . Gọi A_i là sự_kiện rổ thứ i có không quá \frac3\ln n\ln \ln n quả_bóng .
+Theo (15) , \mathrmPr\barA_i \leq 1/n2 hay \mathrmPrA_i \geq 1-1/n2 .
+Để chứng_minh Theorem 2 , ta phải chứng_minh : \mathrmPrA_1 \wedge A_2 \wedge A_n \geq 1 - 1/n \qquad (17) Đương_nhiên là các sự_kiện A_i phụ_thuộc , ta không_thể áp_dụng công_thức nhân xác_suất .
+Sử_dụng luật Demorgan , ta có : \beginarrayl \mathrmPr\overlineA_1 \wedge A_2 \wedge \ldots \wedge A_n = \mathrmPr\barA_1 \vee \barA_2 \vee \ldots \vee \barA_n \\ \leq \sum_i=1n\mathrmPr\barA_i \\ \leq \sum_i=1n \frac1n2 = \frac1n\endarray \qquad (18) Từ_đó ta suy ra (17) .
+Không khó để thấy rằng phương_trình gần cuối của (18) ta áp_dụng union bound . Tại_sao tiêu_đề là 5 công_cụ mà ở đây lại lòi ra_công_cụ thứ 6 .
+Bản_thân mình thì thấy công_cụ thứ 6 này rất hữu_dụng trong việc tính xác_suất , nhưng lại chưa tìm_ra ví_dụ đơn_giản để minh_họa .
+Các ví_dụ mình biết đều quá phức_tạp , do_đó , mình sẽ bổ_sung và thay_đổi tiêu_đề_bài viết khi đã tìm được ví_dụ phù_hợp . Ý_tưởng của_công cụ này là khi ta quan_tâm đến sự_kiện X , nhưng lại rất khó để tính \mathrmPrX một_cách trực_tiếp .
+Tuy_nhiên , tính xác_suất \mathrmPrX Y lại rất dễ , trong đó , Y là một sự_kiện xảy_ra với xác_suất cao , i . e , \mathrmPrY \geq 1-\epsilon với \epsilon vô_cùng nhỏ .
+Lúc_này , ta có_thể tính \mathrmPrX một_cách tương_đối , theo công_thức Bayes , như_sau : \beginarrayl \mathrmPrX = \mathrmPrX Y\mathrmPrY + \mathrmPrX \barY\mathrmPr\barY \\ \leq \mathrmPrX Y + \mathrmPr\barY \\ \leq \mathrmPrX Y + \epsilon \endarray \qquad (19) Do_đó , ta có_thể ước_lượng \mathrmPrX thông_qua tính \mathrmPrX Y , mà ta biết là dễ_tính hơn nhiều .
+Ở đây mình chưa có ví_dụ minh_họa nên có_thể mọi thứ chưa có_ý nghĩa nhiều .
+Phần này chủ yế là ghi_chú cá_nhân để cập_nhật sau . 1 T .
+RoughardenTim .
+.
+Stanford , 2016 .
+2 T .
+Rougharden and G .
+Valiant .
+.
+Stanford , 2016 .
+3 László_Kozma .
+.
+4 J .
+Håstad .
+Journal of the ACM (JACM) 48 . 4 (2001) : 798-859 .
+5 M .
+Goemans .
+.
+MIT , 2015 .
+Gọi_X là một biến ngẫu_nhiên 0/1 trong đó \mathrmPrX = 1 = 1/k .
+Chứng_minh rằng \mathrmPrX \geq cEX \leq 1/c .
+Gọi_Z là một biến ngẫu_nhiên có phân_phối : Z = \begincases k , \mboxwith probability \frac12k2 \\ 0 , \mboxwith probability 1-\frac1k2 \\ -k , \mboxwith probability \frac12k2\endcases Chứng_minh rằng (a) EZ = 0 , (b) VarZ = 1 và (c) \mathrmPrZ \geq k \leq 1/k2 .
+Chứng_minh công_thức (9) cho trường_hợp tổng_quát của ví_dụ 3 .
+Trong bài_tập này , mình sẽ hướng_dẫn các bạn chứng Chernoff_Bound khi các biến X_i chỉ nhận 1 trong 2 giá_trị 0/1 .
+Gọi \mu_i = \mathrmPrX_i = EX_i .
+Ta có \mu = \sum_i=1n\mu_i .
+Gọi s và a là hai số_không âm bất_kì .
+Giả_sử_ta ném n \log n quả_bóng vào n cái rổ , chứng_minh rằng với xác_suất 1 - \frac1n , rổ đầy nhất có không quá O(\log n) quả_bóng .
+, , , Trackback link : Powered by and

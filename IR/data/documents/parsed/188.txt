@@ -1,0 +1,37 @@
+
+
+
+NNP(quick_sort)  NP(NNP(quick_sort))  VB(được)  VB(phát_minh)  IN(bởi)  CD(1959)  NNP(.)  NP(NNP(.))  NP(CD(1959)NP(NNP(.)))  PP(IN(bởi)NP(CD(1959)NP(NNP(.))))  VP(VB(phát_minh)PP(IN(bởi)NP(CD(1959)NP(NNP(.)))))  VP(VB(được)VP(VB(phát_minh)PP(IN(bởi)NP(CD(1959)NP(NNP(.))))))  S(NP(NNP(quick_sort))VP(VB(được)VP(VB(phát_minh)PP(IN(bởi)NP(CD(1959)NP(NNP(.)))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(on)  NP(NNP(on))  VB(nhận_xét)  VP(VB(nhận_xét))  IN(của)  NN(bạn)  JJ(hoàn_toàn)  JJS(đúng)  NNP(.)  NP(NNP(.))  ADJP(JJ(hoàn_toàn)JJS(đúng)NP(NNP(.)))  NP(NN(bạn)ADJP(JJ(hoàn_toàn)JJS(đúng)NP(NNP(.))))  PP(IN(của)NP(NN(bạn)ADJP(JJ(hoàn_toàn)JJS(đúng)NP(NNP(.)))))  S(NP(NNP(on))VP(VB(nhận_xét))PP(IN(của)NP(NN(bạn)ADJP(JJ(hoàn_toàn)JJS(đúng)NP(NNP(.))))))  gamma(S(NP(NNP(on))VP(VB(nhận_xét))PP(IN(của)NP(NN(bạn)ADJP(JJ(hoàn_toàn)JJS(đúng)NP(NNP(.)))))))  
+
+
+
+
+gamma()  

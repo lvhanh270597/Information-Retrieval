@@ -1,0 +1,24 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Hàm là một hàm rất quan_trọng thường được áp_dụng trong các bước tiền xử_lí xâu kí_tự .
+Một trong những ứng_dụng nổi_bật của hàm là trong thuật_toán tìm_kiếm xâu với thời_gian tuyến_tính .
+Thuật_toán tìm_kiếm xâu với hàm có_lẽ là thuật_toán đơn_giản nhất trong số các thuật_toán có cùng_thời gian .
+Thêm nữa , thuật_toán này không phụ_thuộc vào bảng_chữ_cái như một_số thuật_toán khác .
+Mình đã implement thuật_toán tìm_kiếm xâu dựa trên hàm cho bài_toán tìm_kiếm xâu trên và đã được accept .
+Code được đính ở cuối bài .
+Nói_cách_khác , là chiều_dài của tiền_tố dài nhất của khớp với một tiền_tố của . Ví_dụ : , ta có vì tiền_tố dài nhất của khớp với tiền_tố của là và có chiều_dài bằng .
+Tương_tự , . Trong phần này , để đơn_giản , ta kí_hiệu thay cho .
+Với mỗi với , ta gọi một là interval (đoạn) có chiều_dài .
+Gọi_là điểm cuối lớn nhất của các Z-box bắt_đầu_từ hoặc trước .
+Một_cách hình_thức : Gọi_là điểm đầu của Z-box tương_ứng kết_thúc tại .
+Với ví_dụ trên hay .
+Dựa vào định_nghĩa của , ta có_thể tính được bảng trong thời_gian .
+Tuy_nhiên , chúng_ta có_thể tính nhanh hơn thế .
+Ý_tưởng của thuật_toán như_sau : Giả mã của thuật_toán như_sau : Code của giả mã bằng C : Trong giả mã trên , bước của thuật_toán chỉ phụ_thuộc vào , chúng_ta có_thể giảm bộ_nhớ bằng cách chỉ dùng hai biến .
+Ta có_thể chứng_minh tính đúng_đắn của thuật_toán bằng phương_pháp quy_nạp (coi như bài_tập cho bạn đọc) .
+Mỗi vòng for của thuật_toán hoặc mất thời_gian ( trong câu_lệnh ) hoặc mất thời_gian tỉ_lệ tuyến_tính với số_lượng phép so_sánh bằng trong câu_lệnh while () .
+Do tổng_số_lượng phép so_sánh bằng_không vượt_quá chiều_dài của xâu , số_lượng phép so_sánh bằng trung_bình của mỗi vòng_lặp for là .
+Do_đó , tổng thời_gian của thuật_toán là . Ta có_thể áp_dụng hàm để giải bài_toán tìm_kiếm xâu sau trong thời_gian : Gọi_là kí_tự thuộc bảng_chữ_cái .
+Giả mã của thuật_toán như_sau : Do hàm có thời_gian tuyến_tính , ta có : Code : , .
+1 Daniel_M .
+Gusfield , , UCDavis , 2011 .
+2 Codeforces forum : by , , Trackback link : Powered by and

@@ -1,0 +1,154 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong phần này chúng_ta sẽ tìm_hiểu bài_toán kiểm_tra tính nguyên_tố (primality testing) của một_số nguyên .
+Đây là một bài_toán có rất nhiều ứng_dụng trong các lĩnh_vực của_tin học , đặc_biệt trong bảo_mật thông_tin .
+Bài_toán phát_biểu như_sau : Bằng cách duyệt qua mỗi phần_tử và kiểm_tra xem có_phải là ước của hay_không , ta có_thể giải bài_toán này trong thời_gian (có thể tăng_tốc thêm một_chút bằng cách chỉ kiểm_tra và các số lẻ) .
+Thuật_toán không_phải là thuật_toán có thời_gian đa_thức (polynomial time) vì đầu_vào có_thể biểu_diễn bởi bit trong_khi thời_gian tính_toán là .
+Do_đó , thuật_toán này không_thể áp_dụng cho các số rất lớn .
+Bài_toán kiểm_tra tính nguyên_tố có_thể được thực_hiện trong thời_gian đa_thức hay_không là một câu_hỏi mở trong một khoảng thời_gian rất dài và được giải_quyết năm 2002 bởi Manindra_Agrawal , Neeraj_Kayal , và Nitin_Saxena (thuật toán ) .
+Tuy_nhiên thuật_toán AKS sử_dụng thao_tác bít và vì_vậy không phù_hợp với các ứng_dụng thực_tế .
+Thuật_toán Miller-Rabin là thuật_toán ngẫu_nhiên kiểm_tra tính nguyên_tố sử_dụng thao_tác bít với xác_suất lỗi thấp .
+Do_đó , thuật_toán này được áp_dụng khả_phổ biển trong các ứng_dụng thực_tế .
+Ban_đầu , thuật_toán này được đề_xuất bở Miller 1 và là thuật_toán tất_định (deterministic) .
+Sau_đó , Rabin 2 sửa_đổi thành thuật_toán ngẫu_nhiên .
+Về lịch_sử của thuật_toán xem thêm tại .
+Do phân_tích các thuật_toán trong phần này dùng một_số kiến_thức về đồng dư và lý_thuyết nhóm , mình sẽ trình_bày các bổ_đề và thuật_toán trước .
+Chứng_minh và phân_tích mình sẽ đẩy về cuối bài viết . Trước_hết chúng_ta xem_xét thuật_toán dựa trên .
+Định_lý nhỏ Fermat phát_biểu như_sau : Dựa trên Fermats_Little_Theorem , ta có thuật_toán kiểm_tra số_nguyên_tố của một_số nguyên : Code của giả mã bằng C : Trong giả mã trên , hàm () tính ước_số_chung lớn nhất giữa hai số_nguyên dựa trên .
+Hàm này sử_dụng thao_tác cơ_bản (cộng , trừ , modulo) .
+Các thao_tác cơ_bản này đều được thực_hiện sử_dụng số phép thao_tác bít bằng số lương bít biểu_diễn .
+Hàm () tính sử_dụng phép_nhân 2 số bít .
+Để đơn_giản ta sẽ giả_sử phép_nhân 2 số bít được thực_hiện sử_dụng thao_tác bít ( về_mặt , ta có_thể thực_hiện phép_nhân sử_dụng thao_tác bít) .
+Do_đó , ta có : Theo định_lí Fermat , thuật_toán luôn trả_lại kết_quả đúng nếu đầu_vào là số_nguyên_tố .
+Hầu_hết các thuật_toán kiểm_tra nguyên_tố ngẫu_nhiên thỏa_mãn tính_chất này .
+Tuy_nhiên , nếu đầu_vào là một hợp_số thì thuật_toán vẫn có_thể trả_lại PRIME .
+Một thuật_toán ngẫu_nhiên kiểm_tra tính nguyên_tố gọi_là nếu với một đầu_vào là hợp_số , đầu_ra của thuật_toán là PRIME .
+Với thuật_toán , giả_sử là một hợp_số , thuật_toán sẽ trả_lại PRIME nếu số lựa_chọn ngẫu_nhiên trong thuật_toán thỏa_mãn .
+Tồi_tệ hơn_nữa , tồn_tại những hợp_số (gọi là số ) thỏa_mãn tính_chất : với mọi số , .
+Do_đó , thuật_toán chỉ trả_lại COMPOSITE khi .
+Tuy_nhiên , các ước_số của cũng là những số_lớn thì xác_suất chọn được số_nguyên có rất nhỏ .
+Tóm_lại , nếu là số Carmichael thì thuật Fermat có_lỗi khá cao .
+May_mắn là số_lượng các số Carmichael (so với ) , do_đó , thuật_toán vẫn được sử_dụng trong một_số ứng_dụng . Ngược_lại , nếu_không phải là số Carmichael , thuật_toán trả_lại kết qủa đúng_với xác xuất khá cao : Do_đó , bằng cách thực_hiện lặp_lại thuật_toán 10 lần , xác_suất lỗi của thuật_toán chỉ còn .
+Thuật_toán Miller-Rabin có độ chnh xác khá cao ngay_cả khi_đầu vào là số Carmichael .
+Thuật_toán được xây_dựng dựa trên định_lí sau : hoặc Tồn_tại thỏa_mãn và : Gọi số_nguyên là căn bậc 2 đồng dư của modulo nếu .
+Nếu là một_số nguyên_tố , ta có_thể dễ_dàng chứng_minh được là căn bậc 2 đồng dư duy_nhất của modulo .
+Gọi , ta có : Gọi_là số nhỏ nhất sao_cho .
+Số tồn_tại vì .
+Theo phương_trình , ta có và do_đó , .
+Từ_đó ta suy ra Theorem 3 . Gọi_là một bằng_chứng (witness) cho_biết là hợp_số nếu cả và trong Theorem 3 đều không thỏa_mãn .
+Với bằng_chứng và số_nguyên , thủ_tục () sẽ trả về COMPOSITE nếu là bằng_chứng cho_biết là hợp_số và trả về PRIME nếu ngược_lại .
+Giả mã của thuật_toán Miller-Rabin kiểm_tra tính nguyên_tố như_sau : Code của giả mã bằng C : Trong giả mã trên , chỉ phụ_thuộc vào .
+Do_đó , bạn có_thể tiết_kiệm bộ_nhớ một_chút bằng cách sử_dụng hai biến thay_vì cả mảng .
+Thủ_tục thực_hiện thao_tác bít để tách .
+Thủ_tục sử_dụng phép_nhân hai số bít và phép_toán cơ_bản .
+Do , ta suy ra : Ví_dụ : là số Carmichael , hãy xem thuật_toán Miller-Rabi thực_hiện như_thế nào .
+Trước hếtt tách , do_đó .
+Giả_sử , ta có : Do , thuật_toán Miller-Rabin sẽ trả_lại Theo_Theorem 3 , thuật_toán Miller-Rabin luôn trả_lại nếu đầu_vào là số_nguyên_tố .
+Cũng_như thuật_toán Fermat , thuật_toán Miller-Rabin cũng có_lỗi nếu đầu_vào là hợp_số .
+Tuy_nhiên , ngay_cả khi_đầu vào là số Carmichael , thuật_toán Miller-Rabin có_lỗi khá nhỏ .
+Do_đó thuật_toán này thường được sử_dụng trong thực_tế để kiểm_tra tính nguyên_tố của một_số nguyên .
+Về_mặt lý_thuyết có_thể chứng_minh được xác_suất lỗi của thuật_toán Miller-Rabin trong Theorem 5 là .
+Tuy_nhiên chứng_minh sẽ phức_tạp hơn .
+: Xét số sau : Giả_sử tồn_tại hai số sao_cho .
+Do là một_số nguyên_tố , ta suy ra hoặc .
+Cả hai trường_hợp đều không_thể xảy_ra .
+Từ_đó suy ra không có hai số nào trong số trên đồng dư .
+Do_đó , số_dư của dãy_số trên khi lấy modulo là hoán_vị của .
+Do_đó : Từ_đó suy ra định_lý Fermat .
+Một là một cấu_trúc đại_số gồm một_tập hợp và một_phép_toán kết_hợp hai phần_tử của tạo ra một phần_tử thứ 3 thỏa_mãn 4 tiên_đề sau : Ví_dụ với là một nhóm .
+Bạn có_thể kiểm_tra 4 tiên_đề của phép thao_tác trên tập_hợp các số_nguyên .
+Chú_ý : với không_phải là một nhóm vì có phần_tử nghịch_đảo là .
+Một nhóm được gọi_là hữu_hạn nếu số_lượng các phần_tử của , thường gọi_là bậc của nhóm v kí_hiệu là , hữu_hạn .
+Một nhóm là một nhóm_con của nếu hai phép_toán thao_tác trên hai tập này là một_và .
+Định_lý nổi_tiếng Largrange cho_biết mối quan_hệ giữa bậc của một nhóm và bậc của nhóm_con của nó : divides Ví_dụ : là nhóm_con của chính nó .
+Ví_dụ khác : trong đó là một nhóm_con của .
+Gọi_là tập các số_nguyên_tố cùng_nhau với và nhỏ hơn .
+Phép_nhân đồng dư_định_nghĩa trên trên như_sau : với , là tích của lấy đồng dư modulo .
+Ta sẽ chứng_minh : là một nhóm với .
+Ta kiểm_tra 4 tiên_đề của nhóm : 3 tiên_đề đầu không khó để kiểm_tra và coi_như bài_tập cho bạn_đọc .
+Với tiên_đề cuối_cùng , gọi_là một phần_tử của .
+Do , theo , tồn_tại hai số_nguyên sao_cho .
+Suy ra , , do_đó , là phần_tử nghịch_đảo của .
+Từ đoạn này về cuối , ta chỉ xét nhóm và các nhóm_con của nó .
+Để đơn_giản , ta sẽ bỏ toán_tử trong kí_hiệu của nhóm , i . e , sử_dụng luôn kí_hiệu tập_hợp thay cho . : Nếu , thuật_toán Fermat sẽ trả_lại .
+Phép kiểm_tra ước_chung lớn nhất chỉ_thực sự hiệu_quả (xác xuất tìm được số như_vậy ) khi là số_chẵn .
+Do_đó , hiệu_quả của thuật_toán Fermat nằm ở bước kiểm_tra .
+Số ngẫu_nhiên sau bước kiểm_tra ước_chung lớn nhất với sẽ là một phần_tử của nhóm .
+Giả_sử là một hợp_số và không là số Carmichael .
+Thuật_toán Fermat sẽ trả_lại (có lỗi) nếu số chọn ngẫu_nhiên thỏa_mãn : .
+Gọi .
+Nhận_thấy (coi như bài_tập cho bạn đọc) là một nhóm_con của (với phép_nhân đồng dư module ) .
+Do không_phải là số Carmichael , là một nhóm_con đúng của () .
+Theo định_lý Lagrange , là một ước_số của , do_đó , .
+Từ_đó suy ra xác xuất có_lỗi của thuật_toán Fermat là : Ta chỉ_cần chứng_minh Theorem 5 với trường_hợp là số Carmichael vì phép thử Fermat là một thủ_tục con của thuật_toán Miller-Rabin .
+Trước_hết ta chứng_minh : : Không có_số Carmichael có dạng với và là một_số nguyên_tố .
+Thật_vậy , giả_sử Claim 1 là sai , i . e , tồn_tại số Carmichael có dạng .
+Nhóm có bậc trong đó là .
+Từ_đó suy ra vớ mọi .
+Do là số Carmichael , , từ_đó suy ra : .
+Tuy_nhiên , điều này là không_thể vì chia_hết_cho còn thì không .
+Do_đó Claim 1 là đúng . Như_vậy , không_phải là lũy_thừa của một_số nguyên_tố .
+Gọi_là một nếu tồn_tại sao_cho .
+Định_nghĩa .
+Ta sẽ chứng_minh : : Nếu là một hợp_số lẻ và không_phải là lũy_thừa của một_số nguyên_tố thì_là một nhóm_con đúng của . Ta sẽ tìm một_số mà .
+Trước_hết ta có_thể kiểm_tra (coi như bài_tập cho bạn đọc) các tiên_đề của nhóm đối_với .
+Vì_là một hợp_số lẻ và không_phải là lũy_thừa của một_số nguyên_tố , tồn_tại lẻ , nguyên_tố cùng_nhau , sao_cho .
+Vì_là một_số mũ_tồi , tồn_tại sao_cho .
+Áp_dụng Chinese_Remainder_Theorem , ta tìm được sao_cho : \beginarraylcl b \equiv a \mod N_1 \\ b \equiv 1 \mod N_2 \endarray Từ_đó ta suy ra và .
+Nếu , ta có .
+Ta có hai trường_hợp : Do_đó , .
+Như_vậy , Claim 2 là đúng .
+Gọi với là số_mũ tồi lớn nhất .
+tồn_tại vì lẻ và .
+Giả_sử không_phải là bằng_chứng cho_biết là hợp_số .
+Gọi_là số trong Theorem 3 , có hai trường_hợp : Theo_Claim 2 , là một nhóm_con đúng của , ta có xác_suất số ngẫu_nhiên là .
+Từ_đó suy ra Theorem 5 . Thông_thường trong các ứng_dụng , chúng_ta phải kiểm_tra tính nguyên_tố của các số rất lớn .
+Các số này có_số lượng bít biểu_diễn lớn , do_đó , rất dễ bị hiện_tượng tràn số nếu chúng_ta thực_thi không cẩn_thận .
+Xét trường_hợp là số_nguyên 31 bít , khi thực_hiện tính sử_dụng thủ_tục () ở trên , chúng_ta sẽ phải thực hiên phép_nhân hoặc với là các số_nguyên 31 bít .
+Kết_quả của các phép_nhân này có_thể vượt_quá 32 bít , và do_đó chúng_ta sẽ bị tràn số nếu chúng_ta sử_dụng kiểu (giả sử bạn sử_dụng ngôn_ngữ ) .
+Ta có_thể giải_quyết vấn_đề này như_sau .
+Trước_hết tính .
+Sau_đó , ta sẽ khai_báo một biến kiểu unsigned long_long để lưu_giữ kết_quả của trước_khi lấy .
+Bạn có_thể áp_dụng kĩ_thuật trên cho .
+Tuy_nhiên không_phải lúc nào chúng_ta cũng có_thể sử_dụng biến kiểu dữ_liệu lớn hơn .
+Giả_sử kiểu dữ_liệu lớn nhất chúng_ta có là bít (thông thường là 64 bít hoặc 128 bít) , trong_khi có kích_thước bít (như trong ) .
+Để tính tích , ta thể sử_dụng hai số bít để lưu_trữ tích của hai số bít trước_khi lấy modulo , tuy_nhiên ta sẽ phải tự_thực hiện phép modulo .
+May_mắn là có_một kĩ_thuật giúp chúng_ta tính sử_dụng các số bít mà không_phải thực_hiện lai phép modulo .
+Tuy_nhiên , chúng_ta sẽ phải sử_dụng thao_tác bít cho_phép nhân .
+Thuật_toán như_sau : Mình khuyến_khích bạn_đọc thực_thi và áp_dụng vào bài_toán kiểm_tra tính nguyên_tố .
+Code cho bài_toán này mình đính ở cuối bài .
+Code : , .
+1 Miller , Gary_L .
+Journal of Computer and System_Sciences 13 . 3 (1976) : 300-317 .
+2 Rabin , Michael_O .
+Journal of Number_Theory 12 . 1 (1980) : 128-138 .
+3 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 31 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+4 James_R .
+Lee , , University of Washington , Winter 2008 .
+, , , Trackback link : on Chỗ cái hàm FermatTesting , câu return cuối là PRIME bác ad ơi .
+on Đúng rồi bạn .
+trong code thật mình để Prime .
+Lỗi đánh_máy .
+Cám_ơn bạn đã chỉ ra .
+Hùng on Anh cho em hỏi là , trong research , thì với cùng 1 cài_đặt hoàn_toàn như_nhau , thuật_toán ngẫu_nhiên có xác_suất lỗi <1/2 thì việc chứng_minh <1/4 có nhiều ý_nghĩa không ạ ?
+Còn trong thực_hành thì sao ạ ?
+Dĩ_nhiên là nếu chứng_minh được 1/4 thì số lần_lặp chỉ_cần bằng 1 nửa so_với nếu chỉ chứng_minh được 1/2 .
+on Anh cho em hỏi là trong research , với cùng_với cài_đặt hoàn_toàn như_nhau , thuật_toán ngẫu_nhiên có xác_suất lỗi <1/2 , thì việc chứng_minh tiếp <1/4 có nhiều ý_nghĩa không ạ ?
+còn trong thực_tế thì sao ạ ?
+Dĩ_nhiên là nếu chứng_minh được <1/4 thì số lần_lặp chỉ_cần bằng một_nửa so_với chỉ chứng_minh được 1/2 on Câu_hỏi của bạn rất hay .
+Câu_hỏi này để trả_lời đầy_đủ thì rất dài .
+Nhưng mình tạm trả_lời ngắn_gọn như_sau : Nếu nói về ý_nghĩa thì mình nghĩ là nhiều .
+Thứ nhất nó làm thay_đổi cách hiểu về thuật_toán (nếu thực_sự xưa_nay người_ta chỉ mới chứng_minh dc 1/2 nhưng có vừa_mới có_người chứng_minh được 1/4) .
+Thứ_hai , các phân_tích mới thường mang vào những ý_tưởng mới hoặc công_cụ mới .
+Các ý_tưởng này có_thể sẽ mở_ra những hướng mới , không chỉ với bài_toán hiện_tại mà_cả các bài_toán liên_quan .
+Trong thực_tế thì cac phân_tích mới không thay_đổi tính_chất của thuật_toán hiện_tại , nhưng nó thay_đổi cách mà chúng_ta nghĩ về nó và ứng_dụng nó .
+Ví_dụ anh A nghĩ_ra một thuật_toán A đơn_giản , với xác_suất 1/2 , và có_thể 1/4 nhưng chưa ai chứng_minh được , còn anh B nghĩ_ra thuật_toán B , có_thể chậm hơn 1 . 5 lần , nhưng đảm_bảo xác_suất 1/4 .
+Nếu cài_đặt thì_có thể bạn sẽ chọn A hoặc B tùy vào bài_toán .
+Nhưng nếu anh C chứng_minh được thuật_toán anh A có xác_suất 1/4 thì_có lẽ chả có_lí do gì_mà bạn chọn B cả .
+Hùng on Vâng ạ , cám_ơn a đã giải_đáp rõ_ràng ạ .
+on Đối_với code C cần highlight , bạn có_thể dùng trang , tạo file . c và lấy link nhúm ở phần embed on Cám_ơn bạn đã gợi_ý .
+Thực_ra C code không_phải là trọng_tâm .
+Chủ_yếu là mình minh_họa cho một_số bạn chưa quen nhiều với lập_trình .
+Còn các bạn đã quen thì hiểu ý_tưởng là các bạn đã code được rồi . Powered by and

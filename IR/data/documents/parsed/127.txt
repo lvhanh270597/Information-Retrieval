@@ -1,0 +1,56 @@
+
+
+
+
+
+RB(có_thể)  RBR(được)  NN(giải)  IN(bằng)  NN(phương_pháp)  IN(với)  NN(thời_gian)  NNP(.)  NP(NN(thời_gian)NNP(.))  PP(IN(với)NP(NN(thời_gian)NNP(.)))  NP(NN(phương_pháp)PP(IN(với)NP(NN(thời_gian)NNP(.))))  PP(IN(bằng)NP(NN(phương_pháp)PP(IN(với)NP(NN(thời_gian)NNP(.)))))  NP(NN(giải)PP(IN(bằng)NP(NN(phương_pháp)PP(IN(với)NP(NN(thời_gian)NNP(.))))))  ADVP(RB(có_thể)RBR(được)NP(NN(giải)PP(IN(bằng)NP(NN(phương_pháp)PP(IN(với)NP(NN(thời_gian)NNP(.)))))))  VP(ADVP(RB(có_thể)RBR(được)NP(NN(giải)PP(IN(bằng)NP(NN(phương_pháp)PP(IN(với)NP(NN(thời_gian)NNP(.))))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NN(đầu)  IN(của)  NN(danh_sách)  NP(NN(danh_sách))  PP(IN(của)NP(NN(danh_sách)))  NP(NN(đầu)PP(IN(của)NP(NN(danh_sách))))  VB(lưu)  NNP(.)  NP(NNP(.))  VP(VB(lưu)NP(NNP(.)))  S(NP(NN(đầu)PP(IN(của)NP(NN(danh_sách))))VP(VB(lưu)NP(NNP(.))))  gamma(S(NP(NN(đầu)PP(IN(của)NP(NN(danh_sách))))VP(VB(lưu)NP(NNP(.)))))  
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+
+VB(tức_là)  NNP(đường_đi)  NP(NNP(đường_đi))  VB(có)  NN(dạng)  NNP(.)  NP(NN(dạng)NNP(.))  VP(VB(có)NP(NN(dạng)NNP(.)))  VP(VB(tức_là)NP(NNP(đường_đi))VP(VB(có)NP(NN(dạng)NNP(.))))  S(VP(VB(tức_là)NP(NNP(đường_đi))VP(VB(có)NP(NN(dạng)NNP(.)))))  gamma(S(VP(VB(tức_là)NP(NNP(đường_đi))VP(VB(có)NP(NN(dạng)NNP(.))))))  
+
+
+
+
+
+
+gamma()  

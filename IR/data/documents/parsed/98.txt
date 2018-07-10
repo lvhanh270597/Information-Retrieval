@@ -1,0 +1,73 @@
+
+
+
+NN(bài_toán)  JJ(đầu_tiên)  ADJP(JJ(đầu_tiên))  NP(NN(bài_toán)ADJP(JJ(đầu_tiên)))  VB(là)  NN(bài_toán)  NNP(.)  NP(NN(bài_toán)NNP(.))  VP(VB(là)NP(NN(bài_toán)NNP(.)))  S(NP(NN(bài_toán)ADJP(JJ(đầu_tiên)))VP(VB(là)NP(NN(bài_toán)NNP(.))))  gamma(S(NP(NN(bài_toán)ADJP(JJ(đầu_tiên)))VP(VB(là)NP(NN(bài_toán)NNP(.)))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(ta)  NP(NNP(ta))  VB(đặt)  NNP(.)  NP(NNP(.))  VP(VB(đặt)NP(NNP(.)))  S(NP(NNP(ta))VP(VB(đặt)NP(NNP(.))))  gamma(S(NP(NNP(ta))VP(VB(đặt)NP(NNP(.)))))  
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+CD(2014)  CD(2)  NN(t)  NNP(.)  NP(NN(t)NNP(.))  NP(CD(2)NP(NN(t)NNP(.)))  NP(CD(2014)NP(CD(2)NP(NN(t)NNP(.))))  S(NP(CD(2014)NP(CD(2)NP(NN(t)NNP(.)))))  gamma(S(NP(CD(2014)NP(CD(2)NP(NN(t)NNP(.))))))  
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+CD(1979)  NNP(.)  NP(NNP(.))  NP(CD(1979)NP(NNP(.)))  S(NP(CD(1979)NP(NNP(.))))  gamma(S(NP(CD(1979)NP(NNP(.)))))  
+
+gamma()  

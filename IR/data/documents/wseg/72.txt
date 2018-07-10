@@ -1,0 +1,15 @@
+Nguồn : HackerEarth và 1 số bài viết trên Wikipedia_Người dịch : Bùi_Việt Dũng_Table of_Contents Phi_hàm Euler (Eulers totient function) Công_thức Hàm Nhân_tính Bài_tập áp_dụng : Phi_hàm Euler (Eulers totient function) Định_nghĩa : \phi(N) là số số_nguyên_tố cùng_nhau với N trong đoạn từ 1 đến N .
+Cách tính : Ta đã biết phân_tích một_số ra thừa_số nguyên_tố (factorization) là biểu_diễn số đó dưới dạng_tích của các số_nguyên_tố .
+Dễ_dàng chứng_minh rằng cách biểu_diễn là duy_nhất .
+Ví_dụ : 8 = 23 .
+11 = 11 .
+36 = 22 . 33 .
+935 = 5 . 11 . 17 .
+5136 = 24 . 3 . 107 .
+Từ cách phân_tích một_số ra thừa_số nguyên_tố , ta tính được phi_hàm Euler của số đó .
+int phi ( int n ) int res = n ; for ( int i = 2 ; i i lt;= n ; ++ i ) if ( n % i == 0 ) while ( n % i == 0 ) n /= i ; res -= res / i ; if ( n ! = 1 ) res -= res / n ; return res ; Độ phức_tạp của thuật_toán : O(\sqrtN) .
+Công_thức Một công_thức thường gặp để tính phi : \phi(N) = n \prod_pn(1 - 1/p) (p là các ước nguyên_tố của n) .
+Ví_dụ : \phi(6) = 6 (1 - 1/2) (1 - 1/3) = 2 Cài_đặt : int eulerPhi ( int n ) // = n (1-1/p1) . . .
+(1-1/pn) if ( n == 0 ) return 0 ; int ans = n ; for ( int x = 2 ; x x lt;= n ; ++ x ) if ( n % x == 0 ) ans -= ans / x ; while ( n % x == 0 ) n /= x ; if ( n gt; 1 ) ans -= ans / n ; return ans ; Trong trường_hợp đặc_biệt , N = pk , \phi(N) = pk-1 (p-1) .
+Hàm Nhân_tính Để tính Phi_hàm Euler nhanh hơn , các bạn cần biết về Hàm Nhân_Tính .
+Bài_tập áp_dụng : VOJ - VOSPOW_VOJ - GCDSUM

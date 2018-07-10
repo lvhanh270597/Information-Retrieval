@@ -1,0 +1,33 @@
+Nguồn : HackerEarth và 1 số bài viết trên Wikipedia_Người dịch : Bùi_Việt Dũng_Table of_Contents Giới_thiệu Đồng dư_thức (Modulo) Ước_chung lớn nhất Thuật_toán "ngây thơ" (Naive Approach) Thuật_toán Euclid Thuật_toán Euclid mở_rộng (Extended Euclid_Algorithm) Giới_thiệu Các bài_toán trong lập_trình thi_đấu (competitive programming) mà liên_quan đến Toán_học thường sẽ rơi vào hai mảng là số_học (number theory) và hình_học .
+Nếu bạn biết nhiều về số_học , bạn sẽ có khả_năng giải_quyết nhiều bài_toán khó và một nền_tảng tốt để giải_quyết nhiều bài_toán khác .
+Các bài_toán trong lập_trình thi_đấu thường đòi_hỏi bạn một cái nhìn sâu_sắc , vì_vậy chỉ biết một_số vấn_đề về số_học là không đủ .
+Mọi bài_toán đều_đều yêu_cầu bạn phải_biết một lượng kiến_thức toán nhất_định .
+Ví_dụ , một_số bài_toán yêu_cầu bạn phải giải một hệ nhiều phương_trình hay tính xấp_xỉ nghiệm của nhiều phương_trình khác_nhau .
+Đồng dư_thức (Modulo) Phép đồng dư_thức cho bạn số_dư của phép_chia số này cho số khác .
+Dấu của phép đồng dư là \% .
+Ví_dụ : Ta có hai số 5 và 2 , khi đó 5\%2 bằng 1 do khi chia 5 cho 2 , ta được số_dư là 1 .
+Tính_chất : Đồng dư_thức có_một số tính_chất sau : (a+b)\%c = a\%c + b\%c (a . b)\%c = ((a\%c) . (b\%c))\%c Ví_dụ : Giả_sử a=5 , b=3 , c=2 Khi đó : (5+3)\%2=8\%2=0 và cũng bằng (5\%2+3\%2)\%2=(1+1)\%2=0 .
+(5 . 3)\%2=15\%2=1 và cũng bằng ((5\%2) . (3\%2))\%2=(1 . 1)\%2=1 .
+Ước_chung lớn nhất Ước_chung lớn nhất (GCD , viết tắt của từ Greatest_Common_Divisor) của hai hay nhiều số_là số_nguyên_dương lớn nhất mà là ước_chung (common divisor) của tất_cả các số đó .
+Ví_dụ : GCD của 6 và 10 là 2 vì 2 là số_nguyên_dương lớn nhất mà là ước_chung của 6 và 10 .
+Thuật_toán "ngây thơ" (Naive Approach)_Ta có_thể duyệt tất_cả các số_từ min(A , B) đến 1 và kiểm_tra xem số đang xét có_phải là ước của của A và B hay_không .
+Nếu đúng như_vậy thì số đang xét sẽ là GCD của A và B .
+int gcd ( int A , int B ) for ( int i = min ( A , B ); i gt; 0 ; -- i ) if ( A % i == 0 amp;amp; B % i == 0 ) return i ; // không bao_giờ chạy đến đây vì khi i = 1 thì cả A và B luôn chia_hết_cho i Độ phức_tạp của thuật_toán : O(min(A , B)) .
+Thuật_toán Euclid Thuật_toán Euclid dựa trên tính_chất sau của ước_chung lớn nhất GCD(A , B)=GCD(B , A\%B) .
+Thuật_toán sẽ quy_nạp cho_đến khi A\%B=0 .
+int gcd ( int A , int B ) if ( B == 0 ) return A ; else return gcd ( B , A % B ); Ví_dụ : Giả_sử A=16 , B=10 .
+GCD(16 , 10)=GCD(10 , 16\%10)=GCD(10 , 6) GCD(10 , 6)=GCD(6 , 10\%6)=GCD(6 , 4) GCD(6 , 4) = GCD(4 , 6 \% 4) = GCD(4 , 2) GCD(4 , 2) = GCD(2 , 4 \% 2) = GCD(2 , 0) Vì_B=0 nên GCD(2 , 0) sẽ trả về giá_trị 2 .
+Độ phức_tạp của thuật_toán : O(\logmax(A , B)) .
+Thuật_toán Euclid mở_rộng (Extended Euclid_Algorithm)_Đây là một thuật_toán mở_rộng của thuật_toán Euclid ở trên .
+GCD(A , B) có_một tính_chất rất đặc_biệt : Nó luôn có_thể được biểu_diễn dưới dạng phương_trình Ax+By=GCD(A , B) .
+Thuật_toán sẽ cho ta biết một cặp giá_trị (x;y) thỏa_mãn phương_trình này và nhờ đó giúp ta tính Modular_Multiplicative_Inverse .
+x và y có_thể có_giá trị bằng_không hoặc âm .
+Chương_trình sau đọc hai số A và B và in ra GCD(A , B) cũng_như một cặp số (x;y) thỏa_mãn phương_trình .
+int d , x , y ; void extendedEuclid ( int A , int B ) if ( B == 0 ) d = A ; x = 1 ; y = 0 ; else extendedEuclid ( B , A % B ); int temp = x ; x = y ; y = temp - ( A / B ) y ; int main () extendedEuclid ( 16 , 10 ); cout lt;lt; "gcd(16 , 10) = " lt;lt; d lt;lt; endl ; cout lt;lt; "x , y : " lt;lt; x lt;lt; " , " lt;lt; y lt;lt; endl ; return 0 ; Kết_quả gcd(16 , 10) = 2 x , y : 2 , -3 Ban_đầu , thuật_toán Euclid mở_rộng sẽ chạy như thuật_toán Euclid cho_đến khi ta có GCD(A , B) hoặc cho_đến khi B bằng 0 và khi đó thuật_toán sẽ đặt x=1 và y=0 .
+Vì_B=0 và GCD(A , B) là A trong thời_điểm hiện_tại nên phương_trình Ax+By=0 trở_thành A . 1+0 . 0=A .
+Giá_trị của các biến d , x , y trong hàm extendedEuclid() sẽ lần_lượt trở_thành : d=2 , x = 1 , y = 0 .
+d=2 , x = 0 , y = 1 - (4/2) . 0 = 1 .
+d=2 , x = 1 , y = 0 - (6/4) . 1 = -1 .
+d=2 , x = -1 , y = 1 - (10/6) . (-1) = 2 .
+d=2 , x= 2 , y = -1 - (16/10) . 2 = -3 Độ phức_tạp của thuật_toán : Độ phức_tạp của thuật_toán Euclid mở_rộng là O(\logmax(A , B)) .
+

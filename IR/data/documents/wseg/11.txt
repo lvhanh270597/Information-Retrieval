@@ -1,0 +1,77 @@
+Bài viết sưu_tầm trên mạng .
+0 .
+Kiểu chuỗi của C và hạn_chế Khi mới học C , chắc các bạn đều rất bối_rối khi làm_việc với xâu ký_tự , việc sử_dụng con_trỏ lưu_xâu ký_tự rất phức_tạp , dễ gây lỗi khiến nhiều người cho_rằng nó không_bằng xâu ký_tự trong Pascal .
+Các chương_trình C++ có_thể sử_dụng chuỗi theo cách_thức cũ của Ngôn_ngữ C (trong bài viết này gọi_là C-String) : mảng các ký_tự kết_thúc bởi ký_tự mã ASCII là 0 (ký tự \0 ) cùng_với các hàm thư_viện khai_báo trong lt;string . hgt; .
+Có nhiều bất_tiện khi dùng theo cách_thức này : Người lập_trình phải chủ_động kiểm_soát bộ_nhớ cấp_phát cho chuỗi ký_tự .
+Nói_chung là phải am_hiểu và rất thông_thạo về kỹ_thuật dùng bộ_nhớ và con_trỏ thì chương_trình mới tránh được các lỗi về kỹ thuật; Không_thể gán giá_trị hay sử_dụng phép_toán + (ghép chuỗi) và các phép_toán so_sánh như : gt; (lớn hơn) , lt; (nhỏ hơn) , . . .
+mà phải gọi các hàm thư_viện trong lt;string . hgt; ; Nếu dùng kỹ_thuật cấp_phát_động thì_phải quản_lý việc cấp thêm bộ_nhớ khi chuỗi dãn ra (chẳng hạn do ghép chuỗi) và phải hủy bộ_nhớ (khi không dùng nữa) để tránh việc cạn_kiệt bộ_nhớ của máy_tính trong trường_hợp có nhiều chương_trình hoạt_động đồng_thời .
+1 .
+Kiểu chuỗi string trong thư_viện STL của C++ Thư_viện chuẩn STL (Standard Template_Library) cung_cấp kiểu string (xâu ký tự) , giúp các bạn tránh khỏi hoàn_toàn các phiền_phức nêu trên . Các chỉ_thị include cần khai_báo để sử_dụng string : include lt;stringgt; using std : : string ; // using namespace std ; Nếu bạn muốn tận_dụng các hàm của C-String , cần chuyển_đổi giữa 2 kiểu dữ_liệu này : Chuyển từ string sang C-String : string s ; s .
+c_str (); Chuyển từ C-String sang string : char s_old = "ABC" ; string s ( s_old ); 2 .
+Các phương_thức , phép_toán tiện_ích của kiểu string Kiểu string của STL hỗ_trợ các nhóm phương_thức và phép_toán tiện_ích sau_đây .
+a) Các phép_toán và phương_thức cơ_bản Các toán_tử + , += dùng để ghép hai chuỗi và cũng để ghép một ký_tự vào chuỗi; Các phép so_sánh theo thứ_tự từ_điển : == (bằng nhau) , ! = (khác nhau) , gt; (lớn hơn) , gt;= (lớn hơn hay bằng) , lt; (nhỏ hơn) , lt;= (nhỏ hơn hay bằng); Hàm length() và phép lấy chỉ_số để duyệt từng ký_tự của chuỗi : nếu s là biến kiểu string thì si là ký_tự thứ i của s với 0 \le i lt; s . length(); Phép gán = dùng để gán biến kiểu string bằng một chuỗi , hoặc bằng string khác , chẳng_hạn : string s="ABCDEF" ; hay s1=s2 ; mà không cần copy xâu .
+Những constructor thường sử_dụng nhất : string (); string ( const char str ); // char là kiểu dữ_liệu xâu của C string ( const string amp; str ); Có_thể dùng toán_tử lt;lt; với cout để xuất một chuỗi ra màn_hình hoặc dùng toán_tử gt;gt; với cin để nhập một chuỗi ký_tự đến khi gặp một khoảng_trống thì dừng .
+char st = "ABCDEF" ; string s ; s = "XYZ" ; cout lt;lt; s lt;lt; endl ; s = st ; cout lt;lt; s .
+length () lt;lt; " : " lt;lt; s lt;lt; endl ; Một vấn_đề thường nảy_sinh trong các ứng_dụng có sử_dụng C-string : một C-String chưa khởi tạo cần được gán NULL .
+Tuy_nhiên , rất nhiều hàm thư_viện của C-String sẽ gặp sự_cố trong thời_gian chạy khi gặp đối_tượng C-String là NULL .
+Chẳng_hạn , lệnh char x = NULL ; cout lt;lt; strlen ( x ); được một_số trình biên_dịch chấp_nhận , nhưng với nhiều hiện_thực khác của thư_viện C-String , thì gặp lỗi trong thời_gian chạy .
+string không gặp vấn_đề này , ta hoàn_toàn có_thể cho 1 xâu là rỗng mà không gặp bất_cứ lỗi nào : string s=""; String thực_chất là một vectorlt;chargt; có bổ_sung thêm một_số hàm và thuộc_tính , do_đó , nó có toàn_bộ các tính_chất của 1 vector , như hàm size() , push_back() , toán_tử , . . .
+Các hàm từ vector : v . size() : Số_lượng phần_tử v . empty() : Trả về 1 nếu chuỗi rỗng , 0 nếu ngược_lại .
+v . max_size() : Trả về số_lượng phần_tử tối_đa đã được cấp_phát v1 == v2 : Trả về 1 nếu hai chuỗi giống nhau v1 ! = v2 : Trả về 1 nếu hai chuỗi khác_nhau v . begin() : Trả về iterator đầu_tiên của chuỗi v . end() : Trả về iterator cuối_cùng của chuỗi (trỏ vào sau kí_tự cuối cùng) v . front() : Trả về_phần tử đầu_tiên của chuỗi v . back() : Trả về_phần tử cuối_cùng của chuỗi v1 . swap(v2) : Hoán_đổi 2 chuỗi với_nhau (giống việc hoán_đổi giá_trị của 2 biến) include lt;iostreamgt; include lt;conio . hgt; include lt;stringgt; using namespace std ; int main () string s = "Hello string" ; // Khai_báo biến kiểu string cout lt;lt; "Noi dung string : " lt;lt; s lt;lt; endl ; // In nôi dung string ra màn_hình cout lt;lt; "Chieu dai cua string : " lt;lt; s .
+size () lt;lt; endl ; // Chiều_dài cout lt;lt; "Ky tu 0 : " lt;lt; s 0 lt;lt; endl ; // In ký_tự đầu_tiên của xâu cout lt;lt; "Ky tu 1 : " lt;lt; s 1 lt;lt; endl ; // In ký_tự thứ 2 cout lt;lt; "Ky tu 2 : " lt;lt; s 2 lt;lt; endl ; // In ký_tự thứ 3 getchar (); return 0 ; Nhập một string trên 1 dòng (chú ý cin sẽ chỉ đọc đến dấu cách hoặc xuống_dòng đầu tiên) : istreamamp; getline ( istreamamp; in , stringamp; str , char delimiter = ‘\n’); Đọc 1 dòng văn_bản từ istream in (có thể là file hay đối_tượng chuẩn cin) từng ký_tự đến khi ký_tự delimiter được nhập vào (mặc định là \n ) // getline with strings include lt;iostreamgt; include lt;stringgt; using namespace std ; int main () string str ; short age ; cout lt;lt; "Please enter full name and age" lt;lt; endl ; getline ( cin , str ) gt;gt; age ; cout lt;lt; "Thank you " lt;lt; str lt;lt; " ! \n " ; return 0 ; b) Các phương_thức chèn , xóa , lấy chuỗi con : Phương_thức substr(int pos , int nchar) trích ra chuỗi con của một chuỗi cho trước , ví_dụ str . substr(2 , 4) trả về chuỗi con gồm 4 ký_tự của chuỗi str kể_từ ký_tự ở vị_trí thứ 2 (ký tự đầu_tiên của chuỗi ở vị_trí 0) .
+//get substring include lt;iostreamgt; include lt;stringgt; include lt;conio . hgt; using namespace std ; int main () string s = "ConCho chay qua rao" ; cout lt;lt; s .
+substr ( 2 , 4 ) lt;lt; endl ; // cout lt;lt; new string(str . begin()+2 , str . begin()+2+4); getchar (); return 0 ; Phương_thức insert() chèn thêm ký_tự hay chuỗi vào một vị_trí nào_đó của chuỗi str cho trước .
+Có nhiều cách dùng phương_thức này : str . insert(int pos , char s) ; chèn s (mảng ký_tự kết_thúc \0 ) vào vị_trí pos của str ; str . insert(int pos , string s) ; chèn chuỗi s (kiểu string ) vào vị_trí pos của chuỗi str ; str . insert(int pos , int n , int ch) ; chèn n lần ký_tự ch vào vị_trí pos của chuỗi str ; // inserting into a string include lt;iostreamgt; include lt;stringgt; include lt;conio . hgt; using namespace std ; int main () string str = "day la . .
+xau thu" ; string istr = "them" ; str .
+insert ( 8 , istr ); cout lt;lt; str lt;lt; endl ; getchar (); return 0 ; Phương_thức str . erase(int pos , int n) xóa n ký_tự của chuỗi str kể_từ vị_trí pos ; nếu_không quy_định giá_trị_n thì tất_cả các ký_tự của str từ_vị trí pos trở_đi sẽ bị xóa // erase from a string include lt;iostreamgt; include lt;stringgt; include lt;conio . hgt; using namespace std ; int main () string str = "day cung la xau thu" ; str .
+erase ( 0 , 3 ); // " cung la xau thu" cout lt;lt; str lt;lt; endl ; str .
+erase ( 6 , 2 ); cout lt;lt; str lt;lt; endl ; // " cung xau thu" getchar (); return 0 ; c) So_sánh Bạn có_thể đơn_giản là sử_dụng những toán_tử quan_hệ ( == , ! = , lt; , lt;= , gt;= ) được định_nghĩa sẵn .
+Tuy_nhiên , nếu muốn so_sánh một phần của một chuỗi thì sẽ cần sử_dụng phương_thức compare() : int compare ( const string amp; str ) const ; int compare ( const char s ) const ; int compare ( size_t pos1 , size_t n1 , const string amp; str ) const ; int compare ( size_t pos1 , size_t n1 , const char s ) const ; int compare ( size_t pos1 , size_t n1 , const string amp; str , size_t pos2 , size_t n2 ) const ; int compare ( size_t pos1 , size_t n1 , const char s , size_t n2 ) const ; Hàm trả về 0 khi hai chuỗi bằng_nhau và lớn hơn hoặc nhỏ hơn 0 cho trường_hợp khác Ví_dụ : // comparing apples with apples include lt;iostreamgt; include lt;stringgt; using namespace std ; int main () string str1 ( "green apple" ); string str2 ( "red apple" ); if ( str1 .
+compare ( str2 ) ! = 0 ) cout lt;lt; str1 lt;lt; " is not " lt;lt; str2 lt;lt; " \n " ; if ( str1 .
+compare ( 6 , 5 , "apple" ) == 0 ) cout lt;lt; "still , " lt;lt; str1 lt;lt; " is an apple \n " ; if ( str2 .
+compare ( str2 .
+size () - 5 , 5 , "apple" ) == 0 ) cout lt;lt; "and " lt;lt; str2 lt;lt; " is also an apple \n " ; if ( str1 .
+compare ( 6 , 5 , str2 , 4 , 5 ) == 0 ) cout lt;lt; "therefore , both are apples \n " ; return 0 ; d) Các phương_thức tìm_kiếm và thay_thế Phương_thức find() tìm_kiếm xem một ký_tự hay một chuỗi nào_đó có xuất_hiện trong một chuỗi str cho trước hay_không .
+Có nhiều cách dùng phương_thức này : str .
+find ( int ch , int pos = 0 ); t ì m k ý t ự ch k ể t ừ v ị tr í pos đế n cu ố i chu ỗ i str str .
+find ( char s , int pos = 0 ); t ì m s ( m ả ng k ý t ự k ế t th ú c ‘\ 0 ’ ) k ể t ừ v ị tr í pos đế n cu ố i str .
+find ( string amp; s , int pos = 0 ); t ì m chu ỗ i s k ể t ừ v ị tr í pos đế n cu ố i chu ỗ i .
+Nếu_không quy_định giá_trị pos thì hiểu mặc_nhiên là 0; nếu tìm có thì phương_thức trả về vị_trí xuất_hiện đầu_tiên , ngược_lại trả về giá_trị -1 .
+//find substring include lt;iostreamgt; include lt;stringgt; include lt;conio . hgt; using namespace std ; int main () string str = "ConCho chay qua rao" ; cout lt;lt; str .
+find ( "chay" ) lt;lt; endl ; // 7 cout lt;lt; ( int ) str .
+find ( "Chay" ) lt;lt; endl ; // -1 getchar (); return 0 ; Hàm tìm_kiếm ngược ( rfind ) //find from back include lt;iostreamgt; include lt;stringgt; include lt;conio . hgt; using namespace std ; int main () string str = "ConCho chay qua chay qua rao" ; cout lt;lt; str .
+find ( "chay" ) lt;lt; endl ; // 7 cout lt;lt; ( int ) str .
+rfind ( "chay" ) lt;lt; endl ; // 16 getchar (); return 0 ; Phương_thức replace() thay_thế một đoạn con trong chuỗi str cho trước (đoạn con kể_từ một vị_trí pos và đếm tới nchar ký_tự ký_tự về phía cuối chuỗi) bởi một chuỗi s nào_đó , hoặc bởi n ký_tự ch nào_đó .
+Có nhiều cách dùng , thứ_tự tham_số như_sau : str .
+replace ( int pos , int nchar , char s ); str .
+replace ( int pos , int nchar , string s ); str .
+replace ( int pos , int nchar , int n , int ch ); string str = "con cho la con cho con .
+Con meo ko phai la con cho" ; str .
+replace ( 4 , 3 , "CHO" ); // "con CHO la con cho con .
+Con meo ko phai la con cho"; cout lt;lt; str lt;lt; endl ; getchar (); e) Tách xâu Trong việc xử_lý xâu ký_tự , không_thể thiếu được các thao_tác tách xâu ký_tự thành nhiều xâu ký_tự con thông_qua các ký_tự ngăn_cách .
+Các hàm này có_sẵn trong các ngôn_ngữ khác như Visual_Basic , Java , hay thậm_chí là trong lt;string . hgt; .
+Với_STL , các bạn có_thể dễ_dàng làm điều này với stringstream : string S = "Xin chao tat ca cac ban" ; // Khởi tạo giá_trị của xâu stringstream ss ( S ); // Khởi tạo stringstream từ xâu S while ( ss gt;gt; token ) // Đọc lần_lượt các phần của xâu .
+Các phần tách nhau bởi dấu cách hoặc xuống_dòng .
+cout lt;lt; token lt;lt; endl ; Output : Xin chao tat ca cac ban Chú_ý rằng , cách này cũng có_thể dễ áp_dụng nếu bạn muốn chuyển số_thành xâu (hoặc ngược lại) , tách 1 xâu thành nhiều số .
+Nếu_không muốn sử_dụng stringstream , các bạn cũng có_thể tự xây_dựng hàm tách xâu như_sau : string S = "Xin chao tat ca cac ban" ; // Khởi tạo giá_trị của xâu string : : iterator t , t2 ; // Các biến_lặp vector lt; string gt; split ; // Mảng các xâu (lưu kết_quả tách) for ( t = S .
+begin (); t lt; S .
+end ();) // Lặp từ_vị trí bắt_đầu t2 = find ( t , S .
+end () , ); // TÌm ký_tự space đầu_tiên // kể_từ vị_trí t if ( t ! = t2 ) split .
+push_back ( string ( t , t2 )); // Lấy xâu ký_tự giữa 2 vị_trí t = t2 + 1 ; // Chuyển sang vị_trí sau for ( int i = 0 ; i lt; split ì size (); i ++ ) cout lt;lt; split i lt;lt; endl ; // In mảng các xâu ký_tự getchar (); Output : Xin chao tat ca cac ban Đoạn chương tr . nh sử_dụng các kỹ_thuật sau Phương_thức find(vị_trí_đầu , vị_trí_cuối , ký_tự_tìm) dùng để tìm vị_trí_đầu tiên của ký_tự_tìm bắt_đầu_từ vị_trí_đầu .
+Hàm này trả về vị_trí của ký_tự_tìm được (nếu tìm thấy) hoặc vị_trí_cuối (nếu không tìm thấy) string có_thể khởi tạo từ một đoạn ký_tự con của một xâu ký_tự khác với cú_pháp string(vị_trí_đầu , vị_trí_cuối) Đoạn chương_trình thực_hiện tách các xâu ký_tự kể_cả trong trường_hợp có nhiều ký_tự space nằm liên_tiếp nhau .
+Một_cách đơn_giản hơn_là bạn có_thể gọi hàm strtok() trong string . h để làm_việc này , nhưng không may là hàm này thao_tác trên char chứ không_phải string .
+Hàm thành_viên c_str() sẽ giúp bạn chuyển từ string thành dạng const charT c_str () const ; Hàm này cũng tự_động sinh_ra ký_tự null chèn vào cuối xâu .
+Từ prototype ta cũng thấy được hàm trả về một hằng chuỗi , điều này đồng_nghĩa với việc_ta không_thể thay_đổi chuỗi trả về .
+Gọi phương_thức c_str(); string s = "some_string" ; cout lt;lt; s .
+c_str () lt;lt; endl ; cout lt;lt; strlen ( s .
+c_str ()) lt;lt; endl ; Sau_đây là ví_dụ bên_trên được viết lại dùng hàm thành_viên c_str() và các hàm trong lt;string . hgt; // strings vs c-strings include lt;iostreamgt; include lt;string . hgt; include lt;stringgt; using std : : string ; int main () char cstr ; char p ; string str ( "Xin chao tat ca cac ban" ); cstr = new char str .
+size () + 1 ; strcpy ( cstr , str .
+c_str ()); // cstr là 1 bản_sao c-string của str p = strtok ( cstr , " " ); while ( p ! = NULL ) cout lt;lt; p lt;lt; endl ; p = strtok ( NULL , " " ); delete cstr ; return 0 ; Output : Xin chao tat ca cac ban f) Chuyển_đổi hàng_loạt với transform OutputIterator transform ( InputIterator first , InputIterator last , OutputIterator result , UnaryOperation unary_op ); include lt;cctypegt; // for toupper include lt;stringgt; include lt;algorithmgt; //for transform using namespace std ; char alphabet ( char c ) static char ch = a ; return ch ++ ; int main () string s ( "this is a lower case string" ); transform ( s .
+begin () , s .
+end () , s .
+begin () , toupper ); cout lt;lt; s lt;lt; endl ; transform ( s .
+begin () , s .
+end () , s .
+begin () , alphabet ); cout lt;lt; s ; return 0 ; g) Một_số phương_thức khác Còn nhiều phương_thức tiện_ích khác như : append() , rfind() , find_first_not_of() , find_last_not_of() , swap() .
+Cách dùng các hàm này đều được trình_bày trong hệ_thống hướng_dẫn (help) của các môi_trường có hỗ_trợ STL (trong VC++ là MSDN) .
+Ngoài_ra các phương_thức như find_first_of() tương_tự như find() , find_last_of() tương_tự như rfind()

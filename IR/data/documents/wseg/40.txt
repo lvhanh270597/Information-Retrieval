@@ -1,0 +1,63 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này chúng_ta sẽ nghiên_cứu kĩ_thuật thiết_kế giải_thuật cho một hệ_thống gợi_ý với dữ_liệu rất lớn (lên tới 100 triệu user và 100 triệu items) .
+Trọng_tâm của bài này là sử_dụng phép băm .
+Gọi và lần_lượt là tập các user , item trong hệ_thống .
+Một chú_ý quan_trọng của bài này đó là dữ_liệu của chúng_ta là rất lớn , do_đó tất_cả các giải_thuật với độ phức_tạp là đều không_thể sử_dụng được . Giải_thuật gợi_ý thường được chia thành 3 dạng chính : Trong bài này , chúng_ta chỉ tập_trung vào .
+Giải_thuật lọc cộng_tác lại chia thành 2 nhóm chính : Mặc_dù hai phương_pháp này khác_nhau về_mặt khái_niệm , các thức thực_thi thì lại tương_tự nhau .
+Do_đó , trong bài này , chúng_ta chỉ tập_trung vào một phương_pháp , mà cụ_thể là phương_pháp dựa trên user . Trước_hết chúng_ta sẽ nói đến độ đo tương_tự .
+Thông_thường với dữ_liệu có_số chiều_cao mà thưa như visit log , người_ta sử_dụng 2 độ đo chính là độ đo Cosine và độ đo Jaccard .
+Tại_sao các độ đo khác không phù_hợp thì chúng_ta không bàn thêm ở đây (xem thêm tại ) . Với độ đo Cosine , chúng_ta coi mỗi user như một vector với mỗi chiều tương_ứng với một item .
+Sự tương_tự giữa 2 user được tính là Cosin giữa 2 vector tương_ứng .
+Do độ đo Cosine sử_dụng căn bậc 2 , một thao_tác khá tốn_kém , nên ta sẽ không dùng .
+Như_vậy , lựa_chọn còn_lại là độ đo Jaccard . Độ đo Jaccard giữa 2 tập_hợp và được định_nghĩa như_sau : Ví_dụ , thì độ đo Jaccard của và là : Độ đo Jaccard áp_dụng cho hai user cho trước chính là độ tương_tự giữa 2 tập item tương_ứng mà 2 user đó thăm .
+Ví_dụ đã thăm các item và đã thăm các item thì độ tương_tự giữa và là . Sau khi ta đã thống_nhất một_độ đo tương_tự , ta có_thể thực_hiện gợi_ý đơn_giản như_sau : Hai vòng_lặp ngoài_cùng sử_dụng bước lặp .
+Tính mất thời_gian , trong trường_hợp tồi nhất .
+Trong thực_tế , số các item được xem bởi một user thường nhỏ hơn tổng_số items rất nhiều , và có_thể coi là .
+Như_vậy , trong trường_hợp lạc_quan nhất_thì thời_gian của thuật_toán vẫn là .
+Trong thuật_toán trên , với mỗi user , ta chỉ quan_tâm đến các user mà (giá trị thực tến của thường là ) .
+Trong thực_tế , các user có thường không quá nhiều (khoảng vài ngàn) .
+Tuy_nhiên , thuật_toán trên phải duyệt qua tất_cả các user để lọc ra những user có độ tương_tự_cao với .
+Một ý_tưởng cải_tiến khá tự_nhiên đó là : sử_dụng một hàm_băm thỏa_mãn : Nếu thì sẽ được băm vào cùng một cụm (với xác_suất cao) , và ngược_lại . Ở đây , ta nói với xác_suất cao là_vì các hàm_băm tốt , về_mặt lý_thuyết , đều phải là các hàm_băm ngẫu_nhiên .
+Hàm_băm với tính_chất như_trên được gọi_là hàm_băm LSH (Locality Senstive_Hashing) .
+Giả_sử hàm_băm như_thế tồn_tại , giải_thuật có_thể được viết lại như_sau : Chúng_ta có_thể dễ_dàng nhận_ra trong kịch_bản tốt nhất , thời_gian của thuật_toán trên là Trong phần này chúng_ta sẽ thảo_luận cách_thức thực_thi thuật_toán .
+Trước_hết ta tạm quên đi Condition 1 , thay vào đó , ta xem_xét gợi_ý với hàm_băm đơn_giản sau : Hàm () về cơ_bản trả về chỉ nhỏ nhất trong hoán_vị trong số các item mà đã xem trong quá_khứ .
+Ví_dụ ta có 3 items : và user thăm .
+Giả_sử hoán_vị chúng_ta sinh_ra ngẫu_nhiên là .
+Có_nghĩa là có chỉ_số 3 , có chỉ_số 1 , và có chỉ_số 2 .
+() sẽ trả về vì 2 là chỉ_số nhỏ nhất trong tập chỉ_số . Câu_hỏi mà ta sẽ tìm_hiểu với hàm_băm này đó là xác_suất hai user và có cũng mã_băm (băm vào cùng một cụm) là bao_nhiêu ?
+trong đó () Dễ thấy , trong tập item , xác_suất để một item bất_kì có chỉ_số nhỏ nhất trong hoán_vị ngẫu_nhiên là .
+Mở_rộng ra , xác_suất để một item bất_kì trong một_tập con các item của có chỉ_số nhỏ nhất trong hoán_vị ngẫu_nhiên là .
+Do_đó , xác xuất để chính là xác_suất mà một phần_tử (bất kì) trong tập_hợp trở_thành phần_tử có chỉ_số nhỏ nhất trong tập_hợp .
+Xác_suất này chính là . Từ phân_tích ở trên , ta thấy , hàm_băm mà ta chọn thông_qua hoán_vị ngẫu_nhiên có_một tính_chất khá thú_vị đó là xác_suất hai user được băm vào một cụm bằng độ tương_tự Jaccard giữa hai user đó .
+Tuy_nhiên , ta chưa thể áp_dụng ngay ý_tưởng này vào gợi_ý được vì còn hai lí_do : Ta sẽ giải_quyết vấn_đề đầu_tiên trước . Phần này ta sẽ nghiên_cứu phương_pháp đơn_giản để tăng_cường xác_suất sao_cho hàm_băm ở trên thỏa_mãn Condition 1 .
+Thay_vì chỉ sử_dụng một hàm_băm , ta sẽ sử_dụng hàm_băm MinHash như_trên (bằng cách chọn hoán_vị ngẫu_nhiên khác nhau) .
+Chia hàm_băm này thành nhóm , mỗi nhóm hàm_băm .
+Với mỗi user , ví_dụ , ta sẽ băm vào cụm , trong đó mỗi cụm sẽ tương_ứng với hàm_băm . Ví_dụ với , ta chia hàm_băm thành 10 nhóm , mỗi nhóm 3 hàm_băm .
+10 Nhóm đó là , , , .
+Như_vậy , mỗi user sẽ được phân vào 10 cụm , đó là : Ví_dụ với , thì ta có .
+Từ_đó ta suy ra xác_suất để hai user với độ tương_tự ít_nhất được băm vào cùng ít_nhất một cụm là .
+Rõ_ràng xác_suất này cao hơn nhiều so_với .
+Hay nói_cách_khác , ta đã tăng_cường được xác_suất mà hai users được băm vào cùng một cụm .
+Trong thực_tế , với ngưỡng cho trước , ta chỉ việc chọn sao_cho phù_hợp .
+Vấn_đề đầu_tiên coi_như đã xong .
+Ta tiếp_tục với vấn_đề thứ 2 : làm_sao để thực_hiện hàm_băm với hoán_vĩ ngẫu_nhiên ? Như đã phân_tích ở trên , ta cần bít để mô_tả một hoán_vị ngẫu_nhiên .
+Rất may , dựa vào phân_tích của Theorem 1 , ta thấy chúng_ta không nhất_thiết phải sử_dụng hoán_vị ngẫu_nhiên để thực_hiện hàm_băm .
+Tính_chất mà chúng_ta cần đó là một hàm (ngẫu nhiên) có_thể ánh_xạ tập_hợp vào tập các số_nguyên (ví dụ 64 bít) sao_cho xác_suất để một phần_tử bất_kì trong có_giá trị (ảnh) nhỏ nhất trong là .
+Điều này lại gợi cho chúng_ta sử_dụng hàm_băm .
+Hàm_băm thỏa_mãn tính_chất này người_ta gọi_là hàm_băm Minwise_Independent_Hashing (MIH) 4 .
+Mình sẽ không đi_sâu thêm ở đây vì lý_thuyết của loại hàm_băm này khá phức_tạp .
+Các bạn xem thêm tại 4 và cách xấp_xỉ hàm_băm này trong 5 . Sau_đây là giải_mã của giải_thuật đầy_đủ , kết_hợp tất_cả các ý_tưởng ở trên .
+Dễ thấy trong kịch_bản tốt nhất , thời_gian của thuật_toán là_vì số_lượng hàm_băm mà ta chọn trong thực tể chỉ khoảng vài chục đến vài trăm .
+1 Das , Abhinandan_S . , Mayur_Datar , Ashutosh_Garg , and Shyam_Rajaram .
+Proceedings of the 16th International_Conference on World Wide_Web .
+ACM , 2007 .
+2 Jure_Leskovec , Anand_Rajaraman , Jeff_Ullman .
+, 2nd Edition , Chapter 3 .
+3 FNV_Hash function : http : //isthe . com/chongo/tech/comp/fnv/ , accessed 08/01/2012 4 Broder , Andrei_Z . , Moses_Charikar , Alan_M .
+Frieze , and Michael_Mitzenmacher .
+In_Proceedings of the Thirtieth_Annual_ACM_Symposium on Theory of Computing , pp .
+327-336 .
+ACM , 1998 .
+5 Indyk , Piotr .
+Journal of_Algorithms 38 . 1 (2001) : 84-90 .
+, , , , , Trackback link : Powered by and

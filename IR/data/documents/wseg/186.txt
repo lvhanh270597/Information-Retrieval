@@ -1,0 +1,102 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong , chúng_ta đã tìm_hiểu về NP-complete và 2 bài_toán đầu_tiên là và .
+Công_cụ để chứng_minh một bài_toán thuộc là quy dẫn (reduction) , mà cụ_thể là Lemma 3 trong .
+Nói ngắn_gọn , để chứng_minh một bài_toán thuộc , ta sẽ : Các bạn phải đặc_biệt chú_ý chiều của quy dẫn : : nếu ta muốn sử_dụng bài_toán để chứng_minh bài_toán .
+Càng về_sau chúng_ta càng dễ nhầm chiều . Trong post này , chúng_ta tập_trung vào một_số bài_toán trên đồ_thị : Tập độc_lập (indepndent set) , phủ đỉnh (vertex cover) , clique , chu_trình Hamilton và bài_toán người du_lịch (tsp) .
+Chúng_ta sẽ thực hiên quy dẫn theo Figure 1 .
+Quy dẫn giữa một_số bài_toán trong đồ_thị . Quy dẫn từ sang ta đã trình_bày trong .
+Chúng_ta sẽ bỏ_qua quy dẫn từ về vì quy dẫn khá phức_tạp , khó trình_bày trong khuôn_khổ cho_phép của post này .
+Các bạn có_thể xem thêm tại 1 và CLRS 2 .
+Các quy dẫn khác trong hình ta sẽ trình_bày ở post này . Trước_khi đi_vào quy dẫn , mình muốn làm rõ một_vài khái_niệm và kí_hiệu với bài_toán .
+Bạn_đọc cần phân_biệt biến (variables) và literals .
+Mỗi biến có 2 literals tương_ứng là và phủ của nó .
+Nếu được gán giá_trị thì literal sẽ có_giá trị còn literal sẽ có_giá trị .
+Một mệnh_đề (clause) của có_giá trị khi và chỉ khi ít_nhất 1 literal trong mệnh_đề đó có_giá trị , mặc_dù tất_cả các biến trong mệnh_đề đó có_thể nhận giá_trị . Ngoài_ra , theo của , mỗi mệnh_đề của có 3 literals .
+Thực_tế , bài_toán 3SAT với mỗi mệnh_đề có 3 literals cũng là NP-complete .
+Do_đó , ta sẽ giả_sử mỗi mệnh_đề của có đúng 3 literals , để ta không_phải xét các trường_hợp khi thực_hiện quy dẫn .
+Ta bắt_đầu với bài_toán tập độc_lập (independent set) , do quy dẫn từ về tập độc_lập là quy dẫn phức_tạp nhất của bài viết .
+Sau khi thực_hiện quy dẫn này rồi , các quy dẫn khác sẽ dễ hơn nhiều . Một_tập đỉnh được gọi_là một_tập độc_lập của một đồ_thị nếu_như không có cạnh nào nối hai đỉnh cùng thuộc một_tập đó (xem lại chi_tiết định_nghĩa và ví_dụ ) .
+Ta sẽ chứng_minh : Ta sẽ quy dẫn bài_toán về như_sau : bắt_đầu_từ một biểu_thức thuộc bài_toán , ta sẽ xây_dựng một đồ_thị và một_số nguyên (trong thời_gian đa thức) sao_cho có_một phép gán có_giá trị khi và chỉ khi đồ_thị có_một tập độc_lập với kích_thước ít_nhất .
+Ta bắt_đầu bằng cách xây_dựng các cho từng mệnh_đề của .
+Sau_đó chúng_ta sẽ tìm cách nối các gadget lại với_nhau .
+Một gadget ở đây được hiểu là một đồ_thị con để phục_vụ cho mục_đích giải bài_toán của chúng_ta .
+Dựa trên định_nghĩa , ta có nhận_xét : với mỗi cạnh , tối_đa một đỉnh thuộc tập độc_lập . Gadget mệnh_đề : với mỗi mệnh_đề có 3 biến , ví_dụ , ta tạo ra 3 đỉnh mới có nhãn tương_ứng và .
+Sau_đó , ta nối 3 đỉnh này đôi một với_nhau .
+Xem_Figure 2 .
+Chú_ý , dấu phủ trên biến không có gì đặc_biệt , chỉ để minh_họa một mệnh_đề có cả biến và phủ của biến .
+Các mệnh_đề không có phủ hoặc chỉ_có phủ ta làm tương_tự .
+Nhận_thấy , với mỗi gadget mệnh_đề , chỉ_có tối_đa một đỉnh thuộc tập độc_lập , và đỉnh nào thuộc tập độc_lập thì literal tương_ứng sẽ nhận giá_trị .
+Ta sẽ thiết_lập giá_trị sao_cho đúng một trong 3 đỉnh của gadget mệnh_đề sẽ thuộc tập độc_lập .
+Gadget cho mệnh_đề . Giờ ta sẽ nối các gadget mệnh_đề lại với_nhau .
+Hiện_tại , số đỉnh của đồ_thị là_vì với mỗi mệnh_đề ta có 3 đỉnh .
+Với mỗi biến , chỉ_có đúng một trong hai literals và nhận giá_trị , do_đó , ta sẽ nối mọi cặp đỉnh có nhãn dạng và lại với_nhau .
+Do_đó , chỉ đúng có_một trong hai đỉnh và thuộc tập độc_lập .
+Đỉnh nào thuộc tập độc_lập thì ta thiết_lập literal tương_ứng sẽ nhận giá_trị .
+Như_vậy ta đã hoàn_thành đồ_thị .
+Xem minh_họa trong Figure 3 .
+Để thiết_lập giá_trị , ta thấy nhận giá_trị khi và chỉ khi tồn_tại một_cách gán biến sao_cho mọi mệnh_đề có_giá trị .
+Hay nói_cách_khác , mỗi mệnh_đề đều có_một literal .
+Điều đó có_nghĩa , mỗi gadget mệnh_đề có ít_nhất 1 biến thuộc tập độc_lập .
+Do_đó , ta thiết_lập .
+Các cạnh màu đỏ gạch là các cạnh nối giữa các gadget mệnh_đề . Giờ ta sẽ chứng_minh có_một phép gán có_giá trị khi và chỉ khi đồ_thị có_một tập độc_lập với kích_thước ít_nhất .
+Chiều thuận : Với mỗi biến , nếu phép gán của gán cho giá_trị , ta lấy đỉnh có nhãn của mỗi mệnh_đề vào tập .
+Ngược_lại , ta lấy đỉnh có nhãn vào tập .
+Do phép gán đó là phép gán , mỗi mệnh_đề đều có_một literal có_giá trị .
+Nếu mệnh_đề có ít_nhất 2 literals có_giá trị có_một literal có_giá trị , ta cũng chỉ lấy đúng 1 đỉnh trong số_ít nhất 2 đỉnh tương_ứng để đảm_bảo là tập_đọc lập .
+Do_đó , có đúng (do đó , ít nhất) đỉnh . Chiều ngược : Gọi_là một_tập độc_lập có kích_thước ít_nhất trong đồ_thị .
+Do đồ_thị có đỉnh và mỗi gadget mệnh_đề chỉ_có tối_đa đỉnh trong , ta suy ra có đỉnh .
+Trong không có 2 đỉnh nào có dạng và với mọi vì theo cách xây_dựng đồ_thị , ta sẽ có_một cạnh nối 2 đỉnh đó .
+Do_đó , trong có đúng literals , và các literals tương_ứng với mỗi biến chỉ_có dạng hoặc .
+Giờ ta sẽ gán giá_trị cho biến sao_cho mọi literals trong đều nhận giá_trị .
+Do chứa đúng một literal cho mỗi clause , cách gán này khiến mọi mệnh_đề có_giá trị , do_đó , biểu_thức sẽ có_giá trị (dpcm) . Cho một đồ_thị , một_tập đỉnh được gọi_là một_tập phủ đỉnh (vertex cover) nếu_như với mọi cạnh của đồ_thị , ít_nhất một trong hai đầu_mút của nó thuộc .
+Tập được gọi_là một Clique nếu_như giữa mọi cặp đỉnh của đều tồn_tại một cạnh của đồ_thị_nối hai đỉnh đó .
+Xem ví_dụ trong hình minh_họa trong Figure 4 .
+(a) Các đỉnh được tô đậm màu đỏ thuộc Clique có kích_thước 4 trong đồ_thị và (b) các đỉnh được tô đậm màu xanh là một_tập phủ đỉnh của đồ_thị . Bài_toán được định_nghĩa như_sau : Ta có : Ta sẽ quy dẫn từ bài_toán .
+Ở đây mình chỉ lượt qua ý_tưởng .
+Chi_tiết chứng_minh theo từng bước coi_như bài_tập của bạn_đọc .
+Chứng_minh dựa trên nhận_xét : nếu là một_tập phủ đỉnh của đồ_thị thì_là một_tập độc_lập của đồ_thị .
+Nhận_xét này có_thể chứng_minh bằng phản_chứng như_sau .
+Kí_hiệu .
+Nếu_không phải là tập độc_lập thì sẽ tồn_tại một cạnh nối hai đỉnh của của .
+Theo định_nghĩa của phủ đỉnh , ít_nhất một trong hai đầu_mút của cạnh này phải thuộc tập phủ đỉnh , ta thu được phản_chứng . Bài_toán được định_nghĩa như_sau : Ta có : Ta sẽ quy dẫn từ bài_toán .
+Cũng_như Lemma 2 , mình chỉ nêu ý_tưởng chính .
+Chi_tiết chứng_minh theo từng bước coi_như bài_tập của bạn_đọc .
+Ta định_nghĩa đồ_thị bù , kí_hiệu , của đồ_thị như_sau .
+Tập đỉnh của đồ_thị bù cũng là tập đỉnh của đồ_thị gốc , i . e , .
+Tập cạnh của đồ_thị bù là phần bù của tập cạnh của đồ_thị gốc .
+Nói_cách_khác , nếu giữa hai đỉnh của đồ_thị gốc không có cạnh nào nối chúng thì ta sẽ thêm cạnh vào đồ_thị bù và ngược_lại . Quy dẫn từ dựa trên nhận_xét : là một Clique của đồ_thị khi và chỉ khi nó là một_tập độc_lập của đồ_thị bù . Bài_toán chu_trình Hamilton và bài_toán người du_lịch (tsp) mình đã đã định_nghĩa chi_tiết kèm ví_dụ ở .
+Mình nhắc_lại ngắn_gọn hai bài toàn này tại đây .
+Ta có : Như đã nói ở đầu_bài viết , quy dẫn cho Hamiltonian cycle khá phức_tạp và mình sẽ không trình_bày cụ_thể ở đây .
+Bạn_đọc xem chứng_minh chi_tiết thêm tại note của Jeff_Erickson 2 .
+Ta sẽ công_nhận là bài_toán thuộc lớp .
+Ta sẽ chứng_minh bằng cách quy dẫn từ bài_toán . Gọi_là đồ_thị đầu_vào của bài_toán .
+Ta quy đồ_thị này thành đầu_vào của bài_toán bằng cách gán cho mỗi cạnh trọng số và thiết_lập .
+Ta có nhận_xét : đồ_thị với các cạnh trọng số có_một đường_đi đóng có tổng_trọng số nhỏ hơn hoặc bằng khi và chỉ khi mọi đỉnh xuất_hiện đúng 1 lần trên đường_đi , ngoại_trừ đỉnh_đầu và đỉnh cuối .
+Do_đó , đường_đi đóng là chính là một chu_trình Hamilton của đồ_thị . 1 J .
+Erickson .
+.
+UIUC .
+2014 2 T .
+H .
+Cormen , C .
+E .
+Leiserson , R .
+L .
+Rivest , C .
+Stein .
+.
+Chapter 36 .
+MIT_Press and McGraw-Hill .
+ISBN 0-262-03293-7 .
+(2001) .
+3 M .
+R .
+Garey and D .
+S .
+Johnson .
+.
+W .
+H .
+Freeman_Co . , New_York , NY , USA .
+1979 .
+, , , , , , Trackback link : Powered by and

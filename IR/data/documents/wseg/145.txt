@@ -1,0 +1,37 @@
+Biên_soạn : Đỗ_Việt_Anh (lion_it) Email : dovietanh . 95gmail . com Nguồn : wcipeg . com/wiki Table of_Contents 0 .
+Kiến_thức cần biết trước 1 .
+Giới_thiệu chung 1 . 0 . Tính_chất 1 . 1 . Ứng_dụng 1 . 2 . Cài_đặt 2 .
+Các thao_tác trên Binary_Heap 2 . 0 . Các thao_tác thường_dùng với Binary_Heap là 2 . 1 . Tìm phần_tử lớn nhất 2 . 2 . Thêm một nút (node) trên cây 2 . 3 . Xóa nút gốc khỏi cây 2 . 4 . Tăng , giảm nhãn của một nút 2 . 5 . Xây đựng Binary_Heap từ tập N phần_tử 3 .
+Câu_hỏi thêm cho bạn_đọc 0 .
+Kiến_thức cần biết trước Để đọc và hiểu được bài viết các bạn cần có kiến_thức về cấu_trúc cây ( tree ) và cây nhị_phân đầy_đủ ( complete binary tree ) 1 .
+Giới_thiệu chung 1 . 0 . Tính_chất Một cấu_trúc Binary_Heap thỏa_mãn 2 điều_kiện sau : Tính_chất 1 - Binary ( TC1 ) : Là một cây nhị_phân đầy_đủ ( complete binary tree ) Tính_chất 2 - Heap ( TC2 ) Mỗi nút (node) trên cây đều chứa một nhãn lớn hơn hoặc bằng các con của nó (nếu có) và nhỏ hơn hoặc bằng nút cha (trừ nút gốc là và nó là nút lớn nhất) .
+Một cấu_trúc như_trên được gọi_là max binary heap vì nhãn ở gốc (root) , tương_tự ta có_thể thay_đổi TC 2 để có được min binary heap với nhãn ở gốc là nhỏ nhất trong cây .
+1 . 1 . Ứng_dụng Binary_Heap được dùng để cài_đặt priority_queue (trong C++ , java . . . ) hay dùng để tăng_tốc các thuật_toán như Dijkstra , Prim . .
+1 . 2 . Cài_đặt Trong_C++ , bạn có_thể sử_dụng CTDL priority_queue hoặc set , vì_vậy việc tự cài_đặt lại là không cần_thiết .
+Với_Pascal , bạn có_thể tìm_hiểu cách cài_đặt trong quyển sách của thầy Lê_Minh Hoàng 2 .
+Các thao_tác trên Binary_Heap 2 . 0 . Các thao_tác thường_dùng với Binary_Heap là Tìm nhãn lớn nhất trên Binary_Heap (nút gốc) Thêm một nút vào Binary_Heap Xóa_bỏ nút gốc (root) hay nhãn lớn nhất trên Binary_Heap Xây_dựng một Binary_Heap từ một_tập N phần_tử ( Các bạn có_thể vào visualgo để có_thể hình_dung cụ_thể về các thao_tác trên Heap ) Đặt h là độ_cao của cây .
+Nút gốc ở độ sâu 0 , 2 nút con của gốc ở độ sâu 1 , và nút sâu nhất có độ sâu là h .
+Ở độ sâu k , cây có tối_đa 2k nút , do_đó tổng_số nút trên cây N \le 2h+1 .
+2 . 1 . Tìm phần_tử lớn nhất Rõ_ràng gốc (root) luôn chứa nhãn lớn nhất theo TC2 (các nút con luôn không nhỏ hơn nút cha) Độ phức_tạp thuật_toán : O(1) .
+Thông_thường thao_tác này sẽ đi_kèm với thao_tác xóa nút gốc để tìm nhãn tiếp_theo (như khi sort) .
+Thao_tác xóa sẽ được miêu_tả ở mục 2 . 3 2 . 2 . Thêm một nút (node) trên cây Chọn vị_trí để thêm nút : Nếu_Binary_Heap là rỗng_ta chỉ_cần cho nút cần thêm làm gốc .
+Nếu_Binary_Heap không rỗng thêm nó vào vị_trí phải nhất ở của lớp đáy , nếu lớp đáy đã đủ (số phần_tử đúng bằng 2h) thêm nút này vào lớp mới .
+Vun đống từ dưới lên (bottom-up heapify) : Việc thêm như_trên sẽ đảm_bảo được tính_chất TC1 cây nhị_phân đầy_đủ (complete binary tree) nhưng TC2 có_thể không được thỏa_mãn .
+Nếu nút mới này nhỏ hơn nút cha của nó ta không cần phải làm_gì thêm nữa .
+Ngược_lại nếu phần_tử mới lớn hơn nút cha_ta đổi chỗ 2 nút cho nhau , so_sánh với nút cha mới đổi chỗ nếu nó lớn hơn nút cha cứ thế đến khi nó nhỏ hoặc bằng nút cha hoặc nó là gốc (không còn nút cha nào nữa) .
+Độ phức_tạp : Quá_trình chọn vị_trí cho nút chỉ mất O(1) Quá_trình vun đống từ dưới lên (bottom-up heapify) : ta có_thể thấy số lần so_sánh và đổi chỗ 2 phần_tử không quá_độ sâu h của cây nhị_phân hay (\le log(N+1) với N là số nút hiện_có trên cây) .
+Độ phức_tạp của cả quá_trình này là O(logN) 2 . 3 . Xóa nút gốc khỏi cây_Ta chỉ_có thể xóa phần_tử lớn nhất hay góc của Binary_Heap ra khỏi cây .
+Nếu cây chỉ_có nút gốc ta xóa nó khỏi cây , nếu_không Gán nhãn nút góc bằng nhãn của nút phải nhất ở lớp sâu nhất Xóa nút phải nhất ở lớp sâu nhất đi (nút này vừa được chuyển nhãn lên gốc) Khi này tính_chất TC1 vấn được đảm_bảo nhưng TC2 thì_có thể không , do_đó ta cần vun đống từ trên xuống (top-down heapify) : So_sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó (nếu chỉ_có 1 nút con , thì nút con đó được coi là nút lớn hơn) Nếu nó nhỏ hơn nút con lớn hơn của nó : đổi chỗ 2 nút này , tiếp_tục xét tiếp với nút con mới cho_đến khi nó lớn hơn hoặc bằng nút con lớn hơn của nó hoặc nó không có_con hay nút lá (leaf) Độ phức_tạp : Nếu cây chỉ_có duy_nhất nút gốc độ phức_tạp là O(1) .
+Nếu cây có N nút : Xóa nút phải nhất ở lớp sâu nhất khỏi cây có độ phức_tạp O(1)_Vun đống từ trên xuống (top-down heapify) cũng_như bottom-up heapify không vượt_quá độ sâu h của cây nên có độ phức_tạp là O(logN) 2 . 4 . Tăng , giảm nhãn của một nút Trước_tiên cần xác_định vị_trí của nút ta cần thay_đổi nhãn Thay_đổi nhãn Vun đống heap Nếu nhãn tăng so_với nhãn trước đó cần thực_hiện bottom-up heapify như khi thêm nút Nếu nhãn giảm đi so_với nhãn trước đó cần thưc hiện top-down heapify như khi xóa nút .
+Độ phức_tạp : độ thức tạp của thao_tác này bằng độ phức_tạp của top-down heapify hoặc bottom-up heapify hay bằng O(logN) 2 . 5 . Xây đựng Binary_Heap từ tập N phần_tử Một_cách đơn_giản ta có_thể thực_hiện N phép thêm nút .
+Nhưng có_một kĩ_thuật hiệu_quả hơn để xây_dựng binary heap được gọi_là bottom-up construction .
+Bottom-up construction : Kỹ_thuật này yêu_cầu xây_dựng một cây nhị_phân đầy_đủ trước và thực_hiện top-down heapify các nút trên cây theo tứ tự giảm_dần độ_cao của cây (từ các nút lá lên các nút cha và tiếp_tục cho_đến gốc) .
+Chứng_minh kết_quả của cách xây_dựng là một Binary_Heap không_phải là khó .
+Độ phức_tạp : Khi thực_hiện N bước thêm nút ta có_thể thấy độ phức_tạp là O(log1 + log2 + . . .
++ logN) = O(NlogN) .
+Ở cách xây_dựng thứ 2 ta thấy nếu một nút ở độ xâu k nó sẽ mất không quá h - k lần so_sánh với nút con (nhắc lại h là độ sâu của cây và số nút của cây N lt; 2h+1) và một_nửa số nút trên cây là lá và sẽ không_phải so_sánh với nút con nào cả , ta suy ra được : Ở độ sâu k = h-1 có 2h-1 nút số phép so_sánh là 1 2h-1 = 1/4 N_Ở độ sâu k = h-2 có 2h-2 nút số phép so_sánh là 2 2h-2 = 2/8 N_Ở độ sâu k = h-3 có 2h-3 nút số phép so_sánh là 3 2h-3 = 3/16 N . . .
+Ở độ sâu k = 0 (gốc) có 1 nút số phép so_sánh là h 1 = h/N N Tổng_hợp lại ta có : 1/4 N + 2/8 N + 3/16 N + . . .
++ h/N N = N phép so_sánh 3 .
+Câu_hỏi thêm cho bạn_đọc Tại_sao Binary_Heap nên là một cây nhị_phân đầy_đủ TC1 ?
+Nếu_Heap không_phải là một cây nhị_phân mà là một cây tam_phân , tứ_phân , k-phân thì độ phức_tạp của các thao_tác sẽ thay_đổi thế_nào ?
+TC1 cần thêm điểu kiện tập nhãn phải là một totally ordered set (2 giá_trị bất_kì trong tập đều có_thể so_sánh được và có tính_chất bắc_cầu trong các phép so_sánh , ví_dụ như_tập số_thực \mathbbR)

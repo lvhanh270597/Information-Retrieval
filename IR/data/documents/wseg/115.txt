@@ -1,0 +1,23 @@
+Nguồn : HackerEarth và 1 số bài viết trên Wikipedia_Người dịch : Bùi_Việt Dũng_Table of_Contents Thuật_toán "ngây thơ" Thuật_toán "chia để trị" Xét bài_toán tính ab\%c , với \% là dấu đồng dư_thức và b có_thể rất lớn (ví dụ b \leq 1018) .
+Thuật_toán "ngây thơ" ab có_thể viết là a . a . a . a . . .
+với b chữ a .
+Do_đó ta có_thể_nhân b lần a để có được kết_quả .
+long_long power ( long_long a , long_long b , long_long c ) long_long ans = 1 ; for ( int i = 1 ; i lt;= b ; i ++ ) ans = a ; ans %= c ; return ans ; Trong mỗi lần_lặp , biến ans chứa kết_quả được nhân với a .
+Ngoài_ra , ta cần đảm_bảo a sẽ không vượt_quá c trong các lần_lặp , vì_thế ta lấy phần dư khi chia ans cho c ( ans = ans % c ) .
+Ta làm được vậy là nhờ tính_chất (x . y) \% n = ((x \% n) . (y \% n)) \% n .
+Vì_vậy trong code trên ta tính (ans . a)\%c bằng cách tính ((ans\%c) . (a\%c))\%c .
+Độ phức_tạp của thuật_toán : O(b) .
+Thuật_toán "chia để trị" Dễ_dàng nhận_thấy thuật_toán trên không hiệu_quả , vì_thế ta cần tìm thuật_toán hiệu_quả hơn .
+Ta có_thể giải bài_toán này với độ phức_tạp O(\log_2b) bằng kĩ_thuật lũy_thừa bằng cách bình_phương (exponentiation by squaring) .
+Kĩ_thuật này chỉ_cần O(\log_2b) lần bình_phương và O(\log_2b) phép_nhân để ra kết_quả .
+Rõ_ràng cách giải này hiệu_quả hơn nhiều lần so_với thuật_toán "ngây thơ" .
+Ta biết rằng ab có_thể được viết dưới dạng : ab=(a\fracb2)2 nếu b chia_hết_cho 2 .
+ab=a . (a\fracb2)2 nếu b không chia_hết_cho 2 .
+ab=1 nếu b=0 .
+int sqr ( int x ) return x x ; int pow ( int a , int b , int MOD ) if ( b == 0 ) return 1 % MOD ; else if ( b % 2 == 0 ) return sqr ( pow ( a , b / 2 )) % MOD ; else return a ( sqr ( pow ( a , b / 2 )) % MOD ) % MOD ; Giả_sử_ta có a=2 , b=5 , c=5 , khi đó kết_quả là pow(2 , 5 , 5) Do b lẻ , nên hàm pow(2 , 5 , 5) gọi hàm pow(2 , 2 , 5) để tính 2 . pow(2 , 2 , 5) Trong hàm pow(2 , 2 , 5) , do b=2 chẵn nên pow(2 , 2 , 5)=pow(2 , 1 , 5)2 Trong hàm pow(2 , 1 , 5) , do b=1 lẻ nên pow(2 , 1 , 5)=2pow(2 , 0 , 5) .
+Trong hàm pow(2 , 0 , 5) , do b=0 nên ta trả về 1 .
+Quay_lại hàm pow(2 , 1 , 5) : hàm này trả về giá_trị 2 .
+Quay_lại hàm pow(2 , 2 , 5) : hàm này trả về giá_trị 4 .
+Quay_lại hàm pow(2 , 5 , 5) : hàm này trả về giá_trị (2 . 42)\%5=32\%5=2 .
+Vậy_ta có 25\%5=2 .
+Độ phức_tạp của thuật_toán : O(\log_2b)

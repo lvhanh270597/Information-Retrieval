@@ -1,0 +1,29 @@
+Tác_giả : Lê_Trương_Quốc_Thắng Thông_thường trong các vòng phỏng_vấn sẽ có_một vòng về chuyên_ngành các bạn đam_mê .
+Mình chuyên về Android nên các vòng bên_dưới là về Android_SkedGo_Internship_Sau phần giới_thiệu bản_thân , câu_hỏi đầu_tiên như_sau : Có 25 con_ngựa và 5 đường đua .
+Các đường đua chỉ_có thể_xác định thứ_tự về đích mà không biết chính_xác thời_gian về đích của mỗi con_ngựa .
+Hỏi cần ít_nhất bao_nhiêu vòng_đua để chọn ra 3 con_ngựa nhanh nhất ?
+Đây là một câu_hỏi rất hay trong phỏng_vấn vì rất khó để đưa_ra câu trả_lời chính_xác ngay , từ_đó dễ_dàng kiểm_tra khả_năng giao_tiếp , cách ứng_viên phát_hiện dần_dần và giải_quyết vấn_đề .
+Điều người phỏng_vấn mong_muốn thấy khi hỏi câu này không_phải là một câu trả_lời đúng ngay_lập_tức (nếu được thì quá tốt) mà là kỹ_năng giao_tiếp , giải_quyết vấn_đề , cải_tiến cách giải_quyết . . . .
+để đạt được mục_tiêu cuối_cùng .
+VNG_Fresher_VNG là một trong những công_ty khởi_nghiệp thành_công vang_dội trong ngành CNTT ở Việt_Nam .
+Quy_trình phỏng_vấn Vòng 1 : Tư_duy logic và lập_trình cơ_bản .
+Một bộ đề bí_mật được cập_nhật thường_xuyên , bao_gồm các câu_hỏi để đánh_giá khả_năng suy_luận và kiến_thức cơ_bản về tin_học của ứng_viên .
+Ở vòng này không đòi_hỏi bất_cứ kiến_thức chuyên_ngành hay kinh_nghiệm làm_việc gì .
+Một_vài câu_hỏi thú_vị : Có 2 vòi_nước , 1 vòi nếu chảy vào bể nước thì mất 2 phút đầy 1 vòi mất 3 phút thì đầy , bể nước có 1 lỗ xả và nếu để bể nước đầy thì mất 6 phút để xả hết .
+Vậy nếu cho 2 vòi_nước chảy cùng_lúc vào bể và mở lỗ xả nước thì mất bao_lâu để bể đầy ?
+Điền số tiếp_theo vào dãy_số 9 , 15 , 32 , 57 , . .
+Vòng 2 : Kiến_thức về lập_trình hướng đối_tượng (Object Oriented_Programming) , Java và Android .
+Vòng 3 : Các câu_hỏi cơ_bản về tin_học , mức_độ sâu sẽ tăng dần theo từng câu_hỏi .
+Một_vài câu_hỏi ví_dụ : Sự khác_biệt giữa GET amp; POST (hai phương_thức trao_đổi dữ_liệu phổ_biến trong mạng máy tính) ?
+Từ những khác_biệt đó sẽ mang_lại hệ_quả gì ?
+Cho ví_dụ khi_nào dùng giao_thức TCP , khi_nào dùng giao_thức UDP ?
+Để trả_lời được câu_hỏi này cần hiểu sâu 2 giao_thức này .
+Ngoài_ra còn gặp_gỡ , trao_đổi với phó_giám_đốc bộ_phận tuyển_dụng .
+Mục_đích là để xem_xét sự phù_hợp với văn_hoá và con_người công_ty .
+Không nhận được_lời mời làm_việc (offer) không có_nghĩa là bạn không giỏi mà nó nghĩa_là bạn và công_ty không phù_hợp .
+Ví_dụ như công_ty khởi_nghiệp (start-up) đòi_hỏi nhân_viên phải học_hỏi thật nhanh , làm_ra sản_phẩm thật nhanh nhưng bạn thì chú_trọng nhiều vào chất_lượng của mã (code) , rõ_ràng bạn không phù_hợp .
+Nhưng bạn lại phù_hợp với công_ty chú_trọng hơn vào chất_lượng , ví_dụ Google , Facebook , . . .
+chẳng_hạn .
+Phỏng_vấn là đôi_bên tìm_hiểu lẫn_nhau , xem có phù_hợp với_nhau không chứ không_phải chỉ là công_ty tìm người_làm việc .
+Còn_tiếp . . .
+

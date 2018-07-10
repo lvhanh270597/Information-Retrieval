@@ -1,0 +1,93 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Nếu bạn đã từng thực_thi thuật_toán Kruskal tìm cây khung nhỏ nhất , chắc bạn sẽ_biết cấu_trúc union-find .
+Đó là một trong số rất nhiều ứng_dụng của cấu_trúc này .
+Trong phần này mình trình_bày cấu_trúc đó góc_độ một cấu_trúc dữ_liệu để lưu_trữ các tập_hợp rời nhau (disjoint sets) .
+Do_đó , cấu_trúc này còn gọi_là .
+Bài_toán của chúng_ta như_sau : Hãy thiết_kế một cấu_trúc dữ_liệu cho thuật_toán sao_cho các thao_tác này được thực_hiện một_cách hiệu_quả nhất .
+Trong cấu_trúc này , mỗi tập_hợp được lưu_trữ bởi môt danh_sách liên_kết , và mỗi phần_tử của danh_sách sẽ có_một con_trỏ chỉ đến đầu của danh_sách (có thể coi là id của danh_sách vì mỗi phần_tử chỉ xuất_hiện trong tối_đa 1 danh sách) .
+Các thao_tác () và () có_thể được thực_hiện trong thời_gian như_sau : Với cấu_trúc lưu_trữ này , ta có_thể thực_hiện thao_tác gộp hai tập với chiều_dài tương_ứng trong thời_gian như_sau : Ta có_thể áp_dụng một_vài kĩ_thuật như_sau để cải_tiến ý_tưởng của thuật_toán ở trên : Do_đó : Ở đây chú_ý là chúng_ta phải thay_đổi thủ_tục () khởi tạo thông_tin và contrỏ (chi tiết coi_như bài tập) .
+Giả mã của thao_tác như_sau : Thao_tác union được minh_họa trong hình dưới_đây : Trong trường_hợp xấu nhất , ta sẽ mất thời_gian để gộp hai danh_sách có kích_thước cỡ .
+Tuy_nhiên , những trường_hợp như_vậy sẽ "không thường xuyên" xảy_ra vì sau khi gộp ta thu được danh_sách kích_thước .
+Nếu phân_tích kĩ hơn ta sẽ thấy trung_bình mỗi thao_tác () chỉ tốn cỡ .
+Dễ thấy bước union sẽ thao_tác trên tập có kích_thước vì mỗi thao_tác union chỉ thao_tác trên tối_đa phần_tử mới .
+Xét một phần_tử , ta sẽ phân_tích xem bao_nhiêu lần con_trỏ của được cập_nhật .
+Từ bổ_đề 1 , mỗi lần cập_nhật con_trỏ , kích_thước của tập_hợp chứa tăng lên ít_nhất 2 lần .
+Do_đó , con_trỏ của được cập_nhật tối_đa lần .
+Từ_đó , ta thu được định_lý 1 . Từ định_lý 1 , ta thu được hệ_quả sau : Do_đó , có_thể coi thời_gian "khấu trừ" (amortized time) của mỗi thao_tác là .
+Trong cấu_trúc cây , mỗi tập_hợp sẽ được biểu_diễn bởi một cây và mỗi nút của cây có_một con_trỏ chỉ tới một nút cha (parent -- người viết không có_ý phân_biệt cha/mẹ , chỉ là thấy nghe cha "xuôi hơn") .
+Id của tập_hợp là id của nút gốc của cây .
+Ngoài_ra , gốc của mỗi cây lưu_thông_tin là chiều_cao của cây biểu_diễn_tập hiện_tại .
+Trong cấu_trúc cây , thao_tác vẫn có thời_gian hằng_số , tuy_nhiên thao_tác sẽ không còn là hằng_số nữa .
+Sự linh_động đó cũng dẫn đến nhiều phương_pháp cải_tiến cấu_trúc này .
+Trước_hết_mình trình_bày cấu_trúc cây đơn_giản , là cơ_sở cho các cải_tiến sau_này .
+Hai thao_tác và trong cấu_trúc cây như_sau : Để phép được hiệu qủa , chúng_ta thiết_kế sao_cho chiều_cao của cây càng nhỏ càng tốt .
+Mặt_khác chúng_ta phải duy_trì cấu_trúc cây sao_cho phép thực_hiện được hiệu qủa .
+Trong cấu_trúc cây , phép sẽ gộp cây có chiều_cao nhỏ vào cây có chiều_cao lớn hơn (gốc của cây_nhỏ hơn sẽ trở_thành nut con của gốc của cây lớn hơn) .
+Khác với cấu_trúc danh_sách , trong cấu_trúc cây , chúng_ta không cần phải thay_đổi con_trỏ của các nút của cây khi gộp ngoại_trừ nút gốc , do_đó , phép có_thể được thực_hiện nhanh hơn .
+Giả mã như_sau : Gọi_là cây có chiều_cao lớn nhất .
+Có_thể chứng_minh được bằng quy_nạp số_lượng nút trong cây có gốc ít_nhất_là .
+Do_đó . Ý_tưởng cải_thiện cấu_trúc cây cơ_bản như_sau : mỗi lần thực_hiện thao_tác () , ta kết_hợp với cập_nhật con_trỏ của các nút trên đường_đi từ nút tới nút gốc của cây_chứa để trỏ tới nút gốc .
+Không khó để nhận_thấy nếu thao_tác () mất thời_gian thì việc thêm thao_tác cập_nhật con_trỏ trên đường_đi (còn gọi_là nén đường_đi -- path compression) mất thời_gian .
+Do_đó , về_mặt tiệm_cận , thời_gian của thao_tác () không thay_đổi .
+Do kết_hợp với nén đường_đi mỗi lần tìm_kiếm , thông_tin của nút gốc sẽ bị thay_đổi .
+Cập_nhật thông_tin này rất tốn_kém .
+Do_đó , ta có_thể thay_đổi một_chút , thay_vì gộp cây theo độ sâu (depth) , ta sẽ gộp cây theo .
+Thủ_tục và vẫn tương_tự như trường_hợp cây cơ_bản .
+Một_số tính_chất của hạng chúng_ta có_thể liệt_kê ra như_sau : Tính_chất cuối_cùng không dễ để nhận_thấy , tuy_nhiên chúng_ta có_thể lập_luận như_sau : để_ý thấy nếu một nút thay_đổi hạng từ lên (trường hợp này xảy_ra khi gộp hai cây có gốc có cùng hạng ) , cây mới có ít_nhất nút .
+Theo tính_chất 2 , hạng của các nút không_phải là gốc sẽ không bao_giờ thay_đổi , ta có_thể gán cho mỗi nút hạng một_tập hợp chứa có kích_thước .
+Do với hai nút có cùng hạng , .
+Do_đó , có tối_đa nút có_hạng . Ta sẽ phân_tích thời_gian tính_toán của thao_tác vì thao_tác tốn thời_gian bằng 2 thao_tác cộng với một hằng_số .
+Trước_hết ta định_nghĩa hàm .
+Hàm tăng cực chậm , với , , do_đó , có_thể coi thực_tế nhỏ hơn hoặc bằng ( mới có cỡ ~ hạt cơ bản) .
+Một hàm tăng chậm khác dùng trong phân_tích union-find là hàm Ackerman ngược , kí_hiệu .
+Hàm này còn chậm hơn rất nhiều so_với hàm .
+Tarjan 4 chứng_minh rằng mỗi thao_tác find trong cấu_trúc cây kết_hợp nén đường_đi có thời_gian khấu_trừ .
+Trong bài này , mình chứng_minh kết_quả yếu hơn : Ta có_thể tính thời_gian cho mỗi thao_tác () bằng cách đếm "chi phí" như_sau : Cuối_cùng , phải trả chi_phí là số tiền mà nó nợ .
+Nếu ở độ sâu càng lớn , chi_phí phải trả cuối_cùng càng nhiều .
+Tuy_nhiên , sau khi đã thực_hiện thao_tác find đối_với và nén đường_đi , các thao_tác tìm_kiếm các nút trên đường_đi từ tới nút gốc sau_đó sẽ rẻ hơn rất nhiều .
+Do_đó , các nút trên đường_đi đó được hưởng lợi từ .
+Để_cho công_bằng giữa các nút , chúng_ta sẽ tìm cách nào_đó để "khấu trừ" chi_phí khi thực_hiện () , hay nói_cách_khác , các nút trên đường_đi từ tới gốc cũng phải trả bớt tiền mà nợ . Trước_hết ta sẽ phân các nút thành các nhóm như_sau : Ở đây kí_hiệu , dấu_mũ_lặp lại lần .
+Tóm_lại mỗi nhóm có_hạng từ tới .
+Một_vài điểm quan_trọng ở đây là : Xét một đường_đi từ tới nút gốc trong thao_tác () .
+Giả_sử đi_qua hai nút và trong đó nút là cha của nút .
+Nếu và nằm trong cùng một nhóm , ta lấy đồng_từ thay_vì từ (vì được hưởng lợi) .
+Nếu nằm trong nhóm cao hơn (là nhóm có_số thứ_tự cao hơn) , ta sẽ lấy đồng_từ .
+Do_đó : chỉ phải trả đồng vì chúng_ta chỉ_có nhóm khác_nhau . Bây_giờ sẽ là phần khó nhất , đó là trung_bình mỗi nút như_trên phải trả bao_nhiêu đồng ?
+Thứ nhất , nút sẽ không bao_giờ thay_đổi hạng , theo tính_chất 2 của hạng .
+Thứ_hai , mỗi lần nút trả bớt đồng cho một nút nào_đó , hạng của cha của tăng ít_nhất lên 1 , và cha của phải nằm trong cùng một nhóm với .
+Do_đó , nếu hạng của cha của tăng đến_mức của nhóm tiếp_theo , sẽ không bao_giờ phải trả tiền cho bất_kì một nút nào khác .
+Như_vậy , phải trả tối_đa_số tiền là phạm_vi của hạng trong nhóm chứa ( là nếu trong nhóm có_hạng bắt_đầu_từ đến ) .
+Nhóm chứa có kích_thước là , do_đó , tổng_số tiền mà tất_cả các nút trong nhóm này phải "trả hộ" nút khác là : Do_đó , tổng_số tiền "trả hộ" của tất_cả các nút là_vì số nhóm là .
+Tổng_kết lại như_sau : nếu ta có thao_tác () , số tiền tất_cả các nút phải trả cuối_cùng là .
+Trong hầu_hết các thuật_toán , do_đó thời_gian khấu_trừ cho mỗi thao_tác là . Với cấu_trúc danh_sách liên_kết , cách thực_thi hiệu qủa có_lẽ cũng là sử_dụng danh_sách liên_kết .
+Tuy_nhiên với cấu_trúc cây , chúng_ta không nhất_thiết phải sử_dụng cây để thực_thi .
+Phần này mình sẽ giới_thiệu phương_pháp thực_thi bằng mảng (array) .
+Ta sử_dụng hai mảng : Các thao_tác cơ_bản như_sau : Union-Find có rất nhiều ứng_dụng mà nổi_tiếng là trong thực_thi thuật_toán Kruskal tìm cây khung nhỏ nhất .
+Trong phần này mình sẽ giới_thiệu ứng_dụng của Union-Find trong việc thiết_kế giải_thuật cho bài_toán lập lịch có thời_hạn đã giới_thiệu trọng bài .
+Chi_tiết xem thêm tại bài trước .
+Ở đây mình nhắc_lại đề_bài và thuật_toán tham_lam : Giải_thuật : Trong thuật_toán trên , thời_gian để tìm một vị_trí để chèn một tác vụ mới mất cỡ .
+Bằng_Union-Find , sử_dụng cấu_trúc cây kết_hợp nén đương đi , chúng_ta có_thể giảm thời_gian này xuống , do_đó , thuật_toán sẽ có tổng thời_gian là (nếu không tính bước sắp_xếp mất ) .
+Giả_sử thời_điểm hiện_tại ta có mảng là mảng lưu_trữ lịch_trình của các tác vụ chúng_ta đã được vào lời_giải tối_ưu trong các bước trước .
+Mỗi tập_hợp của chúng_ta sẽ biểu_diễn một dãy liên_tục và tối_đại (maximal) các phần_tử khác 0 của mảng .
+Nói_cách_khác , với mỗi tập_hợp chứa các phần_tử , ta luôn đảm_bảo điều_kiện : Ngoài_ra , gốc của mỗi tập_hợp sẽ lưu_trữ số , là vị_trí trái nhất (left-most) còn trống của dãy liên_tục này .
+Để kiểm_tra xem tác vụ với thời_hạn có_thể chèn vào lịch_trình hiện_tại được không , ta làm như_sau : Chi_tiết giả mã như_sau : Code_bằng C của giả mã : Thủ_tục () không thay_đổi so_với ở trên .
+Mảng là mảng lưu_trữ phần_tử trái nhất còn trống của một_tập .
+Một điểm chú_ý là thứ_tự của và trong () là quan_trọng , vì theo tứ tự đó , phần_tử trái nhất còn trống của tập chứa nhỏ hơn của tập chứa .
+Thứ nữa đó là trong hàm () , phần_tử ngay sau có_thể khác 0 (do đó trong comment mình để "supposed empty") .
+Nếu phần_tử này khác 0 , phép gộp trong hàm luôn đảm_bảo tập_hợp chứa sẽ được gộp với tập_hợp chứa .
+Code : .
+1 Avrim_Blum .
+, CMU , 2011 .
+2 Jeff_Erickson .
+, UIUC , 2013 .
+3 Jon_Kleinberg and Eva_Tardos .
+, Chapter 4 .
+Addison-Wesley_Longman_Publishing_Co . , Inc . , Boston , MA , USA , 2005 .
+4 Robert_Endre_Tarjan .
+J .
+ACM 22 , 2 (April 1975) , 215-225 .
+DOI=10 . 1145/321879 . 321884 5 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 21 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+, , Trackback link : Powered by and

@@ -1,0 +1,209 @@
+Table of_Contents 0 .
+Giới_thiệu Ví_dụ Cài_đặt Áp_dụng Phân_tích thời_gian chạy Thao_tác loại 1 Thao_tác loại 2 Phân_tích bộ_nhớ 1 .
+Segment_Tree cổ_điển Ví_dụ 1 Tóm_tắt_đề Lời_giải Định_lý Ví_dụ 2 2 .
+Lazy_Propagation Tư_tưởng Bài_Toán Tóm_tắt_đề Phân_tích Cài_đặt 3 .
+Ứng_dụng với cấu_trúc mảng động Ví_dụ Tóm_tắt_đề Phân_tích 4 .
+Ứng_dụng với cấu_trúc set 5 .
+Ứng_dụng với các cấu_trúc dữ_liệu khác 6 .
+Ứng_dụng trong cây có gốc 7 .
+Persistent_Segment_Trees 8 .
+IT đoạn_thẳng Bài_tập áp_dụng : Đọc thêm : Các nguồn tham_khảo : LƯU_Ý : Segment_Tree trong 1 số tài_liệu Tiếng_Việt còn được dịch là Interval_Tree .
+Ở bài viết này , mình sẽ dùng tên Segment_Tree (ST) - tên_gọi phổ_biến hơn của CTDL này .
+Tất_cả hàm trong bài đều đánh_số từ 1 .
+Các nút của cây phân_đoạn sẽ quản_lý đoạn l , r Segment_Tree còn có_một cách cài_đặt khác sử_dụng ít bộ_nhớ hơn (tối đa 2N phần tử) , cài_đặt ngắn hơn và chạy nhanh hơn .
+Tuy_nhiên theo cá_nhân mình không dễ_hiểu bằng cách cài_đặt trong bài viết này .
+0 .
+Giới_thiệu Segment_Tree là một cấu_trúc dữ_liệu được sử_dụng rất nhiều trong các kỳ thi , đặc_biệt là trong những bài_toán xử_lý trên dãy_số .
+Segment_Tree là một cây .
+Cụ_thể hơn , nó là một cây nhị_phân đầy_đủ (mỗi nút là lá hoặc có đúng 2 nút con) , với mỗi nút quản_lý một đoạn trên dãy_số .
+Với một dãy_số gồm N phần_tử , nút gốc sẽ lưu_thông_tin về đoạn 1 , N , nút con trái của nó sẽ lưu_thông_tin về đoạn 1 , ⌊N/2⌋ và nút con phải sẽ lưu_thông_tin về đoạn ⌊N/2⌋+1 , N .
+Tổng_quát hơn : nếu nút A lưu_thông_tin đoạn i , j , thì 2 con của nó : A1 và A2 sẽ lưu_thông_tin của các đoạn i , ⌊(i+j)/2⌋ và đoạn ⌊(i+j)/2⌋ + 1 , j .
+Ví_dụ Xét một dãy gồm 7 phần_tử , Segment_Tree sẽ quản_lý các đoạn như_sau : Cài_đặt Để cài_đặt , ta có_thể dùng một mảng 1 chiều , phần_tử thứ nhất của mảng thể_hiện nút gốc .
+Phần_tử thứ id sẽ có 2 con là 2 id (con trái) và 2 id+1 (con phải) .
+Với cách cài_đặt này , người_ta đã chứng_minh được bộ_nhớ cần_dùng cho ST không quá 4 N phần_tử .
+Áp_dụng Để dễ hình_dung , ta lấy 1 ví_dụ cụ_thể : Cho dãy N phần_tử (N \le 105) .
+Ban_đầu mỗi phần_tử có giả trị 0 .
+Có_Q truy_vấn (Q \le 105) .
+Mỗi truy_vấn có 1 trong 2 loại : Gán giá_trị v cho phần_tử ở vị_trí i .
+Tìm giá_trị lớn nhất cho đoạn i , j .
+Cách đơn_giản nhất_là dùng 1 mảng A duy_trì giá_trị các phần_tử .
+Với thao_tác 1 thì ta gán Ai = v .
+Với thao_tác 2 thì ta dùng 1 vòng_lặp từ i đến j để tìm giá_trị lớn nhất .
+Rõ_ràng cách này có độ phức_tạp là O(NQ) và không_thể chạy trong thời_gian cho_phép .
+Cách dùng Segment_Tree như_sau : Với truy_vấn loại 1 , ta sẽ cập_nhật thông_tin của các nút trên cây ST mà đoạn nó quản_lý_chứa phần_tử i .
+Với truy_vấn loại 2 , ta sẽ tìm tất_cả các nút trên cây ST mà đoạn nó quản_lý nằm trong i , j , rồi lấy max của các nút này .
+Cài_đặt như_sau : // Truy_vấn : A(i) = v // Hàm_cập_nhật trên cây ST , cập_nhật cây_con gốc id quản_lý đọan l , r void update ( int id , int l , int r , int i , int v ) if ( i lt; l r lt; i ) // i nằm ngoài đoạn l , r , ta bỏ_qua nút i return ; // i nằm trong đoạn l , r , ta cần cập_nhật nút id ST id = max ( ST id , v ); if ( l == r ) // Đoạn chỉ gồm 1 phần_tử , không có nút con return ; // Gọi đệ_quy để xử_lý các nút con của nút id int mid = ( l + r ) / 2 ; update ( id 2 , l , mid , i , v ); update ( id 2 + 1 , mid + 1 , r , i , v ); // Truy_vấn : tìm max đoạn u , v // Hàm tìm max các phần_tử trên cây ST nằm trong cây_con gốc id - quản_lý đoạn l , r int get ( int id , int l , int r , int u , int v ) if ( v lt; l r lt; u ) // Đoạn u , v không giao với đoạn l , r , ta bỏ_qua đoạn này return - INFINITY ; if ( u lt;= l amp;amp; r lt;= v ) // Đoạn l , r nằm hoàn_toàn trong đoạn u , v mà ta đang truy_vấn , ta trả_lại // thông_tin lưu ở nút id return ST id ; int mid = ( l + r ) / 2 ; // Gọi đệ_quy với các con của nút id return max ( get ( id 2 , l , mid , u , v ) , get ( id 2 + 1 , mid + 1 , r , u , v )); Phân_tích thời_gian chạy Mỗi thao_tác truy_vấn trên cây ST có độ phức_tạp O(\logN) .
+Để chứng_minh điều này , ta xét 2 loại thao_tác trên cây ST : Truy_vấn 1 phần_tử trên ST (giống thao_tác update ở trên) Truy_vấn nhiều phần_tử trên ST (giống thao_tác get ở trên) Đầu_tiên_ta có_thể chứng_minh được : Độ_cao của cây ST không quá O(\logN) .
+Tại mỗi độ sâu của cây , không có phần_tử nào nằm trong 2 nút khác_nhau của cây .
+Thao_tác loại 1 Với thao_tác này , ở mỗi độ sâu của cây , ta chỉ gọi đệ_quy các con của không quá 1 nút .
+Phân_tích đoạn code trên , ta xét các trường_hợp : Phần_tử cần xét không nằm trong đoạn l , r do nút id quản_lý .
+Trường_hợp này ta dừng lại , không xét tiếp .
+Phần_tử cần xét nằm trong đoạn l , r do nút id quản_lý .
+Ta xét các con của nút id .
+Tuy_nhiên chỉ_có 1 con của nút id_chứa phần_tử cần xét và ta sẽ phải xét tiếp các con của nút này .
+Với con còn_lại , ta sẽ dừng ngay mà không xét các con của nó nữa .
+Do_đó độ phức_tạp của thao_tác này không quá O(\logN) .
+Thao_tác loại 2 Với thao này , ta cũng chứng_minh tương_tự , nhưng ở mỗi độ sâu của cây , ta chỉ gọi hàm đệ_quy với các con của không quá 2 nút .
+Ta chứng_minh bằng phản_chứng , giả_sử_ta gọi đệ_quy với 3 nút khác_nhau của cây ST (đánh dấu màu đỏ) : Trong trường_hợp này , rõ_ràng toàn_bộ đoạn của nút ở giữa quản_lý nằm trong đoạn đang truy_vấn .
+Do_đó ta không cần phải gọi đệ_quy các con của nút ở giữa .
+Từ_đó suy ra vô_lý , nghĩa_là ở mỗi độ sâu_ta chỉ gọi đệ_quy với không quá 2 nút .
+Phân_tích bộ_nhớ Ta xét 2 trường_hợp : N = 2k : Cây_ST đầy_đủ , ở độ sâu cuối_cùng có đúng 2k lá , và các độ sâu thấp hơn không có nút lá nào (và các nút này đều có đúng 2 con) .
+Như_vậy : Tầng k : có 2k nút Tầng k-1 : có 2k-1 nút . . .
+Tổng_số nút không quá 2k+1 .
+Với_N gt; 2k và N lt; 2k+1 .
+Số nút của cây ST không quá số nút của cây ST với N = 2k+1 .
+Do_đó , số nút của cây cho dãy N phần_tử , với N \le 2k là không quá 2k+1 , giá_trị này xấp_xỉ 4 N .
+Bằng thực_nghiệm , ta thấy dùng 4 N là đủ .
+1 .
+Segment_Tree cổ_điển Tại_sao lại gọi_là cổ_điển ?
+Đây là dạng ST đơn_giản nhất , chúng_ta chỉ giải_quyết truy_vấn update một phần_tử và truy_vấn đoạn , mỗi nút lưu một loại dữ_liệu cơ_bản như số_nguyên , boolean , . . .
+Ví_dụ 1 Bài_toán : 380C-Codeforces Tóm_tắt_đề Cho một dãy ngoặc độ_dài N (N\le106) , cho M truy_vấn có dạng l_i , r_i (1\le l_i\le r_i \le N) .
+Yêu_cầu của bài_toán là với mỗi truy_vấn tìm một chuỗi con (không cần liên tiếp) của chuỗi từ l_i đến r_i dài nhất mà tạo_thành dãy ngoặc đúng .
+Lời_giải Với mỗi nút(ví dụ như nút id , quản_lý đoạn l , r) chúng_ta lưu ba biến nguyên : optimal : Là kết_quả tối_ưu trong đoạn l , r .
+open : Số_lượng dấu ( sau khi đã xóa hết các phần_tử thuộc dãy ngoặc đúng độ_dài optimal trong đoạn .
+close : Số_lượng dấu ) sau khi đã xóa hết các phần_tử thuộc dãy ngoặc đúng độ_dài optimal trong đoạn .
+Ta tạo 1 kiểu dữ_liệu cho 1 nút của cây ST như_sau : struct Node int optimal ; int open ; int close ; Node ( int opt , int o , int c ) // Khởi tạo struct Node optimal = opt ; open = o ; close = c ; ; Và ta khai_báo cây ST như_sau : Node st MAXN 4 ; Định_lý Để tính thông_tin ở nút id quản_lý đoạn l , r , dựa trên 2 nút con 2id và 2id+1 , ta định_nghĩa 1 thao_tác kết_hợp 2 nút của cây ST : Node operator + ( const Node amp; left , const Node amp; right ) Node res ; // min(số dấu "(" thừa ra ở cây_con trái , và số dấu ")" thừa ra ở cây_con phải) int tmp = min ( left .
+open , right .
+close ); // Để xây_dựng kết_quả tối_ưu ở nút id , ta nối dãy ngoặc tối_ưu ở 2 con , rồi thêm // min(số "(" thừa ra ở con trái , số ")" thừa ra ở con phải) .
+res .
+optimal = left .
+optimal + right .
+optimal + tmp ; res .
+open = left .
+open + right .
+open - tmp ; res .
+close = left .
+close + right .
+close - tmp ; return res ; Ban_đầu ta có_thể khởi tạo cây như_sau : void build ( int id , int l , int r ) if ( l == r ) // Đoạn l , r chỉ_có 1 phần_tử .
+if ( s l == ( ) st id = Node ( 0 , 1 , 0 ); else st id = Node ( 0 , 0 , 1 ); return ; int mid = ( l + r ) / 2 ; build ( id 2 , l , mid ); build ( id 2 + 1 , mid + 1 , r ); st id = st id 2 + st id 2 + 1 ; Để trả_lời truy_vấn , ta cũng làm tương_tự như trong bài_toán cơ_bản : Node query ( int id , int l , int r , int u , int v ) if ( v lt; l r lt; u ) // Trường_hợp không giao nhau return Node ( 0 , 0 , 0 ); if ( u lt;= l amp;amp; r lt;= v ) // Trường_hợp l , r nằm hoàn_toàn trong u , v return st id ; int mid = ( l + r ) / 2 ; return query ( id 2 , l , mid , u , v ) + query ( id 2 + 1 , mid + 1 , r , u , v ); Ví_dụ 2 Bài_toán : SPOJ-KQUERY Tóm_đề : Cho một dãy_số a_i(1\le a_i \le 109) có N(1\le_N \le 30 , 000) phần_tử Cho_Q(1\le_Q \le 200 , 000) truy_vấn có dạng 3 số_nguyên là l_i , r_i , k_i (1\le l_i\le r_i\le N , 1\le k \le 109) .
+Yêu_cầu của bài_toán là đếm_số lượng số a_j (l_i\le j \le r_i) mà a_j\ge k .
+Giả_sử chúng_ta có_một mảng b với b_i=1 nếu a_igt;k và bằng 0 nếu ngược_lại .
+Thì chúng_ta có_thể dễ_dàng trả_lời truy_vấn (i , j , k) bằng cách lấy tổng_từ i đến j .
+Cách làm của bài này là xử_lý các truy_vấn theo một thứ_tự khác , để ta có_thể dễ_dàng tính được mảng b .
+Kĩ_năng này được gọi_là xử_lý offline (tương tự nếu ta trả_lời các truy_vấn theo đúng thứ_tự trong input , thì được gọi_là xử_lý online ) : Sắp_xếp các truy_vấn theo thứ_tự tăng dần của k .
+Lúc đầu mảng b gồm toàn_bộ các số 1 .
+Với mỗi truy_vấn , ta xem trong mảng a có những phần_tử nào lớn hơn giá_trị k của truy_vấn trước , và nhỏ hơn giá_trị k của truy_vấn hiện_tại , rồi đánh_dấu các_vị trí đó trên mảng b thành 0 .
+Để làm được_việc này một_cách hiệu_quả , ta cũng cần sắp_xếp lại mảng a theo thứ_tự tăng dần .
+Ta tạo kiểu dữ_liệu cho truy_vấn : struct Query int k ; int l , r ; ; // so_sánh 2 truy_vấn để dùng vào việc sort .
+bool operator lt; ( const Query amp; a , const Query amp; b ) return a .
+k lt; b .
+k ; Phần xử_lý chính sẽ như_sau : vector lt; Query gt; queries ; // các truy_vấn // Đọc vào các truy_vấn readInput (); // Sắp_xếp các truy_vấn sort ( queries .
+begin () , queries .
+end ()); // Khởi tạo mảng id sao_cho : // aid1 , aid2 , aid3 là mảng a đã sắp_xếp tăng dần .
+// Khởi tạo Segment_Tree for ( Query q : queries ) while ( a id i lt;= q .
+k ) b id i = 0 ; // Cập_nhật cây Segment_Tree .
+++ i ; Vậy_ta có_thể viết hàm xây_dựng cây như_sau : void build ( int id , int l , int r ) if ( l == r ) // Nút id chỉ gồm 1 phần_tử st id = 1 ; return ; int mid = ( l + r ) / 2 ; build ( id 2 , l , mid ); build ( id 2 , mid + 1 , r ); st id = st id 2 + st id 2 + 1 ; Một hàm_cập_nhật khi ta muốn gán lại một vị_trí bằng 0 : void update ( int id , int l , int r , int u ) if ( u lt; l r lt; u ) // u nằm ngoài đoạn l , r return ; if ( l == r ) st id = 0 ; return ; int mid = ( l + r ) / 2 ; update ( id 2 , l , mid , u ); update ( id 2 + 1 , mid + 1 , r , u ); st id = st id 2 + st id 2 + 1 ; Và cuối_cùng là thực_hiện truy_vấn lấy tổng một đoạn : int get ( int id , int l , int r , int u , int v ) if ( v lt; l r lt; u ) // Đoạn l , r nằm ngoài đoạn u , v return 0 ; if ( u lt;= l amp;amp; r lt;= v ) // Đoạn l , r nằm hoàn_toàn trong đoạn u , v return st id ; int mid = ( l + r ) / 2 ; return get ( id 2 , l , mid , u , v ) + get ( id 2 + 1 , mid + 1 , r , u , v ); 2 .
+Lazy_Propagation_Đây là kĩ_thuật được sử_dụng trong ST để giảm độ phức_tạp của ST với các truy_vấn cập_nhật đoạn .
+Tư_tưởng Giả_sử_ta cần cập_nhật đoạn u , v .
+Dễ thấy ta không_thể_nào cập_nhật tất_cả các nút trên Segment_Tree (do tổng_số nút nằm trong đoạn u , v có_thể lên đến O(N)) .
+Do_đó , trong quá_trình cập_nhật , ta chỉ thay_đổi giá_trị ở các nút quản_lý các đoạn to nhất nằm trong u , v .
+Ví_dụ với N = 7 , cây Segment tree như hình minh_hoạ ở đầu_bài .
+Giả_sử bạn cần cập_nhật 1 , 6 : Bạn chỉ cập_nhật giá_trị ở các nút quản_lý các đoạn 1 , 4 và 5 , 6 .
+Giá_trị của các nút quản_lý các đoạn 1 , 2 , 3 , 4 , 1 , 1 , 2 , 2 , 5 , 5 , . . .
+sẽ không đúng .
+Ta sẽ chỉ cập_nhật lại giá_trị của các nút này khi thật_sự cần_thiết (Do đó kĩ_thuật này được gọi_là lazy - lười biếng) .
+Cụ_thể , chúng_ta cùng xem bài_toán sau : Bài_Toán VOJ - QMAX2 Tóm_tắt_đề Cho dãy_số A với N phần_tử (N \le 50 , 000) .
+Bạn cần thực_hiện 2 loại truy_vấn : Cộng tất_cả các số trong đoạn l , r lên_giá trị val .
+In ra giá_trị lớn nhất của các số trong đoạn l , r .
+Phân_tích Thao_tác 2 là thao_tác cơ_bản trên Segment_Tree , đã được ta phân_tích ở bài_toán đầu_tiên .
+Với thao_tác 1 , truy_vấn đoạn u , v .
+Giả_sử_ta gọi F(id) là giá_trị lớn nhất trong đoạn mà nút id quản_lý .
+Trong_lúc cập_nhật , muốn hàm này thực_hiện với độ phức_tạp không quá O(\logN) , thì khi đến 1 nút id quản_lý đoạn l , r với đoạn l , r nằm hoàn_toàn trong đoạn u , v , thì ta không được đi_vào các nút con của nó nữa (nếu không độ phức_tạp sẽ là O(N) do ta đi_vào tất_cả các nút nằm trong đoạn u , v) .
+Để giải_quyết , ta dùng kĩ_thuật Lazy_Propagation như_sau : Lưu_T(id) với ý_nghĩa , tất_cả các phần_tử trong đoạn l , r mà nút id quản_lý đều được cộng thêm T(id) .
+Trước_khi ta_cập nhật hoặc lấy 1 giá_trị của 1 nút id nào_đó , ta phải đảm_bảo ta đã "đẩy" giá_trị của mảng T ở tất_cả các nút tổ_tiên của id xuống id .
+Để làm được điều này , ở các hàm_get và update , trước_khi gọi đệ_quy xuống các con 2 id và 2 id+1 , ta phải gán : Tid2 += Tid_Tid2+1 += Tid_Tid = 0 chú_ý ta cần phải thực_hiện thao_tác này , nếu_không mỗi phần_tử của dãy sẽ bị cộng nhiều lần , do ta đẩy xuống nhiều lần .
+Chú_ý : Bài_QMAX2 này có cách cài_đặt khác không sử_dụng Lazy_Propagation , tuy_nhiên sẽ không được trình_bày ở đây .
+Cài_đặt Ta có kiểu dữ_liệu cho 1 nút của ST như_sau : struct Node int lazy ; // giá_trị T trong phân_tích trên int val ; // giá_trị lớn nhất .
+nodes MAXN 4 ; Hàm "đẩy" giá_trị T xuống các con : void down ( int id ) int t = nodes id .
+lazy ; nodes id 2 .
+lazy += t ; nodes id 2 .
+val += t ; nodes id 2 + 1 .
+lazy += t ; nodes id 2 + 1 .
+val += t ; nodes id .
+lazy = 0 ; Hàm_cập_nhật : void update ( int id , int l , int r , int u , int v , int val ) if ( v lt; l r lt; u ) return ; if ( u lt;= l amp;amp; r lt;= v ) // Khi cài_đặt , ta LUÔN ĐẢM_BẢO giá_trị của nút được cập_nhật ĐỒNG_THỜI với // giá_trị lazy propagation .
+Như_vậy sẽ tránh sai_sót .
+nodes id .
+val += val ; nodes id .
+lazy += val ; return ; int mid = ( l + r ) / 2 ; down ( id ); // đẩy giá_trị lazy propagation xuống các con update ( id 2 , l , mid , u , v , val ); update ( id 2 + 1 , mid + 1 , r , u , v , val ); nodes id .
+val = max ( nodes id 2 .
+val , nodes id 2 + 1 .
+val ); Hàm lấy giá_trị lớn nhất : int get ( int id , int l , int r , int u , int v ) if ( v lt; l r lt; u ) return - INFINITY ; if ( u lt;= l amp;amp; r lt;= v ) return nodes id .
+val ; int mid = ( l + r ) / 2 ; down ( id ); // đẩy giá_trị lazy propagation xuống các con return max ( get ( id 2 , l , mid , u , v ) , get ( id 2 + 1 , mid + 1 , r , u , v )); // Trong các bài_toán tổng_quát , giá_trị ở nút id có_thể bị thay_đổi (do ta đẩy lazy propagation // xuống các con) .
+Khi đó , ta cần cập_nhật lại thông_tin của nút id dựa trên thông_tin của các con .
+Đến đây các bạn đã nắm được kiến_thức cơ_bản về Segment_Tree .
+Những phần tiếp_theo nói về các kiến_thức nâng_cao - các mở_rộng của ST .
+Bạn nên làm nhiều bài luyện_tập (tham khảo ở cuối bài) trước_khi nghiên_cứu tiếp .
+3 .
+Ứng_dụng với cấu_trúc mảng động Trong loại bài_toán này với mỗi nút của cây_ta lưu lại một vector và một_số biến khác .
+Ví_dụ KQUERY2 .
+Tóm_tắt_đề Cho dãy A với N phần_tử .
+Cần trả_lời Q truy_vấn .
+Có 2 loại truy_vấn : Cập_nhật : Gán A_i = v Truy_vấn : đếm_số phần_tử lớn hơn k trong đoạn l , r .
+Giới_hạn : N \le 30 , 000 A_i , v \le 10 , 000 Q \le 200 , 000 Bài này tương_đối giống với bài KQUERY đã phân_tích ở trên , tuy_nhiên vì có thao_tác cập_nhật , nên ta buộc phải xử_lý online .
+Phân_tích Có \logN nút mà ta cần xét khi trả_lời truy_vấn của đoạn u , v .
+Nếu trên mỗi nút chúng_ta có_thể lưu lại danh_sách các phần_tử đó theo thứ_tự tăng dần , ta có_thể tìm_ra kết_quả ở mỗi nút bằng tìm_kiếm nhị_phân .
+Vì_thế với mỗi nút ta lưu lại một vector chứa các phần_tử từ l đến r theo thứ_tự tăng dần .
+Điều này có_thể được thực_hiện với bộ phức_tạp bộ_nhớ là \mathcalO(N\logN) do mỗi phần_tử có_thể ở tối_đa \mathcalO(\logN) nút (độ sâu của cây không quá \mathcalO(\logN)) .
+Ở mỗi nút cha có ta có_thể gộp hai nút con vào nút cha bằng phương_pháp giống_như Merge_Sort (lưu lại hai biến chạy và so_sánh lần_lượt từng phần_tử ở hai mảng) để có_thể xây_dựng cây trong \mathcalO(N\logN) .
+Hàm xây cây có_thể được như_sau : void build ( int id , int l , int r ) if ( l == r ) // Đoạn gồm 1 phần_tử .
+Ta dễ_dàng khởi tạo nút trên ST .
+st id .
+push_back ( a l ); return ; int mid = ( l + r ) / 2 ; build ( id 2 , l , mid ); build ( id 2 + 1 , mid + 1 , r ); merge ( st id 2 .
+begin () , st id 2 .
+end () , st id 2 + 1 .
+begin () , st id 2 + 1 .
+end () , st id .
+begin ()); Và hàm truy_vấn có_thể cài_đặt như_sau : int get ( int id , int l , int r , int u , int v , int k ) // Trả_lời truy_vấn (x , y , k) if ( v lt; l r lt; u ) return 0 ; if ( u lt;= l amp;amp; r lt;= v ) // Đếm_số phần_tử gt; K bằng chặt nhị_phân return st id .
+size () - ( upper_bound ( st id .
+begin () , st id .
+end () , k ) - st id .
+begin ()); int mid = ( l + r ) / 2 ; return get ( id 2 , l , mid , u , v , k ) + get ( id 2 + 1 , mid + 1 , r , u , v , k ); Một ví_dụ khác là bài Component_Tree 4 .
+Ứng_dụng với cấu_trúc set Ở cấu_trúc này mỗi nút chúng_ta lưu một set , multiset , hashmap , hoặc unodered map và một_số biến khác .
+Đây là một bài_toán ví_dụ : Cho n vector a_1 , a_2 , a_3 , . . . , a_n rỗng ban_đầu .
+Chúng_ta có_thể thực_hiện m truy_vấn trên những vector này : Truy_vấn A_p_k là thêm số k vào cuối vector a_p .
+Truy_vấn C l r k là xuất ra \sum_i=lrcount(a_i , k) , với count(a_i , k) là số lần xuất_hiện của số k trong vector a_i .
+Bài_toán này chúng_ta lưu lại mỗi nút của cây là một multiset s , với mỗi nút lưu_số k đúng \sum_i=lrcount(a_i , k) lần với độ phức_tạp bộ_nhớ chỉ \mathcalO(q\logn) .
+Với mỗi truy_vấn C x y k chúng_ta sẽ in ra tổng của tất_cả dùng cây phân_đoạn và truy_vấn trên set trong mỗi đoạn thuộc đoạn x đến y_như truy trên truy_vấn cây phân_đoạn bình_thường .
+Chúng_ta sẽ không có hàm xây cây do các vector ban_đầu đang là rỗng , nhưng chúng_ta sẽ có thêm hàm_cộng phần_tử vào như_sau : void add ( int id , int l , int r , int p , int k ) // Thực_hiện truy_vấn A_p_k s id .
+insert ( k ); if ( l == r ) return ; int mid = ( l + r ) / 2 ; if ( p lt;= mid ) add ( id 2 , l , mid , p , k ); else add ( id 2 + 1 , mid + 1 , r , p , k ); Và một hàm cho truy_vấn 2 : int ask ( int id , int l , int r , int x , int y , int k ) // Trả_lời C x y k if ( y lt; l r lt; x ) return 0 ; if ( x lt;= l amp;amp; r lt;= y ) return s id .
+count ( k ); int mid = ( l + r ) / 2 ; return ask ( id 2 , l , mid , x , y , k ) + ask ( id 2 + 1 , mid + 1 , r , x , y , k ); 5 .
+Ứng_dụng với các cấu_trúc dữ_liệu khác Cây phân_đoạn còn có_thể có_thể sử_dụng một_cách linh_hoạt với các cấu_trúc dữ_liệu khác như ở trên .
+Sử_dụng một cây phân_đoạn khác trên từng nút có_thể giúp chúng_ta truy_vấn dễ_dàng hơn trên mảng hai chiều .
+Trên đây cũng có_thể là các loại cây như Cây tiền tố(Trie) hoặc cũng có_thể là cấu_trúc Disjoint_Set .
+Sau_đây mình xin giới_thiệu một loại cây khác cũng sử_dụng nhiều trong cây phân_đoạn đó chính là Cây_Fenwick (Binary Indexed_Tree) : Như_trên mỗi nút của cây sẽ là một cây Fenwick và có_thể một_số biến khác .
+Dưới_đây là một bài_toán ví_dụ : Cho n vectors a_1 , a_2 , a_3 , . . . , a_n rỗng ban_đầu .
+Chúng_ta cần thực_hiện hai loại truy_vấn : Truy_vấn A_p_k là thêm số k vào đằng_sau vector a_p .
+Truy_vấn C l r k là xuất ra \sum_i=lrcount(a_i , j) với j\le k với count(a_i , j) là số lần xuất_hiện k trong a_i .
+Với bài_toán này , ta cũng lưu lại ở một nút là một vector v chứa số k khi và chỉ khi \sum_i=lrcount(a_i , j)\ne 0 (độ phức_tạp bộ_nhớ sẽ là \mathcalO(q\logn) ) (các số theo theo thứ_tự tăng dần) Đầu_tiên , đọc và lưu các truy_vấn lại với mỗi truy_vấn loại 1 ta sẽ thêm v vào tất_cả vector có chứa phần_tử p .
+Sau_đó ta tiến_hành sắp_xếp các truy_vấn theo phương_pháp Merge_Sort đã nói ở trên và dùng hàm unique để loại các phần_tử trùng .
+Sau_đó chúng_ta sẽ xây_dụng ở mỗi nút một cây Fenwick có độ lớn bằng độ_dài vector .
+Sau_đây là hàm thêm giá_trị : void insert ( int id , int l , int r , int p , int k ) // Thực_hiện A_p_k if ( l == r ) v id .
+push_back ( k ); return ; int mid = ( l + r ) / 2 ; if ( p lt; mid ) insert ( id 2 , l , mid , p , k ); else insert ( id 2 + 1 , mid + 1 , r , p , k ); Hàm sắp_xếp sau khi đã đọc hết các truy_vấn : void sort_ ( int id , int l , int r ) if ( l == r ) return ; int mid = ( l + r ) / 2 ; sort_ ( id 2 , l , mid ); sort_ ( id 2 + 1 , mid + 1 , r ); merge ( v 2 id .
+begin () , v 2 id .
+end () , v 2 id + 1 .
+begin () , v 2 id + 1 .
+end () , v id .
+begin ()); Với mỗi truy_vấn loại 1 ta làm như_sau với mỗi nút x : for ( int i = a + 1 ; i lt; fen x .
+size (); i += i amp; - i ) fen x i ++ ; Với tất_cả vxa=k : void update ( int id , int l , int r , int p , int k ) int a = lower_bound ( v id .
+begin () , v id .
+end () , k ) - v id .
+begin (); for ( int i = a + 1 ; i lt; fen id .
+size (); i += i amp; - i ) fen id i ++ ; if ( l == r ) return ; int mid = ( l + r ) / 2 ; if ( p lt; mid ) update ( id 2 , l , mid , p , k ); else update ( id 2 + 1 , mid + 1 , r , p , k ); Còn_lại việc tính_toán truy_vấn loại 2 trở_nên dễ_dàng hơn : int ask ( int id , int l , int r , int x , int y , int k ) // Trả_lời C x y-1 k if ( y lt; l r lt; x ) return 0 ; if ( x lt;= l amp;amp; r lt;= y ) int a = lower_bound ( v id .
+begin () , v id .
+end () , k ) - v id .
+begin (); int ans = 0 ; for ( int i = a + 1 ; i gt; 0 ; i -= i amp; - i ) ans += fen id i ; return ans ; int mid = ( l + r ) / 2 ; return ask ( id 2 , l , mid , x , y , k ) + ask ( id 2 + 1 , mid + 1 , r , x , y , k ); 6 .
+Ứng_dụng trong cây có gốc Ta có_thể thấy cây phân_đoạn là một ứng_dụng trong mảng , vì lí_do đó nếu chúng_ta có_thể đổi cây thành các mảng , ta có_thể dễ_dàng xử_lý các truy_vấn trên cây .
+Đây là tư_tưởng của Heavy_Light_Decomposition .
+Bài_tập ví_dụ : 396C - On_Changing_Tree_Gọi h_v là độ_cao tương_ứng của nút v .
+Ta có với mỗi nút u trong cây_con gốc v sau truy_vấn một giá_trị của nó sẽ tăng một lượng là x+(h_u-h_v)-k=x+k h_v-k h .
+Kết_quả của truy_vấn 2 sẽ là \sum_i\in s(k_ih_v_i+x_i)-h_u\sum_i\in sk_i .
+Vì_vậy ta chỉ_cần tính hai giá_trị là \sum_i\in s(k_i h_v_i+x_i) và \sum_i\in sk_i .
+Vậy với mỗi nút ta có_thể lưu lại hai giá_trị là hkx=\sum x +hk và sk=\sum k (không cần lazy propagation do chúng_ta chỉ update nút đầu_tiên thỏa_việc nằm trong đoạn .
+Với truy_vấn cập_nhật : void update ( int id , int l , int r , int x , int k , int v ) if ( s v gt;= r l gt;= f v ) return ; if ( s v lt;= l amp;amp; r lt;= f v ) hkx id = ( hkx id + x ) % mod ; int a = ( 1LL h v k ) % mod ; hkx id = ( hkx id + a ) % mod ; sk id = ( sk id + k ) % mod ; return ; int mid = ( l + r ) / 2 ; update ( id 2 , l , mid , x , k , v ); update ( id 2 + 1 , mid + 1 , r , x , k , v ); Và truy_vấn : int ask ( int id , int l , int r , int v ) int a = ( 1LL h v sk id ) % mod ; int ans = ( hkx id + mod - a ) % mod ; if ( l == r ) return ans ; int mid = ( l + r ) / 2 ; if ( s v lt; mid ) return ( ans + ask ( 2 id , l , mid , v )) % mod ; return ( ans + ask ( 2 id + 1 , mid , r , v )) % mod ; 7 .
+Persistent_Segment_Trees_Persistent_Data_Structures là những cấu_trúc dữ_liệu được dùng khi chúng_ta cần có toàn_bộ lịch_sử của các thay_đổi trên 1 cấu_trúc dữ_liệu (CTDL) .
+Các bạn có_thể đọc thêm ở : Persistent_Data_Structures 8 .
+IT đoạn_thẳng Bài_toán Cho một_tập hợp chứa các đường_thẳng có dạng ax + b , mỗi đường_thẳng được biểu_diễn bằng một cặp số (a , b) .
+Cần thực_hiện hai truy_vấn : Thêm một đường_thẳng vào tập_hợp .
+Trả_lời xem tại hoành_độ q , điểm nào thuộc ít_nhất một đường_thẳng trong tập có tung_độ lớn nhất .
+Nói_cách_khác , đường_thẳng (a , b) nào có aq + b lớn nhất .
+Để giải bài_toán này , hai cách phổ_biến là ứng_dụng bao lồi và sử_dụng cây Interval_Tree lưu đoạn_thẳng Bài_tập áp_dụng : VOJ - QMAX_VOJ - NKLINEUP_VOJ - GSS_VOJ - LITES_VOJ - DQUERY_VOJ - KQUERY_FREQUENT_VOJ - KQUERY2_GSS2_GSS3_MULTQ3_POSTERS_PATULJCI_New_Year_Domino_Copying_Data_DZY_Loves_Fibonacci_Numbers_FRBSUM_Đọc thêm : Cấu_trúc dữ_liệu đặc_biệt - Đoàn Mạnh_Hùng Cấu_trúc dữ_liệu đặc_biệt - Nguyễn_Minh Hiếu_Các nguồn tham_khảo : Codeforces Một_số vấn_đề đáng chú_ý trong môn Tin_học

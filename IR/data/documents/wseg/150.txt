@@ -1,0 +1,56 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này là bài cuối cũng nằm trong chuỗi bài về phép băm và các phân_tích .
+Trước_khi đọc_bài này , mình khuyến_khích bạn_đọc xem_lại bài viết trước về , phương_pháp địa_chỉ mở và băm hoàn_hảo .
+Gọi_là số phần_tử ta muốn lưu_trữ trong bảng băm; các phần_tử này xuất_phát từ một_tập gốc .
+Bảng_băm của chúng_ta có kích_thước .
+Để băm vào bảng , ta sử_dụng một hàm ; hàm_băm này được chọn ngẫu_nhiên từ một họ hàm_băm .
+Bằng cách chọn ngẫu_nhiên như_vậy , thỏa_mãn : Dấu ở đây có_nghĩa là "tỉ lệ với" , i . e , với một hằng_số nào_đó .
+Điểm quan_trọng nhất mà bạn_đọc cần nhớ ở đây : chúng_ta không có bất_kì giả_sử nào về dữ_liệu (i . e chúng_ta sẽ không giả_sử dữ_liệu đầu_vào là ngẫu nhiên) .
+Tất_cả các phân_tích ngẫu_nhiên ở đây đến từ việc chọn hàm_băm ngẫu_nhiên .
+Do_đó , nếu ta có định_sẵn một hàm_băm thì tất_cả các phân_tích dưới_đây đều vô_nghĩa .
+Trong băm địa_chỉ mở , ta giải_quyết xung_đột bằng cách sử_dụng hàm_băm thỏa_mãn : Từ_tính chất trên của hàm_băm , ta suy ra , với mỗi cho trước , đều có_thể nhận một trong các giá_trị với xác_suất .
+Hai câu_hỏi mà ta quan_tâm khi sử_dụng băm địa_chỉ mở là : Câu_hỏi đầu_tiên cho chúng_ta biết thời_gian của phép dò (unsuccessful search) và câu_hỏi thứ_hai cho chúng_ta biết thời_gian của một_phép dò (successful search) . Khi ta tìm_kiếm một khóa không nằm trong bảng , ta lần_lượt dò các_vị trí cho_đến khi : (i) ta gặp một ô trống đầu_tiên hoặc (ii) dò đến hết bảng , i . e , dò . Gọi_là biến ngẫu_nhiên mà giá_trị của biến này là số lần dò thực_hiện khi tìm_kiếm một khóa không nằm trong bảng .
+Ta sẽ tính kì_vọng .
+Ta thấy : bất_kể có_phải là ô trống hay_không , ta đều phải sử_dụng một_phép dò .
+Nếu trống thì ta dừng lại .
+Nếu_không trống , ta phải dò tiếp .
+Xác_suất để ô không trống là .
+Khi ta dò tiếp , ta sẽ dò với tập hàm_băm .
+Một điểm chú_ý là do tính ngẫu_nhiên đồng_đều , các ô ta dò tiếp_theo sẽ không bao_giờ trùng với các ô đã dò trước đó .
+Do_đó , ta có_thể coi bước dò tiếp_theo như dò bảng_băm kích_thước , trong bảng sẵn_có ô không trống .
+Từ_đó ta suy ra_công thức đệ_quy : Do (khi bảng rỗng thì ta luôn kết_thúc sau 1 phép dò) với mọi > , bằng phương_pháp quy_nạp (coi như bài_tập cho bạn đọc) , ta có_thể chứng_minh được (giả sử > ) : Trong đó là hệ_số tải .
+Nếu ta khải triển : Công_thức có_ý nghĩa rất hay : ta luôn phải trả một_phép dò đầu tiên; với xác_suất , ta phải dò lần thứ ; với xác_suất , ta phải dò lần thứ 3 , . . . . Công_thức cho chúng_ta biết khi sử_dụng băm địa_chỉ mở , ta không nên để hệ_số tải quá gần , nếu_không số phép dò sẽ rất lớn .
+Trong thực_tế , hệ_số tải ta nên để ở tầm ; khi đó số phéo dò trung_bình là .
+Khi chèn một khóa vào bảng_băm theo phương_pháp địa_chỉ mở , ta sẽ lần_lượt dò bảng cho_đến khi tìm được một ô trống và đặt khóa cần chền vào ô trống đó .
+Ở đây ta dễ_dàng nhận_thấy sự liên_hệ giữa số phép dò cần_thiết để chèn một khóa vào bảng và số phép dò_tìm_kiếm không thành_công một khóa .
+Cụ_thể , số phép dò cần để chèn khóa thứ vào bảng sẽ tương_đương với số phép dò trong kiếm không thành_công trong trường_hợp bảng_băm có phần_tử .
+Đương_nhiên , số phép dò để tìm_kiếm thành_công một khóa bằng số phép dò để chèn khóa đó .
+Do_đó , số phép dò kì_vọng cần_thiết để tìm_kiếm khóa , kí_hiệu , là : Từ_đó suy ra , số phép dò cần_thiết để tìm_kiếm khóa cuối_cùng là xấp_xỉ thời_gian tìm_kiếm không thành_công và là . Giả_sử khả_năng tìm_kiếm các khóa là như_nhau , ta suy ra thời_gian tìm_kiếm trung_bình là : Trong đó là thứ .
+Do , ta suy ra : Các bạn có_thể xem đặc_tính biến_đổi của số phép dò trong phương_trình theo . Ví_dụ nếu ta lấy , từ ta suy ra số phép dò trong một tìm_kiếm thành_công , giả_sử khả_năng tìm_kiếm các khóa là như_nhau , là khoảng phép dò .
+Từ thảo_luận ở trên , ta có_thể nhận_ra một điểm là các khóa càng sớm được băm vào bảng thì_có số phép dò_tìm_kiếm (thành công) càng ít .
+Do_đó , trong thực_tế , nếu chúng_ta biết thêm thông_tin về tần_suất tìm_kiếm khóa thì chúng_ta có_thể sắp_xếp các khóa theo giảm_dần của tần_suất và băm theo thứ_tự đó vào bảng .
+Mẹo này sẽ giúp chúng_ta giảm được thời_gian tìm_kiếm (thành công) trung_bình . Trong băm hoàn_hảo , ta sẽ thực_hiện băm hai pha .
+Sau pha đầu_tiên , ta sẽ đếm xem , với mỗi , có bao_nhiêu phần_tử được băm vào cùng một vị_trí .
+Gọi_là số phần_tử được băm vào cùng .
+Trong pha 2 , ta tạo ra một bảng phụ có kích_thước và sử_dụng hàm_băm khác để băm các phần_tử có cùng mã_băm trong pha 1 vào bảng phụ này .
+Giả_sử hệ_số tải Tổng_kích_thước bộ_nhớ là : Ta sẽ tính kì_vọng .
+Trước_khi đi_sâu vào chi_tiết , mình khuyến_khích bạn_đọc xem_lại một_số tính_chất của biến ngẫu_nhiên 0/1 () .
+Đặc_biệt định_lý 8 sẽ là định_lý mà chúng_ta hay sử_dụng ở đây . Kí_hiệu là biến ngẫu_nhiên 0/1 cho sự_kiện , i . e , nếu sự_kiện xảy_ra và nếu ngược_lại .
+Ví_dụ , là biến ngẫu_nhiên 0/1 cho sự_kiện .
+Nếu thì và thì . Do , ta suy ra và .
+Do_đó , ta có : và : Do là số phần_tử được băm vào cùng vị_trí , ta suy ra : Do_đó : Từ dòng thứ 2 xuống_dòng thứ 3 , ta khai_triển bình_phương của tổng .
+Từ dòng thứ 3 xuống_dòng thứ 4 , ta áp_dụng tính tuyến_tính của kì_vọng .
+Từ dòng thứ 4 xuống_dòng thứ 5 , ta áp_dụng tính tuyến_tính của kì_vọng và đổi thứ_tự tổng .
+Từ dòng thứ 5 xuống_dòng thứ 6 , ta áp_dụng tính_chất nếu là biến ngẫu_nhiên 0/1 .
+Từ dòng thứ 6 xuống_dòng 7 , ta áp_dụng và . 1 Donald_E .
+Knuth .
+Addison_Wesley_Longman_Publishing_Co . , Inc . , Redwood_City , CA , USA , 1998 .
+2 Jeff_Erickson .
+UIUC , 2013 .
+3 Thomas_H .
+Cormen , Clifford_Stein , Ronald_L .
+Rivest , and Charles_E .
+Leiserson .
+Chapter 12 .
+McGraw-Hill_Higher_Education , 2001 .
+, , , , , Trackback link : Powered by and

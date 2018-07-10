@@ -1,0 +1,135 @@
+Tác_giả : Vũ_chipchip Phúc_Hoàng_A : "Mày AC bài Z kiểu gì thế ?
+Tao dùng set không được . " B : "Dễ mà mày , tao code Splay thôi .
+400 dòng 20 phút ez gg . " A : "-_-" Câu_chuyện thật tưởng như đùa trên cũng không_phải là hiếm gặp .
+Splay_Tree (hay nói rộng hơn , Balanced_Binary_Search_Tree) là một cấu_trúc dữ_liệu toàn_năng có_thể giải_quyết rất nhiều bài_toán , tuy_nhiên nó cũng là một thứ đáng khiếp_sợ đối_với dân competitive programmers vì độ khó code của nó .
+Trong một contest với áp_lực thời_gian căng_thẳng , chẳng_mấy ai dám code Balanced_Binary_Search_Tree và còn đảm_bảo code không bị bug nữa .
+Tuy_nhiên , bạn không_thể hoàn_toàn tránh được nó , vẫn có những bài mà những thư_viện có_sẵn như std : : set hay những cấu_trúc đơn_giản như Segment_Tree , Fenwick_Tree không_thể giải được , và bạn vẫn phải nhờ_cậy đến Splay_Tree trong nỗi tuyệt_vọng .
+May_mắn thay , dân competitive programmers đã tìm_ra cách sử_dụng Skip_Lists như một sự thay_thế cho Balanced_Binary_Search_Tree .
+Skip_Lists với ý_tưởng hết_sức đơn_giản dễ nhớ , cộng thêm với khả_năng tùy_biến tuyệt_vời đã phần_nào làm xua_tan đi nỗi sợ code khó bug nhiều (trừ khi bạn có trình_độ Da xua thượng thừa như nhân_vật B trong đoạn hội_thoại trên; trong trường_hợp đó , bạn có_thể bỏ_qua bài viết này) .
+Bài viết này sẽ giới_thiệu cho các bạn những ý_tưởng và cách sử_dụng Skip_Lists cơ_bản nhất .
+Table of_Contents Bài_toán cơ_bản Các hướng tiếp_cận Ý_tưởng Skip_Lists So_sánh các cấu_trúc dữ_liệu Hướng_dẫn chi_tiết Mở_rộng Lời kết Bài_toán cơ_bản Hãy lập_trình một cấu_trúc dữ_liệu S có_thể thực_hiện các thao_tác sau : Chèn một phần_tử x vào S .
+Xóa_một phần_tử x khỏi S .
+Cho một phần_tử x , tìm một phần_tử gần x nhất trong S .
+Các hướng tiếp_cận Ta sẽ xét một_số cấu_trúc dữ_liệu (chưa đề_cập đến Skip_Lists) sử_dụng để giải bài_toán cơ_bản trên : Sorted_Array : Biểu_diễn S là một mảng các phần_tử .
+Các phần_tử trong mảng được sắp_xếp theo thứ_tự tăng dần .
+Chèn : Dịch tất_cả các phần_tử bên phải vị_trí cần chèn sang phải một chỉ_số , rồi chèn phần_tử cần chèn vào vị_trí đó .
+Xóa : Dịch tất_cả các phần_tử bên phải phần_tử bị xóa sang trái một chỉ_số .
+Tìm : Tìm_kiếm nhị_phân phần_tử .
+Độ phức_tạp : O(Nlog(N)) với thao_tác khởi tạo , O(N) với thao_tác chèn/xóa , O(log(N)) với thao_tác tìm_kiếm .
+Sorted_Linked_List : Biểu_diễn S là một danh_sách liên_kết chứa các phần_tử .
+Các phần_tử trong danh_sách liên_kết được sắp_xếp theo thứ_tự tăng dần .
+Chèn : Thay_đổi liên_kết giữa phần_tử cần chèn , phần_tử đứng trước , và phần_tử đứng sau .
+Xóa : Thay_đổi liên_kết giữa phần_tử cần chèn , phần_tử đứng trước , và phần_tử đứng sau .
+Tìm : Duyệt_S từ_đầu đến cuối .
+Độ phức_tạp : O(N) với các thao_tác chèn/xóa/tìm .
+O(Nlog(N)) với thao_tác khởi tạo .
+Binary_Search_Tree : Biểu_diễn S là một cây nhị_phân tìm_kiếm chứa các phần_tử .
+Cây này có tính_chất tất_cả các nút thuộc cây_con bên trái đều nhỏ hơn nút cha , và tất_cả các nút thuộc cây_con bên phải đều lớn hơn nút cha .
+Chèn (Nhiều cách làm) : Đi từ trên gốc xuống , so_sánh phần_tử được chèn với hai nút con , nếu có thì đi_vào nút con , còn không thì thêm một nút vào cây_chứa phần_tử cần chèn .
+Xóa (Nhiều cách làm) : Thay nút bị xóa bằng nút lớn nhất của cây_con bên trái (và xóa nút đó đi) , nếu_không có cây_con bên trái thì thay bằng nút nhỏ nhất của cây_con bên phải , nếu_không có_con thì đơn_giản là xóa đi .
+Tìm : Đi từ trên gốc xuống , so_sánh phần_tử cần tìm với hai nút con , đi_vào cây_con chứa nút cần tìm , cứ thế đến khi tìm được .
+Độ phức_tạp : Với trường_hợp trung_bình , các thao_tác này có độ phức_tạp O(log(N)) .
+Còn với trường_hợp xấu nhất_là O(N) .
+Balanced_Binary_Search_Tree : Giống_Binary_Search_Tree , nhưng cây có thêm cơ_chế tự cần bằng để tránh việc cây bị suy_biến , luôn giữ chiều_cao cây ở mức ổn_định (thường là O(log(N)) .
+Lưu_ý : Thao_tác chèn và xóa đều phải đi_qua thao_tác tìm .
+Ta nhận_thấy mỗi cấu_trúc dữ_liệu kể_trên đều có nhược_điểm của nó .
+Sorted_Array có thao_tác chèn xóa chậm , Sorted_Linked_List có thao_tác tìm chậm , Binary_Search_Tree có_thể bị suy_biến về chiều_cao làm_cho cả 3 thao_tác đều chậm , Balanced_Binary_Search_Tree hoàn_hảo nhưng lại quá phức_tạp để cài_đặt trong giới_hạn thời_gian của competitive programming .
+Từ_đó , Skip_Lists , một phiên_bản nâng_cấp của Sorted_Linked_List , được sử_dụng trong competitive programming như một sự thay_thế cho Balanced_Binary_Search_Tree .
+Về tộc độ và bộ_nhớ , Skip_Lists không thua gì Balanced_Binary_Search_Tree , tuy_nhiên lại dễ cài_đặt hơn rất nhiều .
+Ý_tưởng Skip_Lists_Skip_Lists là một phiên_bản nâng_cấp của Sorted_Linked_Lists .
+Ta hãy bắt_đầu với một ví_dụ về Sorted_Linked_List chứa 8 số và nghĩ cách cải_thiện vấn_đề của nó .
+Sorted_Linked_List có ưu_điểm lớn khi thao_tác chèn xóa chỉ mất O(1) (ta chỉ việc chỉnh_sửa liên_kết giữa phần_tử được chèn/xóa và các phần_tử đằng trước/sau) .
+Tuy_nhiên thao_tác tìm_kiếm lại mất O(N) do phải duyệt từ_đầu đến cuối .
+Một ý_tưởng để cân_bằng điều này là ta thêm nhiều tầng liên_kết , cứ lên một tầng số liên_kết lại giảm còn một_nửa .
+Khi tìm phần_tử , ta sẽ duyệt từ trái sang phải nhưng sẽ nhảy_xa hơn nhờ những liên_kết trên các tầng cao , khi_nào không nhảy được mới xuống tầng thấp hơn .
+Ý_tưởng này khá giống với phương_pháp nhảy lên tổ_tiên thứ 2K khi tìm Lowest_Common_Ancestor (LCA) .
+Trong hình trên , để tìm số 7 , ta sẽ nhảy thẳng từ 0 đến 5 bằng liên_kết trên tầng thứ_ba , sau_đó nhảy từ 5 đến 6 bằng liên_kết trên tầng thứ nhất .
+Ta tìm được 6 là số gần nhất với 7 .
+Với cấu_trúc này , ta có_thể thực_hiện thao_tác tìm trong O(log(N)) .
+Tuy_nhiên việc chèn và xóa_một phần_tử vào sẽ làm thay_đổi cấu_trúc này .
+Chẳng_hạn nếu ta chèn số 7 : Như hình trên , cấu_trúc của ta không còn "chuẩn" , có_nghĩa là chính_xác tầng thứ nhất liên_kết cách 20 , tầng thứ_hai liên_kết cách 21 , tầng thứ_ba liên_kết cách 22 , . . .
+Tuy_nhiên , với cấu_trúc như hình trên vẫn chạy tốt - chỉ_có điều ở mỗi tầng_ta có_thể phải nhảy nhiều hơn một_lần (chẳng hạn , muốn tìm số 7 , ở tầng thứ nhất ta phải nhảy đến hai lần 5 ~gt; 6 ~gt; 7) .
+Từ_đó ta có nhận_xét sau : Các liên_kết trên mỗi tầng không nhất_thiết phải chuẩn , tuy_nhiên , nếu các độ_dài giữa các liên_kết xấp_xỉ nhau và số liên_kết ở tầng trên xấp_xỉ bằng nửa số liên_kết ở tầng dưới , thuật_toán tìm_kiếm vẫn chạy tốt và không mất quá nhiều lần nhảy ở mỗi tầng .
+Ta sẽ duy_trì cấu_trúc này bằng kĩ_thuật tung đồng xu ngẫu_nhiên : Mỗi lần chèn một nút vào , đầu_tiên_ta xây_dựng liên_kết ở tầng thứ nhất cho nó .
+Sau_đó ta tung đồng xu , nếu ngửa thì ta xây_dựng liên_kết ở tầng trên và tiếp_tục tung đồng xu , còn nếu sấp ta dừng việc xây_dựng liên_kết lại .
+Đây chính là Skip_Lists - một cấu_trúc dữ_liệu được xây_dựng bằng nhiều tầng Sorted_Linked_List được xây_dựng một_cách ngẫu_nhiên , trong đó tầng cao chứa những bước nhảy_dài hơn và tầng thấp chứa những bước nhảy ngắn hơn .
+Skip_Lists cho_phép ta thực_hiện thao_tác tìm_kiếm với độ phức_tạp xấp_xỉ O(log(N)) .
+So_sánh các cấu_trúc dữ_liệu Hướng_dẫn chi_tiết Học phải đi_đôi với hành .
+Cách hiểu lý_thuyết nhanh nhất_là đập ngay vào bài_tập .
+Ta sẽ đi chi_tiết vào cách sử_dụng Skip_Lists để giải bài CPPSET .
+Bạn hãy đọc đề và ngẫm_nghĩ một_lúc trước_khi đọc_tiếp bài viết này .
+Bài_giải ở dưới được code_bằng ngôn_ngữ C++98 .
+CPPSET , đúng như tên_gọi của nó , bạn có_thể AC trong một nốt_nhạc nếu sử_dụng std : : set của C++ , một container đã được code sẵn bằng Reb-Black_Tree (một loại Balanced_Binary_Search_Tree) để thực_hiện bài_toán cơ_bản nêu ở đầu .
+Để luyện_tập , ta sẽ tự code một cái set "dỏm" bằng Skip_Lists .
+Trước_tiên ta cần xây_dựng các struct biểu_diễn Skip_Lists .
+Ta sẽ có 3 struct : SkipLists , Column , Cell .
+SkipLists là một danh_sách các Column liên_kết với_nhau .
+Column là một cột gồm các Cell , biểu_diễn cho cột liên_kết của một phần_tử trong set của ta với các phần_tử đằng_trước và đằng_sau .
+Cell là một liên_kết cơ_bản nhất trên một tầng của Column , chứa hai liên_kết đến Column đằng_trước và đằng_sau .
+Để_cho dễ_hiểu , bạn hãy xem hình dưới .
+struct SkipLists static const int MAX_LEVEL = 20 ; // Giới_hạn số tầng , nên chọn một_số khoảng log(N) Column head , tail ; // thêm 2 cột không có_giá trị vào đầu và cuối để dễ xử_lí ; struct Column int value ; vector lt; Cell gt; cells ; ; struct Cell_Column previous_column , next_column ; // Mỗi_Cell có hai liên_kết đến Column đằng_trước và đằng_sau (không giống trong hình chỉ_vẽ một liên_kết về đằng_sau cho_đơn giản) ; Sau khi đã biết cách biểu_diễn dữ_liệu , ta sẽ code các hàm cho SkipLists .
+Set "dỏm" của chúng_ta sẽ gồm 6 hàm sau : struct SkipLists static const int MAX_LEVEL = 20 ; Column head , tail ; SkipLists (); // Khởi tạo bool empty (); // Kiểm_tra SkipLists có rỗng_không Column lower_bound ( int ); // Tìm vị_trí Column chứa giá_trị nhỏ nhất không nhỏ hơn giá_trị cần tìm Column upper_bound ( int ); // Tìm vị_trí Column chứa giá_trị nhỏ nhất lớn hơn giá_trị cần tìm void insert ( int ); // Chèn một phần_tử mang giá_trị cho trước vào SkipLists void erase ( int ); // Xóa_một phần_tử mang giá_trị cho trước khỏi SkipLists ; Ta sẽ bắt_đầu với constructor SkipLists() .
+Để khởi tạo SkipLists , ta sẽ tạo ra hai cột head và tail có chiều_cao là số tầng tối_đa , và tại liên_kết giữa head và tail trên tất_cả các Cell .
+SkipLists : : SkipLists () head = new Column ; tail = new Column ; head -gt; value = 0 ; tail -gt; value = 0 ; for ( int i = 0 ; i lt; MAX_LEVEL ; i ++ ) head -gt; cells .
+push_back (( Cell ) NULL , tail ); tail -gt; cells .
+push_back (( Cell ) head , NULL ); Với hàm empty() , ta chỉ đơn_giản kiểm_tra liên_kết cấp 0 (liên kết trực tiếp) của head có nối với tail không .
+bool SkipLists : : empty () return head -gt; cells 0 .
+next_column == tail ; Với hàm lower_bound() , ta sẽ đi từ tầng cao nhất đến tầng thấp nhất , chừng_nào nhảy về phía trước vẫn vào một phần_tử có_giá trị nhỏ hơn giá_trị cần tìm thì ta cứ nhảy .
+Sau khi duyệt , ta sẽ đứng ở phần_tử lớn nhất có_giá trị nhỏ hơn giá_trị cần tìm .
+Ta nhảy trên liên_kết cấp 0 một_lần nữa để lấy_được lower_bound() .
+Column_SkipLists : : lower_bound ( int value ) Column iter = head ; for ( int level = MAX_LEVEL - 1 ; level gt;= 0 ; level -- ) while ( iter -gt; cells level .
+next_column ! = tail amp;amp; iter -gt; cells level .
+next_column -gt; value lt; value ) iter = iter -gt; cells level .
+next_column ; return iter -gt; cells 0 .
+next_column ; Hàm upper_bound() không khác_gì lower_bound() , ngoại_trừ việc thay dấu lt; thành lt;= lúc so_sánh với value .
+Column_SkipLists : : upper_bound ( int value ) Column iter = head ; for ( int level = MAX_LEVEL - 1 ; level gt;= 0 ; level -- ) while ( iter -gt; cells level .
+next_column ! = tail amp;amp; iter -gt; cells level .
+next_column -gt; value lt;= value ) iter = iter -gt; cells level .
+next_column ; return iter -gt; cells 0 .
+next_column ; Với hàm insert() , ta sẽ chia thành 3 bước sau : Sử_dụng lower_bound() để kiểm_tra giá_trị đã tồn_tại trong SkipLists chưa .
+Nếu đã tồn_tại , thoát_khỏi hàm .
+Tạo ra một Column mới để chèn vào SkipLists .
+Ta sẽ sử_dụng hàm rand() để tung đồng xu , xây_dựng chiều_cao cho Column này .
+Chèn_Column vào SkipLists .
+Ta duyệt_y_như trong lower_bound() và upper_bound() , ở mỗi tầng chèn liên_kết với Column vào hai cột đằng_sau và đằng_trước Column .
+void SkipLists : : insert ( int value ) // Kiểm_tra value đã tồn_tại chưa Column temp = lower_bound ( value ); if ( temp ! = tail amp;amp; temp -gt; value == value ) return ; // Tạo inserted_column là cột chứa value để chèn vào SkipLists_Column inserted_column = new Column ; inserted_column -gt; value = value ; inserted_column -gt; cells .
+push_back (( Cell ) NULL , NULL ); // Tung đồng xu tăng chiều_cao while ( inserted_column -gt; cells .
+size () lt; MAX_LEVEL amp;amp; rand () % 2 == 0 ) inserted_column -gt; cells .
+push_back (( Cell ) NULL , NULL ); // Duyệt để chèn Column iter = head ; for ( int level = MAX_LEVEL - 1 ; level gt;= 0 ; level -- ) while ( iter -gt; cells level .
+next_column ! = tail amp;amp; iter -gt; cells level .
+next_column -gt; value lt; value ) iter = iter -gt; cells level .
+next_column ; if ( level lt; inserted_column -gt; cells .
+size ()) // Nối iter với inserted_column , nối inserted_column với next_iter Column next_iter = iter -gt; cells level .
+next_column ; iter -gt; cells level .
+next_column = inserted_column ; next_iter -gt; cells level .
+previous_column = inserted_column ; inserted_column -gt; cells level .
+previous_column = iter ; inserted_column -gt; cells level .
+next_column = next_iter ; Với hàm erase() , ta sẽ chia thành 3 bước sau : Sử_dụng lower_bound() để kiểm_tra giá_trị đã tồn_tại trong SkipLists chưa .
+Nếu_không tồn_tại , thoát_khỏi hàm .
+Xóa cột chứa giá_trị cần xóa_khỏi SkipLists bằng cách nối từng liên_kết giữa các Cell liền trước và liền sau nó trên từng tầng .
+Xóa cột chứa giá_trị cần xóa để giải_phóng bộ_nhớ .
+void SkipLists : : erase ( int value ) // Kiểm_tra value đã tồn_tại chưa Column erased_column = lower_bound ( value ); if ( erased_column == tail erased_column -gt; value ! = value ) return ; // Duyệt để xóa Column iter = head ; for ( int level = MAX_LEVEL - 1 ; level gt;= 0 ; level -- ) while ( iter -gt; cells level .
+next_column ! = tail amp;amp; iter -gt; cells level .
+next_column -gt; value lt;= value ) iter = iter -gt; cells level .
+next_column ; if ( iter == erased_column ) // Nối previous_iter với next_iter Column previous_iter = iter -gt; cells level .
+previous_column , next_iter = iter -gt; cells level .
+next_column ; previous_iter -gt; cells level .
+next_column = next_iter ; next_iter -gt; cells level .
+previous_column = previous_iter ; delete erased_column ; Với 6 hàm trên , bạn đã có_thể mô_phỏng một_cách đơn_giản một cái set "dỏm" để giải bài này .
+Bạn hãy thử tự làm tiếp và nộp trên SPOJ nhé .
+Toàn_bộ code cho bài CPPSET có_thể xem ở đây .
+Mở_rộng Ở trên mới là một code Skip_Lists đơn_giản nhất mô_phỏng std : : set để giải bài CPPSET .
+Liệu bạn có_thể code lại một std : : set hoàn_hảo bằng Skip_Lists không ?
+Hãy thử xem ! Code trên sử_dụng cả liên_kết xuôi ( next_column ) và liên_kết ngược ( previous_column ) để dễ xử_lí .
+Bạn có_thể code lại CPPSET mà không cần sử_dụng liên_kết ngược không ?
+Khi xây_dựng cột để chèn vào Skip_Lists , ta sử_dụng kĩ_thuật tung đồng xu với xác_suất 1/2 mỗi mặt để xây_dựng chiều_cao cột .
+Tại_sao phải là 1/2 , liệu có_thể là một con_số khác không ?
+Bạn hãy thử các con_số khác_nhau , sử_dụng cả phân_tích lý_thuyết và thực_nghiệm , cho thấy độ hiệu_quả của các con_số khác .
+Hẳn bạn sẽ thắc_mắc dùng Skip_Lists làm_gì khi nó cũng chỉ để thay std : : set , mà std : : set thì_có sẵn rồi .
+Skip_Lists có rất nhiều ứng_dụng và khả_năng tùy_biến nâng_cao mà sẽ được giới_thiệu trong phần 2 của bài viết này , giúp nó làm được những điều std : : set không_thể làm được , đơn_giản nhất_là tìm phần thử lớn thứ k trong tập_hợp .
+Bạn thử tự nghĩ cách tìm phần_tử lớn thứ k trong Skip_Lists xem .
+Lời kết Trên đây là những gì cơ_bản nhất các bạn có_thể biết về Skip_Lists , hi_vọng các bạn có_thể ứng_dụng cấu_trúc dữ_liệu tuyệt_vời này một_cách hiệu_quả trong các contests .
+Cá_nhân mình thấy Skip_Lists là một cấu_trúc dữ_liệu rất hay nhưng ít được sử_dụng , competitive programmers Việt_Nam chúng_ta thường thích dùng Splay_Tree hơn mặc_dù chẳng_mấy ai dám code lúc đi_thi . . .
+Mình rất mong sau bài viết này mọi người sẽ dùng Skip_Lists nhiều hơn .
+Những cách sử_dụng Skip_Lists nâng_cao sẽ được giới_thiệu trong phần 2 , mọi người cùng đón đọc nhé .
+

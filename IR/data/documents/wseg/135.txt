@@ -1,0 +1,98 @@
+Tác_giả : Vũ_chipchip Phúc_Hoàng_Table of_Contents Bài_toán Ưu_điểm Nhược_điểm Ý_tưởng Query_Update Mở_rộng Ứng_dụng Một_số câu_hỏi : Bài_tập áp_dụng Một_số bài_tập "quy hoạch động bao lồi" truyền_thống USACO - Fencing the_Herd VOJ - VOMARIO_Bài khác Bài_toán Cho một_tập hợp chứa các đường_thẳng có dạng ax + b , mỗi đường_thẳng được biểu_diễn bằng một cặp số (a , b) .
+Cần thực_hiện hai loại thao_tác : Thêm một đường_thẳng vào tập_hợp .
+Trả_lời xem tại hoành_độ q , điểm nào thuộc ít_nhất một đường_thẳng trong tập có tung_độ lớn nhất .
+Nói_cách_khác , đường_thẳng (a , b) nào có aq + b lớn nhất .
+Để giải bài_toán này , hai cách phổ_biến là ứng_dụng bao lồi và sử_dụng cây Interval_Tree lưu đoạn_thẳng .
+Sau_đây là những ưu_điểm và nhược_điểm của IT đoạn_thẳng so_với bao lồi .
+Ưu_điểm Ứng_dụng được với đoạn_thẳng chứ không chỉ đường_thẳng .
+Đây là ưu_điểm lớn nhất của IT đoạn_thẳng so_với bao lồi , khi tập_hợp cần xử_lí là tập đoạn_thẳng chứ không_phải đường_thẳng (tức là đường_thẳng ax + b chỉ tồn_tại khi x thuộc một khoảng (l , h) nhất định) , bao lồi sẽ không_thể làm được .
+Thực_hiện thao_tác thêm đường_thẳng (đoạn thẳng) một_cách dễ_dàng .
+Bao lồi gặp nhược_điểm lớn khi thêm đường_thẳng mà hệ_số góc a không tăng dần hoặc giảm_dần .
+Mặc_dù không_phải là không_thể làm được , nhưng bao lồi khi đó phải biểu_diễn bằng cấu_trúc khác không_phải stack , gây khó_khăn lớn khi code .
+Dễ code .
+Chính vì hai ưu_điểm ở trên , IT đoạn_thẳng rất tổng_quát và không cần phải xét trường_hợp phụ_thuộc vào bài_toán như_bao lồi .
+Đa_số các bài_toán , phần Update và Query của IT đoạn_thẳng gần_như giống_hệt nhau .
+Phần thân chương_trình cũng rất ngắn_gọn .
+Nhược_điểm Phụ_thuộc vào kích_thước hoành_độ x .
+Vì_IT đoạn_thẳng xử_lí trên khoảng của hoành_độ , với bài_toán mà query x lớn hoặc x không_phải số_nguyên không_thể biểu_diễn bằng IT bình_thường .
+Có_thể thay_thế bằng rời_rạc_hóa các tọa_độ hoặc IT động , nhưng so_với bao lồi_đây là một nhược_điểm đáng_kể khi bao lồi hoàn_toàn không phụ_thuộc vào x .
+Bộ_nhớ và thời_gian lớn .
+Lưu một cây IT chứa hai số_nguyên a , b tốn bộ_nhớ hơn nhiều so_với stack bao lồi .
+Xử_lí trên cây IT cũng chậm hơn chặt nhị_phân trên bao lồi .
+Về độ phức_tạp , có_thể so_sánh qua bảng sau Lưu_ý : Ở đây ta giả_sử các đường_thẳng thêm vào có hệ_số a tăng dần hoặc giảm_dần , bao lồi được biểu_diễn bằng stack .
+Tóm_lại , so_với cách ứng_dụng bao lồi , sử_dụng IT đoạn_thẳng là một phương_pháp tổng_quát hơn nhưng chậm và tốn nhiều bộ_nhớ hơn .
+Sau_đây là những phân_tích cơ_bản về thuật_toán .
+Ý_tưởng Xây_dựng một cây Interval_Tree để quản_lí tập các đoạn_thẳng , mỗi nút của cây quản_lí một khoảng trên trục_hoành .
+Thông_tin lưu ở mỗi nút trên cây sẽ là đoạn_thẳng đặc_trưng cho khoảng nó quản_lí .
+Đoạn_thẳng này phải phủ kín khoảng , tức_là đoạn ax + b có khoảng x bao lấy khoảng do nút quản_lí (nếu là đường_thẳng thì luôn phủ kín khoảng do nút quản lí) .
+Đoạn_thẳng được lưu trong nút phải cao hơn tất_cả các đoạn khác tại một vị_trí nào_đó thuộc khoảng (nếu không thì không cần quan_tâm đến đoạn đó) .
+Ý_nghĩa của việc lưu này là với một query q bất_kì , đoạn aq + b cao nhất sẽ được lưu trong một nút nào_đó của cây IT quản_lí khoảng chứa q .
+Cách lưu đoạn_thẳng này khá trừu trượng , nếu bạn_đọc phần này chưa hiểu , nên bỏ_qua để xem cách Query và Update trên cây rồi đọc lại phần này sau .
+Như_vậy , thông_tin lưu trên cây IT sẽ được biểu_diễn bằng một mảng line , line là một cặp số (a , b) biểu_diễn đường_thẳng .
+line itMAXX 4; // MAXX là giới_hạn trục_hoành Ngoài_ra , có_thể thêm một_vài mảng phụ cần_thiết cho IT như low , high , leaf , . . .
+Ta định_nghĩa hàm Get(line d , int x) cho_biết tung_độ của điểm thuộc đường_thẳng d tại hoành_độ x .
+int Get ( line d , int x ) return d .
+a x + d .
+b ; Query_Ta sẽ trả_lời cho query q , xem tại hoành_độ x = q , tìm tung_độ cao nhất của một điểm thuộc một đoạn trong tập .
+Như đã nói ở trên , IT lưu các đoạn_thẳng đảm_bảo trong các nút cây quản_lí khoảng chứa q có_một nút lưu đoạn_thẳng đạt tung_độ cao nhất (làm thế_nào để được như_vậy thì xem phần Update) .
+Vậy ở đây , muốn trả_lời cho query q , ta đi từ gốc xuống nút lá quản_lí điểm q , trên đường_đi update đáp_số bằng tung_độ cao nhất tại điểm q của đoạn_thẳng do nút đó quản_lí .
+int Query ( int node , int pos ) if ( low node gt; pos high node lt; pos ) return - oo ; res = Get ( it node , pos ); if ( low node == high node ) return res ; res = max ( res , Query ( node 2 , pos )); res = max ( res , Query ( node 2 + 1 , pos )); return res ; Độ phức_tạp : O(log(MAXX))_Update_Thêm một đoạn_thẳng vào tập_hợp , ta phải thay_đổi những nút trên cây IT quản_lí khoảng ứng với đoạn_thẳng đó .
+Việc đầu_tiên , giống_như Update trên cây IT cơ_bản , ta phải chia đoạn cần Update ra thành những khoảng IT .
+void Update ( int node , int l , int h , line val ) if ( low node gt; h high node lt; l ) return ; if ( low node gt;= l amp;amp; high node lt;= h ) // Do something return ; Update ( node 2 , l , h , val ); Update ( node 2 + 1 , l , h , val ); Độ phức_tạp của phần chia khoảng này là : O(log(MAXX)) , giống_như IT cơ_bản .
+Nếu đoạn cần Update là đường_thẳng (l = low1 , h = high1) thì không mất thời_gian chia khoảng , độ phức_tạp chỉ là O(1) .
+Bây_giờ việc phải làm là điền vào chỗ // Do_Something .
+Ta có_một đường_thẳng val và đường_thẳng itnode , cả hai đều chỉ được xét trong_khoảng từ lownode đến highnode .
+Lấy mid là điểm giữa của khoảng (mid = (lownode + highnode) / 2) .
+Ta sẽ thay_đổi nút itnode và cả các con của nó .
+Có 6 trường_hợp có_thể xảy_ra : itnode hoàn_toàn nằm trên val .
+Trường_hợp này ta chỉ bỏ_qua mà không làm_gì , vì val chắc_chắn không bao_giờ đạt max trong_khoảng lownode đến highnode .
+if ( Get ( it node , low node ) gt;= Get ( val , low node ) amp;amp; Get ( it node , high node ) gt;= Get ( val , high node )) return ; itnode hoàn_toàn nằm dưới val .
+Trường_hợp này ta gán itnode bằng val , itnode cũ không còn giá_trị khi tìm max .
+if ( Get ( it node , low node ) lt;= Get ( val , low node ) amp;amp; Get ( it node , high node ) lt;= Get ( val , high node )) it node = val ; return ; Nửa bên trái của itnode hoàn_toàn nằm trên nửa bên trái của val .
+Vậy val chắc_chắn không bao_giờ đạt max tại nửa trái của khoảng node , ta giữ_lại itnode tại node và down val xuống con phải (node 2 + 1) .
+if ( Get ( it node , low node ) gt;= Get ( val , low node ) amp;amp; Get ( it node , mid ) gt;= Get ( val , mid )) Update ( node 2 + 1 , l , h , val ); return ; Nửa bên trái của itnode hoàn_toàn nằm dưới nửa bên trái của val .
+Tương_tự như_trên , ta down itnode xuống con phải của node và update itnode bằng val .
+if ( Get ( it node , low node ) lt;= Get ( val , low node ) amp;amp; Get ( it node , mid ) lt;= Get ( val , mid )) Update ( node 2 + 1 , l , h , it node ); it node = val ; return ; Nửa bên phải của itnode hoàn_toàn nằm trên nửa bên phải của val .
+if ( Get ( it node , mid + 1 ) gt;= Get ( val , mid + 1 ) amp;amp; Get ( it node , high node ) gt;= Get ( val , high node )) Update ( node 2 , l , h , val ); return ; Nửa bên phải của itnode hoàn_toàn nằm dưới nửa bên phải của val .
+if ( Get ( it node , mid + 1 ) lt;= Get ( val , mid + 1 ) amp;amp; Get ( it node , high node ) lt;= Get ( val , high node )) Update ( node 2 , l , h , it node ); it node = val ; return ; Sau khi xét xong 6 trường_hợp ở trên , ta đã xử_lí xong việc Update đoạn val trong một khoảng lownode , highnode .
+Độ phức_tạp của thao_tác này là O(log(MAXX)) , vì có_thể phải đi từ node cho_đến lá .
+Có_thể thấy , cây IT có đầy_đủ thông_tin về đoạn thằng đạt max tại một hoành_độ nhất_định , vì ta chỉ loại những đoạn_thẳng mà hoàn_toàn không còn giá_trị (trường hợp 1 và trường_hợp 2) , còn những đoạn_thẳng vẫn có_thể đạt max tại một vị_trí nào đấy luôn được bảo_tồn .
+Độ phức_tạp : O(log2(MAXX)) .
+O(log(MAXX)) khi chia khoảng , O(log(MAXX)) khi update trên một khoảng .
+Nếu update đường_thẳng thì không mất thời_gian chia khoảng , độ phức_tạp tổng_cộng là O(log(MAXX)) .
+Mở_rộng Query và Update ở trên là những thao_tác cơ_bản nhất của IT đoạn_thẳng .
+Ngoài_ra , có_thể có thêm nhiều thông_tin phụ_đính kèm với đoạn_thẳng , tùy thuộc vào_đề bài_toán .
+Có nhiều cách để biểu_diễn đoạn_thẳng trong cây IT ngoài ax + b .
+Ví_dụ , có_thể biểu_diễn đoạn_thẳng bằng cách lưu_tọa_độ 2 điểm đầu_mút của đoạn .
+Tùy vào_đề bài_toán mà có cách biểu_diễn hợp_lí nhất .
+Ứng_dụng Bài_toán tìm max , min của ax + b thường đi_kèm với thuật_toán quy_hoạch_động , chẳng_hạn như bài_toán quy_hoạch_động có_công thức fi = max(aj xi + bj + c) , ta cần tìm j lt; i sao_cho hàm đó đạt max .
+Bao lồi cũng là phương_pháp thường được sử_dụng trong bài_toán này .
+Hạn_chế của bao lồi là aj phải tăng dần hoặc giảm_dần (nếu không sẽ phải sử_dụng cấu_trúc khác stack để biểu_diễn_bao lồi , code rất khó khăn) .
+Hạn_chế của IT đoạn_thẳng là xi phải nguyên và nhỏ để có_thể biểu_diễn trên IT (nếu không sẽ phải sử_dụng IT động hoặc rời_rạc hóa) .
+Ngoài_ra , có_một số bài_toán yêu_cầu tìm max , min trên tập đoạn_thẳng .
+Đây là những bài_toán IT đoạn_thẳng gần_như là cách làm duy_nhất .
+Một_số câu_hỏi : Để hiểu rõ về IT đoạn_thẳng , bạn hãy tự trả_lời một_số câu_hỏi sau : Trong trường_hợp nào thì một nút không có thông_tin gì cả ?
+Trong các trường_hợp 4 và 6 của phần Update , tại_sao phải gán lại val cho itnode ?
+Giả_sử thay_vì truy_vấn theo điểm , ta truy_vấn theo khoảng , tức_là trả_lời xem tại tất_cả các điểm trong một khoảng nào_đó , đoạn_thẳng nào đạt chiều_cao lớn nhất / nhỏ nhất .
+Giả_sử khoảng này nằm hoàn_toàn trong phạm_vi quản_lí của một nút nào_đó , liệu ta có_thể trả luôn kết_quả là đoạn_thẳng lưu trong nút đó không ?
+Vì_sao ?
+Bài_tập áp_dụng Một_số bài_tập "quy hoạch động bao lồi" truyền_thống VOJ - VMPIZZA_CF 189 - Div 1 - C_SPOJ - ACQUIRE_SPOJ - APIO10A_Để làm những bài_tập này , đầu_tiên_ta sẽ giải bằng cách quy_hoạch_động với độ phức_tạp O(N2) .
+Công_thức quy_hoạnh động sẽ có dạng là fi = max/min(aj xi + bj + c) , với mọi j từ 1 đến i - 1 .
+Để giảm độ phức_tạp xuống O(N \logN) , ta sẽ sử_dụng bao lồi hoặc IT đoạn_thẳng .
+Lưu_ý là với cách bao lồi , stack bao lồi phải đảm_bảo aj tăng dần hoặc giảm_dần , nếu_không phải lọc ra_sao cho tính_chất này thỏa_mãn .
+Lưu_ý rằng bao lồi chỉ_có thể làm được khi hệ_số góc tăng dần hoặc giảm_dần .
+USACO - Fencing the_Herd Bài này yêu_cầu tìm (Ax + By) max và min khi cho_điểm (x , y) bất_kì , hay_là (Ax/y + B) max và min .
+Đây chính là dạng chuẩn của bài_toán bao lồi và IT đoạn_thẳng .
+Tuy_nhiên làm bao lồi trong trường_hợp này cực_kì khó_khăn , vì hệ_số góc A không đảm_bảo tăng dần hoặc giảm_dần .
+Để có_thể làm bao lồi với bài này , ta phải sử_dụng cấu_trúc dữ_liệu lưu_bao lồi sao_cho hệ_số góc A vẫn tăng hoặc giảm , cách đơn_giản nhất_là trong quá_trình thêm (A , B) ta sử_dụng một buffer có sức_chứa là \sqrtQ , khi_nào buffer đầy thì gộp vào bao lồi .
+Lúc query thì tìm max , min trên cả bao lồi và buffer .
+Solution bao lồi chi_tiết xem ở đây .
+Còn với IT đoạn_thẳng , ta cũng gặp khó_khăn vì query không_phải là số_nguyên , và x/y cũng rất lớn .
+Tuy_nhiên ta có_thể xử_lí offline đơn_giản bằng cách đọc hết tất_cả các query , lưu lại các điểm (x/y) , rời_rạc_hóa lại , và xây_dựng cây IT đoạn_thẳng trên tập điểm đã rời_rạc_hóa đấy .
+Trong bài này , cách IT đoạn_thẳng đơn_giản hơn nhiều so_với cách bao lồi .
+VOJ - VOMARIO_Bài "độc quyền" của IT đoạn_thẳng .
+Trong bài này , ta cũng tìm công_thức quy_hoạch_động O(N2)% : fi = max(aj xi + bj + c) .
+Tuy_nhiên , đáng lưu_ý là mỗi cặp (aj , bj) chỉ được tính trong một khoảng xi nào_đó , còn xi nằm ngoài khoảng đó thì cặp (aj , bj) này không được phép chọn để lấy max .
+Đây chính là tính_chất "đoạn thẳng" thay_vì "đường thẳng" .
+Bài này không_thể sử_dụng bao lồi để giải được .
+Bài khác VOJ - JEWELNB_SPOJ - PTIT133B

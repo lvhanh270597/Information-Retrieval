@@ -1,0 +1,86 @@
+
+
+
+
+
+
+
+
+
+
+
+
+NN(con_số)  NP(NN(con_số))  VB(là)  NN(con_số)  NN(lý)  NNP(thyết)  NP(NN(lý)NNP(thyết))  NP(NN(con_số)NP(NN(lý)NNP(thyết)))  IN(để)  VB(đảm_bảo)  NN(sự)  NP(NN(sự))  VB(tồn_tại)  IN(của)  NNP(.)  NP(NNP(.))  PP(IN(của)NP(NNP(.)))  VP(VB(tồn_tại)PP(IN(của)NP(NNP(.))))  VP(VB(đảm_bảo)NP(NN(sự))VP(VB(tồn_tại)PP(IN(của)NP(NNP(.)))))  PP(IN(để)VP(VB(đảm_bảo)NP(NN(sự))VP(VB(tồn_tại)PP(IN(của)NP(NNP(.))))))  VP(VB(là)NP(NN(con_số)NP(NN(lý)NNP(thyết)))PP(IN(để)VP(VB(đảm_bảo)NP(NN(sự))VP(VB(tồn_tại)PP(IN(của)NP(NNP(.)))))))  S(NP(NN(con_số))VP(VB(là)NP(NN(con_số)NP(NN(lý)NNP(thyết)))PP(IN(để)VP(VB(đảm_bảo)NP(NN(sự))VP(VB(tồn_tại)PP(IN(của)NP(NNP(.))))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NN(b)  NNP(.)  NP(NN(b)NNP(.))  S(NP(NN(b)NNP(.)))  gamma(S(NP(NN(b)NNP(.))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+CD(5)  NN(k)  NNP(.)  NP(NN(k)NNP(.))  NP(CD(5)NP(NN(k)NNP(.)))  S(NP(CD(5)NP(NN(k)NNP(.))))  gamma(S(NP(CD(5)NP(NN(k)NNP(.)))))  
+
+
+
+
+CD(6)  NN(n)  NNP(.)  NP(NN(n)NNP(.))  NP(CD(6)NP(NN(n)NNP(.)))  S(NP(CD(6)NP(NN(n)NNP(.))))  gamma(S(NP(CD(6)NP(NN(n)NNP(.)))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+CD(2006)  NNP(.)  NP(NNP(.))  NP(CD(2006)NP(NNP(.)))  S(NP(CD(2006)NP(NNP(.))))  gamma(S(NP(CD(2006)NP(NNP(.)))))  
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+CD(2012)  NNP(.)  NP(NNP(.))  NP(CD(2012)NP(NNP(.)))  S(NP(CD(2012)NP(NNP(.))))  gamma(S(NP(CD(2012)NP(NNP(.)))))  
+
+
+
+CD(2009)  NNP(.)  NP(NNP(.))  NP(CD(2009)NP(NNP(.)))  S(NP(CD(2009)NP(NNP(.))))  gamma(S(NP(CD(2009)NP(NNP(.)))))  
+
+gamma()  

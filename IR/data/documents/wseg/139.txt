@@ -1,0 +1,118 @@
+Table of_Contents 1 .
+CTDL Lưu_trữ 1 . 1 . Mảng (array) , danh_sách liên_kết (linked list) 1 . 2 . Stack , Queue , Deque 1 . 2 . 1 . Stack 1 . 2 . 2 . Queue 1 . 2 . 3 . Deque 1 . 3 . Priority_Queue - Heap 1 . 4 . Cây Tìm_Kiếm Nhị_Phân 1 . 5 . Bảng_băm (Hash Tables) 2 .
+CTDL Truy_vấn 2 . 1 . Mảng cộng_dồn (Prefix Sum) 2 . 1 . 1 . Mảng cộng_dồn - Tìm tổng một đoạn liên_tiếp 2 . 1 . 2 . Mảng cộng_dồn - Tăng_giá_trị các đoạn 2 . 1 . 3 . Mảng cộng_dồn trên bảng 2 chiều 2 . 2 . Disjoint_Sets 2 . 3 . Sparse_Table 2 . 4 . Segment_Tree 2 . 5 . Fenwick 2 . 6 . Heavy-light decomposition 2 . 7 . Persistent_Data_Structures 3 .
+CTDL xâu 3 . 1 . Cây Tiền_Tố (Trie) 3 . 2 . Aho_Corasick 3 . 3 . Mảng Hậu_Tố (Suffix Array) 3 . 4 . Suffix_Automaton 3 . 5 . Palindrome_Tree_Các tài_liệu tham_khảo : Mặc_dù máy_tính đã có_thể xử_lý hàng_triệu phép_tính mỗi giây , nhưng khi một bài_toán trở phức_tạp , cách tổ_chức dữ_liệu vẫn vô_cùng quan_trọng .
+Để minh_họa điểm này , hãy tham_khảo ví_dụ sau : bạn đi đến thư_viện , thử tìm_kiếm một quyển sách với chủ_đề nào_đó .
+Các cuốn sách được xếp theo lĩnh_vực .
+Trong mỗi chủ_đề , sách lại được xếp theo tên tác_giả , nhờ vậy_mà việc lấy và cất sách từ giá trở_nên khá dễ_dàng và đơn_giản .
+Bây_giờ , hãy thử tưởng_tượng thay_vì tổ_chức thành từng giá_sách cụ_thể , sách được chất thành từng đống ở khắp thư_viện .
+Để tìm được quyển sách của mình , bạn sẽ phải mất hàng giờ , thậm_chí rất nhiều ngày .
+Tương_tự , một phần_mềm không_thể vận_hành hiệu_quả khi dữ_liệu không được lưu_trữ một_cách phù_hợp với ứng_dụng .
+Trong bài viết này , chúng_ta sẽ cùng_nhau điểm qua các loại cấu_trúc dữ_liệu từ cơ_bản đến nâng_cao .
+Để tìm_hiểu chi_tiết về một cấu_trúc dữ_liệu , các bạn có_thể đọc ở link tương_ứng .
+Trong bài viết này , mình tạm chia các CTDL được chia thành các loại sau : CTDL lưu_trữ : thường có các thao_tác như thêm 1 phần_tử , xóa 1 phần_tử .
+Có_thể có thêm các thao_tác như tìm_kiếm 1 phần_tử .
+CTDL truy_vấn : thường_dùng cho các bài_toán mà bạn phải duy_trì một_tập hợp các số và thực_hiện 1 số truy_vấn trên đó .
+CTDL xâu : dùng cho các bài_tập xử_lý xâu .
+1 .
+CTDL Lưu_trữ 1 . 1 . Mảng (array) , danh_sách liên_kết (linked list) Mảng và danh_sách liên_kết là 2 cấu_trúc dữ_liệu nền_tảng cho tất_cả các loại cấu_trúc dữ_liệu khác .
+Mảng và danh_sách liên_kết đều được dùng khi bạn muốn lưu nhiều dữ_liệu (thường có cùng kiểu dữ liệu) .
+Bảng dưới_đây so_sánh các thao_tác về mảng và danh_sách liên_kết : Mảng Danh_sách liên_kết Bộ_nhớ Cố_định (cần biết trước_số phần tử) Có_thể tăng_giảm tùy_ý Thêm/Xóa 1 phần_tử \mathcalO(N) \mathcalO(1) , giả_sử biết con_trỏ tới phần_tử đó Tìm_kiếm 1 phần_tử \mathcalO(N) \mathcalO(N) Truy_cập phần_tử \mathcalO(1) \mathcalO(N) Khác - Ít bộ_nhớ hơn - Cache locality : các phần_tử ở vị_trí gần nhau trên bộ_nhớ máy_tính , nên khi truy_cập các phần_tử liên_tiếp sẽ nhanh hơn Bạn có_thể đọc thêm về mảng và danh_sách liên_kết ở đây 1 . 2 . Stack , Queue , Deque 1 . 2 . 1 . Stack_Stack là CTDL cho_phép thực_hiện các thao_tác : Thêm 1 phần_tử vào cuối CTDL_Xóa 1 phần_tử khỏi cuối CTDL_Cả 2 thao_tác trên đều có độ phức_tạp \mathcalO(1) .
+Chú_ý ta chỉ_có thể xóa phần_tử ở cuối CTDL , nói_cách_khác là phần_tử mà mới được thêm vào gần nhất .
+Vì_vậy , Stack còn được gọi_là FIFO (First In_First_Out) .
+Stack có cài_đặt đơn_giản và được sử_dụng trong nhiều thuật_toán như DFS , tìm chu_trình Euler , tìm khớp của đồ_thị .
+Trong_C++_STL , có_sẵn kiểu dữ_liệu stack .
+1 . 2 . 2 . Queue_Queue là CTDL cho_phép thực_hiện các thao_tác : Thêm 1 phần_tử vào cuối CTDL_Xóa 1 phần_tử khỏi đầu CTDL .
+Cả 2 thao_tác đều có độ phức_tạp \mathcalO(1) .
+Chú_ý ta chỉ_có thể xóa phần_tử ở đầu CTDL , nói_cách_khác là phần_tử mà đã được thêm vào lâu nhất .
+Vì_vậy , Stack còn được gọi_là LIFO (Last In_First_Out) .
+Queue có cài_đặt đơn_giản và được sử_dụng trong BFS .
+Trong_C++_STL , có_sẵn kiểu dữ_liệu queue .
+1 . 2 . 3 . Deque_Deque (Double Ended_Queue) , là CTDL tổng_quát hơn của Stack và Queue .
+Nó cho_phép : Thêm 1 phần_tử vào đầu hoặc cuối CTDL .
+Xóa 1 phần_tử khỏi đầu hoặc cuối CTDL .
+Cả 2 thao_tác đều có độ phức_tạp \mathcalO(1) .
+Deque được sử_dụng trong một_số thuật_toán như : BFS 01 Tìm_Min/Max trên đoạn tịnh_tiến .
+Trong_C++_STL , có_sẵn kiểu dữ_liệu deque .
+1 . 3 . Priority_Queue - Heap_Heap là một cấu_trúc dữ_liệu cho_phép thực_hiện các thao_tác : Thêm một phần_tử , với độ phức_tạp \mathcalO(\logN) .
+Xóa_một phần_tử , với độ phức_tạp \mathcalO(\logN) .
+Tìm max của các phần_tử , với độ phức_tạp \mathcalO(1) .
+Bạn có_thể đọc thêm về Heap ở đây Fibonacci_Heap là một dạng heap có độ phức_tạp bé hơn .
+Trong_C++ , CTDL priority_queue được cài_đặt bằng Fibonacci_Heap .
+1 . 4 . Cây Tìm_Kiếm Nhị_Phân Cây Tìm_Kiếm Nhị_Phân ( BST_Binary_Search_Tree ) là một cây nhị_phân có tính_chất : Với mỗi giá_trị trên đỉnh_đang xét , giá_trị của mọi đỉnh trên cây_con trái luôn nhỏ hơn đỉnh_đang xét và giá_trị của mọi đỉnh trên cây_con phải luôn lớn hơn đỉnh_đang xét .
+Cây tìm_kiếm nhị_phân cho_phép thực_hiện các thao_tác : Thêm 1 phần_tử .
+Xóa 1 phần_tử .
+Kiểm_tra 1 phần_tử có tồn_tại hay_không .
+Tìm phần_tử đầu_tiên lớn hơn hoặc bằng 1 giá_trị x cho trước .
+Trong trường_hợp dữ_liệu ngẫu_nhiên , các thao_tác trên có độ phức_tạp trung_bình là \mathcalO(\logN) .
+Tuy_nhiên trong trường_hợp xấu nhất , cây tìm_kiếm nhị_phân bị suy_biến (thành 1 "đường thẳng" ) , thì độ phức_tạp mỗi thao_tác là \mathcalO(N) .
+Để khắc_phục điều này , có rất nhiều CTDL cải_tiến từ cây tìm_kiếm nhị_phân , thường được gọi_là các cây nhị_phân cân_bằng .
+Khi đó , các thao_tác trên có_thể được thực_hiện với độ phức_tạp \mathcalO(\logN) .
+Ví_dụ : Cây_Đỏ Đen (Red-Black Tree) là một dạng cây tìm_kiếm nhị_phân ( BST ) mà sau mỗi truy_vấn được thực_hiện , cây tự cân_bằng theo đúng tính_chất của nó với độ phức_tạp O(log(N)) .
+CTDL set trong C++ được cài_đặt bằng cây_đỏ đen .
+Splay tree , Skip list , Treap thường được dùng trong các kỳ thi bởi cài_đặt đơn_giản .
+1 . 5 . Bảng_băm (Hash Tables) Bảng_băm là một CTDL thường được sử_dụng như một từ_điển : mỗi phần_tử trong bảng_băm là một cặp (khóa , giá trị) .
+Nếu so_sánh với mảng , khóa được xem như chỉ_số của mảng , còn giá_trị giống_như giá_trị mà ta lưu tại chỉ_số tương_ứng .
+Bảng_băm không như các loại_từ điển thông_thường - ta có_thể tìm được_giá trị thông_qua khóa của nó .
+Bảng_băm hoạt_động dựa trên hàm Hash : Hash là quá_trình khởi tạo một giá_trị khóa (thường là 32 bit hoặc 64 bit) từ một phần dữ_liệu .
+Nó có_thể là n bit đầu_tiên của dữ_liệu , n bit cuối_cùng , giá_trị mod cho một_số nguyên_tố nào_đó .
+Dựa theo giá_trị hash , dữ_liệu được chia vào các bucket : Trong trường_hợp hàm Hash hoạt_động tốt , mỗi bucket có rất ít phần_tử , độ phức_tạp của các thao_tác trên Hash table như_sau : Tìm 1 khóa : \mathcalO(1) .
+Thêm / xóa 1 khóa : \mathcalO(1) .
+Bạn có_thể đọc thêm về Hash table ở đây 2 .
+CTDL Truy_vấn 2 . 1 . Mảng cộng_dồn (Prefix Sum)_Mảng cộng_dồn là một_cách áp_dụng khéo_léo mảng .
+Có 2 dạng bài cơ_bản có_thể giải được bằng cách áp_dụng Prefix_Sum .
+2 . 1 . 1 . Mảng cộng_dồn - Tìm tổng một đoạn liên_tiếp Ví_dụ Cho một mảng a_1 , a_2 , a_3 , . . . , a_N .
+Cần trả_lời nhiều truy_vấn , mỗi truy_vấn cho 2 số L và R , yêu_cầu in ra tổng a_L + a_L+1 + . . .
++ a_R .
+Cách làm Tạo một mảng S , với S_i = a_1 + a_2 + . . .
++ a_i .
+Mảng_S được gọi_là mảng cộng_dồn Với mỗi truy_vấn , in ra : S_R – S_L-1 .
+2 . 1 . 2 . Mảng cộng_dồn - Tăng_giá_trị các đoạn Ví_dụ Cho mảng a_1 , a_2 , . . . , a_N .
+Cần thực_hiện nhiều truy_vấn , mỗi truy_vấn cho 3 số L , R , V .
+Yêu_cầu : với mỗi i (L \le i \le R) , cộng V vào a_i .
+Tính mảng a sau khi thực_hiện tất_cả các truy_vấn .
+Cách làm Tạo một mảng P : p_1 , p_2 , . . . , p_N Khởi tạo p_i = 0 .
+Với mỗi truy_vấn , tăng p_L lên V và trừ p_R+1 đi V .
+Cuối_cùng , với mỗi i (từ 1) , p_i += p_i–1 .
+Ta có a_i = a_i + p_i .
+2 . 1 . 3 . Mảng cộng_dồn trên bảng 2 chiều Trên bảng 2 chiều A(i , j) , ta đặt f(i , j) là tổng_các ô trong hình_chữ_nhật có 2 đỉnh đối_diện là (1 , 1) và (i , j) .
+Khi đó , ta có : f(i , j) = f(i-1 , j) + f(i , j-1) - f(i-1 , j-1) + A(i , j) .
+Giải_thích công_thức trên : đỏ = xanh_da_trời + vàng - tím + xanh lá f(i , j) = f(i-1 , j) + f(i , j-1) - f(i-1 , j-1) + A(i , j) 2 . 2 . Disjoint_Sets_Disjoint_Sets là cấu_trúc dữ_liệu được sử_dụng trong thuật_toán Kruskal và thuật_toán Prim - 2 thuật_toán tìm cây khung nhỏ nhất của đồ_thị .
+Như tên_gọi của nó , Disjoint_Set được dùng để quản_lý các tập_hợp không giao nhau .
+Bài_toán Cho đồ_thị có N đỉnh .
+Ta cần thực_hiện 2 loại truy_vấn : Nối 2 đỉnh i và j Kiểm_tra 2 đỉnh i và j có thuộc cùng thành_phần liên_thông hay_không .
+Disjoint set cho_phép ta thực_hiện 2 thao_tác trên với độ phức_tạp \mathcalO(\logN) .
+Bạn có_thể đọc thêm về Disjoint_Set ở bài viết này .
+2 . 3 . Sparse_Table_Sparse_Table là cấu_trúc dữ_liệu được sử_dụng trong bài_toán LCA amp; RMQ .
+Với cả 2 bài_toán , Sparse_Table cho_phép : Khởi tạo với độ phức_tạp : \mathcalO(N \logN) .
+Trả_lời truy_vấn với độ phức_tạp \mathcalO(1) .
+2 . 4 . Segment_Tree_Segment_Tree , còn được gọi_là Interval_Tree trong nhiều tài_liệu tiếng Việt , là cấu_trúc dữ_liệu cho_phép thực_hiện các truy_vấn trên một dãy_số .
+Segment_Tree rất linh_động và có_thể áp_dụng với nhiều loại truy_vấn khác_nhau , nên nó xuất_hiện rất nhiều trong các kỳ thi .
+Với dãy_số độ_dài N , Segment_Tree cho_phép thực_hiện các thao_tác với độ phức_tạp \mathcalO(\logN) .
+Bạn có_thể đọc thêm về Segment_Tree ở đây .
+Segment_Tree cũng có_một mở_rộng với nhiều ứng_dụng quan_trọng là Segment_Tree trên tập đoạn_thẳng .
+2 . 5 . Fenwick_Cũng giống_như Segment_Tree , Fenwick tree (còn được gọi_là Binary_Indexed_Tree) là cấu_trúc dữ_liệu cho_phép thực_hiện các truy_vấn trên một dãy_số : Ưu_điểm : Độ phức_tạp mỗi thao_tác cũng là \mathcalO(\logN) .
+Hằng_số tự_nhiên thấp hơn Segment_Tree , nên chạy nhanh hơn .
+Dùng ít bộ_nhớ hơn .
+Dễ cài_đặt hơn Segment_Tree Nhược_điểm : Không tổng_quát bằng Segment_Tree .
+Tất_cả những bài_giải được bằng Fenwick tree đều có_thể giải được bằng Segment_Tree .
+Nhưng chiều ngược_lại không đúng .
+Bạn có_thể đọc thêm về Fenwick_Tree ở đây .
+2 . 6 . Heavy-light decomposition Heavy_Light_Decomposition là một thuật_toán được áp_dụng nhiều trong những bài cần xử_lý các truy_vấn trên cây .
+Heavy-light decomposition là kĩ_thuật phân_tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau .
+Sau_đó , chúng_ta có_thể áp_dụng các cấu_trúc dữ_liệu như Interval_Tree hay Binary-Indexed_Tree lên những chuỗi này để có_thể cập_nhật dữ_liệu hoặc trả_lời các truy_vấn trên một đường_đi giữa 2 đỉnh trong cây .
+Bạn có_thể đọc thêm ở : Thuật_toán phân_tách cây 2 . 7 . Persistent_Data_Structures_Persistent_Data_Structures là những cấu_trúc dữ_liệu được dùng khi chúng_ta cần có toàn_bộ lịch_sử của các thay_đổi trên 1 cấu_trúc dữ_liệu .
+Bạn có_thể đọc thêm ở : Persistent_Data_Structures 3 .
+CTDL xâu 3 . 1 . Cây Tiền_Tố (Trie) Trie là một cấu_trúc dữ_liệu dùng để quản_lý một_tập hợp các xâu .
+Trie cho_phép : Thêm một xâu vào tập_hợp , với độ phức_tạp \mathcalO(L) với L là độ_dài xâu cần thêm .
+Xóa_một xâu khỏi tập_hợp , với độ phức_tạp \mathcalO(L) .
+Kiểm_tra một xâu có tồn_tại trong tập_hợp hay_không , với độ phức_tạp \mathcalO(L) .
+Ngoài_ra trên thực_tế , trie cũng rất tiết_kiệm bộ_nhớ khi áp_dụng để lưu các từ có_nghĩa , vì_vậy nó là một CTDL có ứng_dụng rất lớn .
+Bạn có_thể đọc thêm bài viết về trie .
+3 . 2 . Aho_Corasick_Bài viết sẽ được cập_nhật sau 3 . 3 . Mảng Hậu_Tố (Suffix Array) Suffix_Array là một CTDL giúp sắp_xếp các hậu_tố của một xâu theo thứ_tự từ_điển .
+CTDL này thường được sử_dụng trong các bài_toán xử_lý xâu .
+Bạn có_thể đọc thêm về Suffix_Array ở đây .
+3 . 4 . Suffix_Automaton_Bài viết sẽ được cập_nhật sau .
+3 . 5 . Palindrome_Tree_Palindrome tree (còn được gọi_là Eertree) , là một CTDL mới được phổ_biến vào năm 2014 nhờ bài thuyết_trình của Mikhail_Rubinchik .
+Như tên_gọi của nó , Palindrome tree là một CTDL giúp giải_quyết các bài_toán về Palindrome .
+Bạn có_thể đọc thêm ở đây Các tài_liệu tham_khảo : Codeforces_Topcoder

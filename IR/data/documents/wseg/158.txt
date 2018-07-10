@@ -1,0 +1,112 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Một trong số những bài_toán cơ_bản có rất nhiều ứng_dụng trong khoa_học máy_tính là bài_toán tìm điểm gần nhất .
+Trong bài này ta chỉ xét hàm khoảng_cách d( . , . ) là .
+Cách đơn_giản nhất để thiết_kế cấu_trúc dữ_liệu như_vậy là ta sẽ tính khoảng_cách giữa mọi cặp điểm , và sau_đó lưu vào một mảng hai nhiều (ma trận) D\ldots , \ldots .
+Mỗi khi ta nhận được điểm truy_vấn \mathbfp , ta chỉ việc duyệt qua tất_cả các điểm khác và đưa_ra các điểm có khoảng_cách không quá r từ \mathbfp .
+Dễ thấy : Một_số cấu_trúc dữ_liệu như có_thể sử_dụng khi số chiều d nhỏ (thường là 2 hoặc 3 chiều) .
+Ta có_thể xây_dựng các cấu_trúc này trong thời_gian O(n\log n) và truy_vấn có_thể được trả_lời trong thời_gian O(\log n) .
+Tuy_nhiên , sự phụ_thuộc của hằng_số ẩn sau O( . ) trong các cấu_trúc này là lũy_thừa theo số chiều d (còn gọi_là hiện_tượng the curse of dimensionality) , do_đó , nó không phù_hợp ngay_cả khi d không quá lớn (d = 20 chẳng hạn) .
+Trong thời_đại big data hiện_nay , ta thường phải tìm điểm gần nhất khi P có tới hàng_triệu điểm và các điểm có_số chiều cũng lên tới hàng_triệu (d \sim n \geq 106) .
+(Ví dụ thuật_toán trong học máy (machine learning) là một biến_thể của bài_toán tìm điểm gần nhất trên . ) Do_đó , bài_toán trên trở_nên vô_cùng khó .
+Cấu_trúc dữ_liệu bảng ở trên chỉ_có thể làm_việc khi , còn các cấu_trúc như k-d tree thì hoàn_toàn vô_dụng .
+Locality_Sensitive_Hashing (LSH) là một kĩ_thuật xấp_xỉ dùng để giải_quyết tìm điểm gần nhất một_cách hiệu_quả khi n và d đều vô_cùng lớn .
+Khái_niệm này được giới_thiệu bởi Indyk và Motwani 1 .
+Trình_bày trong bài này phỏng theo note của Matoušek 2 .
+Ý_tưởng của LSH là sử_dụng một hàm_băm h( . ) để băm các điểm dữ_liệu trong P vào một bảng T .
+sao_cho nếu hai điểm \mathbfp , \mathbfq gần nhau thì khả_năng cao \mathbfp , \mathbfq sẽ được băm vào cùng một ô .
+Ngược_lại , \mathbfp và \mathbfq sẽ bị băm vào hai ô khác_nhau .
+Khi trả_lời truy_vấn , ta chỉ việc tính mã_băm h(\mathbfp) và đưa_ra tất_cả các điểm lưu trong ô Th(\mathbfp) .
+Hàm_băm h( . ) như_vậy đưcọ gọi_là kiểu locality sensitive .
+: Minh_họa một hàm_băm locality sensitive . Trong định_nghĩa trên , ta mong_muốn p_\mathrmfar gần 0 còn p_\mathrmclose gần với 1 vì như_vậy , xác_suất hai điểm gần nhau được băm vào cùng một ô lớn , còn xác_suất hai điểm xa nhau bị băm vào cùng một ô sẽ nhỏ .
+Theo định_nghĩa trên , với các điểm mà khoảng_cách trong_khoảng r \leq d(\mathbfp , \mathbfq) \leq Cr thì ta không quan_tâm đến chúng sẽ bị băm vào một ô_hay không .
+Nếu ta chọn hằng_số C càng gần 1 thì số các điểm như_vậy càng nhỏ , phương_pháp của chúng_ta cần chính_xác .
+Tuy_nhiên , bạn sẽ thấy dưới_đây , thời_gian và bộ_nhớ của cấu_trúc sẽ phụ_thuộc vào C , theo nghĩa , chúng_ta càng muốn độ_chính_xác cao thì ta càng phải trả nhiều thời_gian và bộ_nhớ .
+Theo định_nghĩa trên không chỉ áp_dụng đối_với không_gian Euclidean mà với mọi không_gian metric .
+Trong phạm_vi của bài này , ta chỉ quan_tâm đến không_gian Euclidean . Để bài_toán trở_nên đơn_giản , ta sẽ giả_sử r = 1 bằng cách nhân tập các vector (hay điểm) trong P với 1/r .
+Như_vậy ta đã tiết_kiệm được một tham_số .
+Gọi \mathbfZ = (Z_1 , Z_2 , \ldots , Z_d) \in \mathbbRd là một vector ngẫu_nhiên , trong đó mỗi Z_i \sim \mathcalN(0 , 1) là một biến ngẫu_nhiên có phân_phối chuẩn () .
+Gọi_U là một_số ngẫu_nhiên trong đoạn 0 , 1); U được chọn đồng_đều (uniformly) , và w là một tham_số thực mà ta sẽ định_nghĩa sau .
+Định_nghĩa họ các hàm_băm \mathcalH_\mathrmGauss như_sau : h(\mathbfx) = \lfloor \frac\langle \mathbfZ , \mathbfx \ranglew + U \rfloor \qquad(1) Ta sẽ chứng_minh xác_suất \mathbfx và \mathbfy bị băm vào cùng một ô xấp_xỉ tỉ_lệ_thuận với khoảng_cách giữa hai điểm \mathbfx và \mathbfy .
+\mathrmPrh(\mathbfx) \not= h(\mathbfy) = \sqrt\frac2\pi\fracd(\mathbfx , \mathbfy)w + o(\frac1w) \qquad(2) Trước_khi đi_vào chi_tiết chứng_minh , ta xét ý_nghĩa của Lemma 1 .
+Do w là tham_số ta có_thể tùy_chọn , ta sẽ chọn w đủ lớn .
+Khi đó phần o(\frac1w)) trong phương_trình (2) sẽ đóng_góp không_đáng_kể và xác_suất \mathrmPrh(\mathbfx) \not= h(\mathbfy) .
+Do_đó , ta có_thể coi xác_suất này là tỉ_lệ_thuận với khoảng_cách giữa hai điểm \mathbfx và \mathbfy .
+Điều đó có_nghĩa là \mathbfx và \mathbfy càng gần nhau thì xác_suất chúng được băm vào cùng một ô càng lớn .
+Đây chính là điều mà chúng_ta cần .
+Chú_ý , trong phần này ta đang giả_sử r = 1 .
+Từ (2) ta suy ra , họ hàm_băm \mathcalH định_nghĩa như trong phương_trình (1) là một họ (r , Cr , p_\mathrmclose , p_\mathrmfar)-sensitive với p_\mathrmclose = 1 - \sqrt\frac2\pi\frac1w + o(\frac1w) và p_\mathrmfar = 1 - \sqrt\frac2\pi\fracCw + o(\frac1w) .
+Để chứng_minh Lemma 1 , ta cần sử_dụng hai tính_chất sau_đây : \mathrmPr\lfloor a + U \rfloor \not= \lfloor b + U \rfloor = \min(1 , a-b) \qquad(3) Z \sim \mathcalN(0 , a2+b2) \qquad (4) Gọi s = d(\mathbfx , \mathbfy) là khoảng_cách giữa hai điểm \mathbfx và \mathbfy và p(s) là xác_suất \mathbfx và \mathbfy bị băm vào cùng một ô .
+Theo_Fact 1 , ta có : \mathrmPrh(\mathbfx) \not= h(\mathbfy) \mathbfZ = \min(1 , \frac\langle \mathbfZ , \mathbfx - \mathbfy \ranglew) \qquad(5) Theo_Fact 2 , X = \langle \mathbfZ , \mathbfx - \mathbfy \rangle là một phân_phối chuẩn có mean 0 và độ_lệch tiêu_chuẩn d2(\mathbfx , \mathbfy) = s2 .
+Do_đó , t = X/s phân_bố theo \mathcalN(0 , 1) .
+Từ_đó suy ra : \beginarray l p(s) = \frac1\sqrt2\pi \int_-\infty+\infty \min(1 , \fracswt) e-t2/2 dt \\ = \mathrmPrt\geq \fracws + \fracsw \int_-w/sw/st e-t2/2 dt \\ = \mathrmPrt\geq \fracws + \fracsw Et + \frac2\sqrt2\pi \fracsw\int_w/s+\infty te-t2/2 \endarray \qquad (6) Trong các bài_tập dưới_đây , mình sẽ hướng_dẫn các bạn chứng_minh các tính_chất sau : Do_đó , từ (6) , ta suy ra dpcm . Có mấy vấn_đề mà chúng_ta chưa nói_rõ phần trước về họ hàm_băm \mathcalH trong (1) .
+Thứ nhất ta mới chỉ nói chọn w đủ lớn , nhưng chưa nói chọn w lớn bao_nhiêu là vừa .
+Thứ_hai , đầu_ra của hàm_băm trong (1) là toàn_bộ không_gian \mathbbZ , mà để thực_hiện được trên máy_tính , đầu_ra phải hữu_hạn (và phải không quá lớn so_với n để cấu_trúc của chúng_ta trở_nên hiệu quả) .
+Cả hai vấn_đề sẽ được làm rõ trong phần này . Trước_hết , ta giả_sử đã có_sẵn một họ (r , Cr , p_\mathrmclose , p_\mathrmfar)-sensitive \mathcalH .
+Gọi : \alpha = \frac\ln p_\mathrmclose \ln p_\mathrmfar \qquad (7) Theo định_nghĩa của \mathcalH , ta chỉ biết rằng p_\mathrmclose - p_\mathrmfar > 0 , chứ ta chưa biết sự khác_biệt này lớn bao_nhiêu .
+Đầu_tiên_ta sẽ khuếch_đại (amplify) khoảng_cách này bằng cách ghép nhiều hàm_băm trong họ \mathcalH lại với_nhau . Gọi t là một_số nguyên mà ta sẽ xác_định sau .
+Ta định_nghĩa một họ hàm_băm mới \mathcalG_t trong đó mỗi hàm_băm g \in \mathcalG_t là ghép của t hàm_băm độc_lập trong \mathcalH .
+Một_cách hình_thức : \mathcalG_t = \ g= (h_1 , h_2 , \ldots , h_t) : h_1 , h_2 , \ldots , h_t \in \mathcalH \ \qquad (8) Dễ thấy , g(\mathbfx) = g(\mathbfy) khi và chỉ khi h_i(\mathbfx) = h_i(\mathbfy) với mọi i , 1\leq i \leq t .
+Do_đó , \mathcalG_t là một họ (r , Cr , pt_\mathrmclose , pt_\mathrmfar)-sensitive .
+Đầu_ra của mỗi hàm_băm g( . ) trong \mathcalG_t là một bộ t số_nguyên (t-tuple) chứ không_phải là một_số .
+Ta có_thể sử_dụng thêm một hàm_băm nữa để băm đầu_ra của g( . ) về các số_nguyên trong_khoảng 0 , O(n) , phục_vụ cho mục_đích tìm_kiếm .
+Thiết_kế hàm_băm đó như_thế nào thì bạn_đọc có_thể xem trong bài bảng_băm mình .
+Mặc_dù băm thêm một_lần nữa có_thể vẫn xảy_ra đụng_độ , để phân_tích dưới_đây được đơn_giản , ta sẽ giả_sử không xảy_ra đụng_độ trong lần băm cuối_cùng .
+Do_đó , ta có_thể coi g( . ) như_là một hàm_băm để băm vào bảng lưu_trữ . Tiếp_theo , ta xây_dựng L bảng_băm T1 , T2 , \ldots TL trong đó mỗi bằng băm Tj ta sử_dụng hàm_băm g_j chọn ngẫu_nhiên từ \mathcalG_t để băm toàn_bộ các điểm dữ_liệu vào Tj . Gọi_G = \g_1 , \ldots , g_L\ là tập L hàm_băm đã chọn ra từ \mathcalG_t .
+Thủ_tục tìm_kiếm các điểm gần nhất sẽ như_sau : Mục_đích của biến k ở trên là để ghi_nhớ xem chúng_ta đã kiểm_tra bao_nhiêu điểm \mathbfq .
+Nếu số điểm chúng_ta kiểm_tra lớn hơn 3L thì ta sẽ dừng và coi_như không có điểm nào gần \mathbfp cả .
+Thủ_tục trên chỉ trả về một điểm \mathbfq có khoảng_cách tới \mathbfp không quá Cr . Ta có_thể dễ_dàng sửa_đổi thủ_tục trên để trả về số điểm hơn (nếu có) .
+Tính mỗi mã_băm g_j(\mathbfp) mất thời_gian O(T_h t) .
+Do ta có L bảng_băm , tổng thời_gian để băm toàn_bộ P vào tất_cả các bảng là g_j(\mathbfp)L .
+Do mỗi bảng_băm có bộ_nhớ O(n) , tổng_bộ_nhớ của L bảng_băm là O(Ln) .
+Mỗi lần truy_vấn , ta phải trả thời_gian O(T_ht) để tính 1 mã_băm .
+Do_đó , tổng thời_gian để tính L mã_băm là O(T_htL) .
+Trong phần này ta sẽ xác_định hai tham_số quan_trọng t , L .
+Các tham_số này có ảnh_hưởng tới tốc_độ , bộ_nhớ cũng_như độ_chính_xác của cấu_trúc .
+Từ thủ_tục , ta dễ thấy nếu thủ_tục đó trả về một điểm \mathbfq thì khoảng_cách d(\mathbfp , \mathbfq) \leq Cr . Chú_ý , mục_tiêu ban_đầu của chúng_ta tìm điểm \mathbfq sao_cho d(\mathbfp , \mathbfq) \leq r .
+Do_đó , cấu_trúc này chỉ trả về một điểm xấp_xỉ gần với \mathbfp . Nếu_không tồn_tại điểm \mathbfq mà d(\mathbfp , \mathbfq) \leq r thì thủ_tục có_thể trả về một điểm , nhưng cũng có_thể không trả về điểm nào cả .
+Điều này không quan_trọng vì bài_toán của chúng_ta không yêu_cầu trả về nếu_như không tồn_tại điểm \mathbfq như_vậy .
+Tuy_nhiên , nếu tồn_tại ít_nhất một điểm \mathbfq mà d(\mathbfp , \mathbfq) \leq r thì thủ_tục có trả về hay_không ?
+Phần này ta sẽ tìm_hiểu câu trả_lời cho câu_hỏi này .
+Chú_ý \alpha là tham_số ta định_nghĩa trong phương_trình (7) .
+Có hai trường_hợp thuật_toán trả về \emptyset mặc_dù vẫn tồn_tại điểm \mathbfq có khoảng_cách tới \mathbfp không quá r : () điểm \mathbfq bị băm vào ô khác với \mathbfp trong toàn_bộ L bảng_băm và () khi ta đã kiểm_tra 3L điểm mà vẫn không tìm_ra điểm nào nằm có khoảng_cách tới \mathbfp không quá Cr . Ta lần_lượt tính xác_suất xảy_ra một trong 2 trường_hợp : TH1 : Do \mathcalG là một họ (r , Cr , pt_\mathrmclose , pt_\mathrmfar)-sensitive , với mỗi j , xác_suất để g_j(\mathbfq) \not= g_j(\mathbfp) là (1 - pt_\mathrmclose) .
+Do_đó , xác_suất để TH1 xảy_ra là : P_1 = (1 - pt_\mathrmclose)L \leq e- pt_\mathrmcloseL \qquad (9) Ở trên , ta sử_dụng bất_đẳng_thức 1 - x \leq e-x .
+TH2 : Trường_hợp này xả ra khi ít_nhất 3L điểm bị băm vào cùng ô với \mathbfp mà điểm nào cũng có khoảng_cách lớn hơn Cr . Do \mathcalG là một họ (r , Cr , pt_\mathrmclose , pt_\mathrmfar)-sensitive , xác_suất để một điểm có khoảng_cách lớn hơn Cr bị băm vào cùng ô Tjg_j(\mathbfp) là không quá pt_\mathrmfar .
+Do_đó , theo tính tuyến_tính của kì_vọng , kì_vọng số điểm bị băm cùng vào một ô với \mathbfp trong L bảng_băm là không quá nLt_\mathrmfar .
+Theo bất , xác_suất để xảy_ra nhiều hơn 3L điểm bị băm vào cùng ô với \mathbfp như_vậy là không quá : P_2 = \fracnLpt_\mathrmfar3L= \fracnpt_\mathrmfar3 \qquad (10) Chọn t = \frac\ln(n)\ln (1/p_\mathrmfar) , ta có P_2 \leq 1/3 .
+Chọn_L = p-t_\mathrmclose = e\ln(p_\mathrmclose))\ln(n)/\ln(p_\mathrmfar)) = n\alpha \qquad (11) từ (9) ta suy ra P_1 \leq e-1 .
+Do_đó , xác_suất xảy_ra một trong hai trường_hợp , theo công_thức cộng xác_suất , là không quá 1/3 + e-1 \leq 3/4 .
+Phần còn_lại của Theorem 1 , ta chỉ việc thay các tham_số t , L vào Lemma 2 .
+Chú_ý , T_h = O(d) với d là số chiều của các điểm dữ_liệu . Bây_giờ ta quay trở_lại xác_định tham_số w trong phương_trình (1) .
+Trong phần phân_tích ở trên , ta đã chỉ ra , chỉ_cần chọn w đủ lớn thì p_\mathrmclose \sim 1 - \sqrt\frac2\pi\frac1w và p_\mathrmfar \sim 1 - \sqrt\frac2\pi\fracCw . Lúc_đó , ta sẽ có : \alpha = \frac\ln (1 - \sqrt\frac2\pi\frac1w)\ln(1 - \sqrt\frac2\pi\fracCw) \sim \frac- \sqrt\frac2\pi\frac1w- \sqrt\frac2\pi\fracCw = \frac1C \qquad (11) Ở phương_trình (11) , ta sử_dụng công_thức xấp_xỉ 1 - x \sim e-x .
+Công_thức xấp_xỉ này gần chính_xác khi x \rightarrow 0 , có_nghĩa là khi w\rightarrow +\infty (coi C như một hằng số) .
+Ta có : Ý_nghĩa của Lemma 3 là nếu ta chấp_nhận tỉ_lệ xấp_xỉ C càng lớn thì thời_gian và bộ_nhớ của cấu_trúc NNS càng nhỏ .
+Điểm cuối_cùng mà mình muốn nhấn_mạnh trước_khi kết_thúc bài này đó là xác_suất 0 . 25 trong Theorem 1 có_vẻ không tốt lắm .
+Thực_ra con_số 0 . 25 phát_biểu trong đó chỉ làm_cho phép chứng_minh trở_nên đơn_giản hơn mà_thôi .
+Có nhiều cách để khuếch_đại xác_suất này lên 1-\epsilon với \epsilon nhỏ tùy_ý (ví dụ \epsilon = 0 . 01 thì xác_suất là 0 . 99) .
+Cách đơn_giản nhất_là sửa_đổi cách chọn t và L trong chứng_minh Theorem 1 .
+Chi_tiết coi_như bài_tập cho bạn_đọc (bài tập 4) .
+Nếu d \sim n thì thời_gian truy_vấn của cấu_trúc NNS_O(n1+\alpha) .
+Thời_gian này vẫn quá lớn so_với thực_tế .
+Một_cách để giảm d về O(\log n) là sử_dụng .
+Năm 2013 , Adoni and Indyk cải_tiến cấu_trúc NNS ở trên để đạt được thời_gian truy_vấn xấp_xỉ O(dn1/C2) (đối chiếu với Lemma 3) .
+Trên trang_web của Adoni còn rất nhiều tài_liệu liên_quan để các bạn tham_khảo : . 1 P .
+Indyk and R .
+Motwani .
+Proceedings of the Thirtieth_Annual_ACM_Symposium on Theory of Computing .
+ACM , 1998 .
+2 J .
+Matoušek .
+.
+Technical_Report , ETH_Zürich , 2013 .
+3 A .
+Andoni and P .
+Indyk .
+The 47th Annual_IEEE_Symposium on . Foundations of Computer_Science (FOCS06) , 2006 .
+Chứng_minh Fact 1 .
+Gợi_ý : không mất tính tổng_quát , giả_sử b \geq a .
+Viết b + U = a + (b-a) + U rồi xét các trường_hợp b-a \geq 1 và b-a < 1 .
+Chứng_minh rằng \mathrmPrt \geq w/s = o(1/w) khi t \sim \mathcalN(0 , 1) , giả_sử w rất lớn và s là một hằng_số .
+Gợi_ý : sử_dụng bất_đẳng_thức ex \geq x2/2 , ta có : \mathrmPrt \geq w/s = \int_w/s+\infty e-t2 dt \leq \int_w/s+\infty 2t-4 dt Sử_dụng ý_tưởng trong lời_giải bài_tập 2 , chứng_minh các bất_đẳng_thức đã sử_dụng trong chứng_minh Lemma 1 sau_đây : Trong_Theorem 1 , ta đã chứng_minh xác_suất thuật_toán tìm được một điểm \mathbfq có khoảng_cách tới \mathbfp là 0 . 25 .
+Chứng_minh rằng xác_suất này là 1-\epsilon nếu ta chọn t = \frac\ln(n)\ln (1/p_\mathrmfar)\epsilon và L = n\alpha\ln(\frac1\epsilon) .
+Sử_dụng bất_đẳng_thức Chernoff để giảm sự phụ_thuộc của t vào \epsilon xuống còn O(\frac\ln(n)\ln (1/p_\mathrmfar)\ln(\frac1\epsilon) .
+, , , , Trackback link : Powered by and

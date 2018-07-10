@@ -1,0 +1,108 @@
+Các chủ đề cơ bản về đồ thị
+http://vnoi.info/wiki/algo/graph-theory/everything
+ 
+      
+
+
+
+  Sách thầy Lê Minh Hoàng  đã trình bày rất chi tiết về phần lý thuyết đồ thị, do đó VNOI wiki sẽ không viết lại nữa. 
+
+ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đồ thị và dẫn link đến các tài liệu bổ sung: 
+
+ 
+ 
+ Biểu diễn đồ thị: 
+
+ 
+  cowboycoder  
+ Bài tập:
+
+ 
+  VOJ - GRAPH  
+ 
+ 
+ 
+ 
+ 
+ BFS, DFS, Topo sort: 
+
+ 
+  cowboycoder - BFS  
+  cowboycoder - DFS  
+  cowboycoder - Topo sort  
+  vietcodes - Thành phần song liên thông  
+ 
+ Code tìm khớp cầu C++ - RR ;  cách sử dụng 
+ 
+ 
+ Code tìm thành phần liên thông mạnh C++ - RR ;  cách sử dụng 
+ 
+ 
+ Code tìm thành phần song liên thông C++ - RR ;  cách sử dụng ; 
+  Bài tập trên VOJ  
+  Bài H - ACM ICPC Vietnam Regional 2017  
+ 
+ 
+ 
+ Tìm đường đi ngắn nhất: Dijkstra, Floyd, Ford-Bellman: 
+
+ 
+  cowboycoder - Dijkstra  
+  vietcodes - Dijkstra cải tiến  
+  Bài tập  
+ 
+ 
+ 
+ Cây khung nhỏ nhất: 
+
+ 
+  VNOI - Disjoint Set  
+  Bài tập  
+ 
+ 
+ 
+ Chu trình Euler: 
+
+ 
+  Code C++ - RR  
+  Bài tập  
+ 
+ 
+ 
+ Luồng cực đại: 
+
+ 
+  Code luồng Dinic C++ - RR  
+  Bài tập  
+ 
+ 
+ 
+ Cặp ghép: 
+
+ 
+  Code cặp ghép không trọng số C++ - RR  
+  Code Cặp ghép có trọng số C++ - RR  
+  Bài tập  
+  Bài E - ACM ICPC Vietnam Regional 2017  
+ 
+ 
+ 
+ 2-SAT: 
+
+ 
+  2-SAT - Phạm Lê Quang  
+  Code C++ - RR  
+  Bài tập  
+ 
+ 
+ 
+ LCA: 
+
+ 
+  Code C++ - RR  
+  Bài tập  
+ 
+ 
+ 
+
+     

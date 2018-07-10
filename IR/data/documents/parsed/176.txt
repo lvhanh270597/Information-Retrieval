@@ -1,0 +1,70 @@
+
+
+
+
+
+
+
+
+
+
+
+
+NN(vấn_đề)  IN(ở)  NNP(đây)  NP(NNP(đây))  PP(IN(ở)NP(NNP(đây)))  NP(NN(vấn_đề)PP(IN(ở)NP(NNP(đây))))  VB(là)  NNP(làm_sao)  NP(NNP(làm_sao))  VP(VB(là)NP(NNP(làm_sao)))  IN(để)  VB(tìm)  NN(điểm)  NP(NN(điểm))  VB(chia)  NNP(.)  NP(NNP(.))  VP(VB(chia)NP(NNP(.)))  VP(VB(tìm)NP(NN(điểm))VP(VB(chia)NP(NNP(.))))  PP(IN(để)VP(VB(tìm)NP(NN(điểm))VP(VB(chia)NP(NNP(.)))))  S(NP(NN(vấn_đề)PP(IN(ở)NP(NNP(đây))))VP(VB(là)NP(NNP(làm_sao)))PP(IN(để)VP(VB(tìm)NP(NN(điểm))VP(VB(chia)NP(NNP(.))))))  gamma(S(NP(NN(vấn_đề)PP(IN(ở)NP(NNP(đây))))VP(VB(là)NP(NNP(làm_sao)))PP(IN(để)VP(VB(tìm)NP(NN(điểm))VP(VB(chia)NP(NNP(.)))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NN(hình)  IN(sau)  VB(được)  VB(lấy)  IN(từ)  NNP(.)  NP(NNP(.))  PP(IN(từ)NP(NNP(.)))  VP(VB(lấy)PP(IN(từ)NP(NNP(.))))  VP(VB(được)VP(VB(lấy)PP(IN(từ)NP(NNP(.)))))  PP(IN(sau)VP(VB(được)VP(VB(lấy)PP(IN(từ)NP(NNP(.))))))  NP(NN(hình)PP(IN(sau)VP(VB(được)VP(VB(lấy)PP(IN(từ)NP(NNP(.)))))))  S(NP(NN(hình)PP(IN(sau)VP(VB(được)VP(VB(lấy)PP(IN(từ)NP(NNP(.))))))))  
+
+
+
+
+
+
+
+VB(sắp_xếp)  NN(mảng)  NP(NN(mảng))  RB(có_thể)  ADVP(RB(có_thể))  VB(thực_hiện)  IN(trong)  NN(thời_gian)  NNP(.)  NP(NN(thời_gian)NNP(.))  PP(IN(trong)NP(NN(thời_gian)NNP(.)))  VP(VB(thực_hiện)PP(IN(trong)NP(NN(thời_gian)NNP(.))))  VP(ADVP(RB(có_thể))VP(VB(thực_hiện)PP(IN(trong)NP(NN(thời_gian)NNP(.)))))  VP(VB(sắp_xếp)NP(NN(mảng))VP(ADVP(RB(có_thể))VP(VB(thực_hiện)PP(IN(trong)NP(NN(thời_gian)NNP(.))))))  S(VP(VB(sắp_xếp)NP(NN(mảng))VP(ADVP(RB(có_thể))VP(VB(thực_hiện)PP(IN(trong)NP(NN(thời_gian)NNP(.)))))))  gamma(S(VP(VB(sắp_xếp)NP(NN(mảng))VP(ADVP(RB(có_thể))VP(VB(thực_hiện)PP(IN(trong)NP(NN(thời_gian)NNP(.))))))))  
+NN(phần)  NNP(quy_hoạch_động)  NP(NN(phần)NNP(quy_hoạch_động))  VB(cập_nhật)  NN(mảng)  NP(NN(mảng))  VB(có)  NN(thời_gian)  NN(tính)  NNP(.)  NP(NN(tính)NNP(.))  NP(NN(thời_gian)NP(NN(tính)NNP(.)))  VP(VB(có)NP(NN(thời_gian)NP(NN(tính)NNP(.))))  VP(VB(cập_nhật)NP(NN(mảng))VP(VB(có)NP(NN(thời_gian)NP(NN(tính)NNP(.)))))  S(NP(NN(phần)NNP(quy_hoạch_động))VP(VB(cập_nhật)NP(NN(mảng))VP(VB(có)NP(NN(thời_gian)NP(NN(tính)NNP(.))))))  gamma(S(NP(NN(phần)NNP(quy_hoạch_động))VP(VB(cập_nhật)NP(NN(mảng))VP(VB(có)NP(NN(thời_gian)NP(NN(tính)NNP(.)))))))  
+
+
+
+
+
+
+
+
+
+
+CD(1975)  NNP(.)  NP(NNP(.))  NP(CD(1975)NP(NNP(.)))  S(NP(CD(1975)NP(NNP(.))))  gamma(S(NP(CD(1975)NP(NNP(.)))))  
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+gamma()  

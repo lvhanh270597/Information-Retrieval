@@ -1,0 +1,98 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này mình hướng đến các bạn mới bắt_đầu học_thuật_toán với mục_đích giúp các bạn làm_quen với một_số khái_niệm như O( . ) , o( . ) , \Omega( . ) , \Theta( . ) .
+Mình đã có định_nghĩa các khái_niệm này một_cách hình_thức .
+Bài này mình bổ_sung các định_nghĩa đó bằng những giải_thích trực_quan hơn .
+Khi phân_tích một thuật_toán , ta thường quan_tâm đến và .
+Khi chúng_ta đã thành_thạo phân_tích một trong hai tài_nguyên thì phân_tích tài_nguyên còn_lại không_phải quá khó_khăn .
+Do_đó , bài viết này mình sẽ chỉ tập_trung nói về phân_tích thời_gian tính_toán của một thuật_toán . Phân_tích một thuật_toán về cơ_bản là đếm mà thuật_toán đó thực_hiện .
+Định_nghĩa chính_xác thế_nào là một thao_tác cơ_bản là việc .
+Tuy_nhiên , để đơn_giản , ta tạm coi các thao_tác cơ_bản ở đây là : cộng , trừ , nhân , chia , so_sánh và mỗi thao_tác cơ_bản này mất 1 đơn_vị thời_gian .
+Do_đó , đôi_khi ta cũng coi số thao_tác cơ_bản như_là một của thời_gian tính_toán .
+Mình nói ước_lượng thô là_vì thời_gian_thực phụ_thuộc rất nhiều vào máy_tính (hay mô_hình tính toán) mà ta sử_dụng .
+Cùng 1 triệu phép_nhân số 32 bít nhưng thời_gian tính_toán của phần_cứng khác_nhau có_thể khác_nhau .
+Tuy_nhiên , ta vẫn chấp_nhận cách ước_lượng thô này vì nó sẽ làm_phép phân_tích thuật_toán đơn_giản hơn , loại_bỏ sự phụ_thuộc phần_cứng ra khỏi phép phân_tích . Cách giải_thích tốt nhất có_lẽ là minh_họa thông_qua ví_dụ . : phân_tích thời_gian của thuật_toán sau : Thuật_toán nhận đầu_vào là một mảng A1 , \ldots , n với n phần_tử và trả_lại tổng A1 + A2 + \ldots + An . Ta sẽ đếm_số phép_cộng của thuật_toán trước .
+Mỗi lần_lặp , thuật_toán thực_hiện một_phép cộng để cập_nhật s .
+Do ta có n vòng_lặp , thuật_toán thực_hiện n phép_cộng để tìm s .
+Thuật_toán chỉ_thực hiện n phép_cộng ?
+Không hẳn thế .
+Nếu bạn lập_trình_bằng ngôn_ngữ C chẳng_hạn , thì mỗi lần thực_hiện vòng_lặp for , bạn phải tăng biến đếm i lên 1 .
+Do_đó , ta phải tính cả số phép_cộng thực_hiện trên biến i mà không_phải chỉ với biến s .
+Số phép_cộng tăng lên 2n ! Nếu coi mỗi phép_cộng mất 1 đơn_vị thời_gian thì thời_gian của thuật_toán có_phải là 2n đơn_vị thời_gian ?
+Cũng không hẳn như_vậy .
+Sau mỗi lần_lặp , thuật_toán còn phải so_sánh i với n để kiểm_tra điều_kiện kết_thúc vòng_lặp .
+Do_đó , thuật_toán sử_dụng thêm n phép so_sánh .
+Vẫn chưa hết , thuật_toán còn sử_dụng n phép gán với biến s và n phép gán với biến i .
+Tóm_lại , thuật_toán sử_dụng khoảng 5n phép_toán cơ_bản nếu bạn thực_thi bằng C . Nếu bạn thực_thi đoạn code trên bằng ngôn_ngữ khác C , số_lượng phép_toán cơ_bản có_thể nhiều hơn như_vậy .
+Tưởng_tượng với đoạn code rất đơn_giản trên mà thực_hiện đếm chính_xác số_lượng phép_toán cơ_bản đã không tầm_thường thì với các đoạn chương_trình phức_tạp hơn thì ta làm thế_nào ?
+Big-O_O( . ) sẽ giúp bạn đếm đơn_giản hơn ! Thay_vì đếm chính_xác , O( . ) cho_phép ta đếm_số thao_tác cơ_bản .
+Theo phân_tích ở trên , dù ta thực_thi thuật_toán bằng bất_kì ngôn_ngữ nào thì số_lượng phép_toán cơ_bản đều không quá C\cdot n với một hằng_số C nào_đó .
+Hằng_số C có_thể là 5 hoặc 10 hoặc 4 .
+Ta gọi nó là hằng_số là_vì giá_trị của nó không phụ_thuộc vào n .
+Theo , ta có_thể nói : Thuật_toán có thời_gian O(n) .
+Tóm_lại , khi ta nói một thuật_toán có độ phức_tạp O(f(n)) , ta muốn nói số_lượng phép_toán cơ_bản mà thuật_toán sử_dụng không quá C \cdot f(n) với một hằng_số C nào_đó khi n , bất_chấp ngôn_ngữ_lập_trình sử_dụng .
+Như_vậy , khi dùng O( . ) để phân_tích thuật_toán , ta có_thể loại_bỏ sự phụ_thuộc vào (hay thực_thi mức thấp) của thuật_toán .
+Phân_tích thuật_toán .
+Có_lẽ bạn_đọc cũng nhận_ra thuật_toán thực_hiện sắp_xếp một mảng đầu_vào theo chiều tăng dần .
+Để phân_tích thuật_toán này , ta chỉ_cần đếm_số phép so_sánh các phần_tử của mảng A1 , \ldots , n (số lần kiểm_tra điều_kiện của câu_lệnh if) .
+Tại_sao ?
+Ngoại_trừ khi n = 1 , mỗi khi ta thực_hiện thao_tác bất_kì (gán , đổi chỗ , v . v) , ta đều thực_hiện một_phép so_sánh .
+Do_đó , chỉ_cần đếm_số phép so_sánh và sử_dụng khái_niệm O( . ) là ta coi_như đã xong . Do mỗi lần_lặp ta sử_dụng một_phép so_sánh , thay_vì đếm_số phép so_sánh , ta đếm_số lần_lặp .
+Với mỗi i cố_định , vòng_lặp trong cùng có n-(i+1) + 1 = n-i lần_lặp .
+Do_đó , tổng_số lần_lặp là : \sum_i=1n-1 n-i = \sum_j=1n-1 j = n (n-1)/2 = n2/2 - n/2 \qquad (1) Như_vậy , độ phức_tạp của thuật_toán là O(n2/2-n/2) . Theo , ta có_thể loại_bỏ hằng nhân_tử hằng_số trong biểu_thức .
+Do_đó , ta có_thể viết O(n2/2-n/2) = O(n2-n) = O(n2) .
+Tổng_kết lại , ta có : Từ phân_tích ví_dụ 2 , ta có_thể thấy rằng kí_hiệu O( . ) cho_phép chúng_ta biểu_diễn thời_gian tính_toán bằng các biểu_thức đơn_giản hơn .
+Không chỉ_có vậy , O( . ) còn cho_phép chúng_ta phát_triển các công_cụ phân_tích mạnh hơn , tổng_quát hơn nhưng lại dễ_hiểu hơn .
+Để minh_họa điểm này , ta xét ví_dụ sau .
+Phân_tích thuật_toán .
+Không khó để nhận_ra thuật_toán thực_hiện sắp_xếp một mảng theo chiều tăng dần , sử_dụng .
+Phương_pháp thường_dùng để phân_tích thuật_toán kiểu chia_để_trị là giải hệ_thức truy_hồi .
+Ta gọi T(n) là độ phức_tạp của thuật_toán khi mảng đầu_vào có n phần_tử .
+Độ phức_tạp của hai thủ_tục gọi đệ_quy lần_lượt là T(\lfloor n/2 \rfloor) và T(\lceil n/2 \rceil) .
+Phân còn_lại của phép phân_tích là tính độ phức_tạp của thủ_tục . Nếu bạn đếm chính_xác số thao_tác cơ_bản của thủ_tục là một điều không_hề dễ_dàng vì có các lệnh điều_kiện .
+Tuy_nhiên , sử_dụng O( . ) , ta có_thể khẳng_định số thao_tác cơ_bản là O(n) vì ta chỉ lặp n lần và mỗi lần_lặp ta thực_hiện O(1) phép_tính cơ_bản .
+Do_đó , ta có : T(n) = T(\lceil n/2 \rceil) + T(\lfloor n/2 \rfloor) + O(n) \qquad (2) Phương_trình (2) trông khá đẹp , nhưng giải nó không_hề dễ vì có các hàm \lceil \cdot \rceil và \lfloor \cdot \rfloor .
+Tuy_nhiên , O( . ) cho_phép chúng_ta bỏ \lceil \cdot \rceil và \lceil \cdot \rceil ra khỏi phương_trình (chứng minh tính_chất này một_cách tỉ_mỉ không_phải đơn_giản , nhưng vẫn có_thể làm được) .
+Ta được : T(n) = 2T(n/2) + O(n) \qquad (3) Giải phương_trình (3) , ta chỉ_cần áp_dụng , thu được T(n) = O(n\log n) .
+Rõ_ràng thuật_toán trông khá phức_tạp nhưng O( . ) cho_phép chúng_ta phân_tích nó một_cách khá đơn_giản . Trợ lại bài_toán sắp_xếp , ta đã thấy hai thuật_toán trình_bày trong bài này là và với độ phức_tạp lần_lượt là O(n2) và O(n\log n) .
+Ta có_thể kết_luận , thuật_toán mặc_dù đơn_giản hơn rất nhiều (về mặt thực thi) so_với nhưng khi n đủ lớn thì nó sẽ chậm hơn rất nhiều so_với .
+Để thấy sự khác_biệt thực_tế , mình khuyến_khích bạn_đọc kiểm_tra hiệu_năng của hai thuật_toán với mảng 10 ngàn phần_tử (có lẽ bạn sẽ phải đợi khá lâu thì mới thực_hiện xong còn chỉ_cần không đến 1s) .
+Trong trường_hợp bài_toán sắp_xếp ở trên , O( . ) cho chúng_ta một cái nhìn khá chính_xác giữa phân_tích lý_thuyết và thời_gian chạy thực_tế , mặc_dù nó chỉ là một ước_lượng khá thô .
+Ước_lượng O( . ) nói_chung thể_hiện khá chính_xác thực_tế nêu sự khác_biệt giữa hai thuật_toán mà chúng_ta đang so_sánh là (polynomial separation) hoặc (super-polynomial separation) .
+Chứng_minh rằng sự khác_biệt giữa và là đa_thức . Một ví_dụ khác đó là bài_toán .
+Thuật_toán quay lui áp_dụng cho bài_toán TSP có độ phức_tạp O(n ! ) trong_khi thuật_toán có thời_gian O(2nn2) .
+Sự khác_biệt giữa hai thuật_toán này là siêu đa_thức (quy hoạch động nhanh hơn) .
+Trong thực_tế , chỉ_cần n \geq 20 là ta đã thấy sự khác_biệt giữa hai thuật_toán này rồi .
+Chứng_minh rằng sự khác_biệt giữa thuật_toán quay lui và quy_hoạch_động cho bài_toán TSP là siêu đa_thức . Nếu lấy 1s làm chuẩn thì Table 2 dưới_đây thể_hiện (tương đối) giới_hạn đầu_vào của bài_toán .
+Giới_hạn đầu_vào tương_ứng với độ phức_tạp khi lấy 1s làm chuẩn .
+Nếu n = 10000 mà thuật_toán có độ phức_tạp O(n2) thì thực_tế có_lẽ mất khoảng 100s thuật_toán mới thực_hiện xong . Sử_dụng bảng 2 , không cần code ta cũng có_thể ước_lượng được tương_đối thời_gian chạy thực_tế của thuật_toán .
+Đó là lý_do mà bạn cần phải_biết big-O . Khi sự khác_biệt giữa hai thuật_toán thấp hơn đa_thức thì không nên coi big-O là một tiêu_chuẩn so_sánh trong .
+Ở đây mình nhấn_mạnh thực_tế vì về_mặt lý_thuyết , những thuật_toán có big-O nhỏ hơn thường có những cái nhìn mới về bài_toán hoặc những công_cụ lý_thuyết mới giúp ta có_thể giải_quyết được nhiều bài_toán khác . Một ví_dụ nổi_bật là bài_toán tìm phần_tử thứ k của một mảng (chưa sắp xếp) .
+Bằng cách sắp_xếp mảng đầu_vào , ta có_thể tìm phần_tử thứ k trong thời_gian O(n\log n) .
+Tuy_nhiên , thuật_toán có_thể giải bài_toán này trong thời_gian O(n) .
+Liệu thuật_toán BFPRT có thực_sự nhanh hơn thuật_toán sắp_xếp ?
+Câu trả_lời là có , nhưng khi n khá lớn .
+Nếu bạn cài_đặt không tối_ưu thì thuật_toán của bạn có_khi vẫn chậm hơn sắp_xếp khi n = 106 .
+Điều này có_thể giải_thích đơn_giản là do các hàm như \log n tăng khá chậm so_với n .
+Hầu_hết các bài_toán thực_tế , n nằm trong_khoảng 106 cho_đến 109 , tương_ứng là khoảng của \log n từ 20 đến 30 (ta giả_sử logarithm có_cơ số 2) .
+Nếu hằng_số ẩn sau big O của thuật_toán O(n) lớn hơn hằng_số ẩn sau O(n\log n) khoảng 20-30 lần thì trong thực_tế ta sẽ không phân_biệt được thời_gian tính_toán của hai thuật_toán này .
+Ngay_cả khi so_sánh hai thuật_toán có độ phức_tạp tương_ứng là O(n\log n) và O(n) , O( . ) cũng không_phải là tiêu_chuẩn tin_cậy thì so_sánh hai thuật_toán có cùng độ phức_tạp thì O( . ) càng không_phải là một tiêu_chuẩn tin_cậy .
+Khi hai thuật_toán có cùng big-O thì thường_ta sẽ dựa vào kinh_nghiệm thực_tế để kết_luận .
+Tất_nhiên cũng có những lý_thuyết phát_triển để so_sánh các thuật_toán như_vậy , nhưng phép phân_tích sẽ trở_nên vô_cùng phức_tạp . Đã có big-O thì tại_sao chúng_ta lại cần các kí_hiệu o( . ) , \Theta( . ) , \Omega(n) ?
+Phần này mình cố_gắng làm rõ ý_nghĩa của các kí_hiệu này .
+Trước_hết , các bạn phải xem_lại định_nghĩa toán_học tỉ_mỉ của các kí_hiệu này . Theo phân_tích ở trên , thuật_toán có độ phức_tạp O(n2) .
+Theo định_nghĩa của O( . ) , sẽ không sai nếu ta nói có độ phức_tạp O(n3) .
+Chỉ là O(n3) chưa thể_hiện đúng nhất độ phức_tạp của thuật_toán mà_thôi .
+Thông_thường , khi ta nói độ phức_tạp của thuật_toán là O(T(n)) thì ta cố_gắng tìm biểu_thức T(n) gần nhất với độ phức_tạp thực_sự của thuật_toán mà ta có_thể chứng_minh được .
+Các kí_hiệu o( . ) , \Theta( . ) , \Omega( . ) sẽ giúp chúng_ta biểu_diễn về_mặt lý_thuyết biểu_thức O( . ) có phản_ánh đúng hiệu_năng của thuật_toán hay_không .
+Để minh_họa , ta xét thêm một ví_dụ nữa . : Tìm_kiếm nhị_phân .
+Thuật_toán tìm_kiếm vị_trí của phần_tử có_giá trị a trong mảng A1 , \ldots , n đã sắp_xếp theo chiều tăng dần .
+Trong giả mã trên , ta giả_sử a luôn xuất_hiện trong A1 , \ldots , n . Không khó để thấy thuật_toán trên có độ phức_tạp O(\log n) (bạn đọc có_thể xem ) .
+Tuy_nhiên , không_phải lúc nào thuật_toán cũng cần tới O(\log n) thao_tác .
+Ví_dụ khi A1 , \ldots , 2n = 1 , 2 , \ldots , 2n và a = n thì chỉ_cần O(1) thao_tác thôi ta đã tìm được vị_trí của phần_tử a rồi .
+Câu_hỏi đặt ra là liệu cận_trên O(\log n) đã chặt (tight) chưa ?
+Sử_dụng , ta có_thể phát_biểu câu_hỏi tương_đương là liệu thời_gian của thuật_toán có_phải là o(\log n) ? Câu trả_lời là không .
+n \geq 1 và mọi mảng A1 , 2 , \ldots , n đã sắp_xếp , luôn a sao_cho thuật_toán cần \lfloor \log n \rfloor phép so_sánh để có_thể xác_định được vị_trí của a trong mảng A1 , 2 , \ldots , n .
+Ta nói thuật_toán có độ phức_tạp \Omega(\log n) .
+Không khó để chứng_minh rằng (coi như bài_tập cho bạn đọc) a = An sẽ thỏa_mãn phát_biểu trên . Như_vậy , cận_trên độ phức_tạp của thuật_toán là O(\log n) và cận_dưới độ phức_tạp của thuật_toán là \Omega(\log n) , ta nói thuật_toán có độ phức_tạp \Theta(\log n) .
+Kí_hiệu \Theta( . ) dùng khi biểu_thức trong cận_trên O( . ) và cận_dưới \Omega( . ) trùng với_nhau .
+, , , , , , Trackback link : Powered by and

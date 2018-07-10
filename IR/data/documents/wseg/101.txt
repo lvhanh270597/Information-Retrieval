@@ -1,0 +1,91 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Nhưng đã giới_thiệu ở , cây hậu_tố là một cấu_trúc dữ_liệu rất mạnh để thực_hiện nhiều truy_vấn văn_bản với thời_gian .
+Tuy_nhiên , điểm yếu chính của cây hậu_tố là bộ_nhớ lớn do mỗi nút của cây phải lưu nhiều thông_tin , mặc_dù về_mặt lý_thuyết là .
+Nếu thực_thi cây hậu_tố tốt thì mỗi kí_tự cũng phải mất trung_bình bộ_nhớ 20 bytes .
+Như_vậy nếu ta có 1GB text thì cần 20GB bộ_nhớ cho cây hậu_tố . Mảng hậu_tố (suffix array) được giới_thiệu bởi Manber và Mayer 1 năm 1993 như_là một thay_thế cho cây hậu_tố .
+Điểm mạnh_của mảng hậu_tố là tiết_kiệm được nhiều bộ_nhớ .
+Ngoài_ra , nếu kết_hợp mảng hậu_tố với một_vài mảng thông_tin khác như mảng tiền_tố chung lớn nhất (mảng LCP - Longest_Common_Prefix) thì_có thể thực_hiện hậu hết các truy_vấn như cây hậu_tố với cùng_thời gian 5 .
+Do những lợi_ích đó mà mảng hậu_tố được rất nhiều nhà nghiên_cứu quan_tâm và rất nhiều giải_thuật được phát_triển để xây_dựng cây hậu_tố .
+Trong 4 , các tác_giả phân_loại hàng chục thuật_toán cũng_như các phân_tích thời_gian và bộ_nhớ .
+Mình đính kèm phân_loại đó ở phần_phụ_lục .
+Cho văn_bản với các kí_tự trong bảng_chữ_cái .
+Ta quy_ước là kí_tự nhỏ nhất thuộc bảng_chữ_cái và chỉ xuất_hiện duy_nhất một_lần trong .
+Văn_bản có_hậu tố trong đó hậu_tố thứ là .
+Ta tập_hợp các hậu_tố thành một mảng .
+Để sử_dụng mảng này thực_hiện các truy_vấn , thông_thường ta muốn mảng này được .
+Do_đó , ta sẽ gán nếu hậu_tố (gọi là hậu_tố thứ ) có_vị trí thứ trong mảng hậu_tố đã sắp_xếp .
+Mảng gọi_là . Ví_dụ : , mảng hậu_tố của như_sau : Theo bảng trên , có_nghĩa là hậu_tố thứ (là ) đứng thứ 2 trong mảng các hậu_tố đã sắp_xếp theo thứ_tự từ_điển .
+Do là kí_tự nhỏ nhất trong theo thứ_tự từ_điển , ta luôn có .
+Đi_kèm với mảng hậu_tố là , gọi tắt là .
+Mảng_LCP , kí_hiệu là , là mảng trong đó là chiều_dài của tiền_tố chung dài nhất của hai hậu_tố và .
+Giá_trị không xác_định và quy_ước là .
+Với ví_dụ trên vì chiều_dài tiền_tố chung dài nhất của hậu_tố (là ) và (là ) là . Thuật_toán đơn_giản nhất ta có_thể nghĩ tới để xây_dựng mảng hậu_tố là liệt_kê tất_cả các hậu_tố và sau_đó sắp_xếp các hậu_tố theo thứ_tự từ_điển .
+Có tất_cả hậu_tố của xâu , do_đó , sắp_xếp các hậu_tố có_thể thực_hiện trong phép so_sánh (ví dụ QuickSort) .
+Do so_sánh hai hậu_tố có_thể thực_hiện trong thời_gian , ta có_thể xây_dựng mảng hậu_tố trong thời_gian .
+Nếu bằng cách nào_đó , chúng_ta chỉ mất thời_gian cho mỗi phép so_sánh hai hậu_tố , chúng_ta sẽ thu được thuật_toán .
+Phần này mình giới_thiệu hai thuật_toán khác_nhau thực_hiện ý_tưởng so_sánh đó . Phương_pháp này được trình_bày trong lecture note 2 .
+Trước_khi đọc_tiếp , mình khuyến_khích bạn_đọc xem_lại bài tìm_kiếm xâu với thuật_toán .
+Ý_tưởng chính của thuật_toán Rabin-Karp là biến mỗi xâu con thành một_số nguyên không quá lớn (ví dụ 64 bit) sử_dụng phép băm và việc so_sánh hai xâu con được quy về so_sánh hai số_nguyên với thời_gian .
+Giả_sử (bằng cách nào_đó mà ta sẽ mô_tả sau) chúng_ta có_thể kiểm_tra xem hai xâu con của văn_bản có bằng_nhau hay_không trong thời_gian .
+Để so_sánh hai hậu_tố và của , ta sẽ sử_dụng tìm_kiếm nhị_phân trong thời_gian để tìm số sao_cho : và Khi đã tìm được , ta chỉ_cần so_sánh và .
+Do_đó , phép so_sánh hai hậu_tố được thực_hiện trong . Để phép kiểm_tra hai xâu con có bằng_nhau hay_không trong thời_gian , ta sẽ thực_hiện tiền xử_lí .
+Ta sẽ sử_dụng hàm_băm trong đó là một_số nguyên_tố được chọn ngẫu_nhiên trong_khoảng .
+Ta chọn ngẫu_nhiên để đảm_bảo , về_mặt lý_thuyết , xác_suất đụng_độ nhỏ (xem lại phân_tích trong bài ) .
+Trong thực_tế ta chỉ_cần chọn một_số nguyên_tố lớn .
+Ví_dụ trong 2 , tác_giả chọn .
+Gọi_là cơ_số , thường chọn là số kí_tự trong bảng_chữ_cái .
+Gọi_là mảng trong đó .
+Định_nghĩa mảng như_sau (quy ước ) : Mảng và có_thể tính được trong thời_gian sử_dụng .
+Ta chuyển mỗi xâu con của thành một_số nguyên (giá trị hash) có dạng : Dễ thấy : Do_đó , giá_trị với bất_kì có_thể tính được trong thời_gian nếu biết và .
+Từ_đó suy ra ta có_thể kiểm_tra xem hai xâu con có bằng_nhau hay_không trong thời_gian bằng cách so_sánh hai giá_trị hash .
+Giả mã như_sau : Code của giả mã bằng C .
+Code đầy_đủ được đính ở cuối bài . Với hai hậu_tố cho trước , sửa_đổi thủ_tục một_chút , ta có_thể tính được chiều_dài tiền_tố chung lớn nhất trong thời_gian .
+Do_đó , ta có_thể xây_dựng mảng LCP trong thời_gian .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Tổng_kết lại ta có : Thuật_toán nhân đôi tiền_tố (prefix doubling) được đề_xuất bởi Uber và Mayer 1 có thời_gian sử_dụng thuật_toán đếm phân_phối .
+Trong phần này mình trình_bày một biến_thể 2 sử_dụng Quick_Sort .
+Trước_hết coi văn_bản đầu_vào có chiều_dài vô_hạn bằng cách thêm vào cuối văn_bản vô_hạn kí_tự .
+Gọi văn_bản vô_hạn là .
+Chú_ý là_là kí_tự nhỏ hơn ( theo thứ_tự từ điển) tất_cả các kí_tự khác trong bảng_chữ_cái và chỉ xuất_hiện trong văn_bản đúng một_lần tại_vị trí cuối_cùng .
+Do vô_hạn , với mỗi số ta có đúng xâu con của chiều_dài , mỗi xâu bắt_đầu bằng một kí_tự của .
+Thuật_toán thực_hiện theo bước như_sau : Ta có nhận_xét sau : Thứ_tự của các xâu con thu được sau bước cuối_cùng chính là thứ_tự đã sắp_xếp của các hậu_tố bắt_đầu bằng kí_tự đầu_tiên của các xâu con đó . Nhận_xét đó là do các kí_tự là kí_tự nhỏ nhất theo thứ_tự từ_điển .
+Chi_tiết chứng_minh của nhận_xét đó coi_như bài_tập cho bạn_đọc .
+Ta sẽ chứng_minh rằng nếu sử_dụng Quick_Sort để sắp_xếp thì mỗi bước của thuật_toán có_thể được thực_thi trong thời_gian .
+Bước_đầu tiên ta có_thể thực_hiện trong thời_gian sử_dụng Quick_Sort .
+Tại bước thứ , ta sẽ sắp_xếp các xâu con có độ_dài sử_dụng Quick_Sort .
+Để_ý rằng tại bước , ta đã có thứ_tự tương_đối giữa các xâu con độ_dài .
+Nếu coi xâu con độ_dài là ghép của hai xâu con độ_dài , xâu con độ_dài thứ nhất gọi_là và xâu con độ_dài thứ_hai gọi_là , thì ta chỉ việc so_sánh hai khóa cua hai xâu độ_dài thay_vì so_sánh trực_tiếp .
+Do_đó , việc so_sánh có_thể thực_hiện trong thời_gian thay_vì .
+Như_vậy ta sẽ có thuật_toán . Tuy_nhiên , đó vẫn chưa phải là tất_cả chúng_ta cần .
+Ta cần thêm một_cách mã_hóa để mã_hóa vị_trí tương_đối giữa các xâu con .
+Do mỗi bước_ta có đúng xâu con , ta gán cho mỗi xâu con_một số trong tập để khi so_sánh hai xâu , ta chỉ_cần so_sánh hai số tương_ứng .
+Chú_ý là hai xâu giống nhau ta phải gán cho hai số giống nhau .
+Ta có_thể làm như_sau : Tại bước , sau khi sắp_xếp , mỗi xâu độ_dài sẽ được gán cho một_số là vị_trí của nó trong mảng đã sắp_xếp .
+Ta sẽ thực_hiện duyệt qua mảng để một_lần để gán lại , đảm_bảo .
+Bước duyệt này chỉ mất .
+Như_vậy , ta có_thể thực_hiện mỗi bước trong thời_gian Trước_khi trình_bày giả mã của thuật_toán , mình sẽ nói_qua đôi_chút về tổ_chức dữ_liệu (theo 2) .
+Với mỗi xâu con độ_dài , ta sẽ lưu 3 giá_trị : Ta cũng sử_dụng mảng hai chiều trong đó hàng lưu mã của xâu con bắt_đầu_từ độ_dài như mô_tả trong chứng_minh của Lemma 1 . Giả mã như_sau : Code của giả mã bằng C .
+Code đầy_đủ được đính kèm ở cuối bài : Dựa vào mảng , ta có_thể tính được chiều_dài cuả tiền_tố chung dài nhất của hai hậu_tố trong thời_gian bằng cách chia nhị_phân .
+Do_đó , mảng LCP có_thể tính được trong thời_gian .
+Giả mã như_sau : Code của giả mã bằng C : Mình khuyến_khích bạn_đọc code và submit bài tại .
+Cả hai thuật_toán trên sẽ được khoảng 60 điểm .
+Code submit mình đính kèm dưới_đây . Code đầy_đủ của giả mã : , , , .
+1 Manber , Udi , and Myers , Gene .
+Siam_Journal on Computing 22 . 5 (1993) : 935-948 .
+2 Daniel_Sleator .
+.
+CMU , Fall 2012 .
+3 Vladu , Adrian , and Cosmin_Negruşeri .
+(2005) .
+4 Puglisi , Simon_J . , William_F .
+Smyth , and Andrew_H .
+Turpin .
+ACM_Computing_Surveys (CSUR) 39 . 2 (2007) : 4 .
+5 Abouelhoda , Mohamed_Ibrahim , Stefan_Kurtz , and Enno_Ohlebusch .
+Journal of Discrete_Algorithms 2 . 1 (2004) : 53-86 .
+6 Kasai , Toru , Gunho_Lee , Hiroki_Arimura , Setsuo_Arikawa , and Kunsoo_Park .
+In_Combinatorial pattern matching , pp .
+181-192 .
+Springer_Berlin_Heidelberg , 2001 . Phân_loại các thuật_toán xây_dựng mảng hậu_tố 4 : , , , Trackback link : on Wow ! This could be one particular of the most helpful blogs We have ever arrive across on this subject .
+Actually_Fantastic .
+I am also an expert in this topic therefore I can understand your effort . Powered by and

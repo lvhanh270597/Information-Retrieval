@@ -1,0 +1,24 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Phân_tích (thời gian) thuật_toán về cơ_bản là đếm_số thao_tác cơ_bản mà thuật_toán thực_hiện .
+Tuy_nhiên , việc đếm chính_xác số thao_tác cơ_bản nhiều lúc không tầm_thường hoặc phụ_thuộc vào dữ_liệu đầu_vào (ví dụ lệnh ) .
+Do_đó , trong thực_tế phân_tích thuật_toán , ta chỉ đếm_số thao_tác cơ_bản mà_thôi .
+Big-O chính là một công_cụ cho_phép chúng_ta biểu_diễn tương_đối độ phức_tạp của thuật_toán một_cách đơn_giản .
+Bài này chúng_ta sẽ tìm_hiểu định_nghĩa hình thứ của các khía niệm .
+Mình đã viết giải_thích đầy_đủ hơn các khái_niệm này cũng nhưng các sử_dụng trong phân_tích thuật_toán .
+vì với mọi .
+Ở đây ta chọn . Như_vậy , nếu , điều đó có_nghĩa là thuật_toán đó có thời_gian chạy là .
+Khái_niệm thường phù_hợp để phân_tích cận_dưới (lower bound) của thuật_toán .
+hoặc một_cách định_nghĩa tương_tự như hai định_nghĩa đầu_tiên , đó là : hoặc : < < Chứng_minh định_nghĩa 3 , 4 và 5 là tương_đương .
+Như_vậy , nếu , điều đó có_nghĩa là thuật_toán đó có thời_gian chạy là .
+Khái_niệm phù_hợp để phân_tích cả cận_trên và cận_dưới của thuật_toán .
+Cách định_nghĩa khác là Chứng_minh định_nghĩa 6 và 7 là tương_đương .
+()Hình minh_họa các khái_niệm : 1 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford (2001) 1990 .
+.
+MIT_Press and McGraw-Hill .
+ISBN 0-262-03293-7 2 Avrim_Blum : Lecture notes on Algorithms , .
+Carnegie_Mellon_University , 2011 .
+Hàm tăng nhanh hơn nếu .
+Sắp_xếp các hàm sau theo thứ_tự tăng dần của độ tăng (a) (b) Những kết_luận sau đúng hay sai ?
+Chứng_minh .
+(a) (b) (c) (d) Bài_tập 1 và 2 được lấy từ Introduction to Algorithms , 2nd .
+, Trackback link : Powered by and

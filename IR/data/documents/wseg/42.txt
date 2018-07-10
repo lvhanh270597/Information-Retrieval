@@ -1,0 +1,38 @@
+Tác_giả : Nguyễn_Thành_Trung (RR) Table of_Contents Bài_toán mở_đầu (TSP) Tham_Lam Local_Search_Local_Search dưới cách hiểu của đại_số Bài_tập áp_dụng : Bài_toán mở_đầu (TSP) Cho_N điểm trên mặt_phẳng , đánh_số từ 1 đến N .
+Tìm một chu_trình xuất_phát từ điểm thứ 1 , đi_qua tất_cả các điểm , mỗi đỉnh đúng 1 lần và quay trở_về đỉnh ban_đầu .
+Bài_toán này là NP , không có thuật_toán tối_ưu với độ phức_tạp đa_thức .
+Tên_gọi phổ_biến của bài này là Traveling_Salesman_Problem (TSP) .
+Khi gặp bài NP , ta chỉ_có thể tìm cách đưa_ra một kết_quả càng tối_ưu càng tốt .
+Một_số phương_pháp thường_dùng là tham_lam hoặc local search - sẽ được nói trong bài viết này .
+Bạn có_thể nộp thử bài này ở VOJ .
+Tham_Lam Một thuật_toán rất hồn_nhiên nhất_là , xuất_phát từ điểm thứ 1 , tại mỗi bước , ta sẽ di_chuyển đến điểm gần nó nhất (mà chưa được di_chuyển đến trước đó) .
+Lặp_lại N lần , ta thu được một chu_trình .
+Cài_đặt 1 số phần chính : struct Point double x , y ; Point ( double x = 0 , double y = 0 ) : x ( x ) , y ( y ) Point operator - ( Point a ) return Point ( x - a .
+x , y - a .
+y ); double len () return sqrt ( x x + y y ); a MAXN ; bool used MAXN ; // Đánh_dấu điểm đã được đi_qua .
+int id MAXN ; // Lưu chỉ_số của các điểm trong kết_quả tìm được .
+void solve () memset ( used , false , sizeof used ); used 1 = true ; id 1 = 1 ; for ( int i = 2 ; i lt;= n ; ++ i ) double bestDist = 1e6 ; int save = - 1 ; for ( int j = 1 ; j lt;= n ; ++ j ) double curDist = ( a current .
+id i - 1 - a j ) .
+len (); if ( ! used j amp;amp; curDist lt; bestDist ) bestDist = curDist ; save = j ; id i = save ; used save = true ; Dưới_đây là kết_quả khi mình chạy với một bộ test được sinh random gồm 50 đỉnh : Khi quan_sát kết_quả của thuật_toán trên , dễ thấy có rất nhiều cặp cạnh cắt nhau .
+Khi tồn_tại 2 cạnh AB và CD cắt nhau , ta có_thể đảo nó thành AC và BD hoặc AD và BC , và giữ_nguyên phần còn_lại của chu_trình .
+Như_vậy ta có_thể thu được một kết_quả tốt hơn .
+Nhận_xét này đưa ta đến với ý_tưởng thứ 2 : Local_Search_Xét một chu_trình ban_đầu bất_kỳ .
+Xét tất_cả N2 cặp cạnh , với mỗi cặp cạnh u , v , ta có chu_trình 1 --gt; u-1 --gt; u --gt; v-1 --gt; v --gt; 1 , ta thử đổi nó thành 1 --gt; u-1 --gt; v-1 --gt; u --gt; v --gt; 1 .
+Nếu việc đổi này cho ta một chu_trình có trọng số nhỏ hơn , ta giữ_lại chu_trình mới này .
+Cài_đặt : void optimize () while ( true ) bool stop = true ; for ( int u = 2 ; u lt;= n ; ++ u ) for ( int v = n - 1 ; v gt; u ; -- v ) // t1 = (cạnh (u-1) --gt; u) + (cạnh (v --gt; (v+1)) double t1 = ( a id u - 1 - a id u ) .
+len () + ( a id v - a id v + 1 ) .
+len (); // t2 = (cạnh (u-1) --gt; v) + (cạnh (u --gt; (v+1)) double t2 = ( a id u - 1 - a id v ) .
+len () + ( a id u - a id v + 1 ) .
+len (); if ( t1 gt; t2 ) // Nếu đổi chu_trình cho kết_quả tốt hơn for ( int i = u , j = v ; i lt;= j ; ++ i , -- j ) swap ( id i , id j ); stop = false ; if ( stop ) break ; Minh_họa cho test trên (chú ý rằng mình cài_đặt sai và không xét cạnh nối từ đỉnh cuối đến đỉnh 1 , nên còn một cặp cạnh cắt nhau _) : Ý_tưởng này chính là nền_tảng của Local_Search : Xuất_phát từ một cấu_hình kết_quả , ta tìm cách thay_đổi một phần của cấu_hình để đạt được một cấu_hình tốt hơn .
+Thông_thường , cài_đặt local search gồm 3 bước chính : Khởi tạo một cấu_hình kết_quả bất_kỳ Gọi_C là cấu_hình hiện_tại .
+Ta xét các cấu_hình "kề" với C , chọn ra cấu_hình tốt nhất .
+Cập_nhật cấu_hình này cho C .
+Lặp_lại đến khi ta không_thể cập_nhật được C .
+Trong các bước trên có đề_cập đến khái_niệm "kề" của 2 cấu_hình .
+Khái_niệm này chỉ đơn_giản là tập những cấu_hình mà ta xét đến khi đang ở một cấu_hình nhất_định .
+Chẳng_hạn trong bài_toán mở_đầu , với mỗi đường_đi , các cấu_hình kề nó là các đường_đi nhận được khi đổi một cặp cạnh .
+Local_Search dưới cách hiểu của đại_số Xét một bài_toán tìm giá_trị lớn nhất của một hàm 2 chiều J(theta0 , theta1) .
+Hình_vẽ trên mô_tả cách làm của local search : Xuất_phát từ điểm xanh đậm , ta xét các điểm ở gần nó , tìm điểm mà J lớn nhất , rồi di_chuyển đến điểm đó .
+Bài_tập áp_dụng : ACM_ICPC_National_Vietnam 2017 - Bài_E_Đây là một bài_tập điển_hình về áp_dụng Local_Search trong lập_trình thi_đấu (Competitive programming) .
+Các bạn nên làm thử bài này trước_khi làm những bài khác .
+Lời_giải chi_tiết SPOJ - PANEL_IPSC 2013 - Invisible cats https : //www . facebook . com/note . php ? note_id=10150106829298920

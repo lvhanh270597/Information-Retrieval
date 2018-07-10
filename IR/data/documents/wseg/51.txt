@@ -1,0 +1,184 @@
+Nguồn : wcipeg Table of_Contents Giải_thích trực_quan về bao lồi trên mặt_phẳng Thuật_toán tìm bao lồi trên mặt_phẳng Thuật_toán bọc gói Thuật_toán Graham Cài_đặt Thuật_toán chuỗi đơn_điệu Cài_đặt Xử_lí trường_hợp suy_biến Ứng_dụng Bao lồi 3D Bài_tập áp_dụng Trong hình_học tính_toán ( computational geometry ) , bao lồi ( convex_hull ) của một_tập điểm là tập lồi nhỏ nhất (theo diện_tích , thể_tích , . . . ) mà tất_cả các điểm đều nằm trong tập đó .
+Giải_thích trực_quan về bao lồi trên mặt_phẳng Nếu ta coi các điểm trong một_tập hợp là các cái đinh đóng trên một tấm gỗ , bao lồi của tập điểm đó có viền ngoài tạo bởi sợi dây_chun mắc vào các cái đinh sau khi bị kéo_căng về các phía .
+Nếu ta coi các điểm trong một_tập hợp là các con cừu trên đồng_cỏ , bao lồi của tập điểm đó có viền ngoài là hàng_rào có độ_dài nhỏ nhất bao_quanh tất_cả các con cừu Nếu ta coi các điểm trong một_tập hợp là các đầu_mút có_thể của các hàng_rào , bao lồi của tập điểm đó có viền ngoài là các hàng_rào thẳng có điểm đầu và điểm cuối thuộc tập điểm đó và bao_quanh diện_tích lớn nhất .
+Nếu ta coi các điểm trong một_tập hợp là các cái cây , chu_vi của bao lồi là độ_dài tối_thiểu của dải ruy_băng bao_quanh tất_cả các cây đó .
+Thuật_toán tìm bao lồi trên mặt_phẳng Bài_toán tìm bao lồi của một_tập điểm trên mặt_phẳng là một trong những bài_toán được nghiên_cứu nhiều nhất trong hình_học tính_toán và có rất nhiều thuật_toán để giải bài_toán này .
+Sau_đây là ba thuật_toán phổ_biến nhất , được giới_thiệu theo thứ_tự tăng dần về độ khó .
+Thuật_toán bọc gói Thuật_toán bọc gói ( Gift wrapping algorithm ) hay còn gọi_là thuật_toán Jarvis march là một trong những thuật_toán tìm bao lồi đơn_giản và dễ_hiểu nhất .
+Tên thuật_toán xuất_phát từ sự tương_tự của thuật_toán với việc đi_bộ xung_quanh các điểm và cầm theo một dải_băng gói quà .
+Bước_đầu tiên của thuật_toán là chọn một điểm chắc_chắn nằm trong bao lồi , ví_dụ , điểm có tung_độ lớn nhất (nếu có nhiều điểm cùng có tung_độ lớn nhất_thì có_thể chọn điểm tung_độ lớn nhất và hoành_độ lớn nhất) .
+Xuất_phát từ điểm này , mục_tiêu của ta là sẽ lần_lượt đi đến các điểm khác cho_đến khi quay trở_lại điểm ta chọn lúc đầu .
+Ban_đầu , ta nhìn về phía bên phải .
+Khi đi đến các điểm khác , ta sẽ lưu lại : Điểm_P mà ta đang chọn vector \vecv chỉ hướng ta đang nhìn .
+Tiếp_theo , thuật_toán sẽ lặp_lại liên_tục các bước sau cho_đến khi tìm được bao lồi .
+Ta quay mặt theo chiều kim_đồng_hồ cho_đến khi ta nhìn_thấy một điểm , gọi điểm đó là Q .
+Rồi ta cầm theo dải_băng và đi đến điểm Q .
+Khi ta đến điểm đấy , ta thay : \vecv thành \vecPQ P thành Q .
+Thuật_toán kết_thúc , khi ta quay trở_về điểm ban_đầu .
+Lúc_này ta đã đi đến tất_cả các đỉnh của bao lồi theo chiều kim_đồng_hồ .
+Để xác_định điểm ta nhìn_thấy đầu_tiên khi ta quay mặt theo chiều kim_đồng_hồ , ta duyệt tất_cả các điểm R trong tập , ngoại_trừ điểm P .
+Với mỗi điểm , ta xét vector \vecu=\vecPR; \vecu tạo với \vecv một góc \theta nhỏ nhất sẽ tương_ứng với điểm Q (dễ dàng chứng_minh được điều này) .
+Để tìm \theta nhỏ nhất , ta tìm \cos\theta lớn nhất , mà ta lại dễ_dàng tính được \cos\theta bằng công_thức \frac\vecu . \vecv\vecu\vecv .
+Với mỗi lần tìm điểm tiếp_theo , ta cần duyệt qua tất_cả các điểm trong tập , vì_vậy độ phức_tạp của mỗi lần tìm điểm là O(n) với n là số_lượng điểm trong tập .
+Số lần tìm điểm tiếp_theo phụ_thuộc vào số_lượng điểm là đỉnh của bao lồi , gọi số_lượng điểm đó là h , khi đó độ phức_tạp của cả thuật_toán là O(nh) .
+Trong trường_hợp xấu nhất , h=n hay tất_cả các điểm trong dữ_liệu vào tạo_thành một đa_giác lồi , độ phức_tạp của thuật_toán là O(n2) , không đủ nhanh khi ngt;5000 .
+Thuật_toán Graham Thuật_toán Graham có độ phức_tạp trong trường_hợp xấu nhất nhỏ hơn thuật_toán bọc gói , song thuật_toán Graham lại phức_tạp hơn .
+Đầu_tiên , ta xác_định một điểm mà chắc_chắn thuộc bao lồi .
+Thông_thường , khi cài_đặt người_ta chọn điểm có tung_độ nhỏ nhất (nếu có nhiều điểm như_vậy thì chọn điểm trái nhất) .
+Gọi điểm này là điểm O .
+Chọn hệ trục tọa_độ có gốc là điểm vừa chọn , đổi các tọa_độ các điểm còn_lại theo hệ trục tọa_độ mới (chú ý lúc cài_đặt thường_ta không_đổi trục tọa_độ , nhưng khi tính góc hoặc sắp_xếp ở bước tiếp_theo cần chú_ý tránh nhầm lẫn) .
+Tiếp_theo , ta sắp_xếp các điểm còn_lại theo thứ_tự tăng dần của góc tạo bởi trục_hoành theo chiều dương và \vecOI với I là một trong các điểm còn_lại .
+Ta xét các điểm theo thứ_tự ta vừa sắp_xếp , với mỗi điểm ta sửa_lại bao lồi H .
+Gọi điểm đầu_tiên được cho vào bao lồi H là H_1 , điểm cuối_cùng là H_h (ban đầu h = 0) .
+Khi xét mỗi điểm ta làm như_sau : Thêm điểm P vào cuối bao lồi H .
+Tức_là ta tăng h lên 1 và đặt H_h=P .
+Nếu hlt;3 , xét tiếp_điểm tiếp_theo , ngược_lại làm bước 3 .
+Xét 3 điểm H_h , H_h−1 và H_h−2 .
+Có_thể sau khi cho thêm điểm H_h , ta biết được điểm H_h−1 chắc_chắn không nằm trong bao .
+Gọi \vecu =\overrightarrowH_h−2H_h−1 và \vecv =\overrightarrowH_h−1H_h .
+Nếu khi đi_theo hướng \vecv rồi đi_theo hướng \vecu là ta đã bẻ góc ngược_chiều kim_đồng_hồ , hay \vecu \times \vecv gt; 0 , thì cả ba điểm đều tạm thuộc bao , và ta xét tiếp_điểm tiếp_theo .
+Nhưng nếu \vecu \times \vecv lt; 0 , thì góc \widehatH_h−2H_h−1H_h sẽ tạo ra_đa giác lõm và điểm H_h−1 phải bị loại_bỏ , có_nghĩa là H_h−1 được đặt là H_h và h giảm đi 1 .
+Sau_đó quay_lại bước 2 cho_đến khi xét hết các điểm .
+Hình minh_họa : Ta đang xây_dựng bao lồi , đến vị_trí h = 4 Góc \widehatH_h−2H_h−1H_h lõm , nên ta cần bỏ điểm H_3 khỏi bao lồi Sau quá_trình trên , ta đã có_một bao lồi H_1 , H_2 , . . . , H_h sắp_xếp ngược_chiều kim_đồng_hồ .
+Để đảm_bảo ta loại_bỏ điểm và thêm điểm với độ phức_tạp O(1) , ta có_thể dùng cấu_trúc dữ_liệu stack .
+Về độ phức_tạp của thuật_toán , ta thấy bước sắp_xếp các điểm có độ phức_tạp O(n \logn) .
+Mỗi điểm được cho vào bao nhiều nhất một_lần nên tổng_độ phức_tạp của các bước thêm điểm là O(n) , và mỗi điểm bị loại ra khỏi bao nhiều nhất một_lần nên tổng_độ phức_tạp của các bước xóa điểm là O(n) , do_đó độ phức_tạp của bước xét các điểm là O(n) .
+Vậy , độ phức_tạp của thuật_toán Graham là O(n \logn) , phù_hợp cho hầu_hết các bài_toán .
+Cài_đặt type Point = record // Kiểu dữ_liệu điểm x , y : real ; ind : integer ; // chỉ_số trong mảng ban_đầu end ; var n : integer ; // số điểm a , b : array 1 .
+.
+maxn of Point ; // a : mảng input , b : bao lồi Procedure_Swap ( var p1 , p2 : Point ); // Hàm đổi chỗ 2 điểm Var temp : Point ; Begin temp : = p1 ; p1 : = p2 ; p2 : = temp ; End ; Function_CCW ( p1 , p2 , p3 : Point ) : integer ; // Xem từ p1 --gt; p2 --gt; p3 là rẽ trái (1) , đi_thẳng (0) hay rẽ phải (-1) Var t , a1 , a2 , b1 , b2 : real ; Begin a1 : = p2 .
+x - p1 .
+x ; b1 : = p2 .
+y - p1 .
+y ; a2 : = p3 .
+x - p2 .
+x ; b2 : = p3 .
+y - p2 .
+y ; t : = a1 b2 - a2 b1 ; If abs ( t ) lt; esp then CCW : = 0 else if t lt; 0 then CCW : =- 1 else CCW : = 1 ; End ; Function_Lower ( p1 , p2 : Point ) : boolean ; // So_sánh để sắp_xếp các điểm theo góc Var c : integer ; Begin c : = CCW ( a 1 , p1 , p2 ); Lower : = false ; If ( c gt; 0 ) then Lower : = true else If ( c = 0 ) and (( p1 .
+x lt; p2 .
+x ) or (( p1 .
+x = p2 .
+x ) and ( p1 .
+y lt; p2 .
+y ))) then Lower : = true ; End ; Procedure_QuickSort ; // Sắp_xếp các điểm của mảng a theo góc Procedure_Sort ( l , r : integer ); Var i , j : integer ; x : Point ; Begin i : = l ; j : = r ; x : = a ( l + r ) div 2 ; repeat while lower ( a i , x ) do inc ( i ); while lower ( x , a j ) do dec ( j ); if i lt;= j then begin Swap ( a i , a j ); inc ( i ); dec ( j ); end ; until i gt; j ; if i lt; r then Sort ( i , r ); if l lt; j then Sort ( l , j ); End ; Begin_If n gt; 2 then Sort ( 2 , n ); End ; Procedure_Graham ; Var i , c : integer ; Begin // Tìm điểm có tung_độ nhỏ nhất c : = 1 ; For i : = 2 to n do If ( a i .
+y lt; a c .
+y ) or (( a i .
+y = a c .
+y ) and ( a i .
+x lt; a c .
+x )) then c : = i ; // Đổi chỗ điểm tung_độ nhỏ nhất về a1 Swap ( a c , a 1 ); m : = 2 ; b 1 : = a 1 ; b 2 : = a 2 ; b 1 .
+ind : = 1 ; b 2 .
+ind : = 2 ; For i : = 3 to n do begin // Loại_bỏ bm nếu ta xác_định được nó không thuộc bao lồi while ( m gt; 1 ) and ( CCW ( b m - 1 , b m , a i ) = - 1 ) do dec ( m ); // Thêm điểm ai vào bao lồi inc ( m ); b m : = a i ; b m .
+ind : = i ; end ; End ; Bạn cũng có_thể tham_khảo thêm cài_đặt C++ ở đây Thuật_toán chuỗi đơn_điệu Thuật_toán chuỗi đơn_điệu ( Monotone chain ) vừa dễ cài_đặt , vừa là thuật_toán nhanh nhất trong số 3 thuật_toán được giới_thiệu trong bài viết này .
+Thuật_toán dựa trên việc tìm hai chuỗi đơn_điệu của bao lồi : chuỗi trên và chuỗi dưới .
+Ta thấy điểm ở xa về phía bên phải nhất (từ đây gọi_là điểm phải nhất) và điểm ở xa về phía bên trái nhất (từ đây gọi_là điểm trái nhất) trong dữ_liệu vào luôn là hai đỉnh của bao lồi .
+Phần bao lồi theo chiều kim_đồng_hồ tính_từ điểm trái nhất và ngược_chiều kim_đồng_hồ tính_từ điểm phải nhất gọi_là chuỗi trên , phần còn_lại của bao lồi gọi_là chuỗi dưới .
+Ta sẽ tìm chuỗi trên và chuỗi dưới độc_lập với_nhau .
+Bước_đầu tiên là sắp_xếp các điểm được cho theo thứ_tự tăng dần theo hoành_độ .
+Nếu hai điểm có cùng hoành_độ , điểm có tung_độ nhỏ hơn sẽ đứng trước .
+Ta xét việc xây_dựng chuỗi trên .
+Gọi_H là chuỗi trên hiện_tại và độ lớn của bao là h .
+Điểm đầu của chuỗi là H_1 và điểm cuối là H_h .
+Với mỗi điểm được xét : Thêm điểm này vào H .
+Nếu hlt;3 , xét tiếp_điểm tiếp_theo .
+Gọi \vecu=\overrightarrowH_h-2H_h-1 và \vecv=\overrightarrowH_h-1H_h .
+Lần này , do ta đang di_chuyển theo chiều kim_đồng_hồ để tìm chuỗi trên , ta kiểm_tra xem \vecu \times \vecv có nhỏ hơn 0 hay_không .
+Nếu có , ta xét tiếp_điểm tiếp_theo .
+Nếu_không , ta loại_bỏ H_h-1 và quay_lại bước 2 .
+Sau khi xét hết các điểm , H sẽ chứa toàn_bộ các điểm ở chuỗi trên .
+Sau_đó , ta tìm chuỗi dưới bằng cách tương_tự , chỉ khác là ta xét các điểm theo thứ_tự ngược_lại (tức là ta xét điểm trái nhất trước) .
+Lưu_ý không thêm điểm phải nhất hai lần .
+Khi thuật_toán kết_thúc , H sẽ chứa tất_cả các đỉnh của bao lồi , với điểm đầu được lặp_lại ở cuối .
+Thuật_toán này cũng có độ phức_tạp O(n \logn) .
+Thuật_toán chuỗi đơn_điệu được khuyên dùng ở mọi bài_toán tìm bao lồi , do nó đơn_giản hơn thuật_toán Graham và nhanh hơn một_chút (do ta không_phải tính góc) .
+Cài_đặt struct pt // Kiểu điểm double x , y ; ; bool cmp ( pt a , pt b ) // So_sánh theo tọa_độ x , trong trường_hợp bằng_nhau so_sánh theo y return a .
+x lt; b .
+x a .
+x == b .
+x amp;amp; a .
+y lt; b .
+y ; bool cw ( pt a , pt b , pt c ) // a -gt; b -gt; c đi_theo thứ_tự xuôi_chiều kim_đồng_hồ return a .
+x ( b .
+y - c .
+y ) + b .
+x ( c .
+y - a .
+y ) + c .
+x ( a .
+y - b .
+y ) lt; 0 ; bool ccw ( pt a , pt b , pt c ) // a -gt; b -gt; c đi_theo thứ_tự ngược_chiều kim_đồng_hồ return a .
+x ( b .
+y - c .
+y ) + b .
+x ( c .
+y - a .
+y ) + c .
+x ( a .
+y - b .
+y ) gt; 0 ; void convex_hull ( vector lt; pt gt; amp; a ) if ( a .
+size () == 1 ) // chỉ_có 1 điểm return ; // Sắp_xếp các điểm theo tọa_độ x , nếu bằng_nhau sắp_xếp theo y sort ( a .
+begin () , a .
+end () , amp; cmp ); pt p1 = a 0 , p2 = a .
+back (); vector lt; pt gt; up , down ; // chuỗi trên và chuỗi dưới up .
+push_back ( p1 ); down .
+push_back ( p1 ); for ( size_t i = 1 ; i lt; a .
+size (); ++ i ) // xét lần_lượt các điểm // Thêm vào chuỗi trên if ( i == a .
+size () - 1 cw ( p1 , a i , p2 )) while ( up .
+size () gt;= 2 amp;amp; ! cw ( up up .
+size () - 2 , up up .
+size () - 1 , a i )) up .
+pop_back (); up .
+push_back ( a i ); // Thêm vào chuỗi dưới if ( i == a .
+size () - 1 ccw ( p1 , a i , p2 )) while ( down .
+size () gt;= 2 amp;amp; ! ccw ( down down .
+size () - 2 , down down .
+size () - 1 , a i )) down .
+pop_back (); down .
+push_back ( a i ); // Gộp 2 chuỗi trên và dưới để lấy bao lồi a .
+clear (); for ( size_t i = 0 ; i lt; up .
+size (); ++ i ) a .
+push_back ( up i ); for ( size_t i = down .
+size () - 2 ; i gt; 0 ; -- i ) a .
+push_back ( down i ); Bạn cũng có_thể tham_khảo thêm cài_đặt C++ ở đây Xử_lí trường_hợp suy_biến Các thuật_toán trên hoạt_động tốt trong trường_hợp lí_tưởng , tức_là không có hai điểm nào trùng nhau và không có ba điểm nào thẳng_hàng .
+Tuy_nhiên , trong hầu_hết các bài_toán , ta sẽ phải xử_lí các điểm trùng nhau và các bộ_ba điểm thẳng_hàng .
+Biện_luận tất_cả các trường_hợp sẽ là một công_việc khó_nhằn và nhàm_chán .
+Vì_vậy , hãy ghi_nhớ những điều sau : Đọc kĩ đề_bài để biết được dữ_liệu vào có bị suy_biến hay_không , nếu có thì rơi vào trường_hợp nào .
+(Lưu ý rằng không_phải đề_bài nào cũng nói_rõ rằng dữ_liệu bị suy biến) .
+Nếu tồn_tại các điểm trùng nhau Thuật_toán bọc gói sẽ thực_hiện phép_chia cho số_không .
+Ta cần tránh điều này để thuật_toán chạy đúng .
+Nếu ta chỉ_cần tính chu_vi hoặc diện_tích của bao lồi , thuật_toán Graham và thuật_toán chuỗi đơn_điệu sẽ không gặp vấn_đề gì .
+Nếu ta phải in ra các đỉnh của bao lồi , có ba thứ_tự in các đỉnh mà đề_bài có_thể hỏi : cùng chiều kim_đồng_hồ , ngược_chiều kim_đồng_hồ , hoặc theo thứ_tự xuất_hiện trong dữ_liệu vào .
+Rõ_ràng hai thứ_tự in các đỉnh_đầu tiên không có_ý nghĩa gì khi có các điểm trùng nhau .
+Nếu đề_bài yêu_cầu in các đỉnh theo thứ_tự xuất_hiện trong dữ_liệu vào , đề_bài có_thể yêu_cầu in ra đỉnh_đầu tiên xuất_hiện trong dữ_liệu vào nếu các đỉnh trùng nhau , hoặc in ra tất_cả các đỉnh .
+Hãy đọc đề_bài thật kĩ .
+Trong mọi trường_hợp , ta đều có_thể dễ_dàng xử_lí kết_quả sau khi chạy thuật_toán tìm bao lồi để phù_hợp với yêu_cầu bài_toán , và ta nên làm như_vậy vì kết_hợp xử_lí kết_quả với thuật_toán tìm bao lồi không_những khó hơn mà có_thể tạo ra sai_sót không đáng có Nếu có các bộ_ba điểm thẳng_hàng Ta cần biết đề_bài yêu_cầu bao lồi có_số lượng đỉnh tối_đa hay tối_thiểu , từ_đó , ta suy ra ta có nên cho thêm các điểm thuộc cạnh của bao lồi hay_không .
+Nếu chỉ_có các bộ_ba điểm thẳng_hàng mà không có các điểm trùng nhau , ta có_thể sửa dấu lt; thành dấu \leq trong thuật_toán Graham và thuật_toán chuỗi đơn_điệu nếu bài_toán yêu_cầu bao lồi có_số lượng đỉnh tối_đa .
+Còn trong thuật_toán bọc gói , ta sẽ chọn điểm ở xa nhất hoặc điểm ở gần nhất nếu có hai điểm cùng có_số đo_góc nhỏ nhất tùy vào yêu_cầu bài_toán .
+Thứ_tự các đỉnh không_phải là vấn_đề , trừ_khi đề_bài yêu_cầu in ra thứ_tự các đỉnh của bao lồi có_số đỉnh lớn nhất , trong đó các đỉnh thuộc cùng một cạnh được sắp_xếp theo thứ_tự xuất_hiện trong dữ_liệu vào .
+Khi đó , xử_lí kết_quả sau khi tìm bao lồi là lựa_chọn tốt nhất .
+Trường_hợp xấu nhất trên lí_thuyết là khi diện_tích bao lồi bằng 0 .
+Có hai trường_hợp như_vậy , và ta có_thể dễ_dàng xử_lí hai trường_hợp đó : tất_cả các điểm đều trùng nhau , hoặc tất_cả điểm đều thẳng_hàng .
+Thuật_toán chuỗi đơn_điệu vẫn hoạt_động bình_thường nếu ta chỉ_cần biết diện_tích hoặc chu_vi bao lồi .
+Nếu ta cần in ra các đỉnh của bao lồi , ta không nên chỉnh_sửa thuật_toán mà nên xét riêng hai trường_hợp trên .
+Ứng_dụng Ngoại_trừ các ứng_dụng hiển_nhiên , tìm bao lồi còn giúp ta giải các bài_toán sau : Cặp điểm xa nhất (Bài toán trộn màu) : Bạn có_một số hộp sơn , mỗi hộp sơn có tỉ_lệ thành_phần ba màu_cơ_bản xanh : đỏ : vàng là x : d : v , với x , d , v dương .
+Giả_sử màu của hộp sơn chỉ phụ_thuộc vào tỉ_lệ ba màu_cơ_bản .
+Bằng cách pha_trộn các loại sơn , liệu ta có_thể thu được màu mục_tiêu hay_không (màu mục_tiêu cũng được cho bằng tỉ_lệ ba màu cơ bản) , biết rằng lượng_sơn trong hộp là vô_tận .
+Bài_toán này hóa ra lại có_thể giải bằng cách tìm bao lồi trên mặt_phẳng .
+Bước_đầu tiên , ta chuẩn hóa dữ_liệu bằng cách chia tỉ_lệ ba màu_cơ_bản với lượng màu xanh (tức là nếu tỉ_lệ bằng x : d : v thì ta chuẩn hóa còn 1 : \fracdx : \fracvx) .
+Ta làm tương_tự với màu mục_tiêu .
+Sau_đó ta bỏ_qua lượng màu xanh do lượng màu xanh ở tất_cả các hộp lẫn_màu mục_tiêu đều bằng 1 , và tập_trung xử_lí hai màu kia .
+Mỗi màu của hộp sơn đều có_thể biểu_diễn bằng một điểm trên mặt_phẳng .
+Khi đó , các màu mà các hộp sơn đó có_thể pha_trộn được sẽ nằm trong bao lồi .
+Đó là do khi trộn hai màu có điểm biểu_diễn trên mặt_phẳng lần_lượt là A và B , màu ta thu được sẽ có điểm biểu_diễn nằm trên đoạn AB , nên ta dễ_dàng tìm được một dãy các bước trộn màu để có được màu mục_tiêu nếu điểm biểu_diễn màu mục_tiêu nằm trong bao lồi .
+Bao lồi 3D Tim bao lồi trong 3D thực_sự là một bài_toán khó .
+Bài_toán này chắc_chắn sẽ không bao_giờ được ra trong IOI , và học_sinh trung_học không cần phải đi_sâu vào vấn_đề này .
+Tuy_nhiên , có_một thuật_toán O(n2) khá là đơn_giản : đầu_tiên , ta tìm hình_chiếu của các điểm trên mặt_phẳng xy , và tìm một các chắc_chắn thuộc bao bằng cách lấy một điểm có tung_độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng_lặp của thuật_toán bọc gói một_lần .
+Đây là phần đầu_tiên của bao lồi .
+Sau_đó , xét cạnh vừa tìm được , tìm một điểm thứ_ba để tạo_thành một_mặt tam_giác của bao lồi .
+Ta chọn điểm thứ_ba bằng cách tìm điểm để tất_cả các điểm khác nằm ở phía bên phải của mặt tam_giác đó (giống như thuật_toán bọc gói , ta tìm cạnh để tất_cả các điểm khác đều nằm về phía bên phải cạnh đó) .
+Bây_giờ ta đã có ba cạnh trong bao lồi , ta chọn ngẫu_nhiên một trong ba cạnh đó , rồi tìm tiếp một tam_giác với cạnh này , rồi tiếp_tục cho_đến khi_không còn cạnh nào nữa (Khi ta tìm thêm một_mặt tam_giác , ta phải thêm hai cạnh vào bao , tuy_vậy hai cạnh này phải chưa có trong bao , nếu_không ta phải đi tìm hai cạnh khác) .
+Có tổng_cộng O(n) mặt , và mỗi lần duyệt các điểm ta mất thời_gian O(n) vì ta phải duyệt tất_cả các điểm còn_lại , do_đó độ phức_tạp của thuật_toán là O(n2) .
+(Nếu bạn nghĩ bạn có_thể cài_đặt được thuật_toán này , hãy nộp bài tại SPOJ - CH3D ) .
+Ta có_thể tăng_tốc_độ thuật_toán này bằng các loại_bỏ các điểm chắc_chắn không_phải đỉnh của bao , bằng cách tìm các điểm cực theo các trục tọa_độ , rồi loại_bỏ các điểm nằm trong bát_diện mà các đỉnh đấy tạo ra .
+Ta có_thể tìm bao lồi trong không_gian với độ phức_tạp O(n \logn) bằng phương_pháp chia_để_trị , tuy_nhiên việc cài_đặt thuật_toán này là vô_cùng khó .
+Bài_tập áp_dụng Kattis - convexhull ACM_ICPC_Vietnam_National 2017 - K_VOJ - MILITARY_VOJ - HEADQRT_VOJ - KMIX_USACO - Cow_Curling

@@ -1,0 +1,85 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Qua các bài viết trong blog , chúng_ta đã thấy rất nhiều các bài_toán được giải_quyết một_cách hiệu_quả .
+Ví_dụ như bài_toán sắp_xếp , bài_toán tìm_kiếm xâu , bài_toán tìm đường_đi ngắn nhất , tìm cây khung nhỏ nhất , bài_toán luồng cực_đại , bài_toán lát cắt cực_tiểu , v . v và v . v . Tất_cả các bài_toán này đều được giải trong thời_gian với một hằng_số nào_đó và là chiều_dài của đầu_vào bài_toán .
+Ngược_lại , các bài_toán chúng_ta gặp trong thực_tế là những bài_toán mà chúng_ta làm_sao để giải chúng một_cách hiệu_quả .
+Mình nhấn_mạnh hai từ "hiện tại" và "không biết" ý nói những bài_toán đó có lời_giải hiệu_quả , chỉ là chúng_ta chưa tìm_ra được_lời giải .
+Tuy_nhiên , rất nhiều các nhà nghiên_cứu tin rằng những bài_toán đó chúng_ta không_thể giải được hiệu_quả và vấn_đề chỉ là chúng_ta chưa tìm_ra cách để rằng ta không_thể giải chúng hiệu_quả .
+Post này và các post tiếp_theo sẽ cung_cấp một công_cụ để xác_định những bài_toán khó đó .
+Chúng_ta thường mô_tả độ phức_tạp của một bài_toán dựa vào các tài_nguyên (resource) cần_thiết để giải bài_toán đó .
+Hai loại tài_nguyên cơ_bản là thời_gian (time) và bộ_nhớ (space) .
+Trong các bài viết ở đây , chúng_ta quan_tâm nhiều đến_thời gian hơn_là bộ_nhớ .
+Trong phân_tích của các bài viết trước trên blog , chúng_ta thường phát_biểu thuật_toán có độ phức_tạp (thời gian) , , , , hay một_cách tổng_quát hơn_là với là một hàm (tăng) của .
+Vậy ở đây và có_ý nghĩa thế_nào ?
+Ta sẽ lần_lượt làm rõ ý_nghĩa của hai đại_lượng này . Trong phân_tích thuật_toán , chúng_ta thường sử_dụng tiệm_cận hơn_là đếm chính_xác số_lượng các thao_tác cơ_bản .
+Một phần vì đếm chính_xác số_lượng thao_tác thường là một việc không tầm_thường .
+Một phần khác là_vì sử_dụng phương_pháp tiệm_cận sẽ cho chúng_ta một_cách ước_lượng tương_đối về thuật_toán một_cách nhanh_chóng để chúng_ta tập_trung vào thiết_kế ở mức cao (high level) .
+Phân_tích tiệm_cận cho_phép chúng_ta có_thể mở_rộng tập thao_tác cơ_bản để bao_gồm các phép_toán phức_tạp hơn như cộng , trừ , nhân và chia (CTNC) , trong đó , các hạng (nhân) tử tham_gia vào các phép CTNC đều có chiều_dài hằng_số .
+Chú_ý , nếu các hạng (nhân) tử tham_gia vào các phép CTNC không còn là hằng_số nữa thì ta không_thể coi đó là các thao_tác cơ_bản .
+Bạn đoc có_thể xem ví_dụ cụ_thể khi các phép CTNC không còn được coi là hằng_số trong phân_tích .
+Một bài_toán bao_giờ cũng có ít_nhất hai phần là đầu_vào (input) và đầu_ra (output) .
+Độ_dài của input được coi_như là biến để đo độ phức_tạp của thuật_toán giải bài_toán .
+Có những bài_toán mà ta phải phân_tích độ phức_tạp dựa trên cả hai biến input và output , ví_dụ như bài_toán nén dữ_liệu (data compression) .
+Ở đây , ta chỉ xét những bài_toán mà đầu_ra chỉ là 1 bít ( hoặc ) .
+Các bài_toán như_vậy được gọi_là các bài_toán (decision problem) .
+Các bài_toán quyết_định thoạt_đầu nghe có_vẻ không có tính tổng_quát cao vì đầu_ra chỉ_có 1 bít .
+Tuy_nhiên , ta có_thể quy rất nhiều bài_toán không quyết_định về bài_toán quyết_định , mà thời_gian để chuyển qua_lại giữa hai bài_toán vẫn là đa_thức .
+Ví_dụ bài_toán tìm kích_thước của (independent set) lớn nhất trong đồ_thị .
+Ta có_thể quy bài_toán về bài_toán quyết_định như_sau : Dễ thấy , bài_toán là bài_toán quyết_định (có tồn_tại hay không) .
+Nếu ta có_thể giải được bài_toán , ta có_thể giải được bài_toán bằng cách tìm_kiếm nhị_phân giá_trị trong đoạn .
+(a) Tập màu đỏ là một_tập độc_lập trong đồ_thị .
+(b) Tập màu xanh không_phải là một_tập độc_lập trong đồ_thị . Một thuật_toán được gọi_là giải bài_toán quyết_định nếu_như với mỗi input của bài_toán , thuật_toán xác_định được chính_xác đầu_ra là hay .
+Trong số các bài_toán quyết_định , lớp bài_toán mà chúng_ta quan_tâm nhất_là lớp các bài_toán mà ta có_thể giải được hiệu_quả bằng máy_tính .
+Lớp bài_toán đó được gọi_là lớp (viết tắt của polynomial time-thời gian đa thức) .
+Trong định_nghĩa trên , giá_trị của bậc trong biểu_thức không quan_trọng , miễn_là nó không phụ_thuộc vào .
+Do_đó , ta sẽ dùng kí_hiệu để thay cho . Tuy_nhiên , nhiều bài_toán hiện_tại chúng_ta chưa biết_có thể giải được hiệu_quả hay_không (thuộc hay không) .
+Trong số các bài_toán đó , có_một lớp các bài_toán thú_vị mà người_ta gọi nó là lớp .
+Ý_tưởng đằng_sau lớp bài_toán này là : nếu ai đó cho chúng_ta lời_giải của một bài_toán khó , việc kiểm_tra xem đó có_phải là lời_giải đúng hay_không sẽ việc trực_tiếp giải bài_toán đó .
+Dễ hơn ở đây hiểu theo nghĩa có_thể kiểm_tra được_lời giải trong thời_gian .
+Ví_dụ với bài_toán .
+Nếu ai đó đưa ta một_tập đỉnh của đồ_thị và nói rằng tập đỉnh đó là tập độc_lập của đồ_thị có kích_thước ít_nhất , ta có_thể kiểm_tra (trong thời_gian ) xem có_phải là tập độc_lập hay_không trong thời_gian (tại sao ? ) và kiểm_tra xem hay_không .
+Nếu cả hai điều_kiện được thỏa_mãn thì đầu_vào của bài_toán có lời_giải , và ngược_lại .
+Tập đó gọi_là một (certificate) cho thấy input của bài_toán có output .
+Hai tính_chất quan_trọng của tập mà ta có_thể rút ra từ ví_dụ trên : Ta gọi_là một của bài_toán .
+Theo định_nghĩa trên , để chứng_minh một bài_toán thuộc ta phải : (i) chỉ ra một bằng_chứng ngắn_gọn cho đầu_vào và (ii) chỉ ra một thuật_toán để kiểm_tra bằng_chứng đó trong thời_gian .
+Ta sẽ minh_họa thêm một_số bài_toán trong phần sau .
+Từ ở đây là viết tắt của ondeterministic olynomial time , một thuật_ngữ liên_quan đến máy Turing không tất_định .
+Nhiều người nhầm_lẫn là viết tắt của on-olynomial time .
+Về_mặt trực_quan , một bài_toán dễ giải thì cũng dễ kiểm_tra lời_giải .
+Do_đó , .
+Hay nói_cách_khác , bất_kì một bài_toán nào cũng thuộc .
+Việc chứng_minh theo định_nghĩa bằng_chứng ngắn_gọn dễ kiểm_tra ta sẽ coi_như bài_tập cho bạn_đọc (hints : bằng_chứng ngắn_gọn dễ kiểm_tra của một bài_toán là ) . Một câu_hỏi làm_đau đầu các nhà nghiên_cứu lý_thuyết đó là liệu hay_không ?
+Hay nói_cách_khác , liệu có tồn_tại một bài_toán nào trong lớp mà không_thể giải được hiệu_quả ?
+Bài_toán này được gọi_là bài_toán vs , một trong 7 bài_toán mà người đưa_ra lời_giải sẽ được thưởng .
+Hầu_hết các nhà_khoa_học máy_tính tin rằng .
+Tuy_nhiên , có những nhà_khoa_học máy_tính nối tiếng , ví_dụ như Donald_Knuth 3 , tin rằng .
+Trên của mình , Gerhard_J_Woeginger có liệt_kê một danh_sách các "chứng minh" , và gần_như một_nửa đưa_ra "chứng minh" còn nửa kia đưa_ra "chứng minh" .
+Điều đó cho thấy bài_toán này , có_lẽ , còn rất lâu nữa mới có_thể được giải_quyết một_cách đầy_đủ .
+Tạm_thời , chúng_ta có biểu_đồ Venn thể_hiện quan_hệ giữa và như_sau : vs Bài_toán quan_trọng nhất trong lớp đó là bài_toán .
+Lí_do tại_sao là bài_toán quan_trọng nhất_thì ta sẽ xem ở bài viết tiếp_theo .
+Ví_dụ : Trong ví_dụ trên , biểu_thức có_phép gán ( , , ) có_giá trị .
+Biểu_thức không có_phép gán nào có_giá trị .
+Bằng_chứng mà chúng_ta đưa_ra ở đây là một_phép gán cho các biến của .
+Bằng_chứng này là ngắn_gọn vì một_phép gán có_thể được mô_tả bằng bít với mỗi bít biểu_diễn giá_trị_gián của một biến .
+Để kiểm_tra xem một_phép gán này có_giá trị hay_không , ta sẽ thay giá_trị của từng biến vào biểu_thức .
+Nếu tất_cả các mệnh_đề đều có_giá trị thì biểu_thức có giái tị , và ngược_lại .
+Việc tính giá_trị của biểu_thức có_thể được thực_hiện trong thời_gian .
+Do_đó , một_phép gán là một bằng_chứng dễ kiểm_tra .
+Ví_dụ bài_toán xác_định biểu_thức ở trên có_phép gán giá_trị hay_không thuộc . Chứng_minh tương_tự Lemma 1 , ta có : Ví_dụ và , tập có tổng_bằng .
+Ta chứng_minh định_lý cho bài_toán .
+Bằng_chứng_ta đưa_ra ở đây là một_tập các số_nguyên .
+Bằng_chứng ngắn_gọn vì ta có_thể dùng tối_đa bít để biểu_diễn , trong đó .
+Để kiểm_tra bằng_chứng này , ta chỉ việc cộng tất_cả các số trong và kiểm_tra xem tổng của chúng có bằng hay_không .
+Phép_cộng này có_thể thực_hiện được trong thời_gian đa_thức .
+Các cạnh tô đậm màu đỏ là các cạnh của một chu_trình Hamilton trong đồ_thị .
+Chú_ý , trong định_nghĩa của đường_đi đóng , ta cho_phép một đỉnh xuất_hiện nhiều lần trên đường_đi .
+Chứng_minh Lemma 4 coi_như bài_tập cho bạn_đọc .
+Trong post tiếp_theo , chúng_ta sẽ tìm_hiểu về ; tập các bài_toán khó nhất trong lớp . 1 Cook , Stephen .
+.
+The_Millennium_Prize_Problems (2006) : 87-106 .
+2 Arora , Sanjeev , and Boaz_Barak .
+.
+Cambridge_University_Press , 2009 .
+3 Reddit_Thread , .
+Accessed 19/12/2016 .
+, , , , , , Trackback link : on Chỗ \phi(2 , 4)=(x hội y) tuyển (x hội phủ_định của y) tuyển (phủ định x hội y) tuyển (phủ định x hội phủ_định y) on Hi , Mình không hiểu ý bạn lắm .
+Chỗ đó có_vấn_đề gì ? Powered by and

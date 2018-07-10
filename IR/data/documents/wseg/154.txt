@@ -1,0 +1,85 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Hàm_băm có rất nhiều loại và rất nhiều ứng_dụng khác_nhau (xem ) , do_đó , chúng_ta sẽ không có đủ thời_gian để thảo_luận hết được .
+Hàm_băm trong bài này chúng_ta thảo_luận đó là hàm_băm sử_dụng để .
+Hai yêu_cầu chính trong thiết_kế hàm_băm : Ta sẽ nhắc_lại một_số khái_niệm cơ_bản trong thiết_kế bảng_băm .
+Kí_hiệu bảng_băm với dung_lượng là .
+Ta thực_hiện băm phần_tử từ một_tập gốc có kích_thước lớn hơn nhiều so_với .
+Cho trước hàm_băm , hai khóa mà được gọi_là nếu .
+Một hàm_băm được gọi_là nếu : Số 2 ở đây không_phải là số đặc_biệt .
+Bất_kì hằng_số nào khác 2 đều có_thể chấp_nhận được trong định_nghĩa ở trên .
+Về_mặt trực_quan , hàm_băm tốt là hàm_băm có xác_suất đụng_độ nhỏ . Trước_khi nói kĩ hơn về hàm_băm , có_một vấn_đề mà bài trước chúng_ta chưa đụng đến : cái_gì có_thể băm được .
+Dường_như chúng_ta đang mặc_định khóa của chúng_ta là các số_nguyên .
+Nếu khóa không_phải là số_nguyên (ví dụ xâu kí tự) thì ta cần một cơ_chế để chuyển về số_nguyên trước_khi băm .
+Ta gọi số_nguyên đó là mã_băm (hashcode) , Phần này ta sẽ tìm cơ_chế tìm mã_băm cho xâu kí_tự .
+Các dạng dữ_liệu cơ_bản khác đều có_thể quy về xâu (ví dụ số 0 . 12345 có_thể coi_như là xâu "0 . 12345") .
+Thiết_kế cơ_chế tìm mã_băm có_thể quy về tìm một hàm sao_cho với mỗi xâu , là một_số nguyên .
+Hàm phải có tính_chất nếu đầu_vào là hai xâu khác_nhau thì đầu_ra phải là hai mã_băm khác_nhau vì nếu nhiều xâu có cùng mã_băm thì bất_kể hàm_băm chọn thế_nào thì số_lượng đụng_độ cũng rất lớn .
+Nếu coi là một hàm_băm thì hình_như ta lại quay trở_lại vấn_đề ban_đầu : tìm hàm_băm có xác_suất đụng_độ nhỏ và có_thể tính được một_cách hiệu_quả .
+May_mắn thay , khác_biệt cơ_bản trong thiết_kế hàm_băm so_với khiến cho thiết_kế dễ hơn rất nhiều đó là : không_gian mã của có_thể lớn hơn rất nhiều .
+Ví_dụ bảng_băm có kích_thước , chỉ được phép băm một khóa vào một trong các giá_trị ( giá_trị khác nhau) còn có_thể băm một khóa vào một trong các giá_trị ( giá_trị khác nhau) nếu đầu_ra của là một_số nguyên không dấu 64 bít .
+Coi số thứ_tự trong hệ ASCII mỗi kí_tự là một chữ_số trong hệ cơ_số 256 .
+Ví_dụ kí_tự A tương_ứng với chữ_số 65 (65 là mã ASCII của A) .
+Một họ hàm_băm khá phổ_biến thường_dùng để thiết_kế đó là (polynomial hashing) : Nếu chọn thì sẽ duy_nhất với mọi , i . e , .
+Tuy_nhiên , càng lớn thì sẽ càng lớn .
+Do_đó , thông_thường người_ta sẽ chọn là một_số nguyên_tố không quá lớn .
+Ngôn_ngữ mặc_định chọn để tính .
+Một điểm mạnh_của băm đa_thức đó là nó có_thể tính được hiệu_quả bằng .
+Mình sẽ không đi_sâu thêm vào các hàm_băm kiểu này nữa .
+Một_số hàm_băm khác bạn_đọc có_thể tham_khảo thêm tại .
+Hai điểu mà mình muốn nhấn_mạnh trong phần này đó là : Như đã nói trong bài trước , một hàm_băm tốt không_thể là một hàm_băm tất_định (deterministic) được vì theo , ít_nhất phần_tử sẽ có cùng mã_băm .
+Một hàm_băm tốt thường sẽ được chọn ngẫu_nhiên (trước khi băm) từ một họ các hàm_băm được thiết_kế sẵn .
+Trong phần này mình đi_sâu hơn vào hai họ hàm_băm đã giới_thiệu ở bài trước : (multiplicative hashing) : Họ hàm_băm nhân được Carter và Wegman 5 giới_thiệu năm 1977 .
+Ta chọn một_số nguyên_tố lớn hơn và định định_nghĩa : Họ được gọi_là họ hàm_băm nhân .
+Ta sẽ chứng_minh nếu chọn ngẫu_nhiên một hàm_băm từ họ thì xác_suất đụng_độ là nhỏ .
+Kí_hiệu là ước_chung lớn nhất của hai số và .
+Do là một_số nguyên_tố , .
+Theo thuật_toán Euclidean , tồn_tại duy_nhất hai số_nguyên_dương (modulo ) sao_cho : Do_đó , , dpcmGiả sử_ta chọn ngẫu_nhiên .
+Đụng_độ sẽ xảy_ra khi và chỉ khi tồn_tại hai khóa sao_cho : Ở đây có_thể nhận một trong các giá_trị_vì .
+Mỗi giá_trị của sẽ tương_ứng với một giá_trị của .
+Do_đó , đụng_độ chỉ xảy_ra khi nhận một trong giá_trị thỏa_mãn .
+Do ta chọn chọn ngẫu_nhiên trong và là hai khóa cho trước , xác_suất ta chọn được như_vậy là : Họ hàm_băm nhân này được giới_thiệu bởi Martin , Hagerup , Katajainen và Penttonen 6 năm 1977 để giải_quyết bài_toán cặp điểm gần nhất (closest pair) .
+Ưu_điểm của họ hàm_băm này so_với họ hàm_băm nhân ở trên là : không cần đến số_nguyên_tố lớn và mã bă có_thể tính được chỉ sử_dụng các thao_tác bít đơn_giản . Gọi_là số_nguyên_dương nhỏ nhất sao_cho .
+Chọn .
+Với mỗi số_nguyên_dương không lớn quá , ta định_nghĩa : Họ hàm_băm ta xây_dựng là .
+Chứng_minh xác_suất đụng_độ là nhỏ nếu ta chọn ngẫu_nhiên một hàm_băm từ phức_tạp hơn so_với chứng_minh ở trên một_chút .
+Trước_hết ta sẽ chứng_minh : trong đó là một_số nguyên lẻ .
+Giả_sử , ta suy ra .
+Do lẻ và , đẳng_thức chỉ xảy_ra khi .
+Điều này trái với giả_thiết , dpcm . Về_mặt trực_quan , Lemma 2 cho chúng_ta biết hàm với cho trước là một đơn ánh (injective map) từ tập vào chính nó .
+Do miền xác_định và miền giá_trị bằng_nhau , ta suy ra hàm là một song ánh (bijective map) .
+Ý_nghĩa của tính_chất này đó là với một khóa cố_định , việc chọn ngẫu_nhiên tương_đương với việc chọn ngẫu_nhiên trong tập .
+Ta sẽ sử_dụng tính_chất này để chứng_minh xác_suất đụng_độ của là nhỏ . Theo hình minh_họa ở trên , mã_băm đầu sẽ là bít cao nhất của .
+Nhắc_lại .
+Giả_sử xảy_ra đụng_độ giữa hai khóa .
+Không mất tính tổng_quát , ta giả_sử > .
+Ta có_khi và chỉ khi bít cao nhất của và là giống nhau .
+Từ_đó ta suy ra bít cao nhất của phải là một dãy_số hoặc một dãy_số .
+Ta có : Với cho trước , theo nhận_xét ở đoạn trước , việc chọn ngẫu_nhiên tương_đương với chọn ngẫu_nhiên trong .
+Do_đó , xác_suất ta chọn được ngẫu_nhiên một_số bít có bít cao nhất_là toàn hoặc toàn là .
+Nhắc_lại .
+Như_vậy : 1 Donald_E .
+Knuth .
+, Volume 3 : (2nd Ed . ) Sorting and Searching .
+Addison_Wesley_Longman_Publishing_Co . , Inc . , Redwood_City , CA , USA , 1998 .
+2 Jeff_Erickson .
+.
+UIUC , 2013 .
+3 Thomas_H .
+Cormen , Clifford_Stein , Ronald_L .
+Rivest , and Charles_E .
+Leiserson .
+(2nd ed . ) .
+Chapter 12 .
+McGraw-Hill_Higher_Education , 2001 .
+4 Procul . org : , accessed 20/04/2016 .
+5 J . L . Carter and M . N . Wegman .
+1977 .
+.
+In_STOC 77 , 106-112 .
+6 D .
+Martin , T .
+Hagerup , J .
+Katajainen , and M .
+Penttonen .
+Journal of_Algorithms 25 , No . 1 (1997) : 19-51 .
+, , , , Trackback link : Powered by and

@@ -1,0 +1,168 @@
+Bài viết gốc : Mathematics for_Topcoders - đăng bởi dimkadimon trên Topcoder Giới_thiệu : Nhiều người thi Topcoder phàn_nàn khi trong đề có quá nhiều Toán – điểm yếu của họ .
+Cá_nhân tôi là một người rất yêu_Toán , vì_vậy có_lẽ tôi sẽ có chút thiên_vị trong vấn_đề này .
+Nhưng tôi hoàn_toàn tin_tưởng rằng , các bài_tập nên có ít_nhất một_chút Toán_học và Khoa_học máy_tính phải đi liền với Toán_học .
+Thật khó có_thể tưởng_tượng khi mà_cả hai lĩnh_vực này cũng tồn_tại mà không_hề có bất_kỳ sự tương_tác nào lẫn_nhau .
+Ngày_nay , Toán_học được áp_dụng rất nhiều trong Tin_học để giải những hệ_phương_trình hàng nghìn ẩn hay tìm nghiệm xấp_xỉ đối_với những phương_trình mà không có_công thức nghiệm tổng_quát .
+Toán_học còn được sử_dụng rộng_rãi trong việc nghiên_cứu về Khoa_học máy_tính , cũng_như là áp_dụng cho các thuật_toán về đồ_thị ( graph algorithms ) và lĩnh_vực thị_giác máy_tính ( Computer_Vision ) .
+Bài viết này sẽ phân_tích về lý_thuyết và ứng_dụng của một_vài cấu_trúc Toán_học phổ_biến .
+Các chủ_đề được đề_cập tới bao_gồm : Số_nguyên_tố .
+Ước_chung lớn nhất (GCD) .
+Hình_học cơ_bản .
+Hệ cơ_số .
+Phân_số và số_phức .
+Số_nguyên_tố : Một_số tự_nhiên là số_nguyên_tố khi và chỉ khi nó chỉ chia_hết_cho 1 và chính nó .
+Ví_dụ như 2 , 3 , 5 , 79 , 311 và 1931 đều là số_nguyên_tố , trong_khi 21 thì không_phải , bởi nó chia_hết_cho 3 và 7 .
+Để xác_định xem một_số tự_nhiên n có_phải là số_nguyên_tố hay_không , ta chỉ_cần đơn_giản kiểm_tra xem nó có chia_hết_cho bất_kỳ số nào nhỏ hơn nó và lớn 1 hay_không .
+Chúng_ta có_thể sử_dụng phép_chia có_dư (toán tử %) để kiểm_tra khả_năng chia_hết của nó : Java for ( int i = 2 ; i lt; n ; i ++) if ( n % i == 0 ) return false ; return true ; Pascal for i : = 2 to n - 1 do if ( n mod i = 0 ) then exit ( false ); exit ( true ); Chúng_ta còn có_thể làm_cho đoạn mã này chạy nhanh hơn_nữa bằng việc nhận_ra rằng , ta chỉ_cần xét khả_năng chia_hết_cho mọi giá_trị i lớn hơn 1 và nhỏ hơn hoặc bằng với phần nguyên của căn bậc 2 của n , tạm gọi_là m .
+Tại_sao lại thế nhỉ ?
+Đấy là bởi_vì nếu n chia_hết_cho bất_kỳ số nào lớn hơn m thì kết_quả nhận được cũng chỉ là một_số nhỏ hơn hoặc bằng m .
+Một cải_tiến nữa_là : ta thấy rằng không tồn_tại bất_kỳ một_số nguyên_tố chẵn nào lớn hơn 2 .
+Như_vậy , sau khi đã kiểm_tra rằng n là số_lẻ thì ta có_thể an_tâm tăng biến i lên 2 giá_trị .
+Đây sẽ là đoạn mã áp_dụng phương_thức kiểm_tra số_nguyên_tố mới nhất này : Java public boolean isPrime ( int n ) if ( n lt;= 1 ) return false ; if ( n == 2 ) return true ; if ( n % 2 == 0 ) return false ; int m = Math .
+sqrt ( n ); for ( int i = 3 ; i lt;= m ; i += 2 ) if ( n % i == 0 ) return false ; return true ; Pascal function IsPrime ( n : Integer ) : Boolean ; var i : Integer ; m : Integer ; begin if ( n lt;= 1 ) exit ( false ); if ( n = 2 ) exit ( true ); if ( n mod 2 = 0 ) exit ( false ); i : = 3 ; m : = trunc ( sqrt ( n )); while ( i lt;= m ) do begin if ( n mod i = 0 ) exit ( false ); inc ( i , 2 ); end ; exit ( true ); end ; Giả_sử chúng_ta cần phải tìm mọi số_nguyên_tố trong_khoảng 1 , 100000 , thì chẳng_lẽ ta phải gọi hàm kiểm_tra 100000 lần sao ?
+Việc lặp_đi lặp_lại các phép kiểm_tra tương_tự thật_sự không hiệu_quả chút_nào .
+Trong tình_huống này , phương_pháp tối_ưu nhất chính là sử_dụng Sàng nguyên_tố Eratosthenes (Sieve of Eratosthenes) .
+Sàng nguyên_tố Eratosthenes sẽ xác_định toàn_bộ những số_nguyên_tố trong_khoảng 2 , n .
+Trước_hết , sàng nguyên_tố sẽ giả_định mọi số_tự_nhiên từ 2 đến n là số_nguyên_tố .
+Kế_đến , nó sẽ chọn ra số_nguyên_tố đầu_tiên và xóa đi những bội nhỏ hơn bằng n của số_nguyên_tố đó .
+Và nó lại tiếp_tục quá_trình bằng lựa một_số nguyên_tố tiếp_theo và xóa đi các bội của nó .
+Quá_trình này sẽ tiếp_tục diễn ra cho_đến khi mà mọi số đều đã xử_lý .
+Ví_dụ , ta sẽ tìm các số_nguyên_tố trong_khoảng 2 , 20 .
+Trước_hết , ta hãy ghi ra dãy_số đó : 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 Bởi_vì 2 là số_nguyên_tố đầu_tiên , nên ta sẽ loại_bỏ đi tất_cả những bội của 2 và nhỏ hơn bằng 20 .
+2 3 5 7 9 11 13 15 17 19 Bởi_vì 3 là số đầu_tiên chưa bị bỏ , nên ta sẽ lựa_chọn 3 là số_nguyên_tố tiếp_theo và loại_bỏ đi tất_cả những bội của 3 và nhỏ hơn bằng 20 .
+2 3 5 7 11 13 17 19 Tiếp đến , ta sẽ chọn 5 , ta thấy không còn bội nào của 5 nhỏ hơn bằng 20 còn sót nên ta lại tiếp_tục xét đến 7 , . . .
+Và giờ thì tất_cả những số còn sót lại chính là các số_nguyên_tố mà ta cần tìm .
+Dưới_đây là đoạn mã cho Sàng nguyên_tố Eratosthenes : Java public boolean sieve ( int n ) boolean prime = new boolean n + 1 ; Arrays .
+fill ( prime , true ); prime 0 = false ; prime 1 = false ; int m = Math .
+sqrt ( n ); for ( int i = 2 ; i lt;= m ; i ++) if ( prime i ) for ( int k = i i ; k lt;= n ; k += i ) prime k = false ; return prime ; Pascal //mảng kiểm_tra số_nguyên_tố prime0 . . n function sieve ( n : Integer ) : Boolean ; var i , m : Integer ; begin fillchar ( prime , sizeof ( prime ) , 1 ); prime 0 : = false ; prime 1 : = false ; m : = trunc ( sqrt ( n )); for i : = 2 to m do if ( prime i ) then for j : = i to n div i do prime i j : = false ; end ; Ở đoạn mã trên , ta sẽ tạo một mảng prime , nơi sẽ chứa các giá_trị nguyên trong_khoảng 0 , n .
+Primei là true nếu i là số_nguyên_tố và ngược_lại .
+Vòng_lặp bên_ngoài sẽ tìm_kiếm số_nguyên_tố tiếp_theo , trong_khi vòng_lặp bên_trong sẽ loại_bỏ đi tất_cả những bội nhỏ hơn bằng n của số_nguyên_tố đó .
+Ước_chung lớn nhất Ước_chung lớn nhất (Greatest Common_Divisor) của hai số_tự_nhiên a và b là số_lớn nhất mà_cả a và b đều chia_hết .
+Để tìm được GCD(a , b) , một_cách đơn_giản , ta có_thể lấy số nhỏ hơn trong hai số a và b rồi giảm_dần cho_đến khi_nào có được một_số mà_cả a và b đều cùng chia_hết_cho số đó .
+Java for ( int i = Math .
+min ( a , b ); i gt;= 1 ; i --) if ( a % i == 0 amp;amp; b % i == 0 ) return i ; Pascal for i : = min ( a , b ) downto 1 do if ( a mod i = 0 ) and ( b mod i = 0 ) then exit ( i ); Mặc_dù phương_pháp này đủ nhanh để đáp_ứng phần_lớn các trường_hợp , song ta vẫn còn một_cách nhanh hơn_nữa , đó chính là thuật_toán Euclid .
+Thuật_toán Euclid sẽ lặp_đi lặp_lại việc xử_lý hai số cho_đến khi mà phần dư của chúng bằng 0 .
+Ví_dụ , giả_sử chúng_ta muốn tìm ước_chung lớn nhất của hai số 2336 và 1314 .
+Đầu_tiên , ta sẽ phân_tích_số lớn hơn_là 2336 thành bội của 1314 cộng thêm cho phần dư .
+2336 = 1314 x 1 + 1022 Ta sẽ thực_hiện tương_tự với 1314 và 1022 .
+1314 = 1022 x 1 + 292 Ta tiếp_tục quá_trình cho_đến khi phần dư bằng 0 .
+1022 = 292 x 3 + 146 292 = 146 x 2 + 0 Và phần dư cuối_cùng mà khác 0 chính là ước_chung lớn nhất mà ta cần tìm .
+Vậy ước_chung lớn nhất của 1314 và 2336 chính là 146 .
+Thuật_toán trên sẽ được mô_phỏng lại bằng một đoạn mã đệ_quy đơn_giản : Java // giả_định rằng a và b đều khác 0 public int GCD ( int a , int b ) if ( b == 0 ) return a ; return GCD ( b , a % b ); Pascal // giả_định a và b đều khác 0 function GCD ( a , b : Integer ) : Integer ; begin if ( b = 0 ) then exit ( a ) else exit ( GCD ( b , a mod b )); end ; Đặc_biệt , thuật_toán Euclid còn được áp_dụng trong việc tìm bội_chung nhỏ nhất (LCM) của hai số_tự_nhiên .
+Ví_dụ , bội_chung nhỏ nhất của 6 và 9 là 18 vì 18 là số nhỏ nhất mà chia_hết_cho cả a lẫn b .
+Dưới_đây là đoạn mã cho việc tìm bội_chung nhỏ nhất : Java public int LCM ( int a , int b ) return b a / GCD ( a , b ); Pascal function LCM ( a , b : Integer ) : Integer ; begin exit ( a b / GCD ( a , b )); end ; Một chú_ý cuối_cùng đó là việc thuật_toán Euclid còn có_thể dùng để giải phương_trình tìm nghiệm nguyên Diophantine .
+Đó là những phương_trình có hệ_số và ẩn_số_nguyên (a , b , c , x , y \in N) và được biểu_diễn như_sau : ax + by = c Xem thêm : Thuật_toán Euclid mở_rộng Hình_học Đôi_khi , bài_toán yêu_cầu ta tìm phần giao của các hình_chữ_nhật với các cạnh song_song trục tọa_độ .
+Có rất nhiều cách để biểu_diễn một hình_chữ_nhật .
+Đối_với hệ trục tọa_độ Cartesian , thì cách biểu_diễn phổ_biến nhất chính là lưu_giữ giá_trị tọa_độ của góc trái - dưới và góc phải - trên của hình_chữ_nhật .
+Giả_sử chúng_ta có hai hình_chữ_nhật R1 và R2 .
+Đặt (x1 , y1) là tọa_độ góc trái - dưới , (x2 , y2) là tọa_độ góc phải - trên của hình_chữ_nhật R1 .
+Tương_tự với R2 , ta đặt (x3 , y3) , (x4 , y4) lần_lượt là tọa_độ góc trái - dưới và góc phải - trên của R2 .
+Phần giao của R1 và R2 sẽ là hình_chữ_nhật R3 có tọa_độ trái - dưới là (max(x1 , x3) , max(y1 , y3)) và tọa_độ góc phải - trên là (min(x2 , x4) , min(y2 , y4)) .
+Nếu max(x1 , x3) gt; min(x2 , x4) hoặc max(y1 , y3) gt; min(y2 , y4) thì sẽ không tồn_tại hình_chữ_nhật R3 , hay nói các khác là R1 và R2 không giao nhau .
+Công_thức này còn được mở_rộng ra hơn không_gian 2 chiều giống_như là trong bài CuboidJoin (SRM 191 , Div 2 Hard) .
+Thường thì , khi làm_bài chúng_ta sẽ phải đối_mặt với những đa_giác mà đỉnh của nó là số_nguyên .
+Những đa_giác đó được gọi_là Đa_giác lưới (lattice polygon) .
+Trong phần hướng_dẫn cơ_bản về khái_niệm hình_học ( Geometry_Concepts ) , lbackstrom đã trình_bày một_cách ngắn_gọn cách tính diện_tích thông_qua các cạnh của đa_giác .
+Bây_giờ , giả_sử_ta không biết được chính_xác vị_trí các cạnh mà thay vào đó ta có được các giá_trị sau : B = số_lượng điểm nằm ở trên cạnh đa_giác (Boundary) I = số_lượng điểm nằm trong đa_giác (Inside) Thật vi_diệu , thông_qua hai giá_trị trên ta có_thể tính được diện_tích đa_giác bằng công_thức sau : Diện_tích = B/2 + I - 1 Công_thức trên được gọi_là định_lý Pick được chứng_minh bởi Georg_Alexander_Pick (1859 – 1943) .
+Để chứng_minh được rằng định_lý Pick có tính_chất bao_quát cho toàn_bộ mọi đa_giác lưới , ta chứng_minh theo 4 bước : Bước 1 : chứng_minh định_lý Pick đúng_với mọi hình_chữ_nhật lưới , có cạnh song_song với trục tọa_độ .
+Bước 2 : chứng_minh được định_lý Pick vẫn đúng_với mọi tam_giác_vuông có hai cạnh song_song với trục tọa_đô (bởi chúng là phân_nửa diện_tích một hình_chữ_nhật lưới có tọa_độ một đỉnh là góc_vuông của tam_giác và có cạnh là các cạnh góc_vuông của tam giác) .
+Bước 3 : chứng_minh định_lý Pick đúng_với mọi tam_giác , bởi một tam_giác bất_kỳ đều có_thể biểu_diễn thành một hình_chữ_nhật bằng cách ghép_cặp với một_vài tam_giác_vuông khác .
+Bước 4 : ta thấy rằng mọi cặp 2 đa_giác lưới có chung cạnh sẽ tạo_thành một đa_giác lưới khác bằng cách xóa đi cạnh chung , và mọi đa_giác lưới đều có_thể tạo ra bằng cách ghép các hình_tam_giác .
+Tổng_hợp lại 4 bước trên và ta sẽ thu được kết_quả rằng định_lý Pick đúng_với mọi đa_giác lưới .
+Định_lý Pick khá hữu_ích khi ta cần tìm số điểm có tọa_độ nguyên bên_trong một đa_giác lớn .
+Một công_thức đáng nhớ khác đó chính là công_thức Euler dành cho các khối đa_diện .
+Khối đa_diện được định_nghĩa_là một khối (một đa giác) mà ta có_thể chia thành nhiều đa_giác nhỏ hơn .
+Các đa_giác nhỏ hơn được gọi_là mặt , cách đỉnh của mặt cũng được gọi_là đỉnh của khối đa_diện và tương_tự , các cạnh của mặt cũng gọi_là cạnh .
+Dưới_đây là công_thức Euler .
+V - E + F = 2 , với : V = số đỉnh của khối E = số cạnh của khối F = số mặt của khối Ví_dụ , xét một hình_vuông mà_cả hai đường_chéo đều được vẽ .
+Ta sẽ có V = 5 , E = 8 và F = 5 (phần nằm ngoài hình_vuông cũng được coi_như là một mặt) , ta sẽ có V - E + F = 2 .
+Ta có_thể sử_dụng quy_nạp để chứng_minh nó như_sau : Ta sẽ bắt_đầu với V = 2 , vì mỗi đỉnh đều cần phải có ít_nhất một cạnh .
+Và nếu V = 2 thì chỉ_có xảy_ra duy_nhất một dạng khối đa_diện mà_thôi .
+Đó là dạng khối đa_diện mà hai cạnh sẽ nối với E đỉnh .
+Khối đa_diện nãy cũng sẽ có E mặt , (E-1 mặt_bên trong hình và 1 mặt ngoài hình) .
+Thế nên V - E + F = 2 - E + E = 2 (điều phải chứng minh) .
+Giờ ta giả_sử định_lý Euler đúng_với V từ 2 , n , xét V = n+1 .
+Chọn một cạnh w bất_kỳ .
+Giờ giả_định w nối với tất_cả những lưới còn_lại có G đỉnh .
+Nếu bỏ_đi cạnh w này và những đỉnh mà nó nối , ta sẽ có_một lưới với n cạnh , E - G đỉnh và F-G+1 mặt .
+Từ giả_định trên ta có : (n) - (E - G) + (F - G + 1) = 2 (n+1) - E + F = 2 Vậy với V = n+1 , ta cũng vẫn thu được kết_quả là V - E + F = 2 .
+Vậy là với phương_pháp quy_nạp toán_học , ta đã chứng_minh được định_lý Euler .
+Hệ cơ_số : Một trong những bài_toán mà người thi Topcoder đối_mặt nhiều nhất đó chính là việc chuyển_đổi số_từ hệ cơ_số nhị_phân sang hệ cơ_số thập_phân và ngược_lại (cùng với nhiều hệ cơ_số khác) .
+Vậy hệ cơ_số nghĩa_là gì ?
+Ta sẽ bắt_đầu với hệ cơ_số tiêu_chuẩn (hệ thập phân) .
+Xét số 4325 ở hệ cơ_số 10 .
+Ta thấy 4325 có_thể phân_tích thành 5 + 210 + 31010 + 4101010 .
+Chú_ý rằng mỗi "giá trị" của chữ_số tiếp_theo sau của số được nhân thêm tích_số 10 khi ta xét từ phải qua trái .
+Hệ nhị_phân cũng hoạt_động theo cách tương_tự như_thế .
+Nó sử_dụng hai chữ_số 0 và 1 và "giá trị" của từng chữ_số sẽ được nhân thêm 2 khi ta xét từ phải qua trái .
+Ví_dụ , số 1011 ở dạng nhị_phân có_thể biểu_diễn thành 1 + 12 + 022 + 1222 = 1 + 2 + 8 = 11 và trở_lại thành số ở hệ_thập_phân là 11 .
+Và đây chính là cách để ta chuyển từ số ở hệ nhị_phân (hoặc bất_kỳ hệ_số nào) về hệ cơ_số thập_phân .
+Sau_đây là đoạn mã để chuyển số n từ một hệ cơ_số b (2 \le b \le n) thành hệ cơ_số thập_phân .
+Java public int toDecimal ( int n , int b ) int result = 0 ; int multiplier = 1 ; while ( n gt; 0 ) result += n % 10 multiplier ; multiplier = b ; n /= 10 ; return result ; Pascal function ToDectimal ( n , b : Integer ) : Integer ; var mul : Integer = 1 ; begin result : = 0 ; while ( n gt; 0 ) do begin result : = result + ( n mod 10 ) mul ; mul : = mul b ; n : = n div 10 ; end ; end ; Người dùng Java hẳn sẽ rất vui khi biết rằng vẫn có cách khác đơn_giản hơn để thực_hiện việc này .
+return Integer .
+parseInt ( "" + n , b ); Để chuyển một_số từ hệ_thập phần về hệ nhị_phân cũng khá đơn_giản .
+Giả_sử_ta muốn chuyển số 43 từ hệ_thập_phân về hệ nhị_phân .
+Tại bước_đầu của_công thức ta sẽ chia đôi 43 và lưu lại giá_trị phần dư , tiếp_tục xử_lý với số được chia đôi đó cho_đến khi nó bằng 0 .
+Và danh_sách số_dư sau cuối_cùng cũng chính là cách biểu_diễn số nhị_phân cần tìm .
+43/2 = 21 + dư 1 21/2 = 10 + dư 1 10/2 = 5 + dư 0 5/2 = 2 + dư 1 2/2 = 1 + dư 0 1/2 = 0 + dư 1 Vậy 43 sẽ được biểu_diễn thành 101011 ở dạng nhị_phân .
+Bằng việc thay số 2 thành số b , ta có_thể chuyển từ hệ_thập_phân về bất_kỳ hệ cơ_số b nào (2) : Java public int fromDecimal ( int n , int b ) int result = 0 ; int multiplier = 1 ; while ( n gt; 0 ) result += n % b multiplier ; multiplier = 10 ; n /= b ; return result ; Pascal function FromDecimal ( n , b : Integer ) : Integer ; var mul : Integer = 1 ; begin result : = 0 ; while ( n gt; 0 ) do begin result : = result + ( n mod b ) mul ; mul : = mul 10 ; n : = n div b ; end ; end ; Đối_với trường_hợp b lớn hơn 10 , ta sẽ xử_dụng các ký_tự không_phải chữ_số để đại_diện cho các số_từ 10 trở_lên .
+Ví_dụ , ta sẽ để A đại_diện cho 10 , B cho 11 , . . .
+Đoạn mã sau_đây sẽ cho_phép ta chuyển từ số_thập_phân sang bất_kỳ hệ cơ_số nào (lên đến 20) .
+Java public String fromDecimal2 ( int n , int b ) String chars = "0123456789ABCDEFGHIJ" ; String result = "" ; while ( n gt; 0 ) result = chars .
+charAt ( n % b ) + result ; n /= b ; return result ; Pascal function FromDecimal2 ( n , b : Integer ) : String ; var chars : string = 0123456789ABCDEFGHIJ ; begin result : = ; while ( n gt; 0 ) do begin result : = chars n mod b + 1 + result ; n : = n div b ; end ; end ; Trong_Java , ta có_thể sử_dụng những cách tắt sau để chuẩn từ hệ_thập_phân sang như hệ_số thông_dụng khác , như_là hệ nhị_phân , hệ bát phân , hệ_thập lục phân .
+Integer .
+toBinaryString ( n ); Integer .
+toOctalString ( n ); Integer .
+toHexString ( n ); Phân_số và số_phức Phân_số thường được gặp rất nhiều trong các bài_tập .
+Thường thì vấn_đề khó_khăn nhất mà ta cần phải đối_mặt đó chính là việc biểu_diễn các phân_số đó .
+Mặc_dù nó hoàn_toàn khả_thi trong việc tạo ra một lớp (class) khác để lưu_trữ một_cách đầy_đủ các thông_tin về_phần số , nhưng trong nhiều trường_hợp thì cách thường_dùng nhất_là sử_dụng mảng lưu 2 giá_trị bằng cách ghép_cặp (pair) .
+Ý_tưởng là ta sẽ lưu_số đầu_tiên là tử_số , số thứ_hai là mẫu_số .
+Ta sẽ bắt_đầu bằng việc nhân hai phân_số a và b : Java public int multiplyFractions ( int a , int b ) int c = a 0 b 0 , a 1 b 1 ; return c ; Pascal type ps = record x , y : Integer ; end ; function multiplyFractions ( a , b : ps ) : ps ; var c : ps ; begin c .
+x : = a .
+x b .
+x ; c .
+y : = a .
+y b .
+y ; exit ( c ); end ; Cộng phân_số thì_có một_chút phức_tạp hơn , bởi chỉ_có nhưng phân_số có cùng mẫu_số mới có_thể cộng trực_tiếp .
+Trước_hết ta sẽ tìm mẫu_số_chung của hai phân_số và nhân_tử số hai phân_số theo tỉ_số giữa mẫu_số cũ với mẫu_số_chung .
+Mẫu_số_chung là số có_thể chia_hết_cho cả mẫu của hai phân_số , hay đơn_giản hơn đó chính là bội_chung nhỏ nhất của hai mẫu_số .
+Ví_dụ để cộng hai phân_số 4/9 và 1/6 .
+Bội_chung nhỏ nhất của 9 và 6 là 18 .
+Để chuyển_đổi hai phân_số ta sẽ lấy phân_số thứ nhất nhân cho 2/2 và số thứ_hai cho 3/3 .
+4/9 + 1/6 = (42)/(9 2) + (1 3)/(6 3) = 8/18 + 3/18 Một_khi hai phân_số đã có mẫu_số bằng_nhau , thì ta chỉ_cần đơn_giản cộng hai phân_số đó lại và nhận kết_quả cuối_cùng là phân_số 11/18 .
+Trừ cũng rất đơn_giản , chỉ khác_nhau ở bước cuối_cùng .
+4/9 - 1/6 = 8/18 - 3/18 = 5/18 Đây là đoạn mã cho chương_trình công hai phân_số : Java public int addFractions ( int a , int b ) int denom = LCM ( a 1 , b 1 ); int c = denom / a 1 a 0 + denom / b 1 b 0 , denom ; return c ; Pascal function addFractions ( a , b : ps ) : ps ; var denom : Integer ; begin denom : = LCM ( a .
+y , b .
+y ); result .
+x : = denom div a .
+y a .
+x + denom div b .
+y b .
+x ; result .
+y : = denom ; end ; Cuối_cùng , nó rất cần_thiết để biết được cách tối_giản phân_số_thành phân_số tối_giản .
+Và phân_số chỉ tối_giản khi và chỉ khi ước_chung lớn nhất của tử_số và mẫu_số là 1 .
+Chúng_ta sẽ làm như_sau : Java public void reduceFraction ( int a ) int b = GCD ( a 0 , a 1 ); a 0 /= b ; a 1 /= b ; Pascal procedure reduceFraction ( var a : ps ); var b : Integer ; begin b : = GCD ( a .
+x , a .
+y ); a .
+x : = a .
+x div b ; a .
+y : = a .
+y div b ; end ; Bằng phương_pháp tương_tự , ta cũng có_thể biểu_diễn được số_phức .
+Một_cách tổng_quát , số_phức được biểu_diễn dưới dạng a + ib với a , b là số_thực và i là căn bậc hai của -1 .
+Ví_dụ , để cộng hai số_phức , ta sẽ cộng đơn_giản như_sau : m + n = (a + bi) + (c + di) = (a + c) + (b + d) Việc nhân hai số_phức cũng tương_tự như việc nhân_số thực , trừ việc ii bằng -1 .
+m n = (a + ib) (c + id) = ac + iad + ibc + (i2)bd = (ac - bd) + i(ad + bc) Bằng việc lưu_trữ phần số_thực ở phần_tử thứ nhất và phần số_phức ở phần_tử thứ_hai trong một mảng hai giá_trị như đoạn mã dưới_đây : Java public int multiplyComplex ( int m , int n ) int prod = m 0 n 0 - m 1 n 1 , m 0 n 1 + m 1 n 0 ; return prod ; Pascal function multiplyComplex ( m , n : ps ) : ps ; begin result .
+x : = m .
+x n .
+x - m .
+y n .
+y ; result .
+y : = m .
+x n .
+y + m .
+y n .
+x ; end ; Tổng_kết : Tổng_kết lại , tôi chỉ muốn nói rằng bạn không_thể đạt rating cao ở Topcoder mà không nắm rõ Toán_học và những thuật_toán nêu trên .
+Thường thì một trong những chủ_đề Toán_học thường gặp nhất trong các bài_tập đó là số_nguyên_tố .
+Tiếp đó là những bài về hệ cơ_số , mà nguyên_nhân chủ_yếu là_vì máy_tính hoạt_động dựa trên hệ nhị_phân , nên ta cần phải_biết cách chuyển từ hệ nhị_phân về hệ_thập_phân .
+Còn công_thức tính ước_chung lớn nhất (GCD) và bội_chung nhỏ nhất (LCM) thì được dùng nhiều trong cả những bài_tập "thuần toán" và cả hình_học .
+Cuối_cùng , tôi viết chủ_đề Phân_số và số_phức là việc nó không chỉ_cần thiết cho việc thi Topcoder , mà bởi nó còn vô_cùng quan_trọng khi làm_việc với những con_số .
+

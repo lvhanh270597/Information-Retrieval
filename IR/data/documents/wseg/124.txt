@@ -1,0 +1,15 @@
+Bạn có biết : Sau tấm huy_chương vàng năm 2003 , Việt_Nam mất 8 năm để có tấm huy_chương vàng tiếp_theo (2011) , rồi lại phải chờ thêm 4 năm nữa để lặp_lại kì_tích này (2015) .
+Chưa_từng có_một team Việt_Nam nào đạt huy_chương ở kì_thi ACM-ICPC_World final .
+Sinh_viên Việt_Nam , dù có nền_tảng thuật_toán rất tốt từ cấp 3 , vẫn bối_rối khi xin_việc ở những công_ty lớn như Google , Facebook .
+Chúng_mình nhận_thấy , học_sinh sinh_viên Việt_Nam , dù tiềm_năng có thừa , nhưng chưa biết cách khơi_dậy tiềm_năng đó một_cách triệt_để .
+Hơn_nữa , các bạn còn ngại va_chạm với tiếng Anh , ngại tìm_tòi đọc sách_vở bài_bản mà chủ_yếu chỉ luyện giải đề và tham_gia các cuộc_thi trên mạng .
+Cách học như_vậy giúp cách bạn tăng_tốc rất nhanh để chạy_theo các kì_thi quốc_gia quốc_tế , nhưng về_sau về dài nó thậm_chí không_thể giúp các bạn trả_lời một câu_hỏi đơn_giản : học tin để làm_gì ?
+Nhiều bạn_học sinh_viên "sống" bằng những cuộc_thi nhưng khi ra ngoài_cuộc sống không còn những cuộc_thi nữa .
+Các bạn bị mất định_hướng và đam_mê , dẫn đến việc bị bỏ lại đằng_sau .
+Thật tiếc cho những tài_năng trẻ như_vậy ! Đây là thời_kì bùng_nổ của các startup IT , các bạn thực_sự có_thể làm được rất nhiều thứ , thậm_chí thay_đổi thế_giới ! Chúng_mình cũng nhận_thấy , ở Việt_Nam hiện_tại chưa có_một giáo_trình mạch_lạc và bài_bản để hướng_dẫn các bạn từ cấp_độ chưa biết_gì đến cấp_độ có_thể chinh_phục IOI .
+Tài_liệu giới_thiệu về tin_học vượt ra ngoài khuôn_khổ của IOI thì lại càng không có .
+Đáng_buồn hơn_là có_một sự mất kết_nối giữa các thế_hệ với_nhau .
+Các tên_tuổi lừng_lẫy trên các cuộc_thi ngày nào , sau khi giải_nghệ lần_lượt biến mất , khiến cho kiến_thức , kinh_nghiệm quý_báu của họ đều không đến được với thế_hệ đi_sau .
+Team_Admins_VNOI đã quyết_tâm xây_dựng một thư_viện VNOI mới để lấp đầy những khoảng_trống trên .
+Thư_viện mới của VNOI bao_gồm các nội_dung như : Tổng_hợp và dịch các bài viết đã có trên mạng; Bổ_sung thêm những bài viết về những chủ_đề tin_học ít gặp hoặc chưa có hướng dẫn; Giới_thiệu về các vấn_đề trong bộ_môn khoa_học máy_tính thực_tiễn , giúp các bạn định_hướng học cấp 3 và đại_học xong thì mình có_thể làm gì; Phỏng_vấn những người đi trước về kinh_nghiệm học tin cũng_như những kinh_nghiệm khi đi phỏng_vấn ở các công_ty lớn như Google , Facebook , Microsoft;_Và còn rất nhiều điều mới_mẻ nữa . . .
+

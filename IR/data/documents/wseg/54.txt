@@ -1,0 +1,10 @@
+Giới_thiệu ACM_ICPC là kỳ thi lập_trình lớn nhất thế_giới dành cho sinh_viên .
+Năm 2017 có gần 50 , 000 thí_sinh từ hơn 3000 trường ĐH , đến từ 111 quốc_gia và vùng lãnh_thổ tham_dự .
+Mỗi team gồm 3 người , giải 10-12 bài trong_vòng 5h .
+Để lọt vào vòng chung_kết (gồm khoảng hơn 100 đội) , đầu_tiên các đội phải vượt_qua vòng Regional .
+Khu_vực châu Á Thái_Bình Dương thường có các regional tại Việt_Nam , Thái_Lan , Indonesia , . . .
+Các đội Việt_Nam muốn được thi Regional ở Việt_Nam cần phải vượt_qua vòng National .
+Các đội Việt_Nam tại ACM_ICPC_World_Final_Trong phần này mình chỉ liệt_kê các đội gồm 3 người VN , và chỉ liệt_kê các đội đã vào top 50 .
+2018 - ĐH Công_Nghệ (UET - VNU) , team unsigned - rank 15 : Phạm Cao_Nguyên : HCV_IOI 2016 , HCĐ_IOI 2017 , CF : natsukagami Lê_Quang_Tuấn : HCV_IOI 2017 , HCĐ_IOI 2016 , CF : alexa0704 Nguyễn_Đinh Quang_Minh : CF : MofK Cao_Nguyên và Quang_Tuấn đã từng có bài phỏng_vấn trên VNOI wiki 2016 - National_University of Singapore (NUS) , team RRwatameda - rank 15 : Nguyễn_Tấn Sỹ_Nguyên : HCB_IOI 2011 , CF : flashmt Nguyễn_Hùng Tâm : HCB_IMO 2012 Nguyễn_Thành_Trung (RR) : CF : I_love_Hoang_Yen , 17 ACM_WF 2012 2011 - Nanyang_Technological_University (NTU) , team NTU_Ares - rank 17 : Khúc Anh_Tuấn : HCB_IOI 2006 , CF : ktuan , TC : ktuan - đỏ target duy_nhất của VN , Rank 2 Facebook_Hackercup 2011 , 2 lần chung_kết GCJ .
+Phạm Quang_Vũ : CF : ConanKudo , 17 ACM_WF 2012 Đoàn_Tuấn_Anh .
+2016 - ĐH Công_Nghệ (UET - VNU) - rank 29 : Phạm_Văn_Hạnh : HCV_IOI 2015 , CF : skyvn97 Nguyễn_Tiến Trung_Kiên : HCB_IOI 2015 , HCĐ_IOI 2014 , CF : kien_coi_1997 Đỗ_Ngọc_Khánh : CF : dnk 2017 - ĐH Công_Nghệ (UET - VNU) - rank 39 : Phạm_Văn_Hạnh : HCV_IOI 2015 , CF : skyvn97 Phan_Đức Nhật_Minh : HCV_IOI 2016 , HCB_IOI 2015 , CF : minh141198 Nguyễn_Đức Duy : CF : duyboy135

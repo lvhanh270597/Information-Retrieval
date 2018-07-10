@@ -1,0 +1,72 @@
+Tác_giả : Nguyễn_RR Thành_Trung Bài_toán Cho một dãy_số A gồm N phần_tử .
+Cần thực_hiện Q truy_vấn , mỗi truy_vấn (i , j) yêu_cầu tìm mode(A_i , . . . , A_j) .
+(Mode của một_tập hợp là giá_trị xuất_hiện nhiều lần nhất trong tập_hợp đó) .
+Giới_hạn : N , Q , A_i \le 105 .
+Khi đọc đề một bài_toán truy_vấn kiểu này , có_lẽ CTDL đầu_tiên mà các bạn nghĩ đến_là Interval_Tree .
+Nhưng có_điều gì đó không ổn trong bài này : Khi có thông_tin của 2 nút con l , mid và mid+1 , r , rất khó để tìm được bất_kỳ thông_tin hữu_ích nào của l , r .
+Duyệt Chúng_ta xuất_phát từ thuật_toán duyệt hồn_nhiên như_sau : Với mỗi truy_vấn , ta for từ trái sang phải , đếm_số lần xuất_hiện .
+Trong_khi đếm thì ta_cập nhật kết_quả .
+Code đơn_giản như_sau : function mode ( l , r ) : // Khởi tạo mảng count = toàn 0 res = - 1 ; for i = l . .
+r : count A i += 1 ; if res == - 1 or count A i gt; count res : res = A i ; return res ; Dễ thấy , thuật_toán duyệt này có độ phức_tạp O(N_Q) .
+Có 2 lý_do chính khiến thuật_toán này chạy chậm : Khởi tạo mảng count mỗi lần mất O(N) .
+Với mỗi truy_vấn , phải tính lại mảng count từ_đầu .
+Ta có_thể cải_tiến được như_sau : Sau khi trả_lời truy_vấn l_1 , r_1 , để trả_lời truy_vấn l_2 , r_2 , bạn chỉ_cần thay_đổi mảng đếm một_cách phù_hợp .
+Cụ_thể : Nếu l_2 gt; l_1 , giảm số lần xuất_hiện của A_l_1 , . . . , A_l_2-1 Nếu l_2 lt; l_1 , tăng số lần xuất_hiện của A_l_2 , . . . , A_l_1-1 Tương_tự với r_1 và r_2 .
+Để cập_nhật số lần xuất_hiện lớn nhất_thì có_thể dùng thêm set .
+Như_vậy , độ phức_tạp của ta là tổng l_i - l_i-1 + r_i - r_i-1 , nhân thêm \mathcalO(logN) để đếm và tìm phần_tử lớn nhất của mảng đếm .
+Thuật_toán Mo Thuật_toán Mo là một_cách sắp_xếp lại các truy_vấn , sao_cho tổng l_i - l_i-1 + r_i - r_i-1 không quá O(N \sqrtN + Q \sqrtN) .
+Thứ_tự các truy_vấn được định_nghĩa qua hàm so_sánh dưới_đây .
+S = sqrt ( N ); bool cmp ( Query_A , Query_B ) // so_sánh 2 truy_vấn if ( A .
+l / S ! = B .
+l / S ) return A .
+l / S lt; B .
+l / S ; return A .
+r lt; B .
+r ; Giải_thích : Ta chia dãy thành các block (nhóm) độ_dài S = \sqrtN .
+Nếu đầu trái của truy_vấn nằm ở 2 block khác_nhau , ta sắp_xếp theo đầu trái .
+Ngược_lại (đầu trái của truy_vấn nằm ở cùng 1 block) , ta sắp_xếp theo đầu phải .
+Chứng_minh : Mos algorithm có độ phức_tạp là O(N \sqrtN + Q \sqrtN) .
+Để hiểu tại_sao độ phức_tạp của thuật_toán đạt được như_vậy , chúng_ta hãy cùng xem việc di_chuyển các đoạn l_1 , r_1 thành l_2 , r_2 : Di_chuyển l_1 \rightarrow l_2 : Nếu l_1 và l_2 cùng block : Với mỗi thao_tác , độ phức_tạp không quá \sqrtN .
+Do_đó , độ phức_tạp trong trường_hợp này của cả Q thao_tác là O(Q \sqrtN) .
+Nếu l_1 và l_2 khác block : Vì ta ưu_tiên sort theo block chứa l , nên trường_hợp này xảy_ra không quá \sqrtN lần .
+Ở trường_hợp này , ta mất độ phức_tạp tối_đa là O(N) , nên với tất_cả các thao_tác , độ phức_tạp là O(N \sqrtN) .
+Di_chuyển r_1 \rightarrow r_2 : Nếu l_1 và l_2 cùng block : Vì trong cùng một block r được sắp_xếp tăng dần , nên với mỗi block của l , ta chỉ mất độ phức_tạp tổng là O(N) .
+Do có \sqrtN block khác_nhau của l , nên tổng_độ phức_tạp trong trường_hợp này là O(N \sqrtN) .
+Nếu l_1 và l_2 khác block : Như_trên đã phân_tích , ta chỉ_có \sqrtN lần đổi block , mỗi lần đổi block ta mất độ phức_tạp O(N) để di_chuyển r .
+Do_đó tổng_độ phức_tạp của trường_hợp này là O(N \sqrtN) .
+Vậy , độ phức_tạp là O(N \sqrtN + Q \sqrtN) .
+Áp_dụng Sử_dụng Mos_Algorithm , bạn đã có_thể thu được một thuật_toán hoàn_chỉnh cho bài này với độ phức_tạp O(N \sqrtN + Q \sqrtN) : Sort tất_cả các truy_vấn theo Mos_Algorithm .
+Gọi_S(N) là một mảng gồm N set (có thể cài bằng hash table (bảng băm)) .
+S(i) chứa tất_cả các số xuất_hiện đúng i lần .
+Gọi_A(val) = số lần xuất_hiện của val .
+Đặt max là chỉ_số lớn nhất của mảng S mà S(max) khác rỗng .
+Ta sẽ thêm và xóa_một số trong O(1) như_sau : Thêm 1 số v : Xóa v khỏi S(A(v)) .
+Tăng_A(v) thêm 1 .
+Thêm v vào S(A(v)) .
+Nếu_A(v) gt; max , cập_nhật max .
+Xóa 1 số v : Xóa v khỏi S(A(v)) .
+Giảm_A(v) đi 1 .
+Thêm v vào S(A(v)) .
+Nếu_S(max) rỗng , giảm max đi 1 .
+Vì tổng_các thao_tác thêm và xóa khi áp_dụng Mos_Algorithm không quá O(N \sqrtN + Q \sqrtN) , ta thu được một thuật_toán với độ phức_tạp này .
+Mở_rộng Với mục_đích làm_bài toán khó hơn , ta xét trường_hợp mà CTDL của ta chỉ cho_phép thực_hiện đúng 2 thao_tác : Insert : Thêm 1 phần_tử vào CTDL , thao_tác này có độ phức_tạp là O(logN) hoặc O(1) .
+Snapshot : Lưu lại trạng_thái hiện_tại của CTDL .
+Thao_tác này có độ phức_tạp O(N) .
+Rollback : Hồi_phục lại trạng_thái của CTDL ở lần Snapshot cuối .
+Thao_tác này cũng có độ phức_tạp là O(N) .
+Một ví_dụ của CTDL loại này là Disjoint set , và việc xử_lý truy_vấn xuất_hiện trong bài_toán Codechef - GERALD07 .
+Cách làm vẫn là áp_dụng Mos algorithm , tuy_nhiên vì không_thể xóa phần_tử , nên ta không_thể di_chuyển từ l_1 sang l_2 một_cách dễ_dàng được .
+Để đơn_giản , chúng_ta chỉ xét những truy_vấn l , r mà l và r rơi vào 2 block khác_nhau .
+Để giải_quyết việc không di_chuyển ngược được , sau khi trả_lời truy_vấn l , r , chúng_ta cần_dùng Rollback để đưa l về cuối block chứa l .
+Sau_đó , khi trả_lời truy_vấn l_2 , r_2 , chúng_ta chỉ_cần thực_hiện Insert từ r+1 đến r_2 và từ l_2 đến cuối block chứa l_2 .
+Chi_tiết cài_đặt : rt = sqrt ( n ); init (); // this initializes our data structure (clears it) snapshot (); for all queries q if q .
+r - q .
+l + 1 lt;= rt + 1 // we process light queries for j : = q .
+l to q .
+r insert ( j ); store answer for query q ; rollback (); last_bucket = - 1 ; for all queries q if q .
+r - q .
+l + 1 lt;= rt + 1 : continue ; bucket = q .
+l / rt ; if bucket ! = last_bucket init (); l = ( bucket + 1 ) rt ; // right border of the_bucket r = q .
+r ; for j : = l to r insert ( j ); last_bucket = bucket ; while r lt; q .
+r insert ( ++ r ); snapshot (); for j : = q .
+l to l - 1 insert ( j ); store answer for query q ; rollback (); Bài_tập áp_dụng Codeforces_Yandex 2011 Round 2 - D_Codechef - GERALD07

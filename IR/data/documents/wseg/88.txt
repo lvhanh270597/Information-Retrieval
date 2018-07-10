@@ -1,0 +1,219 @@
+Nguồn bài : Topcoder Ví_dụ minh_họa John_Smith đang gặp rắc_rối ! Anh ấy là một thành_viên của Topcoder và sau khi học cách để_trở thành bậc_thầy trong việc đối phối với các bài_toán quy_hoạch_động , anh ấy bắt_đầu giải_quyết hàng_loạt các bài_tập .
+Nhưng chiếc máy_tính "dễ bảo" của anh bắt_đầu trở_chứng vào hôm_nay .
+Vào mỗi buổi_sáng như_thường lệ , John thức_dậy vào lúc 10 giờ sáng , uống một cốc cà_phê và bắt_đầu giải các bài_tập trước_khi thưởng_thức bữa sáng .
+Mặc_dù có thứ gì đó "sai sai" so_với mọi hôm , nhưng dựa vào kho_tàng kiến_thức mà anh ấy vừa_mới gặt_hái được , John đã viết chương_trình với một tốc_độ thần_thánh .
+Mệt_mỏi với việc cấp_phát ma_trận vào mỗi buổi_sáng , chiếc máy_tính thông_báo rằng : "Segmentation fault ! " .
+Dù_cho dạ_dày còn đang rỗng , song với ý_tưởng thông_minh của mình , John đã vượt_qua rắc_rối bằng cách chèn thêm một vòng_lặp .
+Nhưng chiếc máy_tính lại gào lên : "Time limit exceeded ! " .
+Thay_vì tiếp_tục vướng vào mớ rắc_rối , John đã có_một quyết_định thông_minh hơn .
+"Quá đủ cho việc lập_trình ! " - John nói .
+Anh ấy quyết_định sẽ có_một kỳ nghỉ như_là phần_thưởng cho những nỗ_lực của mình .
+Là một con_người tràn_trề sinh_lực , John muốn dành thời_gian nhiều cho cuộc_đời của mình .
+Có quá nhiều thứ mà anh ta muốn làm , nhưng không may là anh ta không_thể_nào làm hết tất_cả chúng được .
+Thế nên trong_lúc ăn_sáng , John đã vạch_ra một "Fun plan" được_thể hiện bằng một_thời gian biểu cho từng hoạt_động như_sau : Id Hoạt_động Thời_gian 1 Sửa_phòng Thứ 2 , 22 : 00 đến thứ 3 , 1 : 00 2 Du_lịch Hawaii_Thứ 3 , 6 : 00 đến thứ 7 , 22 : 00 3 Vô_địch cuộc_thi cờ_vua Thứ 3 , 11 : 00 đến thứ 3 , 21 : 00 4 Thạm dự nhạc hội Rock_Thứ 3 , 19 : 00 đến thứ 3 , 23 : 00 5 Chiến_thắng cuộc_thi Starcraft_Thứ 4 , 15 : 00 đến thứ 5 , 15 : 00 6 Chơi trò bắn súng nước_sơn Thứ 5 , 10 : 00 đến thứ 5 , 16 : 00 7 Tham_gia kỳ thi SRM trên Topcoder_Thứ 7 , 12 : 00 đến thứ 7 , 14 : 00 8 Tắm_rửa Thứ 7 , 20 : 30 đến thứ 7 , 20 : 45 9 Tổ_chức tiệc ngủ Thứ 7 , 21 : 00 đến Chủ_nhật , 6 : 00 10 Tham_gia thử_thách "All you can eat" và "All you can drink" Thứ 7 , 21 : 01 đến thứ 7 , 23 : 59 Giờ anh ấy muốn thực_hiện được tối_đa các hoạt_động trong thời_gian_biểu trên .
+Mặc_dù để lên kế_hoạch hiệu_quả thì cần phải có chút lý_trí , nhưng giờ thì hồn anh ấy đã đắm_chìm vào kỳ nghỉ rồi .
+Phát_biểu bài_toán Liệu ta có_thể giúp anh ấy có_một kỳ nghỉ tuyệt_vời ?
+Ta hoàn_toàn có_thể ! Đầu_tiên , ta cần phải trình_bày lại bài_toán : John có N hoạt_động .
+Hoạt_động i bắt_đầu vào thời_gian L_i và kết_thúc vào thời_gian R_i .
+John có_thể thực_hiện cả hoạt_động i và hoạt_động j , nếu 2 khoảng thời_gian L_i , R_i và L_j , R_j không giao nhau .
+Là một lập_trình_viên tỉ_mỉ , một_khi đã đặt ra kế_hoạch , anh ấy buộc phải thực_hiện nó .
+Mỗi hoạt_động chỉ_có hai chọn_lựa là có hoặc không .
+Với mỗi trường_hợp chọn_lựa cho hoạt_động thứ nhất , ta lại có thêm 2 lựa_chọn cho hoạt_động thứ 2 .
+Phân_tích nhanh_ta sẽ thấy được rằng có 2n trường_hợp , và trong tình_huống này thì sẽ có 210 = 1024 trường_hợp .
+Với mỗi trường_hợp ta sẽ kiểm_tra xem có_thể thực_hiện được các hoạt_động đó không : có 2 cặp hoạt_động nào bị trùng thời_gian hay_không .
+Sau khi xét hết các phương_án , ta dễ_dàng tìm_ra 1 phương_án có nhiều hoạt_động nhất .
+Với khá nhiều sự chọn_lựa như_thế này , John buộc phải nhờ đến sự giúp_đỡ của chiếc máy_tính đang mệt_mỏi .
+Nhưng điều gì sẽ xảy_ra nếu John có tới 50 hoạt_động trong danh_sách ?
+Thậm_chí dùng đến cả siêu máy_tính nhanh nhất thế_giới thì cũng cần đến vài năm để tìm_ra câu trả_lời .
+Thế nên , phương_án này khá phi thực_tế .
+Tiếp_cận 1 Chúng_ta cần tìm một_cách tiếp_cận mới .
+Một phương_án tốt có_lẽ là thực_hiện công_việc ngay khi thời_cơ đến : Nếu ta có hai hoạt_động và chúng bị trùng về thời_gian , ta sẽ ưu_tiên lựa_chọn hoạt_động bắt_đầu trước nhằm tiết_kiệm thời_gian (nghĩa là hoạt_động có L_i nhỏ hơn) .
+Nếu áp_dụng cách này vào 10 hoạt_động trên thì : John bắt_đầu buổi_tối T2 bằng việc Sửa_phòng .
+Buổi_sáng T3 , anh ấy sẽ lên máy_bay đi Du_lịch Hawaii .
+Và chưa đầy một ngày nhưng anh ấy đã thực_hiện được 2 hoạt_động .
+Thật tuyệt_vời ! Nhưng thật_ra , đó chỉ là lựa_chọn tốt nhất lúc_này thôi .
+Và bây_giờ thì ta có gì , 5 ngày ăn_chơi ở Hawaii và cho_đến tận tối thứ 7 thì anh ấy vẫn chỉ_thực hiện được 2 hoạt_động .
+Hãy nghĩ xem trong 5 ngày đó anh ta đã có_thể thực_hiện được những gì .
+Mặc_dù đơn_giản và thực_thi rất nhanh , song rất không may là thuật_toán này lại không chính_xác .
+Tiếp_cận 2 Hãy thử một mánh_khóe khác .
+Giờ ta sẽ bỏ những hoạt_động tiêu tốn nhiều thời_gian như đi Du_lịch Hawaii bằng cách lựa_chọn những hoạt_động tốn ít thời_gian nhất (nghĩa là có R_i - L_i nhỏ nhất) và kiểm_tra xem nó có hợp_lí với những hoạt_động đã chọn trước đó chưa rồi tiếp_tục quá_trình .
+Theo_như thời_gian_biểu ở trên thì hoạt_động đầu tiện được chọn_lựa sẽ là tắm .
+Với thời_gian chỉ 15 phút , đây chính là lựa_chọn tối_ưu cục_bộ ( local best ) .
+Và giờ điều mà ta cần biết đó là có_thể giữ được tối_ưu cục_bộ khi mà những hoạt_động thích_hợp khác được chọn_lựa .
+Thời_gian_biểu của John sẽ như_sau : Tắm_rửa (15 phút , tối T7 , 20 : 30 - 20 : 45) .
+Tham_gia kỳ thi SRM trên Topcoder (2 tiếng , T7 , 12 : 00 - 14 : 00) .
+Tham_gia thử_thách "All you can eat" và "All you can drink" (2 tiếng 58 phút , T7 , 21 : 01 - 23 : 59) .
+Sửa_phòng (3 tiếng , T2 , 22 : 00 - T3 , 1 : 00) .
+Thạm dự nhạc hội Rock (4 tiếng , T3 , 19 : 00 - 23 : 00) .
+Chơi trò bắn súng nước_sơn (6 tiếng , T5 , 10 : 00 - 16 : 00) .
+Trong 10 hành_động , ta đã lựa ra được 6 hành_động , không tệ chút_nào ! Giờ thì thuật_toán của ta vẫn chạy rất nhanh và đáng_tin cậy hơn chút .
+Và quả_thực , đáp_án chính_xác trong trường_hợp này là 6 .
+John rất hài_lòng về sự hỗ_trợ của chúng_ta , nhưng sau khi trở_về từ kỳ nghỉ với kế_hoạch thông_minh này , John đã phải đối_mặt với những rắc_rối nghiêm_trọng khác : Áp_dụng thuật_toán của ta , John đã tham_gia một cuộc hẹn_hò chóng_vánh (màu đỏ) , để rồi anh ấy đã bỏ_lỡ cả bài_thi trong trường (màu xanh da trời) lẫn trận_đấu bóng_rổ của đội anh ấy yêu_thích (màu xanh lá) .
+Là một Topcoder , chúng_ta cần phải viết ra một chương_trình hoàn_toàn chính_xác , chứ không_phải chỉ đúng trong 1 số trường_hợp .
+Chỉ_cần một trường_hợp duy_nhất chúng_ta không giải_quyết được sẽ dẫn tới một thất_bại toàn_diện .
+Tiếp_cận 3 Những gì_mà chúng_ta thường làm trong tình_huống này là phân_tích điều gì đã gây ra lỗi ở cách làm trước để tránh lặp_lại nó trong tương_lai .
+Hãy xem_xét_lại trường_hợp sai .
+Cuộc hẹn_hò trùng thời_gian với cả việc_làm bài_thi lẫn trận_đấu bóng_rổ , trong_khi cả trận_đấu bóng_rổ lẫn làm_bài thi chỉ trùng_lặp với một_mình cuộc hẹn_hò .
+Vậy_thì ý_tưởng cũng tự_sinh ra từ vấn_đề này .
+Tại_sao ta không chọn hoạt_động ít bị trùng_lặp_nhất so_với những hoạt_động còn_lại ?
+Nghe có_vẻ hợp_lí ! Để đảm_bảo rằng phương_pháp này hoàn_toàn đúng_đắn , lần này ta hãy thử chứng_minh .
+Giờ giả_sử_ta đã lựa_chọn hoạt_động X , ta sẽ thử kiểm_tra xem ta có_thể lựa_chọn hoạt_động A và B (những hoạt_động bị trùng_lặp với X) thay_vì X được hay_không .
+Và_A , B cũng không được trùng_lặp nhau , nếu_không ta cũng không_thể tối_ưu_hóa kết_quả .
+Bây_giờ , ta sẽ quay về trường_hợp trước đó (X trùng với 2 hoạt_động , A và B trùng với 1 hoạt động) .
+Trong trường_hợp này , ta sẽ chọn A và B ngay từ_đầu tiên .
+Một trong những cách để phản_bác lại giả_thiết này chính là cho hoạt_động A và B trùng_lặp với nhiều hoạt_động hơn_nữa chứ không chỉ hoạt_động X .
+Nghe nó có_vẻ không trực_quan cho_lắm , nhưng (thật không may) ta vẫn có_thể xây_dựng trường_hợp đó như_sau : Nhưng hoạt_động được biểu_diễn bằng gạch màu xanh chính là những lựa_chọn tối_ưu trong thời_gian_biểu trên .
+Nhưng hoạt_động tô_màu đỏ trùng_lặp với 2 hoạt_động nên nó sẽ được chọn trước .
+Vẫn còn 4 hoạt_động thích_hợp khác trước hoạt_động đỏ , nhưng chúng đều bị trùng_lặp lẫn_nhau , thế nên ta chỉ_có thể lựa_chọn thêm 1 hoạt_động .
+Điều tương_tự cũng xảy_ra đối_với 4 hoạt_động sau hoạt_động màu đỏ , nhưng ta vẫn chỉ_có thể chọn 1 .
+Vậy tổng_cộng theo phương_pháp này , ta vẫn chỉ_có thể chọn 3 hoạt_động , trong_khi kết_quả tối_ưu là 4 .
+Tiếp_cận 4 Tổng_quát lại , ta đã thử 3 cách khác_nhau , và mỗi cách_đều có thiếu_sót : Cách 1 : Chọn hoạt_động có L_i nhỏ nhất Cách 2 : Chọn hoạt_động có R_i - L_i nhỏ nhất Cách 3 : Chọn hoạt_động giao với ít hoạt_động khác nhất .
+Có_vẻ như chúng_ta đang đối_mặt với một vấn_đề hóc_búa .
+Nhưng thật_ra , vấn_đề này vẫn có_một cách giải_quyết đẹp_đẽ , và không_hề phức_tạp .
+Nếu ta xem_xét hình trên một_cách kỹ_lưỡng hơn_nữa , ta sẽ thấy được rằng hoạt_động màu xanh nằm ở góc trái dưới là_là hoạt_động duy_nhất hoàn_thành trước đường vẽ dọc màu đỏ .
+Vậy , nếu lựa_chọn 1 hoạt_động đơn_lẻ , ta sẽ chọn hoạt_động kết_thúc sớm nhất (có R_i nhỏ nhất) .
+Gọi thời_điểm hoàn_thành hoạt_động đó là t_1 , thì khoảng thời_gian sau t_1 sẽ trống để ta có_thể chọn các hoạt_động khác .
+Nếu chúng_ta chọn bất_kỳ hoạt_động nào khác , thì khoảng thời_gian còn_lại sẽ ngắn đi .
+Điều này là hiển_nhiên , bởi_vì khi ta kết_thúc với bất_kỳ một hoạt_động nào khác thì luôn_luôn t_2 gt; t_1 .
+Trong trường_hợp đầu_tiên , ta sẽ có toàn_bộ thời_gian từ t_1 đến khi kết_thúc và bao_gồm luôn khoảng từ t_2 đến kết_thúc .
+Bởi_vậy mà nó cũng không có khuyết_điểm trong việc lựa_chọn hoạt_động kết_thúc sớm .
+Và nó còn có_một ưu_điểm đó là ta hoàn_toàn có_thể chèn thêm một hoạt đồng bất_kỳ vào giữa t_1 và t_2 và kết_thúc trước_khi hoạt_động của t_2 bắt_đầu .
+Trên đây là ý_tưởng để chứng_minh thuật_toán này đúng .
+Ta có_thể từ_đó để chứng_minh chặt_chẽ là cách làm này đúng .
+Được biết tới với tên_gọi "Lựa chọn hoạt động" ( Activity_Selection ) , đây là bài_toán cơ_sở sử_dụng "Phương pháp Tham lam" .
+Giống_như là một gã tham_lam luôn muốn chiếm lấy nhiều nhất , thường_xuyên nhất mà hắn_ta có_thể , trong trường_hợp này , ở mỗi bước_ta sẽ chọn_lựa một hoạt_động kết_thúc đầu_tiên và mỗi lần đều không có hoạt_động đang trong tiến_trình .
+Và có_một sự_thật đó là ta luôn_luôn áp_dụng phương_pháp tham_lam cho mỗi bước trong cuộc_đời của mình .
+Khi ta đi mua_sắm hoặc đi xe_hơi , ta đều luôn lựa_chọn phương_án tốt nhất tại thời_điểm hiện_tại .
+Thật_ra , phương_pháp tham_lam có 2 công_thức chung : Tính lựa_chọn tối_ưu : Từ những kết_quả tối_ưu cục_bộ ta có_thể đi đến kết_quả tối_ưu toàn_cục mà không cần phải xem_xét_lại các kết_quả .
+Tính tối_ưu từ bài_toán nhỏ : Kết_quả tối_ưu có được xác_định bằng các kết_quả tối_ưu từ bài_toán nhỏ hơn .
+Đoạn mã giả dưới_đây diễn_ta cách lựa_chọn tối_ưu các hoạt_động bằng thuật_toán tham_lam mà ta vừa chứng_minh phía trên : Đặt_N là số hoạt_động và I là hoạt_động thứ I (1 lt;= I lt;= N)_Với mỗi I , xét SI và FI lần_lượt là thời_gian bắt_đầu và kết_thúc của hoạt_động đó .
+Sắp_xếp lại các hoạt_động theo thứ_tự tăng dần của thời_gian kết_thúc .
+- Có_nghĩa là , với I lt; J ta phải có F_I lt;= F_J // A là tập_hợp các hoạt_động được chọn A = 1 // J là hoạt_động cuối_cùng được chọn J = 1 For_I = 2 to N // ta có_thể chọn I nếu nó là hoạt_động cuối_cùng // việc chọn_lựa đã hoàn_thành If_S_I gt;= F_J // lựa_chọn hoạt_động I_A = A + I // hoạt_động I giờ trở_thành hoạt_động cuối_cùng được lựa_chọn J = I_Endif_Endfor_Return_A_Sau khi áp_dụng thuật_toán trên , "Fun plan" của Johnny sẽ như_thế này : Sửa_phòng Vô_địch cuộc_thi cờ_vua Chiến_thắng cuộc_thi Starcraft Tham_gia kỳ thi SRM trên Topcoder Tắm_rửa Tham_gia thử_thách "All you can eat" và "All you can drink" Vấn_đề của John_Smith đã được giải_quyết , tuy_nhiên đây chỉ là một ví_dụ mà Tham_lam có_thể hoạt_động .
+Bài_tập tương_tự : Boxing_BioScore Bài_toán Cho_N dãy ký_tự dài bằng_nhau .
+Mỗi dãy gồm 4 loại ký_tự : A , C , T , G .
+Độ tương_đồng của 2 dãy là tổng_điểm của các cặp ký_tự của cùng vị_trí .
+Ví_dụ , độ tương_đồng của ACTA và GATC là : score(A , G) + score(C , A) + score(T , T) + score(A , C) .
+Tìm cách xây_dựng bảng S ( score ) sao_cho độ tương_đồng của tất_cả các cặp 2 xâu trong N xâu là lớn nhất , biết rằng bảng S phải thỏa_mãn các tính_chất : Các giá_trị từ -10 đến 10 Đối_xứng : S(x , y) = S(y , x) .
+Đường_chéo dương : S(x , x) gt; 0 .
+Tổng_các số trong S phải bằng 0 .
+Phân_tích Việc đầu_tiên mà ta cần làm là xây_dựng một ma_trận cho_biết số lần_lặp ( ma_trận tần_số ) của từng cặp 2 ký_tự .
+Đây là một công_việc khá nhẹ_nhàng khi mà ta chỉ_cần ghép từng cặp ký_tự ở hai chuỗi tạo rồi đếm_số lần xuất_hiện của chúng ( AA , AC , AG , AT , CA , CC , CG , CT , GA , GC , GG , GT , TA , TC , TG , TT ) .
+Từng cặp ký_tự sẽ được xem như một phần_tử trong ma_trận và giá_trị của nó chính là số lần xuất_hiện của nó .
+Ví_dụ , hãy xét bộ "ACTAGAGAC" , "AAAAAAAAA" , "TAGTCATAC" , "GCAGCATTC" được sử_dụng ở ví_dụ thứ 2 .
+Ở góc phải - dưới của hình minh_họa trên , ta có_thể thấy kết_quả của ma_trận tần_số đối_với bộ đã cho .
+Tạm gọi nó là F .
+Giờ việc mà ta cần làm là tìm_ra một ma_trận S sao_cho tổng của các tích : Fi , j Si , j với (1 \le i , j \le 4) là lớn nhất .
+Giờ ta xét từng điều_kiện cho ma_trận cần tìm : 1) Tổng của 16 phần_tử bằng 0 : Rõ_ràng , nếu ta không giới_hạn tổng của các phần_tử , thì ta có_thể đạt được tổng_bằng vô_cùng , nếu gán tất_cả các phần_tử của S là vô_cùng .
+Nhưng bởi_vì tống của chúng phải bằng 0 , thế nên khi ta tăng_giá_trị 1 phần_tử lên thì ta sẽ phải giảm đi giá_trị của 1 phần_tử khác .
+Thử_thách ở điều_kiện này chính là phải tìm_ra một sự phân_bố tối_ưu .
+2) Giá_trị mỗi phần_tử chỉ nằm trong_khoảng từ -10 đến 10 (Si , j \in -10 , 10) Tương_tự , nếu_không có_điều kiện này , kết_quả có_thể lên đến vô_cùng , nếu ta có 1 cặp không xuất_hiện , gán S tương_ứng là âm vô_cùng , còn các phần_tử còn_lại trong mảng là dương vô_cùng .
+3) Mỗi phần_tử đối_xứng phải có_giá trị bằng_nhau (S(x , y) = S(y , x)) Bởi_vì tính đối_xứng , ta phải quy_định cho các điểm cho các cặp như AC và CA bằng_nhau .
+Do tính đối_xứng này , ta_cập nhật lại mảng tần_số xuất_hiện để tính cả các cặp đối_xứng .
+Đối_với ví_dụ trên , ta có bảng tần_số mới như_sau : AA : 14 AC+CA : 11 AG+GA : 10 AT+TA : 10 CC : 4 CG+GC : 2 TC+CT : 0 GG : 0 GT+TG : 3 TT : 1 Từ trực_giác ta có_thể thấy ngay đến phương_án như_sau : đã sẽ gán điểm_số càng cao đối_với cặp xuất_hiện càng nhiều lần .
+4) Các phần_tử trên đường_chéo phải dương (S(x , x) gt; 0) Do tính_chất này , ta phải xét riêng hai loại phần_tử : 4 phần_tử trên đường_chéo (các phần_tử đại_diện cho AA , CC , GG , TT ) 6 phần_tử không nằm trên đường_chéo (các phần_tử đại_diện cho AC + CA , AG + GA , AT + TA , CG + GC , CT + TC , GT +TG ) .
+Ta xét tất_cả các trường_hợp chọn các phần_tử của nhóm thứ nhất .
+Có 104 = 10 , 000 trường_hợp khác_nhau .
+Với mỗi trường_hợp của nhóm thứ nhất , ta sẽ tìm đáp_án tối_ưu cho nhóm thứ 2 .
+Với mỗi trường_hợp , ta có tổng_các phần_tử của nhóm thứ nhất nằm trong_khoảng 4 , 40 , nên tổng_các phần_tử của nhóm thứ 2 nằm trong_khoảng -20 , -2 (chú ý rằng nhóm thứ 2 đối_xứng , mỗi phần_tử xuất_hiện 2 lần trong ma_trận S , nên ta phải nhân đôi) Vì các phần_tử của nhóm 2 có chung tính_chất , ta sử_dụng Tham_lam để tìm kết_quả tối_ưu cho nhóm thứ 2 .
+Nhắc_lại tư_tưởng của Tham_lam : tại mỗi bước , ta chọn một lựa_chọn tối_ưu cục_bộ .
+Trong trường_hợp này nghĩa_là ta xét lần_lượt từng phần_tử , với mỗi phần_tử , gán cho nó giá_trị tối_ưu .
+Nhận_xét : Nếu ta xét lần_lượt các phần_tử theo thứ_tự giảm_dần , ở mỗi bước_ta gán giá_trị lớn nhất có_thể cho phần_tử đó , thì kết_quả thu được sẽ tối_ưu .
+Do_đó , cách làm là : Sắp_xếp 6 phần_tử của nhóm 2 theo thứ_tự giảm_dần (theo ma_trận F) .
+Hai giá_trị đầu_tiên sẽ được gán bằng 10 (vì trường_hợp xấu nhất ta cần tổng_bằng -20 , thì ta vẫn có_thể gán 4 giá_trị còn_lại là -10) .
+Ta biết rằng số điểm cuối_cùng sẽ nhỏ hơn 0 .
+Bởi_vì ta muốn tối_đa_hóa số điểm của phần_tử thứ 3 , nên ba phần_tử còn_lại sẽ luôn là -10 : Trong trường_hợp tốt nhất , tổng_bằng -2 , ta thu được : 10 , 10 , 8 , -10 , -10 , -10 .
+Trong trường_hợp xấu nhất , tổng_bằng -20 , ta thu được : 10 , 10 , -10 , -10 , -10 , -10 .
+Ta có_thể thu được tất_cả các tổng_từ -20 đến -2 bằng việc thay_đổi giá_trị của phần_tử thứ 3 từ 8 đến -10 .
+Giờ ta cần chứng_minh rằng phương_pháp của mình là đúng .
+Vì ta xét hết tất_cả các trường_hợp của nhóm 1 , nên ta chỉ_cần chứng_minh cách chọn các phần_tử của nhóm 2 là tối_ưu .
+Vì tổng_các phần_tử của nhóm 2 cố_định , nên nếu ta tăng 1 phần_tử , thì_phải giảm 1 phần_tử khác .
+Gọi f_1 và f_2 là số lần xuất_hiện của 2 số bất_kỳ của nhóm 2 .
+Ta có : f_1 s_1 + f_2 s_2 = X .
+Không làm mất tính tổng_quát , giả_sử f_1 \ge f_2 .
+Do cách tham , ta có s_1 \ge s_2 .
+Ta cũng có s_1 là lớn nhất có_thể , nên ta không_thể tăng s_1 .
+Giả_sử cách làm của ta không tối_ưu , nghĩa_là ta có_một cách chọn 1 số a sao_cho : f_1 (s_1 - a) + f_2 (s_2 + a) = Y với a là số_dương .
+Ta có Y-X = a (f2-f1) .
+Bởi_vì f1 \ge f2 nên Y-X luôn âm .
+Do_vậy , cách làm của ta là tối_ưu .
+Cài_đặt Ý_tưởng chính của thuật_toán trên sẽ được minh_họa trong đoạn mã giả dưới_đây : Best = -Infinity For_S1 = 1 to 10 For_S2 = 1 to 10 For_S3 = 1 to 10 For_S4 = 1 to 10 If (S1 + S2 + S3 + S4) mod 2 = 0) S5 = S6 = 10 S7 = 10 - (S1 + S2 + S3 + S4) / 2 S8 = S9 = S10 = -10) // biến Best sẽ lưu lại giá_trị trung_bình lớn nhất tìm được Best = max (Best , score (F , S))_Endif_Endfor_Endfor_Endfor_Endfor_Return_Best Đối_với mảng lưu điểm đã cho (trong trường_hợp của chúng_ta là mảng S) , ta sẽ tính kết_quả cuối_cùng bằng việc chỉ tính tổng của tích FI_S_I .
+GoldMine Bài_toán Có_N mỏ vàng , mỗi mỏ vàng chứa được tối_đa 6 công_nhân .
+Bằng cách phân_bổ các công_nhân , công_ty sẽ thu được (hoặc mất đi) số tiền như_sau : Nếu mỏ vàng có ít nhân_công hơn trữ_lượng của nó , công_ty sẽ thu được 60 với mỗi công_nhân .
+Nếu mỏ vàng có_số công_nhân bằng với trữ_lượng của nó , công_ty sẽ thu được 50 cho với mỗi công_nhân .
+Nếu mỏ vàng có_số công_nhân nhiều hơn trữ_lượng của nó , công_ty sẽ được số tiền là 50 nhân cho trữ_lượng mỏ .
+Với mỗi công_nhân bị thừa ra so_với sản_lượng mỏ , công_ty sẽ bị mất đi 20 .
+Dù_cho có bị mất tiền đi_chăng_nữa thì công_ty cũng buộc phải phân_công đủ các công_nhân vào các mỏ .
+Phân_tích Bằng việc sử_dụng phương_pháp tham_lam , ta sẽ phân_tích xem cách một mỏ vàng bị khai_thác triệt .
+Kinh_nghiệm cho thấy , đối_với dạng bài như tìm_kiếm giá_trị tối_đa , thường_ta có_thể giải_quyết bằng Tham_lam .
+Trong trường_hợp này , mục_tiêu của ta là chỉ_định những công_nhân đến các mỏ vàng sao_cho tổng lợi_nhuận thu được là tối_đa .
+Phân_tích nhanh , ta thấy rằng cần phải_biết lợi_nhuận thu được từ các mỏ vàng trong tất_cả các trường_hợp (chỉ có 7 trường_hợp - từ 0 đến 6 công nhân) .
+Bảng dưới_đây sẽ cho ta thấy lợi_nhuận khả_thi đối_với hai mỏ ở ví_dụ 0 trong bài : 0 người 1 người 2 người 3 người 4 người 5 người 6 người Mỏ 1 0 57 87 87 67 47 27 Mỏ 2 0 52 66 75 75 66 48 Nếu ta chỉ_có duy_nhất một công_nhân , lựa_chọn tối_ưu chính là cho anh ta vào mỏ nơi mà anh ta mang_lại nhiều lợi_nhuận nhất .
+Nhưng nếu ta có nhiều công_nhân , ta cần phải kiểm_tra xem nếu phân_công anh ở mỏ tương_tự có_mang lại lợi_nhuận cục_bộ tối_ưu không .
+Trong ví_dụ , ta có 4 công_nhân cần được phân_công .
+Bảng dưới_đây sẽ cho_biết lợi_nhuận thu được_của mỗi mỏ với từng công_nhân được thêm vào .
+Ban_đầu Người 1 Người 2 Người 3 Người 4 Người 5 Người 6 Mỏ 1 - 57 30 0 -20 -20 -20 Mỏ 1 - 52 14 9 0 -9 -20 Ta để_ý rằng , mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào một công_nhân , trong_khi mỏ 2 chỉ tăng thêm 52 .
+Thế nên , ta sẽ phân_bố người đầu_tiên vào mỏ 1 .
+Ban_đầu Người 1 Người 2 Người 3 Người 4 Người 5 Người 6 Mỏ 1 - 57 30 0 -20 -20 -20 Mỏ 1 - 52 14 9 0 -9 -20 Giờ , nếu ta thêm công_nhân vào mỏ 1 , ta chỉ tăng lợi_nhuận được thêm 30 .
+Bởi_vậy nên ta sẽ thêm công_nhân vào mỏ 2 , lúc_này lợi_nhuận ta thu được sẽ tăng thêm 52 .
+Ban_đầu Người 1 Người 2 Người 3 Người 4 Người 5 Người 6 Mỏ 1 - 57 30 0 -20 -20 -20 Mỏ 1 - 52 14 9 0 -9 -20 Công_nhân thứ 3 sẽ có_ích hơn khi làm ở mỏ 1 với lợi_nhuận thu được là 30 .
+Ban_đầu Người 1 Người 2 Người 3 Người 4 Người 5 Người 6 Mỏ 1 - 57 30 0 -20 -20 -20 Mỏ 1 - 52 14 9 0 -9 -20 Với công_nhân thứ 4 , ta có_thể cho anh ta vào mỏ 1 (với lợi_nhuận là 0) hoặc mỏ 2 (với lợi_nhuận là 14) .
+Dĩ_nhiên , ta sẽ phân_công anh ấy vào mỏ hai .
+Ban_đầu Người 1 Người 2 Người 3 Người 4 Người 5 Người 6 Mỏ 1 - 57 30 0 -20 -20 -20 Mỏ 1 - 52 14 9 0 -9 -20 Cuối_cùng , hai công_nhân còn_lại sẽ được phân_công_bằng cách cho cả hai vào làm ở mỏ 2 hoặc mỗi người_làm ở một mỏ riêng .
+Ví_dụ cho ta thấy kết_quả mà ta vừa tìm được chính là kết_quả tối_ưu .
+Nhưng câu_hỏi đặt ra là liệu phương_pháp này có luôn đúng hay_không ?
+Khẳng_định : Ta luôn_luôn thu được tổng lợi_nhuận lớn nhất khi lần_lượt cho từng công_nhân vào mỏ có_lợi nhuận cao nhất ở thời_điểm hiện_tại .
+Chứng_minh : Gọi_A , B lần_lượt là mỏ 1 và mỏ 2 , a1 , b1 , a2 , b2 được định_nghĩa như_sau : a1 - lợi_nhuận thu được khi phân_công thêm một công_nhân vào A .
+a1+a2 - lợi_nhuận thu được khi phân_công thêm hai công_nhân vào A .
+b1 - lợi_nhuận thu được khi phân_công thêm một công_nhân vào B .
+b1+b2 - lợi_nhuận thu được khi phân_công thêm hai công_nhân vào B .
+Thuật_toán Tham_lam của ta sẽ gia_tăng lợi_nhuận bằng a1 cho công_nhân đầu_tiên và (a2+b1) cho công_nhân thứ 2 .
+Tổng lợi_nhuận lúc_này sẽ là a1+max(a2 , b1) .
+Nếu ban_đầu ta chọn b1 thì lợi_nhuận của_công nhân thứ 2 thu được sẽ là a1 hoặc b2 .
+Trong trường_hợp đầu_tiên , ta sẽ có a1+b1 \le a1+max(a2 , b1) .
+Trong trường_hợp thứ_hai , tổng lợi_nhuận sẽ là b1+b2 .
+Ta cần phải chứng_minh b1+b2 \le a1+max(a2 , b1) .
+Mà ta luôn có b1 \le b2 vì lợi_nhuận thu được từ việc thêm một công_nhân vào một mỏ luôn_luôn lớn hơn hoặc bằng lợi_nhuận thu được từ việc thêm một công_nhân nữa vào mỏ đó .
+Trạng_thái của mỏ vàng Lợi_nhuận từ việc thêm 1 người Lợi_nhuận từ việc thêm 1 người Số_lượng mỏ gt;số lượng người đào+2 60 60 Số_lượng mỏ = số_lượng người đào+2 60 50 Số_lượng mỏ = số_lượng người đào+1 50 -20 Số_lượng mỏ -20 -20 Vì b1+b2 \le a1+a2 \le a1+b1 \le a1+max(a2 , b1) , lựa_chọn Tham_lam cũng chính là phương_án tối_ưu .
+Cài_đặt thuật_toán này hoàn_toàn không khó , tuy_nhiên ta cần phải xử_lý thêm một_vài trường_hợp nữa (tất cả các công_nhân đều phải được phân_công , chỉ_có tối_đa sáu người trong một mỏ và nếu một công_nhân có_thể được đặt tối_ưu ở nhiều mỏ , ưu_tiên mỏ có chỉ_số nhỏ hơn) .
+WorldPeace Bài_toán : Cho n đất_nước , mỗi nước có dân_số của họ .
+Hãy chia thành thành các nhóm có k người không có cùng quốc_tịch .
+Hãy cho_biết số_lượng nhóm tối_đa có_thể đạt được .
+Phân_tích : Những thuật_toán Tham_lam đều hoạt_động tốt ở mọi tình_huống bởi ta đã chứng_minh được tính đúng_đắn của nó .
+Nhưng còn một lớp bài_toán tối_ưu_hóa nữa mà thuật_toán Tham_lam có_thể được áp_dụng .
+Đây là những bài_tập thuộc lớp NP - đầy_đủ (như bài_toán người đưa thư TSP_Traveling_Salesman_Problem ) , đối_với dạng bài_toán này , ta thường sẽ sử_dụng phượng pháp nhánh cận để giải_quyết vấn_đề hơn_là chờ_đợi chương_trình thực_thi . . .
+Lời_giải không_phải lúc nào cũng là tối_ưu , song trong phần_lớn trường_hợp , nó đã đủ tốt rồi .
+Với một bài_toán không thuộc lớp NP như_thế này , đây chính là ví_dụ tuyệt_vời cho việc một thuật_toán Tham_lam không chỉ_có thể đánh_lừa và vượt_qua các test mẫu , mà nó còn có_thể vượt_qua cả những bộ test hệ_thống được thiết_kế kỹ_càng .
+Thuật_toán này không quá khó để nghĩ_ra , mà chỉ_cần một_vài phân_tích nhanh_ta có_thể nhận_ra , để tối_đa_hóa tổng_số_lượng nhóm , luôn_luôn tối_ưu để tạo thiết_lập một nhóm từ k quốc_gia có dân_số đông nhất .
+Chúng_ta áp_dụng phương_pháp này ở từng bước và sau_đó sắp_xếp lại đoạn để thấy được k quốc_gia tiếp_theo có dân_số đông nhất .
+Ý_tưởng này sẽ được minh_họa trong đoạn mã giả dưới_đây : Groups = 0 Repeat // sắp_xếp lại mảng theo thứ_tự giảm_dần Sort (A) Min = AK_If_Min gt; 0 Groups = Groups + 1 For_I = 1 to K_AI = AI - 1 Endfor_Until_Min = 0 Return_Groups_Không may_thay , mỗi quốc_gia lại có tới hàng_tỷ người dân , thế nên ta không_thể_nào thiết_lập từng nhóm một được .
+Về_mặt lý_thuyết , đối_với một_tập hợp của k quốc_gia , chúng_ta sẽ tạo nhóm cho_đến khi mà toàn_bộ người dân của nước đó đã được phân nhóm .
+Và điều này sẽ được thực_hiện chỉ trong 1 bước : Groups = 0 Repeat // sắp_xếp lại mảng theo thứ_tự giảm_dần Sort (A) Min=_AK_Groups = Groups + Min_For_I = 1 to K_AI = AI - Min_Endfor_Until_Min = 0 Return_Groups Thời_gian_thực thi giờ không còn là vấn_đề nữa , mà vấn_đề giờ_đây chính là tính đúng_đắn của thuật_toán ! Khi ta thử ví_dụ 0 trong bài , thuật_toán của chúng_ta trả về kết_quả là 4 chứ không_phải là 5 .
+Nhưng kết_quả trả về trong ví_dụ 1 , 2 và 3 thì đúng .
+Trong với ví_dụ cuối_cùng , thay_vì tạo ra 3983180234 nhóm , ta chỉ tạo được 3983180207 nhóm mà_thôi .
+Bằng việc chỉ kết_quả có sai_lệch không_đáng_kể , ta có_thể thấy rằng giải_thuật của mình khá tốt .
+Thế nên giờ ta chỉ_cần cải_tiến nó theo hướng này .
+Cho_đến hiện_tại , ta đã có trong tay hai thuật_toán : Thuật_toán tham_lam đầu_tiên chính_xác , nhưng không đủ nhanh .
+Thuật_toán tham_lam thứ_hai nhanh , nhưng lại không chính_xác .
+Giờ , điều mà ta cần làm đó chính là tăng độ_chính_xác của thuật_toán này lên nhiều nhất có_thể , mà thời_gian_thực thi vẫn không bị quá giới_hạn .
+Một_cách cơ_bản , ta đang tìm_kiếm sự cân_bằng giữa thời_gian_thực thi và độ_chính_xác .
+Điểm khác_biệt duy_nhất giữa hai thuật_toán kể_trên chính là số_lượng nhóm mà chúng_ta lựa_chọn được .
+Chúng_ta sẽ có_một phương_án như_sau : ta sẽ lựa ra một_số lượng lớn nhóm ngẫu_nhiên lúc đầu , sau_đó sẽ giải_quyết đoạn còn_lại theo cách tiếp_cận an_toàn hơn .
+Khi mà chúng_ta chỉ còn_lại một_số lượng nhỏ_người dân chưa được phân nhóm ở các quốc_gia , thì lúc_này nó hoàn_toàn hợp_lí khi ta sử_dụng phương_pháp vét cạn .
+Với biến Allowed được khỏi tạo trong thuật_toán dưới_đây , ta điều_khiển số_lượng nhóm mà ta mong_muốn tạo tại thời_điểm được cho .
+Groups = 0 Repeat // sắp_xếp lại mảng theo thứ_tự giảm_dần Sort (A) Min = AK_Allowance = (Min+999) / 1000 Groups = Groups + Allowance_For_I = 1 to K_AI = AI - Allowance_Endfor_Until_Min = 0 Return_Groups_Nếu cách tiếp_cận này thật_sự đúng , ta hoàn_toàn có_thể nhận_ra được .
+Mặc_dù nó có_thể thoát_khỏi ánh_mắt sắc nhọn của Tomek cũng_như là test hệ_thống , nhưng có_vẻ là nó sẽ không_thể_nào đưa_ra kết_quả quả đúng_với mọi bộ test_khả_thi .
+Đây chính một ví_dụ cho thấy nếu được tinh_chỉnh , từ một thuật_toán tham_lam đơn_giản (nhưng vẫn còn khiếm khuyết) cũng cũng có_thể trở_thành một giải_thuật "đúng" .
+Để biết thêm về thuật_toán chính_xác cho bài này , xem lời_giải ở Match_Editorial .
+Tổng_kết Tham_lam thường dễ nghĩ_ra , dễ cài_đặt và chạy nhanh , nhưng không_phải lúc nào cũng đúng .
+Khi bạn sử_dụng duyệt hoặc quy_hoạch_động , nó giống_như bạn đang di_chuyển trên mặt_đất an_toàn .
+Còn đối_với tham_lam , thì giống_như bạn đang đi trên một bãi_mìn .
+Như bạn đã thấy qua ví_dụ 1 , có rất nhiều cách tham khác_nhau nhưng chỉ_có một_cách cho kết_quả đúng .
+Vì_vậy , khi làm_bài , bạn luôn_luôn nên tìm cách chứng_minh tính đúng_đắn của thuật tham .
+Không tồn_tại một công_thức chung nào cho việc áp_dụng Tham_lam , tuy_nhiên , ta có_thể nhìn ra thuật tham bằng việc phân_tích các tính_chất của bài_toán , kinh_nghiệm cũng_như trực_giác .
+Một_vài lưu_ý nhỏ Nhưng bài_tập mà có_vẻ cực_kỳ phức_tạp (như TCSocks ) có_thể xem như_là dấu_hiệu để tiếp_cận bằng phương_pháp Tham_lam .
+Nhưng bài_toán mà dữ_liệu đầu_vào rất lớn (mà kể_cả thuật_toán có độ phức_tạp O(n2) vẫn không kịp) thường được giải bằng tham_lam hơn_là quay lui hoặc quy_hoạch_động .
+Mặc_dù nó có_vẻ rùng_rợn , nhưng bạn nên nhìn thuật_toán tham_lam dưới đôi mắt của một thám_tử chứ không_phải là dưới cặp kính của một nhà toán_học .
+Một thám_tử giỏi tham_lam .
+Một người tham_lam may_mắn .
+Một người tham_lam không may_mắn .
+Ngoài_ra , việc học_tập một_số thuật_toán có sử_dụng Tham_lam sẽ giúp nắm_vững phương_pháp này hơn ( thuật_toán Prim , thuật_toán Kruskal , thuật_toán Dijkstra ) Bài_tập mở_rộng Cấp_độ 1 GroceryBagger – SRM 222 FanFailure – SRM 195 PlayGame – SRM 217 SchoolAssembly – TCO04_Round 2 RockStar – SRM 216 Apothecary – SRM 204 Boxing – TCO04_Round 3 Unblur – TCO04_Semifinal_Room 3 Cấp_độ 2 Crossroads – SRM 217 TCSocks – SRM 207 HeatDeath – TCO04_Round 4 BioScore – TCO04_Semifinal_Room 1 Rationalization – SRM 224 Cấp_độ 3 GoldMine – SRM 169 MLBRecord – TCO04_Round 2 RearrangeFurniture – SRM 220 WorldPeace – SRM 204

@@ -1,0 +1,49 @@
+Biến , con_trỏ Cấu_trúc dữ_liệu đơn_giản nhất chính là các biến (variable) .
+Chúng nắm_giữ duy_nhất một giá_trị , hơn_nữa , phạm_vi sử_dụng có giới_hạn .
+Khi nhiều giá_trị cần lưu_trữ , mảng (arrays) được sử_dụng .
+Một khái_niệm hơi khó hơn mặc_dù không kém phần căn_bản là con_trỏ (pointer) .
+Con_trỏ thay_vì giữ một giá_trị , nó lại giữ một địa_chỉ vùng nhớ : Trong hình trên : var là một biến thông_thường , có địa_chỉ 1001 và giá_trị 50 ptr là một biến kiểu con_trỏ , có địa_chỉ 2047 và giá_trị 1001 .
+Giá_trị của ptr là địa_chỉ của biến var .
+Mảng (Arrays) Mảng là một cấu_trúc dữ_liệu cực_kỳ đơn_giản và có_thể xem như một danh_sách với chiều_dài cố_định .
+Mảng là một cấu_trúc dữ_liệu “đẹp” bởi tính đơn_giản của nó .
+Mảng đặc_biệt thích_hợp cho các tình_huống mà ta biết trước được số_lượng phần_tử hoặc có_thể xác_định được khi chạy chương_trình .
+Giả_sử bạn cần một đoạn mã để tính giá_trị trung_bình của một_vài con_số .
+Mảng là sự lựa_chọn tuyệt_vời để giữ các giá_trị bởi yêu_cầu bài_toán không đòi_hỏi một thứ_tự lưu_trữ cụ_thể và các phép_tính toán cũng không đòi_hỏi gì khác ngoài việc duyệt qua toàn_bộ các phần_tử .
+Một trong những sức_mạnh khác của mảng chính là ta có_thể truy_cập các phần_tử của mảng một_cách ngẫu_nhiên bằng chỉ_số .
+Ví_dụ như , bạn có_một danh_sách gồm tên của các học_sinh trong lớp_học .
+Mỗi học_sinh đánh_số từ 1 đến n .
+Khi đó để đọc hoặc lưu tên học_sinh thứ i bạn chỉ_cần gọi tới studentNamei .
+Do các phần_tử của mảng ở vị_trí liên_tiếp nhau trong bộ_nhớ máy_tính , nên thao_tác này chỉ mất độ phức_tạp \mathcalO(1) .
+Tuy_nhiên cũng vì lý_do này , nên việc tăng kích_thước mảng hay thêm / xóa 1 phần_tử vào vị_trí bất_kỳ của mảng có độ phức_tạp \mathcalO(N) .
+Mảng có_số lượng phần_tử cố_định , mỗi phần_tử giữ của mảng một thông_tin và ở một vị_trí không_đổi đã được định_nghĩa trước đó .
+Tổng_kết Bộ_nhớ cố_định , cần biết trước_số phần_tử Truy_cập một vị_trí bất_kỳ : \mathcalO(1) .
+Thêm / xóa_một phần_tử : \mathcalO(N) .
+Mở_rộng Trong_C++_STL , có CTDL vector , được gọi_là mảng động .
+CTDL này cho_phép thực_hiện các thao_tác : Truy_cập một vị_trí bất_kỳ : \mathcalO(1) .
+Thêm / Xóa 1 phần_tử vào cuối mảng : độ phức_tạp trung_bình : \mathcalO(1) .
+Thêm / xóa_một phần_tử bất_kỳ : \mathcalO(N) .
+Để làm được điều này , vector sử_dụng kĩ_thuật "nhân đôi mảng" : Mảng của ta sẽ có_thể cấp_phát bộ_nhớ tối_đa là 2 lần chiều_dài thật (số phần tử) của mảng .
+Nếu mảng vẫn chưa đầy (bộ nhớ cấp_phát lớn hơn chiều_dài thật của mảng) , ta chỉ_cần đơn_giản là thêm phần_tử mới vào cuối mảng .
+Nếu mảng đầy , ta làm như_sau : Cấp_phát bộ_nhớ mới bằng 2 lần chiều_dài mảng Copy mảng cũ qua bộ_nhớ mới cấp_phát .
+Như_vậy ta có mảng mới với dữ_liệu giống với mảng cũ , và còn dư ra chỗ_trống ở cuối mảng mới .
+Thêm phần_tử mới vào cuối mảng mới .
+Nếu ta thêm N phần_tử vào cuối mảng , thì độ phức_tạp là : \mathcalO(1 + 2 + 4 + 8 + 16 + . . . ) cho các thao_tác cấp_phát bộ_nhớ \mathcalO(1) cho việc ghi phần_tử mới vào phần bộ_nhớ trống .
+Do_đó độ phức_tạp tổng không quá \mathcalO(N) , và độ phức_tạp trung_bình của 1 thao_tác là \mathcalO(1) .
+Danh_sách liên_kết (Linked Lists) Danh_sách liên_kết là một cấu_trúc dữ_liệu có_thể giữ một_số lượng phần_tử tùy_ý và dễ_dàng thay_đổi kích_thước , cũng_như dễ_dàng bỏ_đi các phần_tử bên_trong nó .
+Danh_sách liên_kết , hiểu theo cách đơn_giản nhất_là một con_trỏ trỏ tới một nút dữ_liệu .
+Mỗi nút dữ_liệu bao_gồm dữ_liệu cần chứa và một con_trỏ trỏ tới nút tiếp_theo .
+Tại điểm cuối_cùng , con_trỏ trỏ tới giá_trị NULL .
+Với thiết_kế như ban_đầu , một danh_sách liên_kết thích_hợp để lưu_trữ dữ_liệu khi chưa biết trước được số_lượng các phần_tử hoặc các phần_tử thường_xuyên thay_đổi .
+Tuy_vậy , chúng_ta không_thể truy_cập một_cách ngẫu_nhiên các phần_tử của danh_sách liên_kết .
+Để tìm_kiếm một giá_trị , ta phải bắt_đầu tại phần_tử đầu_tiên và duyệt tuần_tự qua các phần_tử cho tới khi bắt_gặp được_giá trị mà mình cần tìm_kiếm .
+Để chèn một nút vào danh_sách liên_kết , bạn cũng phải thực_hiện tương_tự .
+Độ phức_tạp của cả 2 thao_tác này là \mathcalO(N) .
+Tuy_nhiên , nếu ta biết được con_trỏ trỏ đến phần_tử cần xóa , thì độ phức_tạp chỉ là \mathcalO(1) .
+Dễ_dàng nhận_thấy , thao_tác tìm_kiếm và chèn trong danh_sách liên_kết không thật_sự hiệu_quả .
+Sau_đây là cài_đặt kiểu dữ_liệu danh_sách liên_kết thông_thường : struct ListNode int data ; // dữ_liệu được lưu ở nút của linked list ListNode nextNode ; // con_trỏ trỏ tới phần_tử tiếp_theo của linked list .
+; ListNode firstNode ; Bạn có_thể chèn một nút mới vào bằng cách chèn chúng vào đầu danh_sách .
+Thao_tác này có độ phức_tạp là \mathcalO(1) .
+ListNode newNode = new_ListNode (); newNode -gt; nextNode = firstNode ; firstNode = newNode ; Duyệt qua toàn_bộ danh_sách liên_kết rất đơn_giản như_sau : ListNode curNode = firstNode ; while ( curNode ! = NULL ) cout lt;lt; curNode -gt; data lt;lt; endl ; curNode = curNode -gt; nextNode ; Ngoài_ra , ta cũng có_thể lưu thêm con_trỏ trỏ vào phần_tử cuối của danh_sách .
+Khi đó độ phức_tạp để thêm 1 phần_tử vào cuối danh_sách là \mathcalO(1) .
+Tổng_kết Thêm / xóa 1 phần_tử mới vào đầu / cuối : \mathcalO(1) Truy_cập 1 phần_tử ở vị_trí bất_kỳ : \mathcalO(N) .
+Tài_liệu tham_khảo Topcoder_Wikipedia

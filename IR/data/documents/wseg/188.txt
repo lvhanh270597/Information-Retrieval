@@ -1,0 +1,36 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta sẽ áp_dụng phương_pháp trong bài_toán sắp_xếp .
+Hai phương_pháp sắp_xếp đặc_trưng dựa trên chia_để_trị là và .
+Quick_Sort được phát_minh bởi 1959 .
+Quick_Sort là một thuật_toán sắp_xếp khá nhanh trong thực_tế , mặc_dù trong trường_hợp tồi nhất_là .
+có thời_gian là , với hằng_số đằng_sau khá nhỏ .
+Điều đó giải thich một phần vì_sao Quick_Sort cũng hay được dùng trong thực_tế .
+Tư_tưởng của quick sort khá đơn_giản và gồm hai bước chính : Dưới_đây là giả mã của thuật_toán .
+Hàm () chia mảng thành hai phần với pivot được chọn là , và trả_lại vị_trí mới của trong mảng sau khi đã chia .
+Dưới_đây là code C của giả mã trên : Giả mã của thuật_toán chia mảng với phân_tử chọn (pivot) là , trả_lại vị_trí mới cuả phần_tử có_giá trị trong mảng .
+Dưới_đây là code C của giả mã trên .
+Có đôi_chút khác_biệt khi ta thực_thi bằng C vì mảng bắt_đầu_từ phần_tử 0 và mình dùng while (do đã quen) thay_vì do while để thực_hiện giả mã repeat .
+Code đầy_đủ bằng C sẽ được cho ở cuối bài .
+Nhìn vào giả mã cho thuật_toán thực_hiện () : dễ thấy thời_gian_thực hiện là .
+Như_vậy , thời_gian tính của Quick_Sort là : Ở đây phụ_thuộc vào việc chọn phần_tử pivot .
+Trong trường_hợp tồi nhất , trong mỗi lần đệ_quy , phần_tử pivot chi mảng thành một phần có 1 phần_tử và phần còn_lại có n-2 phần_tử .
+Như_vậy thời_gian là (xem để biết tại sao) .
+Như_vậy các bạn có_thể ghi_nhớ , trong trường_hợp tồi nhất , Quick_Sort có thời_gian chạy là . Trong trường_hợp lí_tưởng , phần_tử pivot chọn luôn chia mảng thành hai phần xấp_xỉ như_nhau .
+Như_vậy ta có .
+Như đã nói đến trong bài n , trong những trường_hợp không biết chọn phần_tử nào_là pivot tốt , cách đầu_tiên có_thể nghĩ tời là chọn một phần_tử của mảng làm pivot , với xác_suất như_nhau .
+Với_Quick_Sort , chọn ngẫu_nhiên sẽ cho ta thuật_toán với thời_gian kì_vọng (expected) là .
+Chi_tiết sẽ thảo_luận trong phần thuật_toán ngẫu_nhiên .
+Cách khác là có_thể áp_dụng thuật_toán với thời_gian tuyến_tính để chọn pivot .
+Về_mặt lí_thuyết , thời_gian tính là như hằng_số trong biều thức sẽ khá cao .
+Nếu thực_thi thực_tế sử_dụng cách này sẽ rất chậm .
+Merge_Sort được phát_minh bởi vào năm 1945 là một thuật_toán sắp_xếp luôn đảm_bảo thời_gian chạy tồi nhất_là dựa trên kĩ_thuật chia_để_trị .
+Ý_tưởng cơ_bản của Merge_Sort gồm hai bước : Dưới_đây là giả mã của thuật_toán .
+Hàm () trộn hai mảng con , đã sắp_xếp thành mảng đã xắp xếp .
+Code của giả mã bằng C : Giả mã của hàm () Code của giả mã bằng C : Nhìn vào giả mã_ta có_thể thấy hàm có_thể thực_hiện trong thời_gian tuyến_tính .
+Như_vậy thời_gian_thực hiện của Merge_Sort là Để đơn_giản , ta có_thể bỏ_dấu phần nguyên trên và dưới .
+Như_vậy thời_gian_thực hiện của Merge_Sort là . Code : Bài viết dự chủ yêu trên notes của Jeff_Erickson , , , Trackback link : on Mình có_một nhận_xét thế này đúng ko ạ : giả_sử đầu_vào là dãy có n số bằng_nhau hết , n rất lớn , lúc đấy thời_gian sắp_xếp của Q - sort luôn là O(n2) cho_dù có sử_dụng thuật chọn trung_vị đi_nữa .
+on Nhận_xét của bạn hoàn_toàn đúng .
+Có nhiều cách để giải_quyết trường_hợp này .
+Ví_dụ khi bạn so_sánh pivot với một phần_tử bằng nó , bạn sử_dụng một counter để đếm xem bao_nhiêu phần_tử bằng với pivot mà ta đã so_sánh , rồi quyết_định đưa phần_tử này sang trái hay sang phải .
+Cách này không làm tăng thời_gian tiệm_cận của Quicksort .
+Thông_thường , để phân_tích đơn_giản , ta sẽ giả_sử các phần_tử luôn khác_nhau . Powered by and

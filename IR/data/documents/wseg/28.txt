@@ -1,0 +1,32 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Nhiều bài_toán trên đồ_thị trở_nên dễ_dàng khi đồ_thị đầu_vào là một cây , i . e , không có chu_trình .
+Dễ_dàng ở đây hiểu là giải được trong thời_gian đa_thức (thông thường tuyến tính) .
+Công_cụ chúng_ta thường sử_dụng khi giải các bài_toán trên cây là quy_hoạch_động .
+Trong bài này , chúng_ta sẽ tìm_hiểu thuật_toán quy_hoạch_động giải bài_toán (independent set)trên cây; một bài_toán trên đồ_thị .
+Ta nhắc_lại bài_toán tập độc_lập . Một_tập đỉnh của đồ_thị (đơn , vô hướng) gọi_là một_tập độc_lập nếu_không tồn_tại cạnh của đồ_thị_nối hai đỉnh trong .
+Ví_dụ : Tập độc_lập lớn nhất_là tập các đỉnh được tô_màu đỏ .
+Tập này có trọng số 17 .
+Số bên_cạnh mỗi đỉnh là trọng số của nó . Ta gọi tập độc_lập có tổng_trọng số_lớn nhất_là tập độc_lập lớn nhất .
+Gọi_là số đỉnh của .
+Ta chỉ_định một đỉnh bất_kì nào_đó của làm gốc của cây .
+Các đỉnh có bậc 1 còn_lại ta gọi_là đỉnh lá (leaf vertex) .
+Mỗi nút trong sẽ có_một cây_con tương_ứng , kí_hiệu , nhận làm gốc .
+Gọi_là bảng quy_hoạch_động trong đó : Với mỗi nút lá , theo định_nghĩa , ta có và .
+Ta sẽ cập_nhật bảng theo thứ_tự từ lá dần lên gốc .
+Khi cập_nhật bảng tại nút , ta sẽ đảm_bảo giá_trị của bảng tại các nút con đã được cập_nhật trong_vòng lặp trước đó .
+Gọi_là các nút con của một nút trong .
+Theo định_nghĩa của tập độc_lập , nếu thuộc tập độc_lập thì các nút con của sẽ không nằm trong .
+Do_đó : Nếu_không thuộc tập độc_lập , thì ta có_thể cho hoặc không cho các nút con của vào tập độc_lập , miễn_sao tổng_trọng số của tập là lớn nhất .
+Do_đó : Khi ta_cập nhật xong và của nút gốc , thì trọng số của tập độc_lập lớn nhất_là : Tìm tập độc_lập ta chỉ_cần truy ngược_lại bảng .
+Kĩ_thuật này ta đã thảo_luận tại .
+Khi thực_thi thuật_toán , để đảm_bảo các giá_trị của nút con đã được cập_nhật trước_khi ta_cập nhật nút cha , ta sẽ duyệt và cập_nhật theo thứ_tự sau () .
+Sau khi ta_cập nhật xong bảng tại một nút , ta sẽ "gửi" các giá_trị đó lên nút cha để cập_nhật nút cha theo phương_trình và .
+Ví du : Kết_quả của bảng quy_hoạch_động áp_dụng cho đồ_thị trong Figure 1 .
+Đỉnh màu xanh được lấy_làm gốc của cây .
+Cạnh mỗi đỉnh là nhãn có dạng trong đó và .
+Thủ_tục cập_nhật bảng quy_hoạch_động duyệt qua mỗi đỉnh đúng một_lần .
+Mỗi lần duyệt một đỉnh , ta mất O(1) thao_tác để "gửi" giá_trị của nút để cập_nhật giá_trị của nút cha .
+Do_đó , tổng thời_gian của thuật_toán là Ta có_thể giải một_số bài_toán NP-hard trên cây như : phủ đỉnh (vertex cover) , đường_đi dài nhất (longest path) , dominating set , v . v . Tất_cả đều có_thể giải bằng quy_hoạch_động .
+1 J .
+Erickson , , UIUC , 2014 .
+, , , , Trackback link : Powered by and

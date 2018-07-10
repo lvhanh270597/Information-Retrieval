@@ -1,0 +1,78 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này mình đưa_ra một_cách nhìn tổng_quan về bài_toán cây khung nhỏ nhất và một_số comments của mình trên những tài_liệu tham_khảo liên_quan .
+Một phần của bài viết này trước_đây mình viết trên trang facebook , sau_đó được viết lại một_cách hình_thức hơn trong bài thuật_toán Kruskal và bây_giờ thì mình viết thành một bài riêng_biệt .
+Trong bài_toán cây khung nhỏ nhất , ta chỉ xét đồ_thị vô_hướng .
+Do_đó , từ giờ trở_đi , chúng_ta sẽ mặc_định đồ_thị đầu_vào là vô_hướng .
+Một ví_dụ đồ_thị (hình (1)) với trọng số và một cây khung nhỏ nhất (hình (2)) với trọng số 13 . Trong bài mà mình đã viết trước_đây , bạn_đọc đã có_cơ hội làm_quen với và cũng đã thấy cây khung có liên_quan chặt_chẽ với matroid này .
+Cụ_thể , cơ_sở của Graphic_Matroid của một đồ_thị_chính là cây khung của đồ_thị đó .
+Từ lý_thuyết matroid , ta biết bài_toán tìm cơ_sở của matroid có trọng số_lớn nhất (nhỏ nhất) có_thể tìm được bằng giải_thuật tham_lam .
+Do_đó , cũng không có gì lạ nếu ta có_thể tìm được cây khung nhỏ nhất sử_dụng thuật_toán tham_lam .
+Thực_tế , thuật_toán trong bài lý_thuyết matroid có_thể được sửa_đổi (chi tiết coi_như bài_tập cho bạn đọc) để thu được thuật_toán tìm cây khung nhỏ nhất trong thời_gian . Thuật_toán Kruskal mà ta sẽ tìm_hiểu sau_đây chính là thuật_toán tham_lam trong matroid .
+Dưới góc_độ đồ_thị , ta có_thể thực_thi thuật_toán Kruskal trong thời_gian .
+Trước_khi đi_vào chi_tiết tìm_hiểu các thuật_toán cho bài_toán cây khung nhỏ nhất , chúng_ta sẽ tìm_hiểu một_số tính_chất của cây khung nhỏ nhất trước . Sau_đây là một_số tính_chất chung của một cây khung (không nhất_thiết là nhỏ nhất) : Chứng_minh các tính_chất trên không khó và coi_như bài_tập cho bạn_đọc .
+Chứng_minh tính_chất (1) ta có_thể dùng quy_nạp .
+Tính_chất (2) dựa vào tính_chất liên_thông của đồ_thị và (3) dựa vào tính_chất là một cây .
+Ví_dụ lát cắt tương_ứng với của đồ_thị trong hình (a) là các cạnh màu đỏ trong hình (b) .
+Một_số tính_chất sau của cây khung sẽ rất hữu_ích trong thiết_kế thuật_toán .
+Phương_pháp chứng_minh các tính_chất trên đều giống nhau , sử_dụng phương_pháp lập_luận tráo_đổi (exchange argument) .
+Mình sẽ chứng_minh tính_chất (4) và (5) để minh_họa cho lập_luận này .
+Chứng_minh (6) tương_tự và coi_như bài_tập cho bạn_đọc .
+(4) Giả_sử cạnh lớn hơn (hoàn toàn) các cạnh khác trong cùng một chu_trình và giả_sử một cây khung nhỏ nhất chứa .
+Xóa_khỏi , ta sẽ thu được hai cây .
+Do là một chu_trình , tồn_tại một cạnh khác , gọi_là , của nối với .
+Do_đó là một cây khung của có trọng số nhỏ hơn (do < ) , trái với giả_thiết là một cây khung nhỏ nhất . (5) Giả_sử cạnh nhỏ hơn (hoàn toàn) các cạnh khác trong cùng một_lát cắt và giả_sử tồn_tại một cây khung nhỏ nhất chứa .
+Thêm vào , ta sẽ thu được một chu_trình chứa .
+Do là lát cắt , phải chứa ít_nhất một cạnh khác của .
+Do_đó , là một cây khung của có trọng số nhỏ hơn (do < ) , trái với giả_thiết là một cây khung nhỏ nhất . Có rất nhiều thuật_toán đã được phát_triển cho bài_toán cây khung nhỏ nhất .
+Mình sẽ viết 4 bài về 4 thuật_toán khác_nhau .
+Mỗi thuật_toán có điểm mạnh và yếu riêng .
+Phần đọc thêm dưới_đây mình sẽ giới_thiệu thêm một_số thuật_toán khác , và liên_kết tới nguồn tham_khảo để bạn_đọc dễ tìm . Như đã nói ở phần matroid , thuật_toán Kruskal 1 là một thuật_toán tham_lam .
+Thuật_toán này khá dễ hiêu vả chứng_minh .
+Thuật_toán này tìm cây khung nhỏ nhất dựa trên tính_chất chu_trình : liên_tục thêm cạnh theo thứ_tự tăng dần của trọng số vào cây khung nếu cạnh đó không tạo ra chu_tình với cây khung hiện_tại .
+Tuy_nhiên , để thực_hiện hiệu_quả với thời_gian , ta phải sử_dụng đến cấu_trúc .
+Chi_tiết xem thêm . Thuật_toán Prim 2 tìm cây khung nhỏ nhất dựa trên tính cắt (tính chất 5) của cây khung .
+Thuật_toán duy_trì một_tập đỉnh và một cây khung cho tập đỉnh này .
+Ban_đầu , chỉ_có một đỉnh (bất kì) của đồ_thị và không chứa cạnh nào .
+Mỗi bước , thuật_toán tìm_ra đỉnh không thuộc sao_cho cạnh_kề với là cạnh có trọng số nhỏ nhất trong số các cạnh trong lắt cắt và thêm vào .
+Trong giả mã dưới_đây , ta sử_dụng để biểu_diễn cả tập và cây khung của tập này .
+Thuật_toán có_thể dễ_dàng thực_thi với thời_gian , và nếu kết_hợp với , ta có_thể giảm xuống .
+Với những bạn đã quen với thì_có lẽ thực_thi thuật_toán này sẽ dễ hơn với bạn .
+Chi_tiết xem thêm . Thuật_toán Borůvka tìm cây khung nhỏ nhất dựa trên phép co cạnh (edge contraction) .
+Co một cạnh được hiểu là phép gộp hai đỉnh kề với cạnh đó lại với_nhau thành một đỉnh mới , và xóa đi các cạnh_lặp (loop) và các cạnh song_song .
+Phép co cạnh là một_phép rất mạnh và được sử_dụng nhiều trong lý_thuyết đồ_thị .
+Tuy_nhiên , trong máy_tính , việc thực_thi phép co cạnh lại không_hề đơn_giản .
+Đặc_biệt của thuật_toán này đó là nó có_một số tính_chất cự kì đẹp .
+Với đồ_thị_thưa , , thuật_toán này có thời_gian tuyến_tính .
+Với đồ_thị dày , thuật_toán có thời_gian .
+Các thuật_toán tốt nhất bây_giờ cho bài_toán cây khung cũng xuât phát từ sửa_đổi thuật_toán Boruvka .
+Chi_tiết xem thêm . Thuật_toán Karger-Klein-Tarjan (KKT)5 là thuật_toán ngẫu_nhiên , có thời_gian , trả_lại cây khung nhỏ nhất với xác_suất ít_nhất trong đó là số cạnh của đồ_thị (xác suất cao) .
+Thuật_toán này là sự kết_hợp hoàn_hảo giữa phương_pháp lấy mẫu và thuật_toán Boruvka .
+Cho_đến này thì chưa có thuật_toán tất_định (deterministic) nào có thời_gian tuyến_tính .
+Thuật_toán tất_định nhanh nhất được phát_triển bởi 6 với thời_gian ( là hàm ngược . ) .
+Câu_hỏi tồn_tại hay_không một thuật_toán tuyến_tính tìm cây khung nhỏ nhất vẫn là một câu_hỏi mở cho_đến nay .
+Thuật_toán tuyến_tính KKT cũng_như một_lời gợi_ý cho chúng_ta biết thuật_toán như_vậy có_thể tồn_tại .
+Xem tại của Jason_Eisner , 1997 , về bài_toán cây khung nhỏ nhất khá đầy_đủ .
+Ngoài bài_toán tìm cây khung nhỏ nhất , bạn_đọc còn có_thể tìm được những bài_toán liên_quan như kiểm_tra xem một cây khung có_phải là nhỏ nhất hay_không , và phiên_bản động (dynamic) của cây khung tại đó .
+Cách viết rất dễ_hiểu .
+Paper của Karger , Klein và Tarjan 5 viết về thuật_toán KKT cũng cực_kì dễ đọc , dễ_hiểu .
+Mô_tả thuật_toán khá ngắn_gọn .
+Chỉ_có phân_tích là_hơi phức_tạp hơn một_chút .
+Về lecture note , mình thấy của Uri_Zwick khá dễ_hiểu .
+Phần bài_tập của note này có nhiều bài_tập hay , trong đó có_một số tính_chất khá thú_vị của thuật_toán Borůvka mà mình đã nói ở trên . Về bài_toán cây khung nhỏ nhất cho đồ_thị có hướng , mình khuyến_khích bạn_đọc tham_khảo của Uri_Zwick .
+Nếu bạn nào nghiên_cứu sâu về bài_toán cây khung , thuật_toán Chazelle 6 cũng là bài báo phải đọc .
+Thuật_toán sử_dụng cấu_trúc dữ_liệu Soft_Heap , và mô_tả của cấu_trúc này trong 6 khá phức_tạp .
+Kaplan và Zwick đã đơn_giản_hóa cấu_trúc dữ_liệu này khá nhiều , và bạn_đọc có_thể tìm_thấy . Bạn nào biết các paper hoặc bài viết nào_hay về cây khung , xin để_lại comment bên_dưới để mình cập_nhật vào bài viết . 1 Kruskal , Joseph_B .
+Proceedings of the American_Mathematical society 7 . 1 (1956) : 48-50 .
+2 Prim , Robert_Clay .
+Bell_System_Technical_Journal 36 . 6 (1957) : 1389-1401 .
+3 Borůvka , Otakar (1926) .
+.
+Elektronický_Obzor (in Czech) 15 : 153–154 .
+4 Nešetřil , Jaroslav , Eva_Milková , and Helena_Nešetřilová .
+Discrete_Mathematics 233 . 1 (2001) : 3-36 .
+5 Karger , David_R . ; Klein , Philip_N . ; Tarjan , Robert_E .
+.
+Journal of the ACM 42 (2) : 321–328 , 1995 .
+6 Chazelle , Bernard .
+Journal of the ACM (JACM) 47 . 6 (2000) : 1028-1047 .
+, , Trackback link : Powered by and

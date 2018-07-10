@@ -1,0 +1,91 @@
+Tác_giả : Nguyễn_RR Thành_Trung_Table of_Contents 1 .
+Mở_đầu 2 .
+Persistent_IT Tư_tưởng Cài_đặt : Phân_tích 3 .
+Persistent_BIT Tư_tưởng : Cài_đặt : Phân_tích : 4 .
+Retroactive_Data_Structures Bài_tập áp_dụng 1 .
+Mở_đầu Persistent_Data_Structures là những cấu_trúc dữ_liệu được dùng khi chúng_ta cần có toàn_bộ lịch_sử của các thay_đổi trên 1 cấu_trúc dữ_liệu (CTDL) .
+(Chú ý rằng từ persistent còn được dùng trong persistent storage với một nghĩa hoàn_toàn khác) .
+Xét bài_toán ví_dụ : Cho một dãy A gồm N phần_tử .
+Có 2 loại truy_vấn : Update : Gán A_i = v Query : Tìm max(A_i , . . . , A_j) tại thời_điểm sau phép gán thứ K .
+Nếu_không có đoạn tại thời_điểm sau phép gán thứ K , bài_toán là 1 bài cơ_bản trên Interval_Tree .
+Đoạn tại thời_điểm sau phép gán thứ K buộc chúng_ta phải lưu lại các thông_tin về lịch_sử cập_nhật_CTDL - việc này được giải_quyết bằng các Persistent_Data_Structures .
+Gọi trạng_thái của CTDL tại một_thời điểm là 1 version của CTDL đó .
+Một_cách cụ_thể hơn , persistent data structures cho_phép chúng_ta : Truy_vấn trên một version cũ của CTDL Cập_nhật dữ_liệu trong version mới nhất của CTDL , bằng cách tạo thêm 1 version mới của CTDL .
+Trong một_số cách cài_đặt , Persistent_Data_Structures còn có_thể cho_phép thay version hiện_tại của CTDL thành một version trong quá_khứ (phần 2 mô_tả phương_pháp cài_đặt có_thể thực_hiện được thao_tác này) .
+Cần hiểu rằng Persistent_Data_Structures không_phải là một loại CTDL mới .
+Nó là một_số kĩ_năng tổng_quát giúp thêm thông_tin về lịch_sử thay_đổi vào CTDL thông_thường một_cách hiệu_quả .
+Ví_dụ : IT + Persistent --gt; Persistent_IT_BIT + Persistent --gt; Persistent_BIT Tại_sao lại là một_cách hiệu_quả ?
+Bởi_vì ta hoàn_toàn có_thể có_một Persistent_Data_Structures bằng cách trâu_bò : khi cập_nhật , ta tạo một bản_sao hoàn_toàn mới của CTDL , thay_đổi một_số dữ_liệu trên nó và lưu lại .
+Như_vậy ta luôn có được một thuật_toán với độ phức_tạp O(Q_N_T) và bộ_nhớ O(Q_N) , với Q là số thao_tác cần thực_hiện , và N là độ lớn của CTDL , và T là thời_gian để thực_hiện thao_tác trên CTDL .
+Trong các phần dưới_đây , mình sẽ trình_bày về 2 kĩ_thuật thông_thường của Persistent_Data_Structures .
+2 .
+Persistent_IT Tư_tưởng Quay trở_lại bài_toán .
+Chúng_ta biết rằng mỗi thao_tác update trên IT chỉ mất O(logN) .
+Điều này tương_đương với việc mỗi thao_tác update chỉ làm thay_đổi O(logN) nút trên cây .
+Như_vậy ta hoàn_toàn có_thể lưu lại tất_cả các thay_đổi trên tất_cả các nút trong O(QlogN) .
+Từ_đó , ta rút ra được một tư_tưởng cài_đặt thuật_toán : Với mỗi thao_tác Update , ta tạo thêm một_số nút mới trên IT .
+Để_không phải sinh thêm các nút không bị thay_đổi , một nút ở version mới có_thể có_con là một nút ở vesion cũ .
+Chú_ý : Mỗi thao_tác Update luôn thay_đổi một đường_đi từ gốc đến một nút lá , nên không có trường_hợp một nút ở version cũ có_con là một nút ở version mới hơn .
+(Nếu thao_tác Update là Update 1 đoạn , các nút bị thay_đổi không còn là một đường_đi nữa , nhưng nhận_xét này vẫn đúng) .
+Khi thực_hiện thao_tác Query trên version t , ta chỉ_cần thực_hiện Query trên nút gốc ở version t .
+Tư_tưởng này còn được gọi_là Path_Copy trong các tài_liệu tiếng Anh .
+Cài_đặt : struct Node int left , right ; // ID of left child amp; right child long_long ln ; // Max value of node Node () Node ( long_long ln , int left , int right ) : ln ( ln ) , left ( left ) , right ( right ) it 11000111 ; // Each node has a position in this array , called ID int nNode ; int ver MN ; // ID of root in each version // Update max value of a node inline void refine ( int cur ) it cur .
+ln = max ( it it cur .
+left .
+ln , it it cur .
+right .
+ln ); // Update a range , and return new ID of node int update ( int l , int r , int u , int x , int oldId ) if ( l == r ) ++ nNode ; it nNode = Node ( x , 0 , 0 ); return nNode ; int mid = ( l + r ) gt;gt; 1 ; int cur = ++ nNode ; if ( u lt;= mid ) it cur .
+left = update ( l , mid , u , x , it oldId .
+left ); it cur .
+right = it oldId .
+right ; refine ( cur ); else it cur .
+left = it oldId .
+left ; it cur .
+right = update ( mid + 1 , r , u , x , it oldId .
+right ); refine ( cur ); return cur ; // Get max of range .
+Same as usual IT int get ( int nodeId , int l , int r , int u , int v ) if ( v lt; l r lt; u ) return - 1 ; if ( u lt;= l amp;amp; r lt;= v ) return it nodeId .
+ln ; int mid = ( l + r ) gt;gt; 1 ; return max ( get ( it nodeId .
+left , l , mid , u , v ) , get ( it nodeId .
+right , mid + 1 , r , u , v )); // When update : ++ nVer ; ver nVer = update ( 1 , n , u , x , ver nVer - 1 ); // When query : res = get ( ver t , 1 , n , u , v ); Giải_thích : Ban_đầu , ta có_một mảng it , lưu tất_cả các nút sẽ được sinh_ra của IT .
+Mỗi nút gồm có Chỉ_số của con trái , index của con phải (2 biến left và right ) Giá_trị lớn nhất của các số trong_khoảng mà nút quản_lý (ở version khi nút đó được tạo ra) : biến ln Ta lưu thêm chỉ_số của các nút gốc ở các version khác_nhau vào một mảng ver Hàm update : Tạo ra các nút mới , và trỏ đến các con_ở version cũ hoặc version mới , tùy_theo các con có bị thay_đổi hay_không Trả_lại index của nút mới được tạo Hàm_get : Trả_lại max của một đoạn được quản_lý bởi nút nodeId Phân_tích Cách cài_đặt Persistent_Data_Structures trong mục này rất hiệu_quả .
+Nó hoàn_toàn không làm tăng thêm độ phức_tạp (persistent IT có độ phức_tạp mỗi thao_tác là O(logN)) , và bộ_nhớ cần thêm là tối_ưu : O(Q logN) .
+Tuy_nhiên , cách cài_đặt này không dễ áp_dụng với những CTDL khác .
+Chẳng_hạn sẽ rất khó để cài đúng BIT với phương_pháp này .
+Ở mục tiếp_theo , mình sẽ trình_bày một phương_pháp cài_đặt khác có_thể dùng cho BIT , tuy_nhiên có độ phức_tạp lớn hơn .
+3 .
+Persistent_BIT Tư_tưởng : Tại mỗi nút của BIT , thay_vì lưu một giá_trị , ta lưu lại tất_cả các cặp (version , giá trị) ở nút đó .
+Thao_tác update rất đơn_giản : chỉ_cần thêm một cặp (version , giá trị) vào các nút tương_ứng .
+Với thao_tác query tại version t , trên một nút , ta cần tìm cặp (version , giá trị) mới nhất vào trước thời_điểm t - việc tìm_kiếm này có_thể được thực_hiện bằng tìm_kiếm nhị_phân .
+Cách cài_đặt này được gọi_là Fat_Node trong các tài_liệu tiếng Anh .
+Cài_đặt : Code_BIT trích từ bài IPSC 2011 - Grid_Surveillance : define _(x) (x amp; (-(x))) // Persistent_BIT vector lt; pair lt; int , int gt; gt; bit 4100 4100 ; // Add val to cell (x , y) at time = time void update ( int x , int y , int val , int time ) for ( int u = x ; u lt;= 4096 ; u += _ ( u )) for ( int v = y ; v lt;= 4096 ; v += _ ( v )) if ( bit u v .
+empty ()) bit u v .
+push_back ( make_pair ( time , val )); else int cur = bit u v bit u v .
+size () - 1 .
+second ; bit u v .
+push_back ( make_pair ( time , cur + val )); // Get the sum of_square (1 , 1) --gt; (x , y) at time = time int get ( int time , int x , int y ) int res = 0 ; for ( int u = x ; u gt; 0 ; u -= _ ( u )) for ( int v = y ; v gt; 0 ; v -= _ ( v )) if ( bit u v .
+empty ()) else if ( bit u v bit u v .
+size () - 1 .
+first lt;= time ) res += bit u v bit u v .
+size () - 1 .
+second ; else int pos = upper_bound ( bit u v .
+begin () , bit u v .
+end () , make_pair ( time , 2000111000 )) - bit u v .
+begin () - 1 ; if ( pos gt;= 0 ) res += bit u v pos .
+second ; return res ; Phân_tích : Độ phức_tạp cho mỗi thao_tác update không thay_đổi (ví dụ với BIT , vẫn là O(logN)) .
+Nhưng độ phức_tạp cho mỗi thao_tác query bị tăng lên logN (ví dụ với BIT , độ phức_tạp cho mỗi thao_tác là O(log2(N)) thay_vì O(logN) .
+Tuy_nhiên , cách cài_đặt này tổng_quát hơn , dễ_dàng được áp_dụng cho nhiều CTDL khác_nhau , ví_dụ cả BIT và IT .
+4 .
+Retroactive_Data_Structures_Một lớp CTDL khác tương_đối giống với Persistent_Data_Structures , nhưng có tính ứng_dụng thực_tế cao hơn_là Retroactive_Data_Structures : "Retroactive Data_Structures là loại CTDL cho_phép thực_hiện thay_đổi với một dãy các thao_tác đã được thực_hiện trên dữ_liệu .
+Ví_dụ : Thay_đổi một thao_tác đã được thực_hiện trong quá khứ" .
+Cả_Retroactive_Data_Structures amp; Persistent_Data_Structures đều quan_tâm đến trục thời_gian , tuy_nhiên điểm khác_nhau nằm ở chỗ cách xử_lý trục thời_gian của 2 CTDL này như_thế nào : Với_Persistent_Data_Structures , tất_cả các version được lưu lại , và bạn không_thể_nào thay_đổi một version trong quá_khứ (điều duy_nhất bạn có_thể làm là tạo ra một version mới từ 1 version cũ và thực_hiện thay_đổi trên version mới này) .
+Với_Retroactive_Data_Structures , bạn có_thể thực_hiện thay_đổi trên một version cũ .
+Thay_đổi trên một version cũ này ảnh_hưởng đến tất_cả các version sau nó .
+Sự khác_biệt về cách xử_lý trục thời_gian khiến cho Retroactive_Data_Structures có rất nhiều ứng_dụng trên thực_tế - trái_ngược hẳn với Persistent_Data_Structures chỉ thường được thấy ở trong các kỳ thi .
+Một_vài ứng_dụng quan_trọng của Retroactive_Data_Structures gồm có : Error_Correction : Giả_sử một dữ_liệu bị nhập sai , làm ảnh_hưởng đến tất_cả các thao_tác sau đấy .
+Retroactive_DS cho_phép sửa dữ_liệu nhập sai và ảnh_hưởng (tích cực) đến tất_cả các thao_tác sau_đó .
+Bad data : Gần giống với Error_Correction , nhưng dữ_liệu sai bị xóa đi thay_vì được sửa_lại .
+Recovery : Giả_sử một lỗi của phần_cứng làm một_số dữ_liệu không được đọc .
+Retroactive_DS cho_phép đọc lại những dữ_liệu này và thay_đổi tất_cả các thao_tác được thực_hiện sau_đó .
+Trên thực_tế , Retroactive_Data_Structures còn đang dừng lại ở việc là một khái_niệm , chứ chưa có_một phương_pháp cài_đặt nào hiệu_quả .
+Các bạn nếu muốn tìm_hiểu có_thể nghiên_cứu thêm về cơ_chế rollback trong database hoặc tìm_kiếm thêm về Retroactive_Data_Structures .
+Bài_tập áp_dụng SPOJ - COT_SPOJ - MKTHNUM_Codechef - QUERY_Codechef - SORTING_Codeforces - Round 140 Div 1 - E_Codeforces - Round 265 Div 1 - E_IPSC 2011 - Grid_Surveillance

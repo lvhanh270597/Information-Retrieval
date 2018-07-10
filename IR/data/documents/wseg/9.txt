@@ -1,0 +1,22 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , chúng_ta tìm_hiểu nguyên_lí deferred decision (mình để nguyên tiếng anh vì không biết dịch tiếng Việt thế_nào cho_hay và chuẩn) trong phân_tích thuật_toán ngẫu_nhiên .
+Nguyên_lí này được áp_dụng khá phổ_biến và là phương_pháp chứng_minh đằng_sau của các kết_quả đẹp như .
+Nguyên_lí này có_thể được hiểu tốt nhất thông_qua ví_dụ sau : Một_cách đơn_giản là ta tính và so_sánh với .
+Phương_pháp này mất thời_gian nếu ta sử_dụng phép_nhân ma_trận như_định_nghĩa hoặc sử_dụng phương_pháp nhân ma_trận nhanh nhất hiện_tại (xem tại ) .
+Tất_cả đều hoặc rất chậm hoặc rất phức_tạp .
+Sử_dụng ngẫu_nhiên , ta có_thể kiểm_tra tích có bằng hay_không chỉ trong thời_gian với xác_suất cao .
+Chọn vector , có phần_tử , và mỗi phần_tử là một bít chọn ngẫu_nhiên .
+So_sánh với .
+Nếu hai số này bằng_nhau , output Yes; ngược_lại , output No . Ta có_thể tính trong thời_gian , do_đó , thuật_toán có thời_gian .
+Nếu thì thuật_toán luôn output Yes .
+Do_đó , thuật_toán chỉ sai khi mà ta lại chọn phải vector với .
+Đặt là một ma_trận .
+Do , luôn tồn_tại một ô khác 0 của ma_trận .
+Không giảm tính tổng_quát , ta giả_sử .
+Gọi .
+Ta có : Do , ta suy ra .
+Từ , ta suy ra : Do các bít của được chọn ngẫu_nhiên độc_lập , ta coi_như được chọn sau_cùng .
+Do_đó , về phải của coi_như đã xác_định trước_khi ta chọn .
+Vậy , xác_suất chọn phải bằng vế phải của là không quá .
+Nếu ta chọn mỗi phần_tử của là một_số nguyên 32 bít , bằng cách mở_rộng chứng_minh ở trên , xác_suất thuật_toán sai sẽ không quá , một con_số khá nhỏ . Nguyên_lí deferred decision thể_hiện trong ví_dụ trên ở chỗ , phép phân_tích chỉ nhìn vào phần_tử được chọn cuối_cùng của vector ngẫu_nhiên .
+, , , Trackback link : Powered by and

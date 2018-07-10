@@ -1,0 +1,67 @@
+
+
+
+
+
+
+
+
+NN(thời_gian)  IN(để)  VB(biểu_diễn)  RB(sẽ)  RBR(được)  NN(tính)  IN(vào)  NN(thời_gian)  NN(tiền)  NP(NN(tiền))  NP(NN(thời_gian)NP(NN(tiền)))  PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))  NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền)))))  ADVP(RB(sẽ)RBR(được)NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))))  VB(xử_lí)  NNP(.)  NP(NNP(.))  VP(VB(xử_lí)NP(NNP(.)))  VP(ADVP(RB(sẽ)RBR(được)NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))))VP(VB(xử_lí)NP(NNP(.))))  VP(VB(biểu_diễn)VP(ADVP(RB(sẽ)RBR(được)NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))))VP(VB(xử_lí)NP(NNP(.)))))  PP(IN(để)VP(VB(biểu_diễn)VP(ADVP(RB(sẽ)RBR(được)NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))))VP(VB(xử_lí)NP(NNP(.))))))  NP(NN(thời_gian)PP(IN(để)VP(VB(biểu_diễn)VP(ADVP(RB(sẽ)RBR(được)NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))))VP(VB(xử_lí)NP(NNP(.)))))))  S(NP(NN(thời_gian)PP(IN(để)VP(VB(biểu_diễn)VP(ADVP(RB(sẽ)RBR(được)NP(NN(tính)PP(IN(vào)NP(NN(thời_gian)NP(NN(tiền))))))VP(VB(xử_lí)NP(NNP(.))))))))  
+
+
+NN(điều)  JJ(đặc_biệt)  ADJP(JJ(đặc_biệt))  NP(NN(điều)ADJP(JJ(đặc_biệt)))  VB(là)  NN(cây)  NNP(hậu_tố)  NP(NN(cây)NNP(hậu_tố))  RB(có_thể)  ADVP(RB(có_thể))  MD(được)  VB(xây_dựng)  IN(trong)  NN(thời_gian)  NNP(.)  NP(NN(thời_gian)NNP(.))  PP(IN(trong)NP(NN(thời_gian)NNP(.)))  VP(VB(xây_dựng)PP(IN(trong)NP(NN(thời_gian)NNP(.))))  VP(ADVP(RB(có_thể))MD(được)VP(VB(xây_dựng)PP(IN(trong)NP(NN(thời_gian)NNP(.)))))  VP(VB(là)NP(NN(cây)NNP(hậu_tố))VP(ADVP(RB(có_thể))MD(được)VP(VB(xây_dựng)PP(IN(trong)NP(NN(thời_gian)NNP(.))))))  S(NP(NN(điều)ADJP(JJ(đặc_biệt)))VP(VB(là)NP(NN(cây)NNP(hậu_tố))VP(ADVP(RB(có_thể))MD(được)VP(VB(xây_dựng)PP(IN(trong)NP(NN(thời_gian)NNP(.)))))))  
+
+
+CD(một)  NN(điều)  JJ(đặc_biệt)  ADJP(JJ(đặc_biệt))  NP(NN(điều)ADJP(JJ(đặc_biệt)))  NP(CD(một)NP(NN(điều)ADJP(JJ(đặc_biệt))))  VB(chú_ý)  VB(là)  NNP(.)  NP(NNP(.))  VP(VB(là)NP(NNP(.)))  VP(VB(chú_ý)VP(VB(là)NP(NNP(.))))  S(NP(CD(một)NP(NN(điều)ADJP(JJ(đặc_biệt))))VP(VB(chú_ý)VP(VB(là)NP(NNP(.)))))  gamma(S(NP(CD(một)NP(NN(điều)ADJP(JJ(đặc_biệt))))VP(VB(chú_ý)VP(VB(là)NP(NNP(.))))))  
+
+
+
+
+
+NNP(ta)  NP(NNP(ta))  RB(sẽ)  ADVP(RB(sẽ))  VB(biểu_diễn)  NN(cây)  NNP(hậu_tố)  NP(NN(cây)NNP(hậu_tố))  IN(dưới)  NN(dạng)  NN(cấu_trúc)  NN(cây)  NNP(.)  NP(NN(cây)NNP(.))  NP(NN(cấu_trúc)NP(NN(cây)NNP(.)))  NP(NN(dạng)NP(NN(cấu_trúc)NP(NN(cây)NNP(.))))  PP(IN(dưới)NP(NN(dạng)NP(NN(cấu_trúc)NP(NN(cây)NNP(.)))))  VP(VB(biểu_diễn)NP(NN(cây)NNP(hậu_tố))PP(IN(dưới)NP(NN(dạng)NP(NN(cấu_trúc)NP(NN(cây)NNP(.))))))  VP(ADVP(RB(sẽ))VP(VB(biểu_diễn)NP(NN(cây)NNP(hậu_tố))PP(IN(dưới)NP(NN(dạng)NP(NN(cấu_trúc)NP(NN(cây)NNP(.)))))))  S(NP(NNP(ta))VP(ADVP(RB(sẽ))VP(VB(biểu_diễn)NP(NN(cây)NNP(hậu_tố))PP(IN(dưới)NP(NN(dạng)NP(NN(cấu_trúc)NP(NN(cây)NNP(.))))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+
+gamma()  

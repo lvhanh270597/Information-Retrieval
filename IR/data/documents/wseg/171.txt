@@ -1,0 +1,80 @@
+Tác_giả : RR_Table of_Contents 1 .
+Định_nghĩa 2 .
+Ứng_dụng 1 2 . 1 . Bước 1 2 . 2 . Bước 2 2 . 2 . Bước 3 3 .
+Ứng_dụng 2 4 .
+Dirichlet_Convolution 4 . 1 . Ví_dụ 1 4 . 2 . Ví_dụ 2 4 . 3 . Các hàm nhân_tính thường gặp 5 .
+Tổng_kết Bài luyện_tập Reference_Trong bài viết này , mình sẽ giới_thiệu về hàm nhân_tính cũng_như ứng_dụng của nó trong Competitive_Programming (lập trình thi đấu) .
+1 .
+Định_nghĩa Một hàm f(n) , n \in N được coi là hàm nhân_tính ( Multiplicative_Function ) nếu : Với mọi cặp số_nguyên_tố cùng_nhau n , m \in N ta có f(mn)=f(m)f(n) .
+Ví_dụ Xét hàm f(n) là số ước của n .
+Ta có : f(1) = 1 f(2) = 2 f(3) = 2 f(4) = 3 f(5) = 2 f(6) = 4 = f(2) f(3) f(7) = 2 f(8) = 4 f(9) = 3 f(10) = 4 = f(2) f(5) f(12) = 6 = f(3) f(4) f(18) = 6 = f(2) f(9) Ta có_thể chứng_minh hàm f là hàm nhân_tính như_sau : Xét m và n nguyên_tố cùng_nhau .
+Để chứng_minh f(m n) = f(m) f(n) , ta cần chứng_minh 2 chiều : Mỗi ước của m n ứng với 1 cặp (a , b) với a là ước của m và b là ước của n .
+Điều này đúng do mỗi ước của m n ta luôn tách được thành_tích của 2 số a b với a là ước của m và b là ước của n .
+Mỗi cặp (a , b) với a là ước của m và b là ước của n ứng với 1 ước của m n .
+Điều này đúng do với mỗi cặp (a , b) thì a b là ước của m n .
+Như_vậy , f(m n) = f(m) f(n) .
+2 .
+Ứng_dụng 1 Giờ ta xét bài_toán sau : Cho số N không quá 105 .
+Tính tất_cả các f(i) với i lt;= N .
+Để làm những bài dạng này , ta sẽ có 3 bước : Chứng_minh f là hàm nhân_tính .
+Tìm công_thức cho f(pk) với p là số_nguyên_tố .
+Dùng sàng để tính f trong O(NlogN) .
+Nếu bạn chưa biết sàng có_thể đọc ở đây .
+2 . 1 . Bước 1 Như đã chứng_minh ở phần trước , f là hàm nhân_tính .
+2 . 2 . Bước 2 Với một_số nguyên_tố p , ta có f(pk) = k + 1 , do các ước của pk là 1 , p , p2 , . . . , pk .
+2 . 2 . Bước 3 Đầu_tiên , ta dùng sàng để : Biết được số nào_là số_nguyên_tố .
+Với mỗi số_không phải nguyên_tố , tìm được 1 ước nguyên_tố .
+Từ 2 , ta nhanh_chóng kiểm_tra được 1 số có dạng pk hay_không .
+Như_vậy , ta có_thể cài_đặt như_sau : const int MN = 1e6 + 11 ; int sieve MN ; // Sàng số_nguyên_tố .
+Sau khi sàng : // - sievei = 0 nếu i là số_nguyên_tố // - ngược_lại sievei = một ước bất_kỳ của i .
+pair lt; int , int gt; pk MN ; // Nếu i có dạng pk , pki = p , k .
+// Ngược_lại , pki = -1 , 0 int ndiv MN ; // ndivi = Số ước của i .
+int main () // Sàng số_nguyên_tố for ( int i = 2 ; i lt;= 1000 ; i ++ ) // số_không nguyên_tố có 1 ước lt;= 103 .
+if ( ! sieve i ) for ( int j = i i ; j lt;= 1000000 ; j += i ) sieve j = i ; ndiv 1 = 1 ; for ( int i = 2 ; i lt;= 1000000 ; i ++ ) if ( ! sieve i ) // i là số_nguyên_tố .
+pk i = make_pair ( i , 1 ); ndiv i = 2 ; else int p = sieve i ; // p là ước bất_kỳ của i .
+if ( pk i / p .
+first == p ) // i = pk pk i = make_pair ( p , pk i / p .
+second + 1 ); ndiv i = pk i .
+second + 1 ; // ndivpk = k+1 .
+else pk i = make_pair ( - 1 , 0 ); // Phân_tích i = uv , với gcd(u , v) = 1 .
+int u = i , v = 1 ; while ( u % p == 0 ) u /= p ; v = v p ; ndiv i = ndiv u ndiv v ; 3 .
+Ứng_dụng 2 Ta xét bài_toán sau : Cho số N không quá 1012 .
+Tính f(N) Chú_ý ở bài_toán trước_ta cần tính nhiều giá_trị của f(N) với N nhỏ , còn trong bài này ta chỉ_cần tính duy_nhất 1 giá_trị của f(N) với N lớn .
+Cũng_như trên , ta sẽ làm_theo 3 bước chính : Chứng_minh f là hàm nhân_tính .
+Tìm công_thức cho f(pk) với p là số_nguyên_tố .
+Phân_tích N thành thừa_số nguyê tố để tính f(N) trong O(sqrt(N)) .
+Vì 2 bước_đầu giống_hệt phần trước nên mình sẽ không nhắc_lại .
+Ở bước 3 , bạn chỉ_cần xét tất_cả các số_từ 1 đến sqrt(N) , từ_đó phân_tích được thành thừa_số nguyên_tố .
+Code như_sau : int n ; int res = 1 ; // kết_quả for ( int i = 2 ; i i lt;= n ; i ++ ) if ( n % i == 0 ) // i là ước nguyên_tố của n // (nếu i không nguyên_tố , và có ước p , thì ở bước trước đó , // ta đã chia n cho p đến khi n không chia_hết_cho p) .
+int u = 1 , k = 0 ; // u = ik là luỹ_thừa lớn nhất của i mà là ước của n .
+while ( n % i == 0 ) n /= i ; u = u i ; k += 1 ; res = res ( k + 1 ); if ( n gt; 1 ) // giá_trị hiện_tại của n là số_nguyên_tố res = res 2 ; 4 .
+Dirichlet_Convolution_Việc chứng_minh trực_tiếp một hàm là hàm nhân_tính như ví_dụ về hàm_số ước ở trên không_hề đơn_giản .
+Chẳng_hạn , bạn hãy thử chứng_minh hàm f(n) là hàm nhân_tính với f(n) là tổng_các ước của số n .
+Dĩ_nhiên bạn có_thể chứng_minh trâu_bò bằng cách viết ra một đống công_thức , tuy_nhiên ở mục này mình sẽ hướng_dẫn các bạn một phương_pháp kỳ_diệu hơn .
+Với 2 hàm f và g là hàm nhân_tính , ta có_một hàm nhân_tính mới f g : (f g)(n) = \sum_d_1d_2=nf(d_1)g(d_2) Một_cách biểu_diễn khác là : (f g)(n) = \sum_d nf(d)g(n/d) Các bạn chú_ý kí_hiệu d n nghĩa_là n chia_hết_cho d .
+Chứng_minh Xét a và b nguyên_tố cùng_nhau .
+Mỗi ước d của ab có_thể phân_tích duy_nhất dưới dạng d = rs trong đó r a và s b , do gcd(a , b) = 1 .
+Do_đó : (f g)(ab) = \sum_ra , sbf(rs) g(ab/rs) = \sum_ra , sbf(r) f(s) g(a/r) g(b/s) = \sum_raf(r) g(a/r) \sum_sbf(s) g(b/s) = (f g)(a) (f g)(b) Như_vậy , (f g) cũng là hàm nhân_tính .
+Để hiểu thêm về Dirichlet_Convolution , ta xét vài ví_dụ : 4 . 1 . Ví_dụ 1 Xét hàm f(n) = 1 và g(n) = 1 .
+Rõ_ràng f và g đều là hàm nhân_tính .
+(f g)(n) = \sum_d nf(d) g(n/d) = \sum_d n1 Như_vậy (f g)(n) là số ước của số n và là hàm nhân_tính .
+4 . 2 . Ví_dụ 2 Xét hàm f(n) = n và g(n) = 1 .
+Rõ_ràng f và g đều là hàm nhân_tính .
+(f g)(n) = \sum_d nf(d) g(n/d) = \sum_d nd Như_vậy (f g)(n) là tổng_các ước của n và là hàm nhân_tính .
+Tổng_quát hơn , với hằng_số k bất_kỳ , hàm f(n) = \sum_d ndk là hàm nhân_tính .
+4 . 3 . Các hàm nhân_tính thường gặp Sau_đây là các hàm nhân_tính thường gặp .
+Bạn có_thể thử chứng_minh những hàm này là hàm nhân_tính dựa theo định_nghĩa hoặc Dirichlet_Convolution .
+Việc nắm được những hàm này sẽ giúp thuận_lợi hơn trong việc gỉai những bài liên_quan đến hàm nhân_tính .
+I(n) = 1 , hàm f luôn bằng 1 với tất_cả các giá_trị của n .
+id(n) = n id_k(n) = nk gcd(n , k) với k là hằng_số phi(n) : số số_nguyên_tố cùng_nhau với n và nhỏ hơn hoặc bằng n (Phi hàm Euler) mobius(n) : Hàm mobius thường được dùng trong các bài_toán đếm sử_dụng nguyên_lý bù_trừ : Nếu n có ước là số chính_phương khác 1 , mobius(n) = 0 .
+Nếu n có lẻ ước nguyên_tố , mobius(n) = -1 .
+Nếu n có chẵn ước nguyên_tố , mobius(n) = 1 .
+Chú_ý mobius(1) = 1 .
+f(n) = \sum_d nd là tổng_các ước của n .
+f_k(n) = \sum_d ndk với k là hằng_số .
+5 .
+Tổng_kết Như_vậy , nếu bạn chứng_minh được một hàm f là hàm nhân_tính , và tìm được công_thức O(1) cho f(pk) thì sẽ dễ_dàng tính được tất_cả các giá_trị f(i) , i \le N trong O(NlogN) .
+Bạn cũng_nên nắm được những hàm nhân_tính thường gặp , từ_đó giúp nhận_dạng bài_toán dễ_dàng hơn .
+Bài luyện_tập VOJ - GCDSUM Gợi_ý : Xét f(n) = \sum_1 \le i \le ngcd(n , i) .
+CF 391 - E Gợi_ý : Tìm cách bỏ phép_cộng trong công_thức của f_r(n) .
+CF 400 - E_Reference_Wikipedia

@@ -1,0 +1,13 @@
+CD(1)  NNP(.)  NP(NNP(.))  NP(CD(1)NP(NNP(.)))  S(NP(CD(1)NP(NNP(.))))  gamma(S(NP(CD(1)NP(NNP(.)))))  
+
+
+
+
+
+
+
+
+
+CD(5)  NNP(.)  NP(NNP(.))  NP(CD(5)NP(NNP(.)))  S(NP(CD(5)NP(NNP(.))))  gamma(S(NP(CD(5)NP(NNP(.)))))  
+
+gamma()  

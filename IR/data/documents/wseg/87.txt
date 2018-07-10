@@ -1,0 +1,91 @@
+Nguồn : Achoums blog Trong hai bài viết trước ( phần 1 ) và ( phần 2 ) , chúng_ta đã cùng tìm_hiểu về Classification .
+Chúng_ta cũng đã làm_quen với một thuật_toán rất nổi_tiếng gọi_là k-nearest neighbors .
+Nếu có thời_gian , bạn nên đọc các bài viết đó để có_thể hiểu cặn_kẽ những nội_dung trong bài viết này , bài viết cuối_cùng trong chuỗi bài giới_thiệu về Classification .
+Thuật_toán k-nearest neighbors mà chúng_ta tìm_hiểu ở bài viết trước là một thuật_toán được sử_dụng rất rộng_rãi .
+Tuy_nhiên , nó cũng là một thuật_toán rất cũ .
+Cho_đến thời_điểm này , các nhà nghiên_cứu đã và đang phát_triển những thuật_toán phức_tạp và mạnh_mẽ hơn nhiều .
+Thuật_toán tiếp_theo mà tác_giả muốn giới_thiệu với các bạn được gọi_là Random_Forest .
+Đây là một thuật_toán mới xuất_hiện tầm 10 năm trước , và được coi là một cuộc_cách_mạng trong Machine_Learning .
+Random_Forest chỉ phức_tạp hơn một_chút so_với k-nearest neighbors , nhưng nó hiệu_quả hơn nhiều nếu xét trên hiệu_năng tính_toán của máy_tính .
+Bên_cạnh đó , Random_Forest còn cho kết_quả chính_xác hơn nhiều so_với k-nearest neighbors .
+Nghĩa_là , khi các nhà nghiên_cứu kiểm_thử kết_quả của hai thuật_toán này trên các bộ dữ_liệu khác_nhau (bao gồm cả the Iris dataset ) , Random_Forest thường cho kết_quả đúng hơn so_với k-nearest neighbors Một trong những lí_do khiến Random_Forest hiệu_quả hơn so_với k-nearest neigbors là bởi_vì , với k-nearest neighbors , tất_cả các thuộc_tính đều có mức_độ quan_trọng như_nhau .
+Mặt_khác , Random_Forest có khả_năng tìm_ra thuộc_tính nào quan_trọng hơn so_với những thuộc_tính khác .
+Trên thực_tế , nó còn có_thể chỉ ra rằng một_số thuộc_tính là hoàn_toàn vô_dụng .
+Random_Forest là một thành_viên trong họ thuật_toán decision tree (cây quyết định) .
+Vậy cây quyết_định là gì ?
+Một cây quyết_định là một_cách đơn_giản để biểu_diễn một giao_thức ( protocol ) .
+Nói_cách_khác , cây quyết_định biểu_diễn một kế_hoạch , trả_lời câu_hỏi phải làm_gì trong một hoàn_cảnh nhất_định .
+Ví_dụ , cây quyết_định được sử_dụng trong tổng_đài điện_thoại để quyết_định xem tổng_đài_viên sẽ trả_lời như_thế nào dựa trên phản_hồi của khách_hàng .
+Nó cũng được sử_dụng trong hệ_điều_hành của bất_kì cỗ_máy nào mà bạn có_thể tưởng_tượng (tàu ngầm , bom_nguyên_tử , . . . ) hay đơn_giản , cây quyết_định được các bác_sĩ sử_dụng để chẩn_đoán bệnh .
+Hãy trở_lại câu_chuyện của chúng_ta với một ví_dụ đơn_giản .
+Hình_ảnh phía dưới minh_hoạ một cây quyết_định để xác_định chủng_loại của một con vật .
+Để đơn_giản , chúng_ta sẽ chỉ xét một_vài chủng_loại động_vật mà_thôi .
+Giả_sử_ta có_một con vật , hãy thử dùng cây quyết_định này để tìm_ra chủng_loại của nó .
+Đường_đi bắt_đầu_từ câu_hỏi đầu_tiên ở phía trên của cây (bên dưới vòng_tròn đỏ) .
+Trả_lời câu_hỏi đó , và đi tiếp xuống các nút phía dưới của cây tuỳ_thuộc vào câu trả_lời (có/không với câu_hỏi đầu tiên) .
+Lặp_lại hành_động đó cho_đến khi đi_tới nút lá (các út màu xanh lá cây) .
+Khi đó , bạn sẽ có câu trả_lời .
+(chú thích trên hình bị sai : 50cm thay_vì 50kg) Ví_dụ , bạn bắt_gặp một con vật mà bạn không biết nó thuộc chủng_loại gì .
+Câu_hỏi đầu_tiên là : "Nó có lông không ? " .
+Giả_sử nó có lông , chúng_ta đi tiếp sang nhánh bên phải .
+Câu_hỏi tiếp_theo là : "Nó cao bao_nhiêu ? " .
+Giả_sử con vật của chúng_ta chỉ cao 30cm .
+Điều này có_nghĩa là chúng_ta sẽ đi_theo nhánh bên trái .
+Khi đó , vì chúng_ta đã đi đến nút lá , chúng_ta biết rằng con vật mà mình đang xét chính là con gà .
+Bây_giờ chắc bạn đã hiểu phần_nào về cây quyết_định , hãy trở_lại với thuật_toán Random_Forest : Ý_tưởng phía sau Random_Forest khá đơn_giản .
+Thuật_toán này sinh một_số cây quyết_định (thường là vài trăm) và sử_dụng chúng .
+Các câu_hỏi của cây quyết_định sẽ là câu_hỏi về các thuộc_tính .
+Ví_dụ : "Cánh hoa có dài hơn 1 . 7cm hay_không ? " .
+Câu giá_trị ở nút lá sẽ là các lớp ( class ) .
+Sử_dụng hàng trăm cây quyết_định là bất_khả_thi với con_người , nhưng máy_tính có_thể làm_việc này tương_đối dễ_dàng .
+Đến lúc_này chúng_ta đã tìm_hiểu cách sử_dụng một cây quyết_định , nhưng vấn_đề là làm thế_nào để tạo ra nó .
+Có hai giải_pháp .
+Cách thứ nhất_là hỏi chuyên_gia (ví dụ như một nhà_nhân_chủng_học với bài_toán phân_biệt chủng_loại của con vật) .
+Nghe có_vẻ hấp_dẫn , nhưng không_phải khi_nào bạn cũng có_thể tiếp_cận được với chuyên_gia trong bài_toán của mình .
+Hơn_nữa , bạn có_thể sẽ ngạc_nhiên rằng ngay_cả những chuyên_gia giỏi nhất cũng gặp khó_khăn trong việc viết ra những kiến_thức của mình .
+Ngay_cả khi bạn tìm được một chuyên_gia có khả_năng đó thì chắc_chắn sẽ có những thứ mà họ không biết tới .
+Ví_dụ , nhà_nhân_chủng_học của chúng_ta có_thể quên mất rằng con đà_điểu có_thể nhỏ hơn 50kg .
+Thay_vì sử_dụng chuyên_gia , các nhà nghiên_cứu sử_dụng phương_án thứ_hai : tạo ra một thuật_toán tự_sinh cây quyết_định .
+Điều_kiện duy_nhất là phải có vài ví_dụ để máy_tính có_thể tham_chiếu .
+Trong_Iris dataset , những ví_dụ này chính là những bông_hoa mà chúng_ta đã biết chủng_loại .
+Để tạo ra một cây quyết_định , thuật_toán Random_Forest luôn bắt_đầu bằng một cây rỗng .
+Một cây quyết_định rỗng chỉ_có một ô Start chỉ thẳng đến câu trả_lời (ô xanh lá) .
+Tiếp_theo , thuật_toán sẽ tìm câu_hỏi đầu_tiên và bắt_đầu xây_dựng cây quyết_định (trong ví_dụ trước , câu_hỏi đó là "Nó có lông không ? ") .
+Mỗi lần thuật_toán tìm được thêm một câu_hỏi , nó tạo hai nhánh trên cây quyết_định .
+Khi_không còn câu_hỏi nào nữa , thuật_toán dừng lại và chúng_ta có_một cây quyết_định hoàn_chỉnh .
+Làm thế_nào để tìm_ra những câu_hỏi tốt nhất cho cây quyết_định ?
+Đây là một_bước khá phức_tạp nhưng ý_tưởng đằng_sau nó tương_đối đơn_giản : Ở thời_điểm bắt_đầu , thuật_toán của chúng_ta chưa biết phân_biệt các chủng_loại của các con vật .
+Nói_cách_khác , tất_cả các con vật được cho chung vào một "cái túi" .
+Để tìm_ra câu_hỏi tốt nhất , thuật_toán thử đưa_ra tất_cả các câu_hỏi có_thể (có khi là hàng_triệu câu hỏi) .
+Ví_dụ : "Nó có bao_nhiêu chân ? " , "Nó có đuôi không ? " , . . .
+Sau_đó , với mỗi câu_hỏi , thuật_toán sẽ đánh_giá mức_độ hiệu_quả mà câu_hỏi này giúp phân_biệt các chủng_loại , hay các class .
+Câu_hỏi được chọn không cần_thiết phải hoàn_hảo , nhưng nó phải tốt hơn những câu_hỏi khác .
+Để tính_toán mức_độ hiệu_quả của câu_hỏi , chúng_ta sử_dụng một_độ đo có tên là information gain .
+Chúng_ta sẽ không bàn chi_tiết về độ đo này , có_thể hiểu nôm_na nó như một_cách để "cho điểm" các câu_hỏi .
+Câu_hỏi với information gain lớn nhất sẽ được chọn như_là câu_hỏi tốt nhất để xây_dựng cây quyết_định .
+Hình_ảnh phía dưới minh_hoạ 4 bước để tạo một cây quyết_định đơn_giản .
+Quá_trình này sẽ được lặp_lại cho tất_cả các cây .
+Sau khi thuật_toán xây_dựng xong các cây quyết_định , những cây này sẽ được sử_dụng để trả_lời câu_hỏi (hay phân loại) .
+Trong bài_toán về hoa diên vĩ , thuật_toán sẽ trả_lời câu_hỏi : "Chủng loại của bông_hoa bí_ẩn là gì ? " .
+Nếu bạn theo_dõi sát_sao bài viết này , có_thể bạn sẽ thấy một_chút mâu_thuẫn : chúng_tôi nói với bạn rằng thuật_toán Random_Forest xây_dựng nhiều cây quyết_định .
+Tuy_nhiên , chúng_tôi mới chỉ giải_thích cách dựng một cây quyết_định mà_thôi .
+Random_Forest coi mỗi cây quyết_định như một cử_tri bỏ_phiếu độc_lập (như một cuộc bầu_cử thực sự) .
+Ở cuối cuộc bầu_cử , câu trả_lời nhận được nhiều bầu_chọn nhất từ các cây quyết_định sẽ được lựa_chọn .
+Tuy_nhiên , vẫn còn một vấn_đề : Nếu_như tất_cả các cây được dựng theo cùng một_cách , chúng sẽ cho những câu trả_lời giống nhau .
+Như_vậy chẳng khác_gì chúng_ta chỉ sử_dụng một cây quyết_định duy_nhất cả .
+Ở đây , Random_Forest có_một cách làm rất hay : Để chắc_chắn rằng không_phải tất_cả các cây quyết_định cho_cùng câu trả_lời , thuật_toán Random_Forest chọn ngẫu_nhiên các quan_sát (observations) .
+Chính_xác hơn , Random_Forest sẽ xoá một_số quan_sát và lặp_lại một_số khác một_cách ngẫu_nhiên .
+Xét toàn_cục , những quan_sát này vẫn rất gần với tập các quan_sát ban_đầu , nhưng những thay_đổi nhỏ sẽ đảm_bảo rằng mỗi cây quyết_định sẽ có_một chút khác_biệt .
+Quá_trình này gọi_là bootstrapping Thêm vào đó , để thực_sự chắc_chắn các cây quyết_định là khác_nhau , thuật_toán Random_Forest sẽ ngẫu_nhiên bỏ_qua một_số câu_hỏi khi xây_dựng cây quyết_định .
+Trong trường_hợp này , nếu câu_hỏi tốt nhất không được chọn , một câu_hỏi kế_tiếp sẽ được lựa_chọn để dựng cây .
+Quá_trình này được gọi_là attribute sampling Chắc rằng các bạn rất thắc_mắc tại_sao người_ta lại tạo ra một thuật_toán phức_tạp như_vậy : ngẫu_nhiên thay_đổi các quan_sát và bỏ_qua một_số câu_hỏi .
+Câu trả_lời rất đơn_giản : Có_thể các mẫu thử mà chúng_ta đang sử_dụng chưa hoàn_hảo .
+Ví_dụ , có_thể mẫu thử của chúng_ta chỉ_có những con mèo có lông đuôi .
+Trong trường_hợp này những con mèo thuộc loài sphynx (mèo không lông) có_thể được phân_loại là con_chuột .
+Tuy_nhiên , nếu câu_hỏi về đuôi không được hỏi (bởi vì sự thay_đổi ngẫu nhiên) , thuật_toán có_thể sử_dụng câu_hỏi các câu_hỏi khác (ví dụ : Con vật đó có kích_thước như_thế nào ? ) .
+Việc có nhiều câu_hỏi đa_dạng (có thể không hoàn hảo) là một ý_tưởng không tồi : nó có_thể là cứu_tinh khi thuật_toán tham_chiếu đến một quan_sát mà nó chưa_từng thấy trước_đây .
+Và đó là tất_cả những gì bạn cần biết về Random_Forest .
+Đây là bài viết cuối_cùng trong chuỗi ba bài viết về Classification trong Machine_Learning .
+Hi_vọng bạn đã có được những hiểu_biết ban_đầu về bài_toán phân_loại , và quen_thuộc với các khái_niệm quan_sát (observations) hay thuộc_tính (attributes) .
+Chúng_tôi cũng đã trình_bày hai thuật_toán phân_loại nổi_tiếng , k-nearest neighbors và Random_Forest , hi_vọng bạn đã hiểu được phần_nào về cách_thức mà các thuật_toán này hoạt_động .
+Hẹn gặp lại các bạn ở trong những bài viết tới !

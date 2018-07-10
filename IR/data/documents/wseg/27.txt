@@ -1,0 +1,83 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này mình sẽ giới_thiệu với các bạn cấu_trúc dữ_liệu Heap nhị_phân .
+Đây là một cấu_trúc dữ_liệu đơn_giản , dễ thực_thi (you will see that ! ) và hiệu_quả .
+Điểm yếu chính của cấu_trúc này hầu_hết các thao_tác hỗ_trợ có thời_gian .
+Heap thường được dùng để thực_thi (priority queue) .
+Nếu các bạn tìm_kiếm , bạn sẽ thấy một bảng so_sánh các loại Heap khác_nhau .
+Mỗi loại Heap đều có_một đặc_điểm riêng và lĩnh_vực ứng_dụng cụ_thể .
+Một_số loại Heap như Fibonacci_Heap , Rank-Pairing_Heap , Brodal_Heap , etc . , có thời_gian tiệm_cận cho hầu_hết các thao_tác .
+Tuy_nhiên , điểm yếu của chúng là thực_thi rất phức_tạp , tốn bộ_nhớ (do phải lưu_trữ các con_trỏ hỗ trơ) và mặc_dù tiệm_cận là hay , hằng_số ẩn sau kí_hiệu là khá lớn .
+Nếu chúng_ta chấp_nhận các thao_tác trong thời_gian , heap nhị_phân là một cấu_trúc hoàn_hảo . Ngữ_cảnh ứng_dụng của Heap nhị_phân thường có dạng như_sau : Ta có_một tập các phần_tử trong đó phần_tử thứ có_giá trị .
+Thao_tác mà chúng_ta quan_tâm nhất đối_với tập này là tìm và lấy ra một phần_tử có_giá trị nhỏ nhất (hoặc lớn nhất) của tập_hợp .
+Ngoài_ra , chúng_ta cũng muốn hỗ_trợ các thao_tác để thay_đổi tập_hợp đó .
+Danh_sách một_số các thao_tác mà chúng_ta thường quan_tâm như_sau : Ta sẽ sử_dụng cấu_trúc Min-Heap để thực_hiện các thao_tác trên trong thời_gian : Tại thời_điểm này mình vẫn chưa định_nghĩa Heap nhị_phân trong như_thế nào cả .
+Mình sẽ định_nghĩa ở dưới .
+Trong phần_ứng dụng dưới_đây , bạn_đọc chỉ_cần quan_tâm đến các thao_tác và thời_gian_thực hiện mỗi thao_tác mà cấu_trúc này hỗ_trợ mà chưa cần quan_tâm đến cấu_trúc Heap sẽ được tổ_chức như_thế nào . Ứng_dụng nổi_bật nhất của cấu_trúc Heap nhị_phân là trong sắp_xếp mà ta gọi_là thuật_toán Heapsort .
+Giả_sử_ta có_một mảng các số_nguyên mà ta muốn sắp_xếp nó theo chiều tăng dần của giá_trị .
+Ta sẽ xây_dựng một min-Heap nhị_phân cho mảng này .
+hỗ_trợ các thao_tác liệt_kê ở trên với thời_gian trong Theorem 1 .
+Để sắp_xếp mảng ta làm_theo các bước sau : Giả mã của Heapsort : Code_C : Do mỗi thao_tác mất thời_gian , tổng thời_gian để sắp_xếp mảng là .
+Một ứng_dụng khác của min-Heap là trong thuật_toán Dijsktra tìm đường_đi ngắn nhất từ một đỉnh trong đồ_thị có trọng số_không âm .
+Mình sẽ blog về thuật_toán này sau .
+Cấu_trúc biểu_diễn đơn_giản nhất_là danh_sách liên_kết .
+Nếu sử_dụng cấu_trúc đó , các thao_tác , mất nhưng , có_thể thực_hiện .
+Nếu sửa_đổi một_chút bằng cách luôn lưu phần_tử nhỏ nhất của tập_hợp ở đầu danh_sách và luôn chèn phần_tử mới vào cuối danh_sách , thì ta có_thể thực_hiện trong còn vẫn là do khi ta xóa phần_tử nhỏ nhất khỏi danh_sách , ta phải tìm phần_tử nhỏ nhất trong số các phần_tử còn_lại và đưa nó về đầu danh_sách .
+Cách khác là dùng mảng , tuy_nhiên cách này cũng không ổn vì cho_dù có làm thế_nào thì một trong số các thao_tác trên cũng là . Nếu chúng_ta muốn các thao_tác trong trường_hợp tồi nhất_là , ta phải nghĩ ngay đến cấu_trúc cây .
+Ở đây mình sẽ dùng cấu_trúc cây nhị_phân (do đó gọi_là heap nhị phân) .
+Trước_hết để đảm_bảo , cây của chúng_ta phải cân_bằng (do đó độ sâu của cây là ) .
+Ta sẽ lưu phần_tử nhỏ nhất tại gốc của cây , do_đó có thời_gian .
+Cũng từ_đó ta suy ra khóa của nút gốc nhỏ hơn khóa của hai nút con của nó .
+Ta sẽ đảm_bảo tính_chất này cho mọi nút của cây Heap .
+Như_vậy hai tính_chất cần_thiết của cây Heap là : Ví du_tập các giá_trị có cấu_trúc Heap biểu_diễn minh_họa trong hình dưới_đây : Từ_tính chất Heap , bằng quy_nạp , ta có_thể chứng_minh được : Gọi (depth) của một nút là số cạnh trên đường_đi từ nút gốc đến nút đó .
+Gọi_là số cạnh đi từ gốc đến một nút lá tại mức cao nhất của cây đó .
+Từ_tính cân_bằng mạnh , ta suy ra : mặc_dù ta nói nhưng thực_ra ta có_thể biểu_diễn "cây" đó bằng một mảng .
+Ta sẽ biểu_diễn các nút của cây Heap như_sau : Ví_dụ mảng tương_ứng với cây Heap ở hình trên được minh_họa trong hình dưới_đây .
+Các mũi_tên màu đỏ gạch là các mũi_tên nối từ nút cha tới một nút con . Trong thực_tế cài_đặt , nếu số_lượng phần_tử chèn vào vượt_quá kích_thước của mảng , ta phải cấp_phát lại_bộ nhớ cho mảng .
+Chiến_lược cấp_phát bộ_nhớ có_thể áp_dụng là gấp_đôi kích_thước của mảng mỗi lần_ta phải cấp_phát bộ_nhớ (giống trong Java) .
+Trong trường_hợp chúng_ta biết được kích_thước tối_đa của mảng trong mọi thời_điểm thì bài_toán sẽ đơn_giản hơn nhiều . Để chèn một khóa vào Heap , ta sẽ tìm của cây , là nút lá cuối_cùng theo thứ_tự từ trái sang phải .
+Gọi nút là đó là .
+Để đảm_bảo tính cân_bằng mạnh , ta sẽ chèn vào nút anh_em (sibling) gần nhất bên phải của .
+Nếu cây nhị_phân là cân_bằng , ta sẽ chèn vào mức tiếp_theo , ngoài_cùng bên trái .
+Thao_tác này được minh_họa trong hình (a) và (b) của hình dưới_đây .
+Vấn_đề còn_lại là đảm_bảo tính_chất Heap .
+Nếu nút mới chèn vào có khóa nhỏ hơn nút cha nó , ta phải thay_thế chỗ của nó với cha nó .
+Sau khi đổi chỗ , khóa của nút này vẫn có_thể nhỏ hơn khóa của nút cha mới .
+Do_đó , ta tiếp_tục gọi đệ_quy cho_đến khi_nào khóa của nó nhỏ hơn khóa của nút cha mới thì dừng lại .
+Ta gọi thủ_tục đẩy một nút lên là thao_tác (Up-Heapify) .
+Thao_tác đó được minh_họa trong hình (c) , (d) , (e) của hình dưới_đây : Với biểu_diễn mảng , của cây chính là và do_đó , anh_em gần nhất bên phải của nó là .
+Giả mã : Code_C : Thủ_tục vun đống ngược lên trên có thời_gian vì theo Fact 2 , cây Heap có độ sâu .
+Do_đó , ta có_thể chèn một nút vào trong Heap trong thời_gian . Khi giảm_giá_trị khóa của một nút mà ta gọi_là , giá_trị mới của có_thể nhỏ hơn giá_trị khóa của nút cha của nó (tại sao ta không cần quan_tâm đến các nút con của nó) .
+Do_đó , ta sẽ sử_dụng thủ_tục vun đống ngược lên trên Up-Heapify để đảm_bảo tính cân_bằng .
+Thao_tác này mất thời_gian do chiều_cao của cây là .
+Hình minh_họa : Giả mã như_sau : Code_C : Thủ_tục này phức_tạp hơn_cả vì ta cần phải xóa phần_tử nhỏ nhất ra khỏi Heap và cùng một_lúc đảm_bảo các tính_chất của Heap .
+Chú_ý phần_tử nhỏ nhất_là gốc của cây Heap .
+Do_đó , để đảm_bảo tính cân_bằng mạnh , đầu_tiên_ta sẽ đưa nút lá cuối_cùng lên làm gốc , thế chỗ cho nút có khóa nhỏ nhất .
+Do nút gốc mới này có_giá trị có_thể lớn hơn nút con của nó , ta sẽ đổi chỗ cho của nó .
+Sau_đó tiếp_tục gọi đệ_quy vì sau khi đổi chỗ , khóa của nó có_thể vẫn lớn hơn khóa của các nút con mới .
+Ta gọi thủ_tục này là (Down-Heapify) .
+Do độ_cao của cây Heap là , thủ_tục này mất thời_gian .
+Thao_tác đó được minh_họa trong hình dưới_đây : Giả mã : Code_C : Giả_sử_ta có đầu_vào là một mảng , ta muốn xây_dựng Heap với khóa là các phần_tử của mảng .
+Ta có_thể xây_dựng bằng cách bắt_đầu_từ một Heap rỗng và lần_lượt chèn các phần_tử vào Heap .
+Mỗi lần chèn ta mất thời_gian , do_đó , ta có_thể xây_dựng Heap trong thời_gian .
+Tuy_nhiên , ta có_thể xây_dựng Heap trong thời_gian như_sau : Thao_tác đó được minh_họa trong hình sau .
+Các nút được đánh_dấu là các nút ta sẽ thực_hiện Down-Heapify .
+Giả mã : Code_C : Ta có các nhận_xét sau : Do_đó , tổng thời_gian của thuật_toán là : Đặt , sử_dụng của đẳng_thức theo và thay_thế , ta suy ra .
+Do_đó , ta có : Cấu_trúc Heap nhị_phân không bắt_buộc quan_hệ giữ con trái và con phải của một nút , có_nghĩa là con trái có_thể lớn hơn con phải và ngược_lại .
+Do_đó , ta có_thể "tích hợp" thêm quan_hệ giữa con phải và con trái .
+Cấu_trúc sử_dụng ý_tưởng này chính là mà mình đã viết ở bài trước .
+Code đầy_đủ của bài viết : .
+1 Binary_Heap on Wikipedia , , Accessed 11/01/2016 .
+, , , , Trackback link : on Mình thắc_mắc chỗ DecreaseKey Giả_sử dãy ban_đầu của mình là a1 . . n Sau_đó mình xây_dựng min heap H1 . . n từ mảng a Bây_giờ mình thay_đổi giá_trị của phần_tử thứ i trong a thì làm_cho Heap nó thay_đổi như_thế nào ?
+Ví_dụ : a = 4 2 3 1 => H = 1 2 3 4 Khi này mình thay_đổi a1 = 2 => Heap sẽ thành H = 1 2 5 2 (chưa hiệu chỉnh) Hiệu_chỉnh thành => H = 1 2 2 5 on Hi_Mình không hiểu ví_dụ của bạn lắm .
+Tại_sao thay_đổi phần_tử a1 = 2 lại thay_đổi được toàn_bộ Heap như ví_dụ của bạn ?
+Về cơ_bản , bạn muốn thay_đổi một khóa .
+có_thể hiểu là bạn muốn tăng hoặc giảm_giá_trị của khóa đó .
+Giảm_giá_trị khóa và duy_trì Heap sau khi giảm mình đã mô_tả trong phần DecreaseKey .
+Nếu bạn muốn tăng_giá_trị của một khóa , làm tương_tự , nhưng bạn sẽ gọi DownHeapify thay_vì UpHeapify . Hùng on Về thay_đổi giá_trị của heap mình đã hiểu .
+- Nhưng giả_sử ban_đầu mình có mảng a .
+- Sau_đó mình xây_dựng heap từ mảng a đó => mảng a có n phần_tử thì mảng heap cũng có n phần_tử thôi - Bây_giờ bài_toán thay_đổi giá_trị của phần_tử trong mảng a , điều đó cũng có_nghĩa mình phải cho heap phải thay_đổi tương_ứng , thì mình sẽ code để heap thay_đổi ntn ?
+- Ý bạn là thay_đổi key trên heap , nhưng thay_đổi a1 = 2 chẳng_hạn thì lúc_này a1 ở chỗ nào trong heap để_mà thay_đổi .
+on Trong trường_hợp này , có_lẽ bạn cần thêm một mảng nữa , ví_dụ pos1 , . . . , n để xác_định xem phần_tử Ai ở vị_trí nào trong Heap .
+Ví_dụ pos1 = 5 nghĩa_là A1 ở vị_trí thứ 5 trong mảng Heap .
+Khi thực_hiện các thao_tác của Heap , ngoài các khung_cơ_bản như_trên thì bạn cần phải cập_nhật mảng post .
+HùngPowered by and

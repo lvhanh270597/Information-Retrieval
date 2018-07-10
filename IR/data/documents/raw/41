@@ -1,0 +1,24 @@
+Khái niệm tiệm cận -- Asymptotic Notation
+http://www.giaithuatlaptrinh.com/?p=27
+Nơi tổng hợp và chia sẻ những kiến thức liên quan tới giải thuật nói chung và lý thuyết khoa học máy tính nói riêng.   in  | Phân tích (thời gian) thuật toán về cơ bản là đếm số thao tác cơ bản mà thuật toán thực hiện. Tuy nhiên, việc đếm chính xác số thao tác cơ bản nhiều lúc không tầm thường hoặc phụ thuộc vào dữ liệu đầu vào (ví dụ lệnh ). Do đó, trong thực tế phân tích thuật toán, ta chỉ đếm  số thao tác cơ bản mà thôi. Big-O  chính là một công cụ cho phép chúng ta biểu diễn tương đối độ phức tạp của thuật toán một cách đơn giản. Bài này chúng ta sẽ tìm hiểu định nghĩa hình thứ của các khía niệm . Mình đã viết  giải thích đầy đủ hơn các khái niệm này cũng nhưng các sử dụng trong phân tích thuật toán. 
+ vì     với mọi . Ở đây ta chọn .Như vậy, nếu , điều đó có nghĩa là thuật toán đó có thời gian chạy  là . Khái niệm  thường phù hợp để phân tích cận dưới (lower bound) của thuật toán.
+ 
+ 
+hoặc một cách định nghĩa tương tự như hai định  nghĩa đầu tiên, đó là: 
+hoặc: <  <   
+ Chứng minh định nghĩa 3, 4 và 5 là tương đương. Như vậy, nếu , điều đó có nghĩa là thuật toán đó có thời gian chạy  là . Khái niệm  phù hợp để phân tích cả cận trên và cận dưới của thuật toán.
+ 
+ 
+Cách định nghĩa khác là   
+ Chứng minh định nghĩa 6 và 7 là tương đương.   ()Hình minh họa các khái niệm:
+[1] Cormen, Thomas H.; Leiserson, Charles E., Rivest, Ronald L., Stein, Clifford (2001) [1990]. . MIT Press and McGraw-Hill. ISBN 0-262-03293-7
+[2] Avrim Blum: Lecture notes on Algorithms,  . Carnegie Mellon University, 2011.  Hàm  tăng nhanh hơn  nếu . Sắp xếp các hàm sau theo thứ tự tăng dần của độ tăng
+(a) 
+(b) 
+ Những kết luận sau đúng hay sai? Chứng minh.
+(a) 
+(b) 
+(c) 
+(d) 
+ 
+Bài tập 1 và 2 được lấy từ Introduction to Algorithms, 2nd.  , Trackback link: Powered by  and 

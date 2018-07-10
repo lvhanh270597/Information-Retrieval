@@ -1,0 +1,161 @@
+Người viết : RR_Trong bài viết này mình muốn chia_sẻ kinh_nghiệm phỏng_vấn Google của mình .
+Mình tên là RR , hiện đang làm Software_Engineer ở Google .
+Trong thời_gian làm ở Google , mình đã refer (giới thiệu) hơn 20 bạn vào Google (kể cả đỗ và trượt) , nhờ đó nắm được tương_đối rõ quy_trình tuyển_dụng của Google .
+Trước_khi vào Google , mình làm ở Garena_Singapore và cũng có_cơ hội được phỏng_vấn khá nhiều bạn .
+Đứng ở cả 2 phía của quá_trình phỏng_vấn đã giúp cho mình có cái nhìn rõ_ràng hơn về quy_trình tuyển_dụng của các công_ty .
+Bài viết này thể_hiện quan_điểm cá_nhân của mình , có_thể không đúng_với quan_điểm tuyển_dụng của Google hay Garena_Singapore .
+0 .
+Quy_trình phỏng_vấn Google_Gửi resume cho Google : hồ_sơ của các bạn sẽ được kiểm_duyệt và đánh_giá , sau_đó những resume nào tốt sẽ được chọn vào vòng phỏng_vấn .
+Vòng này vốn có tỉ_lệ đậu rất thấp , hầu_hết hồ_sơ của các bạn sẽ bị rớt từ vòng này .
+2 cách gửi resume : Vào trang Google_Careers , tìm vị_trí phù_hợp rồi gửi resume , hoặc Tìm người refer là nhân_viên Google và gửi resume trực_tiếp cho người đó .
+Phỏng_vấn : Với intern , các bạn sẽ có 2 vòng phỏng_vấn online 45 phút với các lập_trình_viên Google .
+Nếu_Google chưa đánh_giá được trình_độ các bạn sau 2 vòng thì sẽ tiến_hành phỏng_vấn thêm 1 vòng nữa .
+Kết_quả phỏng_vấn sẽ được báo sau vài tuần .
+Với phỏng_vấn full time , bạn sẽ phải trải_qua nhiều vòng hơn (thường là 1 vòng qua điện_thoại và 5 vòng trực tiếp) .
+Thời_gian phỏng_vấn các bạn có_thể tự thỏa_thuận với Google .
+Nhận kết_quả phỏng_vấn : Sau khi vượt_qua vòng phỏng_vấn , bạn sẽ nhận được thư chúc_mừng từ recruiter .
+Các bạn_đọc lưu_ý bên_dưới rằng ở bước này có_thể các bạn sẽ chưa được nhận Offer_Letter ngay , do vẫn còn bước 4 để các bạn có_thể chắc_chắn được đi thực_tập tại Google .
+Host_Matching : Sau khi đậu phỏng_vấn , hồ_sơ của các bạn sẽ vào một danh_sách để các lập_trình_viên tại Google hiện_có dự_án cho thực_tập_sinh xét chọn .
+Họ sẽ chủ_động liên_hệ các bạn để giới_thiệu về dự_án cũng_như đánh_giá các bạn có phù_hợp với công_việc không .
+Bạn cũng có quyền đồng_ý hoặc từ_chối để lựa_chọn dự_án phù_hợp với mình .
+Sau khi đã chọn xong dự_án thì coi_như mọi thứ đã xong , các bạn sẽ được liên_hệ để hoàn_thành các giấy_tờ và chuẩn_bị cho chuyến đi thực_tập vào hè .
+Thời_gian_thực tập là từ 12 đến 14 tuần và có_thể bắt_đầu vào thời_gian bất_kì trong hè tùy vào điều_kiện của các bạn .
+1 .
+Chuẩn_bị Phỏng_vấn Google chủ_yếu hỏi về thuật_toán .
+Bạn cũng có_thể bị hỏi thêm 1 vài câu design (thiết kế hệ thống) hoặc những kiến_thức khác .
+Do_vậy , phần này mình sẽ chia làm 3 mục nhỏ : thuật_toán , kĩ_năng trình_bày bằng tiếng Anh và các kiến_thức khác .
+1 . 1 . Thuật_toán Với dân ACM_ICPC hoặc OI chuyên_nghiệp , các câu_hỏi phỏng_vấn đều không khó .
+Để thêm tự_tin , các bạn có_thể luyện_tập cài_đặt một_số bài đơn_giản , chú_ý vào xét trường_hợp đặc_biệt và cài_đặt dễ_hiểu .
+Trong_vòng 1 năm trước_khi phỏng_vấn Google , mình đang chuẩn_bị cho ICPC_World final 2016 , hầu_như ngày nào cũng làm contest 5h , nên lúc đi phỏng_vấn mình cứ hồn_nhiên đi chứ không cần chuẩn_bị gì cả .
+Tuy_nhiên , các bạn vẫn cần chú_ý một_số điểm sau : Không dùng những kiến_thức phức_tạp và không phổ_biến như Splay_Tree , Suffix_Array , Max_Flow . . .
+Chú_ý 1 số thuật_toán có tên_gọi khác với tên_gọi phổ_biến ở Việt_Nam , ví_dụ như Interval_Tree = Segment_Tree , Binary_Indexed_Tree = Fenwick_Tree .
+Tìm thuật_toán thật đơn_giản .
+Các bài phỏng_vấn được làm trong thời_gian ngắn , vì_vậy hãy chọn cách tiếp_cận đơn_giản nhất .
+Nếu người phỏng_vấn chưa hài_lòng họ sẽ hỏi cách tốt hơn .
+Nắm rõ những thuật_toán cơ_bản dùng bộ_nhớ động và con_trỏ như Linked list , Tree .
+Các bạn cũng có_thể luyện thêm trên leetcode , CareerCup , TechieDelight .
+Với các bạn không thi_ACM ICPC hoặc OI , hoặc bạn đã bỏ thi sau nhiều năm , các bạn có_thể lên mạng làm thử 1 số bài gần với những bài được dùng trong phỏng_vấn , ví_dụ trang leetcode .
+Với mỗi bài , có_thể luyện_tập như_sau : Tập trình_bày thuật_toán một_cách rõ_ràng .
+Phân_tích thuật_toán , cả tốc_độ và thời_gian chạy .
+Có_thể tham_khảo thêm bài viết về độ phức_tạp tính_toán trên VNOI wiki .
+Suy_nghĩ xem có những corner cases nào (trường hợp đặc biệt) .
+Trong trường_hợp nào thì thuật_toán có độ phức_tạp xấu nhất .
+Phần_nào của code có_thể được thay_đổi để : Giảm độ phức_tạp tính_toán .
+Giảm bộ_nhớ .
+Cài_đặt đơn_giản hơn .
+Để kết_thúc phần này , mình sẽ lấy ví_dụ về một câu phỏng_vấn (chú ý mình chưa_từng thấy câu này trong_lúc phỏng_vấn Google nhưng nó phù_hợp về độ khó) : Một xâu được gọi_là xâu đối_xứng nếu nó đọc từ trái qua phải cũng giống_như từ phải qua trái .
+Ví_dụ : "abcba" , "a" , "abba" là các xâu đối_xứng .
+"abc" không_phải là xâu đối_xứng .
+Cho xâu S .
+Tìm xâu con gồm các ký_tự liên_tiếp của S , có độ_dài lớn nhất và là xâu đối_xứng .
+Lời_giải bài này các bạn có_thể tìm_thấy trên VNOI wiki .
+Với các bạn dân ACM khi gặp bài này , nên tránh những thuật_toán như Hash , vì có_thể người phỏng_vấn sẽ thắc_mắc những vấn_đề như đánh_giá độ_chính_xác .
+Bạn cũng_nên tránh thuật_toán không phổ_biến như Manacher .
+1 . 2 . Tiếng_Anh Quá_trình phỏng_vấn của Google rất coi_trọng khả_năng trình_bày ý_tưởng .
+Điều này đơn_giản là_vì nếu_không có khả_năng giao_tiếp tốt , bạn không_thể trở_thành Software_Engineer giỏi .
+Khi phỏng_vấn , mình được phỏng_vấn bởi các Software_Engineer ở các khu_vực khác_nhau : Trung_Quốc , Ấn độ , Singapore , châu Âu . .
+Tiếng_Anh của bạn cần khá tốt để có_thể nghe hiểu được các accent tiếng Anh khác_nhau .
+Việc trình_bày thuật_toán một_cách dễ_hiểu cũng rất quan_trọng .
+Trước_khi bắt_đầu code , bạn cần giải_thích thuật_toán của mình rõ_ràng mạch_lạc , để người phỏng_vấn có_thể hiểu được .
+Sau_đó , nếu cảm_thấy thuật_toán của bạn chưa đủ tốt , người phỏng_vấn sẽ tiếp_tục thảo_luận thêm với bạn hoặc đưa_ra gợi_ý cho bạn làm tốt hơn .
+Khi chuẩn_bị phỏng_vấn , hãy : Tập trình_bày thuật_toán của mình mạch_lạc dễ_hiểu .
+Tìm một người khác cùng luyện_tập với mình , để 2 người trao_đổi thuật_toán với_nhau .
+Có_thể sử_dụng những trang_web như Pramp để luyện_tập .
+Bạn không cần giỏi tiếng Anh nhưng cần nắm rõ từ chuyên_môn (ví dụ tên tiếng Anh tất_cả các thuật toán) , diễn_đạt hợp_lý và có sự tự_tin .
+1 . 3 . Các kiến_thức khác Để trả_lời tốt các câu design , các bạn nên Google để tìm đọc thêm nhiều .
+Bạn cần có nhiều kinh_nghiệm thực_tế để trả_lời những câu này , do_đó mình sẽ không đi_sâu vào phần này .
+Bạn cũng có_thể bị hỏi 1 số câu cơ_bản , ví_dụ như pointer , memory allocation .
+Nếu bạn dùng Java cũng có_thể bị hỏi những câu về JVM , garbage collection .
+2 .
+Nộp_Resume 2 . 1 . Soạn_Resume_Resume là một phần rất quan_trọng trong quá_trình phỏng_vấn .
+Một resume không chỉ_cần thể_hiện rõ trình_độ và kinh_nghiệm của bạn mà_còn cần được trình_bày kĩ_lưỡng và cẩn_thận .
+Có rất nhiều lý_do : Người duyệt resume của bạn không có nhiều thời_gian .
+Thông_thường họ sẽ chỉ nhìn qua Resume của thí_sinh trong 1 vài phút .
+Do_đó resume cần trình_bày khoa_học , nhấn_mạnh những chỗ cần_thiết và không dài_dòng .
+Khi nhìn resume kém , người phỏng_vấn có_thể sẽ hỏi những câu_hỏi dễ hơn mức thông_thường , và bạn sẽ khó có_thể chứng_tỏ khả_năng của mình hơn .
+Dưới_đây là một_vài resume "chuẩn" của các bạn đã được nhận bởi Google : Trương_Minh Bảo_Hồ Vĩnh_Thịnh Các đặt điểm cần chú_ý của các resume này : Trình_bày đơn_giản , rõ_ràng , có sự thống_nhất , ví_dụ : Các gạch_đầu_dòng cùng 1 kiểu .
+Tiêu_đề cùng 1 kiểu .
+Không có nhiều font chữ .
+Những chỗ cần nhấn_mạnh được bôi_đen .
+Về ngữ_pháp : Cấu_trúc câu đơn_giản .
+Các câu không cần có chủ_ngữ .
+Những sự_việc nào ở quá_khứ thì chia đúng thời quá_khứ .
+Các câu nên bắt_đầu bằng những động_từ mạnh như Implement , Lead , Design , Teach . .
+Phần giải_thưởng chỉ liệt_kê có chọn_lọc khoảng 3 4 giải_thưởng có_giá trị nhất .
+Có giải_thích rõ_ràng cho tất_cả các phần : Giải_thưởng thì_phải nói_rõ quy_mô (bao nhiêu đội tham gia) , thi về cái_gì , đạt giải ra_sao .
+Kinh_nghiệm làm_việc cần có mô_tả sơ_qua về công_việc , nêu rõ những gì đã học được như ngôn_ngữ_lập_trình , framework , tools . .
+Mình lấy một ví_dụ khác về Resume mà theo mình thấy là viết chưa tốt : Resume Nhận_xét của mình : Về_mặt trình_bày : Không nên dùng bảng Có_thể bỏ_bớt địa_chỉ trường Objective : nếu viết objective thường cần chặt_chẽ với vị_trí đang apply , không nên viết 1 câu quá chung_chung .
+Thay vào đó có_thể viết 1 cái Summary về bản_thân .
+Education : Ghi_rõ điểm 3 . 56 / 4 . 00 Experience : Giải_thưởng để ra 1 mục riêng , không để lẫn với kinh_nghiệm làm_việc .
+Codeforces : recruiter sẽ không biết "rating" và "Master" nghĩa_là gì .
+Thay vào đó nên viết là đứng trong top bao_nhiêu % .
+Internship : cần viết rõ về mình làm_gì , học được gì , không cần viết về công_ty đó làm_gì .
+Skills : Bôi_đen những từ_khoá như C++ , Python . . .
+để nhấn_mạnh .
+Interests : Những interest chung_chung không thật_sự cần_thiết .
+Nên thay bằng những kinh_nghiệm và kết_quả cụ_thể .
+Có_thể đưa những ý như "Solving hard problems required using algorithms . " vào phần Summary , ví_dụ như "Good problem solving skills and algorithm knowledge" .
+2 . 2 . Kiếm người refer Một nhân_viên Google bất_kỳ có_thể refer (giới thiệu) bạn với công_ty .
+Nếu người refer có tâm sẽ giúp bạn có khả_năng đỗ cao hơn .
+Để chứng_minh điều này mình xin kể_lại chuyện có thật : Ở vòng đầu_tiên , resume của bạn sẽ được duyệt bởi recruiter .
+Những người này không_phải là Software_Engineer nên có lúc sẽ không đánh_giá đúng được trình_độ của bạn , do_đó quá_trình duyệt Resume sẽ có rủi_ro nhất_định .
+Trong những bạn mình refer , có hai bạn rất khá nhưng trượt vòng resume (đã nhận được email từ_chối của Google) .
+Tuy_nhiên sau_đó mình đã liên_hệ trực_tiếp với recruiter , viết 2 email rất dài để chứng_minh 2 bạn đó rất giỏi .
+Kết_quả cả 2 bạn đều được đi tiếp đến vòng phỏng_vấn và 1 bạn sẽ đi thực_tập ở Google vào hè tới .
+Ví_dụ này cũng cho thấy quá_trình duyệt resume cũng có rủi_ro , và tài_năng thật_sự có_thể bị bỏ_qua .
+Tuy_nhiên bạn chỉ nên nhờ những người có quen_biết trực_tiếp với bạn refer .
+Bởi khi refer , sẽ cần phải trả_lời những câu_hỏi như : Bạn quen ứng_viên này ra_sao ?
+Ứng_viên này theo bạn đánh_giá có giỏi không ?
+Ứng_viên này có thông_minh không ?
+Với một người chỉ biết bạn sơ_sơ , tất_nhiên họ sẽ không có cách nào trả_lời những câu_hỏi trên .
+Do_đó sẽ không_thể giúp bạn nhiều .
+Vậy tìm người refer ở đâu ?
+Cách tốt nhất_là hãy tìm_hiểu xem trường của bạn hoặc những trường xung_quanh có ai đã đi thực_tập ở Google .
+Nếu bạn là dân ACM thực_thụ , cũng có_thể liên_hệ mình .
+3 .
+Phỏng_vấn Với phỏng_vấn intern , sẽ gồm khoảng 2 vòng phỏng_vấn qua điện_thoại .
+(sẽ có_thể có thêm phụ_thuộc vào kết_quả của 2 vòng đó) .
+Với phỏng_vấn full time , sẽ gồm 1 vòng phỏng_vấn qua điện_thoại + khoảng 5 vòng phỏng_vấn trực_tiếp .
+Mình có kết_quả thi Google_Code_Jam khá tốt , nên được miễn 1 vòng phỏng_vấn qua điện_thoại và được recruiter liên_hệ trực_tiếp luôn .
+Đây cũng là 1 lý_do các bạn nên cố_gắng hết_sức để thi những kỳ thi như Google_Code_Jam ;) .
+Mỗi vòng phỏng_vấn thường kéo_dài khoảng 45 .
+Bạn sẽ cần trả_lời 2-3 câu đơn_giản hoặc 1 câu khó .
+Bạn sẽ phải code trên Google_Docs , và theo mình biết kết_quả phỏng_vấn của bạn sẽ được quyết_định bởi những người phỏng_vấn và hiring committee (tạm dịch là hội_đồng chấm thi) .
+Hiring committee sẽ có bản Google_Docs của các bạn , vì_vậy các bạn cũng_nên viết sơ_qua thuật_toán , độ phức_tạp vào trong Google_Docs trong_lúc giải_thích cho người phỏng_vấn .
+Một_số chú_ý trong quá_trình phỏng_vấn : Đề_bài được người phỏng_vấn đưa_ra có_thể thiếu nhiều chi_tiết .
+Trước_khi cài_đặt bạn cần hỏi rõ những điểm chưa được nói_rõ .
+Ví_dụ nếu xử_lý xâu thì_có thể có những ký_tự nào , có_thể dùng ASCII thông_thường không . .
+Suy_nghĩ cẩn_thận về các corner case trước_khi bắt_đầu cài_đặt , và giải_thích với người phỏng_vấn .
+Điều này không_phải lúc nào cũng đơn_giản .
+Nếu khi đang code bạn mới nghĩ_ra corner case thì nên nói ngay với người phỏng_vấn .
+Khi code , bạn nên chọn thuật_toán nào bạn có_thể tự_tin code được .
+Đơn_giản bởi bạn code một chương_trình hoàn_chỉnh mà không tối_ưu sẽ tốt hơn_hẳn việc bạn không code xong .
+Với những bài sử_dụng cấu_trúc dữ_liệu , bạn có_thể giả_sử bạn đã có_một thư_viện với cấu_trúc dữ_liệu đó , ví_dụ bạn có_thể giả_sử đã có 1 class BalancedBinarySearchTree với các hàm_insert , delete , update . .
+Dĩ_nhiên bạn cũng phải nói_rõ với người phỏng_vấn .
+Bạn có_thể trình_bày một thuật_toán tối_ưu , và khi code xin_phép code cách đơn_giản hơn .
+Nói_rõ với người phỏng_vấn là bạn không tự_tin code được thuật_toán tối_ưu .
+Khi code , sử_dụng tên biến rõ_ràng , dễ_hiểu .
+Hạn_chế đặt_tên biến gồm 1 ký_tự .
+Mình sẽ lấy ví_dụ về_mặt cài_đặt bằng bài_toán tìm xâu con đối_xứng dài nhất với độ phức_tạp \mathcalO(N2) ở phần 1 : int expand ( const string amp; s , int left , int right ) // given a palindrome substring : sleft . . right , we expand left , right to // find the maximum palindrome substring with center left . . right .
+// returns : length of maximum palindrome substring with center left . . right .
+while ( left gt; 0 amp;amp; right + 1 lt; s .
+length () amp;amp; s left - 1 == s right + 1 ) left -- ; right ++ ; return right - left + 1 ; int max_palindrome_substring ( string s ) // Given string s , find its longest palindrome substring .
+// Returns : length of longest palindrome substring .
+int result = 0 ; // our result for ( int center = 0 ; center lt; s .
+length (); center ++ ) // odd-length substrings result = max ( result , expand ( s , center , center )); // even-length substrings if ( center + 1 lt; s .
+length () amp;amp; s center == s center + 1 ) result = max ( result , expand ( s , center , center + 1 )); return result ; Một_vài chú_ý trong code trên : Mình vẫn có biến tên có 1 ký_tự (s) nhưng rất hạn_chế .
+Tránh lặp_lại code .
+Ví_dụ phần xét xâu đối_xứng độ_dài chẵn và lẻ có code giống nhau thì tách thành hàm riêng .
+Khi phỏng_vấn , mình cũng vừa code vừa comment như_vậy .
+Trong quá_trình code mình hầu_như_không nói_chuyện với interviewer mà chỉ viết comment .
+Nếu có nói thì mình cũng chỉ đọc lại comment .
+4 .
+Host matching Như đã trình_bày ở phần đầu_bài viết , vòng cuối_cùng bạn phải vượt_qua là "Host matching" .
+Mục_đích của phần này là để các team tìm người phù_hợp .
+Do_đó bạn sẽ được phỏng_vấn với người thuộc team đó , và bị hỏi gì cũng phụ_thuộc chủ_yếu vào team .
+Có team sẽ hỏi thuật_toán , code , có team sẽ chỉ hỏi chung_chung về sở_thích của bạn hoặc có team sẽ chỉ_giới thiệu về những cái_họ làm rồi nhận luôn chứ không cần hỏi gì thêm .
+Vòng này có tính rủi_ro khá cao .
+Bạn có_thể tăng khả_năng đỗ của mình nếu có quen_biết với nhân_viên Google và xin trực_tiếp vào những team đó .
+Ngoài_ra nếu bạn nộp resume sớm sẽ có_lợi thế hơn ở vòng này .
+Ví_dụ các bạn muốn đi thực_tập vào hè 2017 , thì nên nộp resume từ tháng 9 năm 2016 .
+

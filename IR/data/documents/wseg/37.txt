@@ -1,0 +1,117 @@
+Nguồn : Topcoder .
+Có rất nhiều bài_toán được áp_dụng quy_hoạch_động (QHĐ) ( Dynamic_Programming ) .
+QHĐ là một trong những kĩ_thuật quan_trọng .
+Bài viết này sẽ giúp bạn hiểu được QHĐ thông_qua các ví_dụ cụ_thể .
+Note : Trong bài này có_thể có nhiều phần bạn đã biết , bạn hoàn_toàn có_thể chuyển qua đọc phần khác .
+Beginner_QHĐ là gì ?
+QHĐ là kĩ_thuật được được dùng khi có_một công_thức và một (hoặc một vài) trạng_thái bắt_đầu .
+Một bài_toán được tính bởi các bài_toán nhỏ hơn đã tìm_ra trước đó .
+QHĐ có độ phức_tạp đa_thức nên sẽ chạy nhanh hơn quay lui và duyệt trâu .
+Để hiểu rõ hơn hãy xem ví_dụ sau : Cho_N đồng xu và giá tiền_của mỗi đồng (V_0 , V_1 , . . . , V_N-1~) , và số S .
+Tìm số đồng xu nhỏ nhất để tổng_giá trị của chúng bằng S (số lượng đồng xu không giới hạn) .
+Bây_giờ chúng_ta sẽ xây_dựng thuật_giải : Đầu_tiên , cần tìm một trạng_thái của bài_toán .
+Trạng_thái là gì ?
+Trạng_thái là một trường_hợp , một bài_toán con của bài_toán lớn .
+Ví_dụ , trạng_thái trong bài này là số_lượng xu nhỏ nhất để tổng_bằng i , với i \le S .
+Để tìm_ra trạng_thái i , cần phải tìm tất_cả các trạng_thái j mà (j lt; i) .
+Một_khi đã tìm_ra trạng_thái i , ta có_thể dễ_dàng tìm_ra trạng_thái của i+1 .
+Làm thế_nào để tìm được ?
+Với mỗi j , V_j \le i , tìm số đồng xu nhỏ nhất để tổng_bằng i-V_j .
+Giả_sử nó bằng m .
+Nếu m+1 nhỏ hơn số_lượng đồng xu hiện_tại cho tổng i thì ta_cập nhập nó bằng m+1 .
+Sau_đây là ví_dụ : Cho các đồng xu với giá tiền 1 , 3 và 5 .
+Và_S = 11 .
+Đầu_tiên , ta bắt_đầu_từ trạng_thái 0 , chúng_ta có f0 = 0 .
+Xét đến tổng 1 .
+Có duy_nhất đồng xu 1 nhỏ hơn hoặc bằng tổng 1 , nên ta có f1 = f1-V_0 + 1 = f0 + 1 = 1 .
+Xét đến tổng 2 .
+Cũng giống_như tổng trước , chỉ_có 1 đổng_xu \le 2 , có f2 = f2-V_0 + 1 = f1+1 = 2 Đến tổng 3 .
+Lần này có 2 đồng xu \le 3 là 1 và 3 .
+- Nếu ta chọn đồng 1 , ta có f3 = f3-V_0 + 1 = f2 + 1 = 3 - Nếu ta chọn đồng 3 , ta có f3 = f3-V_1 + 1 = f0 + 1 = 1 Rõ_ràng là 1 \le 3 nên ta chọn đồng 3 và f3 = 1 Xét tiếp đến tổng 4 , rồi đến 11 bằng cách như_trên .
+Mã giả : Gán_Mini bằng dương vô_cùng với mọi i Min0=0_For i = 1 to S_For j = 0 to N - 1 If (Vjlt;=i AND_Mini-Vj+1lt;Mini)_Then_Mini=Mini-Vj+1_Output_MinS_Đây là lời_giải cho tất_cả các tổng : Tổng_Lượng xu nhỏ nhất Xu được chọn (tổng còn lại) 0 0 - 1 1 1 (0) 2 2 1 (1) 3 1 3 (0) 4 2 1 (3) 5 1 5 (0) 6 2 3 (3) 7 3 1 (6) 8 2 3 (5) 9 3 1 (8) 10 2 5 (5) 11 3 1 (10) Vậy là chúng_ta đã tìm được_lời giải cho 3 đồng xu tổng_bằng 11 .
+Dựa vào bảng trên , ta có_thể truy vết lại được những đồng xu nào được chọn để tối_ưu bài_toán .
+Bài_QHĐ trên còn có_một cách tiếp_cận khác nữa .
+Lần này , ta sẽ không tính liên_tiếp các tổng .
+Bắt_đầu_từ trạng_thái 0 .
+Thử nhét đồng xu thứ 1 vào các tổng đã tính .
+Nếu_như tổng t có_số đồng xu ít_hơn số đồng xu hiện_tại thì tiến_hành cập_nhật .
+Rồi tiếp_tục thử với đồng thứ 2 , 3 cho_đến khi thử hết các đồng .
+Ví_dụ , nhét đồng 1 (giá trị 1) vào tổng 0 ta có tổng 1 .
+Vì ta chưa tính tổng 1 nên S1 = 1 .
+Nhét đồng 1 vào tổng 1 ta có S2 = 2 .
+Tiếp_tục làm như_vậy với các tổng_còn lại .
+Sau đồng 1 , ta nhét đồng 2(giá trị 3) vào tổng 0 ta được 1 , mà S3 = 3 gt; 1 , ta_cập nhật S3 = 1 .
+Tiếp_tục nhét đồng 2 vào các tổng_còn lại , cũng nhứ thử nhét các đồng xu khác .
+Elementary Bây_giờ , chúng_ta cùng đến một khái_niệm mới , công_thức truy_hồi (recurrent relation) , mối liên_hệ giữa những trạng_thái .
+Ví_dụ : Cho một dãy N số - A1 , A2 , . . . , AN .
+Tìm dãy con không giảm dài nhất .
+Ta quy_định trạng_thái Si là dãy con không giảm dài nhất kết_thúc tại Ai . Với igt;1 và jlt;i , tính được i khi tồn_tại Aj \le Ai (vì đây là dãy không giảm) .
+Khi đó Si = Max(Si , Sj + 1) .
+Tiếp_tục tính như_vậy cho_đến khi đến được trạng_thái SN .
+Hãy xem bảng sau với dãy : 5 , 3 , 4 , 8 , 6 , 7 : I Độ_dài dãy con không giảm dài nhất của i số đầu_tiên Vị_trí của kí_tự cuối trong dãy 1 1 1 2 1 2 3 2 2 4 3 3 5 3 3 6 4 5 Bài luyện_tập : Cho đồ_thị vô_hướng G có N đỉnh (N \le 1000) và các cạnh có trọng số_dương .
+Tìm đường_đi ngắn nhất từ đỉnh 1 đến đỉnh N hoặc thông_báo không tồn_tại đường_đi .
+Gợi_ý : Tại mỗi bước , chọn ra trong số các đỉnh chưa thăm mà có đường_đi từ 1 , chọn ra đỉnh có đường_đi ngắn nhất .
+Các bài ví_dụ khác : ZigZag – 2003 TCCC_Semifinals 3 .
+BadNeighbors – 2004 TCCC_Round 4 .
+FlowerGarden – 2004 TCCC_Round 1 .
+Intermediate_Tới đây bạn sẽ được làm_quen với QHĐ 2 chiều .
+Bài_toán : Cho một bảng M_N , mỗi ô có_một lượng táo .
+Bắt_đầu_từ ô trái trên , mỗi bước có_thể đi sang phải hoặc xuống dưới .
+Bạn có_thể ăn được nhiều nhất bao_nhiêu quả táo ?
+Cách giải bài này cũng tương_tự như những bài trước .
+Đầu_tiên là phải xác_định trạng_thái là gì .
+Ở mỗi ô có nhiều nhất 2 cách có_thể tới được ô đó , từ ô bên trái và ô phía trên .
+Do_vậy , để tìm trạng_thái hiện_tại , ta phải tính trước các ô có_thể đến được nó .
+Ta có_công thức truy_hồi sau : Sij=Aij + max(Si-1j , if igt;0 ; Sij-1 , if jgt;0) (trong đó , i là hàng , j là cột , Aij là số táo ở ô i , j) Sij có_thể được tính_từ trái sang phải , từ trên xuống dưới , hoặc từ trên xuống , từ trái sang .
+Mã giả : For i = 0 to N - 1 For j = 0 to M - 1 Sij = Aij + max(Sij-1 , if jgt;0 ; Si-1j , if igt;0 ; 0) Output_Sn-1m-1 Ví_dụ khác : AvoidRoads – 2003 TCO_Semifinals 4 ChessMetric – 2003 TCCC_Round 4 Upper-Intermediate_Phần này sẽ giới_thiệu với bạn những bài_toán cùng_với một_số điều_kiện .
+Đây là một ví_dụ cụ_thể : Cho đồ_thị vô_hướng G có trọng số_dương và N đỉnh .
+Ban_đầu bạn có_số tiền là M .
+Để đi_qua đỉnh i , bạn phải trả số tiền là Si . Và đương_nhiên , nếu_không đủ tiền thì bạn không đi được .
+Tìm đường_đi ngắn nhất từ 1 tới N thỏa_mãn tiêu_chí trên .
+Nếu có nhiều đường ngắn nhất , in ra đường với chi_phí nhỏ nhất .
+Giới_hạn : 1lt;N \le 100 ; 0 \le M \le 100; 0 \le Si \le 100 .
+Có_thể dễ_dàng thấy đây là một bài Dijkstra cơ_bản , tuy_nhiên chỉ khác ở chỗ nó có thêm một điều_kiện .
+Trong bài_toán Dijkstra cơ_bản ta có Mini , là độ_dài đường_đi ngắn nhất từ 1 tới i .
+Còn ở đây , chúng_ta cần phải quan_tâm đến số tiền còn_lại .
+Do_đó chúng_ta có_thể mở_rộng mảng này thành Minij , là độ_dài đường_đi ngắn nhất tới i , và còn_lại số tiền là j .
+Bằng cách này bài_toán đã được đưa về bài_toán Dijkstra quen_thuộc .
+Tại mỗi bước_ta tìm trạng_thái (i , j) có quãng đường ngắn nhất , đánh_dấu là đã thăm rồi update cho các trạng_thái cạnh nó .
+Đáp_án sẽ là MinNj có_giá trị nhỏ nhất (và j lớn nhất trong số các MinNj có cùng giá trị) .
+Mã giả : Gán mọi(i , j) là chưa thăm Gán_Minij bằng dương vô_cùng với mọi (i , j) Min0M=0_While(TRUE)_Trong số những trạng_thái chưa thăm (i , j) tìm cái có Minij nhỏ nhất .
+Giải sử nó là (k , l) .
+Nếu_không tìm được (k , l) nào mà Minkl nhỏ hơn dương vô_cùng - thoát vòng_lặp .
+Đánh_dấu (k , l) đã thăm For_All_Neighbors p of Vertex k .
+If (l-Spgt;=0 AND_Minpl-Spgt;Minkl+Distkp)_Then_Minpl-Sp=Minkl+Distkp i . e . Nếu tại (i , j) có đủ tiền để đi_qua p (l-Sp là số tiền còn_lại sau khi đi_qua p) , và đường_đi ngắn nhất của (p , l-Sp) lớn hơn đường_đi ngắn nhất tới (k , l) + khoảng_cách từ k tới p) , thì gán (i , j) bằn tổng_này .
+End_For_End_While_Tìm số nhỏ nhất trong các MinN-1j (for all j , 0lt;=jlt;=M); Nếu có nhiều hơn một trạng_thái , lấy trạng_thái nào có j lớn nhất .
+Nếu_không có (N-1 , j) nào nhỏ hơn dương vô_cùng - không tồn_tại đường_đi .
+Các bài luyện_tập : Jewelry – 2003 TCO_Online_Round 4 StripePainter – SRM 150 Div 1 QuickSums – SRM 197 Div 2 ShortPalindromes – SRM 165 Div 2 Advanced_Những bài sau_đây sẽ cần một_chút kĩ_năng phân_tích để có_thể tối_ưu chúng thành bài QHĐ .
+Problem_StarAdventure – SRM 208 Div 1 : Cho ma_trận M hàng , N cột (N M) .
+Mỗi ô có_một lượng táo .
+Bạn đang ở ô góc trái trên .
+Bạn chỉ_có thể đi xuống hoặc sang phải .
+Bạn cần tới ô góc phải dưới .
+Rồi quay_lại ô trái trên bằng cách lên hoặc sang trái .
+Cuối_cùng , bạn quay_lại ô phải dưới .
+Tìm số táo nhiều nhất mà bạn có_thể ăn được .
+Khi đi_qua một ô , toàn_bộ táo của ô đấy sẽ bị ăn hết .
+Giới_hạn : 1 lt; N , M \le 50 mỗi ô có từ 0 đến 1000 quả táo .
+Đọc đến đây , hẳn bạn sẽ thấy cái đề này quen_quen , nó chính là bài mở_rộng của bài_toán phần Intermediate .
+Ta có_thể thử đưa bài_toán này về thành bài_toán trên .
+Để_ý thấy đường_đi từ ô góc phải dưới lên trái trên cũng có_thể coi là một đường_đi từ góc trái trên xuống .
+Như_vậy , chúng_ta phải xử_lý bài_toán với 3 đường_đi từ trái trên xuống .
+Gọi 3 đường này là trái , giữa và phải .
+Khi 2 đường giao nhau (như hình dưới) : thì nó cũng tương_đương với hình sau : Bằng cách này , chúng_ta đã có_một cái nhìn khác về bài_toán .
+Các đường này sẽ không giao nhau (trừ ô góc trái trên và phải dưới) .
+Với mỗi hàng y (không phải hàng_đầu và cuối) , tọa_độ x ở mỗi đường sẽ là (x1y , x2y và x3y ) : x1y lt; x2y lt; x3y .
+Ta xét hàng thứ y .
+Giả_sử , ta xét x1y-1 , x2y-1 and x3y-1 và số táo hiện_giờ thu được là nhiều nhất .
+Từ_đó ta có_thể tối_ưu cho hàng y .
+Chúng_ta cần tìm cách chuyển trạng_thái .
+Gọi_Maxijk là lượng táo nhiều nhất thu được đến hàng y-1 với 3 đường đang dừng ở cột i , j , và k .
+Với hàng y , thêm vào Maxijk số_lượng táo ở các ô (y , i) , (y , j) and (y , k) .
+Vì chúng_ta đang đi xuống .
+Sau_đó , chúng_ta xét đến những đường có_thể sang phải .
+Để tránh việc giao nhau , ta xét lần_lượt các bước ở trái , phải_rồi giữa .
+Bài luyện_tập thêm : MiniPaint – SRM 178 Div 1 Note : Khi gặp một bài_toán , hãy để_ý xem nó có được giải trong thời_gian đa_thức không .
+Nếu có , thử xác_định trạng_thái của nó , cách chuyển trạng_thái , và nếu_không chuyển được trạng_thái , hãy thử tối_ưu nó về một bài QHĐ (như ví_dụ ở trên) .
+Những bài đã đề_cập ở trên : TCCC ’03 Semifinals 3 Div_I_Easy – ZigZag_TCCC ’04 Round 4 Div_I_Easy – BadNeighbors_TCCC ’04 Round 1 Div_I_Med – FlowerGarden_TCO ’03 Semifinals 4 Div_I_Easy – AvoidRoads_TCCC ’03 Round 4 Div_I_Easy – ChessMetric_TCO ’03 Round 4 Div_I_Med – Jewelry_SRM 150 Div_I_Med – StripePainter_SRM 197 Div_II_Hard – QuickSums_SRM 165 Div_II_Hard – ShortPalindromes_SRM 208 Div_I_Hard – StarAdventure_SRM 178 Div_I_Hard – MiniPaint

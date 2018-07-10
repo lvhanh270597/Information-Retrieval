@@ -1,0 +1,6 @@
+Fenwick hay ở Việt_Nam được gọi_là Cây Chỉ_Số Nhị_Phân ( Binary_Indexed_Tree ) là một CTDL với n node và mỗi node thứ i chứa thông_tin về các phần_tử trong đoạn i - (i amp; -i) , i Ví_dụ : Có_một mảng a_1 , a_2 , . . . , a_N và được khởi tạo bằng 0 .
+Chúng_ta nhận được các truy_vấn , 1 là tăng phần_tử a_P lên val , 2 là in ra a_1+a_2+ . . . +a_P .
+Giờ chúng_ta chỉ_cần quan_tâm cách giải bài_toán này với Fenwick (nhưng sau_đó bạn có_thể tìm_tòi và áp_dụng nó cho nhiều bài_tập khác) .
+Độ phức_tạp khi xử_lý các truy_vấn là O(log(n)) .
+Code (1-based) : int fen MAX_N ; void update ( int p , int val ) for ( int i = p ; i lt;= n ; i += i amp; - i ) fen i += val ; int sum ( int p ) int ans = 0 ; for ( int i = p ; i ; i -= i amp; - i ) ans += fen i ; return ans ; Mảng bắt_buộc phải là 1-based , không_thể chạy với 0-based .
+Bài_tập Pashmak and Parmida’s problem BST Tài_liệu tham_khảo Codeforces

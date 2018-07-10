@@ -1,0 +1,25 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+VB(chứng_minh)  NNP(.)  NP(NNP(.))  VP(VB(chứng_minh)NP(NNP(.)))  S(VP(VB(chứng_minh)NP(NNP(.))))  gamma(S(VP(VB(chứng_minh)NP(NNP(.)))))  
+
+
+gamma()  

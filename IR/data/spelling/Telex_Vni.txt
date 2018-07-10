@@ -1,0 +1,74 @@
+﻿	#a
+á as a1
+à af a2
+ả ar a3
+ã ax a4
+ạ aj a5
+	#ă
+ă aw a8
+ắ aws 81
+ằ awf a82
+ẳ awr a83
+ẵ awx a84
+ặ awj a85
+	#â
+â aa a6
+ấ aas a61
+ầ aaf a62
+ẩ aar a63
+ẫ aax a64
+ậ aaj a65
+	#đ
+đ dd d9
+	#e
+é es e1
+è ef e2
+ẻ er e3
+ẽ ex e4
+ẹ ej e5
+	#ê
+ê ee e6
+ế ees e61
+ề eef e62
+ể eer e63
+ễ eex e64
+ệ eej e65
+	#i
+í is i1
+ì if i2
+ỉ ir i3
+ĩ ix i4
+ị ij i5
+	#o
+ó os o1
+ò of o2
+ỏ or o3
+õ ox o4
+ọ oj o5
+	#ô
+ô oo o6
+ố oos o61
+ồ oof o62
+ổ oor o63
+ỗ oox o64
+ộ ooj o65
+	#ơ
+ơ ow o7
+ớ ows o71
+ờ owf o72
+ở owr o73
+ỡ owx o74
+ợ owj o75
+	#u
+ú us u1
+ù uf u2
+ủ ur u3
+ũ ux u4
+ụ uj u5
+	#ư
+ư uw u7
+ứ uws u71
+ừ uwf u72
+ử uwr u73
+ữ uwx u74
+ự uwj u75

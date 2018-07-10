@@ -1,0 +1,27 @@
+Table of_Contents Tìm_kiếm tam_phân - Ternary_Search Mở_đầu Bài_toán Thuật_toán Cài_đặt Mở_rộng Bài_tập tự luyện Tìm_kiếm tam_phân - Ternary_Search_Nguồn : e-maxx Người dịch : Đỗ Thanh_Lam Mở_đầu Cho một hàm F(x) chỉ_có một cực_trị duy_nhất (unimodal) .
+Có hai dạng hàm F(x) cơ_bản : Phần đầu tăng chặt , đạt đến giá_trị lớn nhất , sau_đó giảm chặt .
+(concave) Một hàm_số thoả_mãn tính_chất này nếu tất_cả các đoạn_thẳng nối 2 điểm của đồ_thị hàm_số , nằm "bên dưới" của đồ_thị .
+Phần đầu giảm chặt , đạt đến giá_trị nhỏ nhất , sau_đó tăng chặt .
+(convex) Một hàm_số thoả_mãn tính_chất này nếu tất_cả các đoạn_thẳng nối 2 điểm của đồ_thị hàm_số , đều nằm "bên trên" của đồ_thị .
+Trong bài viết này chúng_tôi sẽ giải_quyết trường_hợp 1 , trường_hợp 2 sẽ làm tương_tự nhưng ngược_lại .
+Bài_toán Cho một hàm F(x) trong đoạn l , r thoả_mãn : F tăng chặt tới một cực_đại (điểm H) rồi giảm chặt .
+Yêu_cầu tìm điểm đạt giá_trị lớn nhất (điểm H) .
+Thuật_toán Xét hai vị_trí m_1 và m_2 trong đoạn l , r sao_cho l lt; m_1 lt; m_2 lt; r .
+Rõ_ràng cực_trị có_thể nằm ở 1 trong 3 phần : l , m_1 .
+Khi đó , ta biết chắc_chắn F(m_1) gt; F(m_2) .
+m_1 , m_2 .
+Ta không_thể rút ra kết_luận gì về F(m_1) và F(m_2) .
+m_2 , R .
+Tương_tự trường_hợp đầu , ta biết chắc_chắn F(m_1) lt; F(m_2) .
+Ngược_lại , bằng việc so_sánh F(m_1) và F(m_2) , ta có_thể rút ra kết_luận như_sau : Nếu F(m_1) lt; F(m_2) : Ta biết chắc_chắn H nằm trong m_1 , r .
+F(m_1) gt; F(m_2) : Ta biết chắc_chắn H nằm trong l , m_2 .
+F(m_1) = F(m_2) : H nằm trong m_1 , m_2 .
+(Chú ý : khi cài_đặt chặt tam_phân với hàm_số thực , ta thường bỏ_qua trường_hợp này , để tránh sai_số , và do trên thực_tế 2 số_thực hầu_như_không bao_giờ bằng nhau) .
+Do_đó , dựa vào việc so_sánh F ở hai điểm m1 , m2 ta có_thể thay_đổi và giảm không_gian tìm_kiếm l , r xuống một khoản không_gian nhỏ hơn l , r .
+Nếu ta chọn : m_1 = l + (r - l) / 3 m_2 = r - (r - l) / 3 Thì sau mỗi lần , độ lớn của đoạn l , r giảm xuống còn 2/3 lần .
+Nếu ta lặp_đi lặp_lại K lần , thì độ lớn của l , r sẽ chỉ còn (2 / 3) K .
+Ví_dụ với l = -109 , r = 109 , ta lặp_lại K = 100 lần , thì đoạn l , r thu về chỉ còn độ_dài là (2 / 3 . 0) 100 (2109) lt; 5 10-9 , đủ chính_xác với hầu_hết mọi bài_toán .
+Độ phức_tạp thuật_toán là O(logT) với T là độ_chính_xác mà ta cần thực_hiện .
+Cài_đặt double max_f ( double left , double right ) int N_ITER = 100 ; for ( int i = 0 ; i lt; N_ITER ; i ++ ) double x1 = left + ( right - left ) / 3 . 0 ; double x2 = right - ( right - left ) / 3 . 0 ; if ( f ( x1 ) gt; f ( x2 )) right = x2 ; else left = x1 ; return f ( left ); Mở_rộng Tìm_kiếm tam_phân cũng có_thể dùng để giải các bài_toán trên 2D với hàm dạng f(x , y) nếu hàm f là hàm lồi .
+Ví_dụ bài E trong đề ACM_ICPC_Vietnam_National_Round 2017 , lời_giải chi_tiết ở đây .
+Bài_tập tự luyện Codechef - Race time Hackerearth - Rescuer_Spoj - Building_Construction_Codeforces - Weakness and Poorness

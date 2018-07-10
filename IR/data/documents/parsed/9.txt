@@ -1,0 +1,23 @@
+
+
+
+
+
+
+
+
+VB(so_sánh)  IN(với)  NNP(.)  NP(NNP(.))  PP(IN(với)NP(NNP(.)))  VP(VB(so_sánh)PP(IN(với)NP(NNP(.))))  S(VP(VB(so_sánh)PP(IN(với)NP(NNP(.)))))  gamma(S(VP(VB(so_sánh)PP(IN(với)NP(NNP(.))))))  
+
+
+
+VB(đặt)  VB(là)  CD(một)  NN(ma_trận)  NNP(.)  NP(NN(ma_trận)NNP(.))  NP(CD(một)NP(NN(ma_trận)NNP(.)))  VP(VB(là)NP(CD(một)NP(NN(ma_trận)NNP(.))))  VP(VB(đặt)VP(VB(là)NP(CD(một)NP(NN(ma_trận)NNP(.)))))  S(VP(VB(đặt)VP(VB(là)NP(CD(một)NP(NN(ma_trận)NNP(.))))))  gamma(S(VP(VB(đặt)VP(VB(là)NP(CD(một)NP(NN(ma_trận)NNP(.)))))))  
+
+
+VB(gọi)  NNP(.)  NP(NNP(.))  VP(VB(gọi)NP(NNP(.)))  S(VP(VB(gọi)NP(NNP(.))))  gamma(S(VP(VB(gọi)NP(NNP(.)))))  
+
+
+
+
+
+
+gamma()  

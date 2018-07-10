@@ -1,0 +1,109 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong post này , chúng_ta tìm_hiểu 3 biến_thể khác_nhau của bài_toán luồng cực_đại : Hai biến_thể đầu_tiên , ta áp_dụng phép quy dẫn để quy về bài_toán luồng cơ_bản .
+Bài_toán thứ 2 chúng_ta sẽ áp_dụng thuật_toán để tìm luồng có chi_phí cực_tiểu .
+Trong bài này , ta kí_hiệu là mạng đầu_vào . Trong biến_thể này , mạng của chúng_ta , ngoài khả_năng thông_qua , còn có_một tập các đỉnh phát và một_tập các đỉnh thu .
+Xem ví_dụ minh_họa trong Figure 1(a) .
+Luồng trong mạng này được định_nghĩa_là hàm thỏa_mãn điều_kiện thông_qua và điều_kiện bảo_toàn luồng tại mọi đỉnh trong .
+Giá_trị của luồng được định_nghĩa_là tổng_luồng đi_ra tại tất_cả các đỉnh trong : Bài_toán của chúng_ta là tìm một luồng có_giá trị cực_đại trong mạng .
+Để quy về bài_toán luồng cực_đại với một đỉnh phát , một đỉnh thu mà chúng_ta đã biết cách giải , ta sẽ thêm vào 2 đỉnh mới và .
+Ta sẽ nối với mỗi đỉnh phát bằng một cung và nối mỗi đỉnh với đỉnh bằng một cung .
+. Xem ví_dụ minh_họa trong Figure 1(b) .
+Gọi_là mạng thu được .
+Ta sẽ chứng_minh tìm luồng cực_đại trong có_thể được quy về tìm luồng cực_đại trong , mạng chỉ_có một đỉnh phát và một đỉnh thu .
+: (a) một luồng với nhiều đỉnh phát/thu (b) đồ_thị quy dẫn .
+Gọi lần_lượt là luồng cực_đại trong và .
+Trước_hết , ta chứng_minh .
+Gọi_là một luồng cực trong .
+Ta sẽ chuyển luồng này thành một luồng trong .
+Gọi_là luồng trong đó : và Ta có_thể dễ_dàng kiểm_tra điều_kiện thông_qua của vì các cạnh mới trong đều có khả_năng thông_qua vô_hạn .
+Để kiểm_tra điều_kiện bảo_toàn luồng , ta chỉ_cần kiểm_tra với các đỉnh thuộc .
+Ta có_thể kiểm_tra trực_tiếp dựa vào định_nghĩa .
+Do_đó , luồng là một luồng hợp_lệ trong .
+Do_đó , .
+Ngoài_ra , do , ta suy ra dpcm . Chứng_minh , ta làm tương_tự .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Ta sử_dụng khả_năng thông chỉ để trình_bày được dễ_hiểu .
+Ở đây , ta có_thể thay bằng tổng_khả_năng thông_qua của tất_cả các cung .
+Giả_sử mạng của chúng_ta chỉ_có một đỉnh phát và một đỉnh thu .
+Tuy_nhiên , mỗi cung , ngoài khả_năng thông_qua , còn có_một định_mức : cho_biết lượng luồng ít_nhất trên cung .
+Điều_kiện này được gọi .
+Một luồng được gọi_là hợp_lệ trong trường_hợp này , ngoài điều_kiện thông_qua và bảo_toàn luồng , còn phải thỏa_mãn điều_kiện định_mức .
+Ví_dụ một mạng với định_mức cạnh trong Figure 2(a) .
+Bài_toán của chúng_ta đặt ra là tìm một luồng cực_đại với định_mức của cung .
+Trước_hết chúng_ta giải bài_toán đơn_giản hơn : tìm một luồng hợp_lệ với định_mức của cung .
+Nếu ta tìm được một luồng hợp_lệ , chúng_ta có_thể tìm luồng cực_đại với điều_kiện định_mức bằng cách tăng luồng hợp_lệ này sử_dụng ý_tưởng của Ford-Fulkerson .
+Thực_ra , khâu khó nhất của bài_toán luồng cực_đại với định_mức chính là tìm một luồng hợp_lệ .
+Trong bài_toán luồng cổ_điển , luồng với giá_trị 0 trên mọi cung là một luồng hợp_lệ .
+Ta sẽ quy bài_toán tìm luồng hợp_lệ bằng về bài_toán luồng cực_đại cổ_điển như_sau .
+Thêm vào hai đỉnh mới và .
+Thiết_lập khả_năng thông_qua mới như_sau : Gọi đồ_thị mới là .
+Chú_ý , các cung trong không có định_mức (định mức bằng ) .
+Figure 2(b) dưới_đây minh_họa phép quy dẫn áp_dụng cho đồ_thị ở Figure 2(a) .
+(a) Một mạng với định_mức của cạnh .
+Với mỗi cung dạng , là khả_năng thông_qua và là định_mức .
+(b) Đồ_thị quy dẫn về bài_toán luồng cực_đại cổ_điển .
+Ta sẽ chứng_minh tìm luồng hợp_lệ trong có_thể quy về tìm luồng cực_đại trong .
+Ta gọi luồng trong là một nếu mọi cung đi_ra từ đều bị bão_hòa .
+Một_cách hình_thức : Theo định_lý luồng cực_đại và lắt cắt cực_tiểu , luồng bão_hòa cũng chính là một luồng cực_đại .
+Do_đó , tìm luồng bão_hòa trong cũng chính là tìm luồng cực_đại .
+Ta sẽ phải chứng_minh hai chiều : (1) từ một luồng hợp_lệ của , ta sẽ phải biến_đổi nó thành một luồng bão_hòa trong và (2) từ một luồng bão_hòa trong , ta phải biến_đổi nó thành một luồng hợp_lệ của . Chứng_minh (1) .
+Gọi_là một luồng hợp_lệ của .
+Ta sẽ gán cho mỗi cung của một luồng với giá_trị như_sau : Dễ thấy với mọi cung do thõa mãn điều_kiện định_mức .
+Ngoài_ra , ta dễ_dàng kiểm_tra được bão_hòa các cung đi_ra từ .
+Luồng thỏa_mãn điều_kiện thông_qua do thỏa_mãn điều_kiện thông_qua .
+Ta chỉ còn phải kiểm_tra điều_kiện bảo_toàn luồng của .
+Ta thấy với mỗi đỉnh khác của , luồng đi_vào trong bằng luồng đi_vào trong và luồng đi_ra từ trong bằng luồng đi_ra từ trong .
+Tại , luồng đi_ra có_giá trị (giả sử luồng cực_đại của của không có luồng quay ngược_lại ) .
+Do ta gán luồng trên cung cũng bằng .
+Do_đó , điều_kiện bảo_toàn luồng thỏa_mãn với mọi đỉnh thuộc , ngoại_trừ . Chứng_minh (2) tương_tự như (1) và coi_như bài_tập cho bạn_đọc . Sau khi ta đã có được một luồng hợp_lệ với định_mức cạnh , ta sẽ sử_dụng ý_tưởng Ford-Fukerson để tìm đường tăng luồng trong đồ_thị thặng_dư và thực_hiện tăng luồng để tìm luồng cực_đại .
+Tuy_nhiên , trong trường_hợp này , chúng_ta cần phải cần thận trong bước tăng luồng để đảm_bảo luồng của các cung sau khi tăng vẫn phải thỏa_mãn điều_kiện định_mức .
+Ta định_nghĩa đồ_thị thặng_dư như_sau .
+Với mỗi cung có luồng không âm , ta định_nghĩa 2 cung song_song với trọng số : Sau_đó , ta thực_hiện tìm đường tăng luồng và tăng như trong thuật_toán gốc của Ford-Fukerson . Trong phiên_bản này , ngoại_trừ khả_năng thông_qua , mỗi cung của còn có_một chi_phí .
+Chi_phí này là chi_phí phải trả cho luồng trên cung .
+Chi_phí của một luồng trong được định_nghĩa như_sau : Trong_Figure 3 là một luồng cực_đại với chi_phí .
+Một luồng cực_đại với chi_phí .
+Mỗi cung có dạng trong đó là khả_năng thông_qua , là giá_trị của luồng trên cung và là chi_phí cho mỗi đơn_vị của luồng . Bài_toán đặt ra cho chúng_ta là trong số các luồng cực_đại của , tìm luồng cực_đại có chi_phí nhỏ nhất .
+Nhìn dưới góc_độ bài_toán dẫn dầu như trong bài trước , một công_ty muốn chuyển dầu qua mạng đường_ống có_sẵn sẽ phải trả tiền cho phần ống mà họ chuyển dầu qua .
+Công_ty muốn chuyển được lượng dầu nhiều nhất với chi_phí nhỏ nhất , họ sẽ phải tìm luồng cực_đại với chi_phí cực_tiểu . Ta sẽ giả_sử đầu thì đầu_vào không có cung song_song , i . e , nếu thì và ngược_lại .
+Tính_chất này có_thể được đảm_bảo bằng cách thêm một đỉnh mới vào một trong 2 cung song_song (xem lại kĩ_thuật tương_tự trong bài trước) . Ý_tưởng của thuật_toán gồm 2 bước : (1) Tìm một luồng cực_đại trong mà chưa cần quan_tâm đến chi_phí và (2) thực_hiện thay_đổi luồng cực_đại_để thu được một luồng cực_đại khác với chi_phí nhỏ hơn .
+Bước (2) sẽ được lặp_lại cho_đến khi ta không_thể thay_đổi được luồng cực_đại nữa thì luồng cuối_cùng thu được sẽ là luồng cực_đại có chi_phí nhỏ nhất .
+Bước (1) ta có_thể áp_dụng bất_kì thuật_toán tìm luồng cực_đại nào .
+Thực_hiện bước (2) , ta dựa trên nhận_xét : "tăng" luồng dọc theo một chu_trình có hướng (trong đồ_thị thặng dư) không làm thay_đổi giá_trị cực_đại của luồng .
+Ví_dụ trong Figure 4 , hình (b) là luồng thu được sau khi tăng luồng cực_đại trong Figure 3 dọc theo một chu_trình của đồ_thị thặng_dư (chu trình màu đỏ) .
+Luồng thu được sau khi tăng có_giá trị 15 , bằng giá_trị của luồng trong Figure 3 .
+(a) Đồ_thị thặng_dư của luồng trong Figure 3 (b) Luồng cực_đại thu được sau khi "tăng" luồng cực_đại trong Figure 3 dọc theo chu_trình màu đỏ trong (a) . Do_đó , ta có_thể thay_đổi một luồng cực_đại thành một luồng cực_đại khác bằng cách tăng luồng dọc theo chu_trình .
+Để giảm_chi phí_của luồng cực_đại mỗi khi thay_đổi luồng , ta phải tìm một chu_trình trong đồ_thị thặng_dư sao_cho khi tăng luồng dọc theo chu_trình này , chi_phí của luồng cực_đại sẽ giảm đi .
+Do_đó , ta cần phải đưa thêm chi_phí vào trong định_nghĩa của đồ_thị thặng_dư , mà ta gọi_là và kí_hiệu là .
+Với mỗi cung mà_dương , ta định_nghĩa cung ngược trong với trọng số .
+Nếu < , ta định_nghĩa cung với trọng số .
+Xem ví_dụ trong Figure 5 .
+Về cơ_bản , đồ_thị chi_phí thặng_dư có cấu_trúc giống đồ_thị thặng_dư , chỉ khác trọng số ở đây là chi_phí .
+Đồ_thị chi_phí thặng_dư của luồng trong Figure 3 . Ta sẽ tìm một chu_trình âm trong với trọng số (sử dụng chẳng hạn) , và thực_hiện tăng luồng dọc theo chu_trình âm này .
+Dễ thấy sau khi tăng luồng , chi_phí của luồng cực_đại sẽ giảm đi , trong đó là lượng luồng tăng dọc theo chu_trình âm và là chi_phí (trọng số) của chu_trình âm .
+Trong_Figure 5 , chu_trình âm tìm được là chu_trình mà đỏ với chi_phí và (xem Figure 4(b)) .
+Do_đó nêu tăng luồng dọc theo chu_trình âm này , chi_phí sẽ giảm đi đơn_vị .
+Luồng cực_đại có_thể tìm được trong thời_gian (sử dụng thuật_toán Orlin2) .
+Chu_trình âm có_thể tìm được trong thời gain sử_dụng Bellman-Ford .
+Mỗi bước tăng luồng , chi_phí của luồng cực_đại giảm đi ít_nhất 1 đơn_vị .
+Do_đó , cần tối_đa bước tăng luồng , trong đó là chi_phí của luồng cực_đại .
+Như_vậy , ta có_thể thực_thi thuật_toán này trong thời_gian O(VEC) .
+Tất_nhiên đây không_phải là thời_gian đa_thức vì có_thể biểu_diễn được bằng bít .
+Một_số kĩ_thuật như Edmond-Karp cũng không áp_dụng được ở đây vì bài_toán tìm chu_trình âm với chi_phí nhỏ nhất và bài_toán tìm chu_trình âm có ít cạnh nhất đều là các bài_toán NP-Hard .
+Goldberg và Tajan 3 đưa_ra thuật_toán tìm chu_trình âm với chi_phí trung_bình nhỏ nhất (chi phí trung_bình ở đây là chi_phí trung_bình trên mỗi cạnh) trong thời_gian đa_thức và chứng_minh rằng phép tăng luồng sẽ kết_thúc sau đa thưc bước , do_đó , cho ta thuật_toán thời_gian đa_thức . 1 J .
+Erickson .
+, UIUC , Fall 2013 .
+2 J . B . Orlin . .
+In_Proceedings of the 45th Annual_ACM_Symposium on Theory of Computing , pp .
+765-774 .
+ACM , 2013 .
+3 A .
+V .
+Goldberg and R .
+E .
+Tarjan .
+.
+J .
+Assoc .
+Comput .
+Mach . , 36(4) : 873-886 , 1989 .
+, , , , Trackback link : Powered by and

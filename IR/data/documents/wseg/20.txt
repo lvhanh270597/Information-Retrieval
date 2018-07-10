@@ -1,0 +1,68 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Xét bài_toán cơ_bản sau : Hai yếu_tố quan_trọng khi thiết_kế một cấu_trúc dữ_liệu để trả_lời câu_hỏi trên : bộ_nhớ để lưu_trữ cấu_trúc phải đủ nhỏ vì S rất lớn và các truy_vấn có_thể được trả_lời một_cách nhanh_chóng .
+Chú_ý , lưu_trữ S cần ít_nhất \Omega(n\log n) bít (tại sao lại có thêm nhân_tử \log n ở đây ? ) .
+Bloom 1 đề_xuất một cấu_trúc , gọi_là Bloom filter , sử_dụng O(n) bít và có_thể trả_lời truy_vấn trong thời_gian O(1) .
+Bài này ta sẽ tìm_hiểu cấu_trúc đó . Problem 1 cơ_bản tới mưc gần_như nó xuất_hiện gần_như khắp mọi nơi , đặc_biệt trong thời_đại dữ_liệu lớn (big data) .
+Trang liệt_kê rất nhiều ứng_dụng của Bloom filter trong các hệ_thống lớn hiện_tại , mà bạn_đọc có_thể tham_khảo .
+Ví_dụ sử_dụng Bloom_Filter để loại ra các bài mà một user đã đọc khi muốn gợi_ý các bài mới cho user đó .
+Bài này mình chủ_yếu tập_trung trình_bày ý_tưởng và dựa trên chương 5 trong cuốn sách kinh_điển của Mitzenmacher và Upfal 2 (một trong những cuốn sách yếu thích của mình) .
+Về_mặt ý_tưởng , cấu_trúc Bloom filter rất đơn giản; tất_cả những thứ không đơn_giản lại nằm ở phép phân_tích .
+Gọi n là số phần_tử trong S .
+Bloom filter sử_dụng một mảng m bít A1 , \ldots , m và k \mathcalH = \h_1( . ) , \ldots , h_k( . )\ .
+Ban_đầu các bít đều có_giá trị 0 (Ai = 0 với mọi i) , ta nói các bít bị tắt .
+Giả_sử đầu_ra của các hàm_băm khi áp_dụng cho một đầu_vào x là một chỉ_số trong tập \1 , 2 , \ldots , m\ .
+Với mỗi s \in S , ta sẽ bật k bít ở k vị_trí h_1(s) , \ldots , h_k(s) trong mảng A (k vị_trí này không nhất_thiết là đôi một khác nhau) .
+Giả mã như_sau : Để kiểm_tra xem một phần_tử x có trong S hay_không , ta sẽ kiểm_tra k vị_trí h_1(x) , \ldots , h_k(x) của mảng A .
+Nếu tất_cả k vị_trí này đều là 1 , ta sẽ kết_luận x có trong S .
+Ngược_lại , ta kết_luận x không có trong S .
+Dễ thấy , nếu x \in S thì Bloom filter luôn trả_lời đúng .
+Tuy_nhiên , nếu x không nằm trong S thì_có thể k bít của A tương_ứng với k mã_băm của x đều đã được bật trước đó .
+Trong trường_hợp này , Bloom filter sẽ cho câu trả_lời sai .
+Ta gọi đó là hiện_tượng False_Positive (FP) .
+Ví_dụ một Bloom filter , với \mathcalH có 3 hàm_băm .
+Phần_tử a không có trong S vì có 1 bít trong A có_giá trị 0 khi ta kiểm_tra 3 vị_trí tương_ứng với đầu_ra của 3 hàm_băm khi áp_dụng trên a .
+Phần_tử b không có trong S , nhưng Bloom filter vẫn trả_lời là có trong S , do 3 vị_trí tương_ứng với đầu_ra của 3 hàm_băm khi áp_dụng trên b đều có_giá trị 1; hiện_tượng FP xảy_ra với b . Câu_hỏi đặt ra là : cần chọn m và k như_thế nào để xác_suất FP là thấp nhất .
+Hay câu_hỏi thú_vị và quan_trọng hơn_là : Phần tiếp_theo , ta sẽ chứng_minh : Từ_Theorem 1 , ta có hệ_quả : Trong các phát_biểu trên , ta giả_sử k , m đều là các số_nguyên .
+Theorem 1 , ngoài cho_phép ta kiếm soát được xác_suất FP (Corollary 1) , còn cho_phép chúng_ta thấy được sự thay_đổi của xác_suất FP khi ta tăng/giảm bộ_nhớ của Bloom filter .
+Nếu chọn m = 8n , có_nghĩa là ta sử_dụng trung_bình 8 bít cho mỗi phần_tử của tập S , thì xác_suất FP chỉ khoảng 2% .
+Chú_ý , kích_thước của mỗi phần_tử của tập S ít_nhất_là \Omega(\log n) bít , và trong thực_tế , lớn hơn 8 bít rất nhiều .
+Với mọi i , ta giả_sử xác_suất hàm_băm h_i( . ) sẽ băm x vào một ô cố_định j \in \1 , \ldots , m\ là 1/m . Ta sẽ sử_dụng phương_pháp phân_tích ngược (backward analysis) để chứng_minh Theorem 1 .
+Giả_sử x \not\in S .
+FP xảy_ra khi tất_cả k ô h_1(x) , \ldots , h_k(x) của mảng A đều bị bật .
+Để đơn_giản , ta sẽ tính xác_suất Ah_1(x)=1 và giả_sử k sự_kiện các k ô bị bật là độc_lập với_nhau (đây là một giả_sử không đúng , nhưng nó sẽ làm_phép phân_tích đơn_giản hơn; xem thêm thảo_luận bên dưới) .
+Nếu phân_tích xuôi , S được băm trước x và ta sẽ tìm xác_suất để hàm h_1( . ) băm x vào một ô đã bị bật trước đó hay chưa .
+Tuy_nhiên , ta không biết được bao_nhiêu ô đã bị bật , nên việc tính xác_suất theo phân_tích xuôi khá khó_khăn .
+Trong phép phân_tích ngược , ta sẽ giả_sử khóa x sẽ được băm vào bảng A ta băm S .
+Sau_đó ta sẽ tính xác_suất mà một phần_tử s nào_đó của S bị băm vào ô h_1(x) .
+Đó cũng chính là xác_suất Ah_1(x)=1 . Dễ thấy , xác_suất mỗi lần băm một phần_tử s \in S không vào ô h_1(x) là 1-1/m .
+Do mỗi phần_tử của S được băm k lần , xác_suất để kn lần băm không trúng ô h_1(x) là : (1-\frac1m)kn \qquad (1) Do_đó , xác_suất để ít_nhất 1 lần trong kn lần băm trúng phải ô h_1(x) là : (1-(1-\frac1m)kn) \qquad (2) Do ta giả_sử sự_kiện k ô h_1(x) , \ldots , h_k(x) bị bật là độc_lập , theo (2) , xác_suất để xảy_ra FP là : (1-(1-\frac1m)kn)k \qquad (3) Áp_dụng xấp_xỉ (1 - 1/m)m\sim e-1 , ta có_thể biến_đổi (3) về dạng : (1-e-k\fracnm)k \qquad (4) Giờ ta sẽ tìm k để (4) nhỏ nhất .
+Đặt p = 1 - e-k\fracnm , ta có_thể biến_đổi (4) về dạng : e-\ln(p)\ln(1-p) \fracmn \qquad (5) Dễ thấy (5) cực_tiểu khi và chỉ khi p = 1/2 , lúc_đó ta sẽ suy ra các giá_trị của k như trong Theorem 1 .
+Như đã nói ở phần đầu , giả_sử k sự_kiện k ô bị bật là độc_lập với_nhau là một giả_sử sai vì k sự_kiện này không độc_lập với_nhau .
+Tuy_nhiên , bằng các công_cụ lý_thuyết khác , người_ta chứng_minh được cho_dù không có giả_thiết này thì xác_suất FP cũng xấp_xỉ như công_thức (4) .
+Ssách của Mitzenmacher và Upfal 2 giới_thiệu phương_pháp xấp_xỉ Posison .
+Một_số nguồn tham_khảo khác cho vấn_đề này bạn_đọc có_thể xem tại . Trước_hết , nếu nói đến cấu_trúc tìm_kiếm nhanh một phần_tử trong một_tập hợp , ta thường sử_dụng (hash table) T1 , \ldots , m có kích_thước m .
+Trong cấu_trúc bảng_băm , ta chỉ sử_dụng một hàm_băm h( . ) .
+Tuy_nhiên , do S quá lớn , ta không_thể lưu_trữ S trong bảng .
+Thay vào đó , ta có_thể chỉ dùng 1 bít để đánh_dấu xem một ô của bảng có rỗng hay_không .
+Do_đó , Bloom filter có_thể coi là một cấu_trúc tổng_quát hơn bảng_băm bằng cách dùng nhiều hàm_băm thay_vì dùng một hàm_băm duy_nhất . Câu_hỏi đặt ra là nếu ta chỉ dùng 1 hàm_băm (k = 1) , để xác_suất FP không quá \epsilon thì số_lượng bít m trong bảng là bao_nhiêu ?
+Đây là một bài_tập rất hay mà mình khuyến_khích các bạn thử suy_nghĩ và giải .
+Số_lượng bít cần_thiết là : m =\fracn-\ln(1-\epsilon)\sim \fracn\epsilon \qquad (6) So_với biểu_thức trong Corollary 1 thì sự phụ_thuộc của m vào \epsilon khi sử_dụng Bloom filter tốt hơn lũy_thừa lần khi sử_dụng bảng_băm .
+Survey của Luo , Guo , Ma , Rottenstreich và Luo 3 có thông_tin về rất nhiều loại Bloom_Filter .
+Nếu bạn cần một trong số ứng_dụng hoặc biến_thể nào_đó có Bloom_Filter thì paper này là một điểm khởi_đầu . 1 B .
+H .
+Bloom .
+Communications of the ACM 13 . 7 (1970) : 422-426 .
+2 M .
+Mitzenmacher and E .
+Upfal .
+Chapter 5 .
+Cambridge_University_Press , 2005 .
+3 L .
+Luo , D .
+Guo , R .
+T . B . Ma , O .
+Rottenstreich , and X .
+Luo .
+.
+Arxiv , Accessed 16/04/2018 .
+, , , Trackback link : Powered by and

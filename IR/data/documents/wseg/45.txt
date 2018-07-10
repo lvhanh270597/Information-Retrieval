@@ -1,0 +1,65 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Xem bài tiếp_theo về . Trong , chúng_ta đã tìm_hiểu sơ_bộ về cây nhị_phân tìm_kiếm , tìm_kiếm trên cây và định_nghĩa hai loại cây : AVL và cây_đỏ đen .
+Trong bài này ta tìm_hiểu cách chèn thêm một khóa vào cây AVL mà vẫn đảm_bảo các tính_chất của cây AVL sau khi chèn .
+Bài tiếp_theo , chúng_ta sẽ tìm_hiểu cách xóa_một nút khỏi cây AVL . Một_số khái_niệm như chiều_cao của một nút , bạn_đọc xem_lại .
+Mình chỉ nhắc_lại tính_chất cân_bằng của cây AVL ở đây .
+Trong , ta đã chứng_minh rằng cây AVL có nút trong sẽ có chiều_cao .
+Ở đây ta vẫn giữ quy_ước các nút lá là . Giả_sử khóa ta muốn chèn vào trong cây AVL là một , i . e , không có khóa nào trong cây có cùng giá_trị .
+Điều này có_thể được đảm_bảo bằng cách kiểm_tra xem khóa đã tồn_tại trong cây hay chưa trước_khi thực_hiện chèn .
+Sau khi chèn một khóa , ta phải đảm_bảo hai điều_kiện : Để đảm_bảo điều_kiện (1) , ta luôn chèn một khóa mới vào vị_trí sao_cho nút mới chèn là nút lá của cây .
+Tạm_thời gác lại điều_kiện (2) , giả mã chèn vào cây như_sau : Ví_dụ trong Figure 1 dưới_đây , ta có_một cây AVL với tập khóa (Figure 1(a)) .
+Ta chèn thêm khóa 15 vào cây trong Figure 1(a) , thu được cây trong Figure 1(b) .
+Dễ_dàng kiểm_tra được cây trong Figure 1(b) vẫn là cây AVL .
+Ta chèn tiếp khóa 12 vào Figure 1(b) , thu được Figure 1(c) .
+Cây trong Figure 1(c) không còn là cây AVL nữa vì hai nút tô_màu đỏ trong cây vi_phạm điều_kiện trong phương_trình .
+(a) một cây AVL .
+Node có kí_hiệu lần_lượt tương_ứng với trường_hợp chiều_cao con phải chiều_cao con trái , chiều_cao con phải chiều_cao con trái 1 đơn_vị và chiều_cao con phải chiều_cao con trái 1 đơn_vị .
+(b) cây thu được sau khi chèn khóa 15 .
+Chú_ý sự thay_đổi của 3 kí_hiệu .
+(c) cây thu được sau khi chèn thêm khóa 12 .
+Hai nút tô_màu hồng và có dấu là nút bị mất cân_bằng , chiều_cao con phải lớn hơn chiều_cao con trái 2 đơn_vị tại các nút này .
+Phép chèn như_trên đảm_bảo điều_kiện (1) nhưng sau khi chèn , cây mới có_thể vi_phạm điều_kiện cân_bằng .
+Ví_dụ trong Figure 1(c) , sau khi chèn , các nút đều vi_phạm điều_kiện cân_bằng .
+Do_đó , ta cần một cơ_chế để đảm_bảo tính cân_bằng sau khi chèn .
+Để hiểu các cơ_chế này , trước_hết , ta nghiên_cứu cấu_trúc của các nút bị mất cân_bằng .
+Ta có nhận_xét : Gọi_là nút mới chèn .
+Gọi_là nút bị mất cần bằng gần nhất .
+Gọi_là chiều_cao của nút trước_khi chèn .
+Không mất tính tổng_quát , ta giả_sử được chèn vào của .
+Ta có : Gọi_là nút con phải của .
+Theo_Observation 2 , .
+Bổ_đề sau cho chúng_ta biết cấu_trúc của cây tại nút .
+Giả_sử < .
+Nếu được vào cây_con phải của thì nút sẽ bị mất cân_bằng , trái với giả_thiết là nút mất cân_bằng gần nhất .
+Nếu được chèn vào cây_con trái của thì chiều_cao của không thay_đổi sau khi chèn .
+Như_vậy , sẽ không bị mất cân_bằng .
+Trái với giả_thiết_bị mất cân_bằng . Trường_hợp < chứng_minh tương_tự . Ta xét hai trường_hợp . Xem minh_họa trong Figure 3(a) .
+Trường_hợp này ta thực_hiện (left rotation) tại : ta gán con trái của làm con phải của và gán làm con trái của và cho nút cha của trỏ vào .
+Xem minh_họa trong Figure 3(b) .
+(a) nút bị mất cân_bằng (lệch về bên phải) sau khi chèn vào cây_con phải của .
+(b) phép quay_trái tại để thự hiện cân_bằng .
+Chú_ý chiều_cao của và sự thay_đổi các kí_hiệu sau khi quay .
+Ta có : Giả mã : Code_C : Gọi_là nút con trái của .
+Lập_luận tương_tự như Lemma 1 , ta có : Xem minh_họa Lemma 2 trong Figure 4(a) .
+Như_vậy , sau khi chèn , cây_con trái hoặc phải của sẽ có chiều_cao , tùy thuộc bị chèn vào cây_con nào .
+Trong trường_hợp này , ta thực_hiện phép (doubly left rotation) tại như_sau : (a) gán con trái của làm con phải của , (b) gán con phải của làm con trái của , (c) gán làm con trái của và (d) gán làm con phải của .
+Xem minh_họa trong Figure 4(b) .
+(a) nút bị mất cân_bằng (lệch về bên phải) sau khi chèn vào cây_con trái của .
+Trong hình trên , ta giả_sử được chèn vào cây_con trái của .
+Nếu được chèn vào cây_con phải của thì thao_tác quay vẫn không thay_đổi .
+(b) phép quay kép trái tại để thự hiện cân_bằng .
+Chú_ý chiều_cao của và sự thay_đổi các kí_hiệu sau khi quay .
+Giả mã : Thủ_tục chèn đầy_đủ như_sau : Giả mã của và coi_như bài_tập cho bạn_đọc .
+Code đây đủ thủ_tục chèn trong C : Cám_ơn bạn Nam_Nguyen đã chỉ ra một_số lỗi sai rất tinh_vi trong phiên_bản trước của bài vết . Code đầy_đủ : 1 G .
+Adelson-Velsky and E .
+Landis .
+.
+Proceedings of the USSR_Academy of Sciences (in Russian) .
+146 : 263–266 .
+English translation by Myron_J .
+Ricci in Soviet_Math .
+Doklady , 3 : 1259–1263 , 1962 .
+2 D .
+Knuth .
+.
+Addison-Wesley , 1997 . Trackback link : Powered by and

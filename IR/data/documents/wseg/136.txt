@@ -1,0 +1,84 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Thuật_toán KKT , là thuật_toán ngẫu_nhiên tìm cây khung nhỏ nhất với xác_suất cao trong thời_gian tuyến_tính được phát_triển bởi Klein , Karger và Tarjan1 .
+Ý_tưởng của thuật_toán này rất đẹp , và hi_vọng bài này sẽ truyền_tải được_cái đẹp đó đến các bạn .
+Nội_dung kiến_thức của bài viết này có_thể coi ở mức_độ cao_cấp , do_đó nhiều chi_tiết đơn_giản mình sẽ bỏ_qua .
+Bạn_đọc nếu chưa_từng đọc các bài viết trước về cây khung nhỏ nhất_thì xin xem_lại các bài viết đó trước_khi đọc_tiếp .
+Trong bài viết này , mình sẽ giải sử trọng số của các cạnh là duy_nhất , i . e , không có hai cạnh nào có trọng số giống nhau .
+Trong bài , mình đã đưa_ra cách để thực_hiện giải_thuyết này với đồ_thị đầu_vào bất_kì trong thời_gian tuyến_tính .
+Mình khuyến_khích bạn_đọc xem_lại .
+Với giả_sử này , . Giả_sử bạn tung một đồng xu với xác_suất mặt ngửa là (do đó xác_suất mặt sấp là ) .
+Bạn muốn tung đồng xu đó đến khi_nào bạn thu được một_mặt ngửa .
+Gọi_là số lần tung cần_thiết .
+Khi đó , ta có phân_phối : Phân_phối của được gọi_là phân_phối hình_học () .
+Kì_vọng của phân_phối này là : Tính_chất này mình không chứng_minh mà gợi_ý bạn_đọc xem tại .
+Từ_đó ta có hệ_quả : Bài_toán trên gọi_là bài_toán xác_nhận cây khung nhỏ nhất (MST Verification) .
+Khác với bài_toán cây khung nhỏ nhất , bài_toán này có_thể được giải_quyết trong thời_gian tuyến_tính .
+Giải_thuật không đơn_giản và ý_tưởng cũng không quá đẹp .
+Xem 2 , 3 để biết thêm chi_tiết .
+Sau_đây mình sẽ đưa_ra mấy tính_chất cơ_bản của cây khung mà các thuật_toán xác_nhận áp_dụng .
+Gọi_là một rừng (forest) của đồ_thị .
+Với mỗi cặp đỉnh của , gọi_là trọng số của cạnh (có trọng số) lớn nhất trên đường_đi (duy nhất) từ đến trong .
+Quy_ước nếu thuộc hai cây khác_nhau của thì .
+Cạnh được gọi_là nếu > và được gọi_là nếu ngược_lại .
+Ta có_một số nhận_xét : Giải_thuật của King2 cho chúng_ta Theorem sau : Để xác_nhận cây khung có_phải là nhỏ nhất không , ta áp_dụng Theorem 1 để tìm tất_cả các cạnh -heavy của đồ_thị .
+Nếu tập trả về là rỗng , cây sẽ là cây khung nhỏ nhất , và ngược_lại nếu tập trả về là khác rỗng (tại sao ? ) .
+Do_đó ta có : Thuật_toán KKT trực_tiếp áp_dụng thuật_toán Borůvka và giải_thuật xác_nhận cây khung nhỏ nhất của King (Theorem 1) .
+Chúng_ta đã biết thuật_toán Borůvka tìm cây khung nhỏ nhất bằng cách lặp_lại 2 thao_tác sau cho_đến khi đồ_thị chỉ còn một đỉnh : Ta gọi 2 thao_tác trên là một Borůvka-step .
+Sau mỗi Borůvka-step , ít_nhất cạnh sẽ bị co , và do_đó , số đỉnh của đồ_thị giảm ít_nhất một_nửa .
+Từ_đó suy ra số vòng_lặp của thuật_toán Borůvka là .
+Do_đó , tổng thời_gian của thuật_toán là O((V+E)\log_V) vì mỗi bước co có_thể được thực_hiện trong thời_gian . Giả_sử đồ_thị sau mỗi bước đều thưa ( với hằng_số nào đó) thì thời_gian của thuật_toán Borůvka là : trong đó là tổng_số vòng_lặp của thuật_toán Borůvka .
+Do_đó , thời_gian của thuật_toán là tuyến_tính .
+(Trong trường_hợp đồ_thị_phẳng thì đồ_thị sau mỗi bước của thuật_toán Borůvka đều thưa , do_đó , thuật_toán là tuyến tính) . Tuy_nhiên , sau một_số bước co cạnh , đồ_thị sẽ trở_nên dày hơn .
+Giải_quyết vấn_đề này chính là cái hay của thuật_toán KKT .
+Thuật_toán KKT sẽ xóa đi một_số cạnh dư_thừa , i . e , các cạnh mà ta biết chắc chúng không nằm trong cây khung nhỏ nhất .
+Sau khi xóa , đồ_thị lại trở_nên thưa và do_đó , tiếp_tục áp_dụng thuật_toán Borůvka .
+Phân_tích ở trên chỉ ra rằng , thời_gian cuối_cùng sẽ là tuyến_tính .
+(Nice ! ) . Làm thế_nào xóa được các cạnh dư_thừa .
+Xem_lại Theorem 1 .
+Các cạnh -heavy (của bất_kì rừng nào đó) sẽ là dư_thừa .
+Xóa các cạnh dưa thừa đó đi thì chỉ còn các cạnh -light trong đồ_thị .
+Thuật_toán KKT sử_dụng ngẫu_nhiên để tìm_ra rừng sao_cho số cạnh -light là nhỏ .
+Do_đó , đồ_thị sau khi xóa_cạnh -heavy là thưa .
+Chi_tiết như_sau : Gọi_là đồ_thị thu được bằng cách lấy mẫu (sampling) mỗi cạnh của đồ_thị với xác_suất .
+Hay nói_cách_khác , với mỗi cạnh của , ta tung một đồng xu có xác_suất mặt ngửa là .
+Nếu đồng xu là ngửa thì ta thêm cạnh đó vào , và không làm_gì cả nếu đồng xu có_mặt sấp .
+Gọi_là rừng khung nhỏ nhất của (gọi là rừng khung vì có_thể không liên thông) .
+Ta có : Ta sẽ sử_dụng thuật_toán Kruskal để chứng_minh (các bạn nên xem_lại thuật_toán này) .
+Giả_sử_ta sắp_xếp các cạnh của theo trọng số giảm_dần .
+Khởi tạo và rỗng .
+Với mỗi cạnh (theo thứ_tự đã sắp xếp) , ta tung một đồng xu (có mặt ngửa xác_suất ) .
+Nếu đồng xu có_mặt ngửa thì ta thêm vào .
+Nếu là -light thì ta thêm vào .
+Sau khi quá_trình kết_thúc , chính là rừng khung nhỏ nhất của (quá trình thêm cạnh vào chính là thuật_toán Kruskal) .
+Nên nhớ các cạnh -heavy trong thì cũng là -heavy trong .
+Do_đó , các cạnh này là dư_thừa .
+Ta giờ phân_loại đồng xu thành 2 loại : loại 5k và loại 1k .
+Nếu cạnh là -heavy trong thì đồng xu mà ta tung là loại 1k , và ngược_lại là loại 5k .
+Loại đồng xu 1k sẽ không liên_quan gì đến số cạnh -light cuối_cùng trong vì cho_dù nó là mặt sấp hay ngửa thì cạnh đó vẫn là cạnh dư_thừa .
+Ta chỉ_cần đếm xem có bao_nhiêu loại 5k ta đã tung .
+Nên nhớ rừng có tối_đa cạnh .
+Theo_Corollary 1 , với kì_vọng tung tối_đa lần , ta sẽ thu được rừng (những cạnh với đồng xu 5k mà không thuộc sẽ là các cạnh -light của ) .
+Do_đó , số cạnh -light tối_đa trong là . Tổng_hợp tất_cả những gì ta đã thảo_luận , ta thu được giải_thuật sau : Trong giải_thuật KKT , chúng_ta 2 lần gọi đệ_quy , một_lần trên và một_lần trên .
+Gọi_là thời_gian tính_toán của thuật_toán trên đồ_thị gốc , với lần_lượt là số đỉnh , cạnh của đồ_thị .
+Chú_ý do thuật_toán là ngẫu_nhiên , là một biến ngẫu_nhiên .
+Ta sẽ tính kì_vọng . Nhận_xét thấy : kì_vọng số đỉnh và cạnh của đồ_thị lần_lượt là và .
+Kì_vọng số đỉnh của là và kì_vọng số cạnh (theo Theorem 2) là .
+Chú_ý ở đây ta áp_dụng 2 bước Borůvka nên số đỉnh giảm đi còn tối_đa sau hai bước này .
+Ngoại_trừ 2 thủ_tục đệ_quy , các thao_tác khác trong thuật_toán KKT đều có_thể tính được trong thời_gian tuyến_tính .
+Gọi thời_gian đó là với là một hằng_số .
+Ta có : Ta sẽ chứng_minh bằng quy_nạp .
+Thật_vậy , từ , ta có : Do_đó , ta có : Trong 1 , các tác_giả còn chứng_minh được rằng thời_gian chạy_của thuật_toán là với xác_suất ít_nhất .
+Mình khuyến_khích bạn_đọc tham_khảo thêm . 1 Karger , David_R . , Philip_N .
+Klein , and Robert_E .
+Tarjan .
+Journal of the ACM (JACM) 42 . 2 (1995) : 321-328 .
+2 King , Valerie .
+Algorithmica 18 . 2 (1997) : 263-270 .
+3 Hagerup , Torben .
+International_Workshop on Graph-Theoretic_Concepts in Computer_Science .
+Springer_Berlin_Heidelberg , 2009 .
+.
+4 Uri_Zwick .
+.
+Tel_Aviv_University , 2013 .
+, , , , Trackback link : Powered by and

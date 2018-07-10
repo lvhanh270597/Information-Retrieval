@@ -1,0 +1,30 @@
+Quy hoạch động -- Dynamic Programming IV
+http://www.giaithuatlaptrinh.com/?p=112
+Nơi tổng hợp và chia sẻ những kiến thức liên quan tới giải thuật nói chung và lý thuyết khoa học máy tính nói riêng.   in  | Trong bài này chúng ta sẽ thảo luận bài toán xây dựng cây nhị phân tìm kiếm tối ưu. Chúng ta cũng thảo luận giải thuật cuả Knuth trong bài toán này. Ý tưởng của Knuth sau này được Yao[] mở rộng với trường hợp Bất Đẳng Thức Hình Chữ Nhật (Quadrangle Inequality) để cải tiến quy hoạch động, một kĩ thuật mà mình sẽ giới thiệu ở phần sau.Cây nhị phân tìm kiếm (binary search tree) là một cây nhị phân có tính chất sau: 
+Ví dụ: Ta có mảng  và mảng tần số tương ứng . Một trong số các cây nhị phân tìm kiếm hợp lệ như trong hình sau:
+
+Các số trong hình vuông nhỏ là tần số tìm kiếm, các số trong hình tròn là khóa tìm kiếm. Ta có thể thấy:Như vậy tổng số phép so sánh là . Có thể kiểm tra (bằng cách thử xây dựng các cây nhị phân tìm kiếm hợp lệ khac nhau) rằng cây nhị phân trong hình tương ứng với  và  trong ví dụ có tổng số lượng các phép so sánh là nhỏ nhất. Qua ví dụ trên có thể rút ra số lần so sánh thực hiện ở nút gốc không phụ thuộc vào cách chọn khóa cho nút gốc và luôn là . Ta sẽ phát triển công thức đệ quy cho bài toán này. Gọi  là số phép so sánh của cây nhị phân tìm kiếm tối ưu cho mảng . Nếu  là khóa của nút gốc, ta có:     Vì ta không biết nút nào là nút gốc, ta có thể thử tất cả các lựa chọn có thể có cho nút gốc. Do đó ta có:    
+Gọi  là số phép so sánh của cây nhị phân tìm kiếm tối ưu cho mảng con . Đặt . Ta có:
+    
+ 
+Như các bài toán khác, quy hoạch động trong bài toán nay quy về cập nhật các phần tử của mảng . Tuy nhiên, một điểm cần chú ý ở đây chính là thứ tự cập nhật các phần tử của mảng.
+
+Trong hình trên, các phân tử của mảng tô màu xanh là các phần tử  và được khởi tạo . Giả sử ta muốn cập nhật phần tử được tô màu đen của mảng (ảnh ngoài cùng bên trái), ta phải chắc chắn rằng các phần tử được tô màu đỏ đã được cập nhật trước đó. Do đó ta có thể có 3 cách cập nhật bảng (3 hình với các mũi tên) như trên hình trên. Các mũi tên chỉ thứ tự các phần tử được cập nhật. Trong giả mã dưới đây, bảng được cập nhật theo hình thứ nhất (cập nhật kiểu đường chéo). Mũi tên xanh sẽ tương ứng với vòng lặp ngoài cùng của giả mã. Các kiểu cập nhật khác coi như bài tập cho bạn đọc. Hàm  tính . Hàm () tính  theo công thức đệ quy . Ta lưu thêm mảng  trong đó  lưu lại gốc của cây nhị phân tìm kiếm tối ưu của mảng con . Mảng  có thể được sử dụng để truy vết in ra cây nhị phân tìm kiếm tối ưu.  
+Code bằng C của giả mã. Code đầy đủ của thuật toán được cho ở cuối bài.Bảng  có thể được tính bằng quy hoạch động trong thời gian  dựa vào công thức: . Giả mã như sau: 
+Code bằng C của giả mã:Giả mã của hàm ().  
+Code bằng C của giả mã: Thời gian để cập nhật mảng  trong hàm  là . Mỗi phần tử của mảng  được cập nhật trong thời gian  (có thể phân tích chặt hơn nhưng thời gian tiệm cận vẫn không đổi). Như vậy thuật toán có thời gian tính là . Thuật toán cần hai mảng 2 chiều  và  kích thướng . Như vậy bộ nhớ cần dùng là . Hiện tại chưa có thuật toán nào tính chính xác cây nhị phân tìm kiếm tối ưu mà bộ nhớ . Với ví dụ trên, mảng  đầu ra của thuật toán là: \begin{bmatrix} 1&2&2&3&4&4 \\ 0&2&2&3&4&4& \\ 0&0&3&4&4&4 \\ 0&0&0&4&4&5 \\ 0&0&0&0&5&6 \\ 0&0&0&0&0&6& \end{bmatrix} Với ví dụ trên, ta quan sát thấy mảng  đầu ra có hàng và cột là các dãy tăng dần. Tính chất này không phải ngãu nhiên mà đúng với mọi  và được chứng minh lần đầu tiên bởi  []. Knuth sử dụng tính chất này để giảm thời gian của thuật toán quy hoạch động xuống còn . Mỗi mảng con  có thể có nhiều hơn một cây nhị phân tìm kiếm tối ưu. Trong số các cây nhị phân tìm kiếm tối ưu đó, chọn cây có gốc  có khóa lớn nhất (đồng nghĩa với trong số các gốc của các cây nhị phân tìm kiếm tối ưu,  có chỉ số trong mảng  lớn nhất). Gọi  là gốc đó. Nếu để ý kĩ thủ thục () với điều kiện so sánh: tmp  (thay vì tmp ), thủ tục đó trả lại cây của mảng  có gốc lớn nhất. Knuth chứng minh bổ đề sau:
+
+
+
+  
+Mình sẽ chứng minh bổ đề này trong bài viết thảo luận các kĩ thuật nâng cao áp dụng trong quy hoạch động.
+
+Do đó trong thủ tục (), thay vì duyệt từ  đến  để tìm gốc, ta chỉ cần duyệt từ  đến . Giả mã như sau: 
+Code bằng C của giả mã:Các thủ tục khác không thay đổi, ta chỉ việc thay thế thủ tục  bằng  Ta có bổ đề sau: 
+
+Với mỗi , số thao tác thuật toán thực hiện là:  Do đó, tổng số thao tác thực hiện của thuật toán là:  Code: , .
+
+
+[2] Jeff Erickson, , UIUC.
+[3] Nagaraj, S. V. "Optimal binary search trees." Theoretical Computer Science 188.1 (1997): 1-44.
+ , , , , , Trackback link:  on                     Great   article  thank you for sharing.Powered by  and 

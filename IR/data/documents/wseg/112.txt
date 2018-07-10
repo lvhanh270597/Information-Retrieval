@@ -1,0 +1,33 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta xem_xét 2 bài_toán khác nhap áp_dụng phương_pháp quy_hoạch_động .
+Cho hai chuỗi (string) và có chiều_dài lần_lượt là và .
+Khoảng_cách edit distance(ED) , hay còn gọi_là khoảng_cách , là số nhỏ nhất các thao_tác : chèn một kí_tự (letter insertion) , xóa kí_tự (letter deletion) , và đổi kí_tự (letter substitution) để biến chuỗi này thành chuỗi kia .
+Ví_dụ : khoảng_cách giữa FOOD và MONEY tối_đa là 4 vì : OOD_MOD_MOND_MONE_MONEY_Trong bài này chúng_ta sẽ thiết_kế thuật_toán với thời_gian cho bài_toán này dựa trên quy_hoạch_động .
+Điều thú_vị là thuật_toán quy_hoạch_động cho bài_toán này là về_mặt thời_gian , theo nghĩa nếu , không tồn_tại thuật_toán chạy với thời_gian ít_hơn với mọi trừ_khi Giả_Thiết Thời_Gian Lũy_Thừa () là sai .
+Để nhận_biết bài_toán con ta hãy suy_nghĩ câu_hỏi sau : liệu ta có_thể tính khoảng_cách ED giữa hai chuỗi con và nếu ta biết khoảng_cách giữa các chuỗi và với và , trong đó ít_nhất một trong hai hoặc .
+Trả_lời được câu_hỏi như_vậy có_nghĩa là bạn có_thể tính được ED giữa và dựa vào các bài_toán con_nhỏ hơn .
+Gọi_là khoảng_cách ED giữa hai dãy con và . Nếu ta có hai chuỗi con và , ta có ba lựa_chọn để áp_dụng ba thao_tác với : Trường_hợp một trong hai số hoặc , khoảng_cách tương_ứng là hoặc .
+Định_nghĩa : Ta có giả mã sau : Code của thuật_toán bằng C .
+Code đầy_đủ được cho ở cuối bài .
+In ra các chuỗi trung_gian trong quá_trình chuyển thành như ở trong ví_dụ FOOD - MONEY bằng cách truy vết thuật_toán (có thể tham_khảo thêm ở ) .
+Thời_gian tính của thuật_toán bằng thời_gian cần_thiết để cập_nhật mảng .
+Mỗi phần_tử của mảng mất thời_gian để cập_nhật .
+Do_đó thời_gian tính của thuật_toán là .
+Bộ_nhớ của thuật_toán cũng là để lưu bảng .
+Nếu để_ý kĩ_ta sẽ thấy trong thuật_toán , phần_tử mảng chỉ phụ_thuộc và 3 phần_tử liền kề trong bảng .
+Như_vậy ta chỉ_cần lưu hàng của bảng , phần_tử liền kề bên trái (left) và liền kề đường_chéo (dag) của .
+Do_đó , ta giảm bộ_nhớ xuống còn .
+Giả mã như_sau : Vì và có vai_trò như_nhau , thay_đổi một_chút ta có_thể giảm bộ_nhớ xuống còn .
+Code của giả mã bằng C : Trong bài , chúng_ta đã phát_triển thuật_toán quay lui với thời_gian cho bài_toán Subset_Sum .
+Ý_tưởng đệ_quy là xét một phần_tử , tồn_tại một dãy con có tổng_bằng nếu một trong hai điều_kiện sau là đúng : Như_vậy ta có_công thức đệ_quy : Như_vậy nếu ta đặt nếu tồn_tại một dãy con của có tổng_bằng , ta có và đều là các bài_toán con .
+Ta có giải_thuật quy_hoạc động sau : Code của giả mã bằng C : Thời_gian tính_toán của thuật_toán có_thể được quy về thời_gian cập_nhật các phần_tử của mảng .
+Vì mỗi phần_tử của mảng được cập_nhật trong thời_gian , thời_gian tính_toán của thuật_toán là .
+Dễ thấy thuật_toán sử_dụng bộ_nhớ để lưu_mảng .
+Code : and , 1 Jeff_Erickson , , UIUC .
+Backurs , Arturs , and Piotr_Indyk .
+"Edit Distance_Cannot_Be_Computed in Strongly_Subquadratic_Time (unless SETH is false) . " (2014) .
+3 Sanjoy_Dasgupta , Christos_Papadimitriou , and Umesh_Vazirani .
+Algorithms .
+1st Edition) .
+McGraw-Hill_Higher_Education , (2008) .
+, , , Trackback link : Powered by and

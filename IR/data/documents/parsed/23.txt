@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+NN(a)  NNP(.)  NP(NN(a)NNP(.))  S(NP(NN(a)NNP(.)))  gamma(S(NP(NN(a)NNP(.))))  
+
+
+
+
+CD(2)  NN(k)  NNP(.)  NP(NN(k)NNP(.))  NP(CD(2)NP(NN(k)NNP(.)))  S(NP(CD(2)NP(NN(k)NNP(.))))  gamma(S(NP(CD(2)NP(NN(k)NNP(.)))))  
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+CD(3)  NN(a)  NNP(.)  NP(NN(a)NNP(.))  NP(CD(3)NP(NN(a)NNP(.)))  S(NP(CD(3)NP(NN(a)NNP(.))))  gamma(S(NP(CD(3)NP(NN(a)NNP(.)))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+gamma()  

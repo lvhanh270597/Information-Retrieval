@@ -1,0 +1,150 @@
+Tác_giả : Nguyễn_Xuân_Khánh Trong bài viết này mình sẽ cố_gắng trả_lời ngắn_gọn và đơn_giản những câu_hỏi mà mình nghĩ rằng sẽ có_ích đối_với các bạn đặc_biệt có đam_mê đối_với Tin_học , nhưng mới tiếp_xúc và không biết phải bắt_đầu_từ đâu .
+Trọng_tâm của mình sẽ là việc học_thuật_toán để tham_gia các kì_thi quốc_gia , tuy_nhiên mình cũng sẽ cố_gắng gợi_mở thêm nhiều hướng khác trong phạm_trù kinh_nghiệm của mình .
+Lưu_ý : Xuất_xứ của mình là một người học Tin để thi quốc_gia , sau_đó chuyển dần sang nghiên_cứu khoa_học về Machine_Learning .
+Vì_thế , những gì được viết dưới_đây xuất_phát từ kinh_nghiệm của_riêng bản_thân mình , và chỉ thể_hiện góc nhìn từ con_đường mình đã đi .
+Mình khuyên các bạn nên chừa ra một khoảng_trống trong tâm_hồn để thu_nhặt các ý_kiến từ các góc nhìn khác .
+Sau_đây là các câu hỏi… Tại_sao phải học Tin_học ?
+Về cơ_duyên đến với Tin_học của mình , bạn có_thể tham_khảo bài viết trước .
+Hy_vọng các bạn sẽ tìm_thấy điểm chung nào_đó .
+Một điều mình muốn nói thêm là Tin_học hiện_nay giống_như một môn Toán thứ_hai vậy .
+Nếu sau cuộc_cách_mạng công_nghiệp , nhân_loại bắt_đầu gắn động_cơ vào bất_cứ mọi thứ xung_quanh , thì đến cuộc_cách_mạng máy_tính hiện_tại , con_người bắt_đầu dùng máy_tính vào mọi việc có_thể .
+Một công_việc trong thế_giới hiện_đại khó mà có_thể vận_hành hiệu_quả mà không cần_dùng đến máy_tính .
+Vì_thế , một con_người trong thế_giới hiện_đại khó mà có_thể thành_công mà không có kỹ_năng sử_dụng công_cụ này .
+Bạn_bè của mình làm nhiều ngành khác_nhau , từ toán_học , hoá_học , vật_lý , đến kiểm_toán .
+Họ đều phải chí_ít phải có kỹ_năng lập_trình để phục_vụ cho công_việc của mình .
+Học Tin_học như_thế nào cho đúng ?
+Rất khó để đưa được một câu trả_lời trọn_vẹn .
+Thay_vì đó mình sẽ nói về một_cách học mình cho_là chưa đúng .
+Đó là quan_niệm học Tin_học tức_là học_một ngôn_ngữ_lập_trình .
+Các cách nói dân_gian như “học Pascal” không_thể_hiện được hết tinh_thần của việc học Tin .
+Đối_với phạm_trù Tin_học cấp 3 , điều quan_trọng nhất bạn rút ra được sau 3 năm_học phải một tư_duy thuật_toán .
+Bạn cần làm_cho bộ_não quen_thuộc với lối suy_nghĩ theo các cấu_trúc điều_kiện , cấu_trúc lặp_lại , cách chia chương_trình ra thành các chương_trình nhỏ hơn rồi tập_trung giải_quyết từng phần một .
+Vì đa_phần các ngôn_ngữ_lập_trình đều được xây_dựng dựa trên các yếu_tố cơ_bản trên , việc bạn thành_thạo về tư_duy lập_trình sẽ giúp bạn_học một ngôn_ngữ_lập_trình rất nhanh .
+Hãy làm_chủ ngôn_ngữ_lập_trình chứ đừng bị phụ_thuộc vào chúng .
+Mình không phản_đối việc thành_thục một ngôn_ngữ_lập_trình .
+Thậm_chí việc thành_thạo một ngôn_ngữ_lập_trình là quan_trọng sống_còn sau_này khi bạn muốn làm_ra những sản_phẩm thực_thụ .
+Nhưng hãy để việc đó sau khi bạn đã có_một nền_tảng tư_duy vững_chắc .
+Nhưng vẫn phải chọn một ngôn_ngữ để bắt_đầu học chứ ?
+Chính_xác .
+Câu trả_lời này mình xin chia ra dành cho hai đối_tượng : Các bạn luyện thi tin_học quốc_gia : theo mình biết thì hai lựa_chọn chính dành cho các bạn là Pascal và C++ .
+Việc đưa C++ vào danh_sách là một thay_đổi lớn vì 6 năm trước_khi mình học Tin , Pascal là sự lựa_chọn duy_nhất cho các vòng thi trong nước .
+Trong tương_lai mình dự_đoán C++ sẽ thay_thế hẳn cho Pascal .
+Mình không rành về Pascal bằng C++ nên sẽ không so_sánh tính_năng của chúng chi_tiết .
+Tuy_nhiên , C++ đưa_ra ưu_thế rõ_rệt về tốc_độ , bao_gồm cả tốc_độ chạy_của chương_trình và tốc_độ lập_trình ra chương_trình đó .
+Nói đơn_giản là code C++ chạy nhanh và tương_đối ngắn_gọn (không quá ngắn_gọn đến_mức khó hiểu) .
+Đặc_biệt , khi học C++ bạn có_thể tham_gia được rất nhiều kỳ thi lập_trình thuật_toán trực_tuyến trên mạng .
+Đây là mấu_chốt trong việc thành_công trong kỳ thi quốc_gia .
+Một lợi_thế khác khi học C++ là nó được sử_dụng rộng_rãi trong công_nghiệp .
+Vì sớm_muộn gì bạn cũng phải học đến nó chi_bằng học sớm từ_đầu .
+Các bạn_học tin với mục_đích chung khác : ngoài C++ ra , theo mình ngôn_ngữ Python là một sự khởi_đầu tuyệt_vời .
+Cú_pháp của Python cực_kỳ đơn_giản , giống_như là đang viết những phép_toán trong sách_giáo_khoa vậy .
+Dù đơn_giản , Python lại rất đa_năng và được hỗ_trợ mạnh_mẽ từ cộng_đồng người sử_dụng .
+Java là một sự lựa_chọn tốt cho những bạn muốn học về lập_trình hướng đối_tượng một_cách bài_bản .
+Dù cả Python và C++ đèu hỗ_trợ lập_trình hướng đối_tượng , Java theo mình là ngôn_ngữ biểu_hiện điều này rõ_rệt nhất .
+Bạn không_thể viết một chương_trình hoàn_chỉnh trong Java mà không đặt nó vào trong một đối_tượng (class) , trong_khi nếu sử_dụng Python và C++ ta có_thể quên_bẵng đi khái_niệm này .
+Ngôn_ngữ Java chặt_chẽ và dạy cho bạn những thói_quen tốt về cách thiết_kế chương_trình .
+Học ngôn_ngữ_lập_trình như_thế nào ?
+Mình sẽ giả_sử là các bạn muốn học C++ .
+Theo mình thì việc chạy ra nhà_sách và mua ngay một cuốn sách_giáo_khoa dày_cộm về C++ không giúp_ích gì mấy (vì mình đã từng làm điều này) .
+Hồi mình mới học C++ , mình thường lên các trang giải bài trực_tuyến hoặc cách trang_kỳ thi và xem code C++ của các cao_thủ khác để học theo cách code của học .
+Điều này có hai lợi_ích .
+Thứ nhất , vì mình đã biết trước lời_giải , nên mình có_thể đoán được từng phần chương_trình sẽ làm nhiệm_vụ gì , sau_đó đi_sau vào xem cụ_thể nhiệm_vụ đó được thực_hiện thế_nào .
+Thứ_hai , vì_là cao_thủ nên code của họ sẽ rất tối_ưu , có_thể học được nhiều mẹo vặt mà sách_giáo_khoa không dạy .
+Một_cách khác là bạn có_thể google từ_khoá “C++ interactive tutorial” để tìm_kiếm cách trang_dạy ngôn_ngữ_lập_trình một_cách tương_tác .
+Các trang này thường sẽ đưa bạn đi_qua các khái_niệm từ dễ đến khó .
+Bạn vừa học vừa thực_hành ngay nên sẽ bớt nhàm chám hơn_là ngồi cày sách .
+Tuy_nhiên , về lâu về dài bạn vẫn phải đọc sách hoặc tài_liệu chính_thống để hiểu_biết các khái_niệm cốt_lõi của một ngôn_ngữ .
+Ví_dụ như_là trong C++ bạn có_thể truyền tham_số bằng cả reference hoặc value , trong_khi đó Java chỉ cho_phép truyền tham_số bằng value mà_thôi .
+Những điều “behind-the-scenes” như_vậy không_thể học được nếu chỉ nhìn vào code của người khác .
+StackOverflow – The definitive C++ book guide and list Nên dùng công_cụ gì để lập_trình ?
+Trên_Windows , Free_Pascal là sự lựa_chọn tốt cho Pascal .
+Ngoài_ra còn có_một số công_cụ khác như Lazarus , Codeblocks , Delphi , . . .
+Đối_C++ thì hồi_trước mình hay dùng nhất_là Dev-C++ .
+Tuy_nhiên , mình khuyên là các bạn nên từ_bỏ Windows và chuyển sang một hệ điều khác dựa trên nền_tảng Unix như_là Ubuntu .
+Hiện_tại thì màn_hình lập_trình của mình trông giống_như thế này : Ở cửa_sổ trái mình sử_dụng vim , chỉ đơn_thuần là một chương_trình soạn_thảo văn_bản (text editor) của Ubuntu .
+Ở cửa_sổ phải mình sử_dụng terminal , nói nôm_na là nơi bạn có_thể điều_khiển máy_tính bằng các câu_lệnh thay_vì dùng chuột (giống như_là MS-DOS thời xa xưa) .
+Lưu_ý là hai công_cụ này đều có_sẵn trong Ubuntu , bạn không cần phải cài_đặt gì cả .
+Trong hình , mình có cài thêm một_số Plugins cho vim để thêm màu_mè , màn_hình đen , hiển_thị dòng cột (cảm ơn bạn mình là RR ! ) .
+Mình cũng cài thêm theme Macbook cho máy nên màn_hình trông giống MacOS mặc_dù thật_ra nó vẫn là Ubuntu .
+Khi lập_trình , mình viết code vào vim rồi sử_dụng câu_lệnh này để biên_dịch (compile) chương_trình .
+g++ test . cpp -o a -O2 -Wall Lựa_chọn “-o a” sẽ biên_dịch file test . cpp thành một file excutable tương_tự như file . exe của Windows có tên là a trong cùng thư_mục của file test . cpp .
+Vì_thế , muốn chạy chương_trình , mình chỉ_cần chạy file a bằng câu_lệnh sau : . /a Nếu bạn không thích vim , có_thể xài gedit hoặc_là emacs hoặc bất_cứ trình_soạn_thảo văn_bản nào khác đều được .
+Bộ đôi (text editor + terminal) rất đa_năng vì bạn có_thể sử_dụng nó cho nhiều ngôn_ngữ khác_nhau .
+Hơn_nữa , trong một sản_phẩm lập_trình thật_sự , bạn không_phải compile một_lúc một file nữa mà có_thể là cả ngàn files .
+Lúc_đó , bạn sẽ cần đến các công_cụ chạy từ terminal .
+Cho_nên , làm_quen với terminal sớm là một lợi_thế .
+Ngoài_ra , trong tương_lai gần , nếu thi tin_học quốc_tế (IOI) , các bạn sẽ thi trên hệ_điều_hành Ubuntu .
+Tìm thầy nơi đâu ?
+Muốn học giỏi cần phải có thầy giỏi .
+Cho_dù có tố_chất đến_mấy mà không biết cách khai_phá thì cũng sẽ không_thể đạt đỉnh_cao .
+Nếu ai đó bảo bạn rằng chỉ_có tự_học mới giỏi được , thì người đó nói đúng .
+Nhưng nếu bạn chỉ ngồi trong giếng nhà tự mày_mò tất_cả thì theo mình đó không_phải là tự_học , mà chỉ là học_một mình .
+Tự_học bao_gồm cả việc tự tìm thầy để_mà học .
+Khi mình đặt_chân vào trường Phổ_Thông Năng_Khiếu , nơi có đội_tuyển tin thuộc hàng top của đất_nước thời bấy_giờ , mình cứ ngỡ sẽ được dạy_dỗ bởi những sư_tổ tu_luyện lâu_năm , là những giáo_sư tiến_sĩ đầu_tóc bạc_phơ .
+Tuy_nhiên , Năng_Khiếu xây_dựng cho mình một hình_tượng khác về người thầy .
+Người “thầy” của mình ở Năng_Khiếu ngoài thầy chủ_nhiệm , còn là các anh khóa trên đi trước và các bạn trong cùng đội_tuyển .
+Ngoài_ra , mình cũng chủ_động làm_quen các anh học giỏi trong cả nước thời ấy như Khúc Anh_Tuấn hoặc Phạm Quang_Vũ để hỏi_bài .
+Khi hỏi mình cũng thấy hơi ngại nhưng_mà thông_qua đó mình học được cách suy_nghĩ rất hay của các anh .
+Có những bài_tập đòi_hỏi những kỹ_thuật mà mình thật_sự không_thể_nào biết được nếu chỉ ngồi học trong giếng nhà .
+Sau_này , diễn_đàn VNOI được các đàn_anh lập ra cũng vì mục_đích để mọi người tìm được những người thầy như_vậy .
+Tuy_nhiên , mình khuyến_cáo các bạn không nên quá lạm_dụng các “thầy” , không nên coi các thầy như_là một cỗ_máy trả_lời .
+Các “thầy” thường sẽ tận_tình đỡ các bạn hơn nếu các bạn thể_hiện được mình là người chịu_khó tư_duy và tìm_tòi hơn_là chỉ biết vòi_vĩnh câu trả_lời .
+Các bạn coi phim chắc cũng biết là cao_nhân chỉ truyền bí kíp cho kẻ có tố_chất .
+Một mẹo nhỏ là nhớ lịch_sự nói “cảm ơn” sau mỗi lần hỏi .
+Tìm bài nơi đâu ?
+Khi học Tin_học bạn có_một lợi_thế đó là bài_tập dường_như là vô_biên ( SPOJ , Timus , POJ ) .
+Nhưng bạn không cần_thiết làm hết tất_cả chúng để giỏi .
+Vì_thế ta thay_vì hỏi tìm bài ở đâu , thì nên hỏi : Nên làm những bài gì ?
+Mình gợi_ý một_số cách làm_bài cơ_bản như_sau : Làm hết những bài cơ_bản : vào trang SPOJ hoặc VOJ , mở list đề_bài ra .
+Ở tiêu_đề của cột “Users” khi bạn bấm vào đó một_lần , thì các bài_tập sẽ được sắp_xếp theo thứ_tự giảm_dần số_lượng người_làm được .
+Bài ở những trang đầu tiêu là những bài cơ_bản nhất , hầu_như_ai cũng làm được .
+Bạn nên làm khoảng vài trang đầu để luyện các kỹ_thuật cơ_bản .
+Làm_theo chủ_đề : khi bạn đang làm những bài cơ_bản sẽ gặp những bài bạn nghĩ mãi vẫn không ra .
+Không_phải là bạn kém thông_minh gì_mà vì những thuật_toán đó quá xa_lạ với bạn .
+Vậy_thì bạn nên tìm_tòi làm những dạng bài tương_tự để biết cách áp_dụng các thuật_toán mới học .
+Sau khi google mình tìm_thấy trang này Problem classifier có_lẽ khá hữu_dụng .
+Mình muốn dừng ở đây một_chút để lưu_ý là cách 1 và cách 2 phải nên được áp_dụng bổ_trợ cho nhau bởi_vì một phương_pháp chú_trọng vào mở_rộng kiến_thức theo chiều_rộng , còn phương_pháp còn_lại mở_rộng theo chiều_sâu .
+Chỉ làm_theo kiểu gặp bài nào làm_bài đó thì khó thể đúc_kết được những kinh_nghiệm sâu_sắc .
+Ngược_lại , làm_theo chủ_đề cho các bạn thời_gian để tập_trung suy_nghĩ về một vấn_đề , nhưng cẩn_thận tránh đam_mê quá một dạng bài mà trở_nên không thoải_mái khi làm những dạng bài khác .
+Tham_gia các kì_thi trực_tuyến : nếu hai phương_pháp trên sẽ cho bạn nền_tảng tốt thì phương_pháp này sẽ đưa bạn đến đỉnh_cao .
+Vì mục_đích cuối của bạn là tham_gia các kì_thi quốc_gia quốc_tế , nên việc ngồi cả ngày trời để làm một bài_tập trên các trang Online_Judge một_lúc nào_đó sẽ trở_thành một thói_quen vô_cùng nguy_hại .
+Lúc_đó , bạn nên chuyển qua làm_bài theo_thời gian thực .
+Có cảm_nhận về áp_lực thời_gian , đầu_óc bạn sẽ trở_nên nhanh_nhẹn hơn nhiều .
+Hơn_nữa , khi thật_sự thi_đấu với những con_người khác , bạn cũng sẽ có cảm_xúc luyện_tập hơn_là chỉ ngồi cày Online_Judge một_mình .
+Hiện_nay , các kì_thi trực_tuyến mọc lên như nấm ( Codeforces , TopCoder , Hackerrank , USACO , COCI ) .
+Các bạn cũng có_thể lấy bài từ các cuộc_thi khác vào tạo ra cuộc_thi của_riêng rồi mời bạn_bè tham_gia ( HUSTOJ ) .
+Làm_sao để làm_bài ít mà vẫn giỏi ?
+Không có cách nào cả .
+Phải làm_bài nhiều mới giỏi được .
+Nghiên_cứu về các kiện_tướng ở nhiều bộ_môn cho thấy họ đều luyện_tập ít_nhất 10 ngàn giờ để đạt được trình_độ đó .
+Làm_sao để_không cần làm quá nhiều bài mà vẫn giỏi ?
+Điều này thì_có thể .
+Thậm_chí mình cảm_thấy làm quá nhiều sẽ dẫn đến hoặc_là quá_tải hoặc_là sẽ trở một cỗ_máy giải bài , giải bài xong thì bỏ_qua ngay mà không suy_nghĩ thêm gì nữa .
+Nên nhớ là thời_gian luyện_tập của các bạn có_hạn , nên các bạn phải khai_thác hết giá_trị của từng bài_tập bạn giải .
+Giải một bài_tập xong rồi quăng sang một bên là vô_cùng phí_phạm .
+Việc các bạn giải được nhiều bài trước kì_thi chẳng có_nghĩa lý gì nếu bạn không rút ra được nhiều giá_trị từ chúng .
+Suy cho_cùng , thì nguyên_lý “muốn giỏi phải làm nhiều bài tập” vẫn không_đổi .
+Tuy_nhiên , thay_vì làm các bài_tập một_cách tuần_tự , các bạn có_thể cùng một_lúc giải nhiều bài_tập bằng cách suy_nghĩ về những biến_thể của một bài_tập vừa giải được .
+Hãy xem xem trong bài_toán có những điều_kiện nào thể thay_đổi được , có_thể tổng_quát_hóa lên được .
+Bài_toán này có tính_chất gì đặc_biệt mà thuật_toán của bạn lại giải được ?
+Tính_chất đó có_thể xuất_hiện dưới dạng khác hay_không ?
+Chỉ_cần bỏ một_ít thời_gian đặt ra những câu_hỏi dạng này và đào_sâu khám_phá , giá_trị thu được khi giải một bài_tập sẽ được nhân lên nhiều lần .
+Giải một bài mà như giải 10 bài là như_vậy .
+Một ví_dụ đơn_giản là trong_lúc làm_bài tập , mình nhận_ra rằng thuật_toán chia nhị_phân được sử_dụng để chuyên_trị những bài_tập đòi_hỏi “cực tiểu hóa một giá_trị cực đại” (hoặc ngược_lại , ví_dụ như_là tìm tập_hợp sao_cho số_lớn nhất trong tập nhỏ nhất trong tất_cả các cách chọn) .
+Trong một ví_dụ khác , với bài QBDIVSEQ , nhận_xét mấu_chốt là “độ dài dãy con tăng dài nhất_là số_lượng ít_nhất các dãy con giảm mà ta có_thể phân_chia dãy ban_đầu thành” .
+Khi chứng_minh nhận_xét này , mình nhận_thấy một tính_chất đặc_biệt của mối quan_hệ “lớn bé” giúp cho chứng_minh trở_nên khả_thi .
+Đó là tính_chất bắc_cầu : a lt; b , b lt; c suy ra a lt; c .
+Từ_đó , mình suy_nghĩ ra rằng thay_vì sử_dụng mối quan_hệ “lớn bé” thông_thường_khi so_sánh các số , ta có hoàn_toàn có_thể áp_dụng nhận_xét của bài này cho một mối quan_hệ “lớn bé” khác (ví dụ quan_hệ chia hết) , miễn_là tính_chất bắc_cầu được thỏa_mãn .
+Cuối_cùng nhưng quan_trọng nhất… tiếng Anh ! Theo mình , có_MỘT thứ tách_biệt người học giỏi và người học không giỏi trong các kì_thi Tin_học quốc_gia và quốc_tế , đó là việc người học đó có thoải_mái với tiếng Anh hay_không .
+Việc thoải_mái với tiếng Anh giúp cho bạn có_thể vươn ra khỏi cộng_đồng trong nước để tiếp_cận với nhiều luồng tri_thức của nhân_loại .
+Hồi mình mới học Tin , tìm được một cuốn sách dạy thuật_toán bằng tiếng Việt giống_như là tìm cá_mập trong vịnh Thái Lan_vậy .
+Thực_tế , chỉ_có một cuốn sách về thuật_toán được viết sát với nội_dung thi quốc_gia , do thầy Lê_Minh Hoàng biên_soạn .
+Nhưng chỉ luyện các thuật_toán cơ_bản trong sách thầy Hoàng thì không đủ để có_thể cạnh_tranh trên đấu_trường quốc_tế (em xin_lỗi thầy : ( ) .
+Lúc ấy , muốn học thêm các kỹ_thuật nâng_cao về quy_hoạch_động hay cấu_trúc dữ_liệu , mình phải tìm đến trang_dạy thuật_toán của Topcoder hoặc đọc lời_giải bằng tiếng Anh của các kì_thi quốc_tế .
+Hiện_nay , các thành_viên của Codeforces có viết nhiều trang blog mô_tả đủ loại kỹ_xảo lập_trình tiên_tiến nhất .
+Đó là một mỏ vàng cần được khai_thác .
+Thoái mái với tiếng Anh cũng giúp bạn hòa_nhập với cộng_đồng luyện thi lập_trình trên thế_giới thông_qua việc tham_gia các kì_thi trực_tuyến (đề tiếng Anh) .
+Bạn từ một con cá nhỏ trong cái ao làng , vươn ra biển lớn .
+Bạn sẽ thấy rằng con cá lớn nhất trong cái ao của bạn chẳng to bằng một phần_trăm con cá lớn của đại_dương .
+Khi được tôi_luyện với con những con cá đó , dù cố_tình hay vô_ý , khả_năng sinh_tồn của bạn rồi cũng sẽ được nâng_cao .
+Bài viết đến đây là hết , chúc các bạn tìm được nhiều niềm_vui với môn Tin_học : )

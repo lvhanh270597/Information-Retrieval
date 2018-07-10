@@ -1,0 +1,25 @@
+
+
+
+
+
+
+NNP(code)  NP(NNP(code))  VB(được)  VB(đính)  IN(ở)  NN(cuối)  NN(bài)  NNP(.)  NP(NN(bài)NNP(.))  NP(NN(cuối)NP(NN(bài)NNP(.)))  PP(IN(ở)NP(NN(cuối)NP(NN(bài)NNP(.))))  VP(VB(đính)PP(IN(ở)NP(NN(cuối)NP(NN(bài)NNP(.)))))  VP(VB(được)VP(VB(đính)PP(IN(ở)NP(NN(cuối)NP(NN(bài)NNP(.))))))  S(NP(NNP(code))VP(VB(được)VP(VB(đính)PP(IN(ở)NP(NN(cuối)NP(NN(bài)NNP(.)))))))  
+
+
+
+
+NN(một_cách)  NN(hình_thức)  NNP(:)  NP(NN(hình_thức)NNP(:))  NP(NN(một_cách)NP(NN(hình_thức)NNP(:)))  VB(gọi_là)  NN(điểm)  NN(đầu)  IN(của)  NNP(z-box)  NP(NNP(z-box))  PP(IN(của)NP(NNP(z-box)))  NP(NN(đầu)PP(IN(của)NP(NNP(z-box))))  NP(NN(điểm)NP(NN(đầu)PP(IN(của)NP(NNP(z-box)))))  VB(tương_ứng)  VB(kết_thúc)  IN(tại)  NNP(.)  NP(NNP(.))  PP(IN(tại)NP(NNP(.)))  VP(VB(kết_thúc)PP(IN(tại)NP(NNP(.))))  VP(VB(tương_ứng)VP(VB(kết_thúc)PP(IN(tại)NP(NNP(.)))))  VP(VB(gọi_là)NP(NN(điểm)NP(NN(đầu)PP(IN(của)NP(NNP(z-box)))))VP(VB(tương_ứng)VP(VB(kết_thúc)PP(IN(tại)NP(NNP(.))))))  S(NP(NN(một_cách)NP(NN(hình_thức)NNP(:)))VP(VB(gọi_là)NP(NN(điểm)NP(NN(đầu)PP(IN(của)NP(NNP(z-box)))))VP(VB(tương_ứng)VP(VB(kết_thúc)PP(IN(tại)NP(NNP(.)))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+gamma()  

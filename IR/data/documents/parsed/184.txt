@@ -1,0 +1,72 @@
+
+
+
+
+
+
+
+
+
+VB(gọi_là)  NN(nút)  NP(NN(nút))  VB(có)  NN(khóa)  JJ(nhỏ)  JJS(nhất)  IN(trong)  NNP(cây_con)  NP(NNP(cây_con))  PP(IN(trong)NP(NNP(cây_con)))  ADJP(JJ(nhỏ)JJS(nhất)PP(IN(trong)NP(NNP(cây_con))))  NP(NN(khóa)ADJP(JJ(nhỏ)JJS(nhất)PP(IN(trong)NP(NNP(cây_con)))))  IN(của)  NNP(.)  NP(NNP(.))  PP(IN(của)NP(NNP(.)))  VP(VB(có)NP(NN(khóa)ADJP(JJ(nhỏ)JJS(nhất)PP(IN(trong)NP(NNP(cây_con)))))PP(IN(của)NP(NNP(.))))  VP(VB(gọi_là)NP(NN(nút))VP(VB(có)NP(NN(khóa)ADJP(JJ(nhỏ)JJS(nhất)PP(IN(trong)NP(NNP(cây_con)))))PP(IN(của)NP(NNP(.)))))  S(VP(VB(gọi_là)NP(NN(nút))VP(VB(có)NP(NN(khóa)ADJP(JJ(nhỏ)JJS(nhất)PP(IN(trong)NP(NNP(cây_con)))))PP(IN(của)NP(NNP(.))))))  gamma(S(VP(VB(gọi_là)NP(NN(nút))VP(VB(có)NP(NN(khóa)ADJP(JJ(nhỏ)JJS(nhất)PP(IN(trong)NP(NNP(cây_con)))))PP(IN(của)NP(NNP(.)))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(ta)  NP(NNP(ta))  VB(có)  NNP(:)  NP(NNP(:))  VB(gọi)  NNP(.)  NP(NNP(.))  VP(VB(gọi)NP(NNP(.)))  VP(VB(có)NP(NNP(:))VP(VB(gọi)NP(NNP(.))))  S(NP(NNP(ta))VP(VB(có)NP(NNP(:))VP(VB(gọi)NP(NNP(.)))))  gamma(S(NP(NNP(ta))VP(VB(có)NP(NNP(:))VP(VB(gọi)NP(NNP(.))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+VB(có)  NN(chiều_cao)  NNP(.)  NP(NN(chiều_cao)NNP(.))  VP(VB(có)NP(NN(chiều_cao)NNP(.)))  S(VP(VB(có)NP(NN(chiều_cao)NNP(.))))  gamma(S(VP(VB(có)NP(NN(chiều_cao)NNP(.)))))  
+
+
+
+
+
+
+VB(gọi)  NNP(.)  NP(NNP(.))  VP(VB(gọi)NP(NNP(.)))  S(VP(VB(gọi)NP(NNP(.))))  gamma(S(VP(VB(gọi)NP(NNP(.)))))  
+NNP(ta)  NP(NNP(ta))  VB(có)  NNP(.)  NP(NNP(.))  VP(VB(có)NP(NNP(.)))  S(NP(NNP(ta))VP(VB(có)NP(NNP(.))))  gamma(S(NP(NNP(ta))VP(VB(có)NP(NNP(.)))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+
+gamma()  

@@ -1,0 +1,62 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in được phát_triển vào năm 1935 bởi Hassler_Whitney như_là một cấu_trúc tổng_quát_hóa khá niệm độc_lập (independence) của các vector .
+Matroid có rất nhiều ứng_dụng trong các lĩnh_vực khác_nhau như chúng_ta thấy trong bài viết wikipeidia .
+Trong bài này mình sẽ giới_thiệu matroid trên phương_diện thuật_toán tham_lam .
+Rất nhiều các bài_toán giải được bằng phương_pháp tham_lam có_thể được mô_tả bởi cấu_trúc matroid .
+Để có_một cái nhìn tổng_quát hơn , bạn_đọc có_thể tham_khảo tham tại .
+Một matroid là một họ các tập_hợp thỏa_mãn các điều_kiện sau : Các tập_hợp trong được gọi_là một (independent set) .
+Như_vậy , tính_chất kế_thừa còn có_thể được phát_biểu lại là : tập_con của một_tập độc_lập là một_tập độc_lập .
+Tập_hợp được gọi_là (ground set) của matroid , đó là tập gồm tất_cả các phần_tử xuất_hiện trong các tập_hợp của matroid .
+Tập_con của không thuộc được goị là một_tập (dependent set) và một_tập phụ_thuộc được gọi_là chu_trình (circuit) nếu mọi tập_con đúng của tập đó là tập độc_lập .
+Một(basis) của matroid là tập độc_lập tối_đại (maximal) , i . e , không có tập độc_lập nào chứa nó ngoại_trừ chính nó .
+(rank) của tập là kích_thước của tập độc con độc_lập lớn nhất của .
+Hạng của matroid là hạng của một cơ_sở (bất kì) của matroid .
+Trên đây là định_nghĩa matroid và những khái_niệm cơ_bản xung_quanh matroid .
+Thông_thường để kiểm_tra một họ các tập_hợp có_phải là matroid hay_không , tính_chất 3 luôn là tính_chất khó kiểm_tra nhất .
+Bây_giờ chúng_ta hãy xét ví_dụ đặc_trưng sau : : Gọi_là ma_trận .
+Tập gọi_là độc_lập nếu các vector cột là độc_lập tuyến_tính .
+Ta có_thể dễ_dàng kiểm_tra tính_chất 1 và 2 của matroid dựa vào định_nghĩa của_độc lập tuyến_tính .
+Tính_chất 3 dựa vào tính_chất đại_số của tập các vector độc_lập .
+Các ví_dụ khác_thường gặp : Chúng_ta xét bài_toán tìm cơ_sở có trọng số_lớn nhất của matroid sau : Trước_hết chúng_ta hãy xem ý_nghĩa của Theorem 1 .
+Áp_dụng Theorem 1 vào Graphic_Matroid , chúng_ta có_thể tìm được cây khung có trọng số_lớn nhất của đồ_thị trong thời_gian .
+Áp_dụng Theorem 1 vào Cographic_Matroid , chúng_ta có_thể tìm được tập trọng số_lớn nhất của đồ_thị trong thời_gian , qua đó , tìm được là cây khung có trọng số nhỏ nhất trong thời_gian .
+Bay giờ ta trở_lại thuật_toán cho Theorem 1 .
+Ý_tưởng của thuật_toán khá đơn_giản : sắp_xếp các phần_tử của tập gốc theo chiều giảm_dần trọng số và lần_lượt đưa các phần_tử vào phương_án hiện_tại nếu nó không phá_vỡ tính độc_lập .
+Chi_tiết như_sau : Trong thuật_toán trên , để sắp_xếp ta mất thời_gian và để thực_hiện vòng_lặp for , ta mất thời_gian trong đó là thời_gian để kiểm_tra một_tập có_phải là độc_lập hay_không .
+Do_đó tổng thời_gian là .
+Vấn_đề còn_lại là chứng_minh thuật_toán tham_lam cho lời_giải tối_ưu .
+Dựa vào tính_chất trao_đổi và tính_chất kế_thừa của matroid , ta có_thể chứng_minh được mọi cơ_sở đều có kích_thước bằng_nhau và bất_kì_tập độc_lập tối_đại (maximal) nào cũng là một cơ_sở .
+Gọi_là tập các phần_tử đầu_ra của thuật_toán tham_lam , sắp_xếp theo chiều giảm_dần của trọng số .
+Vì_là tối_đại , sẽ là một cơ_sở của matroid .
+Ta sẽ sử_dụng kĩ_thuật chứng_minh trong để chứng_minh có trọng số_lớn nhất . Giả_sử tồn_tại một cơ_sở có kích_thước lớn nhất , , sắp_xếp theo chiều giảm_dần của trọng số , sao_cho .
+Goi là chỉ_số nhỏ nhất sao_cho .
+Suy ra với mọi .
+Do tính_chất kế_thừa : và đều là các tập độc_lập .
+Do , theo tính_chất trao_đổi , tồn_tại sao_cho là một_tập độc_lập .
+Do , thuật_toán tham_lam sẽ duyệt qua trước_khi duyệt đến .
+Nhưng theo tính_chất kế_thừa , , điều này không_thể xảy_ra .
+Do_đó chỉ_số không tồn_tại , hay nói_cách_khác , là một phương_án tối_ưu .
+Phần này chúng_ta trở_lại bài_toán lập lịch với thời_hạn và tiền_thưởng đã giới_thiệu ở .
+Chúng_ta đã làm_quen với thuật_toán tham_lam để giải bài_toán lập lịch đó .
+Trong bài này , chúng_ta sẽ nhìn bài_toán đó dưới góc_độ matroid .
+Mình nhắc_lại bài_toán ở đây : Gọi tập các tác vụ là độc_lập nếu tồn tai một_cách thực_thi sao_cho tất_cả các tác vụ trong tập_hợp đó được thực_thi trước thời_hạn .
+Gọi_là họ các tập độc_lập .
+Ta chứng_minh thuật_toán tham_lam trong bài trước cho lời_giải tối_ưu bằng cách chứng_minh bổ_đề sau : Ta có_thể dễ_dàng kiểm_tra tính không rỗng và tính kế_thừa của .
+Vấn_đề khó_khăn nhất chính là kiểm_tra tính trao_đổi .
+Gọi_là một_tập độc_lập với các tác vụ được sắp_xếp theo chiều tăng dần của thời_hạn .
+Gọi_là tập các tác vụ trong có thời_hạn trước .
+Ta có nhận_xét sau : .
+Gọi_là tập độc_lập kích_thước với các tác vụ được sắp_xếp theo chiều tăng dần của thời_hạn .
+cũng được định_nghĩa như .
+Do và , tồn_tại một_số lớn nhất sao_cho .
+Do_đó .
+Suy ra tồn_tại ít_nhất một tác vụ có thời_hạn trong .
+Theo nhận_xét trên , , ta có_thể chèn tác vụ và sau vị_trí của mà không làm thay_đổi tính độc_lập .
+Do_đó , tính_chất trao_đổi được thỏa_mãn .
+1 Jeff_Erickson , , UIUC .
+Oxley , James .
+Cubo_Matemática_Educacional 5 . 3 (2003) : 179-218 .
+3 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+4https : //kunigami . wordpress . com/2013/11/11/lawler-and-an-introduction-to-matroids/ , , Trackback link : Powered by and

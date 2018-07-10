@@ -1,0 +1,97 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Ngăn_xếp (Stack) là cấu_trúc dữ_liệu trong đó phần_tử nào được đưa_vào sau cũng sẽ được lấy ra trước .
+Hàng đợi (Queue) là cấu_trúc dữ_liệu trong đó phần từ nào được đưa_vào trước sẽ được lấy ra trước .
+Tưởng_tượng ngăn_xếp giống_như một chồng sách; cuốn sách trên đầu của chồng sách là cuốn sách được đưa_vào cuối_cùng , khi bạn lấy một cuốn sách ra khỏi chồng thì bạn nên lấy cuốn ở trên cùng .
+Hàng đợi thì giống_như khi bạn xếp_hàng trong siêu thị; ai xếp_hàng trước sẽ được thanh_toán (đi ra khỏi hàng đợi) trước .
+Đó là tất_cả những gì bạn cần biết về ngăn_xếp và hàng đợi .
+(a) Minh_hoạ ngăn_xếp .
+Các phần_tử được đưa_vào (push) đỉnh ngăn_xếp và cũng được lấy ra (pop) từ đỉnh của ngăn_xếp .
+(b) Minh_họa hàng đợi .
+Các phần_tử được đưa_vào (enqueue) cuối hàng đợi và cũng được lấy ra (dequeue) từ_đầu của hàng đợi . Thực_thi ngăn_xếp có hai cách : sử_dụng mảng hoặc sử_dụng .
+Nếu thực_hiện bằng mảng , kí_hiệu là , ta cần một biến , kí_hiệu là , để xác_định phần_tử đầu_tiên của ngăn_xếp .
+Phần_tử chính là phần_tử trên cùng của ngăn_xếp (phần tử được đưa_vào ngăn_xếp gần_đây nhất) .
+Mỗi khi chèn vào ngăn_xếp dữ_liệu , ta thực_hiện hai bước : Khi lấy phần_tử ra khỏi ngăn_xếp , ta sẽ copy dữ_liệu từ ra một biến , giảm 1 đơn_vị và trả_lại giá_trị của biến .
+Nếu thực_hiện ngăn_xếp bằng DSLK , mỗi khi thêm vào ngăn_xếp , ta luôn chèn vào đầu của DSLK ( chúng_ta đã có nhận_xét là chèn vào đầu DSLK luôn hiệu_quả và sạch_sẽ hơn chèn vào đuôi) .
+Khi lấy dữ_liệu ra khỏi ngăn_xếp , ta lấy dữ_liệu ra từ mắt_xích đầu_tiên của DSLK . Thực_thi hàng đợi , ta cũng có hai cách tương_tự như ngăn_xếp , chỉ_có thứ_tự lấy ra và đưa_vào là khác .
+Khi đưa_vào hàng đợi , bạn nên đưa_vào đuôi của DSLK và lấy ra từ_đầu của DSLK nếu cấu_trúc bạn sử_dụng là DSLK_đơn (tại sao_không làm ngược_lại ? ) .
+Nếu bạn sử_dụng DSLK đôi thì bạn có_thể làm ngược_lại , lấy ra từ đuôi và chèn vào đầu của DSLK .
+Do thực_thi ngăn_xếp và hàng đợi có nhiều điểm tương_tự nhau , từ_đây trở_đi mình chỉ nói về thực_thi ngăn_xếp .
+Trong hai cách thực_thi trên , mỗi cách_đều có_một điểm yếu riêng .
+Trong phương_pháp thực_thi bằng mảng , ta cần phải_biết trước lượng bộ_nhớ tối_đa của hàng đợi tại một_thời điểm bất_kì để khai_báo và cấp_phát bộ_nhớ cho mảng .
+Trong một_số trường_hợp , ví_dụ , ta có_thể ước_lượng được lượng bộ_nhớ này một_cách khá chính_xác .
+Tuy_nhiên , trong hầu_hết các trường_hợp khác , rất khó để biết trước .
+Cho_dù biết trước lượng bộ_nhớ tối_đa này , không_phải tại thời_điểm nào ta cũng cần_dùng hết lượng bộ_nhớ khai_báo .
+Điều này dẫn đến .
+Nếu thực_thi bằng DSLK , ta có_thể khắc_phục dư_thừa bộ_nhớ , nhưng mỗi lần thêm một mắt_xích mới ta lại phải thực_hiện cấp_phát bộ_nhớ cho mắt_xích đó .
+Các hàm_cấp_phát bộ_nhớ (ví dụ hàm_malloc trong C) nói_chung đều liên_quan đến một chuỗi các thủ_tục khác để quản_lí bộ_nhớ .
+Do_đó , mỗi lần cấp_phát bộ_nhớ như_vậy cũng không_hề rẻ .
+Nếu coi cách thực_thi mảng là một_cách thực_thi đổi bộ_nhớ lấy tốc_độ thì cấu_trúc mảng mở_rộng (extendable array) ta nói tới ở đây cũng có tính_chất tương_tự .
+Tuy_nhiên , mảng mở_rộng cho_phép ta kiểm_soát được lượng bộ_nhớ hi_sinh để đổi lại thời_gian_thực thi , do_đó , nó phù_hợp trong ứng_dụng thực_thi ngăn_xếp (hàng đợi) .
+Vector trong C++ chính là cấu_trúc mảng mở_rộng .
+Mảng mở_rộng còn được biết tới một cái tên khác là (dynamic array) .
+Mình không thích từ "động" lắm nên dùng từ mở_rộng .
+Cái tên chuẩn hơn có_lẽ là mảng tự mở_rộng hoặc mảng tự điều chính kích_thước .
+Tất_cả đều dài nên tạm_thời dùng từ mảng mở_rộng vậy .
+Bạn nào có tên hay thì comment xuống dưới giúp mình .
+Về cơ_bản , mảng mở_rộng (extendable array) là một cấu_trúc dựa trên mảng .
+Mảng này , gọi_là , ban_đầu được cấp_phát một lượng bộ_nhớ nhỏ (10 phần_tử chẳng_hạn như trong ) .
+Để đơn_giản , ta giả_sử chỉ_thực hiện chèn (vào cuối) mảng mở_rộng .
+Thao_tác xóa sẽ được bàn thêm ở phần dưới . Mỗi lần chèn một phần_tử vào cuối mảng (ta sẽ đề_cập đến xóa sau) , nếu mảng đã đầy thì ta : Ba thao_tác trên có_vẻ rất tốn_kém (và thực_sự là nó tốn kém) vì phải xóa toàn_bộ mảng cũ và tạo một mảng mới .
+Điểm mấu_chốt ở đây là ta sẽ phải thường_xuyên thực_hiện ba thao_tác trên vì ta chỉ_thực hiện khi_nào mảng đầy .
+Nhận_xét , mỗi lần thực_hiện ba thao_tác trên , ta tăng bộ_nhớ lên lần .
+Do_đó , nếu bộ_nhớ hiện_tại của mảng là thì tổng_số lần thực_hiện ba thao_tác là .
+Mỗi lần thực_hiện ba thao_tác trên , ta trả thời_gian để khởi tạo và copy , do_đó , tổng thời_gian là .
+Phân_tích kĩ hơn trình_bày dưới_đây cho thấy tổng thời_gian phải trả vẫn chỉ là , hay nói_cách_khác , thời_gian (armotized time) cho mỗi thao_tác chèn là .
+Chú_ý ở đây ta vân chưa xét phép xóa_khỏi mảng . Để thực_thi các thao_tác trên , ta cần thêm hai biến : (i) biến lưu_trữ dung_lượng (capacity) của mảng hiện_tại và (ii) biến để lưu_số phần_tử hiện_tại lưu_trữ trong mảng , hay lượng dữ_liệu của mảng .
+Ta sẽ kí_hiệu mảng mở_rộng bằng bộ_ba biến .
+Ban_đầu khởi tạo mảng , ta cấp_phát một mảng kích_thước hằng_số .
+Ở đây ta khởi tạo là để dễ phân_tích .
+Ta có : Để trình_bày được đơn_giản , ta giả_sử nguyên .
+Dễ thấy , nếu bỏ_qua thao_tác mở_rộng thì tổng thời_gian chèn phần_tử là .
+Ta chỉ_cần đếm_số thao_tác xảy_ra trong quá_trình mở_rộng .
+Gọi .
+Do ta chỉ_thực hiện mở_rộng mảng mỗi khi số phần_tử của mảng là với , và mỗi lần mở_rộng , ta mất thời_gian là kích_thước của mảng , i . e , thời_gian .
+Ta có tổng thời_gian mở_rộng mảng là : Từ (1) , ta suy ra tổng thời_gian chèn là Bằng một_chút phân_tích nhỏ (coi như bài_tập cho bạn đọc) , ta thấy lượng bộ_nhớ dư_thừa là tối_đa là .
+Theorem 1 cho ta thấy rõ : nếu ta cần tiết_kiệm bộ_nhớ ( càng gần 1) , thì ta cần phải trả nhiều thời_gian cho mỗi thao_tác chèn và ngược_lại , ta càng cấp_phát nhiều bộ_nhớ sau mỗi lần bị đầy ( lớn) thì khả_năng dư_thừa bộ_nhớ càng cao , nhưng thời_gian mỗi thao_tác chèn lại càng nhỏ . Điểm chính ở đây là ta muốn thu_hồi phần bộ_nhớ dư_thừa sau khi xóa (rất nhiều) phần_tử khỏi mảng , để đảm_bảo dung_lượng của mảng không quá lớn so_với lượng dữ_liệu lưu_trữ trong mảng , i . e , .
+Nếu ta không nhất_thiết phải thu_hồi bộ_nhớ thì chỉ việc xóa_khỏi mảng bình_thường .
+Ta muốn đảm_bảo , ngoài việc cho_phép thu_hồi bộ_nhớ , trung_bình mỗi thao_tác xóa và chèn có thời_gian .
+Xét ý_tưởng sau mở_rộng từ ý_tưởng ở trên : Giả_sử hiện_tại dung_lượng của mảng là .
+Nếu khi ta xóa_một phần_tử khỏi mảng , số phần_tử trong mảng còn_lại là , ta sẽ "co" bộ_nhớ của mảng về bằng cách tương_tự như khi chèn : (i) cấp_phát mảng mới kích_thước , (ii) copy toàn_bộ sang mảng mới , và (iii) giải_phóng bộ_nhớ của .
+Vấn_đề của ý_tưởng này ở chỗ nếu và nếu ta cứ thêm một phần_tử mới , sau_đó lại lấy ra , sau_đó lại thêm mới .
+Thao_tác thêm và xóa xảy_ra liên_tiếp nhau , thì ta phải thực_hiện thao_tác mở_rộng và co rất nhiều lần , mỗi lần có độ phức_tạp .
+Chúng_ta sẽ đi lạc_đề một_chút : tìm_hiểu một_cách khác để chứng_minh Theorem 1 vì cách này cho chúng_ta ý_tưởng để (phân tích và) giải_quyết trường_hợp xóa_khỏi mảng .
+Khi số phần_tử của mảng đạt ngưỡng , lần mở_rộng gần nhất_là khi .
+Điều đó có_nghĩa giữa hai lần mở_rộng , ta đã chèn : vào mảng .
+Mở_rộng mảng mất thời_gian , do_đó , chia trung_bình cho các phần_tử vừa chèn vào giữa hai lần mở_rộng liên_tiếp , ta có : Phân_tích trên có điểm hay_là ta chỉ_cần nhìn vào các phần_tử giữa hai lần mở_rộng liên_tiếp để phân_tích mà không cần quan_tâm đến toàn_bộ mảng hiện_tại .
+Nhận_xét này cho ta cách giải_quyết xóa vào cuối mảng như_sau : ta chỉ giải_phóng bộ_nhớ khi (thay vì như_ý_tưởng trên) .
+Nếu xóa_một phần_tử khỏi mảng mà số dữ_liệu còn_lại trong mảng , ta sẽ : (i) cấp_phát mảng mới kích_thước (chú ý ở đây) , (ii) copy toàn_bộ sang mảng mới , và (iii) giải_phóng bộ_nhớ của .
+Như_vậy , lượng bộ_nhớ dư_thừa tối_đa là .
+Gọi_là số thao_tác xóa trước_khi ta thực_hiện co mảng .
+Theo cách mở_rộng mảng , ta chỉ mở_rộng mảng đến dung_lượng khi và chỉ khi dữ_liệu trong mảng có kích_thước .
+Do ta chỉ co mảng khi , ta phải xóa ít_nhất : phần_tử ra khỏi mảng .
+Phép co mất thời_gian , do_đó , trung_bình mỗi thao_tác xóa mất tối_đa : Phần bộ_nhớ dư_thừa trong cấu_trúc mảng mở_rộng trình_bày ở trên là .
+Về_mặt lí_thuyết , ta có_thể giảm phần bộ_nhớ dư_thừa này xuống còn 2 .
+Mình khuyến_khích bạn_đọc đọc thêm tại 2 .
+1 T .
+H .
+Cormen , C .
+E .
+Leiserson , R .
+L .
+Rivest , C .
+Stein (2001) 1990 .
+.
+Introduction to Algorithms (2nd ed . ) .
+MIT_Press and McGraw-Hill .
+pp .
+416–424 .
+ISBN 0-262-03293-7 .
+2 A .
+Brodnik , S .
+Carlsson , R .
+Sedgewick , J .
+Munro , E .
+D .
+Demaine (1999) .
+(Technical Report_CS-99-09) (PDF) , Department of Computer_Science , University of Waterloo .
+, , , , Trackback link : Powered by and

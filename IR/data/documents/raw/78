@@ -1,0 +1,49 @@
+Phương pháp giải hệ thức truy hồi -- Recurrence Relation
+http://www.giaithuatlaptrinh.com/?p=22
+Nơi tổng hợp và chia sẻ những kiến thức liên quan tới giải thuật nói chung và lý thuyết khoa học máy tính nói riêng. in  | Trong bài này, chúng ta tìm hiểu một số cách giải công thức truy hồi mà chúng ta hay gặp trong phân tích thuật toán. Mục tiêu chính của bài viết là cung cấp một số công cụ chuẩn để bạn đọc có thể ước lượng được nhanh chóng giá trị tiệm cận của hàm truy hồi mà bạn đọc quan tâm. Bài viết này chủ yếu tóm lược lại note của Jeff Erickson [1]. Mình khuyến khích bạn đọc xem bản gốc.Rất nhiều hệ thức truy hồi xuất hiện trong phân tích thuật toán có thể quy được về một trong hai bài toán tổng quát sau:
+  $ T(n) = aT(\frac{n}{b}) + f(n) \qquad (1)$ trong đó $a,b$ là các hằng số dương.
+  $ T(n) = \sum_{i=1}^k a_iT(\frac{n}{b_i}) + f(n)\qquad (2)$ trong đó $a_i,b_i, i = 1,\ldots, k$ là các hằng số dương.
+ Đây có lẽ là phương pháp mà chúng ta thường hay nghĩ tới khi bắt gặp một hệ thức truy hồi. : dự đoán kết qủa và chứng minh bằng phương pháp quy nạp $ T(n) = 2T(n-1) + 1 \qquad \qquad T(1) = 1 $ Thử một vài giá trị đầu tiên, ta thấy:  $ T(2) = 3, T(3) = 7, T(4) = 15, \ldots $ Dự đoán: $ T(n) = 2^n -1$
+  $ T(n) = 2T(n-1) + 1 = 2(2^{n-1}-1) + 1 = 2^n -1 $ Bây giờ chúng ta thử áp dụng cho bài toán khó hơn $ T(n) = \sqrt{n}T(\sqrt{n}) + n \qquad \qquad T(1) = \Theta(1) $  Ở bài toán này, chúng ta tìm  vì giá trị ban đầu của bài toán là hàm tiệm cận $ \Theta$.  $  T(n) = O(n \log n)$. Chúng ta dự đoán như vậy vì ở mỗi mức của cây đệ quy (sẽ giới thiệu ở dưới) bài toán có kích thước $ n$. Thử chứng minh    $T(n) \leq a n\log n$. Điểm mấu chốt ở đây là khái niệm $O(.)$ cho phép ta tùy ý chọn chọn hằng số $a$ và giá trị bé nhất của $n$ để dự đoán của chúng ta là đúng. $ T(n) = \sqrt{n}T(\sqrt{n}) + n \leq \sqrt{n}\cdot a\sqrt{n}\log \sqrt{n} +n \leq a n\log n $  Ở bất đẳng thức cuối, ta giả sử $  n \geq 2^{2/a} $. Như vậy, dự đoán của chúng ta là đúng. Bây giờ chúng ta thử chứng minh cận dưới   $  T(n) \geq bn\log n$ bằng quy nạp. $ T(n) = \sqrt{n}T(\sqrt{n}) + n \geq \sqrt{n}\cdot b\sqrt{n}\log \sqrt{n} +n = \frac{b}{2} n\log n + n$  Giá trị này lớn hơn $b n \log n$ khi và chỉ khi $n \geq b/2 n\log n$. Điều này là không thể vì  giá trị của hằng số $b$, luôn  $n$ đủ lớn để $  b/2 n\log n $ > $ n$.  Như vậy, cận trên $O(n\log n)$ vẫn chưa chặt.   $T(n) = O(n)$. Ta lặp lại ý tưởng ở trên, thử chứng minh $ T(n) \leq a n$.  $ T(n) = \sqrt{n}T(\sqrt{n}) + n \leq \sqrt{n}\cdot a\sqrt{n}  +n  = (a+1) n \nleq a n $ Như vậy dự đoán chúng ta là sai. $ T(n) = O(n\sqrt{n})$. Chứng minh tương tự ta thấy dự đoán này đúng. Tuy nhiên, nếu cố gắng chứng minh cận dưới $ T(n) = \Omega (n\sqrt{n})$ chúng ta sẽ gặp vấn đề 
+ $T(n) = O(n\log\log n)$. Chứng minh cận trên $  T(n) \leq a n\log\log n $:
+\begin{array} {lcl} T(n) & = & \sqrt{n}T(\sqrt{n}) + n \\
+                         & \leq & \sqrt{n}\cdot a\sqrt{n} \log\log \sqrt{n}  +n \\
+                         & = & a n\log\log n -a n + n \\
+                         & \leq &  a n \log\log n\end{array}khi $a \geq 2$. Giờ ta chỉ cần chứng minh cận dưới $T(n) \geq b n\log\log n$:
+\begin{array} {lcl} T(n) & = & \sqrt{n}T(\sqrt{n}) + n \\
+                         & \geq & \sqrt{n}\cdot b\sqrt{n} \log\log \sqrt{n}  +n \\
+                         & = & b n\log\log n -b n + n \\
+                         & \geq &  b n \log\log n \qquad \mbox{nếu } b \leq 1\end{array}Do đó, ta có thể kết luận $T(n) = \Theta(n\log\log n)$.
+Định lý thợ (master theorem) là một công cụ giúp ta giải các hệ thức truy hồi có dạng trong . Định lý dài và khó nhớ và theo mình bạn đọc cũng không cần nhớ làm gì. Chỉ cần nhớ dạng bài toán mà định lý này có thể áp dụng để giải. Nếu có thể thì chỉ cần nhớ phương pháp chứng minh định lý. $ T(n) = aT(\frac{n}{b}) + f(n)$  
+ Chúng ta sử dụng phương pháp  (recursion tree). Cây đệ quy có nút gốc có giá trị  và  nút con. Mỗi nút con của nút gốc sẽ là gốc của một cây cho hàm đệ quy . Như vậy, ở độ sâu thứ , gía trị của hàm của các nút là . Minh họa ở hình sau:
+
+ 
+Nhìn vào cây đệ quy ta sẽ thấy: $ T(n) = \sum_{i=1}^L a^i f(\frac{n}{b^i})$  
+Ở đây $ L$ là độ sâu của cây đệ quy.  Dễ thấy, $ L = \log_b n$. Xét trường hợp: (): $T(n) = 2T(n/2) + n$.
+Do $af(n/b) = 2(n/2) = n = f(n)$, theo định lý thợ, ta có $T(n) = O(f(n)\log n) = O(n\log n)$.
+ 
+Ta cũng có thể dùng công thức tổng quát để tính. Cụ thể, $T(n) = \sum_{i=1}^L 2^i n/2^i = \sum_{i=1}^L n = \Theta(n\log n)$. (): $T(n) = 3T(n/2) + n$.
+Do $af(n/b) = 3(n/2) = 1.5 n = Kf(n)$ với $K = 1.5$, theo  định lý thợ, ta có $T(n) = O(n^{\log_b a}) =O( n^{\log_2 3})$.
+ 
+Hoặc sử dụng công thức tổng quát, ta có $T(n) = \sum_{i=1}^L 3^i n/2^i = n\sum_{i=1}^{\log_2 n} (3/2)^i = n (3/2)^{\log_2n} = n^{\log_2 3}$.: $T(n) = \sqrt{n}T(\sqrt{n}) + n$.
+Do dạng của phương trình đệ quy này không giống với dạng trong định lý thợ, ta không thể áp dụng công thức tổng quát của định lý thợ. Tuy nhiên, ta có thể áp dụng phương pháp cây đệ quy. Nhìn vào cây nhị phân, ta thấy tổng giá trị mỗi mức là $n$, $T(n) = \sum_{i=1}^L n$ với chiều cao cây $L$ thỏa mãn $n^{2^{-L}} = \Theta(1)$. Giải ra ta được $L = \Theta(\log\log n)$. Như vậy $T(n) = \Theta (n \log\log n)$.Trong phần này chúng ta sẽ tìm hiểu một công cụ khác công thức đệ quy có dạng trong . Phương phápđược đề xuất bởi Mohamad Akra và Louay Bazzi năm 1998. Với điều kiện $k,a_i,b_i$ là các hằng số, lời giải của  có dạng như sau: $ T(n) = \Theta (n^\rho(1 + \int_1^n \frac{f(u)}{u^\rho +1}du))$ Trong đó $\rho$ thỏa mãn phương trình: $ \sum_{i=1}^k a_i/b_i^\rho = 1$  
+Bạn đọc có thể tham khảo chứng minh của định lí này trong [2].  (Randomized Quicksort): $T(n) = T(3n/4) + T(n/4) + n$.
+Áp dụng công thức tổng quát, ta tìm $\rho$ thỏa mãn: $(3/4)^\rho + (1/4)^\rho = 1$. Dễ thấy $\rho = 1$. Do đó, ta có: $ T(n) = \Theta(n(1 + \int_{1}^n \frac{1}{u}du)) = O(n\log n)$  (Deterministic Selection) $T(n) = T(n/5) + T(7n/10) + n$.
+Ta tìm $\rho$ thỏa mãn: $(1/5)^\rho + (7/10)^\rho = 1$. Ta sẽ tìm được một giá trị (sử dụng ) $\rho$ thỏa mãn $ 0 < \rho < 1$. Áp dụng công thức tổng quát ta có:
+
+
+ $ T(n) = \Theta(n^{\rho}(1 + \int_{1}^n \frac{u}{u^{\rho + 1}}du)) = \Theta(n^{\rho}(1 + \Theta(n^{1 -\rho}) ) = \Theta(n)$ [1] J. Erickson, , UIUC, Fall 2013.
+, Manuscript. MIT, 1996.
+ : Tìm giá trị tiệm cận của các hàm sau: (a) 
+(b) 
+(c) 
+(d) 
+(e)  (gợi ý: Viết lời giải dưới dạng dãy số Fibonacci)
+(f)  : Sử dụng cây đệ quy hoặc phương pháp bom tấn để tìm giá trị tiệm cận của các hàm sau: (a) 
+(b) 
+(c) 
+(d) 
+(e) 
+(f) 
+ 
+Bài tập 1 được lấy từ Jeff Erickson Notes và bài tập 2 lấy từ Introduction to Algorithm, 2nd.   , , , Trackback link:  on                     Cái chỗ Công thức tổng quát trong ô vuông phải là f(n/b^i) chứ không phải T(n/b^i) anh à. Góp ý nhỏ thôi ^^ on                     Ừ nhỉ. Mình gõ sai. Cám ơn bạn đã góp ý. (Góp ý này không hề nhỏ như bạn nghĩ :D).HùngPowered by  and 

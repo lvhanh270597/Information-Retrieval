@@ -1,0 +1,93 @@
+Nhân chuyện thảo_luận về việc IOI 2019 sẽ dừng cho_phép làm_bài bằng Pascal , thầy Lê_Minh Hoàng đã có chia_sẻ rất ý_nghĩa về việc tại_sao Pascal lại được giảng_dạy ở Việt_Nam .
+Để những chia_sẻ của thầy không bị thất_lạc mất , mình sẽ lưu lại vào đây : ) .
+Đầu_tiên : Tại_sao VN lại học Pascal ?
+Bây_giờ có nhiều bạn chửi_bới tùm_lum , thậm_chí cho đây là món quà cay_độc của Bộ_GDDT .
+Không_phải mình bênh Bộ_GD , nhưng các bạn đó không hiểu một vấn_đề lịch_sử : Từ những năm 1970s , 1980s là khi tin_học bắt_đầu vào VN , Pascal là ngôn_ngữ chính của tạp_chí công_nghệ PC_Magazine , Turbo_Pascal vẫn là best IDE , phần_mềm hiệu_suất cao đa_số viết_bằng Pascal , sách_vở về thuật_toán , cấu_trúc dữ_liệu đều dùng Pascal .
+Vậy ngoài Pascal ra còn có_thể chọn gì khác ? .
+Những gì Kernighan viết trong "Why Pascal_Is_Not_My_Favorite_Programming_Language" không_hề đúng_với Pascal_Extension của Turbo và ObjPas sau_này .
+Trong_khi ngôn_ngữ C lúc_đó bị đập be_bét .
+Lý_do duy_nhất nó tồn_tại là_vì Unix được mở mã và C được học để mổ_xẻ cấu_trúc Hệ_điều_hành mà_thôi , còn cái kiểu viết C : ++(p)--q thì dù bạn thành_kiến cách mấy , Pascal vẫn không bao_giờ cho_phép viết cái code tối như_thế này .
+Người_ta nói Pascal trong_sáng hơn chính là khi so_sánh với C , chứ không_phải so_với Python hay Java là những thứ mới đâu .
+Thứ_hai : Tại_sao VN lại chậm chuyển sang C++ ?
+C++ ra_đời từ những năm 1980s , một ngôn_ngữ sẽ cần khoảng thời_gian hơn chục năm để quảng_bá và kiểm_chứng thực_tế trước_khi khẳng_định nó có_thể tồn_tại lâu_dài ít_ra là trong một lĩnh_vực nào_đó .
+Đến khi họ đã kiểm_chứng xong và triển_khai diện rộng , sách_vở tài_liệu đầy_đủ , cộng_đồng hoạt_động tích_cực , . . .
+thì Việt_Nam chưa có internet , nói_gì đến các hình_thức thương_mại điện_tử để_mà mua sách , phần_mềm , . . .
+Ở bậc phổ_thông thì kỳ thi quốc_tế vẫn phổ_biến Pascal cho tới đầu những năm 2000 .
+Ở ngoài xã_hội , tạp_chí PC_World_VN ra_rả các bài nói về Visual_Basic , Foxpro , . . .
+là những thứ mà các công_ty tin_học dùng để làm các phần_mềm quản_lý nhân_sự , . . .
+Chẳng có bài nào nói về C++ cả .
+Thậm_chí nhiều người đều cho_là C++ là một extension của C chứ không_phải là một ngôn_ngữ mới nữa kia .
+4 năm_học khoa Toán của mình khi ra trường , CNTT có những bước phát_triển nhưng là phát_triển sai hướng .
+Mình có cảm_giác là nếu_như MS đánh_mất vị_trí 1 , mọi thứ của Việt_Nam sẽ reset lại như khi mình tốt_nghiệp PT .
+Thứ_ba : Tại_sao mình phải ngừng dạy Pascal ?
+Pascal , Object_Pascal đối_với mình vẫn là ngôn_ngữ hay .
+Thật đáng_tiếc vì nó không còn sự hỗ_trợ từ những ông_lớn nên không được chuẩn hóa , mở_rộng về ngôn_ngữ cũng_như thư_viện hỗ_trợ .
+Chính cái cộng_đồng phát_triển Free_Pascal đã giết nó bằng cách đưa_ra những phiên_bản mới đầy lỗi , dịch sai , chậm sửa .
+Lẽ_ra phát_triển theo hướng công_cụ học_tập thi_cử , hoàn_thiện thư_viện FCL-STL , . . .
+thì lại đi phát_triển thêm một đống tool làm software chẳng để làm_gì vì người_làm chuyên_nghiệp có Delphi rồi .
+Ngay_cả mình là người code ObjPas khá giỏi mà nhiều lúc rất ức_chế với mấy cái lỗi của nó , ngay_cả bộ cài_đặt làm cũng không nên hình .
+Thứ_tư , mình khảo_sát chuyện dạy C++ như_thế nào ?
+Vào_khoảng 2008-2009 , có nhiều thầy khuyên và các bạn mình đề_xuất chuyển sang dạy C++ ở phổ_thông ở Chuyên Sư_Phạm (CSP) .
+Mình bắt_đầu lộ_trình dù rất nhiều bạn phê_phán rất gay_gắt và đề_nghị chuyển ngay_lập_tức .
+Nhưng mình nắm hơi nhiều sinh_mạng trong tay , không_thể liều được .
+Đầu_tiên là khảo_sát tình_hình anh_em : Những đơn_vị nào đang dùng C++ để học_tập mô_hình đó .
+Kết_quả khá là thất_vọng , chuyên Tổng_Hợp (A0) có kết_quả tốt nhưng đối_tượng học_sinh đầu_vào rất khác với CSP , cách học , cách tuyển_chọn cũng khác , không tham_khảo được gì .
+Các đơn_vị khác dùng C++ thì kết_quả chập_chờn , trong_khi những đơn_vị dùng Pascal như Hải_Phòng , Hà_Nội , PTNK . . .
+kết_quả ổn_định tốt .
+Tiếp_theo là tìm_hiểu hệ_thống chấm_bài thi QG (bên mình không thi thành_phố nên ko quan_tâm thành_phố chấm kiểu gì) : Kết_quả : Hệ_thống AMM2 không chấm được trực_tiếp mã CPP , phải dịch tay , hơn_nữa khi mã CPP chạy lỗi thường treo luôn hệ_thống chấm . . .
+nếu_không chấm tay thì_phải chạy trung_gian qua một code Pascal , thiệt_thòi về thời_gian . . .
+Về_IDE và trình dịch : Trên_Unix thì khá ổn , nhưng GCC và DevC trên Windows tính cho tới bản 3 . x vẫn còn lắm lỗi quá .
+Sinh lỗi báo lỗi lung_tung đối_với người mới học sẽ gây ức_chế , giảm cảm_hứng tìm_hiểu .
+Về tình_hình học_tập : Code bẩn tràn_lan , vô_số undefined behaviors , chẳng theo standard/style nào cả .
+Hệ_quả của việc học_tập thiếu hệ_thống và không nghiêm_khắc với bản_thân .
+Về sách_vở thì ôi_thôi , bó_tay luôn , xin_lỗi các bộ giáo_trình C++ tiếng Việt mình đã đọc qua , tất_cả đều không xài được .
+Mình không_thể yêu_cầu hs đọc được_tiếng Anh vì học_sinh các tỉnh về CSP học đâu_có nền tàng tiếng Anh tốt .
+Hơn_nữa thứ tiếng Anh_hùng biện chém gió khác hẳn với thứ tiếng Anh để đọc hiểu bản_chất .
+Về nội_lực : Trong bộ_môn cũng toàn người như mình , nếu_chuyển ngôn_ngữ thì cùng chuyển chứ lệch_pha thì cộng_tác giảng_dạy sao được .
+Hơn_nữa C++ mình không giỏi như Pascal , dạy lập_trình là phải thị_phạm , không_phải cứ chiếu bụp cái code lên giải_thích là xong .
+Phải làm từ_đầu =gt; gặp bugs =gt; debug ngay trước mũi học_sinh sinh_viên , nó mới học được cách thiết_kế , triển_khai và gỡ_rối , kiểm_thử .
+Nhỡ gặp cái bug mình gỡ cả tiết không xong thì cháy , nên hơi run .
+Về quan_điểm : Có nhiều quan_điểm mình không_thể theo .
+Ví_dụ nhé : "Chuyển C++ chỉ là transcode thôi , if bên Pascal viết thế này bên C++ viết thế kia , while , repeat , for cũng_thế . . . " .
+Mình nghĩ rất khác , first language giống_như tiếng_mẹ_đẻ , ta phải nghĩ theo ngôn_ngữ đó mới được , chứ nghĩ bằng một ngôn_ngữ rồi dịch ra một ngôn_ngữ khác không_phải là cách làm tự_nhiên và hiệu_quả .
+"Dạy pointers và OOP làm_gì , dạy chúng_nó không hiểu mà đi_thi đâu_có cần" .
+Dạy là dạy mà thi là thi , C++ vứt_đi 2 thứ đó sẽ đến lúc có bài không_thể giải_quyết được thì biết kêu ai giờ .
+Mình vẫn luôn kêu_ca là SGK lớp 8 dưới áp_lực giảm tải vứt_đi luôn lệnh REPEAT và FOR của Pascal là một sai_lầm .
+Khó bước_đầu thì mới dễ về_sau , có_phải vòng_lặp nào viết kiểu WHILE cũng thuận với tư_duy lập_trình đâu .
+Thứ_năm , mình triển_khai dạy C++ (as first language) như_thế nào ?
+Nói_chuyện này đúng là số , chém gió tí thì gọi_là thiên_thời .
+Cái may thứ nhất_là năm 2011 .
+Mình và thầy Đông nhận được dự_án của Bộ_GD viết hệ_thống chấm tự_động trên Windows .
+Mình đặt mục_tiêu viết một bộ chấm ổn_định , chạy không cần cấu_hình cao , dịch CPP như PAS , dù ít chức_năng cũng được .
+Mã nguồn kernel sau khi nghiệm_thu Bộ giữ bản_quyền , mình thì build và cập_nhật bản end-user cho các nơi dùng Free .
+Vậy là thiên_hạ khỏi băn_khoăn việc dùng CPP thiệt_thòi khi chấm .
+Cái may thứ_hai là năm 2012 .
+UET được giao chỉnh_sửa quy_chế thi QG và phụ_trách việc huấn_luyện ĐTQG .
+Thầy_Đàm , thầy Nghĩa , anh Việt_Hà và Phạm_Bảo_Sơn . . .
+gọi mình với Hồ Đắc_Phương đi_họp , nhân lúc_đó ấn luôn Code_Blocks vào và thế_là cái_họa DevCPP với GCC cũ_rích coi_như được loại_bỏ .
+Chương_trình sẽ được dịch theo phiên_bản mới nhất tính_từ lúc triển_khai kỳ thi .
+Còn_lại là việc nội_bộ , cả bộ_môn lao vào cày , học , viết giáo_trình thậm_chí phải thi như thật cùng bọn học_sinh xem thế_nào .
+Mình không thi được thì đi dạy thằng đi_thi cũng khó .
+Cựu_học_sinh cũng phải xắn tay vào nữa .
+Cuối_cùng , tại_sao cứ phải Pascal/C/C++ mà không_phải thứ nào khác phổ_biến hơn ?
+Bạn có_thể học_một ngôn_ngữ dễ hơn để làm_quen với việc lập_trình (Scratch , Python , . . . ) , cũng có_thể dùng một ngôn_ngữ khác thiết_kế phần_mềm (Java , Basic , . . . ) .
+Nhưng khi bạn muốn tìm_hiểu sâu về thuật_toán cũng_như muốn đánh_giá chính_xác hiệu_suất thuật_toán , những ngôn_ngữ đó hoàn_toàn không phù_hợp .
+Trong giai_đoạn học_thuật_toán , ngôn_ngữ_lập_trình , chương_trình dịch , công_cụ lập_trình là cực_kỳ quan_trọng .
+Bởi_vì bạn sẽ phải tư_duy_trên ngôn_ngữ đó , bạn còn phải hiểu bản_chất thế_nào là một đoạn code tốt , thế_nào là một đoạn code tồi về_mặt hiệu_suất .
+Bạn cũng không_thể học các thuật_toán chia_để_trị nếu dùng một ngôn_ngữ_lập_trình không cho_phép đệ_quy , không_thể đánh_giá đúng hiệu_suất của một thuật_toán trên thực_tế (đong đếm đến từng nano giây) , khi mà thời_gian_thực hiện chương_trình mất phần_lớn vào công_đoạn thông_dịch hay kích_hoạt máy ảo .
+Ví_dụ thế này nhé : Khi bạn_học lái_xe , thông_thường bạn sẽ được tập bằng một chiếc sedan , hatchback hay couple .
+Khi ra đường_phố , ngoài các loại trên bạn thường thấy phổ_biến các loại xe SUV , Pick-up , roadster , . . .
+Nhưng ở phương_diện những người_làm chuyên_nghiệp trong ngành công_nghiệp ô_tô , bạn phải_biết về công_suất và từng chi_tiết động_cơ , hiểu rõ khả_năng cân_bằng xe , các thiết_kế khí_động_học , độ cứng và độ bám của lốp , hệ_thống phanh , . . .
+và để biết tất_cả những thứ này , bạn bắt_buộc phải ngồi vào một chiếc F1 dù việc điều_khiển nó không_hề dễ_dàng và nó cũng sẽ không bao_giờ là loại xe phổ_biến trên đường_phố .
+Tất_cả những thứ đó bất_kỳ đơn_vị nào muốn chuyển_đổi có_lẽ sẽ ít_nhiều phải trải_qua .
+Với một cơ_chế tổ_chức cồng_kềnh , rất khó mà thay_đổi diện rộng được nếu_không nhắm_mắt chịu gạch đá .
+Ngay_cả việc IOI có lộ_trình bỏ Pascal , mình không biết_gì hết vì mình không đi_theo đoàn từ năm 2011 do lý_do tài_chính .
+Năm 2011 thằng Korokevich vô_địch IOI bằng Pascal , chẳng_ai nói_gì về lộ_trình này .
+Những năm sau cũng không thấy ai về nói hoặc một thông_tư chính_thức từ phía Bộ_GDDT .
+Tất_cả những xu_hướng kiến_thức hay thể_thức mình đều phải đoán từ mấy bài tham_luận của tạp_chí Olympiads in Informatics .
+Nói như_thế tức_là mình đã sử_dụng hết quyền trong phạm_vi có_thể rồi , việc còn_lại là ở cấp vĩ_mô hơn_nữa kia .
+Chú_thích : 1 vài nhân_vật xuất_hiện trong bài : Thầy_Đông : thầy Đỗ_Đức Đông .
+anh Việt_Hà : thầy Nguyễn_Việt Hà , HCĐ_IOI lần thứ 2 năm 1990 , hiệu trường ĐH Công_Nghệ (UET) .
+Phạm_Bảo_Sơn : thầy Phạm_Bảo_Sơn , HCB_IOI năm 1994 và 1994 , hiệu_phó trường ĐH Công_Nghệ (UET) .
+Các comment này được lấy từ comment của thầy Hoàng ở post của anh Trương Xuân_Nam , HCB_IOI 1994 .
+

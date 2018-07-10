@@ -1,0 +1,80 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(ta)  NP(NNP(ta))  RB(sẽ)  ADVP(RB(sẽ))  VB(tìm)  NNP(s(j))  NP(NNP(s(j)))  IN(trước)  NNP(.)  NP(NNP(.))  PP(IN(trước)NP(NNP(.)))  VP(VB(tìm)NP(NNP(s(j)))PP(IN(trước)NP(NNP(.))))  VP(ADVP(RB(sẽ))VP(VB(tìm)NP(NNP(s(j)))PP(IN(trước)NP(NNP(.)))))  S(NP(NNP(ta))VP(ADVP(RB(sẽ))VP(VB(tìm)NP(NNP(s(j)))PP(IN(trước)NP(NNP(.))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+CD(1997)  NNP(.)  NP(NNP(.))  NP(CD(1997)NP(NNP(.)))  S(NP(CD(1997)NP(NNP(.))))  gamma(S(NP(CD(1997)NP(NNP(.)))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+NN(ma)  CD(30)  CD(1996)  NNP(.)  NP(NNP(.))  NP(CD(1996)NP(NNP(.)))  NP(CD(30)NP(CD(1996)NP(NNP(.))))  NP(NN(ma)NP(CD(30)NP(CD(1996)NP(NNP(.)))))  S(NP(NN(ma)NP(CD(30)NP(CD(1996)NP(NNP(.))))))  gamma(S(NP(NN(ma)NP(CD(30)NP(CD(1996)NP(NNP(.)))))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+CD(1986)  NNP(.)  NP(NNP(.))  NP(CD(1986)NP(NNP(.)))  S(NP(CD(1986)NP(NNP(.))))  gamma(S(NP(CD(1986)NP(NNP(.)))))  
+
+gamma()  

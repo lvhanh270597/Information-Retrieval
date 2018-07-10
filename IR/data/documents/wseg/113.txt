@@ -1,0 +1,102 @@
+Bài viết bởi leadhyena_inran .
+Nguồn : Topcoder_Table of_Contents Tư_duy theo lối mòn (Pattern Mining and Wrong_Mindset)_Coding_Kata Chiến_thuật định_hướng giải bài (Approach Tactics) Chia_nhỏ vấn_đề Kế_hoạch debug Atomic_Code_Giải bài là một nghệ_thuật , nó có_thể gây khó_khăn cho cả những coder kì_cựu nhất cũng_như những người mới học .
+Để tìm cách giải phù_hợp , chúng_ta phải_biết kết_hợp nhiều phương_pháp khác_nhau như cảm_nhận bằng trực_giác , sáng_tạo và thậm_chí là may_mắn .
+Cảm_giác bất_lực trước những bài khó thường làm chúng_ta nản_chí , và có_thể bỏ_cuộc giữa_chừng .
+Tuy_nhiên , không gì là không_thể nếu bạn có đủ quyết_tâm cũng_như kĩ_năng cần_thiết .
+Bởi lí_do đó , bài hướng_dẫn này sẽ đưa_ra những kĩ_năng để giúp các bạn chọn những hướng tiếp_cận rõ_ràng cho những bài_toán như_vậy .
+Tư_duy theo lối mòn (Pattern Mining and Wrong_Mindset) Chúng_ta rất dễ hướng các suy_nghĩ vào việc tìm giải_thuật dựa trên từng dạng của đề_bài .
+Với những người đã làm khá nhiều bài_tập , họ sẽ nhận_ra được dạng của những bài_toán khác_nhau , và khi đọc thấy một bài_toán nào_đó quen_thuộc , thì suy_nghĩ hiện ra ngay_tức_khắc trong đầu là : “Ồ , đây là dạng bài X , nên sử_dụng thuật_toán này , áp_dụng kĩ_thuật này” .
+Cách này khá hữu_ích đối_với những người mới học : nếu chưa thể giải được , thì họ sẽ tập_trung vào luyện_tập với những dạng đề_bài này để khiến nó trở_thành một dạng bài quen_thuộc .
+Tuy_nhiên , cách tiếp_cận này cũng có nhược_điểm khá lớn .
+Có những lúc ta tưởng rằng mình đang code đúng_hướng nhờ vào lối tư_duy như_vậy , nhưng khi test thử thì không khớp một ví_dụ nào cả .
+Lúc_đó đọc kĩ lại đề_bài mới nhận_ra : mình chưa gặp "dạng" này bao_giờ và bế_tắc hoàn_toàn .
+Bạn sẽ trải_nghiệm điều này nhiều lần khi giải các bài_toán "gốc" và độc_đáo , và kể_cả những coder "lão làng" cũng có lúc bị chính kinh_nghiệm của mình đánh_lừa .
+Tư_duy lối mòn thường khiến ta ảo_tưởng rằng mọi bài_toán đều đã được "phân loại" và ta chỉ_cần áp_dụng "đúng thuật" , trong_khi thực_tế điều này bất_khả_thi .
+Khi ta tạm quên hết những lối mòn đó và sử_dụng hết khả_năng suy_nghĩ , phân_tích , trình_độ của ta sẽ được cải_thiện rất nhiều .
+Coding_Kata_Đây là thử_thách đầu_tiên : hãy chọn bất_cứ bài_tập nào trong Practice_Rooms mà bạn chưa làm .
+Hốt nó , cho_dù phải mất bao_nhiêu thời_gian , và hoàn_thành nó (có thể sử_dụng editorial nếu quá "bí") .
+Sau khi làm_xong (accepted) , hãy xem bạn mất bao_nhiêu thời_gian để giải .
+Tiếp_theo , xóa hết code và gõ lại lần nữa , check thời_gian sau khi làm_xong .
+Tiếp_tục lần thứ 3 như_thế .
+Thời_gian hoàn_thành lần đầu_tiên là thời_gian để giải bài_toán khi bạn không có bất_cứ hướng suy_nghĩ hay cách tiếp_cận nào về bài_toán .
+Thời_gian hoàn_thành lần thứ 2 là thời_gian lần đầu_tiên trừ đi thời_gian bạn dùng để đọc và hiểu đề (đừng quá ngạc_nhiên với số lỗi bạn lặp_lại ở lần này) .
+Còn thời_gian hoàn_thành lần cuối là thời_gian bạn có_thể giải được trong_lúc thi thật nếu tìm_thấy được cách tiếp_cận đúng ngay sau khi đọc đề_bài .
+Việc giải bài với thời_gian của lần cuối_cùng hoàn_toàn có_thể làm được (thậm chí không cần khả_năng gõ phím nhanh) .
+Nhưng điều mà bạn cũng nhận_ra ở lần giải thứ 3 là cảm_giác bạn đã biết trước chiến_thuật , nên code thế_nào , dễ bị bug nhất ở những đoạn nào , . . .
+Đó là cảm_giác để có được một_cách tiếp_cận đúng .
+Ở nhiều môn võ , có_một thuật_ngữ luyện_tập gọi_là kata .
+Người tập sẽ thi triển những đòn thế được kịch_bản sẵn và cố phòng_thủ trước các đòn tấn_công - cũng đã được kịch_bản .
+Thoạt nghe thì phương_pháp này chả có tác_dụng gì vì sẽ chẳng lúc nào đánh_nhau được "tiện" như_vậy .
+Hơn_nữa có_vẻ như nó khuyến_khích lối tư_duy , luyện_tập theo lối mòn được đề_cập ở trên .
+Thế_nhưng kata sẽ cho người tập cảm_giác của việc có_một kế_hoạch rõ_ràng và khuyến_khích ý_chí .
+Tin_học cũng_như vậy; chỉ sau khi code 3 lần một dạng bài trong một_thời gian đủ nhiều ta mới nhuần_nhuyễn hết mọi mặt của bài_toán - định_hướng , trình_bày code và debug .
+Chiến_thuật định_hướng giải bài (Approach Tactics) Bây_giờ bạn đã biết_việc định_hướng giải bài nó như_thế nào và nó bao_gồm những gì , bạn sẽ nhận_ra rằng trước_đây bạn đã biết khá nhiều cách để tiếp_cận một bài_toán .
+Dạng như “Tôi dùng Quy_hoạch_động (dynamic programming) cho bài đó” , “Tôi có_thể dùng tham_lam (greedy) để giải bài này không ? ” , “Đừng nói với tôi rằng duyệt (brute-force) có_thể ăn bài này” .
+Thật_ra bạn đang dùng sai những từ_ngữ ở đây , vì bạn không_thể phân_loại mỗi bài_tập chỉ với tham hay duyệt .
+Có rất rất nhiều dạng bài_tập , và cũng rất nhiều cách tiếp_cận , và thậm_chí với mỗi hướng tiếp_cận có_thể tồn_tại rất nhiều cách thể_hiện khác_nhau .
+Cách dùng từ như_vậy chỉ tổng_quát được những bước_đi lớn để đến được đáp_án .
+Trong_TopCoder có nhiều bài có lời_giải hoàn_chỉnh và chú_thích cặn_kẽ .
+Lần tham_gia contest tiếp_theo , bạn hãy thử tìm một bài viết tốt và nghiên_cứu các bước tiếp_cận cụ_thể của bài_toán mà tác_giả đã chỉ ra .
+Bạn sẽ bắt_đầu chú_ý rằng có_một tính_chất nào_đó của bài_toán sẽ gợi ra cho bạn một_cách tiếp_cận , hay những cách biến_đổi , chuyển_hướng , phân_tích , . . .
+làm_bạn đến gần hơn với đáp_án , hay ít_nhất giúp bạn không nghĩ theo hướng sai .
+Khi tìm một_cách tiếp_cận , hãy thử tất_cả những hướng đi bạn có , như kiểu bạn đã gõ sẵn code hết trong đầu - bạn thuyết_phục bản_thân rằng hướng đi của bạn là đúng .
+Những coder có kiến_thức toán cơ_bản tốt sẽ có_thể biết được hướng suy_nghĩ này , bởi_vì những hướng tiếp_cận đó rất giống với kĩ_năng chứng_minh toán_học .
+Với những kì_thủ họ sẽ thấy nó giống_như việc nghĩ trước các nước_cờ hay những người thiết_kế ứng_dụng có_thể đã quen với nó trong_khi làm_việc với các design patterns (thuật ngữ trong lập_trình ứng_dụng , chỉ những phương_pháp thiết_kế hiệu_quả đã được nghiên_cứu kĩ) . . .
+Để luyện_tập cách tư_duy và tìm_ra phương_pháp phù_hợp với mình , ghi_chú lại hướng giải của các bài_toán là rất quan_trọng .
+Sau_đó hãy viết một bài phân_tích dựa trên những gì bạn đã làm , càng chi_tiết càng tốt , để những người khác có_thể biết được cách bạn suy_nghĩ như_thế nào .
+Việc viết lại như_thế không chỉ giúp bạn hiểu rõ hơn cách tiếp_cận của mình , mà_còn tìm_ra được những sai_lầm của bản_thân và cải_thiện nó .
+Hãy nhớ rằng , rất khó để cải_thiện được những điều mà bạn còn chưa hiểu .
+Chia_nhỏ vấn_đề Hãy bàn về một trong những cách tiếp_cận phổ_biến nhất : chia_nhỏ vấn_đề ra , còn được gọi_là tiếp_cận từ trên xuống (top-down programming) .
+Ý_tưởng cơ_bản ở đây là code của bạn phải được thực_hiện theo thứ_tự , nên hãy bắt_đầu bằng việc suy_nghĩ xem phần chương_trình chính sẽ cần những gì trước_khi xây_dựng những hàm con .
+Điều này cho_phép bạn thấy được tổng_thể chương_trình , cũng_như chia_nhỏ vấn_đề từ những thứ phức_tạp cho_đến đơn_giản .
+Một ví_dụ áp_dụng cách tiếp_cận này .
+Round 2 , MatArith , topcoder Invitational 2002 , bài_toán yêu_cầu bạn phải tính giá_trị biểu_thức có sử_dụng ma_trận .
+Để có được những con_số chúng_ta phải xử_lý xâu (vì input là string) , tính_toán dựa trên đó , và trả ngược về string .
+Nên bạn cần một hàm print để in kết_quả , một hàm parse để xử_lý xâu và một hàm calc để xử_lí toán_học .
+Không cần suy_nghĩ quá phức_tạp , Nếu chúng_ta có đủ 3 hàm đó thì vấn_đề sẽ được giải_quyết chỉ trong 1 dòng code : public String calculate ( String_A , String_B , String_C , String eval ) return print ( calc ( parse ( A ) , parse ( B ) , parse ( C ) , eval )); Cái hay của các tiếp_cận này là tạo ra một hệ_thống cấp_bậc các hàm , hàm trên sẽ dựa vào kết_quả của hàm dưới để chạy .
+Bây_giờ công_việc đã được chia làm 3 phần : tạo hàm parse , hàm print , và hàm calc .
+Nếu bạn chia_bài toán thành những bài_toán con đủ nhỏ , bạn sẽ không_phải tốn nhiều thời_gian vào việc suy_nghĩ cho những bước không đơn_giản , bởi_vì nó sẽ trở_nên atomic (sẽ được đề_cập phía dưới) .
+Thay vào đó chúng_ta có_thể tập_trung vào hàm_cộng và hàm nhân ma_trận hay hàm đọc dữ_liệu vào sao_cho chính_xác .
+Cách tiếp_cận này có_thể ứng_dụng khá hiệu_quả vào những bài_toán đệ_quy .
+Toàn_bộ ý_tưởng của đệ_quy đó là chia vấn_đề lớn thành những vấn_đề nhỏ hơn nhưng giống chính_xác với vấn_đề gốc , vậy chúng_ta chỉ_cần giải được một 1 vấn_đề gốc là xong .
+Cách tiếp_cận này cũng được sử_dụng rất phổ_biến trong functional programming (một lớp các ngôn_ngữ_lập_trình mà chương_trình được xây_dựng chỉ từ các hàm) .
+Có khá nhiều bài viết đã bàn sâu về vấn_đề này , nhưng ý_tưởng cơ_bản_chính là nếu ta chia_nhỏ bài_toán một_cách đúng_đắn , chương_trình sẽ tự_động gửi tham_số qua mỗi lời gọi hàm , không cần_thiết lưu_trữ dữ_liệu giữa các bước .
+Nhưng có_một nhược_điểm là sẽ khó debug hơn .
+Kế_hoạch debug Bất_cứ khi_nào có_một cách tiếp_cận , chúng_ta phải luôn có_một kế_hoạch debug cho cách tiếp_cận đó .
+Có rất nhiều khả_năng xảy_ra làm_cho chương_trình chúng_ta chạy sai , bằng cách suy_nghĩ trước các hướng chương_trình sẽ chạy sai , chúng_ta có_thể ngăn_chặn bug trước_khi code .
+Hơn_thế_nữa , nếu_không vượt_qua được các test mẫu , chúng_ta sẽ_biết ngay vị_trí thích_hợp để bắt_đầu tìm lỗi .
+Cuối_cùng , bằng cách chú_ý đến điểm trọng_yếu nhất , sẽ dễ_dàng hơn để chứng_minh cách tiếp_cận của bạn là đúng .
+Với trường_hợp tiếp_cận top-down , việc chia_nhỏ những phần code thành những hàm con giúp chúng_ta cô_lập những phần code lỗi và chỉ phải sửa_lại code ở một_nơi .
+Cũng_như việc test được một tổ_hợp các hàm dễ bị bug nhất .
+Copy và paste nhiều lúc cũng làm_việc sửa_lỗi tốn nhiều công_sức hơn thay_vì viết riêng một hàm con .
+Một kinh_nghiệm nữa cho cách tiếp_cận từ trên xuống là chúng_ta nên tìm bugs bên_trong hàm trước_khi tìm giữa những lời gọi hàm .
+Những cách này tạo nên một chiến_thuật debug : biết được vị_trí nào cần test trước_tiên , chỗ nào bạn nghĩ là sai và cần kiểm_tra , hay chứng_minh những đoạn code chuẩn và bỏ_qua chúng .
+Nếu luyện_tập thường_xuyên , bạn sẽ thấy rằng những kĩ_năng này vô_cùng hữu_ích .
+Atomic_Code_Nếu chúng_ta đi đến một phần code mà chúng_ta không_thể chia_nhỏ được nữa , thì phần đó gọi_là atomic code .
+Hi_vọng các bạn đều biết cách code những phần như_vậy , vì đó sẽ là những phần bạn sẽ code thường_xuyên nhất .
+Nhưng đừng lo nếu bạn chưa thuần_thục nó , những atomic code khó như_vậy thường làm_cho bài_toán trở_nên thú_vị hơn , và thình_thoảng thấy trước được điều đó sẽ giúp bạn có_một bước_tiến lớn trong việc tìm cách tiếp_cận đúng_đắn , hạn_chế được_việc phung_phí thời_gian cho những cách tiếp_cận sai .
+Dạng atomic code bạn viết thường_xuyên nhất đó là dạng tối_giản nhất , nên phần_lớn sẽ có lệnh sẵn trong thư_viện để hỗ_trợ nó .
+Việc sử_dụng thành_thạo thư_viện là một lợi_thế lớn , nó giúp chúng_ta viết được atomic code trong_sáng và rõ_ràng hơn .
+Còn cách nào để tiết_kiệm thời_gian hơn khi bạn biết rằng một phần atomic code khá khó xơi lại là một hàm hay một lớp nào_đó trong thư_viện sẵn_có ?
+Mình sẽ gọi dạng atomic code thứ_hai mà bạn sẽ viết là language techniques (một dạng kĩ_năng về ngôn ngữ) .
+Đó là những phần code nhỏ mà bạn thuộc_lòng để giải_quyết một_phép xử_lí nào_đó , như tìm chỉ_số của phần_tử nhỏ nhất đầu_tiên trong mảng , hay tách một xâu ra thành những chuỗi con mà không có khoảng trắng .
+Những kĩ_thuật trên rất cần_thiết cho việc tìm cách tiếp_cận bài_toán , bởi_vì nếu bạn biết rõ cách hoạt_động của những thao_tác cơ_bản đó , sẽ làm_cho việc quá_trình chia_nhỏ nhanh đến atomic hơn , nó cũng sẽ hạn_chế việc tạo ra bug không đáng có .
+Thêm nữa , nếu bạn cần phải cài một hàm hơi tương_tự như một language technique mà bạn đã biết , thì việc đó sẽ trở_nên vô_cùng dễ_dàng dựa trên việc chỉ_cần sửa_đổi nó chút_ít .
+Luyện_tập với những language technique đó nên là việc_làm hàng_ngày , và bất_kì atomic code nào cũng sẽ có_thể bay ra khỏi bàn_tay (và bay vào màn hình) ngay khi bạn vừa nghĩ đến nó .
+Về việc sử_dụng thư_viện cá_nhân , tôi thấy có nhiều người sử_dụng thư_viện bằng cách chèn những đoạn code thường_dùng vào phần đầu của file .
+Điều này hoàn_toàn hợp_lí và hợp_pháp .
+Những ưu_điểm của cách làm này là có_thể tạo ra được nhiều phần trước cho những atomic code thường gặp , có nhiều lợi_ích cho việc tiếp_cận top-down , cũng_như bottom-up (sẽ đề_cập sau) .
+Tuy_nhiên , theo ý_kiến cá_nhân , nhược_điểm của cách làm này không tương_xứng với hiệu_quả .
+Nó có_thể làm chậm code của bạn đi , bởi_vì bạn phải tìm cách làm_cho input của đề_bài khớp với đầu_vào của thư_viện của bạn , hoặc thư_viện của bạn không được định_nghĩa đủ tốt để làm điều đó .
+Điều hiển_nhiên là những thư_viện bạn tự viết có_thể bị bugged , và việc debug thư_viện của bạn lúc đang thi_đấu sẽ rất nguy_hiểm bởi_vì bạn phải sửa_lại những bài bạn đã submit trước_khi xem thêm bất_kì bài nào khác .
+Thêm nữa , thư_viện cá_nhân không được sử_dụng ở các kì_thi onsite , ví_dụ như thi HSG_QG .
+Cuối_cùng , việc sử_dụng thư_viện cá_nhân sẽ làm_bạn phải học kỹ_năng sử_dụng nó chứ không_phải kỹ_năng của ngôn_ngữ , khiến việc đọc hiểu được bài_giải của người khác khó hơn .
+Nếu sử_dụng đúng_lúc , thì nó sẽ là một vũ_khí hiệu_quả , nhưng nó không_phải là vũ_khí vạn_năng trong mọi trường_hợp .
+Có những lúc bạn sẽ gặp những atomic code mà bạn không_thể chia_nhỏ vấn_đề được nữa .
+Đây là lúc bạn phải bắt_đầu phân_tích cách tiếp_cận hiện_tại của bạn .
+Tôi có nên chia_nhỏ vấn_đề theo cách khác không ?
+Có nên lưu_trữ dữ_liệu bằng cấu_trúc khác ?
+Đây có_phải là nhân_tố để làm_cho bài_toán trở_nên khó hơn ?
+Bạn phải xét đến những thứ đó trước_khi tìm_ra đáp_án .
+Thậm_chí ở thời_điểm bạn nhận_ra bạn không tìm_ra được hướng suy_nghĩ tiếp_theo , thì vẫn luôn có cách để thoát ra khỏi tình_huống đó , mình sẽ giới_thiệu nó ở phần tiếp_theo .
+

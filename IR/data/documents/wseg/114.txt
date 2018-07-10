@@ -1,0 +1,54 @@
+Tác_giả : Lê_Hùng_Sơn - Đại_học FPT_Table of_Contents Giới_thiệu Ví_dụ 1 : Dãy_số (C11SEQ) Đề_bài Hướng giải_quyết : Ví_dụ 2 : Phân_đoạn (VOI 2005 - Bảng_A)_Hướng giải_quyết Giới_thiệu Rời_rạc_hóa là một lĩnh_vực lớn có đối_tượng nghiên_cứu là các tập_hợp rời_rạc trong khoa_học máy_tính .
+Ứng_dụng của của phương_pháp rất lớn và thường được sử_dụng trong rất nhiều kỳ thi lớn .
+Trong phạm_vi chuyên_đề ta chỉ xét một_số ví_dụ để hiểu rõ thêm phương_pháp này .
+Khi giải_thuật lập_trình ta hay quen gọi phương_pháp rời_rạc_hóa là nén số .
+Thật_vậy , đúng như tên_gọi , bản_chất của phương_pháp ta hiểu nôm_na là đưa các vùng dữ_liệu lớn về vùng dữ_liệu nhỏ để dễ xử_lý , sao_cho vẫn thỏa_mãn yêu_cầu của bài_toán đặt ra .
+Kỹ_thuật bổ_trợ trong phương_pháp này là đánh lại số thứ_tự hay còn được gọi_là nén số , được thực_hiện như_sau : Giả_sử_ta nén số_một mảng A_i có n phần_tử có_giá trị thuộc khoảng -109 , 109 về mảng nhỏ hơn có_giá trị thuộc khoảng 1 , n mà vẫn đảm bao được quan_hệ lớn bé .
+Ví_dụ : a = 100 , 100 , 2000 , 1500 , 900000 → b = 1 , 1 , 3 , 2 , 4 B1 : Dùng 2 mảng song_song vali = ai , posi = i ( pos để lưu vị_trí đi_kèm giá_trị ai ) B2 : Sắp_xếp lại theo tăng dần của val chú_ý khi swap(vali , valj) nhớ swap(posi , posj) .
+B3 : Tạo một biến dem = 0 , last = max , duyệt các giá_trị vali nếu last khác vali thì : dem++ , last = vali; ở mỗi bước_ta cập_nhật bposi = dem .
+Kết_thúc quá_trình trên , ta nhận được mảng b là nén từ mảng a với độ phức_tạp thao_tác nén này là O(nlog(n)) .
+Ví_dụ 1 : Dãy_số (C11SEQ) Đề_bài Cho n số_nguyên (n \le 105) số_nguyên a_1 , a_2 , \dots , a_n với (a_i \le 109) và 2 số L , R (L \le R) .
+Hãy đếm xem có bao_nhiêu cặp (i , j) thỏa L \le a_i + a_i+1 + . . .
++ a_j \le R .
+Input : Dòng đầu chứa 3 số n , L , R .
+Dòng 2 chứa n số_nguyên a_1 , a_2 , \dots , a_n .
+Output : In ra kết_quả cần tìm .
+Example : C11SEQ . INP 4 2 4 1 2 3 4 C11SEQ . OUT 4 Hướng giải_quyết : Hướng đơn_giản nhất_là duyệt mọi cặp đoạn (i , j) và kiểm_tra xem tổng nó có thỏa không và ta tăng biến đếm lên .
+Tuy_nhiên cách này mất_chi phí thời_gian O(n2) với n \le 105 thì không được khả_thi .
+Bây_giờ ta thử gọi như_sau : S_i = a_1 + a_2 + \dots + a_i .
+Đoạn con (i , j) \ , (i \ge j) thỏa_mãn điều_kiện nếu L \le S_i - S_j-1 \le R .
+Biến_đổi tiếp ta được 2 điều_kiện để thỏa là : S_i - L \ge S_j-1 và S_i - R \le S_j-1 .
+Tiếp_theo , ta có : Nhận_xét 1 : S_i - L , \ , S_i - R là 2 số cố_định .
+Nhận_xét 2 : Quan_hệ lt;= hay gt;= cho ta thấy : không cần quan_tâm giá_trị của các số mà chỉ_cần đảm_bảo quan_hệ lt;= hay gt;= là được .
+Ví_dụ : 1 lt; 5 ta có_thể nén thành 1 lt; 2 chả ảnh_hưởng kết_quả bài_toán .
+Nhận_xét 3 : Quá_lắm_chỉ có 3n phần_tử cho tất_cả các giá_trị : S_i - L , S_i - R , S_j-1 , với n \le 105 thì đây là con_số nhỏ .
+Từ 3 nhận_xét trên ta sẽ tìm cách đưa S_i - L , S_i - R , S_j-1 về các mảng nhỏ không quá 3n phần_tử để dễ_dàng quản_lý : Ta lập một mảng mới có 3n phần_tử : n phần_tử dạng S_i , n dạng S_i - L , n dạng S_i - R , nhớ lưu vị_trí đi_kèm .
+Bây_giờ tiến_hành sort mảng đó lại , và ta tiến_hành đánh_số lai mảng đó , gọi các mảng p1_i , p2_i , p3_i là các giá_trị sau khi đánh_số lại của S_i , S_i - L , S_i - R .
+Ta tiến_hành duyệt các_vị trí i , dùng 1 cây Segment_Tree hoặc Binary_Indexed_Tree để quản_lý và đếm : B1 : cập nhất kết_quả : tăng res thêm số_lượng phần_tử đoạn p3_i , p2_i đã xuất_hiện .
+B2 : thêm số_lượng 1 phần_tử p1_i vào cây .
+Độ phức_tạp : O(3 n log(3 n)) .
+Ngoài cách này ra , ta còn 1 cách dùng Phương_pháp chia_để_trị , sẽ có trong các tài_liệu sắp tới .
+Code tham_khảo (pascal) : // Code phần nén số : // ở đây thay_vì dùng 3 mảng p1i , p2i , p3i mình tận_dụng luôn mảng a : // ai = p1i , an + i = p2i , a2n + i = p3i procedure unzip ; var i , j , del : longint ; begin sort ( 1 , 3 n ); A 3 n + 1 .
+val : = high ( longint ); i : = 1 ; del : = 0 ; repeat inc ( del ); j : = i ; while A i .
+val = A j .
+val do begin B_A j .
+pos : = del ; inc ( j ); end ; i : = j ; until i = 3 n + 1 ; end ; // Phần tính_toán kết_quả bằng Binary_Indexed_Tree for i : = n downto 2 do begin update ( B i ); res : = res + get ( B i - 1 + 2 n )- get ( B i - 1 + n ); end ; Ví_dụ 2 : Phân_đoạn (VOI 2005 - Bảng_A)_Cho dãy n số_nguyên a_1 , a_2 , \dots , a_n và số k \ , (1 \le n , k \le 15000) \ , (a_i \le 30000) hãy tìm số m nhỏ nhất sao_cho có_thể chia dãy đã cho thành k phần , mỗi phần là 1 đoạn các phân_tử liên_tiếp , và phải đảm_bảo tổng_mỗi phần không quá m .
+Input : Dòng đầu chứa số_nguyên n và k .
+Dòng thứ 2 chứa n số_nguyên a_1 , a_2 , \dots , a_n .
+Output : In ra số_nguyên m .
+Example : QBSEGPAR . INP 9 4 1 1 1 3 2 2 1 3 1 QBSEGPAR . OUT 5 Hướng giải_quyết Nhận_xét 1 : Bài_toán yêu_cầu tìm m nhỏ nhất , theo kinh_nghiệm thì khi bài_toán bảo tìm giá_trị nhỏ nhất hay lớn nhất nhưng không xác_định được từ dữ_liệu bài thì ta nên nghĩ đến chặt nhị_phân .
+Vùng giá_trị chặt có_thể chọn từ -109 , 109 là vừa hợp , cái này là tùy_chọn , còn tối_ưu nhất chỉ_cần chặt trong_khoảng -max(a_i) n , max(a_i)n .
+Tuy_nhiên , ta chỉ dự_đoán là chặt nhị_phân nhưng chưa khẳng_định là có đúng không , ta có nhận_xét sau : _với m càng lớn thì việc chia thành k đoạn càng dễ _ → dùng chặt nhị_phân là chính_xác .
+Nhận_xét 2 : Nếu ta có 1 giá_trị m xác_định , ta chia được ít_nhất_là a đoạn , chia nhiều nhất_là b đoạn , nếu tồn_tại k mà a \le k \le b thì luôn có cách chia k đoạn thỏa_mãn .
+Để xác_định được a và b ta dùng phương_pháp Quy_hoạch_động .
+Chặt nhị_phân không khó , ở đây khó là phương_pháp _quy hoạch động _cho thỏa_mãn thời_gian .
+Công_thức sơ_khai như_sau : S_i = a_1 + a_2 + \dots + a_i .
+fmax_i = số đoạn chia được nhiều nhất trong dãy a_1 , a_2 , \dots , a_i .
+fmin_i = số đoạn chia được ít_nhất trong dãy a_1 , a_2 , \dots , a_i .
+Khởi tạo : fmax0 = 0 , fmin0 = 0 , fmaxi = -max (i ! = 0) , fmini = INF (i ! = 0) .
+Công_thức : fmaxi = max(fmaxi , fmaxj + 1) với j lt; i và Si - Sj lt;= m .
+fmini = min(fmini , fminj + 1) với j lt; i và Si - Sj lt;= m .
+Nhận_thấy độ phức_tạp đây là O(n2 log(2 109)) không_thể đáp_ứng được thời_gian yêu_cầu là 1s nhưng ở trường_hợp quá bí ý_tưởng đây không_phải giải_pháp tồi giúp lấy_được một_ít điểm lẻ .
+Để nhanh được chỉ_có cách là cải_tiến sao_cho tính mảng Quy_hoạch_động được nhanh , ở đây ta để_ý quan_hệ S_i - S_j \le m chỉ_cần biến_đổi thành S_i - m \le S_j → giải_pháp đã phần_nào sáng_sủa hơn và nếu tinh_ý thì đây chỉ là bài_toán 1 chiều , "một nửa" của ví_dụ 1 ở trên thôi → Bây_giờ ta chỉ_cần rời_rạc_hóa nó đi thay_vì 3 n , ta có mảng 2 n lưu các giá_trị S_i và S_i - m , ta sẽ tính dựa vào 1 cây Binary_Indexed_Tree cho_đơn giản thay_vì đếm như bài trên , vấn_đề ở đây chỉ là tìm max min , và update max , min .
+Độ phức_tạp : O(n log(n) log(2 109)) .
+

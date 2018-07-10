@@ -1,0 +1,55 @@
+Nguồn : HackerEarth_Người dịch : Bùi_Việt Dũng_Table of_Contents Các kiến_thức cơ_bản về Xác_suất (Probabilities) Biến_cố độc_lập (Independent Events) Xác_suất có_điều kiện (Conditional Probability)_Các quy_tắc tính xác_suất (Rules of Probability) Quy_tắc nhân xác_suất (Multiplication Rule) (AB) Quy_tắc cộng xác_suất (Additive Rule) (A \cup B) Biến_cố xung_khắc (Mutually Exclusive_Events) Quy_tắc tính xác_suất của các biến_cố xung_khắc Quy_tắc nhân xác_suất Quy_tắc cộng xác_suất Quy_tắc trừ xác_suất (Subtraction Rule) Xác_suất có_điều kiện của hai biến_cố xung_khắc Định_lí Bayes (Bayes’ Theorem)_Dạng mở_rộng (Extended Form) Thuật_toán ngẫu_nhiên (Randomized Algorithms) Bài_tập Các kiến_thức cơ_bản về Xác_suất (Probabilities) Làm_việc với xác_suất giống_như làm một_thí_nghiệm .
+Một kết_quả (outcome) là một kết_quả của một_phép thử hay sự xảy_ra hay_không xảy_ra của một hiện_tượng nào_đó .
+Tập_hợp tất_cả các kết qủa có_thể xảy_ra của một_phép thử được gọi_là không_gian mẫu (sample space) , thường được kí_hiệu là \Omega .
+Mỗi kết_quả có_thể của một_phép thử được biểu_diễn bởi một_và chỉ một điểm trong không_gian mẫu .
+Một_số phép thử ví_dụ : Gieo một con súc_sắc một_lần : Không_gian mẫu là \Omega = 1; 2; 3; 4; 5; 6 .
+Gieo hai đồng xu phân_biệt : Không_gian mẫu là \Omega = (Ngửa , Ngửa) , (Ngửa , Sấp) , (Sấp , Ngửa) , (Sấp , Sấp) .
+Ta định_nghĩa biến_cố (event) là một_tập hợp các kết_quả của một_phép thử .
+Do_đó , một biến_cố là một_tập con của không_gian mẫu .
+Nếu ta kí_hiệu một biến_cố là \Omega_A , thì \Omega_A \subset \Omega .
+Nếu một biến_cố chỉ gồm một kết_quả trong không_gian mẫu , thì nó được gọi_là biến_cố đơn .
+Nếu một biến_cố gồm nhiều kết_quả trong không_gian mẫu thì nó được gọi_là biến_cố phức .
+Thứ mà ta quan_tâm nhất_là xác_suất xảy_ra của một biến_cố , kí_hiệu là P(A) .
+Theo định_nghĩa , P(A) là một_số thực nằm trong đoạn từ 0 đến 1 , với 0 nghĩa_là biến_cố không_thể xảy_ra và 1 nghĩa_là biến_cố chắc_chắn xảy_ra (nghĩa là biến_cố bằng_không gian mẫu) .
+Như đã nói ở trước , mỗi kết qủa được biểu_diễn bằng đúng một điểm trong không_gian mẫu .
+Vì_thế ta có_công thức : P(A) = \frac\Omega_A\Omega .
+Biến_cố độc_lập (Independent Events)_Hai biến_cố được gọi_là độc_lập với_nhau nếu việc xảy_ra hay_không xảy_ra của biến_cố này không làm ảnh_hưởng tới xác_suất xảy_ra của biến_cố kia .
+Ví_dụ bạn gieo một con súc_sắc và một đồng xu .
+Xác_suất nhận được một_số nào_đó từ con súc_sắc không làm ảnh_hưởng đến xác_suất đồng xu lật sấp hay lật_ngửa .
+Do_đó biến_cố gieo con súc_sắc được 6 điểm và biến_cố đồng xu lật_ngửa là hai biến_cố độc_lập với_nhau .
+Nếu hai biến_cố A và B độc_lập với_nhau , không biến_cố nào ảnh_hưởng đến biến_cố nào , khi đó ta có_thể viết : P(AB) = P(A) . P(B) .
+Xác_suất có_điều kiện (Conditional Probability) Xác_suất có_điều kiện là xác_suất của một biến_cố B nào_đó , biết rằng một biến_cố A khác xảy_ra .
+Kí_hiệu là P(BA) , đọc là xác_suất của B , biết A .
+Sử_dụng toán_học , ta định_nghĩa P(BA) = \fracP(AB)P(A) .
+Các quy_tắc tính xác_suất (Rules of Probability)_Khi ta phải làm_việc với nhiều biến_cố , có_một vài quy_tắc ta phải tuân theo khi tính xác_suất của các biến_cố này .
+Các quy_tắc này đều phụ_thuộc rất lớn vào việc các biến_cố này có độc_lập với_nhau hay_không .
+Đầu_tiên , cho ba biến_cố A , B , C , biến_cố S : "A hoặc B hoặc C xảy ra" được kí_hiệu là A \cup B \cup C , có xác_suất P(S) = P(A \cup B \cup C) .
+Quy_tắc nhân xác_suất (Multiplication Rule) (AB) AB có_nghĩa là giao của hai biến_cố A và B , và trong xác_suất , AB là biến_cố "Cả A và B cùng xảy ra" .
+Khi ta sử_dụng từ "và" , ta nghĩ đến phép_nhân , vì_vậy "A và B" có_thể được viết dưới dạng A \times B và A . B . Nếu_A và B là hai biến_cố phụ_thuộc , xác_suất của biến_cố AB được tính bằng công_thức : P(AB) = P(A \cup B) - (P(\textchỉ A) + P(\textchỉ_B))_Nếu_A và B là hai biến_cố độc_lập , xác_suất của biến_cố AB được tính bằng công_thức : P(AB) = P(A) . P(B) .
+Do_đó , xác_suất có_điều kiện của hai biến_cố độc_lập có_thể được tính bằng công_thức : P(BA) = \fracP(AB)P(A) \Leftrightarrow P(BA) = \fracP(A) . P(B)P(A) \Leftrightarrow P(BA) = P(B) .
+Công_thức trên phù_hợp với định_nghĩa xác_suất có_điều kiện , biến_cố A có xảy_ra hay_không không làm ảnh_hưởng đến xác_suất xảy_ra biến_cố B , do_đó xác_suất biến_cố B xảy_ra biết biến_cố A xảy_ra bằng xác_suất xảy_ra biến_cố B .
+Quy_tắc cộng xác_suất (Additive Rule) (A \cup B)_Trong xác_suất , ta liên_tưởng phép_cộng như từ "hoặc" .
+Gọi biến_cố A \cup B là biến_cố "A hoặc B xảy ra" , xác_suất của biến_cố A \cup B được tính bằng công_thức : P(A \cup B) = P(A) + P(B) - P(AB) do A \cup B = A + B - A \cap B .
+Nhưng hãy nhớ_lại phần lí_thuyết_tập_hợp và cách chúng_ta định_nghĩa không_gian mẫu ở trên , gọi C = (A \cap B) , khi đó ta có P(A \cup B) = 1 - P(C) .
+Biến_cố xung_khắc (Mutually Exclusive_Events)_Hai biến_cố được gọi_là xung_khắc hoặc rời nhau nếu_không có_một kết_quả nào của phép thử làm chúng cùng_lúc xảy_ra .
+Nếu_A và B là hai biến_cố xung_khắc , thì A \cap B = \varnothing Nếu ba biến_cố A , B , C xung_khắc với_nhau , ta cũng có A \cap B \cap C = \varnothing .
+Quy_tắc tính xác_suất của các biến_cố xung_khắc Quy_tắc nhân xác_suất Từ định_nghĩa các biến_cố xung_khắc , dễ_dàng có được P(AB) = 0 .
+Quy_tắc cộng xác_suất Như chúng_ta đã định_nghĩa ở trên , công_thức cộng xác_suất hai biến_cố xung_khắc có dạng : P(A \cup B) = P(A) + P(B) .
+Quy_tắc trừ xác_suất (Subtraction Rule)_Từ quy_tắc cộng , ta suy ra được quy_tắc trừ hai biến_cố xung_khắc : P(A \cup B) = 1 - P(A) - P(B) .
+Xác_suất có_điều kiện của hai biến_cố xung_khắc Ta đã định_nghĩa xác_suất có_điều kiện bằng công_thức sau : P(BA) = \fracP(AB)P(A) Mà với hai biến_cố xung_khắc A và B , ta lại có : P(AB) = 0 Do_đó P(BA) = \frac0P(A) = 0 .
+Định_lí Bayes (Bayes’ Theorem)_Trong xác_suất và thống_kê , định_lí Bayes mô_tả xác_suất của một biến_cố dựa trên các biến_cố có liên_quan đến biến_cố đó .
+Công_thức của định_lí Bayes như_sau : P(AB) = \fracP(A) . P(BA)P(B) , với A , B là hai biến_cố , P(A) , P(B) là xác_suất của hai biến_cố , P(AB) là xác_suất có_điều kiện : xác_suất của A biết B xảy_ra , P(BA) là xác_suất của B biết A xảy_ra .
+Dạng mở_rộng (Extended Form)_Cho n biến_cố A_1 , A_2 , . . . , A_n , khi đó nếu P(B) = \sum_i=1n P(BA_i)P(A_i) thì P(A_iB) = \fracP(BA_i)P(A_i)\sum_j=1n P(BA_j)P(A_j) .
+Thuật_toán ngẫu_nhiên (Randomized Algorithms)_Ta gọi thuật_toán ngẫu_nhiên là thuật_toán sử_dụng các số ngẫu_nhiên để quyết_định trong_lúc chạy .
+Không giống thuật_toán tất_định (deterministic algorithms) mà với một bộ dữ_liệu nhất_định , thuật_toán luôn ra một kết_quả và chạy trong cùng một lượng thời_gian , thuật_toán ngẫu_nhiên chạy ra kết_quả khác_nhau ở những lần chạy khác_nhau .
+Ta thường chia thuật_toán ngẫu_nhiên ra làm hai loại : Thuật_toán Monte_Carlo (Monte Carlo algorithms) : Có_thể ra kết_quả sai - chúng_ta sẽ tính xác_suất ra kết_quả sai để quyết_định có dùng nó hay_không .
+Thuật_toán Las_Vegas (Las Vegas algorithms) : Luôn chạy ra kết_quả đúng , nhưng thời_gian chạy sẽ khác_nhau với cùng một bộ dữ_liệu .
+Mục_tiêu của việc xây_dựng các thuật_toán ngẫu_nhiên là giảm thời_gian cài_đặt thuật_toán và đôi_khi tạo ra những lời_giải ngắn_gọn hơn trong bài_toán .
+Thuât toán ngẫu_nhiên còn có khả_năng giải các bài_toán cực khó .
+Vì_vậy , các thuật_toán ngẫu_nhiên đã trở_thành một vấn_đề được nhiều nhà_khoa_học nghiên_cứu và đã được ứng_dụng để giải nhiều bài_toán khác_nhau .
+Một bài_toán có_thể có nhiều_lời giải , một_số lời_giải trong số đó là tối_ưu .
+Phương_pháp làm cổ_điển là xét từng phần_tử một , theo thứ_tự trong dữ_liệu vào .
+Tuy_nhiên , ta không_thể chắc_chắn các phần_tử thuận_lợi được phân_bố đều trong dữ_liệu vào .
+Vì_vậy , thuật_toán định tất có_thể không tìm_ra lời_giải trong thời_gian đủ nhanh .
+Lợi_thế của thuật_toán ngẫu_nhiên là không có thứ_tự duyệt các phần_tử cố_định và trong mọi trường_hợp , thuật_toán ngẫu_nhiên có_thể hoạt_động tốt hơn .
+Bài_tập Hackerearth - Utkarsh and Jumps_Hackerearth - So_Random

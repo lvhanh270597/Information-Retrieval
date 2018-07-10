@@ -1,0 +1,102 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong thiết_kế giải_thuật , đôi_khi chúng_ta phải đưa_ra quyết_định chọn một phần_tử trong tập các lựa_chọn để xử_lí và sau_đó , tiếp_tục thực_hiện thuật_toán sau khi đã xử_lí phần_tử được chọn .
+Nếu chúng_ta chọn được phần_tử "đủ tốt" trong tất_cả các bước , thuật_toán của chúng_ta sẽ chạy với thời_gian rất nhanh .
+Ví_dụ trong thuật_toán , nếu phần_tử chốt mà ta chọn trong mỗi bước là (trung vị) của mảng con chưa sắp_xếp thì thuật_toán của chúng_ta sẽ là với hằng_số ẩn sau khá nhỏ . Tuy_nhiên , làm thế_nào để chọn được phần_tử "đủ tốt" là một vấn_đề không_hề dễ và đôi_khi mất không ít thời_gian vì chí_ít ta cũng cần phải duyệt qua tất_cả các lựa_chọn để tìm_ra phần_tử đủ tốt đó .
+Ví_dụ với Quicksort , chúng_ta có_thể áp_dụng thuật_toán để chọn median trong thời_gian .
+Tuy_nhiên làm như_vậy thì thuật_toán Quicksort cuối_cùng sẽ có hằng_số ẩn sau quá lớn . Trong những trường_hợp như Quicksort , chọn ngẫu_nhiên , như sẽ chỉ ra dưới_đây , sẽ cho chúng_ta một giải_pháp không quá tệ .
+Việc chọn ngẫu_nhiên theo nguyên_lí trên thường sẽ khiến cho thực_thi thuật_toán của chúng_ta sẽ trở_nên đơn_giản hơn rất nhiều .
+Tuy_nhiên , khó_khăn sẽ nằm ở phần phân_tích thuật_toán và đây cũng là điểm yếu của các thuật_toán ngẫu_nhiên .
+Trong thực_tế thì những giải_thuật kiểu "thực thi đơn_giản , phân_tích khó khăn" thường được ưu_tiên hơn_là "thực thi khó_khăn , phân_tích đơn giản" .
+Chúng_ta sẽ tìm_hiểu hai ví_dụ áp_dụng nguyên_lí trên : Quicksort và chọn median .
+Trước_khi đọc_tiếp , mình khuyến_khích bạn_đọc xem_lại h trước_đây về .
+Ngoài_ra , xem_lại Appendix về và bài cũng sẽ giúp bạn tư_duy tốt hơn trong phần phân_tích mà mình sẽ trình_bày .
+: Giả_sử_ta muốn sắp_xếp mảng đầu_vào .
+Để đơn_giản ta sẽ giả_sử các phần_tử của mảng đôi một khác_nhau .
+Thuật_toán gồm hai bước : Trong trường_hợp lí_tưởng , phần_tử pivot trong mỗi bước mà ta chọn là median thì hai phần sẽ có kích_thước bằng_nhau và bằng cỡ .
+Do_đó thời_gian sắp_xếp của Quicksort thỏa_mãn : .
+Từ_đó suy ra .
+Chi_tiết các bạn xem thêm tại .
+Giả mã như_sau : Trong trường_hợp xấu nhất , mỗi bước_ta đều chọn phải phần_tử pivot mà hai phần có độ_dài lệch nhau quá lớn thì thời_gian của Quicksort sẽ là .
+Để tránh trường_hợp xấu nhất này ta sẽ chọn ngẫu_nhiên .
+Thuật_toán trở_thành : Dòng màu đỏ chính là sự khác_nhau của Quicksort và Quicksort ngẫu_nhiên .
+Sự thay_đổi này , như_ta đã thấy , là khá đơn_giản .
+Bây_giờ chúng_ta sẽ phân_tích thuật_toán .
+Do thời_gian của thuật_toán sẽ tỉ_lệ với số phép so_sánh , ta sẽ tính kì_vọng số phép so_sánh của thuật_toán trên .
+Trước_hết ta có nhận_xét đơn_giản sau : Hai phần_tử bất_kì của mảng được so_sánh với_nhau tối_đa 1 lần và chúng chỉ được so_sánh với_nhau khi một trong hai phần_tử đó được chọn là pivot tại bước nào_đó của thuật_toán .
+Gọi_là số_lượng phép so_sánh trong quá_trình thực_thi .
+Với mỗi cặp_chỉ số sao_cho , ta định_nghĩa biến ngẫu_nhiên 0/1 như_sau : nếu phần_tử nhỏ_tứ của mảng được so_sánh với phần_tử nhỏ thứ của mảng và nếu ngược_lại .
+Như_vậy , ta sẽ có : Theo tính tuyến_tính của kì_vọng : Do là biến ngẫu_nhiên 0/1 , ta suy ra .
+Do_đó , tính sẽ được quy về tính các xác_suất .
+Theo nhận_xét ở trên , chính là xác_suất phần_tử nhỏ thứ hoặc thứ sẽ được chọn làm pivot trong một_bước nào_đó .
+Tưởng_tượng ta xếp các phần_tử của mảng trên trục đường_thẳng trong đó phần_tử nhỏ thứ của mảng sẽ được sắp_xếp vào điểm có tọa_độ .
+Nếu bất_kì phần_tử nào trong_khoảng (loại trừ hai đầu mút) được chọn làm pivot tại một_bước nào_đó thì hai phần_tử nhỏ thứ và thứ sẽ không có_cơ hội được so_sánh với_nhau .
+Do_đó , xác_suất để một trong hai phần_tử đó được chọn làm pivot sẽ là : Số chính là độ_dài của đoạn .
+Kết_hợp với ta suy ra : Phương_trình thứ 2 của là do ta áp_dụng công_thức ở Appendix .
+Phân_tích trên đây được viết ở phần mở_đầu của cuốn sách nổi_tiếng về Randomized_Algorithms của Rajeev_Motwani and Prabhakar_Raghavan 1 .
+Mình khuyến_khích bạn_đọc xem thêm note của Avrim_Blum 2; trong đó Blum còn đưa_ra cách phân_tích khác dựa trên giải một phương_trình đệ_quy .
+Bài_toán như_sau : Cho một mảng , tìm phần_tử lớn thứ của mảng .
+Thuật_toán gồm hai bước : Giả mã : Chọn như_thế nào cũng lại là một vấn_đề của bài_toán này .
+Nếu chúng_ta may_mắn , mỗi bước_ta đều chọn được là phần_tử chia mảng thành hai phần gần bằng_nhau thì thuật_toán ta thu được là .
+Nếu_không may thì_có thể sẽ là . Ý_tưởng chính trong thuật_toán của Blum , Floyd , Pratt , Rivest và Tarjan đó là chọn ra được pivot đủ tốt trong thời_gian .
+Thuật_toán bao_gồm các bước sau : (1) Chia thành khối , mỗi khối có kích_thước là .
+(2) Tìm phần_tử , mỗi phần_tử là median của một khối đã chia ở bước .
+Gọi_là tập các phần_tử đó .
+(3) Gọi đệ_quy tìm trung_vị của , lấy trung_vị đó làm phần_tử .
+(4) Thực_hiện như giải_thuật ban_đầu với vừa chọn được .
+Bằng các phân_tích cụ_thể hơn , thuật_toán cuối_cùng cũng có thời_gian .
+Tuy_nhiên , hằng_số ẩn sau big-O cũng không_hề nhỏ .
+Chi_tiết bạn_đọc xem thêm tại . Trong bài này , ta sẽ thay_đổi 1 dòng trong để thu được thuật_toán ngẫn nhiên khá đơn_giản mà cũng hiệu_quả : Tất_cả những khó_khăn lại nằm trong phần phân_tích .
+Ta sẽ quy về phân_tích_số lượng phép so_sánh cần_thiết để tìm_ra phần_tử mong_muốn .
+Gọi_là số_lượng phép so_sánh kì_vọng để chọn ra phần_tử lớn thứ của mảng gồm phần_tử .
+Gọi .
+Phân_tích dựa trên bài_toán sau_đây : Rùa và Thỏ cùng nhặt được một thanh_kẹo chocolate có chiều_dài 1 .
+Do không biết chia thế_nào cho công_bằng , Thỏ đề_xuất nhờ bác Gấu già chia thanh_kẹo đó .
+Bác_Gấu , do không còn tinh mắt , chọn một điểm ngẫu_nhiên trên thanh_kẹo và bẻ thành hai phần .
+Thỏ tham_ăn và nhanh_tay hơn nên luôn chọn phần to còn Rùa thì chỉ được phần nhỏ .
+Hỏi kì_vọng chiều_dài thanh_kẹo của Thỏ là bao_nhiêu ?
+Đáp_án là .
+Nếu bạn nào muốn xem chi_tiết lời_giải thì xem .
+Chú_ý trong bài_toán trên , miền của bài_toán là miền liên_tục . Trở_lại bài_toán của chúng_ta .
+Coi mảng như một "thanh chocolate rời rạc" có chiều_dài và coi việc chọn phần_tử pivot như "bẻ thanh chocolate" tại một điểm ngẫu_nhiên .
+Ở đây , sự khác_biệt cơ_bản so_với bài_toán bẻ chocolate ở trên đó là miền của chúng_ta là rời_rạc .
+Tuy_nhiên , chiều_dài kì_vọng của phần_lớn hơn vẫn không vượt_quá .
+Xem chi_tiết .
+Sau khi đã bẻ , trong trường_hợp tồi nhất , chúng_ta sẽ phải đệ_quy trên phần dài nhất để tìm_kiếm .
+Do_đó , ta có : Số chính là số phép so_sánh để chia mảng thành hai phần sau khi đã chọn được pivot .
+Giải công_thức truy_hồi trên ta được .
+Như_vậy : Phần phân_tích thuật_toán là do Avrim_Blum 3 .
+Thực_tế phân_tích này chỉ đưa cho bạn một_cách nhìn trực_quan về bài_toán mà chưa phải là một phân_tích "tỉ mỉ và chính xác" về_mặt toán_học .
+Bạn có_thể xem cách phân_tích tỉ_mỉ hơn (ý tưởng thì vẫn như vậy) trong note 3 . Vấn_đề đầu_tiên đó là thời_gian_thực tế của thuật_toán ngẫu_nhiên .
+Trong hai phân_tích ở trên , chúng_ta biết rằng và có thời_gian chạy lần_lượt là và .
+Tuy_nhiên , trong thực_tế , đôi_khi thuật_toán cuả chúng_ta chạy nhanh hơn thời_gian kì_vọng và đôi_khi lại chạy chậm hơn thời_gian kì_vọng vì giá_trị của một biến ngẫu_nhiên tại một_thời điểm nào_đó có_thể nhỏ hơn hoặc lớn hơn hoặc nhỏ hơn giá_trị kì_vọng .
+Về_mặt lý_thuyết thì thuật_toán thực_tế có_thể chạy lâu hơn kì_vọng nhiều lần và trong một_số trường_hợp (không phải hai thuật_toán trong bài này) thuật_toán không dừng (lặp vô hạn) .
+Tuy_nhiên , xác_suất trường_hợp như_vậy xảy_ra thường vô_cùng nhỏ và khó có_thể xảy_ra trong thực_tế .
+Để định_lượng xem khả_năng thuật_toán chạy chậm hơn kì_vọng , ví_dụ 10 lần , là bao_nhiêu thì chúng_ta cần phải dùng đến những công_cụ từ lý_thuyết xác_suất .
+Chính vì_thế mà việc phân_tích giải_thuật ngẫu_nhiên một_cách đầy_đủ thường khó hơn rất nhiều so_với các phân_tích ở trên .
+Ở đây mình sẽ giới_thiệu và sử_dụng bất_đẳng_thức Markov .
+Bất_đẳng_thức này khá đơn_giản , vì_thế nên các kết_quả thu được cũng chưa thực_sự mạnh .
+Từ bất_đẳng_thức Markov , ta dễ_dàng suy ra xác_suất để thuật_toán chạy chậm hơn kì_vọng 10 lần () là không quá .
+Thực_tế , các thuật_toán này chạy lớn hơn 3 lần kì_vọng với xác_suất rất nhỏ .
+Tuy_nhiên , để phân_tích được điề unày thì cần đến công_cụ rất mạnh như bất_đẳng_thức .
+Mình sẽ không đi_sâu hơn vì vấn_đề này vượt_quá phạm_vi của bài viết . Vấn_đề thứ_hai nằm trong chính_sự ngẫu_nhiên .
+Ở đâu_mà ta có ngẫu_nhiên và làm thế_nào để chọn được một phần_tử ngẫu_nhiên trong máy_tính ?
+Câu_hỏi này không hể đơn_giản và có cả một ngành khoa_học chuyên nghiên_cứu về nó .
+Để đạt được một nguồn ngẫu_nhiên thực_sự là một việc không dễ_dàng .
+Các nguôn ngẫu_nhiên mà ta thường sử_dụng trong máy_tính (ví dụ sử_dụng các hàm_random để sinh số ngẫu_nhiên trong máy tính) là .
+Các nguồn này trông hơi giống ngẫu_nhiên (do ta khó đoán được quy_luật của các số sinh ra) nhưng không thực_sự là ngẫu_nhiên .
+Trong thực_thi các giải_thuật , ta chấp_nhận các nguồn giả ngẫu_nhiên này thay cho nguồn ngẫu_nhiên thực_sự .
+1 Rajeev_Motwani and Prabhakar_Raghavan . .
+Cambridge_University_Press , New_York , NY , USA , 1995 .
+2 Avrim_Blum .
+.
+CMU , 2011 .
+3 Avrim_Blum .
+.
+CMU , 2011 .
+4 Michael_Mitzenmacher and Eli_Upfal .
+Probability and Computing : Randomized_Algorithms and Probabilistic_Analysis .
+Cambridge_University_Press , New_York , NY , USA , 2005 .
+, , , , Trackback link : on ở phần Một_số vấn_đề nếu viết PrX > EX thì_phải nói_là xác_suất để thuật_toán chạy CHẬM hơn so_với kỳ_vọng chứ e toàn thấy anh viết là nhanh hơn , như_vậy dễ gây hiểu_lầm lắm .
+on Hi_Hoahuongduong , Bạn nói đúng ! Mình đã sửa_lại bài viết .
+Cám_ơn bạn đã comment .
+HùngPowered by and

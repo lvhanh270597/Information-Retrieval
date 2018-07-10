@@ -1,0 +1,69 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong loạt bài này mình sẽ giới_thiệu những kĩ_thuật để cải_tiến thuật_toán quy_hoạch_động .
+Kĩ_thuật trong bài này mình viết ở đây chủ_yếu dựa trên notes của Jeff_Erickson .
+Trong bài viết , mình giới_thiệu phương_pháp quy_hoạch_động để tính khoảng_cách Edit_Distance (ED) giữa hai xâu , với thời_gian .
+Gọi_là khoảng_cách giữa hai xâu con và .
+Công_thức đệ_quy sau chính là ý_tưởng chính của thuật_toán quy_hoạch_động : Trong bài viết trước , chúng_ta đã thảo_luận hai cách thực_thi thuật_toán quy_hoạch_động với bộ_nhớ tương_ứng là và .
+Nếu chúng_ta chỉ quan_tâm đến khoảng_cách giữa hai xâu , thuật_toán thứ_hai hiển_nhiên sẽ là lựa_chọn tốt .
+Bây_giờ nếu bài_toán yêu_cầu in ra một dãy với tổng_số_lượng các các thao_tác nhỏ nhất để biến thành , chúng_ta sẽ làm thế_nào ? Với thuật_toán , bằng cách truy ngược bảng , chúng_ta có_thể dễ_dàng thu được dãy tối_ưu các thao_tác .
+Tuy_nhiên với cách thực_thi với bộ_nhớ , gần_như không_thể truy ngược_lại vì chúng_ta không_lưu toàn_bộ bảng .
+Tuy_nhiên , vào năm 1975 , đề_xuất phương_pháp chia_để_trị không_những tính được khoảng_cách giữa hai xâu với thời_gian và bộ_nhớ mà_còn tìm được một dãy tối_ưu các thao_tác để chuyển thành với cùng_thời gian và bộ_nhớ .
+Giải_thuật của Dan_Hirshberg sẽ là chủ_đề chính của phần này .
+Thuật_toán của Hirshberg dựa trên quan_sát rằng bài_toán chuyển xâu thành xâu có_thể được chia thành hai bài_toán con : bài_toán thứ nhất chuyển xâu thành và bài_toán thứ_hai chuyển xâu thành .
+Vấn_đề ở đây là làm_sao để tìm điểm chia .
+Hirshberg chứng_minh bổ_đề sau : Ta sẽ chứng_minh bổ_đề này sau .
+Bây_giờ giả_sử chúng_ta đã có thuật_toán tìm điểm chia trong thời_gian và bộ_nhớ .
+Ta có_thể gọi đệ_quy trên các bài_toán con để giải bài_toán ban_đầu .
+Chi_tiết như trong giả mã sau : Có_thể dễ thấy là bộ_nhớ cần_thiết của thuật_toán là_vì bộ_nhớ cần_thiết của thủ_tục là .
+Thời_gian tính của thuật_toán được cho bởi công_thức đệ_quy sau : Bằng phương_pháp , ta có_thể chứng_minh rằng .
+Giải_thuật Hirshberg tìm điểm chia bằng phương_pháp quy_hoạch_động .
+Gọi_là điểm chia khi biến xâu con thành .
+Hay nói_cách_khác , bài_toán chuyển xâu sang xâu con có_thể được chia thành hai bài_toán : bài_toán chuyển xâu con sang xâu và bài_toán chuyển xâu con sang xâu con .
+Dễ thấy : Tổng_hợp lại , ta có_công thức đệ_quy sau của : Như_vậy , điểm chia .
+Dựa vào công_thức đệ_quy ở trê , ta có_thể tính được với thời_gian và bộ_nhớ .
+Chi_tiết coi_như bài_tập cho bạn_đọc (tham khảo thêm tại ) . Ví_dụ bảng và bảng với hai xâu , .
+Hình_ảnh được lấy từ Chính vì kĩ_thuật Hirshberg mà thông_thường , với các bài_toán quy_hoạch_động , nếu chúng_ta có_thể tìm được_giá trị tối_ưu trong thời_gian và bộ_nhớ , chúng_ta có_thể tìm được ít_nhất một phương_án tối_ưu với cùng_thời gian và bộ_nhớ .
+Các bài_toán quy_hoạch_động thông_thường liên_quan đến việc xây_dựng bảng quy_hoạch hai hoặc ba chiều .
+Mỗi ô của bảng được cập_nhật dựa trên các ô liền kề của bảng .
+Một điểm chúng_ta có_thể nhận_thấy là không_phải tất_cả các ô đều được sử_dụng trong xây_dựng phương_án tối_ưu .
+Do_đó một_cách để tiết_kiệm thời_gian và bộ_nhớ là chúng_ta chỉ lưu lại giá_trị của những ô mà có_thể được sử_dụng trong xây_dựng phương_án .
+Nếu số_lượng các ô đó nhỏ hơn nhiều kích_thước cuả toàn bảng , chúng_ta sẽ tiết_kiệm thêm được thời_gian và bộ_nhớ .
+Trong bài này mình lấy bài_toán dãy con chung dài nhất (Longest Common_Subsequence - LCS) làm ví_dụ : Ví_dụ : và có xâu con chung dài nhất_là có chiều_dài là 6 (ta thêm kí_tự vào cuối hai xâu để việc lập_trình đơn_giản hơn) .
+Tương_tự như bài_toán , nếu ta gọi_là chiều_dài dãy con chung dài nhất của hai xâu con .
+Ta có_công thức đệ_quy sau : Dựa vào công_thức trên , ta có thuật_toán quy_hoạch_động giải bài_toán trên với thời_gian .
+Thuật_toán quy_hoạc động cũng là thuật_toán tối_ưu để giải bài_toán này theo nghĩa nếu , không tồn_tại thuật_toán chạy với thời_gian ít_hơn với mọi trừ_khi Giả_Thiết Thời_Gian Lũy_Thừa () là sai 3 .
+Code của thuật_toán bằng C .
+Trong code này , đầu_vào là dãy các số_nguyên từ 0-9 thay_vì là kí_tự .
+Tuy_nhiên trong một_số trường_hợp đặc_biệt , mà ở đây là trường_hợp bảng QHD "thưa" , ta có_thể thiết_kế thuật_toán nhanh hơn .
+Nếu để_ý kĩ_ta sẽ thấy các ô của bảng được sử_dụng để xây_dựng phương_án tối_ưu là các ô với .
+Ta gọi các ô với là các ô .
+Với ví_dụ và , ta có tất_cả 9 ô hữu_ích .
+Hình sau được lấy từ .
+Ta có_thể thấy giá_trị của các ô hữu_ích phụ_thuộc trực_tiếp vào nhau theo công_thức đệ_quy sau : Ở công_thức trên , là ô hữu_ích () .
+Gọi_là số_lượng các ô hữu_ích .
+Ta có_thể tính trước danh_sách các ô hữu_ích và lưu trong mảng trong thời_gian như_sau : Trong code_bằng C của giả mã dưới_đây , thay_vì lưu_giữ mảng chỉ_số như trong giả mã , mình dùng cấu_trúc dữ_liệu để lưu chỉ_số cùng_với dữ_liệu .
+Sau khi đã tìm được chỉ_số của các ô hữu_ích , ta có_thể tìm chiều_dài của dãy con chung dài nhất bằng quy_hoạch_động dựa vào công_thức đệ_quy ở .
+Giả mã như_sau : Code của thuật_toán bằng C .
+Code đầy_đủ được cho ở cuối bài .
+Thuật_toán tìm các ô hữu_dụng có thời_gian tính là .
+Sắp_xếp mảng có_thể thực_hiện trong thời_gian .
+Phần quy_hoạch_động cập_nhật mảng có thời_gian tính .
+Do_đó , tổng thời_gian tính_toán của thuật_toán là .
+Như_vậy , nếu (bảng quy_hoạch_động "thưa") thì thuật_toán trên sẽ nhanh hơn thuật_toán quy_hoạch_động ban_đầu .
+Bằng kĩ_thuật tương_tự với kĩ_thuật trong bài , chúng_ta có_thể giảm thời_gian cập_nhật mảng xuống còn .
+Do_đó thời_gian tính có_thể giảm xuống còn .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Code : .
+, UIUC .
+2 D .
+S .
+Hirschberg .
+1975 .
+.
+Commun .
+ACM 18 , 6 (June 1975) , 341-343 .
+3 Abboud , Amir , Arturs_Backurs , and Virginia_Vassilevska_Williams .
+.
+arXiv preprint arXiv : 1501 . 07053 (2015) .
+, , , Trackback link : on Thiếu dấu + ở mục độ phức_tạp : O(nlognmlogm+K) on Cám_ơn bạn đã chỉ ra .
+Mình đã sửa ! HùngPowered by and

@@ -1,0 +1,64 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Chia_để_trị theo mình là một trong những phương_pháp hiệu_quả nhất để thiết_kế thuật_toán .
+Bài trước chúng_ta đã làm_quen với và sử_dụng chia_để_trị .
+Bài này khái_quát_hóa phương_pháp và sau_đó chúng_ta xem_xét các ví_dụ áp_dụng .
+Nguyên_lí của chia_để_trị gồm hai bước như_sau : Cả hai bước đều yêu_cầu những kĩ_thuật nhất_định và phương_pháp tốt nhất để có_thể áp_dụng hai bước_vào các bài_toán khác_nhau là thực_hành nhiều .
+Trong bài này mình sẽ đưa_ra các ví_dụ minh_họa hai bước , và đừng quên xem_lại các vì nó sẽ là công_cụ chính để phân_tích thời_gian trong bài này .
+Phương_pháp mà bạn có_thể nghĩ ngay tới là sử_dụng công_thức : .
+Ta có giả mã Thời_gian tính của là (giả sử phép_nhân được thực_hiện trong thời_gian ) .
+Tuy_nhiên , ta có_thể tính nhanh hơn bằng cách áp_dụng phương_pháp chia_để_trị để giải bài_toán nhanh hơn .
+Ở đây ta có nhận_xét : Như_vậy nếu ta biết và ta có_thể tính .
+Nhận_thấy là tính và đều là các bài_toán nhỏ hơn vì lũy_thừa nhỏ hơn .
+Như_vậy ta có : Như_vậy thời_gian tính của thuật_toán là : Giải ra ta được .
+Trong phần này ta sẽ thảo_luận bài_toán sau : Như_ta đã biết bằng phương_pháp đặt tính nhân của cấp 1 , ta có_thể_nhân hai số_nguyên bít bằng phép_cộng bit .
+Trong bài này , mình sẽ giới_thiệu phương_pháp nhân hai số bít trong thời_gian Trước_khi đi_vào thuật_toán , mình giới_thiệu câu_đố nhân hai số_phức của Gauss .
+Câu_đố này sẽ cung_cấp tư_tưởng chính của thuật_toán sẽ trình_bày .
+Lời_giải là có , và cách làm như_sau : \beginarraylll X_1 = a + b \\ X_2 = c+d \\ X_3 = X_1X_2 = ac+ad + bc + bd \\ X_4 = ac \\ X_5 = bd \\ X_6 = X_4-X_5 = ac - bd \\ X_7 = X_3 - X_4 - X_5 = bc+ad \endarray Tích của hai số_phức chính là .
+Không khó để kiểm_tra rằng chỉ mất 305 đồng để thực_hiện các phép_toán ở trên . Trở_lại với bài_toán nhân_số nguyên .
+Để đơn giảm ta giả_sử .
+Hai số_nguyên có_thể được viết lại như_sau : \beginarraylll X = a2n/2 + b \\ Y = c2n/2+d \endarray Trong đó là các số_nguyên bit .
+Như_vậy ta có : Như_vậy để tính , ta có_thể tính các tích và sau_đó thực_hiện các phép dịch trái (nhân với tương_đương với dịch trái bít) và cộng .
+Chú_ý là các số có chiều_dài bít , do_đó mất thời_gian để thực_hiện phép_nhân .
+Như_vậy ta có_thể tính trong thời_gian : Giải công_thức truy_hồi trên ta được .
+Oops ! Không nhanh hơn thuật_toán nhân cấp 1 .
+Nếu để_ý kĩ_ta có_thể thấy có sự tương_đồng khi tính và Gauss_Puzzle .
+Sử_dụng phương_pháp như của Gauss () , ta có_thể tính sử_dụng 3 phép_nhân hai số bít và vài phép_cộng .
+Như_vậy ta có_thể tính trong thời_gian : Giả mã của chương_trình như_sau : Thuật_toán nhanh nhất hiện_tại để nhân hai số_nguyên bít phát_minh bới với thời_gian trong đó hàm được định_nghĩa như_sau : Hàm tăng cực_kì chậm .
+Với , .
+Do_đó , trong thực_tế ta có_thể coi thuật_toán Fürer có thời_gian cỡ .
+Tuy_nhiên , về_mặt lý_thuyết , bài_toán nhân hai số_nguyên bít trong thời_gian vẫn là một bài_toán mở .
+Tìm_kiếm nhị_phân (binary search) là một trong những thuật_toán được sử_dụng rộng_rãi nhất trong thiết_kế giải_thuật .
+Bài_toán như_sau : Nếu duyệt hết các phần_tử của mảng từ_đầu đến cuối , ta sẽ mất để tìm .
+Tuy_nhiên ta có_thể lợi_dụng tính_chất mảng đã sắp_xếp để thiết_kế giải_thuật tốt hơn : Tồn_tại một thuật_toán tìm_ra một phần_tử của mảng đã sắp_xếp có_giá trị trong thời_gian .
+Ở đây để đơn_giản ta sẽ giả_sử mảng có ít_nhất một phần_tử có gía_trị .
+Ý_tưởng của tìm_kiếm nhị_phân khá đơn_giản : so_sánh với phần_tử .
+Nếu , ta tìm_kiếm trên .
+Giả mã như_sau : Code của giả mã bằng C .
+Code đầy_đủ của thuật_toán được đính ở cuối bài .
+Ta thấy ở mỗi bước tìm_kiếm , chúng_ta loại_bỏ được ít_nhất một_nửa số phần_tử cuả mảng .
+Như_vậy : Code : 1 Jeff_Erickson .
+, UIUC .
+2 Sanjoy_Dasgupta , Christos_Papadimitriou , and Umesh_Vazirani .
+Algorithms .
+1st Edition) .
+McGraw-Hill_Higher_Education , (2008) .
+3 Anupam_Gupta and John_Lefferty .
+Great_Theoretical_Ideas in Computer_Science_Lecture_Notes , CMU , 2008 .
+Bài_tập trong phần này được trích từ chapter 2 của cuốn sách Algorithms by Sanjoy_Dasgupta , Christos_Papadimitriou , and Umesh_Vazirani .
+Giả_sử_ta có_một mảng gồm phần_tử và các phần_tử có_thể trùng nhau .
+Thiết_kế giải_thuật loại_bỏ tất_cả các phần từ trùng nhau (giữ lại một copy) trong thời_gian .
+Giả_sử trong bộ_nhớ máy_tính có_một mảng vô_hạn các phần_tử trong đó phần_tử đầu_tiên được xắp xếp theo chiều tăng dần và còn_lại là .
+Tuy_nhiên , bạn không biết , nghĩa_là bạn không biết trong mảng có bao_nhiêu phần_tử khác .
+Mỗi lần bạn truy_cập vào một vị_trí lớn hơn thì máy_tính sẽ trả_lại .
+Bây_giờ bạn có_một số_nguyên và muốn tìm vị_trí cuả mảng chứa gía_trị .
+Hãy thiết_kế giải_thuật tìm vị_trí của trong mảng với thời_gian .
+Bạn có_một mảng gồm các số_nguyên đôi một khác_nhau và bạn muốn tìm chỉ_số của mảng sao_cho .
+Hãy thiết_kế thuật_toán với thời_gian .
+(Closest Pair)_Cho một_tập điểm trên một_mặt phẳng .
+Xác_định cặp điểm gần nhất , đó là cặp điểm sao_cho khoảng_cách giữa là nhỏ nhất .
+Khoảng_cách đó được tính bởi công_thức .
+Để đơn_giản ở đây giả_sử , tất_cả các tọa_độ trên trục đôi một khác_nhau và tất_cả các tọa_độ trên trục đôi một khác_nhau .
+Ý_tưởng cơ_bản như_sau : Câu_hỏi như_sau : , , Trackback link : on những thao_tác tính a , b , c , d trong thuật_toán nhân 2 số n bit đều là chia các số n bit sao ko phân_tích thời_gian hả ad ?
+on Hi bạn , Các thao_tác chia này chỉ là các thao_tác "dịch bít" trong máy_tính .
+Do_đó , chỉ mất thời_gian cho mỗi phép_chia .
+Một_cách hiểu đó là cũng giống_như khi bạn nhân (chia) một_số cho lũy_thừa của 10 , thì bạn chỉ việc dịch dấu_phẩy sang bên phải (trái) . Hi_vọng trả_lời đúng câu_hỏi của bạn . Powered by and

@@ -1,0 +1,88 @@
+Tác_giả : Nguyễn_Xuân_Khánh Biển học là vô_bờ .
+Hai chữ “vô bờ” bản_thân nó vốn ám_chỉ rằng không có đích đến rồi .
+Bạn rong_ruổi trên một con_tàu theo năm_tháng trên đại dượng tri_thức .
+Vậy_thì ý_nghĩa của một cuộc_sống như_vậy nằm ở đâu ?
+Là vẻ đẹp của những hòn_đảo bạn ghé thăm , những trải_nghiệm về phong_ba_bão_táp của đại_dương , những cuộc gặp_gỡ duyên_phận với những con_tàu khác , những cuộc_đua và những khi tản_mạn .
+Năm 2007 , tôi nộp đơn thi vào trường Phổ_Thông Năng_Khiếu-Đại học quốc_gia thành_phố Hồ_Chí_Minh .
+Tôi không_hề biết_gì về trường này trước đó , chỉ biết rằng học_sinh trường này ắt_hẳn phải là siêu_nhân sau khi tôi xem qua đề tuyển_sinh môn toán .
+Tôi lúc ấy cũng đang học chuyên_môn toán .
+Tôi không biết_gì về lập_trình dù đã được học được hơn tháng về Pascal (người dạy tôi khi_ấy chỉ chép lên bảng code từ sách ra , bảo tôi gõ lại và không giảng gì thêm) .
+Tôi nộp đơn vào lớp chuyên toán của PTNK .
+Kết qủa là tôi thiếu 0 . 25 điểm để đậu vào lớp chuyên toán .
+May_mắn thay lớp chuyên Tin của trường vẫn lấy một_nửa chỉ_tiêu từ số_học sinh có nguyện_vọng vào lớp toán .
+Tôi đủ điểm để vào chuyên Tin nhưng tôi cảm_thấy rất lo : xa nhà , học ở một trường qúa sức , chuyên một môn_học bí_ẩn .
+Tôi nói : “Con không học chuyên Tin đâu ! ” .
+Nhưng rồi tôi cũng đi .
+Mẹ tôi khóc nhiều .
+Ba tôi chạy khắp_nơi để lo chỗ_ở , xe_cộ , chỗ ăn_uống cho tôi ở một thành_phố lớn , nhưng lạ .
+Ngày đầu_tiên tôi bước_vào lớp , tôi bị sốc .
+Bạn tôi đố nhau về toán_học và tin_học .
+Đi đâu tôi cũng nghe cái từ “lệ quy” .
+Bài nào cũng giải được bằng “lệ quy” .
+Tôi thấy cái từ này sao nó hay , nó đẹp thế .
+Mãi sau_này tôi mới biết là tôi nghe nhầm từ “đệ quy” .
+Trường chúng_tôi năm ấy nhập_học sớm , lớp tôi được học thêm một_vài tuần về toán rời_rạc trước_khi vào chương_trình của năm_học .
+Vài tuần đầu , chúng_tôi được học cơ_bản về ngôn_ngữ PASCAL : dùng vòng_lặp for để vẽ sao .
+Rồi tiếp_theo là vẽ những hình phức_tạp hơn , buộc tôi phải học “đệ quy” và “vòng lặp” mới giải được .
+Vòng_lặp và đệ_quy , hai khái_niệm rất khó_nuốt cho một học_sinh chuyên toán như tôi .
+Dẫu_rằng trong toán_học vẫn có những công_thức truy_hồi nhưng tôi thường nghĩ về chúng như một công_thức_toán hoặc một hàm_số , tức_là ta cứ thế số vào , trải_qua một_số công_đoạn tính nhất_định để ra kết_quả .
+Vòng_lặp lại khác , ta làm đi_làm lại cùng một thứ , nhưng kết_quả của ta biến_đổi dần_dần rồi đi đến giá_trị cuối_cùng khi vòng_lặp kết_thúc .
+Trong cách hiểu về Toán_học của tôi , tôi quan_tâm đến bên_trong hàm của tôi bao_gồm những phép_tính gì (cộng trừ nhân chia ra sao) , nhưng trong tư_duy Tin_học mới , tôi có_thể xem hàm của tôi như những chiếc hộp_đen .
+Tôi quan_tâm nhiều hơn về thứ nó nhận vào (input) và thứ nó trả ra (output) .
+Hãy lấy dãy Fibonacci làm ví_dụ : 1 , 1 , 2 , 3 , 5 , 8 , . . .
+Giá_trị của một_số bằng tổng của hai số liền trước nó trừ hai số đầu .
+Ta tạm gọi F(n) là sô Fibonacci thứ n .
+Tôi rất muốn tính nhanh giá_trị của số này .
+Trong toán_học phổ_thông mà tôi được học , tôi sẽ cố_gắng tìm_ra một công_thức tổng_quát cho số Fibonacci thứ N : F(n) = \frac\phi n - \psi n\phi - \psi = \frac\phi n - \psi n\sqrt5 , với : \phi = \frac1 + \sqrt5 2 và \psi = -\frac1\phi Mục_đích của điều này là để giảm_thiểu số phép_tính .
+Ví_dụ tôi muốn tính số thứ 1000 của dãy trên , việc thay giá_trị_n = 1000 và công_thức tổng_quát trên của dãy sẽ nhanh hơn việc áp_dụng số công_thức truy_hồi : F_n = F_n – 1 + F_n – 2 và tính ra 999 số trước đó ! Khi tôi học toán ở cấp hai , nhìn vào công_thức tổng_quát của số Fibinacci tôi chỉ thấy một_phép trừ , một_phép chia , vài phép căn bậc hai và lũy_thừa .
+Tôi trông_cậy vào máy_tính cầm_tay để thực_hiện những phép_tính đó .
+Nhưng tôi không để_ý rằng thực_hiện phép căn bậc hai khó hơn rất nhiều so_với phép_trừ .
+“Khó” ở đây không_những là về thời_gian mà_còn về độ_chính_xác .
+Giá_trị của căn bậc hai của 5 mà máy_tính cầm_tay hiển_thị ra luôn chứa sai_số vì chúng_ta đều biết rằng đây là một_số vô_tỉ trong_khi độ_dài màn_hình máy_tính thì hữu_hạn .
+Trong công_thức tổng_quát trên còn chứa nhiều phép_tính phức_tạp như phép lũy_thừa một_số thập_phân chẳng_hạn .
+Thực_tế rất ít người sử_dụng công_thức ấy vì nó luôn cho sai_số .
+Hãy dùng số_nguyên khi còn có_thể ! Ngược_lại , trong công_thức truy_hồi , tôi chỉ thấy một_phép cộng đơn_giản .
+Tôi gõ ra một hàm_số nhận input là hai số_nguyên và trả output là tổng của hai số đó .
+Tôi lại tiếp_tục nâng_cấp hàm_số đó lên thành một quy_trình như_sau : tôi loại số nhỏ hơn trong input ra khỏi hàm_số và thay nó bằng output tôi vừa nhận được .
+Tôi có_một bộ input mới , và từ_đó lại tính ra một output mới .
+Khi tôi chạy quy_trình đó , bạn đầu tôi cho vào hai số (1 , 1) .
+Tôi lặp_lại quy_trình nhiều lần (bao nhiêu lần đố bạn ? ) cho_đến khi tôi nhận được số Fibonacci thứ N .
+Nói_cách_khác , tôi đang sử_dụng một vòng_lặp : F0 = 1 F1 = 1 for n = 2 to 1000 : Fn = Fn-1 + Fn-2_Hãy nhớ_lại vì_sao tôi lại không dùng công_thức này ngay từ_đầu ?
+Vì muốn tính số thứ 1000 tôi phải tính tay ra 999 số trước đó .
+Đấy là khi tôi chưa biết lập_trình .
+Khi tôi biết lập_trình , tôi ở trong một tình_huống khác hẳn .
+Tôi chỉ_cần gõ một vòng_lặp , và gõ một_lần duy_nhất .
+Máy_tính sẽ giúp tôi thực_hiện phần tính_toán .
+Bạn có thấy điều khác_biệt không ?
+Lần trước công_sức tôi bỏ ra là phải ngồi tính tay 1000 giá_trị nhưng bây_giờ thì chỉ việc ngồi gõ ra một công_thức trừu_tượng và để máy_tính thực_hiện phần tính_toán với giá_trị cụ_thể .
+Điều này đảo_ngược lựa_chọn của tôi như_thế nào ?
+Giờ tôi sẽ thích công_thức truy_hồi hơn vì nó ngắn hơn để gõ so_với công_thức tổng_quát .
+Máy_tính làm tốt những việc con_người làm không tốt , và ngược_lại .
+Con_người có_thể làm những việc phức_tạp nhưng ở tốc_độ thấp; còn máy_tính lại có_thể làm những việc đơn_giản nhưng ở tốc_độ cao và có_thể lặp_lại nhiều lần mà không biết chán .
+Học_thuật_toán tức_là kết_hợp sự sắp_đặt khéo_léo của con_người với tốc_độ và sự bền_bỉ của máy_tính .
+Học_thuật_toán không_phải là học ngôn_ngữ_lập_trình , không_phải là học Pascal , học C , học Java .
+Học_thuật_toán tức_là nghĩ về quá_trình chuyển_động , sự thay_đổi trạng_thái của các thành_phần trong_suốt một quá_trình , bản_chất cũng giống_y như học Vật_lý , Sinh_học , Hóa học vậy .
+Ngôn_ngữ_lập_trình chỉ là phụ_trợ .
+Tôi viết vòng_lặp ở trên không_phải theo một ngôn_ngữ_lập_trình nào cả .
+Bạn có_thể tạo ra một ngôn_ngữ_lập_trình mang_tên bạn .
+Bạn cũng có_thể làm nó chạy được vòng_lặp tôi viết ở trên .
+Quay_lại vấn_đề , tại_sao tôi lại nói vòng_lặp là một trong những khái_niệm quan_trọng nhất .
+Có hai lý_do .
+Thứ nhất_là tôi cảm_thấy tư_duy của_Tin học , của lập_trình , tinh_túy nhất ở những thuật_toán mà ta chỉ thấy có_một quá_trình được lặp_đi lặp_lại mãi , và bất_ngờ cuối_cùng chúng_ta lại được kết_quả nhưng mong_muốn .
+Thuật_toán Euclid tìm ước_chung lớn nhất của hai số , thuật_toán chia nhị_phân tìm giá_trị nhỏ nhất của một hàm_số lồi là một_số ví_dụ .
+Thực_tế thì khá khó tìm được một thuật_toán mà không có vòng_lặp .
+Bạn có_thể tưởng_tượng sự vận_hành của thuật_toán như một ván cờ : bàn_cờ là một thứ cố_định và các quân_cờ sẽ di_chuyển , số_lượng quân_cờ sẽ ít dần đi_theo thời_gian đến khi đạt được trạng_thái kết_thúc là chiếu bí .
+Lý_do thứ_hai , việc lặp một quá_trình như trong_vòng lặp mở_ra một lối tư_duy mới trong việc giải_quyết một vấn_đề .
+Không nhất_thiết rằng bạn phải ngay tính ra kết_quả của bài_toán ngay_lập_tức .
+Bạn thử tính lần thứ nhất , đáp_số có_thể sai , nhưng lặp_lại dần thì kết_quả sẽ đi gần hơn đến đáp_án .
+Đầu_óc bạn sẽ phải làm_quen với những thứ trừu_tượng có_giá trị luôn_luôn thay_đổi (biến số) , và bạn phải nhẩm lấy sự vận_động của chúng .
+Cũng cùng là một dòng lệnh đó nhưng vỡi những giá_trị khác_nhau sẽ tạo ra những kết_quả khác_nhau .
+Lúc mới học tin , tôi thấy hứng_thú với lối tư_duy mới này .
+Tôi thấy nó giúp tôi tiếp_cận gần hơn với những gì đang xảy_ra trong cuộc_sống .
+Nếu_như lúc trước tôi chỉ biết bấm máy_tính thì bây_giờ tôi đã biết quan_tâm xem nó thực_hiện những phép_tính thế_nào .
+Hiểu thêm về thế_giới xung_quanh làm_tôi thấy hạnh_phúc .
+Mọi môn_học khác đều có cái hay của nó và đều có_thể dẫn tôi đến cái cảm_giác đó nhưng tôi đến với Tin_học là một cái duyên .
+Vì_thế khi bảo tôi nói_ra lý_do cần phải học Tin_học , tôi không nghĩ_ra lý_do nào .
+Một ngày nọ tôi ăn được một món ngon , thế_là tôi là về quyết_định học cách nấu món đó .
+Chỉ vậy thôi .
+Đọc_tiếp phần 2

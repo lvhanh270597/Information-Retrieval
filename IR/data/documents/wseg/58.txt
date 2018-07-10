@@ -1,0 +1,71 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong , chúng_ta đã làm_quen với cây hậu_tố (suffix tree) và thuật_toán đơn_giản xây_dựng cây hậu_tố trong thời_gian .
+Mình khuyến_khích bạn_đọc xem_lại các khái_niệm của bài trước .
+Một_số khái_niệm mình sẽ không nhắc_lại ở đây .
+Trong bài này chúng_ta sẽ làm_quen với thuật_toán McCreight xây_dựng cây hậu_tố trong thời_gian giả_sử bảng_chữ_cái có kích_thước .
+Thuật_toán McCreight được đề_xuất vào năm 1976 bởi McCreight đơn_giản_hóa thuật_toán trước đó đề_xuất bởi Weiner .
+Ngoài thuật_toán McCreight , thuật_toán Ukkonen xây_dựng cây hậu_tố cũng có thời_gian và có_thể được áp_dụng trong trường_hợp online , có_nghĩa là chúng_ta có_thể cập_nhật lại cây hậu_tố khi có thêm các kí_tự mới .
+Tuy_nhiên , so_với thuật_toán Ukkonen , thuật_toán McCreight đơn_giản hơn .
+Chúng_ta sẽ làm_quen với thuật_toán Ukkonen trong bài sau . Mình nhắc_lại khái_niệm cây hậu_tố ở đây : Ý_tưởng của thuật_toán McCreight có_thể được coi là cải_tiến của sử_dụng liên_kết hậu_tố (suffix link) .
+Mỗi nút trong của cây hậu_tố xây_dựng trong thuật_toán MacCreight ngoài các trường cơ_bản như đã mô_tả ở còn có thêm một trường là (định nghĩa dưới đây) , kí_hiệu là .
+Goi là một nút trong với trong đó là kí_tự đầu_tiên trong và là một xâu ( có_thể là một xâu rỗng) . Hai trường_hợp ở trên được minh_họa ở hình dưới_đây .
+Đường màu đỏ có mũi_tên biểu_diễn liên_kết hậu_tố : Ví_dụ xâu có cây hậu_tố và các liên_kết hậu_tố như hình sau : Nếu coi nút gốc có liên_kết hậu_tố trỏ tới chính nó thì nhìn vào hình trên , ta sẽ thấy mọi nút trong đều có đúng 1 liên_kết hậu_tố .
+Tính_chất này không dễ thấy nếu chúng_ta chỉ nhìn vào định_nghĩa của liên_kết hậu_tố .
+Dựa vào định_nghĩa của cây hậu_tố và liên_kết hậu_tố , nếu một nút trong có liên_kết hậu_tố tới một nút , nút đó phải là duy_nhất .
+Do_đó , chúng_ta chỉ_cần chứng_minh tồn_tại nút như_vậy .
+Nút trong được tại thành là do khi chèn hậu_tố , với một_số nào_đó thỏa_mãn , là tiền_tố của và là xâu con chung lớn nhất (gọi tắt là tiền_tố con chung lớn nhất) của với cây hậu_tố .
+Thêm nữa , phải là tiền_tố của một hậu_tố nào_đó với .
+Xét , rõ_ràng là một tiền_tố con chung với cây hậu_tố sau khi đã chèn .
+Giả_sử nút với chưa tồn_tại khi nút được thêm vào cây hậu_tố .
+Do là tiền_tố con chung lớn nhất của với cây hậu_tố hiện_tại , sẽ là tiền_tố con chung lớn nhất của với cây hậu_tố .
+Do_đó , nút sẽ được tạo ra khi chièn , từ_đó suy ra dpcm .
+Nếu một nút trong được tạo ra khi chèn hậu_tố , liên_kết hậu_tố của có_thể được cập_nhật ngay tại bước sau_đó . Tại_sao liên_kết hậu_tố lại hữu_dụng ?
+Về_mặt trực_quan , nếu ta chèn hậu_tố có tiền_tố con chung lớn nhất với cây hiện_tại là thì tiền_tố chung lớn nhất của và ít_nhất có chiều_dài .
+Do_đó , khi chèn , ta chỉ_cần đi_theo liên_kết hậu_tố để tiết_kiệm được phép so_sánh kí_tự so_với thuật_toán đơn_giản .
+Thuật_toán thực_hiện trong bước , bước thứ chèn hậu_tố vào cây hiện_tại .
+Việc chèn hậu_tố phụ_thuộc vào bước trước .
+Khi chúng_ta chèn : Để minh_họa cho hai trường_hợp trên , ta sẽ xét hai ví_dụ được minh_họa bởi hình dưới_đây .
+Ví_dụ thứ nhất (hình của hình dưới đây) , ta xây_dựng cây hậu_tố cho xâu .
+Khi chèn hậu_tố vào cây hậu_tố , ta sẽ tìm_thấy một nút đã có liên_kết hậu_tố (như ở hình vẽ) và chèn nút lá tương_ứng với hậu_tố thứ 11 vào cây .
+Khi chèn , ta đi_theo liên_kết hậu_tố của đến nút , gọi_là , và bắt_đầu tìm so_sánh với cây_con gốc tại .
+Trong trường_hợp của ví_dụ trong hình , ta chỉ việc tạo thêm một nút lá là con của và gán hậu_tố là con của nút . Ví_dụ thứ_hai , khi ta chèn hậu_tố vào cây hậu_tố , ta sẽ tìm được một nút (như trong hình) và bẻ cạnh giữa và nút cha của nó để thêm một nút .
+Sau_đó tạo một nút lá là con của và gán vào nút lá đó .
+Tiếp_theo đó , ta chèn .
+Lúc_này nút chưa có liên_kết hậu_tố , ta sẽ đi_theo liên_kết hậu_tố của để đến một nút (như trong hình vẽ) và tìm_kiếm bắt_đầu_từ cây_con gốc .
+Tuy_nhiên , ta đã biết trước đoạn khớp sẽ là do nhãn của cạnh có chiều_dài .
+Do_đó , ta có_thể nhảy_cóc 2 nút như mũi_tên trong hình_vẽ để chèn .
+Cuối_cùng , ta sẽ cập_nhật liên_kết hậu_tố của . Trong giả mã dưới_đây , lưu_giữ nút cần cập_nhật liên_kết hậu_tố .
+Biến lưu_giữ nút cuối của liên_kết hậu_tố ở bước trước .
+Do_đó , tại dòng của giả mã dưới_đây , ta luôn tìm_kiếm bắt_đầu_từ nút thay_vì từ gốc .
+Biến lưu_giữ độ_dài ít_nhất của đoạn khớp khi tìm_kiếm .
+Độ_dài này ta tính được trong bước thứ khi chèn .
+Quy_luật cập_nhật đã được chỉ ra ở trên .
+Thủ_tục () sẽ tìm_kiếm đoạn khớp của với cây_con gốc tại của cây hậu_tố hiện_tại khi biết trước độ_dài đoạn khớp ít_nhất_là .
+Thủ_tục này trả_lại nút sao_cho tiền_tố chung lớn nhất_là xâu con của , độ_dài vị_trí khớp cuả và vị_trí khớp của văn_bản .
+Xem thêm tại với hàm tương_tự () .
+Điểm khác_biệt chính với thủ_tục () ở bài trước là ta kết_hợp cập_nhật liên_kết hậu_tố trong quá_trình tìm_kiếm . Giả mã của thuật_toán như_sau : Code của giả mã bằng C .
+Code đầy_đủ được đính ở cuối bài : Hàm trả_lại nếu và 0 nếu ngược_lại .
+Các thủ_tục khác của giả mã không trình_bày ở đây tương_tự như trong .
+Việc phân_tích thuật_toán trên có_thể được tách thành hai thành_phần sau : tổng_số phép so_sánh kí_tự (vòng while ở dòng ) và số lần "nhảy cóc" ( lệnh if ở dòng ) .
+Do phép nhảy_cóc , mỗi kí_tự của văn_bản được so_sánh đúng 1 lần .
+Do_đó tổng_số phép so_sánh kí_tự là .
+Phần khó nhất_là phân_tích_số lần "nhảy cóc" .
+Với mỗi nút của cây hậu_tố , gọi_là số nút trong đường_đi từ gốc tới của cây hậu_tố trừ đi 1 .
+Ta có nhận_xét sau : Do_đó , nếu ta nhảy_cóc lần tại bước , nút lại có tăng lên so_với tree depth của nó tại bước thứ .
+Do với mọi , tổng_số lần nhảy_cóc là không quá .
+Do_đó ta có : Code : 1 Weiner , Peter .
+Switching and Automata_Theory , 1973 .
+SWAT08 .
+IEEE_Conference_Record of 14th Annual_Symposium on .
+IEEE , 1973 .
+2 McCreight , Edward_M .
+Journal of the ACM (JACM) 23 . 2 (1976) : 262-272 .
+3 Ukkonen , Esko .
+.
+Algorithmica 14 . 3 (1995) : 249-260 .
+4 Aluru , Srinivas .
+Handbook of Data_Structures and Applications (2004) .
+, , , , Trackback link : on Đã không viết thì_thôi , viết thì viết cho đàng_hoàng chứ .
+on Hi bạn , Xin_lỗi vì bạn có những trải_nghiệm không hay với blog .
+Nếu bạn có comment cụ_thể phần_nào bạn cảm_thấy chưa hài_lòng thì xin để_lại .
+Mình sẽ sửa cho bài viết chuẩn hơn ! HùngPowered by and

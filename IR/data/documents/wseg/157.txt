@@ -1,0 +1,51 @@
+Nguồn : http : //adilet . org/blog/25-09-14/ Cây_Palindrome (hay còn được gọi_là Eertree) , được phát_minh bởi Mikhail_Rubinchik , là một loại cấu_trúc dữ_liệu được sử_dụng để giải một_số bài_toán liên_quan đến Palindrome .
+Cấu_trúc của cây Palindrome_Như mọi loại cây khác , cây Palindrome cũng có nút .
+Ngoài nút ra cây còn có các cung để nối các nút .
+Cung nối giữa hai nút u và v được gán một chữ_cái - ví_dụ chữ X - nghĩa_là ta có được palindrome chứa ở nút v bằng cách thêm chữ X vào hai bên của palindrome chứa ở nút u .
+Trong ví_dụ trên , ta có được xâu palindrome aba bằng cách thêm chữ a vào hai bên chữ b Cuối_cùng , ta có thêm các liên_kết hậu_tố .
+Nút u có liên_kết hậu_tố đến nút w , nếu palindrome chứa ở nút w là hậu_tố không tầm_thường lớn nhất của palindrome chứa ở nút u .
+(hậu tố là một xâu con chứa các chữ_cái cuối_cùng của xâu , hậu_tố không tầm_thường (proper suffix) là hậu_tố của một xâu và ngắn hơn xâu đó) .
+Từ bây_giờ ta sẽ gọi palindrome lớn nhất mà là hậu_tố không tầm_thường của một xâu là palindrome hậu_tố lớn nhất của một xâu .
+Trong ví_dụ trên , vì a là palindrome hậu_tố lớn nhất của aba nên có_một liên_kết hậu_tố từ nút chứa xâu aba đến nút chứa xâu a .
+Đặt_tên cấu_trúc dữ_liệu này là cây Palindrome có_vẻ không hợp_lí lắm , vì nó có tận 2 gốc .
+Một sẽ chứa xâu palindrome giả độ_dài -1 .
+Gốc này giúp ta cài_đặt cây dễ_dàng hơn , vì khi ta thêm hai chữ_cái bất_kì vào hai bên xâu độ_dài -1 thì ta sẽ được xâu độ_dài 1 và nó luôn là palindrome .
+Gốc thứ_hai chứa một xâu rỗng (xâu có độ_dài 0) , và xâu này cũng là palindrome .
+Ta cho thêm một liên_kết hậu_tố từ hai gốc nối đến gốc chứa palindrome độ_dài -1 .
+Lưu_ý rằng ta không chứa xâu palindrome vào nút khi cài_đặt thực_tế , nếu làm_vậy ta sẽ tiêu tốn quá nhiều bộ_nhớ .
+Nút thực_tế sẽ chứa độ_dài xâu palindrome , chữ_cái được gán vào các cung , và các liên_kết hậu_tố .
+Xây_dựng cây Palindrome_Ở đây mình sẽ hướng_dẫn tạo cây Palindrome chứa tất_cả các palindrome con của một xâu s .
+Ta thấy : Một xâu độ_dài n sẽ không có quá n xâu palindrome con , vì_vậy cây Palindrome sẽ không có quá n + 2 nút (do phải thêm 2 gốc nữa) .
+Ta sẽ xử_lí từng chữ_cái một trong xâu .
+Giả_sử_ta đã xử_lí được_tiền tố p của xâu , và giờ ta phải xét đến chữ_cái x tiếp_theo .
+Ta lưu lại t là palindrome hậu_tố lớn nhất của tiền_tố p .
+Vì t đã được xử_lí , nên nó được chứa trong một nút nào_đó của cây Palindrome .
+Nút này sẽ có liên_kết hậu_tố đến một nút nào_đó , nút nào_đó lại có_một liên_kết hậu_tố đến một nút khác và cứ tiếp_tục như_vậy .
+Bây_giờ ta hãy tìm hậu_tố palindrome của tiền_tố mới p+x .
+Hậu_tố đó sẽ có dạng xAx , với A là một xâu nào_đó , có_thể rỗng hoặc có độ_dài -1 .
+Vì xAx là palindrome , nên A cũng là palindrome , và nó là một hậu_tố của p , vì_vậy ta có_thể tìm A từ t bằng các liên_kết hậu_tố .
+Xâu xAx sẽ là xâu palindrome con duy_nhất của xâu p + x mà không xuất_hiện ở xâu p .
+Thật_vậy , ta thấy tất_cả xâu palindrome con mới mà ta chưa thấy trong xâu p phải kết_thúc bằng chữ x , và do_đó trở_thành hâu tố của xâu p + x .
+Vì xAx là hậu_tố palindrome lớn nhất của p + x , tất_cả các hậu_tố palindrome nhỏ hơn nó có_thể được tìm_thấy trong một_số tiền_tố của xAx (vì đối_với bất_kì hậu_tố của palindrome có_một tiền_tố tương_tự tương ứng) , và vì_thế ta đã thấy chúng trong p .
+Vì_vậy , để xử_lí chữ_cái x thêm vào , ta phải đi_theo các liên_kết hậu_tố của t cho_đến khi ta tìm_thấy A thích_hợp (xâu A thích_hợp có_thể có độ_dài -1 nếu ta phải đi đến gốc) .
+Sau_đó ta kiểm_tra xem có cung nào được gán chữ x mà tương_ứng với nút chứa xâu A , nếu_không , thêm một cung được gán chữ x nối từ nút chứa xâu A đến nút mới chứa xâu xAx . Bây_giờ ta xét đến các liên_kết hậu_tố nối từ nút xAx . Nếu nút này đã có từ trước , nút này đã có các liên_kết hậu_tố và ta không_phải làm_gì cả .
+Nếu_không , ta cần phải tìm palindrome hậu_tố lớn nhất của xAx , có dạng xBx , mà B là một xâu có_thể rỗng .
+Bằng lập_luận tương_tự như_trên , B là palindrome hậu_tố của p và có_thể đến được từ t bằng các liên_kết hậu_tố .
+Vậy_ta đã có được thuật_toán xây_dựng cây Palindrome .
+Xử_lí từng chữ_cái một , lưu_trữ palindrome hậu_tố lớn nhất t của tiền_tố đã xử_lí (khởi tạo t là xâu rỗng) .
+Khi xử_lí thêm chữ x , ta phải đi_qua các liên_kết hậu_tố xuất_phát từ t , cho_đến khi ta tìm được palindrome A thích_hợp .
+Xâu xAx sẽ trở_thành sẽ trở_thành hậu_tố palindrome lớn nhất và trở_thành nút duy_nhất có_thể chèn vào cây .
+Để tạo thêm các liên_kết hậu_tố ta phải đi_theo các liên_kết hậu_tố cho_đến khi tìm_thấy xâu palindrome B , có_thể thêm được hai chữ x ở hai bên , rồi ta thêm liên_kết hậu_tố từ nút chứa xâu xAx đến xâu xBx . Để biết thêm thông_tin chi_tiết , bạn có_thể tham_khảo code .
+(bạn không cần chú_ý đến biến num vì nó được cho thêm vào để giải bài_toán cụ thể) .
+Bạn có_thể thấy code không quá dài cũng_như việc cài_đặt rất đơn_giản .
+Độ phức_tạp Xét quá_trình xây_dựng cây Palindrome cho một xâu độ_dài n .
+Ta thấy rằng khi ta xử_lí từng chữ_cái một , đầu của liên_kết hậu_tố palindrome lớn nhất của tiền_tố được xử_lí luôn di_chuyển sang bên phải .
+Do_đó , độ phức_tạp của việc xây_dựng cây Palindrome là O(n) .
+Ứng_dụng Đếm_số lượng palindrome xuất_hiện thêm Bài_toán : Cho thêm chữ_cái x vào cuối xâu S , đếm_số lượng palindrome xuất_hiện thêm trong xâu S .
+Ví_dụ khi ta cho thêm chữ_cái a vào cuối xâu aba , ta có thêm một palindrome nữa_là aa .
+Lời_giải khá là rõ_ràng : Ta xây_dựng cây Palindrome cho xâu S ban_đầu , và với mỗi chữ_cái mới thêm vào , ta biết được số palindrome mới xuất_hiện thêm bằng cách đếm_số nút vừa được tạo ra trên cây Palindrome .
+Lưu_ý : số palindrome xuất_hiện thêm sau khi thêm một chữ_cái vào một xâu bằng 1 hoặc bằng 0 .
+Đếm_số lượng xâu con liên_tiếp là palindrome Code giải bài này bằng cây Palindrome đã có ở trên .
+Bài_toán này còn có_thể giải bằng thuật_toán Manachar , tuy_vậy ta nên giải bằng cây Palindrome vì cây Palindrome còn có_thể ứng_dụng cho nhiều bài_toán khác .
+Số lần xuất_hiện của palindrome trong xâu Ngoài sử_dụng cây Palindrome bạn có_thể sử_dụng Hash để giải bài này .
+Bài_tập Các bài trên Timus_Timus - Palindromes and Super_Abilities_Timus - 31 Palindromes_Timus - Richness of words Timus - Richness of binary words Các bài trên Codeforces_CERC 14 - Bài_G - Virus synthesis Codeforces_Beta_Round 17 - Bài_E - Palisection_Các bài trên SPOJ_SPOJ - Number of Palindromes_Các bài trên các trang khác Đếm_số lượng xâu con liên_tiếp là palindrome e-olimp - Palindromic factory Codechef - Palindromeness

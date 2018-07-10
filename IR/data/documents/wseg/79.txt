@@ -1,0 +1,62 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Thuật_toán Aho-Corasick được phát_triển bởi Alfred_Aho và Margaret_Corasick vào năm 1975 cho bài_toán tìm_kiếm đa mẫu sau : Với mỗi từ khóa , ta có_thế áp_dụng thuật_toán tuyến_tính (ví dụ hoặc ) để tìm_kiếm sự xuất_hiện của trong .
+Mỗi lần tìm_kiếm như_vậy ta mất thời_gian và do_đó , tổng thời_gian tìm_kiếm từ khóa là .
+Nếu cả và đều lớn thì thuật_toán này thực_sự không hiệu_quả .
+Aho-Corasick dựa trên ý_tưởng của thuật_toán KMP và đã phát_triển giải_thuật với thời_gian trong đó là số kí_tự trong bảng_chữ_cái sử_dụng .
+Thông_thường , là một hằng_số , do_đó , thuật_toán có_thể coi là có thời_gian tuyến_tính .
+Trọng_tâm bài này là định_lý sau : Trong bài (finite-state machine - FSM) , chúng_ta đã làm_quen với một máy trạng_thái hữu_hạn định_nghĩa cho một xâu mẫu và cách xây_dựng máy trạng_thái đó trong thời_gian .
+Bây_giờ chúng_ta sẽ mở_rộng khái_niệm đó cho tập các từ khóa .
+Mình khuyến_khích bạn_đọc xem_lại bài máy trạng_thái hữu_hạn trước_khi đọc_tiếp phần dưới_đây . Một máy trạng_thái hữu_hạn của tập các từ khóa là một đồ_thị có hướng và có các đặc_điểm sau : Trong hình dưới_đây mô_tả một cây Trie với tập từ khóa (hình (a)) và máy trạng_thái hữu_hạn tương_ứng (hình (b)) .
+Các cạnh màu đỏ là các cạnh không khớp .
+Với mỗi nút của cây Trie , ta gọi xâu tạo bởi các kí_tự trên đường_đi từ tới là (path label) của nút .
+Có_thể thấy cây Trie cho một_tập các từ khóa có các đặc_điểm sau : Các cạnh không khớp trong máy trạng_thái được xây_dựng dựa trên luật cạnh không khớp sau : Nút có_một cạnh không khớp tới nút khi và chỉ nhãn đường_đi của nút là hậu_tố dài nhất của nhãn đường_đi của nút . Ví_dụ trong hình (b) ở trên , nút có_một cạnh không khớp tới nút vì nhãn đường_đi của (xâu ) là hậu_tố dài nhất của nhãn đường_đi của (xâu ) .
+Bạn_đọc có_thể kiểm_tra luật này với các nút khác .
+Gọi_là số trạng_thái của FSM .
+Ta sẽ dùng một mảng hai chiều để biểu_diễn cây Trie , trong đó nếu_như nút là con của nút và cạnh có nhãn là .
+Ta sẽ xây_dựng Trie bằng cách "chèn lần lượt" từng từ khóa của vào cây Trie .
+Ví_dụ các bước xây_dựng cây Trie cho_được minh_họa bởi hình sau : Giả mã của thuật_toán xây_dựng cây Trie như_sau : Code_C : Sau khi đã xây_dựng cây Trie , ta phải xây_dựng các cạnh không khớp .
+Để biểu_diễn cạnh không khớp của mỗi nút , ta sẽ sử_dụng mảng trong đó nếu có_một cạnh không khớp từ nút đến nút .
+Hiển_nhiên sử_dụng luật cạnh không khớp , ta có_thể xây_dựng mảng trong thời_gian bằng cách với mỗi nút , ta sẽ duyệt các nút có độ sâu nhỏ hơn (sử dụng -- BFS) và tìm_ra nút thỏa_mãn luật cạnh không khớp .
+Duyệt như_vậy mất thời_gian cho mỗi cạnh không khớp , và do_đó , tổng_thơi gian là . Tuy_nhiên , sử_dụng ý_tưởng quy_hoạch_động trong xây_dựng FSM ở , ta có_thể xây_dựng mảng trong thời_gian như_sau .
+Ta sẽ xây_dựng cạnh không khớp cho các nút theo thứ_tự tằng dần của chiều_sâu (thứ tự BFS) .
+Ban_đầu .
+Giả_sử_ta đang xây_dựng cạnh không khớp cho một nút ở chiều_sâu (chiều sâu của một nút là khoảng_cách từ nút đó đến gốc của cây Trie) , và ta đã xác_định được cạnh không khớp cho các nút ở chiều_sâu nhỏ hơn .
+Gọi_là nút cha của trong cây Trie và là nhãn của cạnh trong cây Trie .
+Xét nút (giá trị này đã xác_định theo giả_thiết quy_nạp vì có chiều_sâu nhỏ hơn ) , nhãn của nút là hậu_tố của nhãn của nút .
+Do_đó , nếu , thì ta chỉ việc gán do nhãn của nút là hậu_tố của nhãn của nút (hình (a)) .
+Nếu_không () , ta tiếp_tục xét nút và lặp_lại tương_tự , so_sánh với (hình (b)) .
+Trường_hợp xấu nhất ta sẽ trở_lại nút và lúc_này ta sẽ gán .
+Giả mã như_sau : Code_C : Từ các thảo_luận ở trên , ta có : Giả_sử trong tập từ khóa , không có hai từ khóa nào sao_cho là xâu con của .
+Ta gọi bộ từ khóa là bộ .
+Bộ từ khóa trong ví_dụ trên là không độc_lập vì từ khóa là xâu con của từ khóa .
+Ta có định_lý sau : Ta có_thể dễ_dàng chứng_minh định_lý trên bằng phản_chứng (và coi_như bài_tập cho bạn đọc) .
+Định_lý trên cho_phép chúng_ta tìm_kiếm trong văn_bản giống_như thuật_toán KMP .
+Ta sẽ sử_dụng FSM để tìm_kiếm trong như_sau .
+Mỗi bước của thuật_toán ta xét một kí_tự và một trạng_thái của máy FSM .
+Ban_đầu ta xét kí_tự và trạng_thái (nút) của máy FSM .
+Gọi và lần_lượt là kí_tự hiện_tại ta đang xét của và trạng_thái hiện_tại ta đang xét của FSM .
+Giả mã của thuật_toán như_sau : Code_C : Bên_cạnh thời_gian để xây dưng FSM , thời_gian chạy_của thuật_toán tỉ_lệ với phép so_sánh bằng () cộng với số phép so_sánh không_bằng () cộng với số lần từ khóa xuất_hiện trong văn_bản (mỗi khi là nút lá) .
+Số lần xuất_hiện trong văn_bản được cố_định là , do_đó ta không cần phân_tích thêm nữa về đại_lượng này .
+Mỗi lần , ta sẽ tăng biển lên đơn_vị và sẽ được tăng lên trạng_thái ở độ sâu cao hơn .
+Do_đó , có tối_đa phép so_sánh bằng .
+Mỗi lần so_sánh bằng , giữ_nguyên còn sẽ được giảm về trạng_thái ở độ sâu thấp hơn .
+Do số lần giảm độ sâu của không_thể vượt_quá số lần tăng độ sâu của , do_đó , số phép so_sánh bằng_không thể vượt_quá số phép so_sánh không_bằng .
+Như_vậy , thời_gian của thuật_toán bằng thời_gian để xây dưng FSM + .
+Kết_hợp với Lemma 1 , ta suy ra Theorem 1 trong trường_hợp bộ từ khóa độc_lập . Nếu bộ từ khóa có hai từ khóa sao_cho là xâu con của thì việc tìm_kiếm sẽ trở_nên khó_khăn hơn nhiều .
+Ví_dụ bộ từ khóa gồm 3 từ và văn_bản .
+Khi tìm_kiếm theo thuật_toán với khóa độc_lập , ta sẽ tìm_thấy khóa đầu tiền , sau_đó đi_theo cạnh không khớp và tiếp_tục tìm được từ khóa .
+Mặc_dù có trong văn_bản nhưng ta sẽ không tìm_ra nó .
+trong hình dưới_đây , mình lược_bỏ một_số cạnh không khớp để hình nhìn đỡ rối hơn .
+Nếu làm_theo từng bước của thuật_toán trên , khi ta so_sánh kí_tự với trạng_thái 5 của FSM , ta nên đi_tới cạnh không khớp để tìm_ra từ và sau_đó tiếp tuc so_sánh với trạng_thái 6 của FSM .
+Tuy_nhiên , làm như_vậy thì mỗi lần so kí_tự , ta lại phải kiểm_tra (bằng cách đi_theo cạnh không khớp) xem có từ khóa nào xuất_hiện trong hay_không .
+Đó là chưa kể , nếu đi_theo cạnh không khớp của nút tới nút , ta phải tiếp_tục đi_theo .
+Ví_dụ với bộ và , Khi ta so_sánh với trạng_thái , ta phải đi_theo cạnh không khớp tới trạng_thái 2 để in ra và sau_đó tiếp_tục đi_theo cạnh không khớp của 2 đi_tới 14 để in ra , và sau_đó mới tiếp_tục so_sánh và trạng_thái 6 .
+Để giải_quyết vấn_đề này , ta sẽ dùng một mảng trong đó là một_tập các từ khóa sao_cho mỗi từ khóa trong là hậu_tố của nhãn đường_đi của trạng_thái .
+Ví_dụ trạng_thái sẽ có vì cả hai từ khóa này đều là hậu_tố của (là nhãn đường_đi của ) .
+Trong hình dưới_đây , các từ khóa tương_ứng với các nút là danh_sách của nút đó .
+Các nút không có gì là các nút có danh_sách rỗng . Giả_sử_ta đã tính được ta chỉ_cần thay_đổi một_chút thủ_tục tìm_kiếm với bộ từ khóa độc_lập ở trên như_sau : Code_C : Để tính mảng , ta sẽ sửa_đổi thủ_tục và như_sau : Code_C : Code_C : Sử_dụng danh_sách liên_kết , ta có_thể thực hiên trong thời_gian .
+Từ_đó ta suy ra Theorem 1 . Code của bài viết : , . 1 Aho , Alfred_V . , and Margaret_J .
+Corasick .
+.
+Communications of the ACM 18 . 6 (1975) : 333-340 .
+, , , , Trackback link : Powered by and

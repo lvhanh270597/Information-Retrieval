@@ -1,0 +1,112 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in_Như Donald_Knuth 2 đã nói , thao_tác với bít là "một thành_phần không_thể thiếu trong toolkit của các lập_trình_viên tốt" .
+Trong bài này chúng_ta sẽ tìm_hiểu tại_sao thao_tác với bít lại quan trong như_vậy .
+Sử_dụng thao_tác bít , chúng_ta có_thể thực_hiện nhiều thứ rất "ảo" bằng một_vài câu_lệnh đơn_giản . Xét một ví_dụ "đơn giản" sau : cho một_số nguyên 64 bít không dấu , kiểm_tra xem có_phải là một_lũy thừa của 2 hay_không , i . e , kiểm_tra xem có tồn_tại một_số sao_cho ?
+Có_lẽ một_số trong chúng_ta sẽ tiếp_cận như_sau : với mỗi , ta tính và so_sánh với : Tất_nhiên bạn có_thể thêm một_vài heuristic để thuật_toán nhanh hơn , còn_về mặt ý_tưởng thì_là như_vậy .
+Tuy_nhiên , nếu bạn biết xử_lí bít thì hàm trên có_thể được thực_hiện nhanh và ngắn_gọn như_sau : Code_C : Trong đó là phép AND .
+Hi_vọng ví_dụ trên đủ để thuyết_phục bạn rằng nắm_chắc các kĩ_thuật xử_lí bít là một điều không_thể thiếu trong các kĩ_năng của bạn .
+Trong các phần tiếp_theo chúng_ta sẽ tìm_hiểu tại_sao thuật_toán là đúng .
+Ta sẽ kí_hiệu_số nguyên có dấu là và số_nguyên không dấu là trong đó là số bít .
+Ví_dụ số_nguyên 64 bít không dấu là và số_nguyên 32 bít có dấu là .
+Các thao_tác bít cơ_bản và kí_hiệu toán_học dùng trong các bài viết này được cho bởi bảng dưới : Các ngôn_ngữ_lập_trình thường cung_cấp 2 phép SHIFT_RIGHT là LOGICAL_SHIFT_RIGHT và ARITHMETIC_SHIFT_RIGHT .
+Sự khác_nhau nằm ở chỗ bít dấu sẽ được shift như_thế nào .
+Trong_LOGICAL_SHIFT_RIGHT , kí_hiệu , bít dấu không được giữ_nguyên khi shift Trong_ARITHMETIC_SHIFT_RIGHT , kí_hiệu , bít dấu sẽ được shift lan về bên phải_khi shift .
+Hai ví_dụ cuối_cùng trong bảng trên của hàng SHIFT_RIGHT minh_họa cho sự khác_nhau này .
+Nếu số được shift là số_không dấu thì ARITHMETIC_SHIFT_RIGHT và LOGICAL_SHIFT_RIGHT là như_nhau .
+Một_số ngôn_ngữ có hai phép SHIFT_LEFT là ARITHMETIC_SHIFT_LEFT và LOGICAL_SHIFT_LEFT .
+Tuy_nhiên trong khuôn_khổ những bài viết ở đây , ta chỉ xét LOGICAL_SHIFT_LEFT mà ta gọi_là SHIFT_LEFT cho ngắn_gọn .
+Một trong những điều chúng_ta phải hết_sức chú_ý đó là của các thao_tác .
+Thứ_tự thông_thường như_sau : NOT > nhân , chia > cộng , trừ > SHIFT_LEFT , SHIFT_RIGHT > AND > XOR > OR Một_số tính_chất của các thao_tác như_sau : Các tính_chất không quá khó để chứng_minh .
+Do các thao_tác áp_dụng kiểu bitwise (không có nhớ) , để chứng_minh , ta chỉ_cần kiểm_tra các thao_tác trên đúng_với trường_hợp chỉ_có 1 bít .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Chú_ý có biểu_diễn nhị_phân là (chỉ gồm các bít 1) .
+Tính_chất ( không dấu) được suy ra từ định_nghĩa của các phép shift . Ta dễ thấy : , từ_đó suy ra : Thay bởi , ta cũng suy ra : Kết hơp ta có .
+Bằng phép quy_nạp , ta suy ra : Trong các ví_dụ dưới_đây , các giá_trị boolean TRUE/FALSE sẽ được coi là các giá_trị . Cho hai số_nguyên kiểu , trả về nếu khác dấu và 0 nếu ngược_lại .
+Các thủ_tục dưới_đây thực_hiện hàm này .
+Tính đúng_đắn coi_như bài_tập cho bạn_đọc .
+Code_C : Tính giá_trị_tuyệt_đối của số_nguyên có độ_dài bít : Code_C : Chứng_minh trả_lại giá_trị_tuyệt_đối của coi_như bài_tập cho bạn_đọc .
+Ta sẽ chứng_minh thủ_tục là đúng : Chứng_minh đúng tương_tự như chứng_minh đúng .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Giả_sử_ta có_một số_nguyên có dấu độ_dài bít , ta muốn mở_rộng bít thứ của ra thành bít dấu : Ví_dụ , giá_trị sau khi mở_rộng là .
+Ví_dụ khác , , giá_trị sau khi mở_rộng là .
+Ta có_thể làm như_sau : Code_C : Ta sẽ chứng_minh đúng .
+Các thủ_tục khác chứng_minh tương_tự .
+Gọi với và .
+Ta cần chứng_minh thủ_tục sẽ trả về nếu và nếu . Thật_vậy , sau khi đã xóa_bít đầu_tiên (lệnh ) , ta có .
+Nếu , ta suy ra và thủ_tục sẽ trả_lại .
+Nếu , ta có và .
+Do_đó , thủ_tục trả_lại .
+Một trong những thủ_tục trong các thuật_toán sắp_xếp là đổi chỗ hai biến .
+Thông_thường , ta sẽ dùng một biến trung_gian để lưu một trong hai giá_trị trong quá_trình đổi chỗ .
+Nếu hai biến cần đổi chỗ là các số_nguyên_ta không cần phải sử_dụng biến trung_gian đó .
+Code_C : Chứng_minh tính đúng_đắn coi_như bài_tập cho bạn_đọc . Cho hai giá_trị nguyên , tìm giá_trị lớn nhất , nhỏ nhất của hai số .
+Code_C : Tính đúng_đắn coi_như bài_tập cho bạn_đọc .
+Thủ_tục tính max tương_tự như tính min .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Giả_sử_ta có_một số_nguyên có dấu và một biến .
+Nếu thì ta phải đổi dấu của .
+Nếu ta giữ_nguyên giá_trị .
+Code_C : Ta chứng_minh đúng .
+Nếu , dễ_dàng kiểm_tra được thủ_tục trả_lại giá_trị .
+Nếu , ta có : Tương_tự như_vậy , ta có_thể chứng_minh được đúng .
+Trong phần này , giả_sử số_nguyên có biểu_diễn nhị_phân như_sau : trong đó có_thể bằng .
+Ta dễ_dàng suy ra : Từ_đó suy ra .
+Ta lại thu được các đẳng_thức ở trên . Một_số thao_tác với bít 1 tận_cùng bên phải quan_trọng nên nhớ : Các mặt_nạ "thần kì" (magic mask) được sử_dụng rất rất nhiều trong các thủ_tục thao_tác bít .
+Các mặt_nạ thần_kì được định_nghĩa như_sau : Về_mặt toán_học , là khai_triển nhị_phân của do Ở đây , bạn_đọc chỉ_cần nhớ gồm mỗi dãy lặp_lại số liên_tiếp sau_đó là số 1 liên_tiếp .
+Thủ_tục ở trên kiểm_tra xem có tồn_tại sao_cho hay_không ?
+Dễ thấy , nếu thì_có đúng 1 bít 1 .
+Theo , sẽ xóa_bít 1 tận_cùng bên phải .
+Do_đó , trả về 0 khi và chỉ khi và với một_số nào_đó .
+Cho một_số nguyên (không dấu) , đếm_số bít của .
+Ta có_thể thực_hiện sử_dụng thao_tác bít trong đó là số bít biểu_diễn của như_sau : Code_C : Sử_dụng thuật_toán trên trong trường_hợp có bít cần khoảng phép_tính .
+Để tăng_tốc thuật_toán , ta sẽ sử_dụng một bảng , gọi_là bảng nhớ , để tính trước .
+Giả_sử_ta có bảng trong đó nếu trong biểu_diễn nhịn phân cuả có bít 1 .
+Nếu bảng đã được tính sẵn , ta có_thể đếm_số bít 1 của trong 11 phép_tính như_sau : Code_C : Trong trường_hợp số_lượng bít 1 của không nhiều , ta có_thể sử_dụng .
+Cụ_thể , nếu có bít 1 thì ta chỉ_cần phép_tính .
+Code_C : Chứng_minh thủ_tục đúng coi_như bài_tập cho bạn_đọc .
+Cho một_số nguyên , gọi_là số_lượng bít 0 cuối_cùng (trailing zeros) của .
+Tính .
+Ví_dụ , ta có .
+Dễ thấy nếu lẻ thì .
+Ta có_công thức đệ_quy sau của : Trong đó là số bít biểu_diễn của .
+Cách đầu_tiên_ta có_thể nghĩ đến_là duyệt các bít của từ trái sang phải để đếm_số lượng bít 0 cho_đến khi ta bắt gắp bít 1 đầu_tiên thì dừng .
+Cách này cần khoảng phép_tính trong đó là số_lượng bít 0 cuối_cùng .
+Trong trường_hợp tồi nhất , đếm_số bít 0 cuối_cùng cuả số_nguyên không dấu 32 bít cần hơn 150 phép_tính .
+Có_thể tăng_tốc thuật_toán này bằng cách sử_dụng bảng nhớ như_trên .
+Cách khác ta có_thể nghĩ tới là sử_dụng chia_để_trị để tìm bít 1 phải nhất .
+Cách này áp_dụng cho mọi số_nguyên 32 bít sử_dụng 19 phép_tính .
+Code_C : Tính đúng_đắn coi_như bài_tập cho bạn_đọc .
+Ngoài_ra ta có_thể sử_dụng mặt_nạ thần_kì để tính .
+Nhận_thấy nếu với một_số nào_đó thì : trong đó hàm nếu là TRUE và nếu ngược_lại .
+Do_đó , để áp_dụng , ta sẽ áp_dụng trước để xóa hết các bít 1 bên trái của bít 1 cuối_cùng .
+Nếp áp_dụng phương_pháp này cho số_nguyên có bít thì mất cỡ 16 phép_tính .
+Giả mã như_sau : Code_C : Cho số_nguyên , ví_dụ bít , đảo_ngược biểu_diễn nhị_phân của , i . e , trả_lại .
+Cách đơn_giản nhất_là copy các bít của sang một_số theo thứ_tự đảo_ngược .
+Cách này mất phép_tính trong đó là vị_trí của bít 1 tận_cùng bên trái của .
+Do_đó , khi áp_dụng cho số 32 bít , trong trường_hợp xấu nhất , tổng_số thao_tác ta cần sử_dụng là hơn 180 phép_tính .
+Code_C : Trong bài toàn này ta cũng có_thể áp_dụng chia_để_trị .
+Ví_dụ với có 8 bít như_trên , ta có_thể đảo_ngược các bít của trong 3 bước như_sau : Để thực_hiện bước 1 , ta sẽ làm như_sau : Tương_tự như_vậy các bước tiếp_theo ta thực_hiện với mặt_nạ thần_kì .
+Giả mã với là số_nguyên 32 bít không dấu như_sau : Code_C : Dễ thấy sử_dụng các mặt_nạ thần_kì , ta có_thể đảo bít số_nguyên 32 bít trong phép_tính và số_nguyên 64 bít trong 26 phép_tính .
+Chứng_minh tính đúng_đắn của thủ_tục trên coi_như bài_tập cho bạn_đọc .
+Trong ví_dụ tiếp_theo , ta sẽ áp_dụng phương_pháp đổi chỗ hai bít để đảo bít số_nguyên 64 bít sử_dụng 26 phép_tính . Cho số_nguyên không dấu , đổi chỗ hai bít và của ( < ) .
+Đặt , ta tiến_hành đổi chỗ như_sau : Code_C : Trong giả mã trên , bước_đầu tiên , ta tách ra khỏi và đặt vào vị_trí thứ .
+Sau_đó , ta tách ra khỏi và đặt vào bít thứ .
+Mặt_nạ ở trên có tất_cả các bít là 1 ngoại_trừ bít thứ và .
+Suy ra , sẽ thiết_lập bít và về 0 .
+Như_vậy , kết_quả cuối_cùng sẽ là .
+Chú_ý trong ví_dụ đổi chỗ hai số_nguyên không dùng biến thứ 3 , ta sử_dụng phép XOR .
+Ở bài_toán này , ta có_thể thực_hiện ý_tưởng tương_tự .
+Code_C : Đầu_tiên_ta tính và đưa kết qủa vào vị_trí thứ .
+sau_đó đổi thành và thành .
+Dễ thấy cách này sử_dụng ít thao_tác bít hơn cách ở trên .
+Ý_tưởng của thuật_toán còn có_thể được dùng để đổi chỗ vài cặp bít cùng một_lúc (giống như cách chúng_ta đảo bít ở trên) .
+Thông_thường , để thực_hiện đảo nhiều cặp bít , ta sẽ dùng mặt_nạ thay_vì như_trên .
+Ta sẽ gọi thủ_tục này là -swap .
+Sử_dụng -swap , ta có_thể thực_hiện đảo bít số_nguyên 64 bít không dấu trong 26 phép_tính (thay vì 28) như_sau : Chi_tiết chứng_minh tính đúng_đắn của thuật_toán trên coi_như bài_tập cho bạn_đọc . Code : 1 Donald_E .
+Knuth .
+.
+Addison-Wesley_Professional , 2009 .
+2 3 Warren , Henry_S .
+.
+Pearson_Education , 2012 .
+, , Powered by and

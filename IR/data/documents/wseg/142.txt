@@ -1,0 +1,117 @@
+Table of_Contents Vài nét lịch_sử Phép_nhân hai đa_thức Biểu_diễn đa_thức qua ma_trận Vandermonde_Nghiệm nguyên_thủy Một_số tính_chất đặc_biệt của ma_trận Vandermonde nghiệm nguyên_thủy Phép biến_đổi Fourier nhanh Thuật_toán nhân hai đa_thức Lưu_ý về kỹ_thuật cài_đặt Khai_báo Chuẩn hóa bậc đa_thức Đệ_quy và Khử đệ_quy Bài_tập luyện_tập Tài_liệu tham_khảo Tác_giả : ngmq Trong bài này chúng_ta sẽ tìm_hiểu về thuật_toán nhân nhanh hai đa_thức sử_dụng phép biến_đổi Fourier nhanh ( Fast_Fourier_Transform - FFT ) và cách cài_đặt của nó .
+Bài viết này sẽ chỉ nêu chứng_minh sơ_lược của một_vài tính_chất được sử_dụng .
+Các chứng_minh chi_tiết có_thể tìm_thấy ở mục tài_liệu tham_khảo phía cuối của bài viết .
+Vài nét lịch_sử Phép biến_đổi Fourier ( Fourier_Transform ) là một trong số những phát_kiến toán_học đặc_sắc có lịch_sử hào_hùng , gắn_liền với những phát_kiến khoa_học và chiến_tranh quân_sự ở thế_kỷ 19 và 20 .
+Joseph_Fourier (1768-1830) là một nhà_khoa_học làm_việc trong đội_quân thám_hiểm Ai_Cập của Napoleon từ năm 1798 .
+Sau khi cách_mạng Pháp kết_thúc năm 1799 , Fourier trở_về Pháp và tham_gia xây_dựng lại đất_nước trong vai_trò một giáo_sư của đại_học École_Polytechnique .
+Trong quá_trình làm_việc với các công_trình xây_dựng cầu_đường và đóng tàu , ông đặc_biệt quan_tâm tới bài_toán mô_tả quá_trình truyền_dẫn nhiệt trong kim_loại , điều dẫn tới sự ra_đời của phép biến_đổi Fourier liên_tục vào năm 1807 trong một báo_cáo của ông tại viện hoàng_gia Paris .
+Trong đó , ông mô_tả mọi hàm_số , kể_cả các hàm_số không liên_tục đều có_thể được biểu_diễn dưới dạng tổng của một_số vô_hạn các hàm_số lượng_giác .
+Phát_biểu này của Fourier gây chấn_động và ấn_tượng tới_mức nhà toán_học Pháp cùng_thời là Lagrange cho_rằng việc nghĩ_ra phát_kiến này là gần_như không_thể ("nothing short of impossible") 1 .
+Trong hơn một trăm_năm sau_đó phép biến_đổi Fourier trở_thành một đối_tượng nghiên_cứu_phổ biến và liên_tục được phát_triển , hoàn_thiện bởi vô_số các tên_tuổi lớn của toán lý_thuyết 2 .
+Trong_khi phiên_bản nguyên_thủy có lịch_sử hoành_tráng như_vậy , phép biến_đổi Fourier nhanh , dù được cho_là ra_đời trước , lại được quan_tâm chậm hơn nhiều .
+Người_ta cho_rằng những ý_tưởng đầu_tiên về biến_đổi Fourier nhanh được phát_triển bởi nhà toán_học Đức_Carl_Friedrich_Gauss (1777 - 1855) vào năm 1805 khi ông cố_gắng xác_định quỹ_đạo của các thiên_thạch 3 , nhưng khi đó ông không công_bố kết_quả của mình .
+Mối liên_hệ giữa Gauss và phép biến_đổi Fourier nhanh chỉ được phát_hiện khi các công_trình của ông được tập_hợp và công_bố vào năm 1866 .
+Mặc_dù vậy , vào thời đó không có ai quan_tâm tới công_trình này vì lý_thuyết độ phức_tạp tính_toán chưa phát_triển (mãi tới năm 1936 Alan_Turing mới phát_triển mô_hình tính_toán đầu_tiên , và phải tới năm 1965 thì lịch_sử ngành nghiên_cứu về độ phức_tạp tính_toán mới bắt_đầu với công_trình của Hartmanis và Stearns 4) .
+Cũng trong năm 1965 hai nhà toán_học trong ban cố_vấn khoa_học của tổng_thống Mỹ_Kennedy là James_Cooley và John_Tukey đã tự tìm_ra phép biến_đổi nhanh Fourier trong_khi thiết_kế hệ_thống phát_hiện các vụ thử hạt_nhân của chính_quyền Xô_Viết 3 .
+Kể_từ thời_điểm đó phép biến_đổi nhanh Fourier mới chính_thức được quan_tâm và nghiên_cứu ứng_dụng trong rất nhiều các lĩnh_vực nghiên_cứu khác_nhau của vật_lý , sinh_học , điện_tử , y_tế , điều_khiển_học . . .
+Nghiên_cứu chỉ ra rằng mắt và tai người , động_vật có "cài đặt" sẵn thuật_toán biến_đổi Fourier để giúp chúng_ta nhìn và nghe , vì_vậy nó được GS_Ronald_Coifman của đại_học Yale gọi_là Phương_pháp phân_tích dữ_liệu của tự_nhiên ("Natures way of analyzing data") 1 .
+Phép_nhân hai đa_thức Cho hai đa_thức p(x) , q(x) có bậc d , e như_sau : p(x) = a_0 + a_1 x + a_2 x2 + . . .
++ a_d xd q(x) = b_0 + b_1 x + b_2 x2 + . . .
++ b_e xe Ta cần tìm tích c(x) của hai đa_thức trên , có dạng : c(x) = p(x)q(x) = c_0 + c_1 x + c_x x2 + . . .
++ c_d+e xd+e trong đó c_j = \sum_i=0j a_ib_j-i \qquad j = 0 , 1 , . . . , d+e Cách làm_theo định_nghĩa_là ta nhân mỗi hệ_số của p(x) với tất_cả các hệ_số của q(x) rồi cộng các hệ_số của cùng tổng_số mũ .
+Vì hai đa_thức có d+1 và e+1 hệ_số nên cách làm này có độ phức_tạp là O((d+1)(e+1)) = O(de) .
+Khi d và e tương_đối lớn cỡ 103 hoặc 104 trở_lên thì độ phức_tạp này là quá lớn để chạy trên máy_tính , đặc_biệt là các máy_tính nhúng đòi_hỏi tốc_độ tính_toán nhanh .
+Phép biến_đổi FFT giúp thực_hiện phép_nhân nói trên trong độ phức_tạp O(NlogN) trong đó N là lũy_thừa của 2 nhỏ nhất lớn hơn d và e .
+Biểu_diễn đa_thức qua ma_trận Vandermonde Kể_từ phần này trở_về sau , ta quy_ước n là số_hệ số của đa_thức (bậc n-1) và n là một_lũy thừa của 2 (n = 2 , 4 , 8 , 16 , 32 , 64 . . . ) .
+Xét đa_thức p(x) = a_0 + a_1 x + a_2 x2 + . . .
++ a_n-1 xn-1 với bậc n-1 và các hệ_số_phức a_i \in \mathbbC .
+Biểu_thức tính n giá_trị của p(x) tại n điểm z_0 , z_1 , . . .
+z_n-1 có_thể biểu_diễn qua phép_nhân ma_trận như_sau : \beginbmatrix 1 amp; z_01 amp; z_02 amp; \dots amp; z_0n-1 \newline 1 amp; z_1 amp; z_12 amp; \dots amp; z_1n-1 \newline \ldots amp; \ldots amp; \ldots amp; \ldots amp; \ldots\newline 1 amp; z_n-11 amp; z_n-12 amp; \dots amp; z_n-1n-1 \endbmatrix \beginbmatrix a_0 \newline a_1 \newline \vdots \newline a_n-1 \endbmatrix = \beginbmatrix p(z_0) \newline p(z_1) \newline \vdots \newline p(z_n-1) \endbmatrix \space (1) Ma_trận vuông V kích_cỡ nn của z_0 : n-1 ở trên được gọi_là ma_trận Vandermonde .
+Ta có các định_lý sau : Định_lý 1 : Định_thức của ma_trận Vandermonde là det(V) = \prod_0 \leq i lt; j \leq n-1(z_j - z_i) Chứng_minh (sơ lược) : Với mỗi hàng i = 0 , 1 , . . . n-2 của định_thức ta liên_tục thay hàng j = i+1 , i+2 , . . . n-1 bằng hiệu của các hệ_số của hàng j trừ đi hàng i .
+Đây là phép biến_đổi cơ_bản ( elementary operation ) nên giá_trị định_thức cần tính không_đổi .
+Lấy nhân_tử chung z_j - z_i ở tất_cả các hàng ra ngoài và xét tiếp hàng i+1 .
+Sau khi xét xong i = n-2 ta được một ma_trận chéo có đường_chéo chỉ gồm z_ii = 1 , định_thức của ma_trận này hiển_nhiên bằng 1 .
+Vì_vậy định_thức cần tính là tích của tất_cả các nhân_tử chung bỏ ra ngoài ở các bước trước đó .
+Phép chứng_minh bằng quy_nạp có_thể xem thêm tại đây Định_lý 2 : Đa_thức p(x) được xác_định duy_nhất bởi các giá_trị của nó p(z_0) , p(z_1) , . . .
+p(z_n-1) khi n giá_trị z_0 , z_1 , . . .
+z_n-1 phân_biệt .
+Ta gọi đây là phép biến_đổi ngược .
+Chứng_minh : Coi phương_trình (1) là một hệ_phương_trình n ẩn với bộ nghiệm a_0 , a_1 , . . . a_n-1 .
+Để đa_thức p(x) xác_định và duy_nhất thì định_thức của ma_trận V ở trên phải khác 0 .
+Theo Định_lý 1 ta có_điều phải chứng_minh .
+Hệ_quả : khi V khả_nghịch , hệ_số a_0 , a_1 , . . . a_n-1 được xác_định thông_qua tích của ma_trận nghịch_đảo V-1 của V và p(z_0) , p(z_1) , . . . p(z_n-1) .
+Từ định_lý 2 , ta thấy rằng 1 đa_thức bất_kỳ có 2 cách biểu_diễn : Dùng n hệ_số a_i Dùng n cặp giá_trị z_i , p(z_i) .
+Đây chính là nền_tảng của việc tính nhanh tích của 2 đa_thức sử_dụng FFT : Chọn 1 dãy z_i gồm N phần_tử .
+z_i có_thể chọn tuỳ_ý miễn_sao giá_trị của chúng là đôi một khác_nhau để các đa_thức p(x) , q(x) và c(x) là xác_định và duy_nhất .
+Chuyển 2 đa_thức p(x) và q(x) sang cách biểu_diễn 2 .
+(dùng FFT)_Tính tích của 2 đa_thức trong cách biểu_diễn 2 trong O(N) .
+Điều này cực_kỳ đơn_giản , vì khi ta đã cố_định dãy z_i , ta có_thể tính tất_cả c(z_i) = p(z_i) q(z_i) trong O(N) .
+Chuyển đa_thức c(x) về cách biểu_diễn 1 (dùng FFT) .
+Nghiệm nguyên_thủy Như đã phân_tích ở trên , ta cần chọn dãy z_i sao_cho việc biến_đổi đa_thức giữa 2 cách biểu_diễn có_thể thực_hiện một_cách hiệu_quả .
+Nếu ta chọn z_i là các nghiệm nguyên_thủy thoả_mãn : zn = 1 \qquad z \in \mathbbC \qquad (2) với n như đã quy_ước và cũng là số nghiệm của phương_trình (2) mà ta cần .
+Công_thức Euler xác_định nghiệm thứ k của phương_trình (2) là z_k = w_nk = (e 2\pi i\over n)k = e 2\pi ik\over n = cos2\pi k\over n + isin2\pi k\over n \qquad k = 0 , 1 , . . .
+n - 1 trong đó w_n là nghiệm mũ 1 : w_n = e 2\pi i\over n = cos2\pi\over n + isin2\pi\over n Dễ thấy là nghiệm nguyên_thủy thứ k có_thể được tính trong O(1) với n đã biết .
+Một_số tính_chất đặc_biệt của ma_trận Vandermonde nghiệm nguyên_thủy Tính_chất 1 : Ma_trận nghịch_đảo V-1 được tính theo công_thức : V-1i , j = Vi , j-1 \over n với i , j = 0 , 1 , . . . n-1 là chỉ_số hàng và cột của ma_trận .
+Chứng_minh (sơ lược) : gọi B là ma_trận kích_cỡ n n tạo bởi Bi , j = Vi , j-1 \qquad \forall i , j = 0 , 1 , . . . n-1 Ta sẽ chứng_minh tích P = B_V = V_B = n I , trong đó I là ma_trận đơn_vị .
+Xét phép_nhân hàng i của ma_trận V và cột k của ma_trận B , ta có : Pi , k = \sum_j=0n-1w_nijw_n-jk = \sum_j=0n-1w_nj(i-k) Nếu i = k : Pi , k = Pi , i = \sum_j=0n-1w_n0 = n \qquad \forall i = 0 , 1 , . . . n-1 .
+Nếu i \neq k : Pi , k = \sum_j=0n-1w_ni-kj = 1 - w_ni-kn \over 1-w_ni-k = 0 Vậy_P = nI hay_là V_B/n = B/n_V = I , vậy B = V-1 .
+Hệ_quả : Độ phức_tạp tính_toán cho V-1 bằng với độ phức_tạp tính V .
+Tính_chất 2 : Chia ma_trận V thành 4 phần bằng_nhau kích_cỡ n/2 n/2 theo 2 tiêu_chí : độ lớn của hàng so_với n/2 và tính chẵn_lẻ của các cột .
+Phần_I gồm các phần_tử có chỉ_số hàng 0 , 1 , . . . n/2 - 1 và chỉ_số cột là chẵn 0 , 2 , 4 , . . . n-2 .
+Phần_II gồm các phần_tử có chỉ_số hàng 0 , 1 , . . . n/2 - 1 và chỉ_số cột là lẻ 1 , 3 , 5 , . . . n-1 .
+Phần_III gồm các phần_tử có chỉ_số hàng n/2 , n/2+1 , . . . n-1 và chỉ_số cột là chẵn 0 , 2 , 4 , . . . n-2 .
+Phần_IV gồm các phần_tử có chỉ_số hàng n/2 , n/2+1 , . . . n-1 và chỉ_số cột là lẻ 1 , 3 , 5 , . . . n-1 .
+( Image_Courtesy of Aalto_University ) Nói_cách_khác , ta tạo một ma_trận mới K bằng cách chuyển tất_cả các cột có chỉ_số_chẵn của ma_trận V lên trước , các cột có chỉ_số lẻ về_sau , giữ_nguyên thứ_tự tương_đối của các cột cùng chỉ_số_chẵn hoặc cùng chỉ_số lẻ .
+Ở ma_trận K này cột n-2 của V nằm ngay trước cột 1 của V .
+Bốn phần I , II , III , IV được tạo bởi cắt đều ma_trận K thành 4 phần bằng_nhau .
+Ký_hiệu K_I , K_II , K_III , K_IV là bốn ma_trận con của K .
+Tất_cả các phần_tử trong phần II , III , IV đều có_thể tính được từ phần I theo công_thức sau : K_IIi , j = w_ni K_Ii , j \qquad \forall i , j = 0 , 1 , . . . n/2 - 1 K_IIIi , j = K_Ii , j \qquad \forall i , j = 0 , 1 , . . . n/2 - 1 K_IVi , j = -w_ni K_Ii , j \qquad \forall i , j = 0 , 1 , . . . n/2 - 1 Chứng_minh : các bạn tự chứng_minh hoặc xem slide số 23 trong tài_liệu của trường DH_Aalto ở phần tài_liệu tham_khảo .
+Tính_chất 3 : ma_trận nghịch_đảo V-1 cũng có_thể chia thành 4 phần bằng_nhau với các phần II , III , IV tính được qua phần I giống_như Tính_chất 2 .
+Hệ_quả : Phép biến_đổi Fourier ngược ( inverse Fourier transform ) có cùng độ phức_tạp với phép biển đổi Fourier .
+Phép biến_đổi Fourier nhanh Trong phần trên ta đã thấy vai_trò của ma_trận Vandermonde_V là biến_đổi một vector cột a_0 , a_1 , . . . a_n-1 thành một vector cột khác cùng kích_cỡ p(z_0) , p(z_1) , . . . p(z_n-1) .
+Phép biến_đổi này được gọi_là "Biến đổi Fourier rời rạc" ( Discrete_Fourier_Transform ) .
+Lưu_ý là mặc_dù hai khái_niệm "Biến đổi Fourier rời rạc" ( DFT ) và "Phép biến_đổi Fourier nhanh" ( FFT ) là khác_nhau nhưng vì khi cài_đặt DFT người_ta luôn sử_dụng FFT nên hai khái_niệm này được coi_như đồng_nhất .
+Định_lý 3 : Tồn_tại thuật_toán biến_đổi Fourier rời_rạc có độ phức_tạp là O(nlog_2n) .
+Chứng_minh : Sử_dụng lại ký_hiệu trong hình_vẽ ở phần trên , ta gọi X là vector cần biến_đổi Fourier và Y là vector kết_quả tương_ứng .
+Thay_vì sử_dụng ma_trận V để nhân với X , ta sử_dụng ma_trận K là kết_quả của phép biến_đổi như trong Định_lý 2 để nhân với X .
+Lưu_ý là_vì V đã đổi thứ_tự cột nên X cũng phải đổi thứ_tự hàng : tất_cả các hàng có chỉ_số_chẵn của X được chuyển lên trên và các hàng chỉ_số lẻ chuyển xuống dưới .
+Hình minh_họa với n = 4 và 4 nghiệm để thay vào ma_trận Vandermonde là 1 , i , -1 , -i : ( Image_Courtesy : Aalto_University ) Tách vector kết_quả Y thành hai phần theo n/2 , ta được : ( Image_Courtesy : Aalto_University ) Ta quan_sát là công_thức tính nửa trên và nửa dưới của vector cột kết_quả Y sử_dụng chung hai hạng tử và chỉ khác_nhau về dấu của hạng tử thứ_hai .
+Nói_cách_khác , chỉ_cần tính được hai hạng tử tạo_thành kết_quả của vector kích_cỡ n/2 là ta thu được kết_quả của cả vector kích_cỡ n trong O(n) .
+Theo định_lý tổng_quát , độ phức_tạp của cả quá_trình là O(nlog_2n) Công_thức truy_hồi : Từ_tính chất đặc_biệt của ma_trận K , ta có_công thức truy_hồi để biến_đổi một vector cột X thành vector cột Y_như sau : FFT(x_i=0 , 1 , 2 , . . . n/2 - 1) = FFT(x_i=0 , 2 , 4 , . . . x_n-2) + w_ni FFT(x_i=1 , 3 , 5 . . . n-1) FFT(x_i=n/2 , n/2+1 , n/2+2 , . . . n-1) = FFT(x_i=0 , 2 , 4 , . . . x_n-2) - w_ni FFT(x_i=1 , 3 , 5 . . . n-1) Thuật_toán nhân hai đa_thức Đến đây ta đã có_thể hoàn_thiện chương_trình nhân 2 đa_thức p(x) , q(x) và lưu kết_quả thành h(x) : function NhânĐaThức( p(x) , q(x) , n ) // Lưu_ý : n là số_hệ số của đa_thức kết_quả // Nếu p(x) có bậc d và q(x) có bậc e thì n = d + e + 1 fp = FFT(p(x) , n) // biến_đổi Fourier cho p(x) và lưu các giá_trị vào mảng fp fq = FFT(q(x) , n) // biến_đổi Fourier cho q(x) và lưu các giá_trị vào mảng fq for(i = 0; i lt; n; ++i) fhi = fpi fqi; // nhân tương_ứng các giá_trị của fp và fq , lưu vào mảng fh h(x) = FFT_ngược(fh) // biến_đổi Fourier ngược và lưu vào kết_quả end function Lưu_ý về kỹ_thuật cài_đặt Vì_FFT đòi_hỏi phải sử_dụng số_phức và (trong nhiều trường hợp) khử đệ_quy nên có_thể gây khó_khăn cho các bạn chưa quen , phần này sẽ hướng_dẫn sơ_lược về cách cài_đặt sử_dụng C++ .
+Khai_báo Để sử_dụng số_phức trong C++ ta cần khai_báo thư_viện complex : include lt;complexgt; Vì_C++ cài_đặt complex là một lớp ( class ) gồm 2 trường thực ( real() ) và ảo ( imag() ) nên khi sử_dụng ta cần chỉ_định kiểu dữ_liệu cho hai trường này .
+Hai kiểu dữ_liệu thông_dụng là double hoặc long double : typedef complex lt; double gt; base ; typedef vector lt; base gt; vb ; Sau khi được định_nghĩa bằng lệnh typedef thì để khai_báo biến và vector kiểu phức , ta chỉ_cần viết base x và vb v là được .
+Một_số phiên_bản cài_đặt tự định_nghĩa lớp số_ảo bằng một struct hoặc class .
+Nếu lớp tự viết này không có chức_năng đặc_biệt nào thì việc này là không cần_thiết vì bản_thân lt;complexgt; đã_là một lớp rồi .
+Bạn có_thể xem qua file thư_viện trong thư_mục cài_đặt trình biên_dịch , ví_dụ với CodeBlocks thì đường_dẫn có dạng CodeBlocks\MinGW\lib\gcc\mingw32\4 . 7 . 1\include\c++\complex (file ko có phần mở rộng) .
+Chuẩn hóa bậc đa_thức Trong các phần trên ta đã giả_sử rằng n là lũy_thừa của 2 .
+Để đảm_bảo tính đối_xứng và thuận_tiện khi cài_đặt , nếu đề_bài không cho trước n bậc của đa_thức là lũy_thừa của 2 thì ta cần chuẩn hóa thành số lũy_thừa nhỏ nhất mà lớn hơn n .
+Chẳng_hạn với n = 105 thì giá_trị chuẩn hóa là 217 = 131072 vì 216 = 65536 lt; 105 .
+Các hệ_số của bậc cao hơn giá_trị_n ban_đầu gán bằng 0 .
+Đệ_quy và Khử đệ_quy Đệ_quy : Xét một đoạn mã C++ cài_đặt hàm FFT sử_dụng đệ_quy như_sau : void fft_slow ( int n , vb amp; a ) // biến_đổi fft của vector a , lưu kết_quả vào chính nó if ( n == 1 ) return ; int i , j , k ; // Bước 1 .
+Khai_báo kết_quả fft chẵn và lẻ vb a_even ( n / 2 ) , a_odd ( n / 2 ); // Bước 2 .
+Tách hàng chẵn và hàng lẻ for ( i = j = 0 ; i lt; n ; i += 2 ) a_even j = a i ; a_odd j = a i + 1 ; ++ j ; // Bước 3 .
+Biến_đổi FFT với các hàng chẵn , lẻ fft_slow ( n / 2 , a_even ); fft_slow ( n / 2 , a_odd ); // Bước 4 : Ghép hoàn_chỉnh kết_quả double ang = 2 PI / n ; base w ( 1 ) , wn ( cos ( ang ) , sin ( ang )); for ( i = 0 ; i lt; n / 2 ; ++ i ) a i = a_even i + w a_odd i ; a i + n / 2 = a_even i - w a_odd i ; w = wn ; Có nhiều nguyên_nhân làm_cho FFT đệ_quy chạy chậm , như trong Bước 1 thì khai_báo hai vector kích_cỡ n/2 lớn như_vậy và lại khai_báo liên_tục ở các mức đệ_quy .
+Bản_thân chương_trình đệ_quy cũng chạy chậm vì chương_trình phải lưu rất nhiều con_trỏ stack và liên_tục giải_phóng bộ_nhớ của biến cục_bộ ở mỗi mức đệ_quy .
+Nhìn_chung đệ_quy chỉ_có ý_nghĩa như trong thuật_toán Quy_Hoạch_Động khi ta muốn tìm kết_quả của một công_thức truy_hồi mà chỉ duyệt qua những trạng_thái liên_quan trực_tiếp tới kết_quả .
+Trong FFT_ta luôn phải thăm hết các ma_trận con nên cài_đặt FFT bằng đệ_quy không có_lợi về tốc_độ thực_hiện .
+Để_cho đầy_đủ thì ta cũng có hàm biến_đổi FFT_ngược như_sau : void inverse_fft_slow ( int n , vb amp; a ) if ( n == 1 ) return ; int i , j , k ; vb a_even , a_odd ; for ( i = 0 ; i lt; n ; ++ i ) if ( i amp; 1 ) a_odd .
+push_back ( a i ); else a_even .
+push_back ( a i ); inverse_fft_slow ( n / 2 , a_even ); inverse_fft_slow ( n / 2 , a_odd ); double ang = - 2 PI / n ; base w ( 1 ) , wn ( cos ( ang ) , sin ( ang )); for ( i = 0 ; i lt; n / 2 ; ++ i ) a i = a_even i + w a_odd i ; a i /= 2 ; a i + n / 2 = a_even i - w a_odd i ; a i + n / 2 /= 2 ; w = wn ; Khử đệ_quy : Để khử đệ_quy thì ta cần phân_tích mối liên_hệ giữa các lời gọi đệ_quy và xem các phần_tử được tính theo thứ_tự nào .
+Hình_vẽ sau_đây minh_họa trường_hợp n = 8 : Màu đỏ là các nhóm chẵn và màu xanh là các nhóm lẻ .
+Các bạn hãy dựa vào tính chẵn_lẻ và để_ý các số nhị_phân 0 , 1 trong hình_vẽ để tự viết chương_trình FFT khử đệ_quy hoặc giải_thích tính đúng_đắn của đoạn mã sau (đây là hàm FFT đã được dùng để giải bài POST2) define PI acos(-1) const int NBIT = 18 ; const int N = 1 lt;lt; 18 ; // chuẩn hóa bậc của đa_thức là 18 base W_N ; // mảng lưu các nghiệm nguyên_thủy // Hàm reverse bit : Đảo_ngược nbit đầu_tiên trong mã nhị_phân của số mask int revBit ( int nbit , int mask ) int i , j ; for ( i = 0 , j = nbit - 1 ; i lt;= j ; ++ i , -- j ) if ( ( mask gt;gt; i amp; 1 ) ! = ( mask gt;gt; j amp; 1 ) ) mask = 1 lt;lt; i ; mask = 1 lt;lt; j ; return mask ; // Biến_đổi FFT của mảng a void fft ( int n , vb amp; a ) if ( n == 1 ) return ; int i , j , k ; // Đi từ dưới lên trên của cây đệ_quy : Hàng cuối_cùng giá_trị bằng với mảng được cho ban_đầu nhưng hóa đổi vị_trí // theo số có biểu_diễn nhị_phân ngược với chỉ_số for ( i = 0 ; i lt; n ; ++ i ) j = revBit ( NBIT , i ); if ( i lt; j ) swap ( a i , a j ); vb anext ( n ); // hàng tiếp_theo // chiều_cao cây bằng Log(n) // biến "step" lưu_số phần_tử nằm trong một nhóm chẵn hoặc lẻ for ( int step = 1 ; step lt; n ; step lt;lt;= 1 ) double ang = PI / step ; //2PI/(step 2); base w ( 1 ) , wn ( cos ( ang ) , sin ( ang )); // Lưu trước_mảng nghiệm nguyên_thủy for ( i = 0 ; i lt; step ; ++ i ) W i = w ; w = wn ; // Cứ một nhóm chẵn và một nhóm lẻ cạnh nhau thì tạo_thành kết_quả cho hàng ở trên // Duyệt qua tất_cả các nhóm chẵn và nhóm lẻ cạnh nó // even = chẵn , odd = lẻ int start_even = 0 ; int start_odd = start_even + step ; while ( start_even lt; n ) for ( i = 0 ; i lt; step ; ++ i ) anext start_even + i = a start_even + i + W i a start_odd + i ; anext start_even + i + step = a start_even + i - W i a start_odd + i ; start_even += 2 step ; start_odd = start_even + step ; for ( i = 0 ; i lt; n ; ++ i ) a i = anext i ; Sau_đây là cài_đặt cho cả FFT xuôi và ngược .
+Biến invert = true cho FFT_ngược .
+void fft ( int n , vb amp; a , bool invert ) if ( n == 1 ) return ; int i , j , k ; for ( i = 0 ; i lt; n ; ++ i ) j = revBit ( NBIT , i ); if ( i lt; j ) swap ( a i , a j ); vb anext ( n ); for ( int step = 1 ; step lt; n ; step lt;lt;= 1 ) double ang = PI / step ; if ( invert ) ang = - ang ; base w ( 1 ) , wn ( cos ( ang ) , sin ( ang )); for ( i = 0 ; i lt; step ; ++ i ) W i = w ; w = wn ; int start_even = 0 ; int start_odd = start_even + step ; while ( start_even lt; n ) for ( i = 0 ; i lt; step ; ++ i ) anext start_even + i = a start_even + i + W i a start_odd + i ; anext start_even + i + step = a start_even + i - W i a start_odd + i ; start_even += 2 step ; start_odd = start_even + step ; for ( i = 0 ; i lt; n ; ++ i ) a i = anext i ; if ( invert ) for ( i = 0 ; i lt; n ; ++ i ) a i /= n ; Một_số cách cài_đặt khác sử_dụng con_trỏ cũng làm tăng_tốc_độ thực_thi , có_thể xem thêm trong trang của emaxx phần tài_liệu tham_khảo .
+Cũng trong trang của emaxx có_thể tìm_thấy cách cài_đặt gộp hai hàm fft và inverse_fft lại làm một sử_dụng một biến bool invert làm_cho code ngắn_gọn hơn .
+Bài_tập luyện_tập VOJ_POST2_FFT problems on Codeforces_FFT problems by a2oj . com SumOfArrays - Topcoder_SRM 603 và Hướng_dẫn_giải Tài_liệu tham_khảo 1 Rohit_Thummalapalli .
+Fourier_Transform : Nature’s_Way of Analyzing_Data .
+Yale_Scientific , 2010 .
+Link 2 Alejandro_Dominguez .
+Highlights in the History of the Fourier_Transform .
+IEEE_Pulse , 2016 .
+Link 3 Stefan_Woerner .
+Fast_Fourier_Transform .
+Numerical_Analysis_Seminar , Swiss_Federal_Institute of Technology_Zurich , 2008 .
+Link 4 Fortnow and Homer .
+A_Short_History of Computational_Complexity .
+Bulletin of the_European Association for Theoretical_Computer_Science 80 , June 2003 .
+Link Bài_toán nhân đa_thức , phép biến_đổi Fourier nhanh trên csstudyfun . wordpress . com (có chứng_minh các tính_chất được đề_cập trong bài Bài_giảng của trường DH_Aalto , Phần_Lan Code cài_đặt của e-maxx "Tutorial on FFT — The tough made simple . " trên Codeforces

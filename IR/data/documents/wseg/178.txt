@@ -1,0 +1,29 @@
+Disjoint_Sets là 1 CTDL rất hữu_dụng , sử_dụng rất nhanh , gọn và dễ_dàng .
+Nó được dùng làm nền_tảng cho một_số thuật_toán , như Kruskal’s và Prim’s , 2 thuật_toán tìm cây khung nhỏ nhất trên đồ_thị .
+Disjoint_Sets , hoặc DSU ( Disjoint_Sets_Union ) như tên_gọi của nó , là một_tập hợp các tập_hợp .
+Hãy tưởng_tượng chúng_ta có n cái hộp và n viên sỏi .
+Các viên sỏi_phân biệt .
+Ban_đầu mỗi viên sỏi nằm trong một cái hộp .
+ta cần thực_hiện 2 loại truy_vấn : Cho hết sỏi ở 2 hộp u và v vào cùng một hộp .
+Kiểm_tra 2 viên sỏi i và j có thuộc cùng một hộp hay_không Giả_sử , chỉ_có duy_nhất 1 bộ dụng_cụ trong 1 hộp .
+Ta có n bộ dụng_cụ , n hộp , và ban_đầu , bộ thứ i sẽ nằm trong hộp thứ i .
+Với những yêu_cầu trên , ta có_thể sử_dụng nhiều cấu_trúc , như : Cài_đặt Disjoint_Set với Cây_Cây là cấu_trúc hữu_hiệu nhất dùng cho DSU .
+Với mỗi đỉnh , ta lưu lại đỉnh cha của nó (đỉnh cha của đỉnh gốc là -1) .
+Ban_đầu , mọi đỉnh cha được set là -1 .
+Có các truy_vấn tìm đỉnh gốc của mỗi hộp (có được gốc , ta có_thể truy ra vị_trí của hộp) và các truy_vấn yêu_cầu hợp 2 cây lại .
+Để thuật_toán nhanh hơn , mỗi lần tìm gốc của mỗi đỉnh , ta đặt đỉnh cha của nó là gốc cho truy_vấn tiếp_theo .
+Luôn muốn độ_cao của cây là nhỏ nhất có_thể , vì_vậy , mỗi khi nhập các hộp lại với_nhau , ta bỏ các bộ dụng_cụ trong hộp có ít bộ hơn vào hộp còn_lại .
+Code_C++ ( bmerry ) // pari = x nếu viên sỏi i và viên sỏi x nằm trong cùng một hộp // Nếu pari lt; 0 thì viên sỏi i nằm trong hộp i , và -pari chính là số sỏi trong hộp đó .
+// Ban_đầu , khởi tạo pari = -1 với mọi i .
+int root ( int v ) // Cho 1 số v , tìm hộp chứa viên sỏi v return par v lt; 0 ?
+v : ( par v = root ( par v )); // Viên sỏi v nằm trong cùng hộp với viên sỏi chứa parv // Chú_ý ở đây ta gán lại parv = root(parv) , kĩ_thuật này // được gọi_là Path_Compression , giúp giảm độ phức_tạp mỗi // thao_tác xuống log(n) void merge ( int x , int y ) // Gộp 2 hộp chứa viên sỏi x và y vào cùng 1 hộp if (( x = root ( x )) == ( y = root ( y )) // 2 viên sỏi x và y đã thuộc cùng 1 hộp , ta không cần làm_gì cả return ; if ( par y lt; par x ) // Ta gộp vào hộp chứa nhiều sỏi hơn .
+Kĩ_thuật này gọi_là Union-by-rank , và cũng giúp giảm // độ phức_tạp mỗi thao_tác xuống log(n) .
+// Nếu kết_hợp cả Union-by-rank và Path-compression thì độ phức_tạp mỗi thao_tác là ackerman(n) , // rất rất nhỏ với n .
+swap ( x , y ); par x += par y ; par y = x ; Cài_đặt Disjoint set với Mảng amp; Vector_Ta lưu vị_trí các viên sỏi trong một vector (hoặc mảng ) và mỗi khi có truy_vấn yêu_cầu nhập hai hộp , ta bỏ các viên sỏi ở hộp có ít viên sỏi hơn vào hộp còn_lại .
+Độ phức_tạp không cao vì với mỗi viên sỏi , tổng_số lần lấy và bỏ nó vào hộp chỉ tối_đa là log(n) .
+Độ phức_tạp cho n thao_tác sẽ là O(nlog(n)) .
+Khi cài_đặt DSU , cách này không được sử_dụng (do phức_tạp hơn cách trên) , tuy_nhiên ý_tưởng này có_thể được áp_dụng cho nhiều bài khác .
+Cài_đặt Disjoint_Set với Sets (Cây Đỏ_Đen;_Red-Black_Trees) Một_cách khác là lưu chúng trong một cây_đỏ đen (trong C++ là set thư_viện STL ) .
+Ta làm y_như đã làm với vectors , độ phức_tạp sẽ là O(nlog2n) .
+(1 log cho việc nhập vào) .
+Bài_tập : (Phải tham_gia nhóm ACM-OI ) Hamro amp; Tools_TROY_Query Tài_liệu tham_khảo : Codeforces

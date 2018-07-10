@@ -1,0 +1,153 @@
+Table of_Contents Giới_thiệu Mô_tả regex Sử_dụng regex Debug regex Trong_Java_Trong_C++ POSIX_regex Ví_dụ GNU_regex Ví_dụ Ví_dụ trong các cuộc_thi SRMs Tham_khảo Bài viết gốc : Using_Regular_Expressions - đăng bởi DanPopovici amp; mariusmuja trên Topcoder Giới_thiệu Một regex ( regular expression ) là một chuỗi ký_tự đặc_biệt dùng để mô_tả một mẫu tìm_kiếm ( search pattern ) .
+Hẳn_là nhiều bạn đã nhìn_thấy hoặc dùng regex trong các câu_lệnh như ls . txt (hoặc dir . txt ) để liệt_kê ra tất_cả các file có đuôi txt .
+Regex rất hữu_dụng không chỉ trong việc tìm_kiếm trên xâu ( pattern matching ) mà_còn trong việc xử_lý văn_bản .
+Trong các kỳ SRMs thì regex có_thể cực_kỳ hữu_ích .
+Vài dòng code sử_dụng regex trong các bài_toán xử_lý text có_thể khiến việc lập_trình trở_nên dễ_thở hơn nhiều .
+Mô_tả regex Một regex là một hoặc nhiều "nhánh" không rỗng , được phân_cách bởi ký_tự .
+Regex sẽ khớp với bất_kỳ cái_gì khớp với một trong các nhánh của nó .
+Regex sau sẽ khớp với bất_kỳ từ nào trong 3 từ "the" , "top" , "coder" .
+Regex : thetopcoder INPUT : Marius is one of the topcoders .
+Tìm_thấy "the" bắt_đầu ở vị_trí 17 và kết_thúc ở vị_trí 20 .
+Tìm_thấy "top" bắt_đầu ở vị_trí 21 và kết_thúc ở vị_trí 24 .
+Tìm_thấy "coder" bắt_đầu ở vị_trí 24 và kết_thúc ở vị_trí 29 .
+Một nhánh bao_gồm một hoặc nhiều mảnh nối vào với_nhau .
+Nó sẽ khớp với mảnh đầu_tiên trước , rồi sau_đó sẽ đến mảnh thứ 2 , thứ 3 , v . v . Một mảnh là một nguyên_tử (atom) có_thể được theo sau bởi một trong các ký_tự sau , + , ?
+, hoặc biên ( bound ) : Một nguyên_tử được theo sau bởi sẽ khớp với chuỗi nào có 0 hoặc nhiều hơn phần khớp với nguyên_tử đó .
+Một nguyên_tử được theo sau bởi + sẽ khớp với chuỗi nào có 1 hoặc nhiều hơn phần khớp với nguyên_tử đó .
+Một nguyên_tử được theo sau bởi ?
+sẽ khớp với chuỗi nào có 0 hoặc 1 phần khớp với nguyên_tử đó .
+Regex sau sẽ khớp với chuỗi nào có chữ "top" và "coder" nối_tiếp nhau : Regex : (topcoder)+ INPUT : This regex matches topcoder , codertop , toptop , toptoptop , codercoder . . .
+Tìm_thấy "topcoder" bắt_đầu ở vị_trí 19 và kết_thúc ở vị_trí 27 .
+Tìm_thấy "codertop" bắt_đầu ở vị_trí 37 vả kết_thúc ở vị_trí 45 .
+Một biên được bắt_đầu bởi được theo sau bởi 1 hoặc 2 số_nguyên không dấu cách nhau bởi dấu , , và luôn kết_thúc bởi .
+Nếu có 2 số_nguyên thì số thứ nhất sẽ không lớn hơn số thứ_hai .
+Một nguyên_tử theo sau bởi một biên chứa duy_nhất một_số nguyên i thì sẽ khớp với xâu được ghép bởi đúng i nguyên_tử .
+Một nguyên_tử theo sau bởi một biên chứa duy_nhất một_số nguyên i có dấu , đằng_sau thì sẽ khớp với xâu được ghép bởi i hoặc nhiều hơn i nguyên_tử .
+Một nguyên_tử theo sau bởi một biên chứa 2 số_nguyên i , j sẽ khớp với xâu được ghép bởi i đến j nguyên_tử .
+Regex sau sẽ khớp với bất_kỳ xâu nào có 2 , 3 hoặc 4 ký_tự 1 : Regex : 12 , 4 INPUT : 101 + 10 = 111 , 11111 = 10000 + 1111 Tìm_thấy "111" bắt_đầu ở vị_trí 11 và kết_thúc ở vị_trí 14 .
+Tìm_thấy "1111" bắt_đầu ở vị_trí 17 và kết_thúc ở vị_trí 21 Tìm_thấy "1111" bắt_đầu ở vị_trí 33 và kết_thúc ở vị_trí 37 .
+Chúng_ta có_thể thấy rằng chuỗi dài nhất có_thể sẽ được khớp và các đoạn được khớp sẽ không giao nhau .
+Một nguyên_tử (atom) có_thể là : Một regex được đặt trong dấu ngoặc tròn () (khớp với cả regex) Một biểu_thức ngoặc (xem ví dụ) .
+(khớp với bất_kỳ ký_tự nào) (khớp với xâu rỗng ở đầu dòng) (khớp với xâu rỗng ở cuối dòng) Ký_tự \ được theo sau bởi một trong các ký_tự . ()\+ ? \ (khớp với các ký_tự đặc_biệt tương ứng) Một ký_tự (khớp với ký_tự đó) .
+Ký_tự \ được theo sau bởi một chữ_số d khác 0 .
+Nguyên_tử này sẽ khớp với chuỗi ký_tự giống với chuỗi ký_tự được khớp bởi biểu_thức con trong ngoặc tròn thứ d (đánh số ngoặc tròn bằng vị_trí của mở ngoặc từ trái qua phải) .
+Ví_dụ : (bc)\1 sẽ khớp với bb hoặc cc và không khớp với bc .
+Regex sau_đây khớp với một xâu được tạo bởi 2 chữ_in thường giống nhau được phân_cách bởi bất_kỳ ký_tự nào : Regex : (a-z+) . \1 INPUT : top-topcodercoder Tìm_thấy "top-top" bắt_đầu ở vị_trí 0 và kết_thúc ở vị_trí 7 .
+Tìm_thấy "codercoder" bắt_đầu vở vị_trí 7 và kết_thúc ở vị_trí 18 .
+Một danh_sách các ký_tự được viết trong dấu khớp với bất_ký ký_tự đơn nào ở trong danh_sách .
+Nếu danh_sách được bắt_đầu bởi , nó sẽ khớp với bất_kỳ ký_tự nào không ở trong danh_sách .
+Nếu 2 ký_tự trong danh_sách được phân_cách bởi - thì_có nghĩa_là danh_sách này bao_gồm tất_cả các ký_tự nằm trong "đoạn" với 2 đầu là 2 ký_tự đó (ví dụ 0-9 khớp với bất_kỳ chữ_số_thập_phân nào) .
+Tất_cả các ký_tự (ngoại trừ , , - ) , kể_cả ký_tự đặc_biệt đều mất đi tính_chất đặc_biệt của nó trong biểu_thức ngoặc .
+Regex sau_đây khớp với các từ không bắt_đầu bởi b , c , d và kết_thúc bởi at : Regex : b-dat INPUT : bat Không tìm_thấy xâu nào khớp .
+Regex : b-dat INPUT : hat Tìm_thấy "hat" bắt_đầu ở vị_trí 0 và kết_thúc ở vị_trí 3 .
+Ví_dụ sau_đây sẽ bao_gồm hầu_hết các định_nghĩa ở phía trên đã nêu .
+Nó sẽ khớp với một cặp HTML tag đóng/mở và nội_dung giữa 2 tag này .
+Regex : lt;(a-zA-Za-zA-Z0-9)(() gt;)gt;( . )lt;/\1gt; INPUT : lt;font size="2"gt;Topcoder is thelt;/fontgt; lt;bgt;bestlt;/bgt; Tìm_thấy "lt;font size="2"gt;Topcoder is thelt;/fontgt;" bắt_đầu ở vị_trí 0 và kết_thúc ở vị_trí 37 .
+Tìm_thấy "lt;bgt;bestlt;/bgt;" bắt_đầu ở vị_trí 38 và kết_thúc ở vị_trí 49 .
+Giải_thích : (a-zA-Za-zA-Z0-9\) sẽ khớp với bất_kỳ từ nào bắt_đầu bởi một chữ_cái và tiếp_tục bởi một_số lượng chữ_cái hoặc chữ_số bất_kỳ .
+(() gt;\) sẽ khớp với xâu rỗng hoặc bất_kỳ xâu nào không chứa gt; .
+\1 khớp với xâu nào mà (a-zA-Za-zA-Z0-9\) đã khớp trước đó .
+Mô_tả trên là mô_tả sơ_qua về regex cơ_bản .
+Một regex được viết bởi các luật trên sẽ chạy được ở Java (gt;= 1 . 4) và C++ (POSIX EXTENDED) .
+Để tìm_hiểu sâu hơn về các mở_rộng được cung_cấp bởi các ngôn_ngữ khác mời các bạn xem phần tham_khảo .
+Sử_dụng regex Debug regex Trong các ngôn_ngữ_lập_trình khác_nhau , thường regex có_thể khác_nhau đôi_chút .
+Để kiểm_tra 1 đoạn regex trong 1 ngôn_ngữ có_ý nghĩa gì , các bạn có_thể lên search "debug regex online" , có khá nhiều trang phù_hợp .
+Trong_Java_Trong_Java (từ 1 . 4 trở lên) có_một package tên là java . util . regex cho_phép sử_dụng regex .
+Package này bao_gồm 3 class : Pattern , Matcher , PatternSyntaxException .
+Object_Pattern là một regex đã được biên_dịch .
+Class_Pattern không cung_cấp public constructors .
+Để tạo ra một object , bạn phải sử_dụng một trong các method của nó và chúng sẽ trả về một object Pattern .
+Object_Matcher sẽ tiến_hành thông_dịch mẫu và khớp với input .
+Giống_như class Pattern , Matcher không có public constructors .
+Để tạo ra một object Matcher bạn phải sử_dụng method của class Matcher trên một object Pattern và nó sẽ trả về một object Matcher .
+Object_PatternSyntaxException là unchecked exception chỉ ra lỗi cú_pháp của regex .
+Ví_dụ (lấy từ 4) : Pattern pattern ; Matcher matcher ; pattern = Pattern .
+compile (lt; REGEX gt;); matcher = pattern .
+matcher (lt; INPUT gt;); boolean found ; while ( matcher .
+find ()) System .
+out .
+println ( "Found the text \"" + matcher .
+group () + "\" starting at index " + matcher .
+start () + " and ending at index " + matcher .
+end () + " . " ); found = true ; if ( ! found ) System .
+out .
+println ( "No match found . " ); Java cũng cung_cấp các method sau trong class String : boolean matches(String regex) : kiểm_tra xem xâu hiện_tại có khớp với regex không .
+String replaceAll(String regex , String replacement) : Thay tất_cả các xâu con của xâu hiện_tại mà khớp với regex bằng xâu replacement .
+String replaceFirst(String regex , String replacement) : Thay xâu con_đầu tiên của xâu hiện_tại mà khớp với regex bằng xâu replacement .
+String split(String regex) : Chia xâu hiện_tại thành nhiều xâu sử_dụng các xâu con khớp với regex làm phân_cách .
+Trong_C++_Nhiều topcoders cho_rằng regex là một trong những điểm mạnh_của Java so_với C++ .
+Tuy_nhiên các coders sử_dụng C++ cũng không_hề nản_chí vì regex cũng có_thể được sử_dụng trong C++ .
+Có nhiều thư_viện hỗ_trợ regex cho C++ , tuy_nhiên chúng không tương_thích với_nhau tốt cho_lắm .
+Một điều may_mắn đó là bạn có_thể chọn_lựa một trong các thư_viện này để sử_dụng và không_phải lo là nó không tương_thích với_nhau .
+Nếu bạn muốn dùng regex ở arena bạn phải lựa_chọn giữa 2 APIs : POSIX_regex và GNU_regex .
+Để sử_dụng 2 APIs này bạn phải thêm header "regex . h" .
+Cả 2 APIs đều được thực_hiện qua 2 bước .
+Đầu_tiên sẽ có_một hàm biên_dịch regex , sau_đó sẽ có_một hàm khớp/tìm regex đã được biên_dịch với xâu cần khớp .
+Sau_đây sẽ là mô_tả ngắn_gọn về 2 APIs này để_cho các bạn có_thể chọn_lựa bạn thích cái nào hơn .
+POSIX_regex POSIX_regex hỗ_trợ 2 kiểu regex khác_nhau : cơ_bản và mở_rộng .
+Regex cơ_bản tương_tự như trong ed , trong_khi regex mở_rộng tương_tự như trong egrep , thêm vào các phép_toán , + , ?
+và không yêu_cầu \ ở các biểu_thức con viết trong ngoặc_đơn () hoặc các biên được viết trong ngoặc nhọn .
+Kiểu cơ_bản là mặc_định , nhưng kiểu mở_rộng được ưa_thích hơn .
+Với_POSIX , bạn chỉ_có thể tìm_kiếm regex mà không_thể khớp được .
+Để khớp được , bạn phải biên_dịch nó thành một pattern buffer , sử_dụng regcomp .
+Một_khi đã biên_dịch thành pattern buffer bạn có_thể tìm_kiếm trong một xâu kết_thúc bằng null bằng cách dùng regexec .
+Nếu một trong hai hàm regcomp và regexec gặp lỗi nó sẽ trả về error code .
+Để biết được lỗi là gì bạn dùng regerror .
+Để giải_phóng bộ_nhớ của pattern buffer bạn dùng regfree .
+Để biết cách sử_dụng chi_tiết mời các bạn xem mục 2 và 3 ở phần tham_khảo .
+Ví_dụ Sau_đây là một ví_dụ về cách sử_dụng các hàm này : regex_t reg ; string pattern = "tpr2 , " ; string str = "topcoder" ; regmatch_t matches 1 ; regcomp ( amp; reg , pattern .
+c_str () , REG_EXTENDED REG_ICASE ); if ( regexec ( amp; reg , str .
+c_str () , 1 , matches , 0 ) == 0 ) cout lt;lt; "Match " cout lt;lt; str .
+substr ( matches 0 .
+rm_so , matches 0 .
+rm_eo - matches 0 .
+rm_so ) cout lt;lt; " found starting at : " cout lt;lt; matches 0 .
+rm_so cout lt;lt; " and ending at " cout lt;lt; matches 0 .
+rm_eo cout lt;lt; endl ; else cout lt;lt; "Match not found . " cout lt;lt; endl ; regfree ( amp; reg ); GNU_regex GNU_regex API có nhiều hàm hơn .
+Với các hàm của GNU_regex các bạn có_thể khớp một xâu với mẫu và cũng có_thể tìm_kiếm mẫu ở trong xâu .
+Việc sử_dụng các hàm này cũng tương_tự như việc sử_dụng các hàm của POSIX : đầu_tiên một mẫu cần phải được biên_dịch sử_dụng re_compile_pattern , sau_đó nhận được pattern buffer và nó được dùng để tìm và khớp .
+Các hàm sử_dụng cho tìm_kiếm và khớp là re_search và re_match .
+Trong trường_hợp tìm_kiếm thì fastmap có_thể được sử_dụng để tối_ưu việc tìm_kiếm .
+Nếu_không có fastmap thuật_toán tìm_kiếm sẽ khớp các mẫu ở các_vị trí liên_tiếp nhau trong xâu .
+Fastmap sẽ chỉ ra vị_trí của ký_tự bắt_đầu tìm_kiếm .
+Fastmap được tạo bằng cách gọi re_compile_fastmap .
+GNU_regex còn có hàm re_search2 và re_match2 cho việc tìm_kiếm và khớp với những data tách_rời .
+Để giải_phóng bộ_nhớ của pattern buffer bạn dùng regfree .
+Để biết cách sử_dụng chi_tiết mời các bạn xem mục 3 ở phần tham_khảo .
+Ví_dụ string pattern = "(a-z+) .
+\\ 1" ; string str = "top-topcodercoder" ; re_pattern_buffer buffer ; char map 256 ; buffer .
+translate = 0 ; buffer .
+fastmap = map ; buffer .
+buffer = 0 ; buffer .
+allocated = 0 ; re_set_syntax ( RE_SYNTAX_POSIX_EXTENDED ); const char status = re_compile_pattern ( pattern .
+c_str () , pattern .
+size () , amp; buffer ); if ( status ) cout lt;lt; "Error : " lt;lt; status lt;lt; endl ; re_compile_fastmap ( amp; buffer ); struct re_registers regs ; int ofs = 0 ; if ( re_search ( amp; buffer , str .
+c_str () , str .
+size () , 0 , str .
+size () , amp; regs ) ! =- 1 ) cout lt;lt; "Match " cout lt;lt; str .
+substr ( regs .
+start 0 , regs .
+end 0 - regs .
+start 0 ) cout lt;lt; " found starting at : " cout lt;lt; regs .
+start 0 cout lt;lt; " and ending at " cout lt;lt; regs .
+end 0 cout lt;lt; endl ; else cout lt;lt; "Match not found . " cout lt;lt; endl ; regfree ( amp; buffer ); Ví_dụ trong các cuộc_thi SRMs_Các ví_dụ phía dưới được viết_bằng Java .
+Bạn nào dùng C++ có_thể dùng POSIX hoặc GNU_regex APIs để viết các hàm tương_đương trong Java (replace_all , split , matches) .
+CyberLine (SRM 187 div 1 , level 1) import java . util .
+; public class Cyberline public String lastCyberword ( String cyberline ) String w = cyberline .
+replaceAll ( "-" , "" ) .
+replaceAll ( "a-zA-Z0-9" , " " ) .
+split ( " " ) ; return w w .
+length - 1 ; UnLinker (SRM 203 div 2 , level 3) import java . util .
+; public class UnLinker public String clean ( String text ) String m = text .
+split ( "((http : //) ? www . http : //)a-zA-Z0-9 . + . (comorgeduinfotv)" , - 1 ); String s = m 0 ; for ( int i = 1 ; i lt; m .
+length ; ++ i ) s = s + "OMIT" + i + m i ; return s ; CheatCode (SRM 154 div 1 , level 1) import java . util .
+; public class CheatCode public int matches ( String keyPresses , String codes ) boolean map = new boolean codes .
+length ; int count = 0 ; for ( int i = 0 ; i lt; codes .
+length ; ++ i ) String regex = " . " ; for ( int j = 0 ; j lt; codes i .
+length (); ) int k = 1 ; while (( j + k )lt; codes i .
+length () amp;amp; codes i .
+charAt ( j + k )== codes i .
+charAt ( j )) k ++; regex = regex + codes i .
+charAt ( j ) + "" + k + " , " ; j += k ; regex = regex + " . " ; if ( keyPresses .
+matches ( regex )) map i = true ; count ++ ; int res = new int count ; int j = 0 ; for ( int i = 0 ; i lt; codes .
+length ; ++ i ) if ( map i == true ) res j ++= i ; return res ; Tham_khảo Xem trang hướng_dẫn của linux : regex(7) Xem trang hướng_dẫn của linux : regex(3) http : //docs . freebsd . org/info/regex/regex . info . Programming_with_Regex . html http : //www . regular-expressions . info/ http : //java . sun . com/docs/books/tutorial/extra/regex/

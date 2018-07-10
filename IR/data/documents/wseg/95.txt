@@ -1,0 +1,121 @@
+Nguồn : HackerEarth_Người dịch : Bùi_Việt Dũng_Table of_Contents Tập_hợp (Set) Tập_hợp (Set) là gì ?
+Tập_con (Subset) Các phép_toán với tập_hợp Phép hợp (Union) Phép giao (Intersection) Phép lấy hiệu (Relative complement) Các quy_tắc cơ_bản Các kiến_thức cơ_bản về Chỉnh_hợp và Hoán_vị (Permutation) Chỉnh_hợp không_lặp (Permutation of Distinct_Objects) Hoán_vị không_lặp Hoán_vị_lặp (Permutation with Repetition)_Các đối_tượng tổ_hợp (Combinatorial Objects) Tổ_hợp không_lặp (Combinations without repetition) Tổ_hợp có lặp (Combinations with repetition) Vector nhị_phân (Binary Vectors) Hệ_thức truy_hồi (Recurrence Relations) Hệ_số nhị_thức (Binomial Coefficients) Đếm_số đường_đi trên lưới (Paths Across a Grid) Một_vài dãy_số cơ_bản (Counting Sequences) Dãy_số Catalan_Số_Euler Bài_toán phân_tích một_số nguyên (Integer Partitions) Bài_tập Tập_hợp (Set) Tập_hợp (Set) là gì ?
+Trong toán_học , tập_hợp là một nhóm các phần_tử , mỗi phần_tử phân_biệt với_nhau .
+Ví_dụ , 2 , 4 , 6 được coi là các phần_tử phân_biệt khi ta xét từng số_một , nhưng khi chúng_ta nhóm ba số ấy thì ta được một_tập hợp gồm ba phần_tử được kí_hiệu là 2 , 4 , 6 .
+Tập_hợp là một trong những khái_niệm cơ_bản trong Toán_học .
+Tập_hợp các hình đa_giác được biểu_diễn trong biểu_đồ Venn .
+Tập_con (Subset) Nếu mọi phần_tử thuộc tập A cũng thuộc tập_hợp B , thì tập A là tập_con của tập B , kí_hiệu là A \subset B .
+Tương_tự , ta có_thể viết B \supset A , đọc là B là tập cha (superset) của tập A .
+Quan_hệ cha-con giữa các tập_hợp còn được gọi_là quan_hệ chứa nhau (containment) hay quan_hệ bao_hàm (inclusion) .
+Nếu_A là tập_con của tập B nhưng không_bằng tập B , thì A được gọi_là tập_con không tầm_thường (proper subset) của tập B , kí_hiệu là A \subsetneq B , hay B \supsetneq A (đọc là B là tập cha không tầm_thường (proper superset) của tập A) .
+Ví_dụ : 1 , 3 \subset 1 , 2 , 3 , 4 1 , 2 , 3 , 4 \subset 1 , 2 , 3 , 4 Tập_rỗng (empty set , kí_hiệu \varnothing) là tập_con của tất că các tập và tất_cả các tập là tập_con của chính nó : \varnothing \subset A .
+A \subset A .
+A là tập_con của tập B .
+Các phép_toán với tập_hợp Có nhiều phép_toán có khả_năng xây_dựng một_tập hợp mới dựa trên các tập_hợp đã cho .
+Phép hợp (Union) Hai tập_hợp có_thể được ghép vào nhau .
+Hợp của hai tập_hợp A và B , kí_hiệu là A \cup B , là một_tập hợp gồm các phần_tử thuộc tập A hoặc thuộc tập B .
+Ví_dụ : 1 , 2 \cup 1 , 2 = 1 , 2 1 , 2 \cup 2 , 3 = 1 , 2 , 3 1 , 2 , 3 \cup 3 , 4 , 5 = 1 , 2 , 3 , 4 , 5 Hợp của hai tập_hợp A và B , kí_hiệu là A \cup B .
+Một_vài tính_chất cơ_bản của phép hợp : A \cup B = B \cup A .
+(A \cup B) \cup C = A \cup (B \cup C) .
+A \subset (A \cup B) .
+A \cup A = A .
+A \subset B khi và chỉ khi A \cup B = B .
+Phép giao (Intersection) Một_tập hợp mới có_thể được xây_dựng từ các phẩn tử mà_cả hai tập đều có .
+Giao cuả hai tập_hợp A và B , kí_hiệu A \cap B , là tập_hợp các phần_tử cùng thuộc tập A và tập B .
+Nếu_A \cap B = \varnothing , tập A và tập B là hai tập rời nhau (disjoint) .
+Ví_dụ : 1 , 2 \cap 1 , 2 = 1 , 2 .
+1 , 2 \cap 2 , 3 = 2 .
+Giao của hai tập_hợp A và B , kí_hiệu là A \cap B .
+Một_vài tính_chất cơ_bản của phép hợp : A \cap B = B \cap A .
+(A \cap B) \cap C = A \cap (B \cap C) .
+A \cap B \subset A .
+A \cap A = A .
+A \cap \varnothing = \varnothing .
+A \subset B khi và chỉ khi A \cap B = A .
+Phép lấy hiệu (Relative complement) Ta có_thể thực hiên phép_trừ với hai tập_hợp .
+Hiệu của hai tập_hợp A và B , kí_hiệu là A \backslash B , là tập_hợp bao_gồm tất_cả các phần_tử thuộc A nhưng không thuộc B .
+Lưu_ý rằng ta có_thể_trừ phần_tử mà không thuộc tập_hợp , ví_dụ như_bỏ phần_tử xanh khỏi tập_hợp 1 , 2 , 3 , khi đó tập_hợp 1 , 2 , 3 không bị thay_đổi .
+Trong một_số trường_hợp tập A được coi là tập_con của một_tập U lớn hơn .
+Trong trường_hợp đó , U \backslash A được gọi_là phần bù hoàn_toàn (absolute complement) của tập A , và được kí_hiệu là A .
+Ví_dụ : 1 , 2 \backslash 1 , 2 = \varnothing .
+1 , 2 , 3 , 4 \backslash 1 , 3 = 2 , 4 .
+Nếu_U là tập_hợp các số_nguyên , E là tập_hợp các số_nguyên chẵn , O là tập_hợp các số_nguyên lẻ , khi đó U \backslash E = E = O .
+Hiệu của hai tập_hợp A và B .
+Phần bù của A trong U .
+Một_vài tính_chất cơ_bản của phép lấy hiệu A \backslash B \ne B \backslash A với A \ne B .
+A \cup A = U .
+A \cap A = \varnothing .
+(A) = A .
+A \backslash A = \varnothing .
+A \backslash B = A \cap B .
+U = \varnothing và \varnothing = U .
+Các quy_tắc cơ_bản Kí_hiệu A là số phần_tử của tập A (hay còn được gọi_là lực_lượng của tập A) .
+Một_vài quy_tắc về tổ_hợp cần nhớ : Quy_tắc nhân (The Rule of Product) : Giả_sử có hai tập_hợp A và B .
+Khi đó số cách chọn cặp gồm một phần_tử thuộc tập A và một phần_tử thuộc tập B là A . B Quy_tắc cộng (The Rule of Sum) : Giả_sử có hai tập_hợp A và B .
+Khi đó số cách chọn một phần_tử thuộc tập A hoặc thuộc tập B là A+B nếu hai tập A và B rời nhau .
+Quy_tắc cộng mở_rộng (sieve principle) (còn gọi_là công_thức bao_hàm - loại_trừ (Inclusion-Exclusion Formula) ) : A \cup B = A + B - A \cap B .
+Trong trường_hợp tổng_quát , ta có : \bigcup_i=1n A_i = \sum_i=1n A_i - \sum_i \ne j A_i \cap A_j + A_1 \cap A_2 \cap A_3 + A_1 \cap A_2 \cap A_4 + . . .
++ A_n-2 \cap A_n-1 \cap A_n - . . .
+- (-1)nA_1 \cap A_2 \cap . . .
+\cap A_n Lí_do ta phải cộng_trừ giao của một_số tập_hợp vì nếu ta không làm như_vậy , ta có_thể đếm nhiều lần các phần_tử xuất_hiện_tại nhiều tập_hợp khác_nhau .
+Các quy_tắc trên cũng đúng khi ta có ba hay nhiều tập_hợp .
+Các kiến_thức cơ_bản về Chỉnh_hợp và Hoán_vị (Permutation) Chỉnh_hợp không_lặp (Permutation of Distinct_Objects)_Cho tập_hợp A gồm n phần_tử .
+Mỗi bộ gồm k (0 \leq k \leq n) phần_tử được sắp thứ_tự của tập_hợp A được gọi_là một chỉnh_hợp chập k của n phần_tử thuộc A .
+Ví_dụ : Trong trận chung_kết bóng_đá phải phân_định thắng thua bằng đá luân_lưu 11 mét .
+Huấn_luyện_viên của mỗi đội cần trình với trọng_tài một danh_sách sắp thứ_tự 5 cầu_thủ trong số 11 cầu_thủ để đá luân_lưu 5 quả 11 mét .
+Mỗi danh_sách có xếp thứ_tự 5 cầu_thủ được gọi_là một chỉnh_hợp chập 5 của 11 cầu_thủ .
+Kí_hiệu_số chỉnh_hợp chập k của n phần_tử là A_nk .
+Số chỉnh_hợp chập k của n phần_tử được tính bởi công_thức A_nk = n(n-1) . . . (n-k+1) = \fracn ! (n-k) ! .
+với n ! =1 . 2 . 3 . . . n và 0 ! = 1 .
+Hoán_vị không_lặp Mỗi_một chỉnh_hợp chập n của n phần_tử là một hoán_vị của n phần_tử đó .
+Kí_hiệu_số hoán_vị của n phần_tử là P_n .
+Số hoán_vị của n được tính bởi công_thức : P_n = n ! .
+Hoán_vị_lặp (Permutation with Repetition) Hoán_vị trong đó mỗi phần_tử xuất_hiện ít_nhất một_lần được gọi_là hoán_vị_lặp .
+Số hoán_vị_lặp của n phần_tử thuộc k loại , mà các phần_tử loại i (1 \leq i \leq k) xuất_hiện n_i lần được kí_hiệu là P(n_1 , n_2 , . . . , n_k) và được tính bằng công_thức P(n_1 , n_2 , . . . , n_k) = \fracn ! n_1 ! n_2 ! . . . n_k ! Các đối_tượng tổ_hợp (Combinatorial Objects)_Một song ánh (bijection) là tương_ứng một-một giữa hai tập_hợp , ví_dụ tập_hợp những người chồng và tập_hợp những người vợ (một chồng chỉ_có một vợ , và một vợ chỉ_có đúng một chồng) .
+Do_đó , nếu bạn biết được lực_lượng của một_tập hợp , bạn có_thể biết được lực_lượng của tập kia .
+Ta có_thể sử_dụng tính_chất này trong nhiều bài_toán Tổ_hợp , đặc_biệt là các bài_toán đếm , nhưng trước_tiên , ta phải_biết tính lực_lượng của một_tập các đối_tượng tổ_hợp .
+Tổ_hợp không_lặp (Combinations without repetition) Trong tổ_hợp , ta thường phải chọn một_tập các phần_tử nào_đó và không quan_tâm đến thứ_tự của chúng .
+Số_lượng tập_con k phần_tử của một_tập n phần_tử (còn gọi_là số tổ_hợp chập k của n phần tử) là : \binomnk = Ck_n = \fracn ! k ! (n-k) ! Tổ_hợp có lặp (Combinations with repetition) Giả_sử_ta cần chọn k phần_tử từ một_tập n phần_tử , không quan_trọng thứ_tự và một phần_tử có_thể được chọn nhiều lần .
+Khi đó , số cách chọn là số tổ_hợp lặp_chập k của n phần_tử và có_giá trị là : \overlineCk_n = \binomn+k-1k = \frac(n+k-1) ! k ! (n-1) ! Một tính_chất thú_vị về số tổ_hợp có lặp : \overlineCk_n là số nghiệm nguyên không âm của phương_trình : x_1+x_2+ . . . +x_n = k với k là hằng_số_nguyên dương .
+Vector nhị_phân (Binary Vectors)_Vector nhị_phân là kiểu dữ_liệu lt;bitsetgt; trong C++_STL .
+Ngoài_ra , các tính_chất về tổ_hợp của vector nhị_phân cũng rất quan_trọng .
+Sau_đây là một_số tính_chất hay được sử_dụng của vector nhị_phân .
+Số_lượng vector nhị_phân_độ dài n là 2n .
+Số_lượng vector nhị_phân_độ dài n có k số 1 là \binomnk , vì ta chọn k vị_trí có_số 1 trong n vị_trí .
+Số_lượng cặp vector nhị_phân (a;b) (có quan_tâm đến thứ tự) thỏa_mãn điều_kiện khoảng_cách giữa a và b là k là \binomnk . 2n .
+Khoảng_cách giữa hai vector nhị_phân a và b là số_lượng giá_trị i nguyên không âm thỏa_mãn a_i \ne b_i Hệ_thức truy_hồi (Recurrence Relations) Hệ_thức truy_hồi là công_cụ hỗ_trợ đắc_lực trong các bài_toán đếm .
+Truy_hồi còn giúp ta định_nghĩa được nhiều cấu_trúc như cây , danh_sách , công_thức quy_hoạch_động hay các thuật_toán "chia để trị" , nên truy_hồi được sử_dụng rất nhiều trong tin_học .
+Hệ_thức truy_hồi là một phương_trình dùng để xác_định dãy_số hoặc hàm_số bằng cách dùng các số_hạng trước để định_nghĩa số_hạng sau .
+Nó rất hữu_dụng vì nhiều dãy_số có_thể dễ_dàng được định_nghĩa bằng hệ_thức truy_hồi : Hàm đa_thức (Polynomials) : a_n=a_n-1+1 , a_1=1 \rightarrow a_n=n .
+Hàm mũ (Exponentials) : a_n=2a_n-1 , a_1=2 \rightarrow a_n=2n .
+Giai_thừa : a_n=n . a_n-1 , a_1 = 1 \rightarrow a_n=n ! .
+Ta thường dễ_dàng tìm được hệ_thức truy_hồi để giải các bài_toán đếm .
+Giải hệ_thức truy_hồi để có được dạng công_thức cần tìm là cả một nghệ_thuật , tuy_vậy ta có_thể sử_dụng trực_tiếp hệ_thức truy_hồi để giải một_số bài_toán đơn_giản .
+Hệ_số nhị_thức (Binomial Coefficients) Hệ_số nhị_thức \binomnk được sử_dụng để đếm_số cách chọn k vật trong số n vật .
+Đếm_số đường_đi trên lưới (Paths Across a Grid)_Có bao_nhiêu cách để đi từ góc trái trên của một bảng n m ô đến góc phải dưới của ô đó , nếu ta chỉ được phép đi_về bên phải hoặc đi xuống dưới .
+Ta thấy mọi đường_đi hợp_lệ có n+m bước , và hai đường_đi khác_nhau nếu và chỉ nếu chúng có_một bước_đi xuống dưới khác_nhau , vậy_ta có \binomn+mn cách đi .
+Tính hệ_số nhị_thức có_thể gây tràn số ở các bước trung_gian , vì_vậy ta nên tính hệ_số nhị_thức bằng công_thức : \binomnk=\binomn-1k-1+\binomn-1k //Computing Binomial_Coefficients i . e . N choose R using dynamic programming ! / using the recurrent formula nCr=(n-1)C(r)+(n-1)C(r-1) we can use dynamic programming type approach to precompute all the binomial coefficients in O(n2) and answer queries in O(1) use this method when nlt;=5000 only .
+also use this method when nCr%non-prime is required .
+/ //by Tanmay_Chaudhari include lt;bits/stdc++ . hgt; using namespace std ; const int MOD = 1e9 + 7 ; long_long ncr 5005 5005 ; void precompute () int k ; for ( int i = 0 ; i lt; 5001 ; i ++ ) ncr i 0 = ncr i i = 1 ; k = i gt;gt; 1 ; for ( int j = 1 ; j lt; k + 1 ; j ++ ) ncr i j = ncr i i - j = ( ncr i - 1 j + ncr i - 1 j - 1 ) % MOD ; int main () precompute (); cout lt;lt; ncr 4892 231 lt;lt; endl ; return 0 ; Chương_trình trên chỉ tính được \binomnk với n nhỏ .
+Bạn có_thể tham_khảo chương_trình sau để tính \binomnk \% p với p là một_số nguyên_tố và n lớn .
+/ computing binomial coefficients i . e . N choose R using O(n) precomputation .
+use this for large value of N and whem (NchooseR)%prime is used; / //by Tanmay_Chaudhari include lt;bits/stdc++ . hgt; using namespace std ; const int MOD = 1e9 + 7 ; define N 2123456 define LL long_long LL fac N , ifac N ; LL_PowerMod ( LL a , LL n ) LL ret = 1 ; while ( n ) if ( n amp; 1 ) ret = a ; ret %= MOD ; a = a ; a %= MOD ; n /= 2 ; return ret ; inline void precompute () int i ; fac 0 = 1 ; for ( i = 1 ; i lt; N ; i ++ ) fac i = ( i fac i - 1 ) % MOD ; ifac N - 1 = PowerMod ( fac N - 1 , MOD - 2 ); for ( i = N - 2 ; i gt;= 0 ; i -- ) ifac i = (( i + 1 ) ifac i + 1 ) % MOD ; LL com ( int n , int r ) LL ret = fac n ; ret = ifac r ; ret %= MOD ; ret = ifac n - r ; ret %= MOD ; return ret ; int main () precompute (); cout lt;lt; com ( 4892 , 231 ) lt;lt; endl ; return 0 ; Một_vài dãy_số cơ_bản (Counting Sequences) Dãy_số Catalan Định_nghĩa : C_n=\sum_k=0n-1 C_kC_n-1-k=\frac1n+1\binom2nn Các ứng_dụng của dãy_số Catalan : Cho một đa_giác lồi n+2 đỉnh , ta chia đa_giác thành các tam_giác bằng cách vẽ các đường_chéo không cắt nhau trong đa_giác .
+C_n là số cách chia như_vậy .
+C_n là số các từ Dyck có độ_dài 2n .
+Từ_Dyck là từ gồm n chữ X và n chữ Y sao_cho với mọi tiền_tố của từ_đó , số_lượng chữ X không ít_hơn số_lượng chữ Y .
+Ví_dụ , C_3 = 5 từ sau_đây là từ Dyck độ_dài 6 : XXXYYY , XYXXYY , XYXYXY , XXYYXY , XXYXYY .
+Thay mỗi chữ X trong từ Dyck thành dấu mở ngoặc_đơn , mỗi chữ Y thành dấu đóng ngoặc_đơn , khi đó mỗi từ Dyck trở_thành một dãy ngoặc hợp_lệ .
+Vậy C_n còn đếm_số dãy ngoặc hợp_lệ gồm n cặp ngoặc : ((())) , ()(()) , ()()() , (())() , (()()) .
+C_n còn là số cách đặt ngoặc cho một biểu_thức gồm n+1 thừa_số .
+Ví_dụ với n=3 , ta có 5 cách đặt ngoặc cho 4 thừa_số : ((ab)c)d , (a(bc))d , (ab)(cd) , a((bc)d) , a(b(cd)) .
+C_n còn là số cây nhị_phân đầy_đủ có n là (một cây nhị_phân được gọi_là đầy_đủ nếu mọi nút của nó có hai nút con hoặc không có nút con nào) .
+Và còn nhiều ứng_dụng khác . . .
+Số_Euler_Số_Euler \big \langlen_k \big \rangle là số_lượng hoán_vị các số_từ 1 đến n mà có đúng k phần_tử lớn hơn phần_tử đứng trước nó .
+Hệ_thức truy_hồi tính số Euler được lập bằng cách xét mỗi hoán_vị p của 1 , 2 , . . . , n-1 .
+Có n vị_trí để thêm số n vào hoán_vị , và một_cách thêm số n có_thể làm tăng số phần_tử lớn hơn phần_tử đứng trước nó của p , hoặc bảo_toàn số phần_tử lớn hơn phần_tử đứng trước nó .
+Vì_vậy , Bài_toán phân_tích một_số nguyên (Integer Partitions)_Ta xét bài_toán sau : Cho một_số nguyên n .
+Hãy cho_biết có bao_nhiêu cách phân_tích_số n thành tổng của dãy các số_nguyên_dương , các cách phân_tích là hoán_vị của nhau chỉ tính là một_cách .
+Ví_dụ : n=5 có 7 cách phân_tích : 5 = 1+1+1+1+1 5 = 1+1+1+2 5=1+1+3 5=1+2+2 5=1+4 5=2+3 5=5 Cách dễ nhất để đếm_số cách phân_tích_số n là định_nghĩa hàm f(n , k) là số cách phân_tích_số n thành tổng của các số_nguyên_dương nhỏ hơn hoặc bằng k .
+Các cách phân_tích_số n thành tổng_cách số_nguyên_dương nhỏ hơn hoặc bằng k có_thể chia làm hai loại : chứa số k trong phép phân_tích và không chứa số k trong phép phân_tích , vì_thế ta có f(n , k)=f(n-k , k)+f(n , k-1) .
+Ngoài_ra , ta còn dễ_dàng có được f(1 , 1)=1 và f(n , k)=0 với kgt;n .
+Bài_tập Hackerearth - Ankit and Race_Team_Hackerearth - Tic_Tac_Toe_Hackerearth - Roy and Little_Mario_VOJ - TREELINE

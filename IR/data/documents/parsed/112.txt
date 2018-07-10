@@ -1,0 +1,34 @@
+
+
+
+
+
+
+
+
+
+
+
+
+NN(thời_gian)  NN(tính)  IN(của)  NN(thuật_toán)  IN(bằng)  NN(thời_gian)  JJ(cần_thiết)  IN(để)  VB(cập_nhật)  NN(mảng)  NNP(.)  NP(NN(mảng)NNP(.))  VP(VB(cập_nhật)NP(NN(mảng)NNP(.)))  PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.))))  ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.)))))  NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.))))))  PP(IN(bằng)NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.)))))))  NP(NN(thuật_toán)PP(IN(bằng)NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.))))))))  PP(IN(của)NP(NN(thuật_toán)PP(IN(bằng)NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.)))))))))  NP(NN(tính)PP(IN(của)NP(NN(thuật_toán)PP(IN(bằng)NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.))))))))))  NP(NN(thời_gian)NP(NN(tính)PP(IN(của)NP(NN(thuật_toán)PP(IN(bằng)NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.)))))))))))  S(NP(NN(thời_gian)NP(NN(tính)PP(IN(của)NP(NN(thuật_toán)PP(IN(bằng)NP(NN(thời_gian)ADJP(JJ(cần_thiết)PP(IN(để)VP(VB(cập_nhật)NP(NN(mảng)NNP(.))))))))))))  
+CD(mỗi)  NN(phần_tử)  IN(của)  NN(mảng)  NP(NN(mảng))  PP(IN(của)NP(NN(mảng)))  NP(NN(phần_tử)PP(IN(của)NP(NN(mảng))))  NP(CD(mỗi)NP(NN(phần_tử)PP(IN(của)NP(NN(mảng)))))  VB(mất)  NN(thời_gian)  NP(NN(thời_gian))  VP(VB(mất)NP(NN(thời_gian)))  IN(để)  VB(cập_nhật)  NNP(.)  NP(NNP(.))  VP(VB(cập_nhật)NP(NNP(.)))  PP(IN(để)VP(VB(cập_nhật)NP(NNP(.))))  S(NP(CD(mỗi)NP(NN(phần_tử)PP(IN(của)NP(NN(mảng)))))VP(VB(mất)NP(NN(thời_gian)))PP(IN(để)VP(VB(cập_nhật)NP(NNP(.)))))  gamma(S(NP(CD(mỗi)NP(NN(phần_tử)PP(IN(của)NP(NN(mảng)))))VP(VB(mất)NP(NN(thời_gian)))PP(IN(để)VP(VB(cập_nhật)NP(NNP(.))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gamma()  

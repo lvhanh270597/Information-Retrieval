@@ -1,0 +1,47 @@
+Nguồn : HackerEarth và 1 số bài viết trên Wikipedia_Người dịch : Bùi_Việt Dũng_Table of_Contents Số_nguyên_tố (Prime Numbers) Thuật_toán "ngây thơ" Một thuật_toán tốt hơn Sàng_Eratosthenes (Sieve of Eratosthenes) Phân_tích thừa_số nguyên_tố với sàng Eratosthenes_Sàng_Eratosthenes trên đoạn Bài_tập áp_dụng : Bạn có_thể đọc phần 1 về Modulo amp; GCD ở đây .
+Số_nguyên_tố (Prime Numbers) Số_nguyên_tố là số_nguyên lớn hơn 1 và có đúng 2 ước là 1 và chính nó .
+Hợp_số (Composite numbers) là số_nguyên lớn hơn 1 và có nhiều hơn 2 ước .
+Ví_dụ , 5 là số_nguyên_tố vì 5 chỉ chia_hết_cho 1 và 5 .
+Tuy_nhiên , 6 là hợp_số vì 6 chia_hết_cho 1 , 2 , 3 và 6 .
+Có rất nhiều phương_pháp để kiểm_tra một_số nguyên có_phải là số_nguyên_tố hay_không .
+Thuật_toán "ngây thơ" Ta sẽ duyệt hết tất_cả các số_từ 1 đến N và đếm_số ước của N .
+Nếu số ước của N là 2 thì N là số_nguyên_tố , nếu_không thì N không là số_nguyên_tố .
+bool isPrime ( int n ) for ( int i = 2 ; i lt; n ; i ++ ) if ( n % i == 0 ) // n chia_hết_cho số khác 1 và chính nó .
+return false ; return n gt; 1 ; Độ phức_tạp của thuật_toán : Độ phức_tạp của thuật_toán là O(N) do ta phải duyệt hết các số_từ 1 đến N .
+Một thuật_toán tốt hơn Xét hai số_nguyên_dương N và D thỏa_mãn N chia_hết_cho D và D nhỏ hơn \sqrtN .
+Khi đó \fracND phải lớn hơn \sqrtN .
+N cũng chia_hết_cho \fracND .
+Vì_thế , nếu N có ước nhỏ hơn \sqrtN thì N cũng có ước lớn hơn \sqrtN .
+Do_đó , ta chỉ_cần duyệt đến \sqrtN .
+bool isPrime ( int n ) for ( int i = 2 ; i i lt;= n ; i ++ ) if ( n % i == 0 ) return false ; return n gt; 1 ; Độ phức_tạp của thuật_toán : Độ phức_tạp của thuật_toán là O(\sqrtN) do ta phải duyệt từ 1 đến \sqrtN .
+Sàng_Eratosthenes (Sieve of Eratosthenes)_Sàng_Eratosthenes dùng để tìm các số_nguyên_tố nhỏ hơn hoặc bằng số_nguyên N nào_đó .
+Nó còn có_thể được sử_dụng để kiểm_tra một_số nguyên nhỏ hơn hoặc bằng N hay_không .
+Nguyên_lí hoạt_động của sàng là vào mỗi lần duyệt , ta chọn một_số nguyên_tố và loại ra khỏi sàng tất_cả các bội của số_nguyên_tố đó mà lớn hơn số đó .
+Sau khi duyệt xong , các số còn_lại trong sàng đều là số_nguyên_tố .
+Mã giả (Pseudo Code) : Đánh_dấu tất_cả các số đều là số_nguyên_tố .
+Với mỗi số_nguyên_tố nhỏ hơn \sqrtN Đánh_dấu các bội lớn hơn nó là số_nguyên_tố .
+void sieve ( int N ) bool isPrime N + 1 ; for ( int i = 0 ; i lt;= N ; ++ i ) isPrime i = true ; isPrime 0 = false ; isPrime 1 = false ; for ( int i = 2 ; i i lt;= N ; ++ i ) if ( isPrime i == true ) // Mark all the multiples of i as composite numbers for ( int j = i i ; j lt;= N ; j += i ) isPrime j = false ; Code trên được dùng để tìm các số_nguyên_tố nhỏ hơn hoặc bằng N .
+Độ phức_tạp của thuật_toán : Số lần_lặp của vòng_lặp trong là : Khi i=2 , vòng_lặp trong lặp \fracN2 lần .
+Khi i=3 , vòng_lặp trong lặp \fracN3 lần .
+Khi i=5 , vòng_lặp trong lặp \fracN5 lần .
+. . .
+Độ phức_tạp tổng : N . (\frac12+\frac13+\frac15+ . . . )=O(N\logN) .
+Phân_tích thừa_số nguyên_tố với sàng Eratosthenes_Cách cài_đặt : Đầu_tiên hãy xem_xét thuật_toán phân_tích ra thừa_số nguyên_tố trong O(\sqrtN) .
+vector lt; int gt; factorize ( int n ) vector lt; int gt; res ; for ( int i = 2 ; i i lt;= n ; ++ i ) while ( n % i == 0 ) res .
+push_back ( i ); n /= i ; if ( n ! = 1 ) res .
+push_back ( n ); return res ; Tại mỗi bước_ta phải tìm số_nguyên_tố nhỏ nhất mà N chia_hết_cho số đó .
+Do_đó , ta phải biến_đổi sàng Eratosthenes để tìm được số mình mong_muốn trong O(1) .
+int minPrime n + 1 ; for ( int i = 2 ; i i lt;= n ; ++ i ) if ( minPrime i == 0 ) //if i is_prime for ( int j = i i ; j lt;= n ; j += i ) if ( minPrime j == 0 ) minPrime j = i ; for ( int i = 2 ; i lt;= n ; ++ i ) if ( minPrime i == 0 ) minPrime i = i ; Bây_giờ ta có_thể phân_tích một_số ra thừa_số nguyên_tố trong O(\logN) .
+vector lt; int gt; factorize ( int n ) vector lt; int gt; res ; while ( n ! = 1 ) res .
+push_back ( minPrime n ); n /= minPrime n ; return res ; Điều_kiện sử_dụng phương_pháp này là ta phải tạo được mảng có độ_dài N phần_tử .
+Phương_pháp này rất hữu_ích khi ta phải phân tich nhiều số nhỏ ra thừa_số nguyên_tố .
+Ta không cần_thiết phải sử_dụng phương_pháp này trong mọi bài_toán liên_quan đến phân_tích một_số ra thừa_số nguyên_tố .
+Ngoài_ra , ta không_thể sử_dụng phương_pháp này nếu N bằng 109 hay 1012 .
+Khi đó , ta chỉ_có thể sử_dụng thuật_toán O(\sqrtN) .
+Tính_chất thú_vị : Nếu N=p_1q_1 . p_2q_2 . . . p_kq_k với p_1 , p_2 , . . . , p_k là các số_nguyên_tố thì N có (q_1+1) . (q_2+1) . . . (q_k+1) ước phân_biệt .
+Sàng_Eratosthenes trên đoạn Đôi_khi bạn phải tìm tất_cả các số_không phải trên đoạn 1;N mà là trên đoạn L;R với R lớn .
+Điều_kiện sử_dụng phương_pháp này là bạn có_thể tạo mảng độ_dài R-L+1 phần_tử .
+Cài_đặt : bool isPrime r - l + 1 ; //filled by true for ( long_long i = 2 ; i i lt;= r ; ++ i ) for ( long_long j = max ( i i , ( l + ( i - 1 )) / i i ); j lt;= r ; j += i ) isPrime j - l = false ; for ( long_long i = max ( l , 2 ); i lt;= r ; ++ i ) if ( isPrime i - l ) //then i is_prime Độ phức_tạp của thuật_toán là O(\sqrtRk) với k là hằng_số .
+Lưu_ý : Nếu bạn chỉ_cần kiểm_tra tính nguyên_tố của một hay một_vài số thì ta không nhất_thiết phải xây_dựng sàng .
+Ta có_thể sử_dụng hàm sau để kiểm_tra tính nguyên_tố của một_số .
+bool isPrime ( int n ) for ( int i = 2 ; i i lt;= n ; ++ i ) if ( n % i == 0 ) return false ; return true ; Bài_tập áp_dụng : SPOJ - PRIME1_VOJ - NKABD

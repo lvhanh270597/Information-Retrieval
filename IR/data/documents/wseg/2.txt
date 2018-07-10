@@ -1,0 +1,166 @@
+Bài viết gốc : How to Find a Solution - đăng bởi Dumitru trên Topcoder Giới_thiệu Với nhiều bài_toán trên topcoder (TC) , lời_giải có_thể được tìm_ra ngay sau một nốt_nhạc .
+Điều này có được là do những nét tương_đồng giữa những bài_toán có lời_giải giống nhau .
+Những nét tương_đồng này chính là những gợi_ý tuyệt_vời cho những coder kinh_nghiệm để có_thể nhận_định được_lời giải bài_toán .
+Mục_tiêu chính của bài viết này là hướng_dẫn để các bạn cũng có_thể nhận_định được chúng .
+Những bài_toán không yêu_cầu kĩ_năng đặc_biệt (mô phỏng , tìm_kiếm , sắp_xếp , . . . ) Hầu_hết các trường_hợp , những bài_toán này thường chỉ yêu_cầu bạn thực_hiện từng bước_một với những công_việc rất đơn_giản .
+Giới_hạn thì không quá lớn cũng không quá nhỏ .
+Và những bài này thường là bài đầu_tiên (bài dễ nhất) trong TC_SRM .
+Chúng thường để kiểm_tra xem bạn code nhanh và chính_xác như nào , và không yêu_cầu kiến_thức về thuật_toán .
+Hầu_hết các bài toàn sẽ yêu_cầu bạn mô_phỏng tất_cả các bước được nêu ra trong đề .
+BusinessTasks - SRM 236 Div 1 : Có_N nhiệm_vụ được liệt_kê dưới dạng 1 vòng_tròn , nhiệm_vụ đầu_tiên kề với nhiệm_vụ cuối_cùng .
+Cho một_số n .
+Bắt_đầu_từ nhiệm_vụ đầu_tiên , di_chuyển theo chiều kim_đồng_hồ (từ thứ 1 đến thứ 2 rồi tiếp_tục như vậy) và đồng_thời đếm từ 1 đến n .
+Vừa di_chuyển vừa đếm , khi đếm đến n , bỏ nhiệm_vụ hiện_tại ra khỏi danh_sách và đếm từ_nhiệm_vụ tiếp_theo .
+Lặp_lại thủ_tục này cho_đến khi chỉ còn 1 nhiệm_vụ .
+Tìm nhiệm_vụ đó .
+Với_N \le 1000 bài này chỉ là vấn_đề của code , không có thuật_toán gì đặc_biệt - thực_hiện từng bước_một cho_đến khi chỉ còn_lại một nhiệm_vụ .
+Những loại bài_toán này thường có N nhỏ , vậy_nên không cần phải quan_tâm đến trường_hợp N lớn .
+Cần nhớ rằng trong topcoder thì 100 triệu phép_tính vẫn có_thể chạy được .
+Có_một số bài yêu_cầu bạn phải tìm_kiếm TallPeople - SRM 208 Div 1 : Có_một nhóm người được xếp thành một ma_trận R_C , R hàng , C cột .
+Nhiệm_vụ của bạn là trả về 2 số - Số thứ nhất_là chiều_cao của người cao nhất trong những người thấp nhất ở mỗi hàng , số thứ_hai là chiều_cao của người thấp nhất trong những người cao nhất ở mỗi cột .
+Như bạn có_thể thấy , đây là một bài_toán tìm_kiếm rất đơn_giản .
+Bạn chỉ_cần theo các bước được mô_tả trong đề và tìm_ra 2 giá_trị yêu_cầu .
+Những bài TC khác có_thể yêu_cầu sắp_xếp các bộ theo quy_luật nào_đó .
+Bạn có_thể làm với thuật_toán sort O(N2) hoặc sử_dụng các thư_viên có_sẵn .
+Ví_dụ khác : MedalTable - SRM 209 Div 1 Tìm_kiếm theo chiều_rộng (Breadth First_Search - BFS)_Những bài sử_dụng BFS thường yêu_cầu tìm số bước ít_nhất (hoặc đường_đi ngắn nhất) từ điểm đầu đến điểm cuối .
+Bên_cạnh đó , đường_đi giữa 2 điểm bất_kì thường có chung trọng số (và thường là 1) .
+Phổ_biến nhất_là dạng bài cho bảng N_M , có những ô đi_qua được và những ô không đi_qua được .
+Bảng này có_thể là mê_cung , sơ_đồ , các thành_phố hoặc các thứ các thứ tương_đương .
+Có_thể nói đây là những bài toàn BFS kinh_điển (classic) .
+Bởi_vì độ phức_tạp của BFS là tuyến_tính trong hầu_hết các trường_hợp (N2 hoặc NlogN) , giới_hạn của N (hoặc M) có_thể lớn , lên tới 1 triệu .
+SmartWordToy - SRM 233 Div 1 : Cho một từ gồm 4 chữ_cái Latin in thường .
+Với một_lần click bạn có_thể đổi bất_kì chữ nào thành chữ_cái trước hoặc sau nó trong bảng_chữ_cái (ví dụ c có_thể thành b hoặc d) .
+Bảng_chữ_cái sẽ theo chu_kì vòng_lặp , tức_là a có_thể thành z và z có_thể thành a .
+Cho một_tập các rằng buộc , mỗi rằng buộc sẽ là tập các từ bị cấm .
+Một rằng buộc bao_gồm 4 xâu kí_tự .
+Một từ gọi_là bị cấm nếu mỗi chữ_cái của nó đều xuất_hiện trong chính ràng_buộc ở vị_trí đó , i . e . chữ đầu_tiên ở trong xâu đầu_tiên , chữ thứ 2 trong xâu thứ 2 , . . .
+Ví_dụ , có rằng buộc sau "lf a tc e" thì các từ sau bị cấm "late" , "fate" , "lace" và "face" .
+Bạn cần phải tìm số lần bấm_nút ít_nhất để từ ban_đầu biến thành từ đích mà không đi_qua từ cấm , hoặc trả về -1 nếu_không thể biến được .
+Hints : Coi các từ là các trạng_thái .
+Có nhiều nhất 264 từ khác_nhau gồm 4 chữ_cái .
+Có nhiều cách để biến một trạng_thái về một trạng_thái khác .
+Chi_phí để biến_đổi 1 trạng_thái luôn là 1 (với 1 lần click) Bạn cần phải tìm số bước nhỏ nhất để đến được trạng_thái đích từ trạng_thái ban_đầu .
+Mọi thứ đều chỉ ra rằng bài này cần giải bằng BFS .
+Những điều tương_tự như_trên sẽ thường thấy trong các bài BFS .
+Bây_giờ , chúng_ta cùng xem một BFS bài khá thú_vị .
+CaptureThemAll - SRM 207 Div 2 (3rd problem) : Harry đang chơi cờ_vua .
+Anh có_một quân_mã , còn đối_thủ là Joe có 1 quân hậu và 1 quân xe .
+Hãy tìm số bước nhỏ nhất quân_mã phải đi để ăn được cả hậu và xe .
+Hints : Mới_đầu , có_vẻ như bài này là 1 bài quy_hoạch_động hoặc backtrack .
+Nhưng nếu để_ý kĩ đề_bài , ta sẽ có những nhận_xét sau : Đề cho 1 bảng .
+Quân_mã có_thể đi từ 1 ô tới các ô mà nó có_thể đi được .
+Chi_phí ở mỗi bước_đi là 1 .
+Bạn cần tìm số bước_đi nhỏ nhất .
+Với những thông_tin trên , ta có_thể dễ_dàng giải được bằng BFS .
+Đừng bối_rối nếu những điểm liên_thông là những ô không kề nhau .
+Hãy nghĩ mỗi ô là một điểm trên đồ_thị hay một trạng_thái hay bất_cứ cái_gì bạn muốn .
+Chú_ý rằng phần_lớn những gợi_ý về thuật_giải BFS là chi_phí bằng 1 cho mỗi bước .
+Bạn có_thể luyện_tập thêm về BFS bằng những ví_dụ sau : Ví_dụ khác : RevolvingDoors - SRM 233 Div 1 WalkingHome - SRM 222 Div 1 TurntableService - SRM 219 Div 1 Loang (Flood Fill) Thỉnh_thoảng bạn sẽ gặp_phải bài_toán cần tới Loang , một kĩ_thuật sử_dụng BFS để tìm tất_cả các điểm có_thể đi_tới .
+Điểm khác_biệt giữa Loang so_với những bài BFS ở trên là bạn không_phải tìm chi_phí nhỏ nhất .
+Ví_dụ , có_một mê_cung , ô 1 là không đi được và 0 là đi được .
+Ban cần phải tìm tất_cả các ô mà có_thể đi đến từ ô góc trái trên .
+Bài này chỉ_cần lấy ra một đỉnh đã thăm , nhét tất_cả các đỉnh chưa thăm mà kề với đỉnh hiện_tại vào queue rồi tiếp_tục làm như_vậy cho_đến khi queue rỗng .
+Lưu_ý rằng nếu số đỉnh lớn , cài_đặt bằng DFS (Depth First_Search) sẽ có_thể bị tràn stack do đệ_quy quá sâu và compile code không tăng kích_thước stack (xem thêm giải_thích ở đây ) .
+Tốt hơn_hết là nên dùng BFS .
+Đây là một bài ví_dụ : grafixMask - SRM 211 Div 1 : Cho một bitmap 400 600 .
+Có_một tập hình_chữ_nhật bao_phủ bitmap này (các góc của chúng có tọa_độ nguyên) .
+Bạn cần phải tìm_ra tất_cả các vùng liên_tiếp không bị phủ và kích_thước của chúng .
+Hints : Có_một map (bảng) .
+Một_số điểm không đi_qua được .
+Cần tìm_ra những vùng liên_thông .
+Những dấu_hiệu trên cho thấy bài này cần phải sử_dụng Loang_Duyệt trâu và quay lui (Brute Force and Backtracking)_Hai kĩ_thuật này được gộp chung vào một loại vì chúng khá giống nhau .
+Quay lui là kĩ_thuật nâng_cao và tối_ưu hơn so_với duyệt trâu .
+Nó thường sử_dụng đệ_quy và áp_dụng cho những bài có giới_hạn nhỏ (N \le 20) Duyệt trâu (Brute Force) Đối_với những bài duyệt trâu thì giới_hạn thường bé .
+Duyệt trâu bản_chất đúng như cái tên của nó , là duyệt hết tất_cả các trường_hợp và chọn ra cái tốt nhất .
+Nó rất dễ xây_dựng và cài_đặt .
+GeneralChess - SRM 197 Div 1 : Cho một_số quân_mã (nhiều nhất_là 8) cùng_với vị_trí của chúng (-10000 \le x , y \le 10000) .
+Bạn cần phải tìm các_vị trí để đặt thêm một quân_mã mà nó có_thể ăn được tất_cả các quân đã cho .
+Hints : Đề yêu_cầu tìm các trường_hợp thỏa_mã 1 quy_luật nhất_định (ở đây là ăn tất_cả các quân đã cho) .
+Giới_hạn bé - chỉ_có 8 quân_mã .
+Giới_hạn x , y trong bài trên không quan_trọng , bạn chỉ_cần thử các_vị trí có_thể ăn một quân_mã và đối_với từng vị_trí thì xét xem nó có_ăn được các quân còn_lại không .
+Một ví_dụ khác : LargestCircle - SRM 212 Div 2 (3rd problem) : Cho một lưới vuông với một_số ô đã bị đánh_dấu .
+Tìm đường_tròn lớn nhất không đi_qua các ô đã bị đánh_dấu và có tâm nằm trên điểm giao của lưới ô_vuông (bán kính là số nguyên) .
+Trả_lại bán_kính của đường_tròn .
+Kích_thước lớn nhất của lưới là 50 Hints : Tại mỗi điểm giao bạn thử từng bán_kính một sao_cho thỏa_mãn đề_bài .
+Rồi chọn ra bán_kính lớn nhất trong số chúng .
+Phân_tích độ phức_tạp : Có nhiều nhất_là 50 50 ô , bán_kính là một_số nguyên với max là 25 và bạn cần kiểm_tra các điểm trên thuộc đường_tròn trong một_thời gian tuyến_tính .
+Tổng_độ phức_tạp sẽ rất bé và bạn có_thể yên_tâm duyệt trâu .
+Ví_dụ khác : Cafeteria – SRM 229 Div 1 WordFind – SRM 232 Div 1 Quay lui (Backtracking) Kĩ_thuật này thường được sử_dụng với những bài có giới_hạn nhỏ .
+Các dạng quay lui mà bạn có_thể gặp_phải là tìm : Tất_cả các cấu_hình hoặc một_tập các cấu_hình thỏa_mãn một yêu_cầu .
+Cấu_hình tốt nhất theo một một tiêu_chí nào_đó .
+BridgeCrossing – SRM 146 Div 2 (3rd problem) : Có_một nhóm người cần sang cầu .
+Tuy_nhiên , do cầu quá cũ , nên một_lần chỉ được tối_đa 2 người qua_cầu .
+Trời thì tối , chỉ_có một cái đèn_pin .
+Hai người cùng đi_qua cầu thì thời_gian của hai người sẽ là thời_gian của người chậm hơn .
+Do không_thể ném đèn_pin từ bên này sang bên_kia , nên một người sẽ phải quay_lại rồi đi với một người khác .
+Hỏi thời_gian ít_nhất để tất_cả cùng qua_cầu .
+Có nhiều nhất_là 6 người .
+Hints : Giới_hạn chỉ_có nhiều nhất 6 người .
+Quá đủ để có_thể sinh_ra tất_cả các hoán_vị .
+Bạn cần tìm_ra cách tốt nhất trong số các cách đưa mọi người sang cầu .
+Ta sẽ bắt_đầu bằng việc đưa 2 người bất_kì qua_cầu rồi tiếp_tục đưa những người còn_lại sang .
+Người quay_lại sẽ là người nhanh nhất .
+So_sánh và tìm_ra phương_án tốn ít thời_gian nhất .
+Mặc_dù còn có_một thuật_giải khác cho bài này nhưng với giới_hạn bé như_vậy thì chúng_ta không cần_thiết phải quan_tâm .
+MNS – SRM 148 Div 1 : Cho 9 số_nguyên trong_khoảng từ 0 đến 9 .
+Một ô_vuông thần_kì là ô_vuông mà các số được sắp_xếp sao_cho tổng_mỗi hàng và mỗi cột đều bằng_nhau .
+Tính số cách khác_nhau để sắp xêp dãy_số đã cho thành một ô_vuông thần_kì .
+Hai cách sắp_xếp khác_nhau nếu chúng khác_nhau ở ít_nhất 1 vị_trí .
+Hints : Do chỉ_có 9 số nên hoàn_toàn có_thể sinh_ra hết các cách sắp_xếp của chúng .
+Liệt_kê các hoán_vị của 9 số , đồng_thời lưu lại một danh_sách các cách sắp_xếp khác_nhau đã có để kiểm_tra .
+Ví_dụ khác : WeirdRooks – SRM 234 Div 1 Quy_hoạch_động (Dynamic Programming)_Để giải_quyết cũng_như nhìn ra dạng bài này thì chủ_yếu dựa vào kinh_nghiệm .
+Thường thì giới_hạn trong các bài QHĐ không lớn cũng không nhỏ , độ phức_tạp thường là N2 , N3 , . . .
+Nếu_như giới_hạn quá nhỏ (với TC thì thường N \le 30) thì thường không_phải là DP .
+Trong_QHĐ thì các bài_toán lớn sẽ được chia thành các bài_toán nhỏ hơn và tính dựa vào chúng .
+Để hiểu hơn về QHĐ , bạn có_thể tham_khảo bài này .
+Thử phân_tích một ví_dụ đơn_giản : Cho_N đồng xu với giá_trị của chúng(V_1 , V_2 , . . . , V_N) và một_số S .
+Tìm số đồng xu nhỏ nhất mà tổng_giá trị của chúng bằng S (bạn có_thể dùng một đồng nhiều lần) hoặc thông_báo không có cách nào như_vậy .
+N \le 1000 và S \le 1000 Hints : Giới_hạn của N và S đều ở mức vừa_phải .
+Một trạng_thái định_nghĩa_là số đồng xu nhỏ nhất để tổng_bằng 1 giá_trị .
+Tổng i phụ_thuộc vào các tổng bé hơn j (j lt; i) .
+Bằng cách thêm một đồng xu , ta di_chuyển từ trạng_thái này sang trạng_thái khác .
+Tất_cả những tính_chất trên cho thấy đây là một bài QHĐ .
+ZigZag – 2003 TCCC_Semifinals 3 : Một dãy_số được gọi_là zig-zag nếu các hiệu giữa những liền nhau là một dãy đan dấu (luân phiên_âm dương âm_dương . . . ) .
+Dãy có ít_hơn 2 số_là 1 dãy zig-zag .
+Cho một dãy_số tìm dãy con zig-zag dài nhất .
+Một dãy con thu được bằng cách xóa_bỏ một_số số trong dãy ban_đầu (hoặc không xóa) .
+Giới_hạn N \le 50 Hints : Giới_hạn của N không lớn không nhỏ .
+f(i , d) là độ_dài dãy con zig-zag dài nhất kết_thúc tại i , còn d = 0 nếu số trước i bé hơn nó và d = 1 nếu ngược_lại .
+f(i , d) được tính bởi f(j , e) (j lt; i) .
+Nếu thêm một_số vào trong dãy hiện_tại thì ta được một dãy dài hơn .
+Như_vậy , bài này cũng có những dâu hiệu giống với bài trên và những bài QHĐ khác .
+Phần khó nhất_là xác_định được bài đưa_ra là QHĐ bằng những dấu_hiệu trên .
+Sau_đó bước tiếp_theo chỉ là xây_dựng thuật_toán và cài_đặt .
+Ví_dụ khác : ChessMetric – 2003 TCCC_Round 4 AvoidRoads – 2003 TCO_Semifinals 4 FlowerGarden – 2004 TCCC_Round 1 BadNeighbors – 2004 TCCC_Round 4 Nâng_cao (Hard Drills) : Luồng cực_đại (Maximum Flow)_Cũng không dễ để có_thể xác_định được một bài_toán sử_dụng Luồng .
+Tuy_nhiên , một_số dấu_hiệu sau có_thể giúp bạn : Để_ý vào giới_hạn , những bài này thường có giới_hạn phù_hợp với O(N3) hoặc O(N4) Đồ_thị với các cạnh có trọng số (cho trực_tiếp hoặc gián tiếp) .
+Cần tìm giá_trị lớn nhất của cái_gì đó .
+Ví_dụ Cho một danh_sách các ống nước , mỗi ống_chỉ cho một lượng nước nhất_định được đi_qua .
+Các_ông được nối với_nhau .
+Tìm lượng nước_lớn nhất có_thể chảy được từ điểm đầu đến điểm cuối trong một đơn_vị thời_gian .
+N \le 100 Dễ_dàng thấy được lượng nước ở mỗi ống là trọng số các cạnh , khớp nối các ống là các đỉnh trong đồ_thị .
+Bạn phải tìm lượng nước_lớn nhất chảy từ đỉnh bắt_đầu đến đỉnh kết_thúc .
+Cặp ghép (Optimal Pair_Matching)_Dạng bài này thường cho 2 tập và các quy_tắc , bạn phải sử_dụng các quy_tắc này để ghép càng nhiều càng tốt các phần_tử ở tập A với các phần_tử ở tập B .
+Parking – SRM 236 Div 1 : Cho_N cái xe và M chỗ đỗ xe trên một cái bảng hình_chữ_nhật , trong đó có_một số ô không đi_qua được .
+Bạn cần tìm một_cách để đưa tất_cả các xe vào điểm đỗ xe , sao_cho số_lớn nhất trong các khoảng_cách từ một xe đến chỗ đỗ của nó là nhỏ nhất có_thể .
+Một điểm đỗ xe chỉ cho_phép một xe đỗ .
+Hints : Nhận_xét bài này , ta thấy có 2 tập : xe và điểm đỗ xe , chúng_ta cần thực_hiện ghép mỗi xe với một điểm đỗ_tương ứng .
+Tồn_tại một cạnh giữa 1 xe và 1 điểm đỗ nếu có đường_đi giữa chúng và trọng số của cạnh này là đường_đi ngắn nhất giữa 2 điểm này .
+Bước tiếp_theo là chia nhị_phân khoảng_cách dài nhất : ở mỗi bước , xóa đi các cạnh có độ_dài lớn hơn C; nếu vẫn có_thể ghép tất_cả các xe vào điểm đỗ thì chọn một giá_trị C nhỏ hơn; ngược_lại thì chọn một giá_trị C lớn hơn .
+Khi đã chia nhị_phân xong , giá_trị C nhỏ nhất sẽ là kết_quả cần tìm .
+Quy_hoạch tuyến_tính (Linear Programming) amp; Thuật_toán Simplex Dấu_hiệu nhận_biết : Cho một_tập các vật với khối_lượng hoặc số_lượng cần đạt được_của mỗi vật .
+Cho một danh_sách các tập_hợp .
+Mỗi tập bao_gồm một_số vật với một_số lượng nhất_định .
+Mỗi tập có_một chi_phí .
+Mục_đích của bài_toán là tìm một_tập tối_ưu từ các tập trên sao_cho tổng_số_lượng của mỗi vật bằng số_lượng cần đạt được .
+Ví_dụ : Mixture – SRM 231 Div 1 : Bạn đang muốn làm_ra một hỗn_hợp từ các hợp_chất khác_nhau , mỗi hợp_chất cần phải đúng liều_lượng .
+Bởi_vì các hợp_chất đôi_khi không được bán riêng , mà bạn phải mua các hỗn_hợp có_sẵn mà chứa chúng .
+Mỗi hỗn_hợp lại có_một lượng nhất_định của mỗi hợp_chất cấu_thành .
+Bạn không cần phải mua toàn_bộ hỗn_hợp mà có_thể mua những hợp_chất bạn cần với liều_lượng tùy_chọn .
+Nhiệm_vụ của bạn là tìm_ra cách tiêu ít tiền nhất đề có_thể tạo ra được hỗn_hợp mong_muốn .
+Hints : Một_tập các vật (hợp chất) .
+Một danh_sách các tập (các hỗn_hợp có sẵn) .
+Tìm chi_phí nhỏ nhất để tạo ra tập mong_muốn từ các tập có_sẵn .
+Những tính_chất trên giống_hệt với dấu_hiệu nhận_biết của dạng Linear_Programming .
+Đây là 1 kĩ_thuật nâng_cao , bạn có_thể tham_khảo thêm ở : Wikipedia - Linear_Programming_Simplex algorithm Kết_luận Để có_thể tìm_ra được_lời giải cho một bài_toán bạn cần phải làm nhiều bài_tập để luyện khả_năng nhận_định bài_toán cũng_như tăng thêm kinh_nghiệm .
+Ngoài_ra , còn rất nhiều dạng bài khác mà trong phạm_vi bài viết này không_thể bao_phủ hết được .
+

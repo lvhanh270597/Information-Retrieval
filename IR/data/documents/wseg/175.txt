@@ -1,0 +1,102 @@
+Table of_Contents Mở_đầu Ví_dụ 1 Ví_dụ 2 Ví_dụ 3 Ví_dụ 4 Phép_toán kết_hợp và độ phức_tạp tính_toán Nhân tổ_hợp dãy ma_trận Giải_thuật Freivalds kiểm_tra tích hai ma_trận Bài_tập áp_dụng Tác_giả : Nguyễn_RR Thành_Trung , Nguyễn_Mạnh_Quân Mở_đầu Thông_thường , để đạt được độ phức_tạp thuật_toán như mong_muốn , cách làm thường là tìm_ra một thuật_toán ban_đầu làm cơ_sở , rồi từ_đó dùng các kỹ_năng để giảm độ phức_tạp của thuật_toán .
+Trong bài viết này , tôi xin giới_thiệu với bạn_đọc một kỹ_năng khá thông_dụng : nhân ma_trận .
+Trước_khi đọc_bài viết này , nếu bạn chưa có khái_niệm gì về ma_trận , bạn có_thể tham_khảo định_nghĩa về ma_trận trong một tài_liệu khác .
+Trước_hết , tôi xin nhắc_lại tóm_tắt khái_niệm về phép_nhân ma_trận : Cho 2 ma_trận : A kích_thước M_N và B kích_thước N_P .
+(chú ý số cột của ma_trận A phải bằng số hàng của ma_trận B thì mới có_thể thực_hiện phép nhân) .
+Kết_quả phép_nhân ma_trận A và B là ma_trận C kích_thước M_P , với mỗi phần_tử của ma_trận C được tính theo công_thức : C(i , j) = \sumA(i , k) B(k , j) Để thực_hiện phép_nhân ma_trận trên máy_tính , ta có_thể thực_hiện thuật_toán với độ phức_tạp \mathcalO(M N_P) như_sau : for i : = 1 to M do for j : = 1 to P do begin C i , j : = 0 ; for k : = 1 to N do C i , j : = C i , j + A i , k B k , j ; end ; Đối_với phép_nhân các ma_trận vuông kích_thước N_N , có thuật_toán nhân ma_trận Strassen với độ phức_tạp \mathcalO(N\log7) theo tư_tưởng chia_nhỏ ma_trận (tương tự cách nhân nhanh 2 số lớn)) .
+Tuy_nhiên cài_đặt rất phức_tạp và trên thực_tế với giá_trị_N thường gặp , cách này không chạy nhanh hơn nhân ma_trận thông_thường \mathcalO(N3) .
+Cần chú_ý thêm là phép_nhân ma_trận không có tính_giao hoán (do có_thể thực_hiện nhân 2 ma_trận A kích_thước M_N và ma_trận B kích_thước N_P nhưng không_thể thực_hiện phép_nhân B_A nếu P \ne M) .
+Tuy_nhiên , nhân ma_trận lại có tính kết_hợp : (A B)_C = A (B C) Ví_dụ 1 Chúng_ta hãy cùng xem_xét một ví_dụ kinh_điển nhất trong ứng_dụng của phép_nhân ma_trận .
+Bài_toán Dãy_Fibonacci được định_nghĩa như_sau : F(0) = 1 F(1) = 1 . . .
+F(i) = F(i-1) + F(i-2) , i gt;= 2 Yêu_cầu : Cho_N (N \le 109) , tính F(N) .
+Bạn có_thể nộp bài thử ở VNOI - LATGACH4 .
+Phân_tích Hiển_nhiên cách làm thông_thường là tính lần_lượt các F(j) .
+Tuy_nhiên , cách làm này hoàn_toàn không hiệu_quả với N lên đến 109 , và ta cần một_cách tiếp_cận khác .
+Ta xét các lớp số : Lớp 1 : F(1) , F(2)_Lớp 2 : F(2) , F(3) . . .
+Lớp i : F(i) , F(i+1)_Ta hình_dung mỗi lớp là một ma_trận 1x2 .
+Tiếp đó , ta sẽ biến_đổi từ lớp i-1 đến lớp i .
+Sau mỗi lần biến_đổi như_vậy , ta tính thêm được một giá_trị F(i+1) .
+Để thực_hiện phép biến_đổi này , chú_ý là các số ở lớp sau chỉ phụ_thuộc vào lớp ngay trước nó theo các phép_cộng , ta tìm được cách biến_đổi bằng nhân ma_trận : Chắc_hẳn đọc đến đây bạn_đọc sẽ thắc_mắc , làm thế_nào để tìm được ma_trận trên ?
+Để tìm được ma_trận này , ta làm như_sau : Ta có : F(i) = 0 F(i-1) + 1 F(i) , do_đó hàng_đầu của ma_trận là 0 , 1 F(i+1) = 1 F(i-1) + 1 F(i) , do_đó hàng thứ 2 của ma_trận là 1 , 1 Bây_giờ ta sẽ cần tìm cách tăng_tốc việc tính 0 , 1; 1 , 1T ( ) .
+Việc tính nhanh ( ) cũng hoàn_toàn tương_tự việc_ta tính aT với a là số_nguyên .
+Sau_đây là đoạn code minh_hoạ .
+Trong đoạn code này , để bạn_đọc dễ_hiểu , tôi bỏ_qua yếu_tố về tính_toán số_lớn , và thực_hiện các phép_tính với kiểu số 32-bit .
+type matrix = array 0 . . 1 , 0 . . 1 of longint ; const a : matrix =(( 0 , 1 ) , ( 1 , 1 )); //Định nghĩa phép_nhân 2 ma_trận operator ( a , b : matrix ) c : matrix ; var i , j , k : longint ; begin fillchar ( c , sizeof ( c ) , 0 ); for i : = 0 to 1 do for j : = 0 to 1 do for k : = 0 to 1 do c i , j : = c i , j + a i , k b k , j ; end ; //Tính an function power ( n : longint ) : matrix ; var temp : matrix ; begin if n = 1 then exit ( a ); temp : = power ( n div 2 ); temp : = temp temp ; if n mod 2 = 1 then temp : = temp a ; exit ( temp ); end ; Ví_dụ 2 Bây_giờ chúng_ta sẽ cùng xem_xét một ví_dụ tổng_quát hơn của ví_dụ 1 .
+Bài_toán : SPOJ - SEQ_Cho số_nguyên N (N \le 100) và 2 dãy_số độ_dài N : a_1 , a_2 , . . . , a_N; b_1 , b_2 , . . . , b_N .
+Dãy_số c được định_nghĩa như_sau : c_i = a_i với i \le N c_i = c_i-1 b_1 + c_i-2 b_2 + . . .
++ c_i-N b_N Yêu_cầu : Tính c_k với k \le 109 .
+Phân_tích Cũng_như trong ví_dụ 1 , ta xét các lớp số : Lớp 1 : c_1 , c_2 , . . . , c_N Lớp 2 : c_2 , c_3 , . . . , c_N+1 . . .
+Lớp i : c_i , c_i+1 , . . . , c_i+N-1 Ta cũng sẽ áp_dụng phép_nhân ma_trận để biến_đổi từ lớp i sang lớp i+1 như_sau : Để xây_dựng ma_trận vuông như_trên , ta thực_hiện tương_tự như trong ví_dụ trước : Phân_tích a_i+1 đến a_i+N dưới dạng a_i , . . . , a_i+N-1 : a_i+1 = 0 a_i + 1 a_i+1 + . . .
++ 0 a_i+N-1 nên hàng 1 là 0 , 1 , 0 , . . . . , 0 . . .
+a_i+N-1 = 0 a_i + 0 a_i+1 + . . .
++ 1 a_i+N-1 nên hàng N-1 là 0 , 0 , 0 , . . . , 1 a_i+N = b_N a_i + b_N-1 a_i+1 + . . .
++ b_1 a_i+N-1 nên hàng N là b_N , b_N-1 , . . . , b_1 Từ_đó , ta thu được cách làm như trong ví_dụ 1 .
+Cài_đặt cụ_thể xin nhường_lại cho bạn_đọc .
+Chú_ý rằng ta hoàn_toàn có_thể thay_thế phép_nhân và phép_cộng trong định_nghĩa phép_nhân ma_trận , chỉ_cần đảm_bảo giữ_nguyên tính_chất kết_hợp .
+Cụ_thể hơn , thay_vì C(i , j) = \sumA(i , k) B(k , j) , ta có_thể định_nghĩa phép_nhân ma_trận : C(i , j) = min(A(i , k) + B(k , j)) .
+Từ_đó , ta có_thể thu được một lớp các bài_toán khác .
+Sau_đây là một ví_dụ minh_hoạ cho nhóm các bài_toán này Ví_dụ 3 Bài_toán Cho đồ_thị có hướng N đỉnh (N \le 100) .
+Tính ma_trận C(k) kích_thước N_N , với C(k) i , j là độ_dài đường_đi ngắn nhất từ i đến j đi_qua đúng k cạnh Phân_tích Xét ma_trận A là ma_trận kề của đồ_thị đã cho .
+Ta có : A = C(1)_C(2)i , j = \minAi , u + Au , j với u chạy từ 1 đến N_C(k)i , j = \minC(k-1)i , u + Au , j với u chạy từ 1 đến N Như_vậy , nếu ta thay phép_nhân và phép_cộng trong việc nhân ma_trận thông_thường lần_lượt bởi phép_cộng và phép lấy min , ta thu được một_phép ”nhân ma trận” mới , tạm dùng ký_hiệu x , thì : C1 = A_C2 = C1 x C1 = A x C1_C3 = C1 x C2 = A x C2_C4 = C1 x C3 = A x C3 . . .
+Ck = C1 x C(k-1) = A x C(k-1) Do_đó , C(k) = Ak Như_vậy , bài_toán được đưa về bài_toán tính lũy_thừa của một ma_trận , ta hoàn_toàn có_thể giải tương_tự các ví_dụ trước .
+Cài_đặt phép_nhân ma_trận mới này hoàn_toàn không phức_tạp hơn cài_đặt phép_nhân ma_trận thông_thường .
+Việc cài_đặt xin nhường_lại cho bạn_đọc .
+Ví_dụ 4 VOJ - THBAC Bài_toán Người_ta mới tìm_ra một loại vi_khuẩn mới .
+Chúng sống thành N bầy (N \le 100) , đánh_số từ 0 đến N-1 .
+Ban_đầu , mỗi bầy này chỉ_có một con vi_khuẩn .
+Tuy_nhiên , mỗi giây , số_lượng vi_khuẩn trong các bầy lại có sự thay_đổi .
+Ví_dụ : một bầy có_thể bị chết đi số_lượng vi_khuẩn trong một bầy có_thể tăng lên một bầy có_thể di_chuyển vị_trí .
+Các thay_đổi này tuân theo một_số quy_luật cho trước .
+Tại mỗi giây chỉ xảy_ra đúng một quy_luật .
+Các quy_luật này được thực_hiện nối_tiếp nhau và theo chu_kỳ .
+Có_nghĩa là , nếu đánh_số các quy_luật từ 0 đến M-1 , tại giây thứ S thì quy_luật được áp_dụng sẽ là (S-1) \space mod \space M (M \le 1000) Nhiệm_vụ của bạn là tìm xem , với một bộ các quy_luật cho trước , sau T đơn_vị thời_gian (T \le 1018) , mỗi bầy có bao_nhiêu vi_khuẩn .
+Các loại quy_luật có_thể có : A i 0 : Tất_cả các vi_khuẩn thuộc bầy i chết .
+B i k : Số vi_khuẩn trong bầy i tăng lên k lần .
+C i j : số vi_khuẩn bầy thứ i tăng lên một_số lượng bằng với số vi_khuẩn bầy j .
+D i j : Các vi_khuẩn thuộc bầy j di_chuyển toàn_bộ sang bầy i .
+E i j : Các vi_khuẩn thuộc bầy i và bầy j đổi vị_trí cho nhau .
+F 0 0 : Vị_trí các vi_khuẩn di_chuyển trên vòng_tròn .
+Phân_tích Cách làm đơn_giản nhất_là chúng_ta mô_phỏng lại số_lượng vi_khuẩn trong mỗi bầy qua từng đơn_vị thời_gian .
+Cách làm này có độ phức_tạp \mathcalO(T N k) với \mathcalO(k) là độ phức_tạp cho xử_lý_số lớn .
+Cách này không_thể chạy được với T lớn .
+Ta hình_dung số_lượng vi_khuẩn trong mỗi bầy trong một đơn_vị thời_gian là một dãy_số .
+Như_vậy , mỗi quy_luật cho trước thực_chất là một_phép biến_đổi từ một dãy_số thành một dãy_số mới , và ta hoàn_toàn có_thể thực_hiện biến_đổi này bằng một_phép nhân ma_trận .
+Cụ_thể hơn , ta coi số_lượng vi_khuẩn trong N bầy tại một_thời điểm xác_định là một ma_trận 1 N , và mỗi phép biến_đổi là một ma_trận N_N .
+Khi áp_dụng mỗi phép biến_đổi , ta nhân hai ma_trận nói trên với_nhau .
+Bây_giờ , xét trường_hợp N = 4 , tôi xin lần_lượt mô_tả các ma_trận tương_ứng với các phép biến_đổi : Biến_đổi : A 2 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 Biến_đổi : B 2 6 1 0 0 0 0 1 0 0 0 0 6 0 0 0 0 1 Biến_đổi : C 1 3 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 1 Biến_đổi : D 1 3 1 0 0 0 0 1 0 0 0 0 1 0 0 1 0 0 Biến_đổi : E 1 3 1 0 0 0 0 0 0 1 0 0 1 0 0 1 0 0 Biến_đổi : F 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 Cũng_như các bài_toán trước , ta sẽ cố_gắng áp_dụng việc tính_toán lũy_thừa , kết_hợp với phép_nhân ma_trận để giảm độ phức_tạp từ T xuống \logT .
+Tuy_nhiên , có_thể thấy việc sử_dụng phép lũy_thừa trong bài_toán này phần_nào phức_tạp hơn bởi các ma_trận được cho_không giống nhau .
+Để giải_quyết vấn_đề này , ta làm như_sau : Gọi X_1 , X_2 , . . . , X_m là các ma_trận tương_ứng với các phép biến_đổi được cho .
+Đặt_X = X_1 X_2 . . .
+X_m .
+Đặt_S = 1 , 1 , . . . , 1 (dãy số_lượng vi_khuẩn tại thời_điểm đầu tiên) .
+Như_vậy , Y = S_Xt X_1 X_2 . . .
+X_r là ma_trận thể_hiện số_lượng vi_khuẩn tại thời_điểm M t + r .
+Như_vậy , thuật_toán đến đây đã rõ .
+Ta phân_tích T = M t + r , nhờ đó , ta có_thể giải_quyết bài_toán trong \mathcalO(N3 M) cho bước tính ma_trận X và \mathcalO(N3 (\logT/M + M) cho bước tính Y .
+Bài_toán được giải_quyết .
+Phép_toán kết_hợp và độ phức_tạp tính_toán Nhân tổ_hợp dãy ma_trận Trong phần Mở_Đầu ta đã có thuật_toán nhân hai ma_trận A kích_cỡ M_N và B kích_cỡ N_P cần độ phức_tạp O(M_N_P) .
+Giả_sử_ta có thêm ma_trận C có kích_cỡ P_Q và ta cần tính tích A_B_C .
+Xét hai cách thực_hiện phép_nhân này : Cách 1 : (A B)_C thực_hiện nhân A và B rồi nhân với C cần độ phức_tạp O(M_N_P) + O(M_P_Q) = O(M_P (N + Q))_Cách 2 : A (B C) thực_hiện nhân B và C rồi nhân với A cần độ phức_tạp O(N_P_Q) + O(M_N_Q) = O(N_Q (M + P)) Như_vậy là hai cách thực_hiện khác_nhau cần hai độ phức_tạp khác_nhau .
+Chọn_M = N = 500 , P = 1000 , Q = 2 , cách 1 sẽ cần tới 500 1000 (500 + 2) = 251 106 phép_tính , trong_khi cách 2 chỉ_cần 500 2 (500 + 1000) = 1 . 5 106 phép_tính , nghĩa_là cách 1 chậm hơn cách 2 tới gần 200 lần .
+Khi độ_dài của dãy ma_trận tăng lên , sự khác_biệt có_thể còn lớn hơn_nữa .
+Ví_dụ trên đã cho thấy rằng trong một_số trường_hợp thứ_tự thực_hiện phép_nhân ma_trận có_ý nghĩa rất lớn đối_với việc tìm lời_giải của các bài_toán .
+Trong thực_tế , bài_toán xác_định thứ_tự nhân ma_trận hiệu_quả nhất_là một bài_toán rất phổ_biến , bạn có_thể tìm đọc chi_tiết thêm ở Mục 3 . 5 Phép_Nhân Tổ_Hợp dãy Ma_Trận trong ebook của thầy Lê_Minh Hoàng .
+Giải_thuật Freivalds kiểm_tra tích hai ma_trận Giải_thuật Freivalds là một ví_dụ điển_hình về việc áp_dụng thứ_tự thực_hiện phép_nhân ma_trận để giảm độ phức_tạp tính_toán của phép_nhân một dãy ma_trận .
+Bài_toán đặt ra là cho ba ma_trận vuông A , B , C có kích_cỡ N_N với N \le 1000 .
+Ta cần kiểm_tra xem C có_phải là tích của A và B , nói_cách_khác ta cần kiểm_tra AB = C có_phải là mệnh_đề đúng hay_không (đây chính là bài VMATRIX - VNOI_Marathon 2014 ) .
+Phân_tích Cách làm thông_thường là nhân trực_tiếp hai ma_trận A , B rồi so_sánh kết_quả với C .
+Như phân_tích trong phần Mở_Đầu độ phức_tạp của cách làm này là O(N3) , với N = 1000 thì cách làm này không đủ nhanh .
+Giải_thuật Freivalds thực_hiện việc kiểm_tra thông_qua thuật_toán xác_suất kiểu Monte_Carlo với k lần thử cho xác_suất kết_luận sai là xấp_xỉ 1 / 2k , mỗi lần thử có độ phức_tạp O(N2) .
+Các bước cơ_bản của một_phép thử Freivalds như_sau : Sinh ngẫu_nhiên một ma_trận v kích_cỡ N 1 với các phần_tử chỉ nhận giá_trị 0 hoặc 1 .
+Tính hiệu P = A_B v - C v .
+Dễ thấy rằng P là ma_trận kích_cỡ N 1 .
+Trả về True nếu P chỉ gồm phần_tử 0 (bằng với vector 0) và False nếu ngược_lại .
+Ta thực_hiện k lần thử , nếu gặp phép thử trả về False thì ta kết_luận là A_B \neq C .
+Ngược_lại nếu sau k phép thử mà luôn thấy True thì ta kết_luận A_B = C .
+Vì xác_suất lỗi giảm theo hàm mũ của k nên thông_thường chỉ_cần chọn k vừa đủ là sẽ thu được xác_suất đúng rất cao (k = 5 với bài VMATRIX ở trên) .
+Một nhận_xét quan_trọng khác là cận_trên của đánh_giá xác_suất kiểm_tra lỗi không phụ_thuộc vào kích_cỡ N của ma_trận được cho mà chỉ phụ_thuộc vào số lần thực_hiện phép thử .
+Xét bước thứ 2 , ta thấy rằng phép thử Freivalds chỉ_có ý_nghĩa nếu_như ta có_thể thực_hiện phép_nhân A_B v trong thời_gian O(N2) (vì phép_nhân C v đã đạt sẵn O(N2) rồi) .
+Thay_vì thực_hiện tuần_tự từ trái qua phải sẽ cần O(N3) , ta thực_hiện theo thứ_tự A (B v) .
+Vì kết_quả của phép_nhân B và v là một ma_trận N 1 nên độ phức_tạp tổng_cộng sẽ là O(N2) .
+Trên tất_cả các phép thử , độ phức_tạp là O(k_N2) .
+Bài_tập áp_dụng HackerEarth - PK and interesting language HackerEarth - Long walks from Office to Home_Sweet_Home_HackerEarth - Tiles_HackerEarth - ABCD_Strings_HackerEarth - Mehta and the difficult task HackerEarth - Mehta and the Evil_Strings_VOJ - PA06ANT_VOJ - CONNECTE

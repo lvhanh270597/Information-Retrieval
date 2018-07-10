@@ -1,0 +1,21 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta giải bài_toán sau : Có hai cách giải mà chúng_ta có_thể nghĩ đến ngay : Bài này giới_thiệu phương_pháp để giải bài_toán trên trong thời_gian .
+Ý_tưởng cơ_bản của thuật_toán như_sau : Chọn một phần_tử (bất kì) , , và chia mảng ra thành hai phần (trong thời_gian ) : phần 1 gồm những phần_tử nhỏ hơn và phần 2 gồm những phần_tử lớn hơn (hoặc bằng) .
+Ta có hai trường_hợp : Giả mã của thuật_toán chia mảng với phân_tử chọn (pivot) là , trả_lại vị_trí mới cuả phần_tử có_giá trị trong mảng .
+Dưới_đây là code C của giả mã trên .
+Như_vậy ta đã thực_hiện xong bước_một : phân_chia mảng bằng phần_tử bất_kì .
+Sau_đây là giả mã thực_hiện bước : Dưới_đây là code C của giả mã trên .
+Code đầy_đủ với phần_tử pivot là phần_tử giữa của mảng được cho ở cuối bài viết . Nhìn vào ta dễ thấy thời_gian chạy trong trường_hợp tồi nhất như_sau : Trường_hợp xấu nhất khi , khi đó , không tốt hơn thuật_toán vét cạn .
+Tuy_nhiên , nếu ta chọn pivot sao_cho với , ta sẽ có Giải công_thức trên ta được .
+Trong những trường_hợp không biết chọn phần_tử nào_là pivot tốt , cách đầu_tiên có_thể nghĩ tời là chọn một phần_tử của mảng làm pivot với xác_suất như_nhau .
+Với bài_toán này , chọn ngẫu_nhiên sẽ cho ta thuật_toán với thời_gian là .
+Chi_tiết phân_tích bạn_đọc có_thể . Blum , Floyd , Pratt , Rivest và Tarjan 2 đề_xuất một_cách khác để chọn pivot như_sau : nếu số phần_tử của mảng là lớn ( trong giả mã) , ta chia mảng thành nhóm , mỗi nhóm gồm 5 phần_tử .
+Dùng thuật_toán vét cạn để tìm median của mỗi nhóm .
+Sau bước đó , ta thu được mảng gồm phần_tử là median của nhóm .
+Gọi đệ_quy để tìm median của mảng này .
+Lấy median làm pivot cho mảng ban_đầu .
+Giả mã như_sau : Dưới_đây là code C của giả mã trên .
+Code đầy_đủ được cho ở cuối bài viết .
+Ta thấy tìm median của medians mất thời_gian .
+Vì phần_tử pivot là median của median , mỗi bước đệ_quy ta sẽ bỏ_bớt được ít_nhất_là phần_tử () .
+Như_vậy tổng thời_gian của thuật_toán là : Giải trên , ta được . Dưới_đây là code và dữ_liệu test : , Bài viết dự chủ yêu trên notes của Jeff_Erickson , , Trackback link : Powered by and

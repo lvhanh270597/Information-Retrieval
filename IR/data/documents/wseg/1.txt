@@ -1,0 +1,71 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài , chúng_ta đã nghiên_cứu cách thiết_kế bảng_băm và ba phương_pháp giải_quyết xung_đột cơ_bản : xích ngăn_cách (chaining) , băm địa_chỉ mở (open addressing) và băm hoàn_hảo (perfect hashing) .
+Bài này chúng_ta sẽ phân_tích kĩ hơn phương_pháp xích ngăn_cách .
+Cụ_thể chúng_ta sẽ tìm câu trả_lời cho các câu_hỏi : Câu trả_lời cho câu_hỏi đầu_tiên sẽ cho chúng_ta biết , khi chúng_ta tìm_kiếm một khóa thì trung_bình chúng_ta sẽ mất bao_nhiêu thời_gian .
+Câu trả_lời cho câu_hỏi thứ_hai sẽ cho chúng_ta biết trong trường_hợp , chúng_ta sẽ mất bao_nhiêu thời_gian để tìm_kiếm một khóa .
+Gọi_là số phần_tử ta muốn lưu_trữ trong bảng băm; các phần_tử này xuất_phát từ một_tập gốc .
+Bảng_băm của chúng_ta có kích_thước .
+Để băm vào bảng , ta sử_dụng một hàm ; hàm_băm này được chọn ngẫu_nhiên từ một họ hàm_băm .
+Bằng cách chọn ngẫu_nhiên như_vậy , thỏa_mãn : Dấu ở đây có_nghĩa là "tỉ lệ với" , i . e , với một hằng_số nào_đó .
+Điểm quan_trọng nhất mà bạn_đọc cần nhớ ở đây : chúng_ta không có bất_kì giả_sử nào về dữ_liệu (i . e chúng_ta sẽ không giả_sử dữ_liệu đầu_vào là ngẫu nhiên) .
+Tất_cả các phân_tích ngẫu_nhiên ở đây đến từ việc chọn hàm_băm ngẫu_nhiên .
+Do_đó , nếu ta có định_sẵn một hàm_băm thì tất_cả các phân_tích dưới_đây đều vô_nghĩa .
+Nhắc_lại hệ_số tải : Cố_định một khóa .
+Gọi_là chiều_dài của danh_sách lưu khóa .
+Gọi_là biến ngẫu_nhiên trong đó nếu được băm vào cùng ô với và nếu ngược_lại .
+Do là biến ngẫu_nhiên , ta có : Ngoài_ra , ta có_thể biểu diễ dưới dạng các biến như_sau : Do_đó , theo tính tuyến_tính của kì_vọng : Như_vậy , chiều_dài trung_bình của một xích trong bảng_băm tỉ_lệ với hệ_số tải . Để phân_tích chiều_dài của danh_sách dài nhất , ta sẽ xem_xét mô_hình ném bóng vào rổ () dưới_đây .
+Mô_hình này sẽ tương_ứng với trường_hợp hệ_số tải .
+Trước_khi trả_lời câu_hỏi trên , chúng_ta sẽ xem_xét một_vài câu_hỏi đơn_giản hơn để có_một cách nhìn sâu hơn về bài_toán này .
+Một_số bạn có_lẽ quen với cách kí_hiệu_số tổ_hợp .
+Trong bài này mình dùng kí_hiệu để nhất_quán với các kí_hiệu của Wikipedia .
+Xác_suất để rổ 1 có ít_nhất một quả_bóng là bao_nhiêu ?
+Xác_suất khi ném ngẫu_nhiên một quả_bóng vào rổ 1 là .
+Do_đó , xác_suất khi ta ném ngẫu_nhiên (độc lập) quả_bóng mà không quả nào vào rổ 1 là .
+Sử_dụng xấp_xỉ , ta có xác_suất không quả_bóng nào vào rổ 1 là .
+Như_vậy , xác_suất để rổ 1 có ít_nhất 1 quả_bóng là .
+Xác_suất để rổ 1 có quả_bóng là bao_nhiêu ?
+Ở trên , ta sử_dụng xấp_xỉ (xem ) : Xác_suất để rổ 1 có quả_bóng là bao_nhiêu ?
+Xác_suất để tồn_tại một rổ bất_kì trong số rổ có quả_bóng là bao_nhiêu ?
+Bây_giờ chúng_ta có_thể trả_lời một_số câu_hỏi thú_vị hơn về mô_hình này .
+Ta sẽ chứng_minh phiên_bản dễ hơn một_chút : với xác_suất , mọi rổ có không quá quả_bóng .
+Cách chứng_minh_ta sẽ trình_bày có_thể áp_dụng (bằng một sửa_đổi nhỏ) để chứng_minh Lemma 1 .
+Chi_tiết coi_như bài_tập cho bạn_đọc . Ta sẽ tìm xác_suất để một rổ có ít_nhất quả_bóng .
+Áp_dụng câu_hỏi 4 với , ta có : Do_đó , xác_suất để có tối_đa quả_bóng là . Lemma 1 cho chúng_ta biết , nếu sử_dụng xích ngăn_cách khi hệ_số tải , với xác_suất cao , danh_sách dài nhất có phần_tử .
+Câu_hỏi còn_lại là với xác_suất cao , danh_sách dài nhất có bao_nhiêu phần_tử ?
+Chứng_minh Lemma 2 khó hơn Lemma 1 rất nhiều .
+Bạn_đọc quan_tâm có_thể tham_khảo thêm tại 1 (Lemma 5 . 12) . Kết_hợp Lemma 1 và 2 , ta suy ra với xác_suất , danh_sách dài nhất có phần_tử .
+Nếu ta ném quả_bóng vào cái rổ khi thì với xác_suất cao , rổ đầy nhất sẽ có khoảng quả_bóng .
+Chi_tiết xem thêm tại 3 .
+Trong mô_hình ném bóng vào rổ , khi ném một quả_bóng , thay ném ngẫu_nhiên vào rổ bất_kì , ta sẽ chọn ra ngẫu_nhiên 2 rổ và đặt quả_bóng vào rổ có ít bóng hơn .
+Câu_hỏi mà chúng_ta quan_tâm là : Ta sẽ chứng_minh : Chứng_minh một_cách đầy_đủ Lemma 3 không_hề đơn_giản .
+Phương_pháp chứng_minh hay sử_dụng cho bài_toán này là quy_nạp theo lớp (layered induction) (Xem thêm tại 1 , Theorem 14 . 1) .
+"Chứng minh" mình sẽ trình_bày dưới_đây (5) đã đơn_giản_hóa rất nhiều và hi_vọng sẽ cho bạn_đọc một_cách nhìn về bài_toán .
+"Chứng minh" này không_phải là một chứng_minh toán_học đầy_đủ .
+Gọi chiều_cao của một quả_bóng là nếu quả_bóng đó là quả_bóng thứ được đưa_vào rổ (chứa nó) .
+Do rổ có ít_nhất quả_bóng sẽ chứa ít_nhất một quả_bóng có chiều_cao ít_nhất_là , ta có : Số quả_bóng có chiều_cao nhiều hơn số rổ có ít_nhất quả bóngGọi là số rổ có ít_nhất quả_bóng và đặt .
+Một quả_bóng có chiều_cao ít_nhất khi và chỉ khi ta chọn được hai rổ có ít_nhất quả_bóng .
+Xác_suất đó là .
+Do_đó : Do , ta có_công thức đệ_quy : Do ta chỉ_có tối_đa rổ có ít nhât quả_bóng , suy ra .
+Giải công_thức đệ_quy ta được .
+Ta chọn sao_cho (tương đương với ) , ta suy ra (dpcm) . 1 Michael_Mitzenmacher and Eli_Upfal .
+.
+Cambridge_University_Press , New_York , NY , USA , 2005 .
+2 Shuchi_Chawla .
+.
+University of Wisconsin , 2007 .
+3 Martin_Raab and Angelika_Steger .
+.
+In_RANDOM 98 , Springer-Verlag , 159-170 , 1998 .
+4 Michael_Mitzenmacher .
+Parallel and Distributed_Systems , IEEE_Transactions on 12 . 10 (2001) : 1094-1104 .
+5 Anupam_Gupta .
+, CMU .
+6 Udi_Wieder .
+.
+Windows on Theory blog post , Accessed_May/2016 .
+7 Richard_M .
+Karp , Michael_Luby , and Friedhelm_Meyer auf der Heide .
+.
+In_Proceedings of the twenty-fourth annual ACM symposium on Theory of computing (STOC 92) .
+ACM , New_York , NY , USA , 318-326 , 1992 .
+, , , , , Trackback link : Powered by and

@@ -1,0 +1,80 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong loạt bài này mình giới_thiệu các thuật_toán thao_tác với các xâu kí_tự .
+Chúng_ta bắt_đầu bằng bài_toán cơ_bản nhất : tìm sự xuất_hiện của một xâu kí_tự trong một văn_bản .
+Ví_dụ : đoạn văn_bản và xâu mẫu , xuất_hiện ở vị_trí 7 của văn_bản .
+Trong ví_dụ này bảng_chữ_cái gồm các kí_tự latin viết thường . Chúng_ta bắt_đầu với thuật_toán trâu_bò (brute force) , đôi_khi còn gọi_là vét cạn .
+Các thuật_toán trâu_bò thường chậm tuy_nhiên dễ thiết_kế , cài_đặt và thường là bước_đầu tiên trước_khi chúng_ta phát_triển các thuật_toán cải_tiến cao_cấp hơn .
+Ý_tưởng của thuật_toán trâu_bò khá đơn_giản như_sau : bắt_đầu_từ kí_tự đầu_tiên của văn_bản , dịch dần xâu về bên phải từng kí_tự một .
+Nếu ta dịch đến kí_tự thứ , so_sánh với .
+Nếu ta tìm_thấy xâu mẫu , i . e , , ta trả về vị_trí .
+Nếu_không ta tiếp_tục dịch sang vị_trí .
+Giả mã như_sau : Code của thuật_toán bằng C : Có_thể thấy với mỗi vòng_lặp , chúng_ta mất tối_đa phép so_sánh để kiểm_tra xâu có xuất_hiện trong văn_bản hay_không .
+Do_đó : Thuật_toán được Knuth , Morris và Pratt phát_triển vào năm 1977 là thuật_toán tìm_kiếm có thời_gian tuyến_tính .
+Thuật_toán này chạy khá tốt trong thực_tế , tuy_nhiên cũng khá khó_hiểu , vì_thế khó_gỡ lỗi .
+Trước_hết_mình trình_bày một biến_thể của thuật_toán (biến thể này được trình_bày trong 1) với thời_gian tính cỡ .
+Thuật_toán này có hai điểm mạnh : Mình khuyến_khích bạn_đọc thêm bài về để hiểu hơn về thuật_toán KMP . Ý_tưởng của thuật_toán KMP dựa trên quan_sát rằng trong thuật_toán trâu_bò có nhiều bước so_sánh dư_thừa .
+Cụ_thể , khi so_sánh phần_tử với , nếu , ta đã có thông_tin : Thuật_toán trâu_bò dịch sang lên 1 đơn_vị bằng cách và thiết_lập biến chạy trên xâu mẫu mà thông_tin này .
+Trong phần này , thay_vì nói "dịch xâu mẫu lên đơn vị" ta sẽ nói "lùi biến chạy về vị_trí " .
+Hai cách nói này về cơ_bản là tương_đương . Như_vậy tại_sao thông_tin này lại có_ích ?
+Xét văn_bản và xâu mẫu trong ví_dụ đầu_tiên .
+Khi so_sánh với , chúng_ta thấy hai xâu này không khớp tại_vị trí () .
+Thay_vì thiết_lập biến chạy như trong thuật_toán trâu_bò , ta thiết_lập và tiếp_tục so_sánh với .
+Cứ làm như_vậy , thì mỗi vòng_lặp biến chạy trên văn_bản luôn tăng và do_đó thời_gian tính_toán sẽ là nếu_như ta có_thể tính được vị_trí cần lùi lại của biến chạy trong thời_gian .
+Tại_sao trong ví_dụ trên ta lại lùi biến chạy về vị_trí .
+Quan_sát kĩ_ta thấy chúng_ta lùi về vị_trí là do , tức_là kết_thúc tại của khớp với bắt_đầu_từ của .
+Tổng_kết lại , quy_luật lùi biến chạy như_sau : : Lùi về vị_trí sao_cho tiền_tố kết_thúc tại của (chính là ) khớp với hậu_tố bắt_đầu tại của (chính là ) và độ_dài của đoạn khớp này (chính là ) lớn nhất . Ta gọi kí_tự là kí_tự .
+Trong ví_dụ trên , nếu ta lùi lại thì khới với .
+Nếu ta lùi lại thì khới với và độ_dài đoạn khớp này là .
+Tương_tự , nếu ta lùi thì khới với và độ_dài đoạn khớp là .
+Theo luật trên , ta lùi về vị_trí sao_cho độ_dài đoạn khớp là lớn nhất , do_đó , ta lùi .
+Nhận_xét thấy vị_trí lùi lại phụ_thuộc vào hai yếu_tố : Trường_hợp kí_tự chốt không xuất_hiện trong , ta lùi lại (hay nói_cách_khác ta dịch lên đơn vị) .
+Ví_dụ nếu thì ta có_thể dịch lên đơn_vị .
+Dựa trên nhận_xét trên , ta sẽ tính trước_mảng trong đó là giá_trị ta sẽ lùi lại nếu là kí_tự thứ trong bảng_chữ_cái và vị_trí xảy_ra không khớp là trong xâu mẫu .
+Ví_dụ trong ví_dụ trên (tương đương với nếu ) và , thì .
+Giả_sử_ta đã tính được bảng bằng thủ_tục (ở dưới) , thuật_toán tìm xâu sẽ như_sau : Code của giả mã bằng C : Với mỗi vòng_lặp ta mất thời_gian , do_đó , tổng thời_gian là trong đó là thời_gian tính bảng .
+Để tính bảng , ta sử_dụng chính ý_tưởng lùi biến chạy ở trên kết_hợp với quy_hoạch_động . Gọi_là mảng trong đó là chỉ_số lớn nhất sao_cho khớp với .
+Gọi_là chỉ_số của trong bảng_chữ_cái .
+và có_thể được tính thông_qua dựa trên công_thức quy_hoạch_động sau : Khởi tạo với mọi và (why ? ) .
+Giả mã như_sau : Code của giả mã bằng C : Do và chỉ phụ_thuộc vào , ta có_thể tiết_kiệm một_chút bộ_nhớ bằng cách chỉ dùng một biến thay_vì dùng cả mảng .
+Dễ thấy thuật_toán trên mất thời_gian để cập_nhật bảng , do_đó : Trong thuật_toán trước , sự phụ_thuộc thời_gian vào kích_thước bảng_chữ_cái dường_như dễ_hiểu vì kí_tự chốt có_thể là bất_kì kí_tự nào trong bảng_chữ_cái .
+Để xóa_bỏ sự phụ_thuộc này , ta chọn kí_tự chốt là .
+Do , kí_tự này luôn xuất_hiện trong .
+Quy_luật lùi biến chạy có_thể phát_biểu lại như_sau : : Lùi về vị_trí sao_cho tiền_tố kết_thúc tại của (chính là ) khớp với hậu_tố bắt_đầu tại của (chính là ) và độ_dài của đoạn khớp này (chính là ) lớn nhất . Sự khác_biệt cơ_bản giữa quy_luật 1 và quy_luật 3/2 đó là : sau mỗi lần lùi biến chạy , quy_luật 1 luôn đảm_bảo và do_đó ta tiếp_tục xét kí_tự tiếp_theo .
+Còn quy_luật 3/2 không đảm_bảo điều này , do_đó , sau mỗi lần lùi biến chạy , nếu , ta phải tiếp_tục lùi biến chạy một_lần nữa (nghe hơi giống đệ quy) .
+Dường_như thuật_toán này mất nhiều phép so sa_nhơn thuật_toán trước .
+Tuy_nhiên , phân_tích dưới_đây chỉ ra rằng số lần lùi lại như_vậy không nhiều . Do , quy_luật trên có_thể được phát_biểu lại như_sau : : Lùi về vị_trí sao_cho tiền_tố kết_thúc tại của (chính là ) khớp với hậu_tố bắt_đầu tại của (chính là ) và độ_dài của đoạn khớp này (chính là ) lớn nhất . Trong ví_dụ trên , nếu ta lùi lại thì tiền_tố của khới với hậu_tố .
+Nếu ta lùi lại thì tiền_tố của với hậu_tố của và độ_dài đoạn khớp này là .
+Tương_tự , nếu ta lùi thì với và độ_dài đoạn khớp là .
+Theo luật trên , ta lùi về vị_trí sao_cho độ_dài đoạn khớp là lớn nhất , do_đó , ta lùi . Theo quy_luật 2 , ta có_thể thấy vị_trí lùi lại chỉ phụ_thuộc vào vị_trí xảy_ra không khớp trong (chính là ) , không phụ_thuộc vào .
+Gọi_là vị_trí phải lùi về khi .
+Giả_sử_ta đã tính được bằng thủ_tục (ở dưới) , thuật_toán tìm xâu sẽ như_sau : Code_bằng C của giả mã : Giả_sử thủ_tục () sử_dụng phép so_sánh , ta sẽ chứng_minh rằng số phép so_sánh của thuật_toán () là .
+Không dễ để có_thể thấy được điều này vì sự xuất_hiện vòng_lặp while bên_trong vòng_lặp for .
+Trước_hết ta thấy sau mỗi phép so_sánh bằng () , cả và đều tăng lên 1 .
+Do_đó , số phép so_sánh bằng tối_đa là .
+Vòng_lặp while giảm_giá_trị của mỗi khi ta bắt_gặp một_phép so_sánh không_bằng () .
+Tuy_nhiên , số_lượng giảm của không_thể vượt_quá giá_trị mà đã tăng lên (sau mỗi phép so_sánh bằng) qua các vòng_lặp trước đó .
+Điều đó có_nghĩa là tổng_số phép so_sánh không_bằng không_thể vượt_quá tổng_số phép so_sánh bằng , do_đó , tối_đa là .
+Như_vậy , tổng_số phép so_sánh là .
+có_thể được tính dựa vào định_nghĩa của và quy_luật 2 trong thời_gian .
+Cụ_thể , để tính , ta sẽ kiểm_tra tất_cả các chỉ_số từ đến sao_cho khớp với và chọn ra chỉ_số lớn nhất thỏa_mãn điều_kiện này .
+Tuy_nhiên , Knuth-Morris-Pratt chỉ ra rằng bảng có_thể được tính trong thời_gian bằng cách sửa_đổi thuật_toán đối_sánh với chính nó .
+Code_bằng C của giả mã : Tại_sao đối_sánh với chính nó lại cho ra kết_quả ta mong_muốn .
+Về_mặt trực_quan , để_ý quy_luật 3/2 , nếu thay trong quy_luật này bởi , và bởi , giá_trị trong quy_luật 3/2 chính là .
+Thủ_tục về cơ_bản thực_thi quy_luật này , do_đó , ta có_thể sử_dụng chính thủ_tục này để tính . Một_cách hiểu khác của thủ_tục này là như_sau : giả_sử , ta biết rằng .
+Do_đó , ta tìm các , bắt_đầu_từ ứng_viên lớn nhất (chính là ) , sao_cho : Nếu thì chính là .
+Nếu , ứng_viên tiếp_theo sẽ là (theo định_nghĩa của bảng ) , do_đó ở dòng () , ta gán .
+Do ta xét các ứng_cử_viên từ lớn đến nhỏ , giá_trị tìm được sẽ tương_ứng với đoạn khớp lớn nhất .
+Phân_tích tương_tự như_trên , số phép so_sánh trong thủ_tục là .
+Do_đó , Ví_dụ : bảng ứng với mẫu như_sau : Code : , , 1 Sedgewick , R . , Wayne , K .
+(2011) .
+, Chapter 5 .
+Addison-Wesley .
+ISBN : 978-0-321-57351-3 2 Knuth , Donald_E . , James_H .
+Morris , Jr , and Vaughan_R .
+Pratt .
+SIAM_Journal on Computing 6 . 2 (1977) : 323-350 .
+3 Jeff_Erickson , , UIUC .
+4 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 32 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 , , Trackback link : Powered by and

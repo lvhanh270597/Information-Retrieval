@@ -1,0 +1,126 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Xét bài_toán sau : Có 2 cách mà ta nghĩ đến ngay : (i) dùng mảng để biểu_diễn hoặc (ii) dùng .
+Cách (ii) có_lẽ không phù_hợp vì thao_tác Access( , k) mất thời_gian nếu_như có phần_tử .
+Với cách (i) , ta có_thể giải_quyết thao_tác Access( , k) bằng cách duy_trì một mảng đã sắp_xếp và sử_dụng .
+Tuy_nhiên , ta lại gặp vấn_đề với hai thao_tác sau . Trong bài này , ta sẽ tìm_hiểu cấu_trúc cây nhị_phân tìm_kiếm cân_bằng (blanched binary search tree) để biểu_diễn .
+Với cấu_trúc này , ta có_thể thực_hiện mỗi thao_tác trên trong thời_gian .
+Cây có_thể coi là một đồ_thị_đơn không có chu_trình .
+Ta thường chỉ_định một nút đặc_biệt trong cây , kí_hiệu , mà ta gọi_là của cây .
+Các nút có bậc 1 (chỉ kề với một cạnh) trong cây , ngoại_trừ nút gốc , được gọi_là các nút lá (leaf node) .
+Nút không_phải là nút lá ta gọi_là của cây (internal node) .
+Với mỗi cạnh nối hai nút và , nút nào gần gốc hơn thì ta gọi nút đó là của nút còn_lại .
+Ta dùng để kí_hiệu nút cha của một nút .
+CHú_ý , gốc không có nút cha và ta gán .
+Ta gọi_là nút con của nút . Một cây được gọi_là nếu với mỗi nút trong có hai nút con .
+Thông_thường ta biểu_diễn một cây nhị_phân như Figure 1(a) .
+Cây trong khoa_học máy_tính thường được biểu_diễn ngược với cây trong tự nhiên; gốc ở trên còn lá ở dưới .
+Đôi_khi , ta định_hướng cạnh từ nút cha tới nút con (hoặc ngược lại) để quan_hệ cha-con trực_quan hơn .
+Từ_đây về cuối bài , ta sử_dụng khái_niệm cây để ám_chỉ cây nhị_phân , vì ta chỉ tìm_hiểu cây nhị_phân trong bài này .
+Ta sử_dụng cây để tổ_chức dữ_liệu bằng cách chèn các phần_tử dữ_liệu vào mỗi nút của cây và mỗi nút của cây được gán một khóa .
+Khóa không nhất_thiết phải khác_nhau , tuy_nhiên , để trình_bày đơn_giản , ta sẽ giả_sử khóa của các nút đôi một khác_nhau .
+Để hỗ_trợ tìm_kiếm , ta thường tổ_chức dữ_liệu trên cây sao_cho khóa của của nút cha lớn hơn khóa của nút con trái và nhỏ hơn khóa của nút con phải .
+Ta gọi tính_chất này là tính_chất và gọi cây nhị_phân như_vậy là .
+Figure 1(b) minh_họa một cây nhị_phân tìm_kiếm .
+(a) một cây nhị_phân và (b) một cây nhị_phân tìm_kiếm : Nhắc_lại , ta sẽ dùng để kí_hiệu nút cha của trong cây .
+Ta dùng và lần_lượt để kí_hiệu nút con trái và nút con phải của nút .
+Các giá_trị này sẽ là nếu_không có_con trái (hoặc con phải) .
+Ta sử_dụng để kí_hiệu khóa của nút .
+Khi lập_trình , ta có_thể lưu con_trỏ cho mỗi nút .
+Tuy_nhiên , đa_phần các cấu_trúc cây nhị_phân không cần đến trường này mà ta chỉ lưu con_trỏ của 2 nút con và .
+Việc tiết_kiệm con_trỏ không chỉ vấn_đề bộ_nhớ , mà_còn tiết_kiệm được cả thời_gian (cập nhật con_trỏ này) .
+Trong bài này , mình sẽ không sử_dụng con_trỏ trong giả mã mà chỉ dùng nó như một kí_hiệu tới nút cha (trong chứng minh) . Giả_sử_ta đã có_một cây nhị_phân tìm_kiếm để biểu_diễn , với khóa của mỗi nút là một_số nguyên trong .
+Sử_dụng tính_chất tìm_kiếm (quan hệ giữa khóa của cha và hai nút con) , Ta có_thể thực_hiện tìm_kiếm như_sau : Tạm_thời gác lại hai thao_tác chèn và xóa .
+Liệu thao_tác Access( , k) với biểu_diễn cây nhị_phân tìm_kiếm như_trên có hiệu_quả ?
+Figure 2 cho ta câu trả_lời là không .
+Trong trường_hợp xấu nhất , ta phải trả thời_gian để tìm_kiếm một nút lá của cây nếu_như cấu_trúc cây trong giống một đường_đi đơn (path) như Figure 2 .
+Một cây nhị_phân tìm_kiếm với độ sâu 4 .
+Ta có_thể mở_rộng ra cây nhị_phân tìm_kiếm có độ sâu . Do_đó , ta cần một_cách tổ_chức cây sao_cho đường_đi từ gốc của cây đến một nút lá bất_kì đều không quá dài , i . e , .
+Từ_đó ta có khái_niệm cây cân_bằng , là cây có độ sâu (depth) không quá lớn .
+Ta định_nghĩa của một nút , kí_hiệu , là độ_dài là độ_dài (số cạnh) trên đường_đi (duy nhât) từ gốc đến nút .
+của cây , kí_hiệu , được định_nghĩa_là độ sâu lớn nhất trong số các nút lá của cây .
+Theo định_nghĩa , độ sâu của nút gốc là . Một khái_niệm tương_tự độ sâu là (height) .
+Chiều_cao của mọi nút lá là và chiều_cao của một nút trong được định_nghĩa từ nút con của nó như_sau : Chiều_cao của cây , kí_hiệu , được định_nghĩa_là chiều_cao của nút gốc .
+Từ định_nghĩa của chiều_cao và độ sâu , ta suy ra : Bạn_đọc cần phân_biệt rõ hai khái_niệm chiều_cao và độ sâu .
+Độ sâu được định_nghĩa từ gốc xuống lá còn chiều_cao được định_nghĩa từ lá lên gốc .
+: Để dễ_dàng trong việc phân_tích cấu_trúc cây , ta sẽ giả mọi nút có chứa dữ_liệu (kể cả lá) có hai nút con .
+Điều này có_thể được đảm_bảo bằng cách thêm 2 nút vào mỗi nút lá , và thêm 1 nút vào mỗi nút trong nếu nút trong đó có đúng 1 nút con .
+Xem minh_họa trong Figure 3(a) .
+Theo quy_ước trên , mọi nút lá của cây là .
+Có nhiều cách để định_nghĩa cây cân_bằng : cân_bằng theo chiều_cao , cân_bằng theo trọng số , cân_bằng theo hạng (rank) , nhưng mục_tiêu chung là đảm_bảo độ sâu của cây là .
+Mỗi cách định_nghĩa cân_bằng thường tương_ứng với một_cách thực_thi riêng .
+Tìm một_cách định_nghĩa cân_bằng để cân_bằng giữa các yếu_tố : độ sâu , bộ_nhớ và tính đơn_giản trong thực_thi , vẫn đang là một chủ_đề nghiên_cứu hiện_nay .
+Dưới_đây mình giới_thiệu loại cây cân_bằng phổ_biến : cây AVL và cây đỏ-đen (red-black tree) .
+được phát_triển bởi Adelson-Velsky và Landis 2 , sử_dụng chiều_cao (height) làm tiêu_chuẩn cân_bằng .
+Trong bài sau ta sẽ tìm_hiểu cách_thức thực_thi để đảm_bảo tính chấ ttrong phương_trình .
+Một_số tính_chất của cây AVL_ta sẽ nghiên_cứu ở đây .
+Đầu_tiên là chiều_cao của cây AVL .
+Theo quy_ước , mọi nút lá là (và có chiều_cao 0) .
+Do_đó , mọi nút trong đều có chiều_cao dương .
+Với , và .
+Bằng quy_nạp (chi tiế tcoi như bài_tập cho bạn đọc) , ta có_thể chứng_minh được một cây AVL chiều_cao có không quá nút trong .
+Từ_đó ta suy ra cận_dưới .
+Để chứng_minh cận_trên , ta cần phải xét xem một cây AVL chiều_cao có bao_nhiêu nút trong .
+Phương_pháp chứng_minh dưới_đây được đề_xuất bởi Knuth 3 (trang 453) . Gọi_là cây AVL chiều_cao có_số nút trong ít_nhất trong số các cây AVL chiều_cao .
+Gọi_là số nút của .
+Theo , ta có_thể giả_sử cây_con trái của gốc có chiều_cao và cây_con phải của gốc có chiều_cao (tại sao ta có_thể giả_sử như_vậy ? ) .
+Từ_đó ta có_công thức truy_hồi : và .
+Nếu đặt , ta có và .
+Đây chính là , kí_hiệu , dịch sang trái 1 đơn_vị .
+Do_đó : Bằng một_vài biến_đổi đại_số nhỏ , ta sẽ có dpcm . Trong thực_thi cây AVL , chúng_ta cần một trường (một số nguyên) để lưu_trữ chiều_cao của mỗi nút (khoảng 8 bít là đủ) .
+Tùy vào ứng_dụng mà số_lượng bít này có_thể coi là nhiều hay ít .
+Trong cây đỏ-đen dưới_đây , mỗi nút chỉ_cần đúng 1 bít để duy_trì thông_tin cân_bằng .
+Do_đó , so_với cây AVL , cây đỏ-đen tiết_kiệm được nhiều bộ_nhớ lưu_trữ hơn . Cây đỏ-đen được Guibas và Sedgewick 4 giới_thiệu năm 1978 .
+Trước_hết ta định_nghĩa cây đỏ-đen thông_qua hạng (rank) .
+Cách định_nghĩa này , tuy chả liên_quan gì đến cái tên đỏ-đen , nhưng cho_phép chứng_minh một_số tính_chất về chiều_cao trở_nên đơn_giản hơn (sử dụng quy_nạp là đủ) .
+Sau_đó ta sẽ liên_hệ rank và màu_sắc của nút . Một cây nhị_phân tìm_kiếm được gọi_là cây đỏ-đen nếu tồn_tại một hàm gán cho mỗi nút của cây một_số nguyên không âm sao_cho với mọi nút : Ví_dụ một_cách gán cho mỗi nút của cây ở Figure 1(b) được minh_họa trong Figure 3(b) (a) Cây nhị_phân thu được sau khi thêm các nút vào cây nhị_phân trong Figure 1(b) để thu được cây theo quy_ước .
+(b) Cây nhị_phân với hàm .
+Số màu đỏ của mỗi nút tương_ứng với rank của nút đó .
+Chứng_minh rằng không tồn_tại hàm với 3 tính_chất kể_trên cho cây trong Figure 3(a) . Chú_ý , theo quy_ước , các nút lá sẽ có rank 0 .
+Việc kiểm_tra hàm gán như_trên thỏa_mãn 3 tính_chất coi_như bài_tập cho bạn_đọc .
+Từ_tính chất của rank , ta suy ra các tính_chất (tương đương) sau của màu_sắc (xem minh_họa trong Figure 4 . ) : Một cây_đỏ đen được chuyển_đổi từ cây nhị_phân với hàm rank trong Figure 3b .
+Số màu đỏ trên mỗi nút là rank của nút đó . Ngược_lại , từ một cây đỏ-đen với màu_sắc của mỗi nút , ta có_thể suy ngược_lại hàm rank bằng cách gán cho các nút lá rank 0 và rank của các nút trong khác được suy ra (bằng quy nạp) từ màu_sắc và rank của các nút con của nó .
+Chi_tiết coi_như bài_tập cho bạn_đọc . Tính_chất màu_sắc của cây_đỏ đen cho_phép ta chỉ dùng 1 bít để lưu_trữ màu_sắc tại mỗi nút , thay_vì một_số nguyên để lưu_trữ giá_trị height như trong cây AVL tree .
+Cách lưu_trữ này tiết_kiệm được rất nhiều bộ_nhớ .
+Cấu_trúc trong Java chính là sử_dụng cây đỏ-đen .
+Ta chứng_minh bằng phương_pháp quy_nạp .
+Dễ thấy Theorem 1 đúng cho các nút lá (có rank 0 và height 0) .
+Với nút có , theo (2) , nút con của có hoặc .
+Phần còn_lại của chứng_minh_ta sẽ xét các trường_hợp , và chi_tiết coi_như bài_tập cho bạn_đọc . Áp_dụng Theorem 2 cho nút gốc , ta suy ra nút gốc có chiều_cao không quá và ít_nhất nút con_cháu .
+Do cây có tối_đa nút trong , nó có không quá nút (tính cả các nút lá) , ta suy ra : Chứng_minh chặt_chẽ hơn ta có_thể suy ra độ_cao của cây là không quá .
+Logarithm ở đây là base 2 .
+So_với cậy AVL , chiều_cao của cây đỏ-đen nói_chung là lớn hơn (xem lại Theorem 1) .
+Tuy_nhiên , cây AVL sử_dụng nhiều bộ_nhớ hơn .
+Trong bài sau ta sẽ thấy , thực_thi cây đỏ-đen phức_tạp hơn thực_thi cây AVL rất nhiều . 1 R .
+E .
+Tarjan .
+.
+Society for Industrial and Applied_Mathematics , 1983 .
+2 G .
+Adelson-Velsky and E .
+Landis .
+.
+Proceedings of the USSR_Academy of Sciences (in Russian) .
+146 : 263–266 .
+English translation by Myron_J .
+Ricci in Soviet_Math .
+Doklady , 3 : 1259–1263 , 1962 .
+3 D .
+Knuth .
+.
+Addison-Wesley , 1997 .
+4 L .
+J .
+Guibas and R .
+Sedgewick .
+.
+Proceedings of the 19th Annual_Symposium on Foundations of Computer_Science .
+pp .
+8–21 .
+1978 .
+, , , , , Trackback link : on Em chào anh , ở phần đặt vấn đề( Problem 1) thì dùng HashMap được không ạ ?
+Em nghĩ 3 thao thác tìm_kiếm , thêm , xóa thực_hiện trên HashMap đều hiệu_quả .
+on Hi bạn .
+Great question ! Vấn_đề của một (standard) Hashmap là bạn phải khởi tạo một map với N phần_tử và sau_đó không được phép thêm vào .
+Về_mặt kĩ_thuật , bạn có_thể thêm vào Hashmap sau_đó , nhưng bạn sẽ không đạt được thời_gian O(1) như mong_muốn nữa .
+Do_đó , Hashmap chỉ phù_hợp cho các bài_toán mà Access là thao_tác chủ_yếu , còn delete và update là các thao_tác ít_khi xảy_ra .
+Nếu cả 3 thao_tác này xảy_ra thường_xuyên thì cây cân_bằng là một cấu_trúc phù_hợp hơn ! HùngPowered by and

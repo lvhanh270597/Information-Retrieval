@@ -1,0 +1,83 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Quy lui là một kĩ_thuật thiết_kế giải_thuật dựa trên đệ_quy .
+Ý_tưởng của quay lui là tìm lời_giải từng bước , mỗi bước chọn một trong số các lựa_chọn khả_dĩ và đệ_quy .
+Ok . Có_vẻ vẫn chưa được rõ_ràng lắm .
+Giờ chúng_ta xem_xét một_vài ví_dụ và khái_quát_hóa phương_pháp quay lui .
+Bài_toán như_sau : : ta thấy để các quân hâu không ăn được nhau , ta phải xếp quân hậu trên hàng của bàn_cờ .
+Ta dùng mảng , trong đó nếu quân hậu ở hàng thứ được đặt ở cột . : giả_sử chúng_ta đã đặt được quân hậu , , trên hàng_đầu tiên sao_cho không có 2 quân hậu nào ăn được nhau .
+Cụ_thể các phần_tử sẽ khác và các phần_tử đều bằng .
+Chúng_ta tìm cách đặt một quân hậu trên hàng thứ .
+Ta sẽ thử lần_lượt đặt vào cột thứ .
+Nếu đặt vào cột thứ mà bị một trong quân hậu đã đặt trước đó ăn , ta sẽ thử cột thứ .
+Nếu ta tìm được một ví trí đặt khả_dĩ (a feasible position) , ta sẽ đặt vào đó và gọi đệ_quy để đặt_hàng thứ .
+Giả mã như_sau : Code của giả mã bằng C .
+Code đầy_đủ được cho ở cuối bài .
+là một_cách nhìn khác của thuật_toán .
+Tưởng_tượng ta có_một cây với gốc tượng_trưng cho cấu_hình ban_đầu của bàn_cờ (mảng gồm toàn 0) .
+Nút con của gốc , gọi_là nút level 1 , là các cách đặt một quân hậu vào hàng thứ 1 .
+Nút con của một nút level 1 , gọi_là nút level 2 , là các cách đặt khả_dĩ một quân hậu vào hàng thứ 2 .
+Cứ_như thế đến nút level () ta sẽ thu được một cây gọi_là cây đệu quy .
+Có_thể thấy rằng thuật_toán quay lui ở trên thực_ra chính là một_cách duyệt cây theo chiều_sâu cho_đến khi tìm được một nút ở level .
+Hình minh_họa sau với được lấy từ Có_thể thấy thuật_toán trên có thời_gian cỡ .
+Tuy_nhiên nếu bạn cần một_lời giải bất_kì , bài_toán này có_công thức giải và bạn chỉ mất thời_gian để in lời_giải ra () .
+Sudoku là một trò_chơi khá phổ_biến và chắc ai (readers of this bog) cũng biết .
+Trò_chơi như_sau : có_một hình_vuông được chia thành 9x9 ô_vuông con .
+Mỗi ô_vuông con có_giá trị trong_khoảng từ 1 đến 9 .
+Ban_đầu hình_vuông có_một số ô_vuông con cho trước (có điền sẵn số) và còn_lại là trống .
+Hãy điền các số_từ 1-9 vào các ô con lại sao_cho : hàng ngang là các số khác_nhau từ 1 đến 9 , hàng dọc là các số khác_nhau từ 1 đến 9 , và mỗi khối 3x3 chính là các số khác_nhau từ 1 đến 9 .
+Ví_dụ một câu_đố và lời gải tương_ứng như_sau (hình được lấy từ ) : Trong bài này mình sẽ giới_thiệu cách giải sudoku bằng thuật_toán quay lui .
+Ý_tưởng của thuật_toán cũng giống bài_toán quân hậu .
+Mỗi bước tìm tập các giá_trị khả_dĩ để điền vào ô trống , và sau_đó đệ_quy để điền ô tiếp_theo .
+Giả mã của thuật_toán (ở đây chú_ý mảng chỉ_có kích_thước ) .
+Thủ_tục kiểm trả xem giá_trị có khả_dĩ với ô không .
+Code của giả mã trên bằng C : Giả mã của thủ_tục như_sau : Code_bằng C của giả mã (code đầy_đủ được cho ở cuối bài) : Subset_Sum là một trong những .
+Trong bài này chúng_ta sẽ thiết_kế thuật_toán quay lui để giải bài_toán Subset_Sum .
+Ví_dụ : và .
+Lời_giải là true vì tập_con của có tổng_bằng 12 . Ý_tưởng của thuật_toán quay lui dựa trên quan_sát sau : xét một phần_tử , tồn_tại một dãy con có tổng_bằng nếu một trong hai điều_kiện sau là đúng : Giả mã như_sau : Code của giả mã bằng C : Ở mỗi bước của thuật_toán quay lui , ta gọi đệ_quy hai lần trên mảng con của với kích_thước nhỏ hơn 1 .
+Ta có : Code : , , , , UIUC .
+Cho một mảng phần_tử .
+Tìm một dãy dài nhất ( lớn nhất) các chỉ_số .
+Cho một dãy , tìm dãy con gia_tốc dài nhất của .
+Tìm công_thức đệ_quy cho bài_toán , dựa vào đó thiết_kế giải_thuật quay lui .
+Hãy sửa_đổi thuật_toán quay lui ở trên của bài_toán Subset_Sum để in ra ít_nhất một dãy con có tổng_bằng của .
+, , , , Trackback link : on Chào anh , em đọc code giải sudoku của anh có đoạn em không hiểu lắm ạ : if(feasible(S , x , y , k) ! = 0) Sxy = k; solve_sudoku(S , x , y+1); Sxy = 0; tại_sao sau khi gọi lại hàm solve_sudoku(S , x , y+1) lại phải gán Sxy = 0 vậy ạ ?
+on Hi bạn MuaXuan , Nếu bạn để_ý kĩ , hàm feasible(S , x , y , k) của mình đúng nếu đầu_vào là ô .
+Do_đó sau mỗi lần thử đặt vào ô , mình gán lại ô này bằng .
+Thực_ra , nếu để_ý kĩ , bạn sẽ thấy ta không nhất_thiết phải làm như_vậy .
+Bạn có_thể đặt lệnh gán ra ngoài_vòng lặp for(k = 1; k <= 9; k++) .
+Lý_do ta phải gán bằng 0 là như_sau : Giả_sử ô trước_khi gán giá_trị cho_là ô (cả hai ô ban_đầu là rỗng) .
+Nếu bạn vẽ cây đệ_quy ra , bạn sẽ thấy mỗi lần thử , bạn sẽ gán mọi giá_trị có_thể có cho ô tiêp theo .
+Sau khi thử , bạn thử .
+Khi thử , bạn lại phải thử lại toàn_bộ giá_trị có_thể của .
+Do_đó , trước_khi thử gán , bạn phải đảm_bảo để code chạy đúng .
+Hi_vọng mình trả_lời đúng câu_hỏi của bạn .
+Nếu bạn vẫn thấy chưa hoàn_toàn trả_lời được , bạn có_thể comment mình sẽ giải_thích thêm .
+on Nếu_như vậy_thì sau lần cuối_cùng thế k vào hàm feasible(lần lặp cuối cùng) thì Sxy cũng dc gán = 0 thì đáng_lý ra các ô Sxy = rỗng ban_đầu sau_đó cũng đều = 0 hết chứ_sao nó lại lưu lại được 1 giá_trị khác 0 vậy bạn ?
+Mình vẫn chưa hiểu lắm , mong bạn giúp_đỡ mình .
+Cảm_ơn nhiều nhé bạn .
+on Khi lần cuối_cùng bạn gán một giá_trị vào , và gọi đệ_quy lần cuối thì lúc_đó thủ_tục sẽ in ra luôn (2 câu_lệnh if đầu_tiên của thủ_tục SUDOKU) .
+Sau khi đã in ra rồi_thì thủ_tục sẽ exit .
+Nếu để_ý phần code_bằng C minh_họa thì sẽ có câu_lệnh exit(0) để thoát luôn khỏi chương_trình ngay sau khi nó tìm được_lời giải .
+on Ohhhh ra là vậy , mình hiểu r , cảm_ơn bạn nhiều nha .
+on Ban_đầu em cũng nghĩ như_vậy nhưng không chắc nên đã hỏi , cảm_ơn anh đã trả_lời 🙂 on Không có gì ! Cám_ơn bạn đã ghé thăm .
+on Ở phần giả mã của bài "n Queens" : Không biết_có phải là e hiểu sai không_nhưng nghĩ vòng_lặp lớn phải cho "j" chạy từ 1 -> n chứ_sao lại là "i" ạ ?
+on Đúng rồi bạn .
+Mình gõ sai .
+Trong phần code thật thì mình để là j .
+Cám_ơn bạn đã chỉ ra lỗi .
+on anh có_thể gợi_ý bài dãy gia_tốc được không ạ ?
+on cho mình hỏi có_thể áp_dụng giải_thuật quay lui này để giải bài_toán mã đi_tuần được không ?
+on Hi bạn , Câu trả_lời là có nhé .
+Quay lui có_thể áp_dụng cho tất_cả các bài_toán mà bạn gặp trong thực_tế .
+Vấn_đề chỉ là nhanh hay chậm mà_thôi . Hùng on Em chào anh , em cũng đang bắt đầu làm quen với các thuật toán cơ bản này .
+Anh cho em hỏi ở bài nQueens tại sao lại là Qi=j+r-i và Qi=j-r+i vậy ạ ?
+on Hi_Châu , Đó là điều_kiện kiểm_tra xem nếu đặt vào ô r , j thì ở đường_chéo xuôi và ngược giao nhau tại r , j đã đặt quân hậu nào trước đó hay chưa . Best , Hùng on Anh có_thể đưa bài_giải của phần bài_tập không ạ ?
+Em mần nát_óc mấy hôm_nay mà chưa giải nổi on Hi bạn , Cụ_thể bạn muốn gợi_ý bài nào ?
+Mình có_lẽ sẽ không có lời_giải hoàn_chỉnh nhưng sẽ gợi_ý đến_mức cụ_thể nhất có_thể . Hùng on Bài 1 anh ơi .
+Em không biết phải làm thế_nào để nó quay lui trong bài_toán này .
+Em cảm_ơn anh trước on Hmm , Mình không biết gợi_ý này có hữu_dụng hay_không , bạn có_thể thử ngẫm_nghĩ .
+Bạn dùng thêm một biến j để lưu_trữ phần_tử cuối_cùng trong dãy con tăng đã tìm được khi tới bước đệ_quy hiện_tại .
+Sau_đó xét thêm một phần_tử mới Ai trong bước đệ_quy hiện_tại và so_sánh Ai với Aj . Nếu_Ai \geq Aj thì bạn có_thể lựa_chọn cho Ai vào dãy con tăng hay_không và đệ_quy tiếp .
+Nếu_không thì bạn bỏ_qua Ai và xét Ai+1Best , Hùng on Bài_toán Subset sum hình_như thiếu_điều kiện mảng X là mảng không âm .
+Thanks on Đúng rồi , cám_ơn bạn .
+Mình đã bổ sungPowered by and

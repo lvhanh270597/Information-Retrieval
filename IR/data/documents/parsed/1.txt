@@ -1,0 +1,72 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+VB(gọi_là)  NN(chiều_dài)  IN(của)  NN(danh_sách)  NP(NN(danh_sách))  PP(IN(của)NP(NN(danh_sách)))  NP(NN(chiều_dài)PP(IN(của)NP(NN(danh_sách))))  VB(lưu)  NN(khóa)  NNP(.)  NP(NN(khóa)NNP(.))  VP(VB(lưu)NP(NN(khóa)NNP(.)))  VP(VB(gọi_là)NP(NN(chiều_dài)PP(IN(của)NP(NN(danh_sách))))VP(VB(lưu)NP(NN(khóa)NNP(.))))  S(VP(VB(gọi_là)NP(NN(chiều_dài)PP(IN(của)NP(NN(danh_sách))))VP(VB(lưu)NP(NN(khóa)NNP(.)))))  gamma(S(VP(VB(gọi_là)NP(NN(chiều_dài)PP(IN(của)NP(NN(danh_sách))))VP(VB(lưu)NP(NN(khóa)NNP(.))))))  
+
+
+NN(mô_hình)  NNP(này)  NP(NN(mô_hình)NNP(này))  RB(sẽ)  ADVP(RB(sẽ))  VB(tương_ứng)  IN(với)  NN(trường_hợp)  NN(hệ_số)  NN(tải)  NNP(.)  NP(NN(tải)NNP(.))  NP(NN(hệ_số)NP(NN(tải)NNP(.)))  NP(NN(trường_hợp)NP(NN(hệ_số)NP(NN(tải)NNP(.))))  PP(IN(với)NP(NN(trường_hợp)NP(NN(hệ_số)NP(NN(tải)NNP(.)))))  VP(VB(tương_ứng)PP(IN(với)NP(NN(trường_hợp)NP(NN(hệ_số)NP(NN(tải)NNP(.))))))  VP(ADVP(RB(sẽ))VP(VB(tương_ứng)PP(IN(với)NP(NN(trường_hợp)NP(NN(hệ_số)NP(NN(tải)NNP(.)))))))  S(NP(NN(mô_hình)NNP(này))VP(ADVP(RB(sẽ))VP(VB(tương_ứng)PP(IN(với)NP(NN(trường_hợp)NP(NN(hệ_số)NP(NN(tải)NNP(.))))))))  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NN(chi_tiết)  NP(NN(chi_tiết))  VB(xem)  VB(thêm)  IN(tại)  CD(3)  NNP(.)  NP(NNP(.))  NP(CD(3)NP(NNP(.)))  PP(IN(tại)NP(CD(3)NP(NNP(.))))  VP(VB(thêm)PP(IN(tại)NP(CD(3)NP(NNP(.)))))  VP(VB(xem)VP(VB(thêm)PP(IN(tại)NP(CD(3)NP(NNP(.))))))  S(NP(NN(chi_tiết))VP(VB(xem)VP(VB(thêm)PP(IN(tại)NP(CD(3)NP(NNP(.)))))))  
+
+
+
+
+
+
+
+
+NN(xác_suất)  NNP(đó)  NP(NN(xác_suất)NNP(đó))  VB(là)  NNP(.)  NP(NNP(.))  VP(VB(là)NP(NNP(.)))  S(NP(NN(xác_suất)NNP(đó))VP(VB(là)NP(NNP(.))))  gamma(S(NP(NN(xác_suất)NNP(đó))VP(VB(là)NP(NNP(.)))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+NNP(.)  NP(NNP(.))  S(NP(NNP(.)))  gamma(S(NP(NNP(.))))  
+
+
+
+gamma()  

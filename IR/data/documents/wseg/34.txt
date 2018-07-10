@@ -1,0 +1,66 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta sẽ nghiên_cứu_phổ của một_số đồ_thị đặc_biệt , đó là : Ma_trận kề của đồ_thị đầy_đủ có tất_cả các phần_tử là 1 , ngoại_trừ các phần_tử trên đường_chéo chính .
+Do_đó có_thể viết : và ma_trận bậc có mọi giá_trị trên đường_chéo là , do_đó .
+Từ_đó suy ra ma_trận Laplace của đồ_thị dầy đủ có dạng : Gọi_là một trị riêng của và là vector riêng tương_ứng .
+Theo bài , là một vector riêng ứng với trị riêng , ta có .
+Sử_dụng Thương_Rayleigh , ta có : Từ phương_trình trên , ta suy ra và .
+Ta nói trị riêng có_số bội (multiplicity) (vì trị riêng đều bắng ) .
+Việc tìm vector riêng của không quá khó và ta coi_như bài_tập (bài 1 dưới đây) . Với mỗi đỉnh của đồ_thị , gọi_là vector có phần_tử thứ là 1 , còn các phần_tử khác đều bằng 0 .
+Để đơn_giản , ta sẽ giả_sử đỉnh 1 của đồ_thị là đỉnh có bậc , còn các đỉnh khác đều có bậc 1 .
+Khi đó , ma_trận Laplace tương_ứng có phần_tử đầu_tiên của hàng_đầu tiên là , còn các phần_tử khác của hàng này là .
+Tương_tự , phần_tử đầu_tiên của cột đầu_tiên là , còn các phần_tử khác của cột này là .
+Với mội hàng tương_ứng với đỉnh , phần_tử đầu_tiên của hàng này là và phần_tử tương_ứng với cột của hàng này là .
+Gọi_là hai đỉnh bất_kì khác 1 của .
+Thử nhân với ta thấy vector thu được có phần_tử đầu_tiên là và phần_tử thứ là .
+Tương_tự như_vậy với có phần_tử đầu_tiên là và phần_tử thứ là .
+Do_đó , Nói_cách_khác , là vector riêng của ứng với trị riêng .
+Có bao_nhiêu trị riêng như vây ?
+Câu trả_lời là và vecotor riêng tương_ứng là .
+Tại_sao không tính ?
+Câu trả_lời để_dành cho các bạn . Trong bài_tập 2 , các bạn sẽ phải chứng_minh trị riêng cuối_cùng (lớn nhất) của là .
+Để hiểu rõ hơn về đồ_thị siêu khối , chúng_ta sẽ tìm_hiểu thao_tác lấy tích Đềcác (Cartesian Product) của đồ_thị .
+nếu nếu Định_nghĩa tích Đềcác hơi rối_rắm chút và để hình_dung , ta thử xét một_vài trường_hợp đơn_giản : Tìm tích Đềcác nếu chỉ_có 1 đỉnh (và không có cạnh) .
+Dễ thấy tích đề các là đồ_thị thu được bằng cách thêm một "nhãn" mới vào các đỉnh của (xem hình minh_họa dưới đây) .
+Tìm tích Đềcác nếu có 2 đỉnh (và không có cạnh) .
+Ta sẽ thấy tích đề các là đồ_thị thu được bằng cách lấy 2 "copy" của và thêm một "nhãn" vào mỗi đỉnh của một copy (xem hình minh_họa dưới đây) .
+Tìm tích Đềcác nếu có 2 đỉnh và 1 cạnh .
+Kết_quả rất khó mô_tả bằng lời .
+Xem hình minh_họa dưới_đây .
+Quay trở_lại với đồ_thị siêu khối .
+Ta thấy : Suy_diễn rộng ra thì ta sẽ có : Phương_trình cho_phép chúng_ta nghiên_cứu_phổ của_thông qua phép lấy tích Đềcác .
+Giả_sử_ta đã biết các trị riêng , vector riêng của hai đồ_thị và , liệu có_một quan_hệ nào giữa trị riêng và vector riêng của với trị riêng , vector riêng của và không ?
+Câu trả_lời là có và hơn_nữa , quan_hệ đó khá đơn_giản . Gọi và lần_lượt là trị riêng bất_kì của và với hai vector riêng tương_ứng .
+Ta hoàn_toàn có_thể giả_sử là các vector đơn_vị .
+Xét vector "tích Đềcác" với số chiều được định_nghĩa như_sau : Ta sẽ chứng_minh là một vector riêng của với trị riêng .
+Để chứng_minh điều này , ta sẽ sử_dụng dạng toàn_phương của ma_trận Laplace và Thương_Rayleigh .
+Trước_hết ta có : Chứng_minh coi_như bài_tập (bài tập 3 dưới đây) cho bạn_đọc .
+Chú_ý ở đây là các vector đơn_vị .
+Theo_Claim 1 , trị riêng tương_ứng với chính là , ở đây là ma_trận Laplace của .
+Sử_dụng dạng toàn_phương , ta có : Ta sẽ giải_thích lần_lượt từng phép biến_đổi trong .
+Phương_trình đầu_tiên sử_dụng định_nghĩa dạng toàn_phương của ma_trận Laplace (xem lại ) .
+Phương_trình thứ 2 sử_dụng định_nghĩa của tích Đềcác .
+Phương_trình thứ 3 sử_dụng định_nghĩa của vector .
+Phương_trình thứ 4 sử_dụng định_nghĩa Thương_Rayleigh cho và (và dạng toàn_phương của Laplace cho ) .
+Phương_trình cuối sử_dụng tính_chất là các vector đơn_vị . Quay_lại đồ_thị siêu khối .
+Sử_dụng Theorem 3 , ta chỉ_cần xét trị riêng và vector riêng của (đồ thị có 2 đỉnh và đúng 1 cạnh) .
+Trong bài_tập 4 , ta sẽ chứng_minh có 2 trị riêng là và , do_đó , trị riêng nhỏ thứ 2 của sẽ là , i . e , .
+Sử_dụng , ta suy ra : Hay nói_cách_khác , với mọi tập đỉnh con có kích_thước không quá một_nửa tập đỉnh của đồ_thị siêu khối , số cạnh biên () luôn lớn hơn hoặc bằng số đỉnh của .
+Trong bài_tập 5 và 6 dưới_đây , chúng_ta sẽ đi tìm trị riêng và vector riêng của .
+1 Daniel_Speilman .
+Spectral_Graph_Theory_Notes , Fall 2015 , .
+Tìm các vector riêng của đồ_thị đầy_đủ .
+Chứng_minh rằng trị riêng lớn nhất của là và tìm vector riêng tương_ứng .
+Chứng_minh Claim 1 .
+Tìm trị riêng và vector riêng của .
+Chứng_minh rằng là trị riêng của có_số bội .
+Cho trước một vector có chiều và các phần_tử chỉ thuộc , i . e , .
+Coi mỗi đỉnh của tương_ứng với một vector trong và hai đỉnh có_một cạnh nếu 2 vector tương_ứng khác_nhau đúng 1 vị_trí (mã Gray) .
+Chứng_minh rằng vector được định_nghĩa như_sau : Là một vector riêng của .
+Gọi_là vector riêng (đơn vị) tương_ứng với .
+Sử_dụng dạng toàn_phương và Thương_Rayleigh , ta có : Từ_đó suy ra khi và chỉ khi .
+Nếu là liên_thông , ta suy ra .
+Do là vector riêng của , ta suy ra .
+Từ_đó suy ra , trái với giả_thiết là vector đơn_vị .
+Do_đó , phải có ít_nhất 2 thành_phần liên_thông .
+Tư_tưởng chứng_minh giống bài 1 và kết_hợp với quy_nạp .
+, Trackback link : Powered by and

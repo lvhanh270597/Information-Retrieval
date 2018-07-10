@@ -1,0 +1,39 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài_toán phân_tích một_số nguyên thành_tích của các thừa_số nguyên_tố là một bài_toán khó (nằm trong lớp các bài tóan ) .
+Hiện tai , chưa có thuật_toán thời_gian đa_thức (polynomial time) nào có_thể giải được bài_toán này (nếu có thì toàn_bộ các hệ_thống bảo_mật hiện_tại sẽ đổ vỡ) .
+Tuy_nhiên , điều đó không có_nghĩa là chúng_ta hoàn_toàn không giải được .
+Trong phần này , chúng_ta sẽ thảo_luận một_số thuật_toán (thời gian lũy thừa) để giải bài_toán này , qua đó có_một cái nhìn sâu hơn về bài_toán .
+Chú_ý : theo định_lý cơ_bản của số_học () , phép phân_tích với là duy_nhất . Ý_tưởng cơ_bản nhất để giải_quyết bài_toán này là duyệt dãy_số nguyên_tố : để tìm ước nguyên_tố của .
+Thông_thường , sinh dãy_số nguyên_tố như_vậy có_thể rất tốn_kém (phương pháp thường_dùng là sử_dụng tốn khá nhiều bộ nhớ) .
+Do_đó , ta sẽ duyệt qua một dãy dễ sinh hơn dãy sao_cho ( có_thể chứa hợp số) .
+Donald_Knuth 1 , p . 364 đề_xuất sử_dụng dãy : Ngoại_trừ 2 số đầu_tiên , dãy có khoảng_cách giữa hai số kề nhau thay_đổi liên_tục giữa và .
+Giả mã như_sau : Mặc_dù có_thể chứa hợp_số , ta có_thể dễ_dàng chứng_minh (coi như bài_tập cho bạn) các số đầu_ra của thuật_toán luôn là các số_nguyên_tố và có_giá trị tăng dần .
+Từ giả mã trên ta thấy số lần_lặp của vòng_lặp chính bằng số phần_tử của dãy .
+Hơn_nữa , dãy càng gần dãy thì số lần_lặp càng ít .
+Trong trường_hợp dãy như đề_xuất , số lần_lặp xấp_xỉ bằng .
+Trường_hợp , số phần_tử của chính là số_lượng các số_nguyên_tố .
+Gọi_là số các số_nguyên_tố nhỏ hơn hoặc bằng .
+Định_lý sau cho chúng_ta biết giá_trị tiệm_cận của : Do_đó , theo prime number theorem , số lần_lặp của vòng trong trường_hợp là , tốt hơn đề_xuất lần .
+Với số_nguyên là rất lớn , sự khác_nhau này thực_sự không nhiều .
+Chúng_ta có_thể cải_tiến thuật_toán dựa trên nhận_xét sau : Nếu_không phải số_nguyên_tố thì .
+Do_đó , trong_vòng lặp ở trên , ta chỉ việc thêm thủ_tục kiểm_tra tính nguyên_tố của (sử dụng thuật_toán ) và thay điều_kiện bằng .
+Giả mã của thuật_toán như_sau : Code của giả mã bằng C (code đầy_đủ được đính kèm ở cuối bài) : Nhắc_lại : là ước_số nguyên_tố lớn thứ 2 của .
+Vòng_lặp ít_nhất phải duyệt đến phần_tử thứ của mảng sao_cho .
+Sau khi đã duyệt và in ra , , do_đó , thủ_tục kiểm_tra tính nguyên_tố ở dòng sẽ in ra và thuật_toán kết_thúc .
+Từ_đó suy ra số lần_lặp xấp_xỉ là .
+Do , số lần_lặp là .
+Ta sẽ tính tổng_số phép kiểm_tra tính nguyên_tố (mỗi phép kiểm_tra sử_dụng thao_tác bít) .
+Thủ_tục kiểm_tra tính nguyên_tố sẽ được gọi mỗi lần tìm_thấy một ước_số của .
+Do_đó , tổng_số phép kiểm_tra tính nguyên_tố xấp_xỉ .
+Ta có : Từ_đó suy ra tổng_số phép kiểm_tra nguyên_tố là . Tương_tự như_vậy , tổng_số phép_tính xấp_xỉ là .
+Mỗi phép khai_căn có_thể được thực_hiện sử_dụng thao_tác bít .
+Do_đó , tổng thời_gian cho_phép khai_căn là . Như_vậy , tổng thời_gian của thuật_toán là trong đó nhân_tử là thời_gian để thực_hiện một_phép cộng hoặc đồng dư bít .
+Code : , .
+1 Knuth , Donald_E .
+Seminumerical_Algorithms (1981) .
+2 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 31 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 3 Pollard , John_M .
+BIT_Numerical_Mathematics 15 . 3 (1975) : 331-334 .
+, , Trackback link : Powered by and

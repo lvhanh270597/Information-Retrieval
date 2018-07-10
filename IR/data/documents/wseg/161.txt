@@ -1,0 +1,91 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , chúng_ta sẽ tìm_hiểu phổ cùa ma_trận kề và quan_hệ với bài_toán tô_màu đồ_thị .
+Công_cụ chính chúng_ta sử_dụng đó là Thương_Rayleigh .
+Gọi_là ma_trận kề của đồ_thị và là trị riêng tương_ứng (của ) .
+Ta giả_sử : Chú_ý thứ_tự các trị riêng của ma_trận kề ngược với trị riêng của ma trập Laplace .
+Nguyên_nhân là_vì với đồ_thị_chính quy bậc (-regular) , ta có : và do_đó , . Trong bài này , ta tập_trung chứng mimh quan_hệ sau giữa sắc số và phổ của ma_trận kề : Bất_đẳng_thức đầu_tiên (cận dưới) nhìn có_vẻ tầm_thường vì đương_nhiên .
+Tuy_nhiên , ta nên nhớ trị riêng của ma_trận kề .
+Ngược_lại , trị riêng của ma_trận Laplace luôn không âm và nhỏ nhất bằng .
+Bất_đẳng_thức đầu_tiên là bất_đẳng_thức Hoffman 2 và bất_đẳng_thức thứ_hai là bất_đẳng thưc Wilf 3 . Trong phần này ta sẽ chứng_minh cận_trên của .
+Khi nghiên_cứu trị riêng của ma_trận Laplace , hai công_cụ chính ta sử_dụng là Thương_Rayleigh và dạng toàn_phương .
+Tuy_nhiên , dạng toàn_phương của ma_trận kề không "đẹp" như của ma_trận Laplace , do_đó Thương_Rayleigh sẽ là công_cụ chính . Theo_Thương_Rayleigh , ta có : Gọi và lần_lượt là bậc trung_bình và bậc lớn nhất của .
+Ta sẽ chứng_minh : Chúng minh cận_dưới dễ hơn vì ta chỉ_cần sử_dụng .
+Chọn (các phần_tử đều là 1) ta có : Từ_đó ta suy ra cận_dưới của . Để chứng_minh cận_trên , ta gọi_là vector riêng ứng với .
+Theo định_nghĩa ta có : Gọi_là tập đỉnh kề với đỉnh của đồ_thị .
+Tại đỉnh , từ phương_trình , ta suy ra : Chọn là đỉnh có lớn nhất , i . e , .
+Ta có_thể giả_sử vì ta có_thể đổi dấu vector riêng .
+Từ , ta suy ra : Ở đây , là bậc của đỉnh . Bằng cách xét điều_kiện dấu bằng xảy_ra trong vế phải của ta có_thể chứng_minh được (bài tập 1) : Sử_dụng cách chứng_minh trong Lemma 1 , ta có_thể chứng_minh được (bài tập 2) : với mọi đồ_thị con của .
+Ở đây là bậc trung_bình của đồ_thị con .
+Sử_dụng Lemma 3 , ta có_thể chứng_minh vế phải của Theorem 1 .
+Gọi_là các đánh_số các đỉnh của sao_cho , với mọi , đỉnh có tối_đa cạnh nối tới các đỉnh .
+Ta thấy , nếu cách đánh_số như_vậy tồn_tại thì ta có_thể tô_màu đỉnh của sử_dụng màu như_sau : Tô_màu bắt_đầu_từ đỉnh có chỉ_số nhỏ nhất (đỉnh 1); khi tô đến đỉnh , ta chỉ_cần chọn màu tránh với các hàng_xóm đã tô trước đó . Để chứng_minh , ta chỉ_cần chứng_minh cách đánh_số như đoạn văn trước tồn_tại với .
+Thật_vậy , ta chọn đỉnh nhỏ nhất và đánh_số nó là .
+Do , bậc của đỉnh này không quá .
+Sau_đó , ta tiếp_tục đánh_số đệ_quy trên đồ_thị con của sau khi đã đánh_số đỉnh . Trong phần này chúng_ta sẽ chứng_minh cận_dưới của sắc số .
+Trước_hết , ta sẽ tìm_hiểu quan_hệ giữa và .
+Nhắc_lại , có_thể là số_âm .
+Dấu bằng xảy_ra khi và chỉ khi là đồ_thị hai phía (bipartite) .
+Gọi_là vector riêng đơn_vị ứng với .
+Gọi_là tập các đỉnh có tọa_độ , i . e , .
+Gọi_là vector với .
+Dễ thấy cũng là vector đơn_vị .
+Theo_Thương_Rayleigh , ta có : Phần kiểm_tra điều_kiện dấu bằng , xem bài_tập 3 . Để chứng_minh Theorem 1 , ta cần một_số công_cụ từ đại_số với ma_trận và vector riêng .
+Do_đó , từ đoạn này trở_về sau , mình sẽ không_tập trung vào ma_trận kề của đồ_thị mà đi "lạc đề" một_chút . Gọi_là một ma_trận (không nhất_thiết là ma_trận kề của đồ thị) vuông kích_thước và là một_tập con của .
+Kí_hiệu là ma_trận vuông con của có các hàng , cột là các hàng , cột của mà chỉ_số trong .
+Kí_hiệu lần_lượt là trị riêng lớn nhất và nhỏ nhất của ma_trận .
+Ta có : Bất_đẳng_thức thứ 2 chính là định_nghĩa của trị riêng .
+Ta sẽ chứng_minh bất_đẳng thứ thứ 3 , bất_đẳng thứ thứ nhất chứng_minh tương_tự (bài tập 4) . Không mất tính tổng_quát , ta giả_sử ( là kích_thước của ) .
+Gọi_là vector đơn_vị tương_ứng với của ma_trận .
+Gọi_là vector trong đó và nếu ngược_lại .
+Dễ thấy cũng là vector đơn_vị .
+Dễ_dàng kiểm_tra được : Do_đó , .
+Ta có : Thương_Rayleigh lại là công_cụ chính cho chứng_minh Lemma này và cách chứng_minh tương_tự như trong Lemma 5 .
+Gọi_là vector riêng lớn nhất ứng với trị riêng .
+Ta phân_hoạch thành hai thành_phần giống_như .
+Giả_sử cả 2 vector đều khác .
+Gọi : Dễ_dàng kiểm_tra được là một vector đơn_vị .
+Do_đó , theo Thương_Rayleigh , ta có; Ở bất_đẳng_thức thứ 5 , ta sử_dụng Thương_Rayleigh cho và . Trường_hợp (hoặc ) , xem bài_tập 5 .
+Ta có : Dựa trên Lemma 6 , chứng_minh Lemma 7 không còn là việc quá khó (xem bài_tập 6) .
+Giờ ta đã có đầy_đủ công_cụ để chứng_minh cận_dưới của Theorem 1 .
+Giả_sử_ta có_thể tô_màu đồ_thị bằng màu .
+Theo định_nghĩa , hai đỉnh có cùng màu sẽ KHÔNG có cạnh nối .
+Do_đó , ta có_thể sắp_xếp lại ma_trận kề theo dạng trong Lemma 7 với .
+Hay nói_cách_khác , mỗi khối tương_ứng với ma_trận kề của các đỉnh được tô_màu , và do_đó , ma_trận này là ma_trận 0 . Do , theo , ta có .
+Từ_đó suy ra (chú ý < ) . 1 Daniel_Speilman .
+, Fall 2015 , Lecture 03 .
+2 A .
+J .
+Hoffman .
+.
+In_Graph_Theory and its Applications , pages 7992 .
+Academic_Press , New_York , 1970 .
+3 Herbert_S .
+Wilf .
+.
+J .
+London_Math .
+Soc . , 42 : 330-332 , 1967 .
+Chứng_minh Lemma 2 .
+Chứng_minh Lemma 3 sử_dụng kĩ_thuật trong chứng_minh Lemma 1 .
+Chứng_minh khi và chỉ khi là đồ_thị hai phía .
+Chứng_minh bất_đẳng_thức đầu_tiên của Lemma 5 .
+Chứng_minh Lemma 6 trong trường_hợp .
+Chứng_minh Lemma 7 sử_dụng Lemma 6 .
+Hints : dùng quy_nạp và bất_đẳng_thức (Lemma 5) .
+Vector riêng thứ có và .
+Sử_dụng tính_chất trong Bài_tập 6 trong bài Lý_thuyết đồ_thị phổ I .
+, sẽ suy ra .
+Ta có_thể đoán trị riêng này tương_ứng với đỉnh của và vector riêng ứng với sẽ có_giá trị tại đỉnh và tại các đỉnh còn_lại .
+Ta sẽ suy ra phương_trình : giải phương_trình này và chọn bộ phù_hợp để suy ra vector riêng tương_ứng .
+chính là , đồ_thị mà chúng_ta đã nghiên_cứu kĩ .
+Hai trị riêng là và .
+Sử_dụng quy_nạp và Theorem 3 trong bài Lý_thuyết đồ_thị phổ III .
+Ta có_thể tách .
+Chú_ý .
+Theo quy_nạp , có trị riêng với số bội và trị riêng với số bội .
+Do_đó , có trị riêng với số bội (theo Theorem 3) : Bài này chỉ_cần bạn_đọc hiểu kĩ đề_bài là làm được .
+, , Trackback link : on Cảm_ơn bài viết của bạn rất nhiều .
+bạn đã viêt bài tiếp_theo chưa vậy ?
+on Mình chưa có thời_gian nên hiện_tại chỉ_có vậy thôi .
+Mình vẫn có kế hoach update thêm materials .
+HùngPowered by and

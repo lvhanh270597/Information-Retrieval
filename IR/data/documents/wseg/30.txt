@@ -1,0 +1,190 @@
+Tác_giả : Lê_Khắc_Minh_Tuệ Chỉnh_sửa : Nguyễn_RR Thành_Trung , Phạm_Văn_Hạnh Table of_Contents Giới_thiệu Hoàn_cảnh Phát_biểu bài_toán Thuật_toán : Mục_đích bài viết Thuật_toán Hash Ký_hiệu Mô_tả thuật_toán Mã chương_trình Đánh_giá Chi_tiết cài_đặt 1 .
+Chọn số_nguyên_tố cho hệ cơ_số và modulo 2 .
+Chọn hệ cơ_số 3 .
+Chọn modulo 4 .
+Hash tràn số và Hash có MOD 5 .
+Một_số lời_khuyên nho_nhỏ Ứng_dụng Longest palindrome substring k-th alphabetical cyclic Longest substring and appear at least k times Đánh_giá độ_chính_xác Trường_hợp 1 Trường_hợp 2 Tổng_kết Thuật_toán Cài_đặt Ưu_điểm Nhược_điểm Bài_tập áp_dụng Các nguồn tham_khảo Giới_thiệu Hoàn_cảnh Một lớp những bài_toán rất được quan_tâm trong khoa_học máy_tính nói_chung và lập_trình thi_cử nói_riêng , đó là xử_lý xâu_chuỗi .
+Trong lớp bài_toán này , người_ta thường rất hay phải đối_mặt với một bài_toán : tìm_kiếm xâu_chuỗi .
+Phát_biểu bài_toán Cho một đoạn văn_bản , gồm m ký_tự .
+Cho một đoạn mẫu , gồm n ký_tự .
+Máy_tính cần trả_lời câu_hỏi : đoạn mẫu xuất_hiện bao_nhiêu lần trong đoạn văn_bản và chỉ ra các_vị trí xuất_hiện đó .
+Thuật_toán : Có rất nhiều thuật_toán có_thể giải_quyết bài_toán này .
+Người viết xin tóm_tắt 2 thuật_toán phổ_biến được dùng trong các kì_thi lập_trình : Brute-force : Với một_cách tiếp_cận trực_tiếp , chúng_ta có_thể thu được thuật_toán để giải .
+Tuy_nhiên độ phực tạp của nó là rất lớn trong trường_hợp xấu nhất .
+Thuật_toán brute-force so khớp tất_cả các_vị trí xuất_hiện của đoạn mẫu trong đoạn văn_bản .
+Cụ_thể độ phức_tạp cho thuật_toán này là O(mn) .
+Knuth-Morris-Pratt : Hay còn được viết tắt là KMP , được phát_minh vào năm 1974 , bởi Donald_Knuth , Vaughan_Pratt và James_H .
+Morris .
+Thuật_toán này sử_dụng một correction-array , là một thuật_toán rất hiệu_quả , có độ phức_tạp là O(m + n) .
+Mục_đích bài viết Trong bài viết này , người viết chỉ tập_trung vào thuật_toán Hash (Tên chuẩn của thuật_toán này là Rabin–Karp hoặc Rolling_Hash , tuy_nhiên ở Việt_Nam thường được gọi_là Hash) .
+Theo_như bản_thân người viết đánh_giá , đây là thuật_toán rất hiệu_quả đặc_biệt là trong thi_cử .
+Nó hiệu_quả bởi 3 yếu_tố : tốc_độ thực_thi , linh_động trong việc sử_dụng (ứng dụng hiệu quả) và sự đơn_giản trong cài_đặt .
+Đầu_tiên , người viết xin được trình_bày về thuật_toán này .
+Sau_đó , người viết sẽ trình_bày một_vài ứng_dụng , cách sử_dụng và phát_triển thuật_toán Hash trong các bài_toán tin_học .
+Thuật_toán Hash Ký_hiệu Tập_hợp các chữ_cái được sử_dụng : \Sigma Đoạn con từ i đến j của một xâu s : si . . j Đoạn văn_bản : T1 . . m Đoạn mẫu : P1 . . n Chúng_ta cần tìm_ra tất_cả các_vị trí i (1 \le i \le m − n + 1) thỏa_mãn : Ti . . i+n−1 = P .
+Mô_tả thuật_toán Để đơn_giản , giả_sử rằng \Sigma = a , b , . . . , z (nói cách khác , \Sigma chỉ gồm các chữ_cái in thường) .
+Để biểu_diễn một xâu , thay_vì dùng chữ_cái , chúng_ta sẽ chuyển sang biểu_diễn dạng số .
+Ví_dụ : xâu aczd được viết dưới dạng số_là một dãy gồm 4 số : (1 , 3 , 26 , 4) .
+Như_vậy , một xâu được biểu_diễn dưới dạng một_số ở hệ cơ_số base với base gt; 26 .
+Từ_đây suy ra , 2 xâu bằng_nhau khi và chỉ khi biểu_diễn của 2 xâu ở hệ cơ_số 10 giống nhau .
+Lưu_ý : Ở đây mình đổi chữ a thành số 1 chứ không_phải số 0 .
+Đây là chi_tiết vô_cùng quan_trọng , để tránh 2 xâu : abc và bc bằng_nhau khi đổi ra số .
+Bạn có_thể đọc thêm chi_tiết ở phần Chi_tiết cài_đặt .
+Thông_thường ta chọn base là một_số nguyên_tố .
+Mình sẽ giải_thích thêm trong phần Chi_tiết cài_đặt .
+Đây chính là tư_tưởng của thuật_toán : đổi 2 xâu từ hệ cơ_số base ra hệ cơ_số 10 , rồi đem so_sánh ở hệ cơ_số 10 .
+Tuy_nhiên , chúng_ta nhận_thấy rằng , khi đổi 1 xâu ra biểu_diễn ở hệ cơ_số 10 , biểu_diễn này có_thể rất lớn và nằm ngoài phạm_vi lưu_trữ số_nguyên của máy_tính .
+Để khắc_phục điều này , chúng_ta chuyển sang so_sánh 2 biểu_diễn của 2 xâu ở hệ cơ_số 10 sau khi lấy phần dư cho một_số nguyên đủ lớn .
+Cụ_thể hơn : nếu biểu_diễn trong hệ_thập_phân của xâu a là x và biểu_diễn trong hệ_thập_phân của xâu b là y , chúng_ta sẽ coi a bằng b ‘khi và chỉ khi’ x \bmod MOD = y \bmod MOD trong đó MOD là một_số nguyên đủ lớn .
+Lưu_ý : Lý_do chọn MOD là số_nguyên_tố được giải_thích thêm trong phần Chi_tiết cài_đặt .
+Dễ_dàng nhận_thấy việc so_sánh x \bmod MOD với y \bmod MOD rồi kết_luận a có bằng với b hay_không là sai .
+x \bmod MOD = y \bmod MOD chỉ là điều_kiện_cần để a bằng b chứ chưa phải_điều kiện đủ .
+Tuy_nhiên , chúng_ta sẽ chấp_nhận lập_luận sai này trong thuật_toán Hash .
+Và coi điều_kiện_cần như điều_kiện_đủ .
+Trên thực_tế , lập_luận sai này có_thể dẫn đến kết_quả sai nếu bạn không hiểu rõ mình đang làm_gì .
+Để hiểu rõ về tỉ_lệ sai của thuật_toán Hash , các bạn_đọc thêm phần Đánh_giá độ_chính_xác .
+Phần Chi_tiết cài_đặt cũng nói thêm về cách tránh bị sai_số khi cài_đặt Hash .
+Để đơn_giản trong việc trình_bày tiếp thuật_toán , chúng_ta sẽ gọi biểu_diễn của một xâu trong hệ_thập_phân sau khi lấy phần dư cho MOD là mã_Hash của xâu đó .
+Nhắc_lại , 2 xâu bằng_nhau ‘khi và chỉ khi’ mã_Hash của 2 xâu bằng_nhau .
+Trở_lại bài_toán ban_đầu , chúng_ta cần chỉ ra P xuất_hiện ở những vị_trí nào trong T .
+Để làm được_việc này , chúng_ta chỉ_cần duyệt qua mọi vị_trí xuất_phát có_thể của P trong T .
+Giả_sử vị_trí đó là i , chúng_ta sẽ kiểm_tra Ti . . i+n−1 có bằng với P hay_không .
+Để kiểm_tra điều này , chúng_ta cần tính được mã_Hash của đoạn Ti . . i+n−1 và mã_Hash của xâu P .
+Để tính mã_Hash của xâu P chúng_ta chỉ_cần làm đơn_giản như_sau : const base = 31; hashP = 0 for (i : 1 . .
+n) hashP = (hashP base + Pi - a + 1) mod MOD_Phần khó hơn của thuật_toán Hash là : Tính mã_Hash của một đoạn con Ti . . j của xâu T (1 \le i \le j \le N) .
+Để hình_dung cho_đơn giản , xét ví_dụ sau : Xét xâu s và biểu_diễn của nó dưới cơ_số base : (4 , 1 , 2 , 5 , 1 , 7 , 8) .
+Chúng_ta cần lấy mã_Hash của đoạn con từ phần_tử thứ 3 đến phần_tử thứ 6 , nghĩa_là cần lấy mã_Hash của xâu (2 , 5 , 1 , 7) .
+Nhận_thấy , để lấy_được xâu s3 . . 6 , chỉ_cần lấy số s1 . . 6 là (4 , 1 , 2 , 5 , 1 , 7) trừ cho số (s1 . . 2 nhân với base4) là (4 , 1 , 0 , 0 , 0 , 0) ta sẽ thu được (2 , 5 , 1 , 7) .
+Để cài_đặt ý_tưởng này , chúng_ta cần khởi tạo basex \bmod MOD với (0 \le x \le m) và mã_Hash của tất_cả những tiền_tố của s , cụ_thể là mã_Hash của những xâu s1 . . i với (1 \le i \le m) .
+pow0 = 1 for (i : 1 . .
+m) powi = (powi-1 base) mod MOD hashT0 = 0 for (i : 1 . .
+m) hashTi = (hashTi-1 base + Ti - a) mod MOD_Trong đoạn code trên , chúng_ta thu được mảng powi (lưu lại basei \bmod MOD) và mảng hashTi (lưu lại mã_Hash của T1 . . i) .
+Để lấy mã_Hash của Ti . . j ta viết hàm sau : function getHashT(i , j) : return (hashTj - hashTi - 1 powj - i + 1 + MOD_MOD) mod MOD Bài_toán chính đã được giải_quyết , và đây là chương_trình chính : for (i : 1 . .
+m - n +1) if hashP = getHashT(i , i + n - 1) : print("Match position : " , i) Mã chương_trình Chương_trình sau , tôi viết_bằng ngôn_ngữ C++ , là lời_giải cho bài SUBSTR : typedef long_long ll ; const int base = 31 ; const ll MOD = 1000000003 ; const ll maxn = 1000111 ; using namespace std ; ll POW maxn , hashT maxn ; ll getHashT ( int i , int j ) return ( hashT j - hashT i - 1 POW j - i + 1 + MOD_MOD ) % MOD ; int main () // Input string T , P ; cin gt;gt; T gt;gt; P ; // Initialize int lenT = T .
+size () , lenP = P .
+size (); T = " " + T ; P = " " + P ; POW 0 = 1 ; // Precalculate basei for ( int i = 1 ; i lt;= lenT ; i ++ ) POW i = ( POW i - 1 base ) % MOD ; // Calculate hash value of T1 . . i for ( int i = 1 ; i lt;= lenT ; i ++ ) hashT i = ( hashT i - 1 base + T i - a + 1 ) % MOD ; // Calculate hash value of P ll hashP = 0 ; for ( int i = 1 ; i lt;= lenP ; i ++ ) hashP = ( hashP base + P i - a + 1 ) % MOD ; // Finding substrings of T equal to string P for ( int i = 1 ; i lt;= lenT - lenP + 1 ; i ++ ) if ( hashP == getHashT ( i , i + lenP - 1 )) printf ( "%d " , i ); Đánh_giá Độ phức_tạp của thuật_toán là O(m + n) .
+Nhưng điều quan_trọng là : chúng_ta có_thể kiểm_tra 2 xâu có giống nhau hay_không trong O(1) .
+Đây là điều tạo nên sự linh_động cho thuật_toán Hash .
+Ngoài sự linh_động và tốc_độ thực_thi , chúng_ta có_thể thấy cài_đặt thuật_toán này thực_sự rất đơn_giản nếu so_với các thuật_toán xử_lý xâu khác .
+Chi_tiết cài_đặt Trong thuật_toán hash , có hai yếu_tố cần quan_tâm là hệ cơ_số (base) và modulo (mod) .
+1 .
+Chọn số_nguyên_tố cho hệ cơ_số và modulo Ý_tưởng của thuật_toán Hash là dựa trên một ngộ_nhận sai_lầm nhưng xảy_ra sai_sót với xác_suất vô_cùng nhỏ : a \bmod M = b \bmod M lt;=gt; a = b .
+Để xác_suất xảy_ra sai là 1/M cho một truy_vấn , các bạn cần chọn hệ cơ_số và modulo thỏa_mãn đồng_thời : base là số_nguyên_tố lớn hơn các chữ_cái của xâu S .
+MOD là số_nguyên_tố .
+Phần chứng_minh sai_số bạn có_thể đọc thêm trong blog rng_58 , tuy_nhiên phần chứng_minh rất phức_tạp nên mình sẽ không trình_bày ở đây .
+2 .
+Chọn hệ cơ_số Mình khuyến_khích các bạn chọn hệ cơ_số gt; 256 (Mình thường chọn là số_nguyên_tố 311) .
+Nếu bạn chọn hệ cơ_số là 31 , bạn chỉ làm_việc với xâu gồm toàn các kí_tự in thường , và phải "mã hóa" các kí_tự từ a đến z thành các số_từ 1 đến 26 .
+Điều này khiến code của bạn bị dài .
+Nếu bài_toán cho xâu có các kí_tự A . . . Z , a . . z và 0 . . . 9 , việc bạn mã_hóa chúng thành các số_từ 1 đến 64 là phức_tạp và không cần_thiết .
+Chưa kể , nếu bạn quên mất không +1 và mã_hoá a thành 0 là hành_động tự treo_cổ vì rất dễ bị hack .
+Nếu bạn chọn hệ cơ_số gt; 256 , bạn chỉ_cần dùng mã ASCII của các kí_tự là xong , và lại tránh bị hack .
+3 .
+Chọn modulo Nếu bạn không hiểu rõ về cách đánh_giá độ_chính_xác của thuật Hash (trình bày ở mục Đánh_giá độ_chính_xác ) , bạn chỉ_cần chọn 3-4 số_nguyên_tố khác_nhau làm MOD .
+Bạn có_thể tham_khảo code của Phạm_Văn_Hạnh .
+Tuy_nhiên các bạn cũng_nên lưu_ý là dùng nhiều MOD quá cũng làm chương_trình chạy chậm đi .
+4 .
+Hash tràn số và Hash có MOD_Trên thực_tế , khi cài_đặt Hash sử_dụng nhiều phép mod sẽ làm chương_trình chạy chậm .
+Vì_vậy , để tăng_tốc_độ , người_ta thường cài_đặt với MOD = 264 .
+Do_đó , nếu sử_dụng kiểu dữ_liệu số 64-bit , ta không cần_dùng phép mod mà cứ để các phép_tính tràn số .
+Kĩ_thuật này được gọi_là Hash tràn số .
+Tuy_nhiên khi cài_đặt như_vậy có_một vài chú_ý : Việc sử_dụng MOD không_phải là số_nguyên_tố (và hơn_nữa lại là 1 số cố định) khiến cho hàm Hash không đủ tốt .
+Nếu test được sinh ngẫu_nhiên , thì nó không có_vấn_đề gì cả .
+Nhưng ở trên Codeforces , vì những người thi cùng có_thể "hack" code của bạn bằng test tự_sinh , nên bạn hầu_như_không thể AC các bài Hash với Hash tràn số .
+Bạn có_thể đọc thêm về cách sinh test giết Hash tràn số ở đây .
+Cách giải_quyết là dùng hash tràn số kết_hợp với một MOD khác .
+Nếu dùng Pascal , cần tắt báo tràn số ( Q- ) , nếu_không chương_trình sẽ chạy bị lỗi .
+5 .
+Một_số lời_khuyên nho_nhỏ Chỉ so_sánh mã_hash của hai xâu có cùng độ_dài .
+Hiển_nhiên , hai xâu kí_tự không_cùng độ_dài thì không_bằng nhau .
+Điều này có_thể giảm xác_suất rủi_ro khi hash một modulo đáng_kể .
+Ứng_dụng Như đã đề_cập ở trên , thuật_toán này sẽ có trường_hợp chạy sai .
+Tất_nhiên , bên_cạnh việc sử_dụng Hash , còn có nhiều thuật_toán xử_lý xâu_chuỗi khác , mang_lại sự chính_xác tuyệt_đối .
+Tôi tạm gọi những thuật_toán đó là ‘thuật toán chuẩn’ .
+Việc cài_đặt ‘thuật toán chuẩn’ có_thể mang_lại một tốc_độ chạy chương_trình cao hơn , độ_chính_xác của chương_trình lớn hơn .
+Tuy_nhiên , người_làm bài sẽ phải trả_giá là sự phức_tạp khi cài_đặt các ‘thuật toán chuẩn’ đó .
+Sử_dụng Hash không chỉ giúp người_làm bài dễ_dàng cài_đặt hơn mà quan_trọng ở chỗ : Hash có_thể làm được những việc mà ‘thuật toán chuẩn’ không làm được .
+Sau_đây , tôi sẽ xét một_vài ví_dụ để chứng_minh điều này .
+Longest palindrome substring Bài_toán đặt ra như_sau : Bạn được cho một xâu s độ_dài n (n \le 50 , 000) .
+Bạn cần tìm độ_dài của xâu đối_xứng dài nhất gồm các kí_tự liên_tiếp trong s .
+(Xâu đối_xứng là xâu đọc từ 2 chiều giống nhau) .
+Một ‘thuật toán chuẩn’ không_thể áp_dụng vào bài_toán này đó là thuật_toán KMP .
+Ngoài_KMP ra , có 2 ‘thuật toán chuẩn’ có_thể áp_dụng được .
+Thuật_toán thứ nhất đó là sử_dụng thuật_toán Manacher để tính bán_kính đối_xứng tại tất_cả vị_trí trong xâu .
+Thuật_toán thứ 2 đó là sử_dụng Suffix_Array và LCP (Longest Common_Prefix) cho xâu được nối bởi s và xâu s viết theo thứ_tự ngược_lại .
+2 thuật_toán này đều không dễ , và nằm ngoài phạm_vi bài viết , nên tôi chỉ nêu sơ_qua mà không đi_vào chi_tiết .
+Bây_giờ , chúng_ta sẽ xét thuật_toán ‘không chuẩn’ là thuật_toán Hash .
+Để đơn_giản , chúng_ta xét trường_hợp độ_dài của xâu đối_xứng là lẻ (trường hợp chẵn xử_lý hoàn_toàn tương tự) .
+Giả_sử xâu đối_xứng độ_dài lẻ dài nhất có độ_dài là l .
+Dễ thấy , trong xâu s tồn_tại xâu đối_xứng độ_dài l−2 , l−4 , . . .
+Tuy_nhiên , xâu s không tồn tài xâu đối_xứng độ_dài l+2 , l+4 , . . .
+Như_vậy , s thỏa_mãn tính_chất chia nhị_phân .
+Chúng_ta sẽ chia nhị_phân để tìm độ_dài lớn nhất có_thể .
+Với mỗi độ_dài l , chúng_ta cần kiểm_tra xem trong xâu có tồn_tại một xâu con là xâu đối_xứng độ_dài l hay_không .
+Để làm_việc này , ta duyệt qua tất_cả tất_cả các xâu con độ_dài l trong s .
+Bài_toán còn_lại là : kiểm_tra xem si . . j với (1 \le i \le j \le m; (j−i+1) \bmod 2 = 1) có_phải là xâu đối_xứng hay_không .
+Cách làm như_sau .
+Gọi t là xâu s viết theo thứ_tự ngược_lại .
+Bằng thuật_toán Hash , chúng_ta có_thể kiểm_tra được một xâu con nào_đó của t có bằng một xâu con nào_đó của s hay_không .
+Như_vậy , chúng_ta cần kiểm_tra si . . k có bằng tn−j+1 . . n−k+1 hay_không với k là tâm_đối_xứng , nói_cách_khác k = (i+j)/2 .
+Như_vậy bài_toán đã được giải .
+Độ phức_tạp cho cách làm này là O(n log(n)) .
+k-th alphabetical cyclic Bài_toán đặt ra như_sau : Bạn được cho một dãy a_1 , a_2 , . . .
+, a_n (n \le 50 , 000) .
+Sắp_xếp n hoán_vị vòng_tròn của dãy này theo thứ_tự từ_điển .
+Cụ_thể , các hoán_vị vòng_quanh của dãy này là (a_1 , a_2 , . . .
+, a_n) , (a_2 , a_3 , . . . , a_n , a_1) , (a_3 , a_4 , . . . , a_n , a_1 , a_2) , . . .
+Dãy này có thứ_tự từ_điển nhỏ hơn dãy kia nếu số đầu_tiên khác_nhau của dãy này nhỏ hơn dãy kia .
+Yêu_cầu bài_toán là : In ra dãy có thứ_tự từ_điển lớn thứ k .
+Bài_toán này có_thể được giải bằng Suffix_Array , tuy_nhiên cách cài_đặt phức_tạp và không_phải trọng_tâm của bài viết nên tôi sẽ không nêu ra ở đây .
+Nếu tiếp_cận một_cách trực_tiếp , chúng_ta sẽ sinh_ra tất_cả các dãy hoán_vị vòng_quanh , rồi sau_đó dùng một thuật_toán sắp_xếp để sắp_xếp lại chúng theo thứ_tự từ_điển , cuối_cùng chỉ việc in ra dãy thứ k sau khi sắp_xếp .
+Tuy_nhiên độ phức_tạp của thuật_toán này là rất lớn và không_thể đáp_ứng được yêu_cầu về thời_gian .
+Cụ_thể , cách này có độ phức_tạp là O(n2 log(n)) , đây là tích của độ phức_tạp của sắp_xếp và độ phức_tạp của mỗi phép so_sánh dãy .
+Vẫn giữ tư_tưởng là sắp_xếp lại tất_cả các dãy hoán_vị vòng_quanh rồi in ra dãy đứng ở vị_trí thứ k , chúng_ta cố_gắng cải_tiến_độ phức_tạp của việc so_sánh thứ_tự từ_điển của 2 dãy .
+Nhắc_lại định_nghĩa về thứ_tự từ_điển của 2 dãy : Xét 2 dãy a và b có cùng số phần_tử .
+Gọi ví trí thứ i là vị_trí_đầu tiên từ trái sang mà a_i \ne b_i .
+a lt; b \Leftrightarrow a_i lt; b_i .
+Như_vậy , ta phải tìm đoạn tiền_tố giống nhau dài nhất của a và b , rồi so_sánh kí_tự tiếp_theo .
+Để tìm được đoạn tiền_tố giống nhau dài nhất , ta có_thể sử_dụng Hash kết_hợp với chia nhị_phân .
+Để giải được bài này , cần sử_dụng thêm một kỹ_thuật nhỏ nữa : Thay_vì sinh_ra tất_cả các hoán_vị vòng_quanh , chúng_ta chỉ_cần nhân đôi dãy a lên , dãy mới sẽ có 2n phần_tử : (a_1 , a_2 , . . . , a_n , a_1 , a_2 , . . . , a_n) .
+Một hoán_vị vòng_quanh sẽ là một dãy con liên_tiếp độ_dài n của dãy nhân đôi này .
+Từ_đó ta thu được thuật_toán với độ phức_tạp O(nlog2(n))_Longest substring and appear at least k times Bài_toán đặt ra như_sau : Bạn được cho xâu s độ_dài n (n \le 50 , 000) , bạn cần tìm_ra xâu con của s có độ_dài lớn nhất , và xâu con này xuất_hiện ít_nhất k lần .
+Bài_toán này có_thể được giải bằng Suffix_Array , tuy_nhiên cách cài_đặt phức_tạp và không_phải trọng_tâm của bài viết nên tôi sẽ không nêu ra ở đây .
+Tiếp_tục bàn đến thuật_toán Hash để thay_thế thuật_toán chuẩn .
+Nhận_xét rằng , giả_sử độ_dài lớn nhất tìm được là l , thì với mọi l′ \le l , luôn tồn_tại xâu có độ_dài l′ xuất_hiện ít_nhất k lần .
+Tuy_nhiên , với mọi l′ gt; l , không tồn_tại xâu có độ_dài l′ xuất_hiện ít_nhất k lần (do l đã_là lớn nhất) .
+Như_vậy , l thỏa_mãn tính_chất chia nhị_phân .
+Chúng_ta có_thể áp_dụng thuật_toán tìm_kiếm nhị_phân để tìm_ra l lớn nhất .
+Bây_giờ , với mỗi l khi đang chia nhị_phân , chúng_ta sẽ phải kiểm_tra liệu có tồn_tại xâu con nào xuất_hiện ít_nhất k lần hay_không .
+Điều này được làm rất đơn_giản , bằng cách sinh mọi mã_Hash của các xâu con độ_dài k trong s .
+Sau_đó sắp_xếp lại các mã_Hash này theo chiều tăng dần , rồi kiếm tra xem có_một đoạn liên_tiếp các mã_Hash nào giống nhau độ_dài l hay_không .
+Như_vậy , độ phức_tạp để chia nhị_phân là O(log(n)) , độ phức_tạp của sắp_xếp là O(n log(n)) , vậy độ phức_tạp của cả bài_toán là O(n log2(n) ) .
+Đánh_giá độ_chính_xác Thông_thường , khi sử_dụng Hash , ta thường gặp_phải 2 trường_hợp như_sau : Trả_lời Q truy_vấn , mỗi truy_vấn có dạng kiểm_tra 2 đoạn con của 2 xâu có bằng_nhau hay_không Cho_N xâu , kiểm_tra tất_cả các xâu có phân_biệt hay_không .
+Giả_sử_ta chọn MOD là một_số nguyên_tố khoảng 109 , và giả_sử dữ_liệu được sinh ngẫu_nhiên và hàm hash của chúng_ta đủ tốt để Hash của các xâu được phân_bố đều và ngẫu_nhiên .
+Trường_hợp 1 Giả_sử Q khoảng 105 , và bộ test có T = 100 test .
+Với 2 xâu khác_nhau , xác_suất để nó có cùng Hash là xấp_xỉ 1 / 109 .
+Như_vậy , xác_suất để trả_lời đúng 1 truy_vấn là : 1 - 1 / 109 .
+Ở trường_hợp xấu nhất , ta có Q truy_vấn mà mỗi truy_vấn là một cặp_xâu khác_nhau .
+Xác_suất để ta trả_lời đúng tất_cả các truy_vấn là : (1 - 1 / 109)Q .
+Xác_suất để ta trả_lời đúng tất_cả các truy_vấn của tất_cả các test là : (1 - 1 / 109)Q T .
+Thay số vào , xác_suất để trả_lời đúng tất_cả các truy_vấn là 0 . 9900 , đủ lớn để ta yên_tâm qua tất_cả các test , với điều_kiện test không được sinh dựa trên P .
+(Chú ý nếu bạn đang thi những contest như Topcoder/Codeforces , người khác có_thể đọc được P của bạn và sinh test để challenge code của bạn) .
+Trường_hợp 2 Theo_Birthday_Paradox , ta dễ_dàng thấy rằng , nếu có \sqrtP = 3104 xâu , xác_suất để 2 xâu bằng_nhau là rất lớn .
+Thật_vậy , xác_suất để tất_cả các xâu khác_nhau là : (1 - 1 / 109) (1 - 2 / 109) (1 - 3 / 109) . . .
+(1 - N / 109) .
+Với_N = 30 , 000 , tích trên là 0 . 6376 , nghĩa_là bạn có gần 0 . 40 xác_suất trả_lời sai .
+Do_vậy , bạn bắt_buộc phải dùng nhiều MOD khác_nhau .
+Tổng_kết Thuật_toán Ý_tưởng thuật_toán Hash dựa trên việc đổi từ hệ cơ_số lớn sang hệ_thập_phân , so_sánh hai số_thập_phân lớn bằng cách so_sánh phần dư của chúng với một_số đủ lớn .
+Cài_đặt Khi cài_đặt Hash , ta cần chọn : Hệ cơ_số MOD_Với những trang_web mà người khác có_thể đọc code bạn rồi tìm test sai (như Codeforces , Topcoder) , nếu Hash tràn số hoặc MOD là 1 số_nguyên biết trước , có_thể sinh test để làm code bạn sai .
+Với những kỳ thi như HSG_QG , IOI , ACM , và các Online_Judge , thông_thường sẽ không có những test như_vậy .
+Tóm_lại , khi chọn MOD và hệ cơ_số ta làm như_sau : Chọn hệ cơ_số là số_nguyên_tố lớn hơn số_lượng ký_tự (ví dụ 31 , 71) .
+Chọn_MOD đủ lớn theo nguyên_tắc đã phân_tích ở phần Đánh_giá độ_chính_xác .
+Nếu là Topcoder hoặc Codeforces , dùng kết_hợp Hash tràn số và 1 MOD đủ lớn .
+Nếu_không phải Topcoder hay Codeforces , có_thể dùng Hash tràn số .
+Nếu_MOD = 264 chưa đủ lớn thì dùng thêm 1 MOD nữa .
+Ưu_điểm Ưu_điểm của thuật_toán Hash là cài_đặt rất dễ_dàng .
+Linh_động trong ứng_dụng và có_thể thay_thế các thuật_toán chuẩn ‘hầm hố’ khác .
+Nhược_điểm Nhược_điểm của thuật_toán Hash là tính chính_xác .
+Mặc_dù rất khó sinh test để có_thể làm_cho thuật_toán chạy sai , nhưng không_phải là không_thể .
+Vì_vậy , để nâng_cao tính chính_xác của thuật_toán , người_ta thường_dùng nhiều modulo khác_nhau để so_sánh mã_Hash (ví dụ như dùng 3 modulo một lúc) .
+Bài_tập áp_dụng VOJ - SUBSTR_VOJ - PALINY_VOJ - DTKSUB_VOJ - DTCSTR_VOJ - TWOOPERS_VOJ - VOSTR_SGU 426 Các nguồn tham_khảo Wikipedia - String_Searching_Algorithm_Wikipedia - KMP_Wikipedia - Rabin_Karp_Wikipedia - Alphabetical_Order

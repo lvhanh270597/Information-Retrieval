@@ -1,0 +1,96 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , chúng_ta sẽ tìm_hiểu ba ứng_dụng khác_nhau của luồng : Ba ứng_dụng này nằm trong ba lĩnh_vực hoàn_toàn khác_nhau cho chúng_ta thấy bài_toán luồng cực_đại có tiềm_năng ứng_dụng rất lớn . Một đồ_thị được gọi_là (bipartitie) nếu tồn_tại một_cách phân_hoạch tập đỉnh thành hai phần và sao_cho mỗi cạnh có đúng một đầu_mút trong và một đầu_mút trong .
+Xem ví_dụ trong Figure 1 (a) .
+Ta thường sử_dụng kí_hiệu để kí_hiệu đồ_thị hai phía .
+(a) Một đồ_thị hai phía và một cặp ghép trong đồ_thị (b) Cặp ghép cực_đại của đồ_thị (c) Mạng thu được từ đồ_thị ở hình (a) , các cạnh vô_hướng sẽ được chuyển thành hai cạnh có hướng song_song ngược_chiều với khả_năng thông_qua . Cho trước một đồ_thị , ta có_thể kiểm_tra đồ_thị đó có_phải là hai phía hay_không trong thời_gian bằng .
+Trong giới_hạn của bài viết , ta sẽ không đi_sau vào chi_tiết thuật_toán này .
+Về cơ_bản , thuật_toán dựa trên nhận_xét rằng một đồ_thị là hai phía khi và chỉ khi nó không chứa chu_trình lẻ (odd cycle) , i . e , chu_trình mà số đỉnh thuộc chu_trình là một_số lẻ . Một (matching) trong một đồ_thị (không nhất_thiết là hai phía) là một_tập các cạnh sao_cho không có hai cạnh nào trong có chung một đầu_mút .
+Một cặp ghép được gọi_là cực_đại (maximum matching) nếu nó có kích_thước (số lượng cạnh) lớn nhất trong số các cặp ghép khác_nhau của đồ_thị .
+Xem ví_dụ tring Figure 1(c) .
+Bài_toán đặt ra cho chúng_ta là tìm một cặp ghép cực_đại trong đồ_thị hai phía . Chúng_ta sẽ quy bài_toán này về bài_toán luồng cực_đại như_sau : ta định_hướng các các cạnh vô_hướng thành các cung từ đến và gán cho mỗi cung khả_năng thông_qua .
+Ta thêm vào đồ_thị hai đỉnh mới và .
+Ta nối với mỗi đỉnh trong và nối mỗi đỉnh trong với .
+Mỗi cung mới thêm vào đều có khả_năng thông_qua .
+Gọi_là mạng thu được sau thao_tác này .
+Xem ví_dụ trong Figure 1(c) .
+Ta sẽ chứng_minh bài_toán tìm cặp ghép cực_đại của có_thể được quy về bài_toán tìm luồng cực_đại trong .
+Gọi_là cặp ghép cực_đại của .
+Ta sẽ chứng_minh có_một luồng với giá_trị .
+Chiều ngược_lại của định_lý coi_như bài_tập cho bạn_đọc .
+Ta sẽ chuyển đơn_vị luồng dọc theo các cung sau : Ta gán luồng cho mọi cung khác của .
+Gọi_là luồng thu được .
+Ta có_thể dễ_dàng kiểm_tra được các điều_kiện của luồng đối_với (chi tiết coi_như bài_tập cho bạn đọc) .
+Ngoài_ra , có đúng cung đi_ra khỏi là có luồng khác không vì kề với đúng đỉnh trong .
+Do_đó , .
+Dễ thấy xây_dựng có_thể được thực_hiện trong thời_gian Do có đỉnh và cạnh và luồng cực_đại trong có_giá trị là , áp_dụng thuật_toán Ford-Fulkerson , ta có_thể tìm luồng cực_đại trong trong thời_gian . Cho một ma_trận vuông kích_thước trong đó tổng_các phần_tử trên mỗi hàng đều là số_nguyên và tổng_các phần_tử trên mỗi cột cũng đều là số_nguyên .
+Tìm một_cách làm_tròn ma_trận , bằng cách làm_tròn mỗi phần_tử của thành một_số nguyên gần nhất sao_cho tổng_các hàng và cột của không thay_đổi .
+Xem ví_dụ Ta sẽ quy bài_toán này về bài_toán tìm .
+Ta sẽ xây_dựng một đồ_thị từ như_sau : Ban_đầu đồ_thị của chúng_ta rỗng . Mọi cung khác của đồ_thị sẽ có định_mức là .
+Figure 3 minh_họa cho mạng xây_dựng theo cách này từ ma_trận ví_dụ ở trên .
+mạng thu được từ ma_trận ví_dụ ở trên . Một luồng cực dại được gọi_là nếu_như mọi cung đi_ra từ đều được bão hoàn , i . e , với mọi .
+Theo định_lý Ford-Fulkerson , luồng bão_hòa cũng là luồng cực_đại của đồ_thị .
+Ta có : Ta sẽ phải chứng_minh hai chiều của định_lý .
+Chiều đầu_tiên , ta sẽ chứng_minh một_cách làm_tròn ma_trận sẽ cho ta một luồng cực_đại bão_hòa trong .
+Gọi_là ma_trận làm_tròn của .
+Luồng trên các cung của sẽ có_giá trị tương_ứng như_sau : Dễ thấy luồng trên là một luồng bão_hòa vì mọi cung đi_ra từ đều được bão_hòa .
+Ta sẽ kiểm_tra luồng định_nghĩa như_trên là một luồng hợp_lệ với định_mức cạnh .
+Theo định_nghĩa , mỗi phần_tử chỉ được làm_tròn thành số_nguyên gần nhất , .
+Do_đó , điều_kiện định_mức được thỏa_mãn .
+Điều_kiện thông_qua cũng được thỏa_mãn , do .
+Ta chỉ còn phải kiểm_tra điều_kiện bảo_toàn .
+Do ma_trận làm_tròn bảo_toàn tổng_hàng và tổng_cột , luồng mỗi là tổng_hàng thứ của và cũng chính là tổng_hàng thứ của .
+Do tổng_luồng từ là tổng_hàng thứ của , điều_kiện bảo_toàn được thỏa_mãn tại .
+Chứng_minh tương_tự với mỗi .
+Chiều ngược_lại , từ một luồng cực_đại bão_hòa của , ta sẽ xây_dựng ma_trận làm_tròn cho ma_trận như_sau : Do định_mức mà khả_năng thông_qua của đều là số_nguyên , luồng trên các cung cũng là số_nguyên .
+Do_đó , ma_trận là ma_trận nguyên .
+Do tính bảo_toàn luồng , tổng_hàng và cột trong cũng được bảo_toàn trong .
+Các tính_chất khác cần có_của ma_trận cũng có_thể dễ_dàng được kiểm_tra thông_qua điều_kiện định_mức của mạng . Trong bài_toán này , đầu_vào của chúng_ta là một bức ảnh và ta muốn tách một đối_tượng (gọi là phân vùng) trong bức ảnh ra khỏi phần khác của bức ảnh mà ta gọi chung là nền .
+Xem ví_dụ trong Figure 4 .
+Tách 3 đối_tượng (3 cái bút chì) ra khỏi bức ảnh .
+Phần tối màu đen là nền của bức ảnh .
+Hình được lấy từ . Để đơn_giản , ở đây , ta sẽ chỉ tách một (và chỉ một) đối tượng; tất_cả các đối_tượng khác ta đều coi là nền .
+Để chuyển bài_toán này thành một bài_toán tính_toán cụ_thể , ta cần phải mô_hình hóa bức ảnh để biến nó thành đồ_thị .
+Bước này cần rất nhiều kiến_thức liên_quan đến xử_lí ảnh , do_đó , mình sẽ cố_gắng mô_tả một_cách đơn_giản .
+Chi_tiết cụ_thể hơn bạn_đọc có_thể tham_khảo tại bài báo gốc 2 .
+Ta sẽ coi mỗi_một điểm_ảnh (pixel) là một đỉnh của đồ_thị .
+Mỗi đỉnh có hai đại_lượng : tương_ứng với khả_năng điểm thuộc đối_tượng và tương_ứng với khả_năng thuộc nền .
+Mỗi điểm_ảnh (không thuộc phần biên ảnh) sẽ có 4 điểm_ảnh kề bên .
+Với mỗi điểm_ảnh kề bên , ta sẽ có cạnh tương_ứng với trọng số .
+Trọng số này sẽ tương_ứng với phân và vào hai vùng khác_nhau , i . e , thuộc đối_tượng và thuộc nền hoặc ngược_lại .
+Làm thế_nào để có được những đại_lượng này từ một bức ảnh , xem phần remark ở cuối bài .
+Ở đây , ta giả_sử đã có_sẵn những đại_lượng như_vậy . Ta có hai tiêu_chuẩn chính khi thực_hiện phân_vùng ảnh : Hai tiêu_chuẩn đó đưa đến việc tìm một phân_hoạch của tập đỉnh sao_cho định_nghĩa dưới_đây đạt giá_trị cực_đại : Ta có_thể coi tập đỉnh tương_ứng với tập các điểm_ảnh của đối_tượng và tập đỉnh là tập các điểm_ảnh thuộc nền .
+Đặt , ta có : Do là một hằng_số , ta có_thể chuyển bài_toán cực_đại_hóa về bài_toán cực_tiểu_hóa .
+Ta sẽ quy bài_toán này về bài_toán tìm một lắt cắt với trọng số cực_tiểu trong đồ_thị (khác ) . Nhắc_lại , đồ_thị hiện_tại của chúng_ta có tập đỉnh là tập các điểm_ảnh và hai điểm_ảnh kề bên sẽ được nối với một cạnh với trọng số .
+Ta sẽ biến mỗi cạnh vô_hướng này thành hai cung song_song và với cùng khả_năng thông_qua .
+Ta sẽ thêm vào đồ_thị hai đỉnh và .
+Với mỗi điểm_ảnh , ta thêm một cung với trọng số và một cung với trọng số .
+Gọi đồ_thị thu được là .
+Xem minh_họa trong Figure 6 .
+Mạng thu được trong bài_toán phân_vùng ảnh .
+Chú_ý , lát cắt là lát cắt trong đồ_thị còn lát cắt là lát cắt trong đồ_thị .
+Theo định_nghĩa : Từ định_nghĩa , nếu ta có hai cung song_song và với cùng khả_năng thông_qua , ở đây , thì ta chỉ tính khả_năng thông_qua của cung trong .
+Dựa vào định_nghĩa của , đại_lượng chính là tổng_khả_năng thông_qua của các cung từ tới các đỉnh trong và chính là khả_năng thông_qua của các đỉnh từ tới .
+Do_đó .
+Theorem 3 cho chúng_ta biết , để tìm phân_hoạch của bức ảnh thỏa_mãn cực_tiểu , ta chỉ việc tìm một_lát cắt cực_tiểu trong đồ_thị .
+Lát cắt này có_thể tìm bằng cách tìm một luồng cực_đại_từ tới , theo định_lý Ford-Fukerson .
+Trong phần này , mình sẽ lượt qua ngắn_gọn cách thu được như mô_tả ở trên .
+Về_mặt trực_quan , đại_lượng đặc_trưng cho độ tương_tự giữa hai điểm_ảnh .
+Nếu hai điểm_ảnh càng tương_tự nhau , càng lớn , và như_vậy , chi_phí phân vào hai vùng khác_nhau càng cao .
+Ví_dụ , trong 2 , tác_giả chọn , với là một hằng_số_dương và là cường_độ tại hai điểm_ảnh , là một hàm thỏa_mãn tiêu_chí như_vậy .
+Để thu được ( ta làm tương tự) , ta có_thể cố_định một_số điểm_ảnh trên ảnh thuộc đối_tượng .
+Hay nói_cách_khác , ta chọn một_số điểm_ảnh và cho với những điểm_ảnh này .
+Với các điểm_ảnh khác , ví_dụ , ta sẽ gán tỉ_lệ với độ tương_tự (trung bình) giữa và các điểm_ảnh mà ta đã chọn sẵn thuộc đối_tượng .
+Về_mặt trực_quan , ta càng cố_định nhiều điểm thuộc đối_tượng (giả sử các điểm đó đúng là đối tượng) , thì khả_năng ta gán cho các điểm_ảnh càng chính_xác .
+Figure 5 dưới_đây là ví_dụ về chất_lượng phân_vùng sử_dụng thuật_toán trên với các điểm_ảnh chọn thuộc đối_tượng khác_nhau .
+Độ_chính_xác của thuật_toán phân_vùng khi nhiều điểm được đánh_dấu là thuộc đối tượng/nền .
+Hình lấy từ 2 . 1 J .
+Erickson .
+, UIUC , Fall 2013 .
+2 Y .
+Boykov and G .
+Funka-Lea .
+International_Journal of Computer_Vision 70 . 2 (2006) .
+3 K .
+Wayne .
+, Princeton , Spring 2001 .
+, , , , Trackback link : Powered by and

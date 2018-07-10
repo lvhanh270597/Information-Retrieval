@@ -1,0 +1,84 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Thuật_toán Kruskal là một thuật_toán tham_lam .
+Thuật_toán sẽ duy_trì một đồ_thị con phi chu_trình , gọi_là một rừng (forest) , của .
+Ban_đầu , khởi tạo , i . e , là tập chỉ gồm các đỉnh mà không có cạnh nào cả .
+Tại mỗi bước , thuật_toán sẽ cố_gắng thêm cạnh vào , để cuối_cùng sẽ là một cây khung .
+Do ta muốn tổng_trọng số của nhỏ nhất có_thể , ta sẽ chọn cạnh cạnh có nhỏ nhất , gọi_là , trong số các cạnh ở trong và thêm vào .
+Sẽ có hai trường_hợp : Tính_chất (6) cho chúng_ta biết thêm cạnh theo thứ_tự tăng dần của trọng số như_vậy sẽ cho chúng_ta cây khung nhỏ nhất .
+Ví_dụ : các bước chạy_của thuật_toán với đồ_thị cho trong hình trên .
+Các cạnh màu đỏ là các cạnh nằm trong cây khung nhỏ nhất .
+Các cạnh màu xanh là các cạnh đã được xét và không nằm trong cây khung .
+Các cạnh màu xanh gạch_ngang là cạnh sẽ được xem_xét đưa_vào cây khung trong bước tiếp_theo .
+Thứ_tự các cạnh được xét là theo chiều tăng dần của trọng số . Giả mã : Tạm_thời chưa quan_tâm đến_thời gian thực_thi .
+Câu_hỏi đầu_tiên mà ta quan_tâm đó là : thuật_toán có thực_sự trả về cây khung nhỏ nhất ?
+Để trả_lời câu_hỏi này , ta sẽ trả_lời một loạt câu_hỏi (dễ hơn) sau . Đồ_thị đầu_ra của có_phải là chu_trình hay_không ?
+Câu trả_lời là_vì điều_kiện trong dòng màu đỏ luôn đảm_bảo điều này . Đồ_thị đầu_ra của có_phải là một cây hay_không ?
+Ta đã biết không có chu_trình , do_đó , nó sẽ là cây nếu liên_thông (chỉ có duy_nhất một thành_phần liên thông) .
+Giả_sử đầu_ra không liên_thông , sẽ có ít nhât hai thành_phần liên_thông (mỗi thành_phần liên_thông có_thể chỉ là 1 đỉnh) .
+Chọn hai thành_phần liên_thông của , sao_cho tồn_tại một cạnh của nối hai thành_phần này .
+Ta luôn chọn được vì liên_thông .
+Gọi_là cạnh có trọng số nhỏ nhất nối .
+Cạnh này không thuộc vì nếu_không sẽ là chỉ là một thành_phần mà_thôi .
+Nhưng khi kiểm_tra điều_kiện ở dòng màu đỏ , rõ_ràng không có chu_trình .
+Điều đó có_nghĩa ta sẽ thêm vào trong ngay sau_đó .
+Điều này trái với giả_sử không thuộc .
+Do_đó phải liên_thông , i . e , là một cây . Giờ ta sẽ chứng_minh : Gọi_là một cây khung nhỏ nhất của sao_cho số cạnh chung giữa và là lớn nhất .
+Nếu thì rõ_ràng là một cây khung nhỏ nhất .
+Do_đó , giả_sử .
+Gọi và lần_lượt là thứ_tự các cạnh của và sắp_xếp theo chiều tăng của trọng số .
+Gọi_là chỉ_số nhỏ nhất sao_cho cạnh và cạnh là hai cạnh khác_nhau .
+Theo cách chọn , ta suy ra và .
+Do_đó , không có chu_trình . Ta sẽ có , vì nếu_không , dòng màu đỏ trong thuật_toán sẽ kiểm_tra cạnh kiểm_tra cạnh , và do không có chu_trình , sẽ được thêm vào trước .
+Hay nói_cách_khác , chính là cạnh thứ của ; trái với giả_thiết .
+Xét đồ_thị .
+sẽ có_một chu_trình .
+Chu_trình có hai tính_chất sau : Gọi ; là một cây (tại sao ? ) .
+Do , .
+Từ_đó suy ra cũng là một cây khung nhỏ nhất .
+Nhưng rõ_ràng có_số cạnh chung với nhiều hơn .
+Điều này trái với giả_thiết là cây khung nhỏ nhất có_số cạnh chung nhiều nhất với .
+Như_vậy , , i . e , là cây khung nhỏ nhất . Phần khó thực_thi nhất của thuật_toán có_lẽ là dòng màu đỏ .
+Theo tính_chất (1) của cây khung , có tối_đa cạnh , do_đó , có tối_đa cạnh .
+Dòng màu đỏ thực_ra có_thể quy về bài_toán : Kiểm_tra xem một đồ_thị có chu_trình hay_không ? Ta có_thể giải bài_toán này bằng bất_kì thuật_toán nào (BFS/DFS) .
+Do_đó , ta có_thể thực_hiện dòng màu đỏ trong thời_gian , qua đó thu được thuật_toán .
+Tuy_nhiên , ta muốn thực_hiện nhanh hơn thế . Ta nhận_xét thấy trong mỗi bước trung_gian , là một rừng , i . e , mỗi thành_phần liên_thông của là một cây .
+Phép kiểm_tra xem có chu_trình hay_không tương_đương với kiểm_tra xem hai đầu_mút , gọi_là , của có thuộc cùng một cây trong rừng hay_không . Giờ nếu biểu_diễn mỗi cây trong bằng cấu_trúc tập_hợp .
+Các đỉnh thuộc cùng một cây khi và chỉ khí nó nằm trong cùng một_tập .
+Thao_tác (a) sẽ tương_đương với so_sánh và .
+Thao_tác (b) sẽ tương_đương với .
+Các bạn xem thêm .
+Do_đó , ta có_thể viết lại thuật_toán như_sau : Để thực_thi giả mã trên , chúng_ta có_thể sử_dụng biểu_diễn dạng ma_trận kề hay danh_sách kề .
+Tuy_nhiên , trong giả mã trên , không có truy_vấn dạng "tìm hàng_xóm của một đỉnh" .
+Do_đó , ta có_thể sử_dụng cấu_trúc danh_sách cạnh để biểu_diễn đồ_thị (gọi là danh_sách chứ thực_ra ta có_thể dùng một mảng các struct , mỗi struct biểu_diễn một cạnh) .
+Phép biểu_diễn này cho_phép chúng_ta có_thể gọi thủ_tục sắp_xếp cạnh một_cách dễ_dàng .
+Trong_Code dưới_đây , mình sử_dụng danh_sách cạnh để cài_đặt . Code_C : Sắp_xếp các cạnh của đồ_thị theo trọng số mất thời_gian (vd sử_dụng ) .
+Như_ta đã biết , mỗi thao_tác của cấu_trúc Union-Find (kết hợp nén đường đi) mất thời_gian trong đó là ngược .
+Hàm này có_giá trị với mọi giá_trị thực_tế của .
+Do_đó , vòng_lặp for (có chứa dòng màu đỏ) sẽ mất thời_gian .
+Do_đó , tổng thời_gian của thuật_toán là .
+Trong cấu_trúc Union-Find , giả_sử_ta có_một tập gồm phần_tử .
+Ta muốn có_một cấu_trúc dữ_liệu biểu_diễn các tập_con không giao nhau (disjoint subsets) của .
+Cấu_trúc này hỗ_trợ các thao_tác sau : Mỗi tập_hợp_con của , ta sẽ dùng một cây để biểu_diễn .
+Mảng sẽ biểu_diễn cấu_trúc cây này .
+i . e , nếu_như là nút cha của trong cây (biểu diễn_tập hợp chứa ) .
+Do_đó , để kiểm_tra xem hai phần_tử có trong cùng một cây hay_không , ta chỉ việc tìm xem nút gốc của cây biểu_diễn có trùng nhau hay_không .
+Trong thực_thi dưới_đây , ta sẽ sử_dụng nén đường_đi .
+Về cơ_bản , khi ta đã tìm được gốc , gọi_là , của cây_chứa nút , ta đặt luôn , để các phép tìm gốc sau_đó của sẽ nhanh hơn . Để hợp 2 cây , ta sẽ hợp theo hạng (rank) và ta sẽ dùng một mảng .
+Về_mặt trực_quan , khi gộp 2 cây , ta nên gộp cây có độ sâu (depth) nhỏ hơn vào cây có độ sâu lớn hơn vì làm như_vậy , chiều_sâu của cây không tăng lên tối_đa 1 sau khi gộp , và do_đó , các phép tìm gốc sau_này sẽ nhanh hơn .
+Hạng là một chỉ_số , về_mặt trực_quan (nhưng không hoàn toàn) , đo xem cây nào có chiều_sâu nhỏ hơn cây nào .
+Do_đó , ta sẽ gộp cây của nút có_hạng nhỏ hơn vào cây của nút có_hạng lớn hơn . Giả mã : Code_C : Code đầy_đủ : . 1 Kruskal , Joseph_B .
+Proceedings of the American_Mathematical society 7 . 1 (1956) : 48-50 .
+2 Prim , Robert_Clay .
+Bell_System_Technical_Journal 36 . 6 (1957) : 1389-1401 .
+3 Borůvka , Otakar (1926) .
+.
+Elektronický_Obzor (in Czech) 15 : 153–154 .
+4 Nešetřil , Jaroslav , Eva_Milková , and Helena_Nešetřilová .
+Discrete_Mathematics 233 . 1 (2001) : 3-36 .
+5 Karger , David_R . ; Klein , Philip_N . ; Tarjan , Robert_E .
+.
+Journal of the ACM 42 (2) : 321–328 , 1995 .
+6 Jeff_Erickson .
+.
+UIUC , 2014 .
+, , , Trackback link : on Thank you share itPowered by and

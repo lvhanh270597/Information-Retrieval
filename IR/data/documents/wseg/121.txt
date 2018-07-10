@@ -1,0 +1,94 @@
+Giới_thiệu Ứng_dụng về sắp_xếp có ở khắp mọi nơi : Một danh_sách lớp với các học_sinh được sắp_xếp theo thứ_tự bảng_chữ_cái .
+Một_danh_bạ điện_thoại .
+Danh_sách các truy_vấn được tìm_kiếm nhiều nhất trên Google .
+Thuật_toán sắp_xếp cũng được dùng kết_hợp với những thuật_toán khác , như tìm_kiếm nhị_phân , thuật_toán Kruskal để tìm cây khung nhỏ nhất của đồ_thị .
+Vì_sao chúng_ta phải học nhiều thuật_toán sắp_xếp ?
+Khi code , bạn chỉ_cần biết cài một thuật_toán sắp_xếp là đủ .
+Hoặc nếu bạn code C++ hay Java , bạn chỉ_cần biết cách gọi thư_viện .
+Tuy_nhiên , các thuật_toán sắp_xếp khác_nhau cho ta nhiều ý_tưởng hay và độc_đáo - điều này vô_cùng hữu_ích khi các bạn_học các thuật_toán khác .
+Những điểm cần chú_ý Hãy thử tưởng_tượng bạn có_một bộ bài đã được xáo , và bạn muốn sắp_xếp lại các lá_bài theo thứ_tự tăng dần .
+Bạn sẽ làm như nào ?
+Có rất nhiều cách tiếp_cận khác_nhau : Chia bộ bài theo giá_trị : 2 , 3 , 4 . . .
+Rồi gộp lại .
+Trải tất_cả các lá_bài ra , rồi lần_lượt lấy lá_bài nhỏ nhất .
+Chia bộ bài ra thành nhiều nhóm nhỏ .
+Với mỗi nhóm , sắp_xếp lại , sau_đó gộp các nhóm lại với_nhau theo thứ_tự tăng dần .
+Bạn sẽ thấy những cách tiếp_cận khác_nhau sẽ có thời_gian nhanh chậm khác_nhau .
+Các thuật_toán sắp_xếp cũng_vậy .
+Có rất nhiều cách tiếp_cận , với ưu , nhược_điểm khác_nhau .
+Khi so_sánh giữa các thuật_toán này với_nhau , có nhiều vấn_đề phải quan_tâm .
+Thời_gian chạy .
+Đối_với các dữ_liệu rất lớn , các thuật_toán không hiệu_quả sẽ chạy rất chậm và không_thể ứng_dụng trong thực_tế .
+Bộ_nhớ .
+Các thuật_toán nhanh đòi_hỏi đệ_quy sẽ có_thể phải tạo ra các bản copy của dữ_liệu đang xử_lí .
+Với những hệ_thống mà bộ_nhớ có giới_hạn (ví dụ embedded system) , một_vài thuật_toán sẽ không_thể chạy được .
+Độ ổn_định ( stability ) .
+Độ ổn_định được định_nghĩa dựa trên điều gì sẽ xảy_ra với các phần_tử có_giá trị giống nhau .
+Đối_với thuật_toán sắp_xếp ổn_định , các phần_tử bằng với giá_trị bằng_nhau sẽ giữ_nguyên thứ_tự trong mảng trước_khi sắp_xếp .
+Đối_với thuật_toán sắp_xếp không ổn_định , các phần_tử có_giá trị bằng_nhau sẽ có_thể có thứ_tự bất_kỳ .
+Trong bài viết này , ta giả_sử cần sắp_xếp tăng dần các phần_tử .
+Để sắp_xếp giảm_dần , ta có nhiều cách : Sửa_đổi thuật_toán một_cách phù_hợp .
+Sắp_xếp , sau_đó đảo_ngược thứ_tự các phần_tử .
+Định_nghĩa lại việc so_sánh nhỏ hơn .
+Sắp_xếp nổi_bọt (Bubble sort) Đây là thuật_toán cơ_bản nhất cho việc sắp_xếp .
+Ý_tưởng Xét lần_lượt các cặp 2 phần_tử liên_tiếp .
+Nếu phần_tử đứng sau nhỏ hơn phần_tử đứng trước , ta đổi chỗ 2 phần_tử .
+Nói_cách_khác , phần_tử nhỏ nhất sẽ nổi_lên trên .
+Lặp_lại đến khi_không còn 2 phần_tử nào thỏa_mãn .
+Có_thể chứng_minh được số lần_lặp không quá N - 1 , do một phần_tử chỉ_có thể nổi_lên trên không quá N-1 lần .
+Ưu_điểm Code đơn_giản , dễ_hiểu Không tốn thêm bộ_nhớ Nhược_điểm Độ phức_tạp \mathcalO(N2) , không đủ nhanh với dữ_liệu lớn .
+Code for ( int i = 0 ; i lt; n ; i ++ ) for ( int j = 0 ; j lt; n - 1 ; j ++ ) if ( a j gt; a j + 1 ) swap ( a j , a j + 1 ); Minh_họa Bạn có_thể vào VisuAlgo .
+Chọn_Bubble ở thanh menu bên_trên .
+Ấn vào nút Create ở phía dưới trang để tạo một dãy mới Ấn vào Sort , rồi Go để chạy thuật_toán .
+Sắp_xếp chèn (Insertion Sort) Ý_tưởng Ý_tưởng chính của thuật_toán là ta sẽ sắp_xếp lần_lượt từng đoạn gồm 1 phần_tử đầu_tiên , 2 phần_tử đầu_tiên , . . . , N phần_tử .
+Giả_sử_ta đã sắp_xếp xong i phần_tử của mảng .
+Để sắp_xếp i+1 phần_tử đầu_tiên , ta tìm vị_trí phù_hợp của phần_tử thứ i+1 và "chèn" nó vào đó .
+Ưu_điểm Nếu danh_sách đã gần đúng thứ_tự , Insertion_Sort sẽ chạy rất nhanh .
+Ví_dụ bạn cần sắp_xếp Highscore trong game .
+Nhược_điểm Độ phức_tạp \mathcalO(N2) , không đủ nhanh với dữ_liệu lớn .
+Code for ( int i = 1 ; i lt; n ; i ++ ) // Tìm vị_trí phù_hợp cho i int j = i ; while ( j gt; 0 amp;amp; data i lt; data j - 1 ) -- j ; // Đưa i về đúng vị_trí int tmp = data i ; for ( int k = i ; k gt; j ; k -- ) data k = data k - 1 ; data j = tmp ; Minh_họa Bạn có_thể vào VisuAlgo .
+Chọn_Insert ở thanh menu bên_trên .
+Ấn vào nút Create ở phía dưới trang để tạo một dãy mới Ấn vào Sort , rồi Go để chạy thuật_toán .
+Sắp_xếp trộn (Merge sort) Ý_tưởng Sắp_xếp trộn hoạt_động kiểu đệ_quy : Đầu_tiên chia dữ_liệu thành 2 phần , và sắp_xếp từng phần .
+Sau_đó gộp 2 phần lại với_nhau .
+Để gộp 2 phần , ta làm như_sau : Tạo một dãy A mới để chứa các phần_tử đã sắp_xếp .
+So_sánh 2 phần_tử đầu_tiên của 2 phần .
+Phần_tử nhỏ hơn ta cho vào A và xóa_khỏi phần tương_ứng .
+Tiếp_tục như_vậy đến khi ta cho hết các phần_tử vào dãy A .
+Ưu_điểm Chạy nhanh , độ phức_tạp \mathcalO(NlogN) .
+Ổn_định Nhược_điểm Cần_dùng thêm bộ_nhớ để lưu_mảng A .
+Code int a MAXN ; // mảng trung_gian cho việc sắp_xếp // Sắp_xếp các phần_tử có chỉ_số từ left đến right của mảng data .
+void mergeSort ( int data MAXN , int left , int right ) if ( data .
+length == 1 ) // Dãy chỉ gồm 1 phần_tử , ta không cần sắp_xếp .
+return ; int mid = ( left + right ) / 2 ; // Sắp_xếp 2 phần mergeSort ( data , left , mid ); mergeSort ( data , mid + 1 , right ); // Trộn 2 phần đã sắp_xếp lại int i = left , j = mid + 1 ; // phần_tử đang xét của mỗi nửa int cur = 0 ; // chỉ_số trên mảng a while ( i lt;= mid j lt;= right ) // chừng_nào còn 1 phần chưa hết phần_tử .
+if ( i gt; mid ) // bên trái không còn phần_tử nào a cur ++ = data j ++ ; else if ( j gt; right ) // bên phải không còn phần_tử nào a cur ++ = data i ++ ; else if ( data i lt; data j ) // phần_tử bên trái nhỏ hơn a cur ++ = data i ++ ; else a cur ++ = data j ++ ; // copy mảng a về mảng data for ( int i = 0 ; i lt; cur ; i ++ ) data left + i = a i ; Minh_họa Bạn có_thể vào VisuAlgo .
+Chọn_Merge ở thanh menu bên_trên .
+Ấn vào nút Create ở phía dưới trang để tạo một dãy mới Ấn vào Sort , rồi Go để chạy thuật_toán .
+Sắp_xếp vun đống (HeapSort) Ý_tưởng Ta lưu_mảng vào CTDL_Heap .
+Ở mỗi bước , ta lấy ra phần_tử nhỏ nhất trong heap , cho vào mảng đã sắp_xếp .
+Ưu_điểm Cài_đặt đơn_giản nếu đã có_sẵn thư_viện Heap .
+Chạy nhanh , độ phức_tạp \mathcalO(NlogN) .
+Nhược_điểm Không ổn_định Code_Heap h = Heap (); for ( int i = 0 ; i lt; n ; i ++ ) // thêm phần_tử vào heap h .
+push ( data i ); int a MAXN ; for ( int i = 0 ; i lt; n ; i ++ ) // lấy phần_tử nhỏ nhất và cho vào mảng đã sắp_xếp a i = h .
+pop (); Sắp_xếp nhanh (QuickSort) Ý_tưởng Chia dãy thành 2 phần , một phần "lớn" và một phần "nhỏ" .
+Chọn một khóa pivot Những phần_tử lớn hơn pivot chia vào phần_lớn Những phần_tử nhỏ hơn hoặc bằng pivot chia vào phần nhỏ .
+Gọi đệ_quy để sắp_xếp 2 phần .
+Ưu_điểm Chạy nhanh (nhanh nhất trong các thuật_toán sắp_xếp dựa trên việc só sánh các phần tử) .
+Do_đó quicksort được sử_dụng trong nhiều thư_viện của các ngôn_ngữ như Java , C++ (hàm sort của C++ dùng Intro sort , là kết_hợp của Quicksort và Insertion_Sort) .
+Nhược_điểm Tùy thuộc vào cách chia thành 2 phần , nếu chia không tốt , độ phức_tạp trong trường_hợp xấu nhất có_thể là \mathcalO(N2) .
+Nếu ta chọn pivot ngẫu_nhiên , thuật_toán chạy với độ phức_tạp trung_bình là \mathcalO(NlogN) (trong trường_hợp xấu nhất vẫn là \mathcalO(N2) , nhưng ta sẽ không bao_giờ gặp_phải trường_hợp đó) .
+Không ổn_định .
+Code void quickSort ( int a , int left , int right ) int i = left , j = right ; int pivot = a left + rand () % ( right - left ); // chia dãy thành 2 phần while ( i lt;= j ) while ( a i lt; pivot ) ++ i ; while ( a j gt; pivot ) -- j ; if ( i lt;= j ) swap ( a i , a j ); ++ i ; -- j ; // Gọi đệ_quy để sắp_xếp các nửa if ( left lt; j ) quickSort ( a , left , j ); if ( i lt; right ) quickSort ( a , i , right ); Minh_họa Bạn có_thể vào VisuAlgo .
+Chọn_Quick ở thanh menu bên_trên .
+Ấn vào nút Create ở phía dưới trang để tạo một dãy mới Ấn vào Sort , rồi Go để chạy thuật_toán .
+Sắp_xếp cơ_số (RadixSort) Ý_tưởng Khác với tất_cả các thuật_toán nêu trên , RadixSort không sử_dụng việc so_sánh 2 phần_tử .
+Đầu_tiên , thuật_toán sẽ chia các phần_tử thành các nhóm , dựa trên chữ_số cuối_cùng (hoặc dựa theo bit cuối_cùng , hoặc vài bit cuối cùng) .
+Sau_đó ta đưa các nhóm lại với_nhau , và được danh_sách sắp_xếp theo chữ_số cuối của các phần_tử .
+Quá_trình này lặp_đi lặp_lại với chữ_số át cuối cho tới khi tất_cả vị_trí chữ_số đã sắp_xếp .
+Ưu_điểm Có_thể chạy nhanh hơn các thuật_toán sắp_xếp sử_dụng so_sánh .
+Ví_dụ nếu ta sắp_xếp các số_nguyên 32 bit , và chia nhóm theo 1 bit , thì độ phức_tạp là \mathcalO(N) .
+Trong trường_hợp tổng_quát , độ phức_tạp là \mathcalO(Nlog(max(a_i))) Nhược_điểm Không_thể sắp_xếp số_thực .
+Minh_họa Bạn có_thể vào VisuAlgo .
+Chọn_Radix ở thanh menu bên_trên .
+Ấn vào nút Create ở phía dưới trang để tạo một dãy mới Ấn vào Sort , rồi Go để chạy thuật_toán .
+Nguồn tham_khảo Topcoder_VisuAlgo_Wikipedia

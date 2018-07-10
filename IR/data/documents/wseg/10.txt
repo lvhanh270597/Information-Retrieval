@@ -1,0 +1,100 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Danh_sách liên_kết (DSLK) đơn (Singly linked list) là một cấu_trúc dữ_liệu cơ_bản và có cực_kì nhiều ứng_dụng .
+Ý_tưởng của DSLK_đơn khá đơn_giản .
+Tuy_nhiên , để cài_đặt cấu_trúc DSLK_đơn một_cách ngắn_gọn , hiệu_quả thì không_phải là điều hiển_nhiên .
+Trong bài này , chúng_ta sẽ thảo_luận các cách cài_đặt danh_sách liên_kết (trong C) sao_cho và .
+Cài_đặt DSLK trong C không_thể tránh khỏi sử_dụng con_trỏ (pointer) và struct .
+Con_trỏ là một kiểu dữ_liệu cực_kì mạnh_của ngôn_ngữ C .
+Nó cho_phép người lập_trình thao_tác bộ_nhớ rất hiệu_quả .
+Những lập_trình_viên giỏi luôn là những lập_trình_viên biết thao_tác con_trỏ một_cách thuần_thục .
+Tuy_nhiên , điểm yếu của con_trỏ là khó học , khó nắm_bắt và cũng khó debug các chương_trình có_con trỏ , nhất_là đối_với những người lần đầu tiếp_xúc với khái_niệm con_trỏ .
+Trong bài này , mình cũng không có gắng giải_thích ý_nghĩa , mặc_dù có nhắc_lại , con_trỏ .
+Mình khuyến_khích các bạn tự tìm_hiểu , vì có rất nhiều nguồn , kể_cả tiếng Anh và tiếng Việt .
+Phần cuối bài mình sẽ liên_kết một_số bài viết hay về con_trỏ .
+Mục_tiêu của bài này là minh_họa tối_đa khả_năng kì_diệu của con_trỏ trong thao danh_sách liên_kết .
+Các bài khác trong blog mình thường minh_họa bằng giả mã .
+Tuy_nhiên , bài này mình sẽ trực_tiếp sử_dụng code C . Một con_trỏ (pointer) là một biến dùng để lưu_trữ của một biến khác .
+Biến khác ở đây có_thể là một biến thông_thường như biến_số nguyên , biến_số thực , hoặc có_thể là một mảng , một hàm , và có_khi cũng chính là một con_trỏ khác .
+Vì con_trỏ là một biến nên nó cũng cần phải được lưu_trữ ở đâu_đó trong bộ nhớ; có_nghĩa là bản_thân biến con_trỏ cũng có_một địa_chỉ trong bộ_nhớ .
+Do_đó , ta có_thể dùng con_trỏ đề lưu địa_chỉ của một con_trỏ khác .
+Tính_chất này cũng chính là sự kì_diệu của con_trỏ mà mình sẽ minh_họa trong bài này . Cú_pháp khai_báo con_trỏ trong C , nói một_cách đơn_giản (nhưng không hoàn_toàn chính xác) , gồm 3 phần : (i) kiểu của biến khác mà con_trỏ lưu_trữ địa_chỉ , (2) dấu và (3) tên của con_trỏ .
+Con_trỏ hàm thì khai_báo hơi khác một_chút , nhưng đây không_phải vấn_đề trọng_tâm của bài viết .
+Ví_dụ , khai_báo một_số con_trỏ : Khai_báo thì như_vậy , nhưng ý_nghĩa của con_trỏ thì không_phải lúc nào cũng nhất_quán .
+Ví_dụ con_trỏ vừa có_thể hiểu là con_trỏ tới một biến_số nguyên , vừa có_thể hiểu là con_trỏ tới phần_tử đầu_tiên của một mảng số_nguyên . Struct trong C cho_phép chúng_ta tập_hợp một hoặc một_vài kiểu dữ_liêu khác_nhau thành một kiểu dữ_liệu mới .
+Các kiểu dữ_liệu thành_phần của một struct có_thể là kiểu dữ_liệu sẵn_có như số_nguyên , số_thực , con_trỏ , hoặc một kiểu struct đã định_nghĩa trước đó .
+Tóm_lại , struct cho_phép chúng_ta "gộp" một_số kiểu dữ_liệu đã có lại với_nhau để tiện thao_tác .
+Trong_DSLK , struct được sử_dụng để khai_báo một "mắt xích" của danh_sách .
+Ví_dụ ta muốn khai_báo một mắt_xích của một danh_sách liên_kết các biến kiểu int thì ta có_thể khai_báo như_sau : Biến trong khai_báo trên là dữ_liệu của mỗi mắt_xích và nó có kiểu int .
+Kiểu của còn có_thể là con_trỏ , hay một struct .
+Mỗi mắt_xích thường được minh_họa như trong Figure 1 , trong đó , mũi_tên ám_chỉ con_trỏ lưu địa_chỉ của mắt_xích tiếp_theo (con trỏ next) .
+Con_trỏ này trong mắt_xích cuối_cùng của danh_sách thường là .
+Biểu_diễn một mắt_xích của danh_sách liên_kết . Để khởi tạo một mắt_xích , ta sẽ dùng hàm_malloc (viết tắt của emory ation) .
+Malloc là một hàm quản_lí bộ_nhớ của C .
+Bản_thân hàm này cũng khá phức_tạp .
+Bạn_đọc xem thêm tại liên_kết ở cuối bài . Danh_sách liên_kết đơn , về_mặt trực_quan , là cấu_trúc dữ_liệu tuyến_tính giống_như một cái xích dài liên_kết các "mắt xích" với_nhau .
+Mỗi mắt_xích có dạng khai_báo llnode ở trên .
+Figure 2 minh_họa một danh_sách liên_kết với 5 phần_tử .
+Một danh_sách liên_kết với 5 phần_tử . Để theo_dõi danh_sách , ta sẽ dùng một con_trỏ đặc_biệt , gọi_là con_trỏ head .
+Con_trỏ này lưu_trữ của mắt_xích đầu_tiên của danh_sách .
+Như đã nói ở trên , con_trỏ của mắt_xích cuối_cùng của danh_sách sẽ có_giá trị .
+Ta có_thể duyệt qua danh_sách này bằng cách bắt_đầu_từ phần_tử đầu_tiên , đi_theo con_trỏ liên_kết để đi_tới nút tiếp_theo .
+Đến khi ta gặp con_trỏ thì ta đã duyệt xong danh_sách .
+Đoạn code dưới_đây là thủ_tục walk_down để duyệt danh_sách . Trong đoạn code trên , liệu ta có bị mất con_trỏ head ?
+Câu trả_lời là không vì mỗi lần gọi một hàm walk_down như_trên , một bản "copy" của con_trỏ head sẽ được tạo ra , và hàm walk_down sẽ thay_đổi bản copy này .
+Bản_gốc vẫn không thay_đổi .
+Nếu bạn thay_đổi con_trỏ head trong hàm main (hàm mà bạn tạo ra con_trỏ này) hoặc con_trỏ head là một biến toàn_cục , thì con_trỏ head sẽ bị thay_đổi , hay bị mất .
+Điều gì sẽ xảy_ra nếu_như ta "làm mất" con_trỏ head ?
+Bạn sẽ mất dấu của danh_sách và do_đó , sẽ không_thể thao_tác được với danh_sách nữa .
+Phần bộ_nhớ của danh_sách lúc_này sẽ vẫn bị chiếm bởi danh_sách , do_đó , tạo ra rác (garbage) trong hệ_thống .
+Phần rác này tồn_tại cho_đến khi chương_trình kết_thúc .
+Bài_học rút ra : khi_nào bạn không còn cần danh_sách nữa thì sử_dụng hàm free để giải_phóng bộ_nhớ , đừng bao_giờ để_mất dấu con_trỏ head vì nó sẽ tạo ra rác .
+Khi thêm phần_tử mới vào danh_sách , nếu bài_toán không có yêu_cầu gì đặc_biệt , thì bạn nên của danh_sách .
+Nếu bạn thêm vào đuôi của danh_sách (theo tư_duy thông thường) , thì ngoài phải trả thêm bộ_nhớ để lưu_trữ con_trỏ đuôi của danh_sách (nếu không_lưu con_trỏ này thì sẽ phải duyệt rất tốn thời gian) , bạn phải xét trường_hợp khi danh_sách rỗng (con trỏ đuôi là ) , i . e , thêm if-then trong code .
+Điều này làm code vừa chậm vừa "tối sủa" (xem code ví_dụ dưới đây) . Tóm_lại , .
+Đoạn code sau minh_họa thao_tác chèn vào đầu .
+Rõ_ràng đoạn code dưới_đây đẹp hơn rất nhiều .
+Các bước chèn một mắt_xích có_giá trị 6 vào đầu DSLK trong Figure 2 . Giả_sử bạn muốn xóa_một mắt_xích có trường dữ_liệu có_giá trị ra khỏi danh_sách , bạn có_thể làm như_sau (xem minh_họa trong Figure 4) : Các bước xóa mắt_xích có_giá trị ra khỏi danh_sách .
+Code : Đoạn code trên chỉ minh_họa ý_tưởng , và nó là đoạn code có bug , nghĩa_là nó chỉ thành_công trong một_số trường_hợp .
+Điều gì sẽ xảy_ra nếu ta chạy đoạn code trên trong trường_hợp mắt_xích đầu_tiên có_giá trị datum ?
+Khi đó đoạn code trong_vòng while sẽ không thực_hiện , và kết_quả là prev vẫn là sau vòng_lặp while .
+Đến đây bạn có_thể gặp lỗi Segmentation fault .
+Bạn có_thể sửa_đổi code trên như_sau : Đoạn code này ok , có_thể không có_lỗi , nhưng trông không được "sạch sẽ" và chậm vì có if-then .
+Cách tốt hơn , không có if-then , đó là thao_tác trên .
+Phương_pháp này minh_họa cách sử_dụng con_trỏ rất thông_minh .
+Hiểu đoạn code này có_thể khó nhưng một_khi đã hiểu thì bạn sẽ thấy cái hay của nó . Nhắc_lại , toán_tử là toán_tử lấy địa_chỉ của một biến , còn toán_tử là toán_tử lấy giá_trị của biến có địa_chỉ lưu trong con_trỏ .
+Nhìn vào đoạn code trên , sự khác_biệt so_với đoạn code good_but_not_clean_remove là chúng_ta thao_tác trên của con_trỏ , thay_vì thao_tác trên con_trỏ .
+Đoạn code trên được sửa_đổi từ . Đôi_khi trong một_số trường_hợp , ta muốn xóa_một nút khỏi danh_sách khi mà ta biết trước địa_chỉ của nút đó .
+Cụ_thể , ta muốn đoạn code tương_tự như_sau : Nếu chỉ đơn_giản gán current_node = thì đoạn code trên sẽ không thực_hiện đúng như mong_muốn (bạn đọc nên thử và giải_thích tại sao) .
+Có hai cách để làm .
+Cách làm không_mấy sạch_sẽ là copy dữ_liệu từ nút mắt_xích sau_đó vào nút hiện_tại và ta xóa nút sau_đó . Tuy_nhiên , cách này không áp_dụng được nếu current_node là mắt_xích cuối_cùng của DSLK (bạn đọc có_thể thử để kiểm tra) .
+Cách tốt hơn , lấy ý_tưởng hàm remove ở trên sử_dụng địa_chỉ của con_trỏ , ta sẽ truyên vào hàm địa_chỉ của current_node .
+Cách này áp_dụng được ngay_cả khi current_node là mắt_xích cuối_cùng của DSLK . Biến_thể đầu_tiên là DSLK đôi (doubly linked list) , trong đó , mỗi mắt_xích có 2 con_trỏ .
+Con_trỏ đầu_tiên trỏ vào mắt_xích trước nó trong DSLK và con_trỏ thứ_hai trỏ vào mắt_xích sau_đó trong DSLK .
+Một_DSLK đôi với 4 mắt_xích . DSLK đôi so_với DSLK_đơn cần nhiều bộ_nhớ hơn để lưu_trữ thêm một con_trỏ .
+Các thao_tác xóa và thêm mới cũng lâu hơn vì ta còn phải cập_nhật cả con_trỏ prev mỗi khi ta cần xóa hoặc thêm vào DSLK .
+Về điểm mạnh , DSLK đôi mềm_dẻo hơn vì từ một nút , ta có_thể đi đến nút trước nó mà không_phải duyệt từ_đầu DSLK .
+Tính mềm_dẻo này được Knuth 2 khai_thác triệt_để trong thiết_kế cấu_trúc Dancing_Links , một cấu_trúc dữ_liệu hỗ_trợ các thuật_toán quay lui cho bài_toán liệt_kê tổ_hợp .
+Ngoài_ra , ta có_thể không cần con_trỏ head để xác_định nút đầu_tiên của danh_sách như DSLK_đơn (tại sao ? ) .
+Nếu con_trỏ head bị mất , ta vẫn có_thể tìm được phần_tử đầu_tiên của DSLK nếu ta được phép truy_nhập đến một phần_tử bất_kì của DSLK .
+DSLK đôi cũng chính là cấu_trúc đằng_sau của Java . Danh_sách liên_kết vòng (circularly linked list) là một biến_thể khác của DSLK_đơn , trong đó con_trỏ next của mắt_xích cuối_cùng của danh_sách trỏ vào mắt_xích đầu_tiên của danh_sách để tạo_thành một vòng_tròn (xem Figure 6) .
+Với cấu_trúc này , khái_niệm đầu và cuối không thực_sự có_ý nghĩa .
+Do_đó , ta thường chỉ lưu một con_trỏ đặc_biệt để trỏ vào một nút nào_đó trong danh_sách .
+Một_DSLK vòng với 5 mắt_xích . Danh_sách liên_kết vòng thường được dùng trong các ứng_dụng trong đó các thành_phần tham_gia được thực_thi theo lượt .
+Ví_dụ trong các game đánh_bài khi mỗi người chơi được phép đi một_lượt theo vòng .
+Một bài_tập hay ứng_dụng danh_sách liên_kết vòng là .
+Phần này sẽ liên_tục được cập_nhật .
+Bạn nào có_tài liệu hay về con_trỏ cũng_như quản_lí bộ_nhớ thì comment xuống dưới để mình liên_kết tới bạn_đọc . Tutorial về con_trỏ và ý_nghĩa của con_trỏ : .
+Malloc làm_việc như_thế nào : Con_trỏ hàm : 1 T . H_Cormen , C . E . Leiserson , R .
+Rivest , C .
+Stein .
+, Chapter 10 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+2 D . E . Knuth , Donald_E .
+arXiv preprint cs/0011047 (2000) .
+, , , , , Trackback link : on admin cho mình hỏi nếu ta Insert ở 1 vị_trí bất_kỳ nhưng không_phải là ở đầu hay ở cuối thì sao ?
+ví_dụ : thêm giá_trị 5 vào vị_trí 4 trong danh_sách kiểu con_trỏ L ( hiện_tại danh_sách L có 9 phần tử) .
+on Hi bạn , Ví_dụ bạn thêm vào vị_trí thứ 2 thì bạn sẽ dùng một biến đếm i để xem bạn đã duyệt qua bao_nhiêu mắt_xích , rồi đến khi_nào i = 3 thì bạn thêm vào sau nút hiện_tại của con_trỏ duyệt .
+on Link malloc die rồi anh ơi on Ý bạn là link nào ?
+Mình thấy các link mình đưa vẫn hoạt_động mà .
+on Ý em là link Malloc làm_việc như_thế nào anh ạ , hôm_qua em không truy_cập được còn bây_giờ lại được rồi ạPowered by and

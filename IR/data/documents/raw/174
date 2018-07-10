@@ -1,0 +1,40 @@
+Chia để trị -- divide and conquer
+http://www.giaithuatlaptrinh.com/?p=48
+Nơi tổng hợp và chia sẻ những kiến thức liên quan tới giải thuật nói chung và lý thuyết khoa học máy tính nói riêng.   in  | Chia để trị theo mình là một trong những phương pháp hiệu quả nhất để thiết kế thuật toán. Bài trước chúng ta đã làm quen với  và  sử dụng chia để trị. Bài này khái quát hóa phương pháp và sau đó chúng ta xem xét các ví dụ áp dụng. Nguyên lí của chia để trị gồm hai bước như sau: 
+Cả hai bước đều yêu cầu những kĩ thuật nhất định và phương pháp tốt nhất để có thể áp dụng hai bước vào các bài toán khác nhau là thực hành nhiều. Trong bài này mình sẽ đưa ra các ví dụ minh họa hai bước, và đừng quên xem lại các  vì nó sẽ là công cụ chính để phân tích thời gian trong bài này.
+ 
+Phương pháp mà bạn có thể nghĩ ngay tới là sử dụng công thức: . Ta có giả mã 
+Thời gian tính của  là  (giả sử phép nhân được thực hiện trong thời gian ). Tuy nhiên, ta có thể tính nhanh hơn  bằng cách áp dụng phương pháp chia để trị để giải bài toán nhanh hơn. Ở đây ta có nhận xét: Như vậy nếu ta biết  và  ta có thể tính . Nhận thấy là tính  và  đều là các bài toán nhỏ hơn vì lũy thừa nhỏ hơn. Như vậy ta có: 
+Như vậy thời gian tính của thuật toán là:    
+Giải ra ta được . Trong phần này ta sẽ thảo luận bài toán sau: Như ta đã biết bằng phương pháp đặt tính nhân của cấp 1, ta có thể nhân hai số nguyên  bít bằng  phép cộng bit. Trong bài này, mình sẽ giới thiệu phương pháp nhân hai số  bít trong thời gian  Trước khi đi vào thuật toán, mình giới thiệu câu đố nhân hai số phức của Gauss. Câu đố này sẽ cung cấp tư tưởng chính của thuật toán sẽ trình bày. 
+Lời giải là có, và cách làm như sau: \begin{array}{lll} X_1 & = & a + b \\ X_2 & = & c+d \\ X_3 & = &  X_1X_2 = ac+ad + bc + bd \\ X_4 & = & ac \\ X_5 & = & bd \\ X_6 & = & X_4-X_5 = ac - bd \\ X_7 & = & X_3 - X_4 - X_5 = bc+ad   \end{array}   
+Tích của hai số phức chính là . Không khó để kiểm tra rằng chỉ mất 305 đồng để thực hiện các phép toán ở trên.Trở lại với bài toán nhân số nguyên. Để đơn giảm ta giả sử . Hai số nguyên  có thể được viết lại như sau: \begin{array}{lll} X & = & a2^{n/2} + b \\ Y & = & c2^{n/2}+d  \end{array}   
+Trong đó  là các số nguyên  bit.
+
+Như vậy ta có:  
+Như vậy để tính , ta có thể tính các tích  và sau đó thực hiện các phép dịch trái (nhân với  tương đương với dịch trái  bít) và cộng. Chú ý là các số  có chiều dài  bít, do đó mất thời gian  để thực hiện phép nhân. Như vậy ta có thể tính   trong thời gian:    
+Giải công thức truy hồi trên ta được . Oops! Không nhanh hơn thuật toán nhân cấp 1. Nếu để ý kĩ ta có thể thấy có sự tương đồng khi tính  và Gauss Puzzle. Sử dụng phương pháp như của Gauss (), ta có thể tính  sử dụng 3 phép nhân hai số  bít và vài phép cộng. Như vậy ta có thể tính  trong thời gian:   
+Giả mã của chương trình  như sau: 
+Thuật toán nhanh nhất hiện tại để nhân hai số nguyên  bít phát minh bới  với thời gian  trong đó hàm  được định nghĩa như sau:
+
+Hàm  tăng cực kì chậm. Với , . Do đó, trong thực tế ta có thể coi thuật toán Fürer có thời gian cỡ . Tuy nhiên, về mặt lý thuyết, bài toán nhân hai số nguyên  bít trong thời gian  vẫn là một bài toán mở. 
+Tìm kiếm nhị phân (binary search) là một trong những thuật toán được sử dụng rộng rãi nhất trong thiết kế giải thuật. Bài toán như sau: 
+Nếu duyệt hết các phần tử của mảng từ đầu đến cuối, ta sẽ mất  để tìm. Tuy nhiên ta có thể lợi dụng tính chất mảng  đã sắp xếp để thiết kế giải thuật tốt hơn: Tồn tại một thuật toán tìm ra một phần tử của mảng  đã sắp xếp có giá trị  trong thời gian .
+ 
+Ở đây để đơn giản ta sẽ giả sử mảng  có ít nhất một phần tử có gía trị . Ý tưởng của tìm kiếm nhị phân khá đơn giản: so sánh  với phần tử . Nếu    ,  ta tìm kiếm trên . Giả mã như sau: 
+Code của giả mã bằng C. Code đầy đủ của thuật toán được đính ở cuối bài. 
+Ta thấy ở mỗi bước tìm kiếm, chúng ta loại bỏ được ít nhất một nửa số phần tử cuả mảng. Như vậy:  Code: 
+ 
+[1] Jeff Erickson. , UIUC.
+[2]  Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani. Algorithms. 1st Edition).  McGraw-Hill Higher Education, (2008).
+[3] Anupam Gupta and John Lefferty. Great Theoretical Ideas in Computer Science Lecture Notes, CMU, 2008.
+ 
+Bài tập trong phần này được trích từ chapter 2 của cuốn sách Algorithms by Sanjoy Dasgupta, Christos Papadimitriou, and Umesh Vazirani.
+ 
+ Giả sử ta có một mảng gồm  phần tử và các phần tử có thể trùng nhau. Thiết kế giải thuật loại bỏ tất cả các phần từ trùng nhau (giữ lại một copy) trong thời gian .
+  
+ Giả sử trong bộ nhớ máy tính có một mảng vô hạn các phần tử  trong đó  phần tử đầu tiên được xắp xếp theo chiều tăng dần và còn lại là . Tuy nhiên, bạn không biết , nghĩa là bạn không biết trong mảng có bao nhiêu phần tử khác . Mỗi lần bạn truy cập vào một vị trí lớn hơn  thì máy tính sẽ trả lại . Bây giờ bạn có một số nguyên  và muốn tìm vị trí cuả mảng chứa gía trị . Hãy thiết kế giải thuật tìm vị trí của  trong mảng với thời gian .
+  
+ Bạn có một mảng  gồm các số nguyên đôi một khác nhau và bạn muốn tìm chỉ số  của mảng sao cho . Hãy thiết kế thuật toán với thời gian .  
+ (Closest Pair)  Cho một tập  điểm trên một mặt phẳng . Xác định cặp điểm gần nhất, đó là cặp điểm  sao cho khoảng cách giữa  là nhỏ nhất. Khoảng cách đó được tính bởi công thức . Để đơn giản ở đây giả sử , tất cả các tọa độ trên trục   đôi một khác nhau và tất cả các tọa độ trên trục   đôi một khác nhau. Ý tưởng cơ bản như sau:Câu hỏi như sau: , , Trackback link:  on                     những thao tác tính a, b, c, d trong thuật toán nhân 2 số n bit đều là chia các số n bit sao ko phân tích thời gian hả ad ? on                     Hi bạn,
+Các thao tác chia này chỉ là các thao tác "dịch bít" trong máy tính. Do đó, chỉ mất thời gian  cho mỗi phép chia. Một cách hiểu đó là cũng giống như khi bạn nhân (chia) một số cho lũy thừa của 10, thì bạn chỉ việc dịch dấu phẩy sang bên phải (trái).Hi vọng trả lời đúng câu hỏi của bạn.Powered by  and 

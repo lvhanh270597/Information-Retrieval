@@ -1,0 +1,16 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , chúng_ta sẽ tìm_hiểu thuật_toán Kosaraju; thuật_toán dễ_hiểu nhất trong số các thuật_toán tìm thành_phần liên_thông mạnh .
+Thuật_toán này về cơ_bản sẽ duyệt qua đồ_thị 2 lần , do_đó có thời_gian tiệm_cận .
+So_với các thuật_toán tìm thành_phần liên_thông mạnh khác như thuật_toán cầu-khớp của Tarjan thì thuật_toán Kosaraju chậm hơn , nhưng có cùng_thời gian tiệm_cận . Đồ_thị trong phần này của chúng_ta là đồ_thị có hướng và có_thể có cung song_song ngược_chiều .
+Mình khuyến_khích bạn_đọc xem_lại một_số khái_niệm có hướng .
+Ta sẽ kí_hiệu đồ_thị đầu_vào là và kí_hiệu đồ_thị có hướng thu được bằng cách đảo chiều các cạnh của đồ_thị .
+là .
+Ta gọi_là đồ_thị ngược (reversed graph) của đồ_thị . Một đồ_thị có hướng được gọi_là (strongly connected) nếu tồn_tại một đường_đi có hướng từ tới , với mọi cặp đỉnh của đồ_thị .
+Một đồ_thị con của đồ_thị có hướng được gọi_là một thành_phần liên_thông mạnh (strongly connected component) nếu nó liên_thông mạnh và tối_đại (maximal) , i . e , tồn_tại một đồ_thị con liên_thông mạnh_của mà là đồ_thị con của .
+Xem ví_dụ minh_họa trong Figure 1 .
+Ba đỉnh tạo nên một thành_phần liên_thông mạnh_của đồ_thị .
+Ba đỉnh không tạo nên thành_phần liên_thông mạnh vì tồn_tại một đồ_thị con liên_thông mạnh lớn hơn chứa ba đỉnh này .
+Trong nhận_xét trên , không thay_đổi được hiểu theo nghĩa_là của thành_phần liên_thông mạnh không thay_đổi .
+Hay nói_cách_khác , nếu là tập đỉnh của một thành_phần liên_thông mạnh trong thì tập đỉnh này cũng là tập đỉnh của một thành_phần liên_thông mạnh trong .
+Chứng_minh nhận_xét trên coi_như bài_tập cho bạn_đọc .
+Thuật_toán Kosaraju gồm hai bước chính (xem thêm giả mã dưới đây) : , , , Trackback link : Powered by and

@@ -1,0 +1,81 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài trước , chúng_ta đã tìm_hiểu tìm luồng cực_đại trong mạng (có khả_năng thông_qua nguyên) .
+Thuật_toán Ford-Fulkerson , về cơ_bản , bắt_đầu_từ một luồng hợp_lệ (ví dụ luồng 0) , và thực_lặp lại 3 bước sau cho_đến khi thu được luồng cực_đại : Ta đã chứng_minh , sau mỗi bước tăng luồng , luồng sẽ được tăng lên ít_nhất 1 đơn_vị .
+Do_đó , ta có_thể thực_thi thuật_toán Ford-Fulkerson trong thời_gian ; ở đây là giá_trị của luồng cực_đại .
+Tuy_nhiên , thuật_toán Ford-Fulkerson không_phải là thuật_toán thời_gian đa_thức vì giá_trị của luồng cực_đại có_thể chỉ biểu_diễn được bằng bít .
+Trong bài này , chúng_ta sẽ tìm_hiểu 2 cách tìm đường tăng luồng khác_nhau , đề_xuất bởi Edmonds và Karp 1 .
+Cả 2 cách này đều cho chúng_ta thuật_toán thời_gian đa_thức .
+Edmonds và Karp để xuất : Đường tăng luồng này có_thể tìm được bằng cách áp_dụng BFS (Breath-First Search) trong đồ_thị thặng_dư .
+Edmonds và Karp chứng_minh rằng nếu ta chọn đường tăng luồng như_vậy , thuật_toán Ford-Fulkerson sẽ kết_thúc sau bước tăng luồng .
+Kết_quả này thực_sự là một kết_quả ngạc_nhiên , vì nó cho thấy có sự khác_biệt cơ_bản giữa DFS và BFS trong tìm đường tăng luồng .
+Tất_nhiên , phần khó nhất vẫn là phân_tích thuật_toán , mà ta sẽ tìm_hiểu dưới_đây .
+Gọi_là các đồ_thị , trong đó , là đồ_thị thặng_dư tại bước thứ .
+Gọi_là số cung của đường_đi có ít cung nhất từ tới trong .
+Theo định_nghĩa này thì .
+Về_mặt trực_quan , chính là khoảng_cách ngắn nhất từ tới trong nếu ta gán trọng số cho mọi cung của .
+Dễ thấy , với mọi .
+Nhắc_lại , một cung được gọi_là bị bão_hòa bởi luồng nếu .
+Theo định_nghĩa đồ_thị tăng luồng , nếu một cung bị bão_hòa bởi luồng thì nó sẽ không xuất_hiện (mà cung ngược của nó sẽ xuất hiện) trong đồ_thị thặng_dư .
+Ta nói bị khỏi đồ_thị thặng_dư .
+Nếu một cung bị biến mất khỏi đồ_thị thì_có thể nó lại xuất_hiện ở đồ_thị với .
+Ý_tưởng trong chứng_minh Theorem 1 của Edmond và Karp đó là mỗi cung sẽ bị biến mất không quá lần trong toàn_bộ quá_trình tăng luồng , và do mỗi lần tăng luồng , ít_nhất 1 cung sẽ bị biến mất (bão hòa) , do_đó , số lần tăng luồng tối_đa là .
+Trước_hết , ta sẽ chứng_minh rằng , sau mỗi lần tăng luồng , level của các đỉnh không bao_giờ giảm xuống .
+Ta chỉ_cần chứng_minh Lemma 1 đúng cho trường_hợp .
+Ta sẽ chứng_minh bằng quy_nạp trên hai biến và .
+Dễ thấy luôn bằng 0 với mọi , do_đó , Lemma đúng_với . Gọi_là một cung của sao_cho .
+Theo quy_nạp , .
+Ta cần chứng_minh .
+Ta có hai trường_hợp : Giả_sử cung và cung này bị biến mất sau khi tăng luồng tại bước .
+Theo định_nghĩa , ta có : Gọi_là chỉ_số lớn hơn sao_cho cung lại xuất_hiện trong . Do xuất_hiện trong (nhưng không ở trong ) , cung ngược của nó là cung bị biến mất khỏi .
+Do_đó , ta có Do , theo Lemma 1 , ta suy ra .
+Kêt hợp với , ta suy ra : Hay nói_cách_khác , mỗi khi cung biến mất và sau_đó lại xuất_hiện , mức của lại tăng lên ít_nhất 2 đơn_vị .
+Do với mọi , cung biến mất không quá lần (dpcm) .
+Trong phân_tích trên , ta không_hề sử_dụng điều_kiện nguyên của khả_năng thông_qua .
+Do_đó , thuật_toán đường ngắn sẽ cho ta luồng cực_đại trong thời_gian ngay_cả khi khả_năng thông_qua không_phải là nguyên .
+Ý_tưởng của giải_thuật khá "tự nhiên" : Cuối bài , ta sẽ tìm_hiểu cách tìm đường tăng luồng "béo" nhất (đường cho ta lượng tăng luồng lớn nhất) từ đến trong thời_gian .
+Bay giờ chúng_ta tạm_thời thống_nhất là đường béo có_thể được tìm một_cách hiệu_quả .
+Câu_hỏi tương_tự phần trước là : thuật_toán Ford-Fulkerson sẽ kết_thúc sau bao_nhiêu bước tăng luồng ?
+Để trả_lời câu_hỏi này , chúng_ta cần phải có cách nhìn khác về đường tăng luồng . Nhắc_lại , là đồ_thị thặng_dư tương_ứng với luồng .
+Gọi_là đường tăng luồng trong đồ_thị và là trọng số của cung nhỏ nhất trong .
+Ta gọi_là của đường tăng luồng .
+Đường "béo" nhất chính là đường có động rộng_lớn nhất .
+Nếu ta coi là một luồng trong đồ_thị thặng_dư , gọi_là , thì luồng này có_giá trị là .
+Với cách nhìn đó , thay_vì tăng luồng dọc theo đường tăng luồng , ta có_thể tăng luồng (trong đồ_thị gốc) dọc theo các cung có luồng không âm của luồng thặng_dư , mà vẫn đảm_bảo luồng sau khi tăng là một luồng hợp_lệ .
+Ngoài_ra , lượng tăng luồng sau mỗi bước tăng cũng đúng bằng giá_trị của luồng thặng_dư .
+Bạn_đọc cần phải phân_biệt rõ_ràng khái_niệm luồng cực_đại và luồng dư cực_đại trước_khi đọc_tiếp .
+Luồng cực_đại là luồng trong đồ_thị gốc và luồng dư cực_đại là luồng cực_đại trong đồ_thị thặng_dư . Ta gọi_là luồng cực_đại (của đồ_thị gốc) .
+Gọi_là luồng sau khi thực_hiện tăng luồng lần thứ dọc theo đường tăng luồng béo nhất và là luồng thặng_dư của đồ_thị thặng_dư .
+Ban_đầu và .
+Theo phân_tích ở trên , ta có : Theo , ta dễ_dàng suy ra nếu được tăng lên một lượng () thì sẽ bị giảm đi cùng một lượng () . Cũng theo , nếu ta tìm được luồng dư cực_đại thì chỉ_cần 1 bước tăng luồng nữa_là ta tìm được luồng cực_đại trong đồ_thị gốc .
+Tuy_nhiên , tìm luồng dư cực_đại không dễ hơn tìm luồng cực_đại trong đồ_thị gốc và chúng_ta cũng không cố_gắng đi tìm luồng dư cực_đại .
+Ở đây , ta sẽ cố_gắng liên_hệ độ rộng của đường tăng luồng béo nhất với .
+Gọi_là độ rộng của đường tăng luồng béo nhất trong đồ_thị thặng_dư .
+Ta sẽ có : Ta sẽ sử_dụng theo định_lý Ford-Fulkerson : khả_năng thông_qua của bất_kì một_lát cắt nào cũng lớn hơn giá_trị của luồng cực_đại .
+Gọi_là tập các đỉnh trong đồ_thị thặng_dư sao_cho với mỗi , tồn_tại một đường_đi từ tới sao_cho mọi cung trên đường_đi này đều có trọng số_lớn hơn (nhưng không bằng) .
+Gọi .
+Rõ_ràng , , vì nếu_không , ta sẽ tìm được đường_đi từ đến với độ rộng_lớn hơn ; điều này trái với định_nghĩa của .
+Theo định_nghĩa của , mọi cung từ tới đều có trọng số nhỏ hơn hoặc bằng .
+Do lát cắt có tối_đa cung , ta có : Kết_hợp với định_lý Ford-Fulkerson , ta suy ra_điều phải chứng_minh .
+Theo nhận_xét từ , mỗi bước_ta tăng luồng của đồ_thị gốc một lượng thì luồng dư cực_đại cũng bị giảm đi .
+Do_đó : Theo_Lemma 3 , ta có , ta suy ra : Từ , ta suy ra .
+Khi , ta có : Ở đây , ta sử_dụng bất_đẳng_thức , là cơ_số của logarithm tự_nhiên .
+Như_vậy , luồng dư cực_đại tại bước thứ có_giá trị không quá 1 .
+Do khả_năng thông_qua là nguyên , ta chỉ_cần tăng luồng thêm một_lần nữa thì luồng dư cực_đại tại bước sẽ là .
+Lúc_đó , theo , luồng trong đồ_thị gốc thu được là luồng cực_đại . : Tư_tưởng tìm đường rộng nhất giống_như tư_tưởng tìm đường_đi ngắn nhất của .
+Mình sẽ không đi_sâu vào chi_tiết mà chỉ lượt qua ý_tưởng cơ_bản .
+Ta bắt_đầu_từ đỉnh và xây_dựng "cây đường_đi béo nhất" (thay vì cây đường_đi ngắn nhất trong Dijkstra) có gốc tại .
+Với mỗi đỉnh , đường_đi (duy nhất) từ tới trong cây chính là đường_đi béo nhất trong từ tới .
+Mỗi bước , ta sẽ thêm một đỉnh vào cây này (ban đầu cây chỉ_có một đỉnh là ) .
+Với mỗi đỉnh không thuộc cây , gọi_là trọng số của cung lớn nhất với là đỉnh thuộc cây đã xây_dựng .
+Nếu đỉnh không có cung nào như_vậy thì coi .
+Ta sẽ thêm vào cây đỉnh có lớ nhất .
+Tiếp_tục lặp_lại cho_đến khi ta thêm vào cây , và đường_đi béo nhất tương_ứng sẽ là đường_đi từ tới trên cây . Chứng_minh tính đúng_đắn mình coi_như bài_tập cho bạn_đọc (mình khuyến_khích bạn_đọc xem_lại chi_tiết và cách chứng_minh thuật_toán Dijkstra) .
+Cũng_như Dijkstra , thuật_toán này có_thể thực_thi trong thời_gian .
+Kết_hợp với Lemma 4 , ta có : Trong giải_thuật đường béo , ta có sử_dụng tính nguyên của khả_năng thông_qua để chứng_minh tính dừng của giải_thuật .
+1 J .
+Edmonds and R . M . Karp .
+Journal of the ACM (JACM) 19 . 2 (1972) : 248-264 .
+2 J .
+Erickson .
+, UIUC , Fall 2013 .
+, Trackback link : Powered by and

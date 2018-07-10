@@ -1,0 +1,37 @@
+Tư_tưởng Bảng_băm là một CTDL thường được sử_dụng như một từ_điển : mỗi phần_tử trong bảng_băm là một cặp (khóa , giá trị) .
+Nếu so_sánh với mảng , khóa được xem như chỉ_số của mảng , còn giá_trị giống_như giá_trị mà ta lưu tại chỉ_số tương_ứng .
+Bảng_băm không như các loại_từ điển thông_thường - ta có_thể tìm được_giá trị thông_qua khóa của nó .
+Không may , không_phải tất_cả các kiểu dữ_liệu đều có_thể sắp_xếp vào một từ_điển đơn_giản .
+Đây chính là lúc mà quá_trình băm (hash) ra_đời .
+Hash là quá_trình khởi tạo một giá_trị khóa (thường là 32 bit hoặc 64 bit) từ một phần dữ_liệu .
+Nó có_thể là n bit đầu_tiên của dữ_liệu , n bit cuối_cùng , giá_trị mod cho một_số nguyên_tố nào_đó .
+Dựa theo giá_trị hash , dữ_liệu được chia vào các bucket : Giải_thích hình minh_họa : Ta cần lưu_số điện_thoại của 3 người : John_Smith : 521-1234 Lisa_Smith : 521-8976 Sandra_Dee : 521-9655 Giá_trị Hash của 3 người này lần_lượt là : 1 , 2 và 14 .
+Sau khi tính được_giá trị Hash của 3 người , ta lưu vào các bucket tương_ứng là 1 , 2 và 14 .
+Nếu các kết_quả của hàm hash được phân_bố đều , các bucket sẽ có kích_thước xấp_xỉ nhau .
+Giả_sử số bucket đủ lớn , mỗi buckets sẽ chỉ_có một_vài phần_tử trong chúng .
+Điều này làm_cho việc tìm_kiếm rất hiệu_quả .
+Độ phức_tạp Gọi : n là số phần_tử ta cần lưu trong Hash table k là số bucket Giá_trị n/k được gọi_là load factor .
+Khi load factor nhỏ (xấp xỉ 1) , và giá_trị của hàm Hash phân_bố đều , độ phức_tạp của các thao_tác trên Hash table là \mathcalO(1) .
+Hash collision Separate chaining Trường_hợp một hash bucket chứa nhiều hơn một giá_trị ta gọi đó là Hash collision (va chạm) .
+Việc xử_lý hash collision rất quan_trọng đối_với độ hiệu_quả của bảng_băm .
+Một trong những phương_pháp đơn_giản nhất_là cài_đặt các danh_sách liên_kết ở các bucket .
+Kĩ_thuật này được gọi_là Separate chaining : Giải_thích hình minh_họa : Mỗi bucket là 1 danh_sách liên_kết John_Smith và Sandra_Dee cùng có_giá trị hàm hash là 152 , nên ở bucket 152 , ta có 1 danh_sách liên_kết chứa 2 phần_tử .
+Open_Addressing Tư_tưởng của Open_Addressing là , khi xảy_ra Hash collision , ta lưu vào một vị_trí tiếp_theo trong bảng_băm .
+Ví_dụ : Trong hình minh_họa : John_Smith và Sandra_Dee đều có_giá trị Hash là 152 .
+Vì ta đã lưu John_Smith vào bucket 152 , nên ta buộc phải lưu Sandra_Dee vào bucket 153 .
+Ted_Baker có_giá trị Hash là 153 , nhưng lúc_này bucket 153 đã lưu_thông_tin của Sandra_Dee , nên ta phải lưu giá_trị của Ted_Baker vào bucket 154 .
+Chú_ý : Để cài_đặt được cách này , Load factor phải nhỏ hơn 1 .
+Khi tìm_kiếm 1 phần_tử , ta phải kiểm_tra tất_cả các bucket bắt_đầu_từ bucket của giá_trị Hash , đến khi bucket trống (ví dụ ta tìm Sandra_Dee thì_phải tìm bucket 152 , 153; tìm Ted_Baker thì_phải tìm bucket 152 , 153 , 154 .
+Nếu ta tìm 1 người khác có_giá trị Hash là 152 , thì_phải tìm cả bucket 152 , 153 , 154 và 155 (chỉ khi bucket 155 trống , ta mới chắc_chắn người đó không có trong Hash table) .
+Cài_đặt Dưới_đây là cài_đặt Hash table đơn_giản , hỗ_trợ thao_tác thêm và tìm_kiếm .
+Hash table này sử_dụng separate chaining , và dùng vector thay cho linked list để đơn_giản .
+const int P = 1e6 + 3 ; struct HashTable vector lt; pair lt; int , int gt; gt; h P ; public : void insert ( int key , int value ) int hkey = getHash ( key ); for ( auto p : h hkey ) if ( p .
+first == key ) // key da_ton tai trong Hash table , ta bo_qua return ; // Them (key , value) vao hash table h hkey .
+emplace_back ( key , value ); int find ( int key ) int hkey = getHash ( key ); for ( auto p : h hkey ) if ( p .
+first == key ) // ton tai key trong Hash table , return value return p .
+value ; // Khong tim thay return 0 ; private : int getHash ( int key ) // Cho 1 key , tra lai Hash value la key % P return key % P ; ; Kết_luận Trong phát_triển ứng_dụng , bảng hash thuận_tiện để lưu_trữ dữ_liệu tham_khảo , chẳng_hạn như chữ_viết tắt tên đầy_đủ của các tổ_chức .
+Trong giải_quyết bài_toán , bảng hash thật_sự hữu_ích để tiếp_cận hướng giải_quyết chia_để_trị cho bài_toán cái túi (knapsack-type) .
+Giả_sử , chúng_ta được yêu_cầu tìm một_số lượng ống nhỏ nhất để xây_dựng một đường_ống với chiều_dài cố_định và chúng_ta có 38 ống .
+Bằng cách chia thành hai tập – 19 và tính_toán tất_cả trường_hợp ghép ống có_thể ở mỗi tập , chúng_ta tạo ra một bảng hash kết_nối giữa độ_dài mà các tổ_hợp ống tạo_thành với số_lượng ống ít_nhất cần_dùng .
+Sau_đó , với mỗi tổ_hợp ống được xây_dựng trong một_tập , chúng_ta có_thể tra_cứu liệu có tồn_tại đường_ống với độ_dài phù_hợp ở tập bên_kia để cả hai ống tạo nên một đường_ống với độ_dài yêu_cầu với số ống là ít_nhất .
+Các tài_liệu tham_khảo : Topcoder_Wikipedia

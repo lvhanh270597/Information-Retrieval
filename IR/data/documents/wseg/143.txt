@@ -1,0 +1,38 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Post này xuất_phát từ post rất hay trên blog của về câu_đố 17 con lạc_đà và ứng_dụng rất đẹp của ý_tưởng câu_đố này vào bài_toán .
+Ba anh_em mượn thêm 1 con lạc_đà từ người hàng_xóm để có 18 con lạc_đà .
+Giờ họ chia theo nguyện_vọng người cha .
+Người anh_cả được con , người anh thứ_hai được con và người em_út được con .
+Sau khi chia , họ vẫn còn dư 1 con và họ trả con lạc_đà này lại cho người hàng_xóm .
+Một đồ_thị là chính_quy bậc 3 (-regular) nếu mọi đỉnh trong đồ_thị đều có bậc 3 (số cạnh_kề với mỗi đỉnh là 3) .
+Một cặp ghép (matching) được gọi_là hoàn_hảo (perfect matching) nếu mọi đỉnh đều xuất_hiện trong cặp ghép .
+Gọi_là số đỉnh của đồ_thị , mỗi phía có đỉnh .
+Ta chọn một_số sao_cho với (logarithm cơ_số ) .
+(Tại sao luôn chọn được như_vậy ?
+xem gợi_ý ở cuối bài) . Với mỗi cạnh của đồ_thị , ta thêm bản copy để thu được một với mỗi đỉnh có bậc .
+Sau_đó , ta thêm một cặp ghép hoàn_hảo (không nhất_thiết phải là cặp ghép của đồ thị) vào đồ_thị .
+Gọi_là đồ_thị thu được sau hai bước này .
+Không khó để thấy mỗi đỉnh trong có bậc .
+Do mọi đỉnh có bậc chẵn , tồn_tại một đi_qua mọi cạnh của đồ_thị đúng một_lần .
+Đánh_số các cạnh bắt_đầu_từ 0 , theo cùng chiều kim_đồng_hồ dọc theo chu_trình .
+Gọi_là tập các cạnh lẻ của chu_trình và là tập các cạnh chẵn của chu_trình .
+Do là đồ_thị hai phía , nó không có chu_trình (có số cạnh) lẻ .
+Do_đó , mỗi là một đồ_thị_chính quy bậc .
+Ngoài_ra , Một trong hai đồ_thị , , chứa không quá một_nửa số cạnh của Gọi_là đồ_thị chứa không quá một_nửa số cạnh của .
+Tiếp_tục lặp_lại tìm chu_trình Euler của và phân thành hai đồ_thị con , tìm đồ_thị_chính quy con chứa không quá một_nửa các cạnh của trong , ta thu được .
+Tiếp_tục như_vậy đến khi thu được .
+Do , sẽ không chứa cạnh nào của vì chỉ_có cạnh .
+Mỗi đỉnh trong có bậc , chính là một cặp ghép hoàn_hảo của .
+Quá đẹp ! ! ! ! Làm thế_nào để chọn và ?
+Ta sẽ chọn , và .
+Giờ bạn chỉ_cần chứng_minh một trong ba số , , chia_hết_cho là xong .
+Chứng_minh của Theorem 1 còn có_thể chuyển thành giải_thuật để tìm cặp ghép hoàn_hảo của trong thời_gian như_sau .
+Đầu_tiên chuyển thành trong thời_gian (do ) .
+Gọi_là số cạnh của () Sau_đó tìm chu_trình Euler trong trong thời_gian (sử dụng ) và đệ_quy .
+Tổng thời_gian đệ_quy cho_đến khi chúng_ta tìm được là : Giải phương_trình trên ta được .
+Thuật_toán này nhanh hơn nhiều so_với thuật_toán () , thuật_toán hiện_tại tốt nhất tìm cặp ghép trên đồ_thị hai phía .
+Bài viết gốc của Gil_Kalai .
+Bài báo của Noga_Alon .
+Bài viết này người viết dựa trên ý_tưởng của hai bài viết đã ghi trong nguồn .
+Bất_cứ lỗi nào xuất_hiện trong bài viết là lỗi của người viết bài này , không_phải lỗi của hai bài viết trong nguồn .
+, , , , , , Trackback link : Powered by and

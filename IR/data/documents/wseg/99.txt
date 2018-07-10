@@ -1,0 +1,82 @@
+Tác_giả : Nguyễn_Tiến Trung_Kiên Đôi lời về tác_giả : Nguyễn_Tiến Trung_Kiên là cựu_học_sinh Chuyên Tổng_Hợp , với 1 HCĐ_IOI năm 2014 và 1 HCB_IOI năm 2015 .
+Kiên còn nổi_tiếng với blog chứa code nhiều thuật_toán và series Free contest .
+Table of_Contents Giới_thiệu Bắt_đầu bằng ví_dụ đơn_giản nhất Tổng_quát f(n) = f(n-1) + f(n-2) Giới_thiệu Nhân ma_trận thật_sự hữu_dụng .
+Có nhiều bài_toán khi n nhỏ , ta dùng DP ( Dynamic_Programming - Quy_Hoạch_Động ) để giải .
+Nhưng khi n lớn (khoảng 109) , ta phải dùng nhân ma_trận để giảm độ phức_tạp .
+Trong quá_trình code nhân ma_trận , việc sinh_ra ma_trận gốc không_phải lúc nào cũng đơn_giản .
+Tôi đã tìm_ra một phương_pháp tốt để giải những bài_toán này mà không cần nhân ma_trận .
+Khi dùng phương_pháp này , ta không cần phải sinh ma_trận gốc và không cần cài phép_toán nhân hai ma_trận A_B và luỹ_thừa ma_trận Ak . Tuy_nhiên , phương_pháp này chỉ dùng được trong các bài_toán đếm , nghĩa_là nó không_thể hoàn_toàn thay_thế nhân ma_trận .
+Bắt_đầu bằng ví_dụ đơn_giản nhất Để ví_dụ , tôi sẽ dùng bài_toán sau : Đếm xem có bao_nhiêu dãy ngoặc đúng độ_dài n mà độ sâu không quá L .
+(n \le 109 , L \le 10) .
+Ví_dụ , khi n = 4 và L = 1 , thì ()() là dãy ngoặc đúng duy_nhất thoả_mãn , còn (()) , ((() , và ))(( thì không thoả_mãn .
+Bài_toán này có_thể giải bằng phương_pháp Quy_hoạch_động như_sau : Nhận_xét : Nếu ta đi_qua lần_lượt từng ký_tự của dãy ngoặc và duy_trì một biến sum : Khi gặp ( ta tăng sum lên 1 đơn_vị .
+Khi gặp ) ta giảm sum đi 1 đơn_vị .
+1 dãy ngoặc là dãy ngoặc đúng nếu thỏa_mãn 2 điều_kiện sau : Không có thời_điểm nào sum nhỏ hơn 0 Đến cuối_cùng , sum bằng 0 .
+Đồng_thời , nếu làm như_trên , độ sâu của dãy ngoặc chính là giá_trị tối đã của sum trong quá_trình trên .
+Từ nhận_xét trên , ta tìm_ra công_thức f(n , h) = f(n - 1 , h - 1) + f(n - 1 , h + 1) trong đó f(n , h) là số dãy mà phần còn_lại cần xây_dựng có độ_dài n và tổng hiện_tại (sum) là h .
+Mục_tiêu của chúng_ta là tính f(n , 0) .
+Tất_nhiên độ phức_tạp của hàm f là quá lớn .
+Bây_giờ , gọi f(n , h , h_0) là số dãy độ_dài n bắt_đầu_từ tổng h và kết_thúc tại tổng h_0 .
+Xét các trường_hợp : Nếu n = 0 : trả về 1 nếu h=h_0 , trả về 0 nếu ngược_lại .
+Nếu n = 2 k : f(2 k , h , h_0) = \sumf(k , h , i) f(k , i , h_0) với mọi i trong_khoảng 0 , L .
+Nếu n = 2 k + 1 : f(2 k+1 , h , h_0) = f(2 k , h-1 , h_0) + f(2 k , h+1 , h_0) .
+Ngoài_ra , chú_ý đến trường_hợp sau : nếu hlt;0 hoặc hgt;L thì trả về 0 .
+Mục_tiêu của ta là tính f(n , 0 , 0) .
+Độ phức_tạp của phương_pháp này là \mathcalO(L3 log n) , nhanh bằng với nhân ma_trận .
+Chú_ý rằng ta chỉ_có \mathcalO(L2 log n) trạng_thái , không_phải là \mathcalO(L2 n) .
+Chẳng_hạn khi n=100 , các giá_trị của n sẽ nằm trong tập sau : 100 , 50 , 25 , 24 , 12 , 6 , 3 , 2 , 1 , 0 .
+Thế nên n chỉ nhận khoảng 2log n giá_trị trong tập_hợp đó .
+Ta có_thể dùng độ sâu của hàm f để đại_diện cho n .
+function f(n , h , h_0 , Depth) : if h lt; 0 or h gt; L : return 0 if n == 0 : return (h==h_0 ?
+1 : 0) if Savedhh_0Depth : return Valuehh_0Depth if n is even : Result = 0 for i in 0 . . L : Result += f(n/2 , h , i , Depth+1) f(n/2 , i , h_0 , Depth+1) else : Result = f(n-1 , h-1 , h_0 , Depth+1) + f(n-1 , h+1 , h_0 , Depth+1) Savedhh_0Depth = true Valuehh_0Depth = Result input n , L output f(n , 0 , 0 , 0) Tổng_quát Với trường_hợp f(n , a , b , c , . . . ) được tính_từ f(n-1 , a , b , c , . . . ) Có t loại hoa (t \ge 4) .
+4 trong t loại hoa này là g (gerbera) , o (orchid) , a (azalea) và h (hydrangea) .
+Ta dùng các loại hoa này để tạo một dãy n chậu_hoa (n \le 109) .
+Có vài điều_kiện được đặt ra như_sau : Một chậu h phải được đặt giữa một a và một o Giữa hai chậu g bất_kì , phải có ít_nhất p chậu_hoa loại khác (p \le 20) .
+Giả_sử có 5 loại hoa (t=5) : a , h , o , g , và b (begonias) .
+Với n=6 , có 2906 dãy chậu đúng , 5 trong số đó là aoaaoo , ahohag , gbbbgo , gbbbog , bbbbbb .
+Những dãy sau_đây không hợp_lệ : ohoaha (đoạn aha không hợp_lệ vì bên_cạnh h phải có_một o và một a ) , gogbao (giữa hai g phải có ít_nhất 3 hoa khác) , ahoaha (chậu h cuối_cùng không kề với một a và một o ) .
+Không khó lắm để tìm_ra công_thức quy_hoạch_động : f(n , x , Just) trả về số dãy chậu đúng .
+Trạng_thái n , x , Just được mô_tả như_sau : n là độ_dài còn_lại phải xây_dựng của dãy đang xây_dựng .
+x là số chậu_hoa ta vừa đặt mà khác g , nói_cách_khác tất_cả các chậu_hoa trong_khoảng n+1 đến n+x không_phải là g .
+Just đại_diện cho chậu_hoa vừa đặt (tức là chậu n+1) .
+Just=1 nghĩa_là a hoặc o , Just=2 nghĩa_là h , Just=0 nghĩa_là các loại hoa còn_lại (bao gồm g và t-4 loại hoa khác) .
+Hàm quy_hoạch_động trên có_thể chạy với n \le 10 , 000 .
+Bây_giờ tôi sẽ nói cách giải đúng .
+Gọi f(n , p , Just , p_0 , Just_0) nghĩa_là : ta xuất_phát từ trạng_thái (n , p , Just) , có bao_nhiêu cách đi đến trạng_thái (0 , p_0 , Just_0) .
+long f ( int n , int x , int Just ) if ( x gt;= p ) x = p ; if ( Just == 2 ) if ( n == 0 ) return 0 ; return f ( n - 1 , x + 1 , 1 ); else if ( n == 0 ) return 1 ; if ( F x Just .
+count ( n )) return F x Just n ; long Sum = f ( n - 1 , x + 1 , 1 ) 2 ; if ( Just == 1 ) Sum += f ( n - 1 , x + 1 , 2 ); if ( x gt;= p ) Sum += f ( n - 1 , 0 , 0 ); Sum += f ( n - 1 , x + 1 , 0 ) ( t - 4 ); return F x Just n = Sum % M ; cout lt;lt; f ( n , : : p , 0 ) lt;lt; endl ; Ta có các trường_hợp : Nếu n=0 hoặc n=2 k+1 , ta viết như hàm f cũ .
+Nếu n \ne 0 , nó sẽ gọi đến một trạng_thái khác mà lúc_này n chẵn .
+Ngược_lại , n=2 k , f(2 k , p , Just , p_0 , Just_0) = \sumf(k , p , Just , i , j) f(k , i , j , p_0 , Just_0) với tất_cả bộ i , j hợp_lệ (tức là i nằm trong_khoảng 0 , p , j nằm trong_khoảng 0 , 2) .
+Chú_ý tại trường_hợp n=0 , việc n=0 không có_nghĩa đó là kết_thúc của một dãy .
+Vì ta chia dãy thành các phần nhỏ hơn , n=0 chỉ_có nghĩa_là kết_thúc của một phần nhỏ .
+Vì_thế ta sẽ thêm một biến Stop thuộc kiểu boolean .
+Khi_Stop=true , f(n , p , Just , p_0 , Just_0) = f(n , p , Just) , ngược_lại , tức_là Stop=false , f(n , p , Just , p_0 , Just_0 , Stop) = f(n , p , Just , p_0 , Just_0) .
+map lt; int , int gt; G 21 3 21 3 2 ; define C pJustp0Just0Stop long g ( int n , int p , int Just , int p0 , int Just0 , bool Stop ) if ( p gt;= : : p ) p = : : p ; if ( n % 2 == 1 n == 0 ) if ( Just == 2 ) if ( n == 0 ) return Stop ?
+0 : p == p0 amp;amp; Just == Just0 ; return g ( n - 1 , p + 1 , 1 , p0 , Just0 , Stop ); else if ( n == 0 ) return Stop ?
+1 : p == p0 amp;amp; Just == Just0 ; if ( G_C .
+count ( n )) return G_C n ; long Sum = g ( n - 1 , p + 1 , 1 , p0 , Just0 , Stop ) 2 ; if ( Just == 1 ) Sum += g ( n - 1 , p + 1 , 2 , p0 , Just0 , Stop ); if ( p gt;= : : p ) Sum += g ( n - 1 , 0 , 0 , p0 , Just0 , Stop ); Sum += g ( n - 1 , p + 1 , 0 , p0 , Just0 , Stop ) ( t - 4 ); return G_C n = Sum % M ; else if ( G_C .
+count ( n )) return G_C n ; long Sum = 0 ; for ( int i = 0 ; i lt;= : : p ; i ++ ) for ( int k = 0 ; k lt;= 2 ; k ++ ) long G1 = g ( n / 2 , p , Just , i , k , false ); long G2 = g ( n / 2 , i , k , p0 , Just0 , Stop ); Sum += G1_G2 ; return G_C n = Sum % M ; cout lt;lt; g ( n , : : p , 0 , rand () % 21 , rand () % 3 , true ) lt;lt; endl ; Chú_ý ở code trên , : : p và p là khác_nhau .
+: : p là biến p toàn_cục , tức_là p được nhập từ input .
+Còn p là tham_số ở trong hàm g .
+Rand()%21 và rand()%3 là hai số mà ta có_thể bỏ_qua giá_trị của chúng (khi nào mà Stop=true thì p0 và Just0 không có_ý nghĩa) .
+Độ phức_tạp ở code trên là \mathcalO(p3 log2 n) .
+Thực_tế , ta có_thể không dùng map , bằng cách thêm một tham_số là Depth đại_diện cho độ sâu của hàm quy_hoạch_động .
+Khi đó , độ phức_tạp mất đi một thừa_số log n , giảm xuống còn \mathcalO(p3 log n) .
+Code trên tôi dùng map cho nó dễ_hiểu .
+f(n) = f(n-1) + f(n-2) Bây_giờ , chúng_ta sẽ tính số fibonacci thứ 109 (trong một modulo nào đó) .
+Chắc_hẳn là bạn đã biết cách dùng nhân ma_trận , nó khá dễ .
+Tuy_nhiên , bây_giờ chúng_ta sẽ thử giải bằng cách không dùng nhân ma_trận .
+Xem bài_toán sau : Bạn đang đứng ở điểm n trên trục Ox . Mỗi bước , bạn có_thể di_chuyển sang trái 1 hoặc 2 bước .
+Có bao_nhiêu cách để bạn đi_tới vị_trí 0 ?
+Không khó để nhận_ra f(n) = f(n-1) + f(n-2) , trong đó f(0)=1 và f(1)=1 .
+Thế nên , f(n) là số fibonacci thứ n+1 .
+Có hai trường_hợp : n=2 k , ta có hai lựa_chọn : Lựa_chọn thứ nhất_là nhảy từ 2 k đến k rồi nhảy từ k đến 0 .
+Lựa chon thứ_hai là nhảy từ 2 k đến k+1 , sau_đó di_chuyển sang trái 2 bước , tức_là từ k+1 đến k-1 , rồi nhảy từ k-1 đến 0 (chú ý ta không_hề nhảy vào ô thứ k) .
+Thế nên , f(2 k) = f(k) f(k) + f(k-1) f(k-1) .
+n=2 k+1 , bây_giờ ta chia dãy thành hai đoạn 0 . . k và k . . n (đoạn thứ nhất độ_dài k+1 , đoạn thứ_hai dài k) , ta lại có hai lựa_chọn : Lựa_chọn thứ nhất_là nhảy từ n đến k rồi nhảy từ k đến 0 .
+Lựa_chọn thứ_hai là nhảy từ n đến k+1 , di_chuyển sang trái 2 bước , rồi nhảy từ k-1 đến 0 .
+Thế nên f(2 k+1) = f(k) f(k+1) + f(k-1) f(k) .
+Lúc_này độ phức_tạp là \mathcalO(log n) .
+Bởi_vì với mỗi độ sâu , chỉ_có tối_đa 4 giá_trị_n .
+map lt; long , long gt; F ; F 0 = F 1 = 1 ; long f ( long n ) if ( F .
+count ( n )) return F n ; long k = n / 2 ; if ( n % 2 == 0 ) // n=2k return F n = ( f ( k ) f ( k ) + f ( k - 1 ) f ( k - 1 )) % M ; else // n=2k+1 return F n = ( f ( k ) f ( k + 1 ) + f ( k - 1 ) f ( k )) % M ;

@@ -1,0 +1,95 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Tham_lam là một trong những phương_pháp phổ_biến nhất để thiết_kế giải_thuật .
+Rất nhiều thuật_toán nổi_tiếng được thiết_kế dựa trên tư_tưởng của tham_lam , ví_dụ như thuật_toán tìm đường_đi ngắn nhất của Dijkstra , thuật_toán cây khung nhỏ nhất của Kruskal , v . v . Trong bài này chúng_ta sẽ tìm_hiểu phương_pháp thiết_kế giải_thuật này .
+Bài_toán như_sau : Tìm cách lưu_trữ file sao_cho việc truy_xuất được hiệu_quả nhất , biết rằng các file có xác_suất truy_cập như_nhau .
+Vì các file có xác_suất truy_cập như_nhau , với một_cách lưu_trữ cho trước , chi_phí để truy_xuất ngẫu_nhiên một file có kì_vọng là : Cách lưu_trữ file mà chúng_ta có_thể nghĩ đến ngay đó là các lưu các file nhỏ ở đầu đĩa_từ và lưu các file lớn ở cuối đĩa_từ .
+Vấn_đề còn_lại là chứng_minh rằng cách lưu này là một_cách lưu file tối_ưu ( nhỏ nhất) .
+Giả_sử tồn_tại một_cách lưu_trữ tối_ưu và chỉ_số sao_cho .
+Gọi_là hoán_vị thu được từ bằng cách đổi chỗ và .
+Ta có : Do_đó , , trái với giả_thiết là cách lưu_trữ tối_ưu .
+Bằng cách sắp_xếp theo chiều tăng của kích_thước file , chúng_ta có_thể thực_thi thuật_toán trên trong thời_gian .
+Bây_giờ chúng_ta hãy thay_đổi bài_toán một_chút như_sau : Tìm cách lưu_trữ file sao_cho việc truy_xuất được hiệu_quả nhất .
+Với bài_toán này , tổng_chi_phí để truy_xuất file là : Ta sẽ tổng_quát_hóa thuật_toán ở Problem 1 như_sau : lưu file theo tỉ_lệ tăng dần .
+Ta sẽ chứng_minh rằng cách lưu file này có tổng_chi_phí nhỏ nhất : Tương_tự như chứng_minh ở Theorem 1 , ta giả_sử tồn_tại một_cách lưu_trữ tối_ưu và chỉ_số sao_cho .
+Gọi_là hoán_vị thu được từ bằng cách đổi chỗ và .
+Ta có : Do_đó , , trái với giả_thiết là cách lưu_trữ tối_ưu .
+Ta xét bài_toán phức_tạp hơn sau : Ví_dụ : ở hình dưới_đây (lấy từ 1) , mỗi môn_học được biểu_diễn bởi một thanh ngang có chiều_dài .
+Tập các thanh màu xanh chính là một_tập có_số lượng lớn nhất các môn_học không gối lên nhau : Bài_toán này có_thể giải bằng phương_pháp với thời_gian .
+Chi_tiết coi_như bài_tập cho bạn_đọc .
+Ở đây mình đưa_ra cách giải bằng phương_pháp tham_lam .
+Có 3 cách lựa_chọn lớp_học tham_lam mà bạn có_thể nghĩ đến : Thuật_toán như_sau : Code của giả mã bằng C : Dễ_dàng thấy thuật_toán trên có_thể được thực_thi trong thời_gian .
+Việc còn_lại của chúng_ta là chứng_minh thuật_toán trên cho chúng_ta tập các lớp không gối lên nhau có kích_thước lớn nhất .
+Giả_sử là tập các lớp_học đầu_ra của thuật_toán tham_lam và là một phương_án tối_ưu () , sắp_xếp theo chiều tăng dần của thời_gian hoành thành .
+Gọi_là tập phần_tử đầu_tiên của .
+Trong số các phương tối_ưu , chọn phương_án sao_cho là lớn nhất .
+Nếu , ta có vì nếu_không , ít_nhất một lớp_học nữa sẽ được thêm vào .
+Do_đó , là một phương_án tối_ưu .
+Giả_sử .
+Suy ra tồn_tại sao_cho .
+Ta chọn nhỏ nhất thỏa_mãn .
+Như_vậy .
+Do là lớp_học có thời_gian hoành thành sớm nhất sau khi đã hoàn_thành , thời_gian hoành thành của sớm hơn .
+Suy ra kết_thúc trước_khi bắt_đầu .
+Ngoài_ra , (chứng minh coi_như bài_tập cho bạn_đọc , xem lời_giải trong phần ) .
+Xét , i . e , Dễ thấy , và các lớp trong không gối lên nhau .
+Do_đó là một phương_án tối_ưu .
+Tuy_nhiên , trái với cách chọn là phương_án có lớn nhất .
+Do_đó , là phương_án tối_ưu .
+Phương_pháp chứng_minh bằng phản_chứng cho bài_toán chọn lớp_học cũng là một phương_pháp chứng_minh phổ_biến để chứng_minh thuật_toán tham_lam là tối_ưu .
+Ta có_thể rút ra các bước như_sau : Bạn có_thể thử phương_pháp trên cho bài_toán lưu_trữ file trên đĩa_từ .
+Giờ chúng_ta thử áp_dụng ý_tưởng đó vào bài_toán sau : Ví_dụ bạn có 5 tác vụ với thông_tin như_sau : Phương_án tối_ưu là (theo trình_tự thực thi) với tổng tiền_thưởng thu được là 142 . Tư_tưởng tham_lam của bài_toán này rất đơn_giản như_sau : Trong tập các tác vụ chưa được chọn , chọn tác vụ có tiền_thưởng lớn nhất nếu tác vụ này vẫn còn thực_thi được .
+Ở đây ta luôn duy_trì một danh_sách các tác vụ đã chọn và một tác vụ gọi_là thực_thi được nếu ta thêm tác vụ này vào danh_sách đó , vẫn tồn_tại một_cách thực_thi sao_cho tất_cả các tác vụ được hoàn_thành trước thời_hạn . Áp_dụng với ví_dụ trên , đầu_tiên_ta chọn tác vụ , sau_đó là chọn tác vụ với trình_tự .
+Ứng_viên tiếp_theo là , tuy_nhiên ta không_thể thực_thi toàn_bộ trước thời_hạn , do_đó ta bỏ_qua .
+Tương_tự như_vậy , tác vụ cũng không_thể được chọn và cuối_cùng ta chọn .
+Như_vậy , thuật_toán tham_lam sẽ cho ta các tác vụ theo đúng trình_tự thực_hiện này .
+Giả mã như_sau : Code của thuật_toán bằng C : Dễ thấy thuật_toán trên có_thể được thực_thi trong thời_gian .
+Trong bài , mình sẽ giới_thiệu phương_pháp sử_dụng cấu_trúc Union-Find để giảm thời_gian xuống còn .
+Nếu các tác vụ đầu_vào đã được sắp_xếp theo chiều giảm_dần của tiền_thưởng , chúng_ta còn có_thể giảm thời_gian xuống còn trong đó là hàm Ackerman ngược .
+Hàm tăng cực_kì chậm và với mọi giá_trị thực_tế của .
+Do_đó có_thể coi xấp_xỉ . Vấn_đề còn_lại là chứng_minh rằng thuật_toán tham_lam cho lời_giải tối_ưu .
+Chúng_ta sẽ chứng_minh theo các bước đã chỉ ra ở trên .
+Gọi_là tập các tác vụ đầu_ra của thuật_toán tham_lam , sắp_xếp theo chiều giảm_dần cuả tiền_thưởng .
+Gọi_là tập các tác vụ tối_ưu , sắp_xếp như .
+Các tác vụ có phần_thưởng bằng_nhau trong sẽ được sắp_xếp ưu_tiên theo thứ_tự trong .
+Ví_dụ chứa tác vụ mà , trong đó xuất_hiện trong và tác vụ được chọn trước trong thì ta sắp_xếp chúng theo thứ_tự trong . Nếu , ta suy ra vì nếu_không , thuật_toán tham_lam sẽ chọn thêm ít_nhất một phần_tử nữa vào .
+Chọn sao_cho là lớn nhất .
+Gọi_là chỉ_số nhỏ nhất sao_cho .
+Ta có vì nếu_không thuật_toán tham_lam sẽ chọn .
+Theo cách sắp_xếp , ta suy ra .
+Giả_sử tồn_tại một tác vụ có thời_hạn sớm hơn hoặc bằng .
+Nếu , ta có_thể đổi chỗ và , qua đó thu được phản_chứng theo_như lập_luận ở trên .
+Do_đó , , nhưng điều đó có_nghĩa là .
+Suy ra , không có tác vụ nào trong có thời_hạn sớm hơn hoặc bằng .
+Gọi_là một lịch_trình thực_thi các tác vụ trong và gọi_là số nhỏ nhất sao_cho .
+Do_đó , theo_như lập_luận ở trên , ta có và .
+Vì có_một lịch_trình thực_thi sao_cho mọi tác vụ đều trước thời_hạn , bằng cách thay_thế bởi , ta thu được_lời giải tối_ưu khác với , qua đó thu được phản_chứng . Code : , . 1 Jeff_Erickson .
+, UIUC .
+2 George_Kocur , MIT_OWC , MIT .
+3 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+.
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+, Trackback link : on Bài_toán lập lịch có_vấn_đề trong chứng_minh rồi .
+Phản ví_dụ : 1 100 3 2 80 3 3 1 1Nếu theo trình_tự thì đc 180 đồng .
+Nhưng theo trình_tự 3-2-1 thì đc 181 đồng cơ on Hi bạn .
+Hình_như bạn hiểu sai thuật_toán .
+Khi thuật_toán chọn một việc để đưa_vào tập lời_giải , nó sẽ không thực_thi ngay .
+Theo ví_dụ của bạn , thuật_toán sẽ chọn Job 1 và 2 trước (nhưng nó sẽ không thực_thi ngay) .
+Khi xét Job 3 , thuật_toán sẽ kiểm_tra xem có lịch nào để thực_thi được cả 1 , 2 , 3 hay_không (trong trường_hợp này là có) .
+Do_đó , nó sẽ chọn Job 3 đưa_vào lời_giải .
+Cuối_cùng kết_quả vẫn là 181 .
+Mình trích lại thuật_toán : "Trong tập các tác vụ chưa được chọn , chọn tác vụ có tiền_thưởng lớn nhất nếu tác vụ này vẫn còn thực_thi được .
+Ở đây ta luôn duy_trì một danh_sách các tác vụ đã chọn và một tác vụ gọi_là thực_thi được nếu ta thêm tác vụ này vào danh_sách đó , vẫn tồn_tại một_cách thực_thi sao_cho tất_cả các tác vụ được hoàn_thành trước thời hạn"Hùng on Vâng ạ em đã hiểu , em đã đọc kỹ bài này thì duy chỉ_có cái chứng_minh Theorem 4 em thấy nó hơi tối với khó_hiểu một tý , anh có_thể xem_lại và chỉnh_sửa cho nó sáng_sủa một tý không ạ .
+Chẳng_hạn chỗ Py_i <= Px_i rồi suy ra x_i không thuộc Y là chưa chặt_chẽ .
+Nếu dấu bằng xẩy ra Py_i = Px_i thì_có thể có x_i thuộc Y chứ .
+on Đúng là phần suy_diễn chưa chặt_chẽ .
+Ở đây mình sẽ phải sửa_lại cách sắp_xếp sao_cho nếu thì sẽ không_phải là chỉ_số lớn nhất mà .
+Cám_ơn bạn đã chỉ ra lỗi này .
+on Mình lại phát_hiện ra một lỗi sai rất tinh_vi trong chứng_minh Theorem 3 của anh .
+Ở cái chỗ Xét_Y . . . . .
+ấy .
+Lỡ y_i thuộc vào tập X thì sao , lúc_đó anh bỏ_đi y_i rồi lại thêm vào x_i sẽ không làm tăng số phần_tử chung lên . Vì_vậy ta phải thêm lý_luận sau : Nếu y_i thuộc vào X thì mút trái của nó phải lớn hơn mút phải của x_i , do cách thuật_toán tham_lam chọn x_i .
+Vì_vậy ta có_thể bổ_sung phần_tử x_i vào giữa 2 phần_tử y_i-1 và y_i trong phương_án tối_ưu để tạo ra một phương_án còn lớn hơn , mâu_thuẫn .
+on Hi bạn , Đúng là chứng_minh đầy_đủ cần phải có phần lập_luận của bạn .
+Cám_ơn bạn đã chỉ ra .
+Mình sẽ link vào phần chứng_minh coi_như bài_tập nhỏ . HùngPowered by and

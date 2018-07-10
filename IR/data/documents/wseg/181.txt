@@ -1,0 +1,42 @@
+Nguồn : HackerEarth_Người dịch : Bùi_Việt Dũng_Table of_Contents Bao_hàm - loại_trừ (Inclusion-Exclusion) Phát_biểu công_thức Công_thức dành cho tập_hợp Lập_công thức bằng biểu_đồ Venn (Venn diagrams) Công_thức dành cho xác_suất Chứng_minh công_thức bao_hàm - loại_trừ Ứng_dụng : Đếm_số số_nguyên_tố cùng_nhau với một_số cho trước trong một đoạn Bao_hàm - loại_trừ (Inclusion-Exclusion) Phát_biểu công_thức Công_thức bao_hàm - loại_trừ được phát_biểu như_sau : Để tính lực_lượng của hợp của nhiều tập_hợp , ta tính tổng_lực_lượng các tập_hợp đó , rồi trừ đi lực_lượng của giao của các cặp hai tập_hợp khác_nhau , rồi cộng lực_lượng của giao các bộ_ba tập_hợp khác_nhau , rồi trừ đi lực_lượng của các bộ bốn tập_hợp , và cứ thế cho_đến khi ta xét đến giao của tất_cả các tập_hợp .
+Công_thức dành cho tập_hợp Công_thức bao_hàm - loại_trừ có dạng như_sau : \bigcup_i=1n A_i = \sum_i=1n A_i - \sum_i \ne j A_i \cap A_j + A_1 \cap A_2 \cap A_3 + A_1 \cap A_2 \cap A_4 + . . .
++ A_n-2 \cap A_n-1 \cap A_n - . . .
+- (-1)nA_1 \cap A_2 \cap . . .
+\cap A_n Ta có_thể viết công_thức này một_cách gọn hơn bằng cách tính tổng của các tập_con .
+Gọi_B là tập_hợp các tập_hợp A_i .
+Khi đó công_thức bao_hàm - loại_trừ có dạng : \bigcup_i=1n A_i = \sum_C \subset B (-1)C-1 \bigcap_e \in C e Lập_công thức bằng biểu_đồ Venn (Venn diagrams) Ta có biểu_đồ sau biểu_diễn ba tập_hợp A , B và C .
+Khi đó ta thấy lực_lượng của A \cup B \cup C bằng lực_lượng của A , B , C trừ đi lực_lượng của A \cap B , B \cap C , C \cap A rồi cộng thêm lực_lượng của A \cap B \cap C .
+A \cup B \cup C = A + B + C - A \cap B - B \cap C - C \cap A + A \cap B \cap C Tương_tự , ta có_thể lập_công thức với n tập_hợp .
+Công_thức dành cho xác_suất Nếu ta có n biến_cố A_1 , A_2 , . . . , A_n , P(A_i) là xác_suất của biến_cố A_i , xác_suất của biến_cố hợp của chúng (nghĩa là biến_cố "có ít_nhất một trong số n biến_cố A_1 , A_2 , . . . , A_n xảy ra") là P(\bigcup_i=1n A_i) = \sum_i=1n P(A_i) - \sum_i \ne j P(A_i A_j) + P(A_1 A_2 A_3) + P(A_1 A_2 A_4) + . . .
++ P(A_n-2 A_n-1 A_n) - . . .
+- (-1)n . P(A_1 A_2 . . .
+A_n) Nếu gọi B là tập_hợp các tập_hợp A_i , công_thức này cũng có_thể viết gọn như_sau : P(\bigcup_i=1n A_i) = \sum_C \subset B (-1)C-1 .
+P(\bigcap_e \in C e) Chứng_minh công_thức bao_hàm - loại_trừ Để thuật tiện trong chứng_minh , ta sử_dụng công_thức viết gọn sau : \bigcup_i=1n A_i = \sum_C \subset B (-1)C-1 \bigcap_e \in C e với B là tập_hợp các tập_hợp A_i .
+Ta cần chứng_minh một phần_tử bất_kì thuộc ít_nhất một_tập A_i , sẽ chỉ được đếm một_lần trong công_thức .
+Xét một phần_tử x bất_kì thuộc k \geq 1 tập_hợp A_i .
+Ta thấy Trong công_thức , khi C = 1 , x được đếm thêm k lần .
+Trong công_thức , khi C = 2 , x được đếm bớt đi \binomk2 lần bởi x bị đếm bớt đi khi ta xét một cặp 2 tập_hợp khác_nhau trong số k tập_hợp chứa phần_tử x .
+Trong công_thức , khi C = 3 , x được đếm thêm \binomk3 lần .
+. . .
+Trong công_thức , khi C = k , x được đếm \binomkk lần .
+Nếu k lẻ thì x được đếm thêm , nếu k chẵn thì x được đếm bớt .
+Trong công_thức , khi C gt; k , x không được đếm .
+Vì_vậy , số lần x được đếm là T = \binomk1 - \binomk2 + \binomk3 - . . .
++ (-1)i-1 . \binomki + . . .
++ (-1)k-1 . \binomkk .
+Để tính T , ta khai_triển (1-x)k bằng nhị_thức Niu-tơn (Newton binomial) : (1-x)k = \binomk0 - \binomk1 . x + \binomk2 . x2 - \binomk3 . x3 + . . .
++ (-1)k . \binomkk . xk .
+Ta thấy với x=1 , (1-x)k = T-1 , do_đó T = (1-1)k+1 = 1 hay điều phải chứng_minh .
+Ứng_dụng : Đếm_số số_nguyên_tố cùng_nhau với một_số cho trước trong một đoạn Đây là một bài_toán dễ dựa trên công_thức bao_hàm - loại_trừ .
+Cho hai số_nguyên n và r , đếm_số số_nguyên_tố cùng_nhau với n trong đoạn 1;r .
+Thuật_toán : Tìm phần bù (the inverse) : Đếm_số số_không nguyên_tố cùng_nhau với n .
+Xét các ước nguyên_tố của n , đánh_số chúng từ 1 đến k .
+Ta có_thể tính số số trong đoạn 1;r chia_hết_cho p_i bằng công_thức \fracrp_i .
+Tuy_vậy , nếu ta chỉ tính tổng tất_cả các số này , ta sẽ ra kết qủa sai .
+Đó là do một_số số có_thể chia_hết_cho nhiều p_i .
+Vì_vậy ta cần sử_dụng đến công_thức bao_hàm - loại_trừ .
+int solve ( int n , int r ) vector lt; int gt; p ; for ( int i = 2 ; i i lt;= n ; ++ i ) if ( n % i == 0 ) p .
+push_back ( i ); while ( n % i == 0 ) n /= i ; if ( n gt; 1 ) p .
+push_back ( n ); int sum = 0 ; for ( int msk = 1 ; msk lt; ( 1 lt;lt; p .
+size ()); ++ msk ) int mult = 1 , bits = 0 ; for ( int i = 0 ; i lt; ( int ) p .
+size (); ++ i ) if ( msk amp; ( 1 lt;lt; i )) ++ bits ; mult = p i ; int cur = r / mult ; if ( bits % 2 == 1 ) sum += cur ; else_sum -= cur ; return r - sum ;

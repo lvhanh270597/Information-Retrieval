@@ -1,0 +1,321 @@
+Bài viết sưu_tầm trên mạng .
+Table of_Contents 1 .
+Dãy con đơn_điệu dài nhất 1 . 1 . Mô_hình 1 . 2 . Công_thức QHĐ 1 . 3 . Cài_đặt 1 . 4 . Một_số bài_toán khác Bố_trí phòng_họp (mất tính thứ_tự so_với dãy ban đầu) Cho_thuê máy Dãy tam_giác bao nhau Dãy đổi dấu Dãy_số WAVIO_Xếp các khối đá 2 .
+Vali (B) 2 . 1 . Mô_hình 2 . 2 . Công_thức 2 . 3 . Cài_đặt 2 . 4 . Một_số bài_toán khác Dãy con có tổng_bằng S_Chia kẹo_Market (Olympic Balkan 2000) Điền_dấu Expression_Farmer (IOI 2004) 3 .
+Biến_đổi xâu 3 . 1 . Mô_hình 3 . 2 . Hướng_dẫn 3 . 3 . Một_số bài_toán khác Xâu con chung dài nhất Bắc_cầu Palindrome (IOI 2000) 4 .
+Vali (A) 4 . 1 . Mô_hình 4 . 2 . Công_thức 4 . 3 . Cài_đặt 4 . 4 . Một_số bài_toán khác Đổi_tiền 5 .
+Nhân ma_trận 5 . 1 . Mô_hình 5 . 2 . Công_thức 5 . 3 . Cài_đặt 5 . 4 . Một_số bài_toán khác Chia đa_giác Biểu_thức số_học (IOI 1999) 6 .
+Ghép_cặp 6 . 1 . Mô_hình 6 . 2 . Công_thức 6 . 3 . Cài_đặt 6 . 4 . Một_số bài_toán khác Câu_lạc_bộ Mua giày (Đề QG bảng B năm 2003) 7 .
+Di_chuyển 7 . 1 . Mô_hình 7 . 2 . Công_thức 7 . 3 . Cài_đặt 7 . 4 . Một_số bài_toán khác Tam_giác (IOI 1994) 1 .
+Dãy con đơn_điệu dài nhất 1 . 1 . Mô_hình Cho dãy A_1 , A_2 , . . . , A_n .
+Hãy tìm một dãy con tăng có nhiều phần_tử nhất của dãy .
+Đặc_trưng : Các phần_tử trong dãy kết_quả chỉ xuất_hiện 1 lần .
+Vì_vậy phương_pháp làm là ta sẽ dùng vòng For duyệt qua các phần_tử A trong dãy , khác với các bài_toán của mô_hình 4 (đặc trưng là bài_toán đổi tiền) , các phần_tử trong dãy có_thể được chọn nhiều lần nên ta thực_hiện bằng phương_pháp cho giá_trị cần quy_đổi tăng dần từng đơn_vị .
+Thứ_tự của các phần_tử được chọn phải được giữ_nguyên so_với dãy ban_đầu .
+Đặc_trưng này có_thể mất đi trong một_số bài_toán khác tùy vào yêu_cầu cụ_thể .
+Chẳng_hạn bài : Tam_giác bao nhau .
+1 . 2 . Công_thức QHĐ Hàm_mục_tiêu : f : độ_dài dãy con .
+Vì độ_dài dãy con chỉ phụ_thuộc vào một yếu_tố là dãy ban_đầu nên bảng phương_án là bảng một_chiều .
+Gọi L_i là độ_dài dãy con tăng dài nhất , các phần_tử lấy trong miền từ A_1 đến A_i và phần_tử cuối_cùng là A_i .
+Nhận_xét với cách làm này ta đã chia 1 bài_toán lớn (dãy con của n số) thành các bài_toán con cùng kiểu có kích_thước nhỏ hơn (dãy con của dãy i số) .
+Vấn_đề là công_thức truy_hồi để phối_hợp kết_quả của các bài_toán con .
+Ta có_công thức QHĐ để tính L_i như_sau : L_1 = 1 .
+(Hiển nhiên) L_i = max(1 , L_j + 1) với mọi phần_tử j thỏa_mãn : 0lt;jlt;i và A_j \le A_i Tính L_i : phần_tử đang được xét là A_i .
+Ta tìm đến phần_tử A_j lt; A_i có L_j lớn nhất .
+Khi đó nếu bổ_sung A_i vào sau dãy con . . . A_j ta sẽ được dãy con tăng dần dài nhất xét từ A_1 . . . A_i .
+1 . 3 . Cài_đặt Bảng phương_án là một mảng một_chiều L để lưu_trữ các giá_trị của hàm QHĐ L_i .
+Đoạn chương_trình tính các giá_trị của mảng L như_sau : for i : = 1 to n do begin L i : = 1 ; for j : = 1 to i - 1 do if ( A j lt;= A i ) and ( L i lt; L j + 1 ) then L i : = L j + 1 ; end ; Như_vậy độ phức_tạp bộ_nhớ của bài_toán là O(n) , độ phức_tạp thời_gian là O(n2) .
+Có_một số phương_pháp cài_đặt tốt hơn so_với phương_pháp trên , cho chi_phí thời_gian là O(nlogn) , một trong những cách đó là dùng Segment_Tree .
+1 . 4 . Một_số bài_toán khác Bài_toán dãy con đơn_điệu tăng dài nhất có biến_thể đơn_giản nhất_là bài_toán dãy con đơn_điệu giảm dài nhất , tuy_nhiên chúng_ta có_thể coi chúng như_là một .
+Sau_đây là một_số bài_toán khác .
+Bố_trí phòng_họp (mất tính thứ_tự so_với dãy ban đầu) Bài_toán : Có n cuộc_họp , cuộc_họp thứ i bắt_đầu vào thời_điểm A_i và kết_thúc ở thời_điểm B_i .
+Do chỉ_có một phòng hội_thảo nên 2 cuộc_họp bất_kì sẽ được cùng bố_trí phục_vụ nếu khoảng thời_gian làm_việc của chúng chỉ giao nhau tại đầu_mút .
+Hãy bố_trí phòng_họp để phục_vụ được nhiều cuộc_họp nhất .
+Hướng_dẫn : Sắp_xếp các cuộc_họp tăng dần theo_thời điểm kết_thúc B_i .
+Thế_thì cuộc_họp i sẽ bố_trí được sau cuộc_họp j khi và chỉ khi jlt;i và B_j \le A_i .
+Yêu_cầu bố_trí được nhiều cuộc_họp nhất có_thể đưa về việc tìm dãy các cuộc_họp dài nhất thoả_mãn điều_kiện trên .
+Cho_thuê máy Bài_toán : Trung_tâm tính_toán hiệu_năng cao nhận được đơn đặt_hàng của n khách_hàng .
+Khách_hàng i muốn sử_dụng máy trong_khoảng thời_gian từ a_i đến b_i và trả tiền thuê là c_i .
+Hãy bố_trí lịch thuê máy để tổng_số tiền thu được là lớn nhất mà thời_gian sử_dụng máy của 2 khách_hàng bất_kì được phục_vụ đều không giao nhau (cả trung_tâm chỉ_có một máy cho thuê) .
+Hướng_dẫn : Tương_tự như bài_toán bố_trí phòng_họp , nếu sắp_xếp các đơn đặt_hàng theo_thời điểm kết_thúc , ta sẽ đưa được về bài_toán tìm dãy con có tổng_lớn nhất .
+Bài_toán này là biến_thể của bài_toán tìm dãy con tăng dài nhất , ta có_thể cài_đặt bằng đoạn chương_trình như_sau : for i : = 1 to n do begin L i : = C i ; for j : = 1 to i - 1 do if ( B j lt;= A i ) and ( L i lt; L j + C i ) then L i : = L j + C i ; end ; Dãy tam_giác bao nhau Bài_toán : Cho n tam_giác trên mặt_phẳng .
+Tam_giác i bao tam_giác j nếu 3 đỉnh của tam_giác j đều nằm trong tam_giác i (có thể nằm trên cạnh) .
+Hãy tìm dãy tam_giác bao nhau có nhiều tam_giác nhất .
+Hướng_dẫn : Sắp_xếp các tam_giác tăng dần về diện_tích .
+Khi đó tam_giác i sẽ bao tam_giác j nếu jlt;i và 3 đỉnh của j nằm trong i .
+Từ_đó có_thể đưa về bài_toán tìm dãy “tăng” dài nhất .
+Bài_toán có_một số biến_thể khác như tìm dãy hình_tam_giác , hình chữ nhật… bao nhau có tổng_diện_tích lớn nhất .
+Việc kiểm_tra điểm M có nằm trong tam_giác ABC không có_thể dựa trên phương_pháp tính diện_tích : điểm M nằm trong nếu S(ABC) = S(ABM) + S(ACM) + S(BCM) .
+Dãy đổi dấu Bài_toán : Cho dãy A_1 , A_2 , . . . , A_N .
+Hãy tìm dãy con đổi dấu dài nhất của dãy đó .
+Dãy con đổi dấu A_i1 , A_i2 , . . . , A_ik phải thoả_mãn các điều_kiện sau : A_i1 lt; A_i2 gt; A_i3 lt; . . .
+hoặc A_i1 gt; A_i2 lt; A_i3 gt; . . .
+Các chỉ_số phải_cách nhau ít_nhất L : i_2 - i_1 \ge L , i_3 - i_2 \ge L , . . .
+Chênh_lệch giữa 2 phần_tử liên_tiếp nhỏ hơn U : A_i1 - A_i2 \le U , A_i2 - A_i3 \le U , . . .
+Hướng_dẫn : Gọi L_i là số phần_tử của dãy con đổi dấu có phần_tử cuối_cùng là A_i và phần_tử cuối_cùng lớn hơn phần_tử đứng trước .
+Tương_tự , P_i là số phần_tử của dãy con đổi dấu có phần_tử cuối_cùng là A_i và phần_tử cuối_cùng nhỏ hơn phần_tử đứng trước .
+Ta dễ_dàng suy ra : L_i = max(1 , P_j + 1) , với mọi j thỏa_mãn : j \le i-L và A_i - U \le A_j lt; A_i .
+P_i = max(1 , L_j + 1) , với mọi j thỏa_mãn : j \le i-L và A_i lt; A_j \le A_i + U .
+Dãy_số WAVIO Bài_toán : Dãy_số Wavio là dãy_số nguyên thỏa_mãn các tính_chất : các phần_tử đầu sắp_xếp thành 1 dãy tăng dần đến 1 phần_tử đỉnh sau_đó giảm_dần .
+Ví_dụ dãy_số 1 2 3 4 5 2 1 là 1 dãy Wavio độ_dài 7 .
+Cho 1 dãy gồm N số_nguyên , hãy chỉ ra một dãy con Wavio có đọ dài lớn nhất trích ra từ dãy đó .
+Hướng_dẫn : L1_i là mảng ghi độ_dài lớn nhất của 1 dãy con tăng dần trích ra từ dãy N phần_tử kể_từ phần_tử 1 đến phần_tử a_i .
+L2_i : mảng ghi độ_dài lớn nhất của dãy con giảm_dần trích ra từ dãy N phần_tử kể_từ phần_tử A_N đến A_i .
+Ta tìm phần_tử j trong 2 mảng L1 , L2 thỏa_mãn L1_j + L2_j lớn nhất .
+Xếp các khối đá Bài_toán : Cho_N khối đá (N \le 5000) .
+Các khối đá đều có dạng_hình hộp chữ_nhật và được đặc_trưng bới 3 kích_thước : dài , rộng , cao .
+Một_cách xây_dựng tháp là một_cách đặt một_số các khối đá trong các khối đá đã cho chồng lên nhau theo quy_tắc : Chiều_cao mỗi khối đá là kích_thước nhỏ nhất trong 3 kích_thước .
+Các mép của khối đá được đặt song_song với_nhau sao_cho không có phần_nào của khối trên nằm chìa ra ngoài khối dưới .
+Hãy chỉ ra cách để xây_dựng được_một_cái tháp sao_cho số_khối đá được dùng là nhiều nhất .
+2 .
+Vali (B) 2 . 1 . Mô_hình Có n đồ_vật , vật thứ i có trọng_lượng A_i và giá_trị B_i .
+Hãy chọn ra một_số các đồ_vật , mỗi vật một cái để xếp vào 1 vali có trọng_lượng tối_đa W sao_cho tổng_giá trị của vali là lớn nhất .
+2 . 2 . Công_thức Hàm_mục_tiêu : f : tổng_giá trị của vali .
+Nhận_xét : giá_trị của vali phụ_thuộc vào 2 yếu_tố : có bao_nhiêu vật đang được xét và trọng_lượng của các vật .
+Do_đó bảng phương_án sẽ là bảng 2 chiều : - L(i , j) : tổng_giá trị lớn nhất của vali khi xét từ vật 1 . .
+vật i và trọng_lượng của vali chưa vượt_quá j .
+Chú_ý rằng khi xét đến Li , j thì các giá_trị trên bảng phương_án đều đã được tối_ưu .
+Tính_L(i , j) : vật đang xét là a_i với trọng_lượng của vali không được quá j .
+Có 2 khả_năng xảy_ra : Nếu chọn A_i đưa_vào vali , trọng_lượng vali trước đó phải không quá j - A_i .
+Vì mỗi vật chỉ được chọn 1 lần nên giá_trị lớn nhất của vali lúc_đó là L(i-1 , j - A_i) + B_i .
+Nếu_không chọn A_i , trọng_lượng của vali là như_cũ (như lúc trước_khi chọn A_i) : L(i-1 , j) .
+Tóm_lại ta có Li , j = max(L(i-1 , j - A_i) + B_i , L(i-1 , j)) .
+2 . 3 . Cài_đặt For i : = 1 to n do For j : = 1 to W do If b i lt;= j then L i , j : = max ( L i - 1 , j - A i + B i , L i - 1 , j ) else L i , j : = L i - 1 , j ; 2 . 4 . Một_số bài_toán khác Dãy con có tổng_bằng S Bài_toán : Cho dãy A_1 , A_2 , . . . , A_N .
+Tìm một dãy con của dãy đó có tổng_bằng S .
+Hướng_dẫn : Đặt_Li , t=1 nếu có_thể tạo ra tổng t từ một dãy con của dãy gồm các phần_tử A_1 , A_2 , . . . , A_i .
+Ngược_lại thì Li , t=0 .
+Nếu_Ln , S=1 thì đáp_án của bài_toán trên là “có” .
+Ta có_thể tính Li , t theo công_thức : Li , t=1 nếu Li-1 , t=1 hoặc Li-1 , t-ai=1 .
+Cài_đặt : Nếu áp_dụng luôn công_thức trên thì ta cần_dùng bảng phương_án hai chiều .
+Ta có_thể nhận_xét rằng để tính dòng thứ i , ta chỉ_cần dòng i-1 .
+Bảng phương_án khi đó chỉ_cần 1 mảng 1 chiều L0 . . S và được tính như_sau : L t : = 0 ; L 0 : = 1 ; for i : = 1 to n do for t : = S downto a i do if ( L t = 0 ) and ( L t - a i = 1 ) then L t : = 1 ; Dễ thấy độ phức_tạp bộ_nhớ của cách cài_đặt trên là O(m) , độ phức_tạp thời_gian là O(n m) , với m là tổng của n số .
+Hãy tự kiểm_tra xem tại_sao vòng for thứ 2 lại là for downto chứ không_phải là for to .
+Chia kẹo Bài_toán : Cho n gói kẹo , gói thứ i có a_i viên .
+Hãy chia các gói thành 2 phần sao_cho chênh_lệch giữa 2 phần là ít_nhất .
+Hướng_dẫn : Gọi_T là tổng_số kẹo của n gói .
+Chúng_ta cần tìm số S lớn nhất thoả_mãn : S \le T/2 .
+Có_một dãy con của dãy a có tổng_bằng S .
+Khi đó sẽ có cách chia với chênh_lệch 2 phần là T-2S là nhỏ nhất và dãy con có tổng_bằng S ở trên gồm các phần_tử là các gói kẹo_thuộc phần thứ nhất .
+Phần thứ_hai là các gói kẹo_còn lại .
+Market (Olympic Balkan 2000) Bài_toán : Người đánh_cá Clement bắt_được n con cá , khối_lượng mỗi con là a_i , đem bán ngoài chợ .
+Ở chợ cá , người_ta không mua cá theo từng con mà mua theo một lượng nào_đó .
+Chẳng_hạn 3 kg , 5kg . . .
+Ví_dụ : có 3 con cá , khối_lượng lần_lượt là : 3 , 2 , 4 .
+Mua lượng 6kg sẽ phải lấy con cá thứ 2 và và thứ 3 .
+Mua lượng 3 kg thì lấy con_thứ nhất .
+Không_thể mua lượng 8 kg .
+Nếu bạn là người đầu_tiên mua cá , có bao_nhiêu lượng bạn có_thể chọn ?
+Hướng_dẫn Thực_chất bài_toán là tìm các số S mà có_một dãy con của dãy a có tổng_bằng S .
+Ta có_thể dùng phương_pháp đánh_dấu của bài chia kẹo ở trên rồi đếm các giá_trị t mà Lt=1 .
+Điền_dấu Bài_toán : Cho n số_tự_nhiên A_1 , A_2 , . . . , A_N .
+Ban_đầu các số được đặt liên_tiếp theo đúng thứ_tự cách nhau bởi dấu " ? " : A1 ?
+A2 ?
+. . .
+?
+AN .
+Cho trước_số nguyên S , có cách nào thay các dấu ?
+bằng dấu + hay dấu − để được một biểu_thức số_học cho giá_trị là S không ?
+Hướng_dẫn : Đặt_Li , t=1 nếu có_thể điền_dấu vào i số đầu_tiên và cho kết_quả bằng t .
+Ta có_công thức sau để tính L : L1 , a1 = 1 Li , t = 1 nếu Li - 1 , t + ai = 1 hoặc Li - 1 , t - ai = 1 .
+Nếu_Ln , S = 1 thì câu trả_lời của bài_toán là có .
+Khi cài_đặt , có_thể dùng một mảng 2 chiều (lưu toàn_bộ bảng phương án) hoặc 2 mảng một_chiều (để lưu dòng i và dòng i-1) .
+Chú_ý là chỉ_số theo t của các mảng phải có cả phần âm (tức là từ -T đến T , với T là tổng của n số) , vì trong bài này chúng_ta dùng cả dấu - nên có_thể tạo ra các tổng_âm .
+Bài này có_một biến_thể là đặt dấu sao_cho kết_quả là một_số chia_hết_cho k .
+Ta có thuật_giải tương_tự bài_toán trên bằng cách thay các phép_cộng , trừ bằng các phép_cộng và trừ theo modulo k và dùng mảng đánh_dấu với các giá_trị từ 0 đến k-1 (là các số_dư có_thể có_khi chia cho k) .
+Đáp_số của bài_toán là Ln , 0 .
+Expression Bài_toán : Cho n số_nguyên .
+Hãy chia chúng thành 2 nhóm sao_cho tích của tổng 2 nhóm là lớn nhất .
+Hướng_dẫn : Gọi_T là tổng n số_nguyên đó .
+Giả_sử_ta chia dãy thành 2 nhóm , gọi S là tổng của một nhóm , tổng nhóm còn_lại là T-S và tích của tổng 2 nhóm là S(T-S) .
+Bằng phương_pháp đánh_dấu ta xác_định được mọi số S là tổng của một nhóm (như bài Market) và tìm số S sao_cho S(T-S) đạt max .
+Farmer (IOI 2004) Bài_toán Một người có N mảnh_đất và M dải_đất .
+Các mảnh_đất có_thể coi là một tứ_giác và các dải_đất thì coi_như một đường_thẳng .
+Dọc theo các dải_đất ông ta trồng các cây bách , dải_đất thứ i có A_i cây bách .
+Ông ta cũng trồng các cây bách trên viền của các mảnh_đất , mảnh_đất thứ j có B_j cây bách .
+Cả ở trên các mảnh_đất và dải_đất , xen giữa 2 cây bách ông ta trồng một cây ôliu .
+Ông ta cho con_trai được chọn các mảnh_đất và dải_đất tuỳ_ý với điều_kiện tổng_số cây bách không vượt_quá Q .
+Người con_trai phải chọn thế_nào để có nhiều cây ôliu (loài cây mà anh ta thích) nhất .
+Hướng_dẫn Dễ thấy mảnh_đất thứ i có A_i cây ôliu và dải_đất thứ j có B_j-1 cây ôliu .
+Coi các mảnh_đất và dải_đất là các “đồ vật” , đồ_vật thứ k có khối_lượng W_k và giá_trị V_k (nếu k là mảnh_đất i thì W_k=V_k=A_i , nếu k là dải_đất j thì W_k=B_j , V_k=B_j-1) .
+Ta cần chọn các “đồ vật” , sao_cho tổng “khối lượng” của chúng không vượt Q và tổng “giá trị” là lớn nhất .
+Đây chính là bài_toán xếp balô đã trình_bày ở trên .
+3 .
+Biến_đổi xâu 3 . 1 . Mô_hình Cho 2 xâu X , F .
+Xâu gốc có n kí_tự X_1 X_2 . . .
+X_n , xâu đích có m kí_tự F_1 F_2 . . .
+F_m .
+Có 3 phép biến_đổi : Chèn 1 kí_tự vào sau kí_tự thứ i : I i C Thay_thế kí_tự ở vị_trí thứ i bằng kí_tự C : R i C_Xoá kí_tự ở vị_trí thứ i : D i Hãy tìm số_ít nhất các phép biến_đổi để biến xâu X thành xâu F .
+3 . 2 . Hướng_dẫn Hàm_mục_tiêu : f : số phép biến_đổi .
+Dễ thấy số phép biến_đổi phụ_thuộc vào vị_trí i đang xét của xâu X và vị_trí j đang xét của xâu F .
+Do_vậy để cài_đặt cho bảng phương_án ta sẽ dùng mảng 2 chiều .
+Gọi_Li , j là số phép biến_đổi ít_nhất để biến xâu X_i gồm i kí_tự phần đầu của X (X_i = X1 . . i) thành xâu F_j gồm j kí_tự phần đầu của F (F_j = F1 . . j) .
+Dễ thấy L0 , j=j và Li , 0=i .
+Có 2 trường_hợp xảy_ra : Nếu_Xi = Fj : X_1 X_2 . . .
+X_i-1 X_i F_1 F_2 . . .
+F_j-1 X_i thì ta chỉ phải biến_đổi xâu X_i-1 thành xâu F_j-1 .
+Do_đó Li , j=Li-1 , j-1 .
+Ngược_lại , ta có 3 cách biến_đổi : Xoá kí_tự X_i : X_1 X_2 . . .
+X_i-1 F_1 F_2 . . .
+F_j-1 F_j Xâu X_i-1 thành F_j .
+Khi đó Li , j=Li-1 , j+1 .
+(Cộng 1 là do ta đã dùng 1 phép xóa) Thay_thế X_i bởi F_j : X_1 X_2 . . .
+X_i-1 F_j F_1 F_2 . . .
+F_j-1 F_j Xâu X_i-1 thành F_j-1 .
+Khi đó Li , j=Li-1 , j-1+1 .
+Chèn F_j vào sau X_i : X_1 X_2 . . .
+X_i F_j F_1 F_2 . . .
+F_j-1 F_j Xâu X_i thành F_j-1 .
+Khi đó Li , j=Li , j-1+1 Tổng_kết lại , ta có_công thức QHĐ : L0 , j=j Li , 0=i Li , j =Li−1 , j−1 nếu X_i = Y_j .
+Li , j = min(Li−1 , j , Li , j−1 , Li−1 , j−1) + 1 nếu X_i \ne F_j .
+Bài này ta có_thể tiết_kiệm biến hơn bằng cách dùng 2 mảng 1 chiều tính lẫn_nhau và một mảng đánh_dấu 2 chiều để truy vết .
+3 . 3 . Một_số bài_toán khác Xâu con chung dài nhất Bài_toán : Cho 2 xâu X , Y .
+Hãy tìm xâu con của X và của Y có độ_dài lớn nhất .
+Biết xâu con của một xâu thu được khi xóa_một số kí_tự thuộc xâu đó (hoặc không xóa kí_tự nào) .
+Công_thức QHĐ : Gọi_Li , j là độ_dài xâu con chung dài nhất của xâu X_i gồm i kí_tự phần đầu của X (X_i = X1 . . i) và xâu Y_j gồm j kí_tự phần đầu của Y (Y_j = Y1 . . j) .
+Ta có_công thức quy_hoạch_động như_sau : L0 , j = Li , 0 = 0 Li , j = Li−1 , j−1 + 1 nếu X_i = Y_j Li , j = max(Li−1 , j , Li , j−1) nếu X_i \ne Y_j .
+Cài_đặt : Bảng phương_án là một mảng 2 chiều L0 . . m , 0 . . n để lưu các giá_trị của hàm QHĐ_Li , j .
+Đoạn chương_trình cài_đặt công_thức QHĐ trên như_sau : for i : = 0 to m do L i , 0 : = 0 ; for j : = 0 to n do L 0 , j : = 0 ; for i : = 1 to m do for j : = 1 to n do if X i = Y j then L i , j : = L i - 1 , j - 1 + 1 else L i , j : = max ( L i - 1 , j , L i , j - 1 ); Như_vậy độ phức_tạp bộ_nhớ của bài_toán là O(n2) , độ phức_tạp thời_gian là O(n2) .
+Có_một phương_pháp cài_đặt tốt hơn , chỉ với độ phức_tạp bộ_nhớ O(n) dựa trên nhận_xét sau : để tính ô Li , j của bảng phương_án , ta chỉ_cần 3 ô Li-1 , j-1 , Li-1 , j và Li , j-1 .
+Tức_là để tính dòng Li thì chỉ_cần dòng Li-1 .
+Do_đó ta chỉ_cần 2 mảng 1 chiều để lưu dòng vừa tính (P) và dòng đang tính (L) mà_thôi .
+Cách cài_đặt mới như_sau : for j : = 0 to n do P j : = 0 ; for i : = 1 to m do begin L 0 : = 0 ; for j : = 1 to n do if X i = Y j then L i , j : = P j - 1 + 1 else L i , j : = max ( P j , L j - 1 ); P : = L ; end ; Bắc_cầu Bài_toán : Hai nước Alpha và Beta nằm ở hai bên_bờ sông Omega , Alpha nằm ở bờ bắc và có M thành_phố được đánh_số từ 1 đến M , Beta nằm ở bờ nam và có N thành_phố được đánh_số từ 1 đến N (theo vị_trí từ đông sang tây) .
+Mỗi thành_phố của nước này thường có quan_hệ kết_nghĩa với một_số thành_phố của nước kia .
+Để tăng_cường tình hữu_nghị , hai nước muốn xây các cây cầu bắc qua_sông , mỗi cây cầu sẽ là nhịp cầu_nối 2 thành_phố kết_nghĩa .
+Với yêu_cầu là các cây cầu không được cắt nhau và mỗi thành_phố chỉ là đầu_cầu cho nhiều nhất_là một cây cầu , hãy chỉ ra cách bắc_cầu được nhiều cầu nhất .
+Hướng_dẫn : Gọi các thành_phố của Alpha lần_lượt là A_1 , A_2 , . . . , A_M; các thành_phố của Beta là B_1 , B_2 , . . . , B_N .
+Nếu thành_phố A_i và B_j kết_nghĩa với_nhau thì coi A_i "bằng” B_j .
+Để các cây cầu không cắt nhau , nếu ta đã chọn cặp thành_phố (A_i , B_j) để xây cầu thì cặp tiếp_theo phải là cặp (A_u , B_v) sao_cho ugt;i và vgt;j .
+Như_vậy các cặp thành_phố được chọn xây cầu có_thể coi là một dãy con chung của hai dãy A và B .
+Bài_toán của chúng_ta trở_thành bài_toán tìm dãy con chung dài nhất , ở đây hai phần_tử “bằng” nhau nếu chúng có quan_hệ kết_nghĩa .
+Palindrome (IOI 2000) Bài_toán : Một xâu gọi_là xâu đối_xứng (palindrome) nếu xâu đó đọc từ trái sang phải hay từ phải sang trái đều như_nhau .
+Cho một xâu S , hãy tìm số kí_tự ít_nhất cần thêm vào S để S trở_thành xâu đối_xứng .
+Hướng_dẫn : Bài_toán này có_một công_thức QHĐ như_sau : Gọi_Li , j là số kí_tự ít_nhất cần thêm vào xâu con Si . . j của S để xâu đó trở_thành đối_xứng .
+Đáp_số của bài_toán sẽ là L1 , n với n là số kí_tự của S .
+Ta có_công thức sau để tính Li , j : L(i , i)=0 .
+L(i , j)=L(i+1 , j-1) nếu S_i=S_j L(i , j)=max(L(i+1 , j) , L(i , j-1)) nếu S_i \ne S_j Bạn_đọc dễ_dàng có_thể kiểm_chứng công_thức đó .
+Ta có_thể cài_đặt trực_tiếp công_thức đó bằng phương_pháp đệ_quy có nhớ .
+Tuy_nhiên khi đó độ phức_tạp bộ_nhớ là O(n2) .
+Có_một phương_pháp cài_đặt tiết_kiệm hơn , có_thể tham_khảo ở bài viết của Nguyễn_Hoành Tiến_Ta có thuật_toán đơn_giản hơn như_sau : Gọi_P là xâu đảo của S và T là xâu con chung dài nhất của S và P .
+Khi đó các kí_tự của S không thuộc T cũng là các kí_tự cần thêm vào để S trở_thành đối_xứng .
+Đáp_số của bài_toán sẽ là n-k , với k là độ_dài của T .
+Ví_dụ : S=edbabcd , xâu đảo của S là P=dcbabde .
+Xâu con chung dài nhất của S và P là T=dbabd .
+Như_vậy cần thêm 2 kí_tự là e và c vào để S trở_thành xâu đối_xứng .
+4 .
+Vali (A) 4 . 1 . Mô_hình Cho n vật , vật i nặng A_i và có_giá trị B_i .
+Hãy chọn ra một_số vật để_cho vào balô sao_cho tổng khối_lượng không vượt_quá W và tổng_giá trị là lớn nhất .
+Chú_ý rằng mỗi vật có_thể được chọn nhiều lần .
+4 . 2 . Công_thức Gọi_L(i , j) là tổng_giá trị lớn nhất khi được chọn i vật từ 1 đến i cho vào balô với tổng khối_lượng không vượt_quá j .
+L(n , W) sẽ là đáp_số của bài_toán (là giá_trị lớn nhất có được nếu chọn n vật và tổng khối_lượng không vượt_quá W) .
+Công_thức tính L(i , t) như_sau : L(i , 0) = 0 L(0 , t) = 0 L(i , t) = L(i-1 , t) nếu tlt;A_i L(i , t) = max(L(i-1 , t) , L(i , t-A_i) + B_i) nếu t \ge A_i Trong đó : L(i-1 , t) là giá_trị có được nếu_không đưa vật i vào balô , L(i , t-A_i) + B_i là giá_trị có được nếu chọn vật i .
+4 . 3 . Cài_đặt Ta có_thể dùng một mảng 2 chiều để lưu bảng phương_án , tuy_nhiên dựa trên nhận_xét rằng để tính dòng i của bảng phương_án chỉ_cần dòng i-1 , ta chỉ_cần dùng 2 mảng một_chiều P và L có chỉ_số từ 0 đến m để lưu 2 dòng đó .
+Đoạn chương_trình con_tính bảng phương_án như_sau .
+L t : = 0 ; với mọi t for i : = 1 to n do begin P : = L ; for t : = 0 to m do if t lt; a i then L t : = P t else L t : = max ( P t , L t - a i + b i ); end ; Nếu để_ý kĩ bạn sẽ thấy rằng đoạn trình trên chỉ viết giống công_thức QHĐ chứ chưa tối_ưu .
+Chẳng_hạn đã có lệnh gán P : =L , sau_đó lại có gán Lt : =Pt với các giá_trị tlt;ai là không cần_thiết .
+Bạn_đọc có_thể tự cải_tiến để chương_trình tối_ưu hơn .
+Độ phức_tạp bộ_nhớ là O(m) và độ phức_tạp thời_gian là O(m n) .
+4 . 4 . Một_số bài_toán khác Đổi_tiền Bài_toán Ở đất_nước Omega người_ta chỉ_tiêu tiền xu .
+Có_N loại tiền xu , loại thứ i có mệnh_giá là A_i đồng .
+Một người khách_du lịch đến Omega du_lịch với số tiền M đồng .
+Ông ta muốn đổi số tiền đó ra tiền xu Omega để tiện tiêu_dùng .
+Ông ta cũng muốn số đồng_tiền đổi được là ít_nhất (cho túi_tiền đỡ nặng khi đi đây đi đó) .
+Bạn hãy giúp ông ta tìm cách đổi_tiền .
+Hướng_dẫn Bài_toán này khá giống bài_toán xếp balô (“khối lượng” là mệnh_giá , “giá trị” là 1) , chỉ_có một thay_đổi nhỏ : tổng_giá trị yêu_cầu là nhỏ nhất .
+Do_đó ta cũng xây_dựng hàm QHĐ một_cách tương_tự : Gọi_Li , t là số đồng xu ít_nhất nếu đổi t đồng ra i loại tiền xu (từ 1 đến i) .
+Công_thức tính Li , t như_sau : Li , 0=0 L0 , t= \inf với tgt;0 .
+Li , t=Li-1 , t nếu tlt;Ai . Li , t=min(Li-1 , t , Li , t-Ai+1) nếu t \ge A_i .
+Công_thức này khác công_thức của bài xếp balô ở chỗ : dùng hàm min chứ không_phải hàm_max (vì cần tìm cách chọn ít hơn) .
+5 .
+Nhân ma_trận 5 . 1 . Mô_hình Nhân một ma_trận kích_thước m n với một ma_trận n p , số phép_nhân phải thực_hiện là m n p .
+Mặt_khác phép_nhân các ma_trận có tính kết_hợp , tức_là : (A B)_C = A (B C) Do_đó khi tính tích nhiều ma_trận , ta có_thể thực_hiện theo các trình_tự khác_nhau , mỗi trình_tự tính sẽ quyết_định số phép_nhân cần thực_hiện .
+Cho_N ma_trận A_1 , A_2 , . . . , A_N , ma_trận A có kích_thước là d_i-1 d_i .
+Hãy xác_định trình_tự nhân ma_trận A_1 A_2 . . .
+A_N sao_cho số phép_nhân cần thực_hiện là ít_nhất .
+5 . 2 . Công_thức Gọi_F(i , j) là số phép_nhân để tính tích các ma_trận từ A_i đến A_j (A_i A_i+1 . . .
+A_j) .
+Fi , i=0 .
+Fi , i+1=d_i-1 d_i d_i+1 Fi , j = min(Fi , k+Fk+1 , j + d_i-1 d_i d_i+1 với k=i+1 , i+2 , . . . , j-1 Công_thức hơi phức_tạp nên tôi xin giải_thích như_sau : Fi , i=0 là hiển_nhiên .
+Fi , i+1 là số phép_nhân khi nhân A_i và A_i+1 .
+A_i có kích_thước d_i-1 d_i , A_i+1 có kích_thước d_i d_i+1 , do_đó Fi , i+1=d_i-1 d_i d_i+1 Với jgt;i+1 thì ta thấy có_thể tính A_i A_i+1 . . .
+A_j bằng cách chọn một vị_trí k nào_đó để đặt ngoặc theo trình_tự : A_i A_i+1 . . .
+A_j = (A_i . . A_k) (A_k+1 . . A_j) Ma_trận kết_quả của phép_nhân (A_i . . A_k) có kích_thước d_i-1 d_i , ma_trận kết_quả của phép_nhân (A_k+1 . . A_j) có kích_thước d_k d_j .
+Với cách đặt đó ta sẽ mất Fi , k phép_nhân để có kết_quả trong dấu ngoặc thứ nhất , mất thêm Fk+1 , j phép_nhân để có kết_quả trong dấu ngoặc thứ_hai , và cuối_cùng mất d_i-1 d_k d_j để nhân 2 ma_trận kết_quả đó .
+Từ_đó tổng_số phép_nhân của cách đặt đó là : Fi , k + Fk+1 , j + d_i-1 d_k d_j .
+Ta chọn vị_trí k cho số phép_nhân ít_nhất .
+5 . 3 . Cài_đặt Bảng phương_án là một mảng 2 chiều F để lưu Fi , j .
+Chú_ý khi cài_đặt là để tính được Fi , j , ta phải tính Fi , k và Fk+1 , j trước .
+Phương_pháp đơn_giản để làm điều đó là phương_pháp đệ_quy có nhớ .
+Tuy_nhiên dựa vào nhận_xét là trong công_thức QHĐ : j-i lớn hơn k-i và j-k , ta có_thể tính theo trình_tự khác : tính các phần_tử Fi , j với j-i từ nhỏ đến lớn (không phải là tính các giá_trị Fi , j với i , j từ nhỏ đến lớn như vẫn làm) .
+Với cách đó , khi tính đến Fi , j thì ta đã có Fi , k và Fk+1 , j .
+Đoạn chương_trình tính bảng phương_án như_sau : for i : = 1 to n do F i , i : = 0 ; for i : = 1 to n - 1 do F i , i + 1 : = d i - 1 d i d i + 1 ; for m : = 2 to n - 1 do begin for i : = 1 to n - m do begin j : = i + m ; F i , j : = oo ; for k : = i + 1 to j - 1 do F i , j : = min ( F i , j , F i , k + F k + 1 , j + d i - 1 d k d j ); end ; end ; Với cách cài_đặt trên , độ phức_tạp bộ_nhớ là O(n2) , độ phức_tạp thời_gian là O(n3) .
+5 . 4 . Một_số bài_toán khác Chia đa_giác Bài_toán Cho một đa_giác lồi N đỉnh .
+Bằng các đường_chéo không cắt nhau , ta có_thể chia đa_giác thành N-2 tam_giác .
+Hãy xác_định cách chia có tổng_các đường_chéo ngắn nhất .
+Hướng_dẫn Để đơn_giản ta coi mọi đoạn_thẳng nối 2 đỉnh đều là “đường chéo” (nếu nối 2 đỉnh trùng nhau hoặc 2 đỉnh liên_tiếp thì_có độ_dài bằng 0) .
+Gọi_F(i , j) là tổng_độ dài các đường_chéo khi chia đa_giác gồm các đỉnh từ i đến j thành các tam_giác .
+Nếu jlt;i+3 thì đa_giác đó có ít_hơn 4 đỉnh , không cần phải chia nên F(i , j)=0 .
+Ngược_lại ta xét cách chia đa_giác đó bằng cách chọn một đỉnh k nằm giữa i , j và nối i , j với k .
+Khi đó Fi , j=Fi , k+Fk , j+di , k+dk , j với d(i , k) là độ_dài đường_chéo (i , k) .
+Tóm_lại công_thức QHĐ như_sau : Fi , j=0 với jlt;i+3 .
+Fi , j=min(Fi , k+Fk , j+di , k+dk , j) với k=i+1 , . . . j-1 .
+F1 , n là tổng đường_chéo của cách chia tối_ưu .
+Biểu_thức số_học (IOI 1999) Bài_toán Cho biểu_thức A_1 \cdot A_2 \cdot . . .
+\cdot A_N , trong đó A_i là các số_thực không âm và \cdot là một_phép_toán + hoặc cho trước .
+Hãy đặt các dấu ngoặc để biểu_thức thu được có kết_quả lớn nhất .
+Hướng_dẫn Gọi_Fi , j là giá_trị lớn nhất có_thể có_của biểu_thức A_i \cdot A_i+1 \cdot . . .
+\cdot A_j .
+Dễ thấy nếu i=j thì Fi , j=A_i , nếu j=i+1 thì Fi , j=A_i \cdot A_j .
+Nếu jgt;i+1 thì_có thể tính biểu_thức A_i \cdot A_i+1 \cdot . . .
+\cdot A_j bằng cách chia thành 2 nhóm : (A_i \cdot A_i+1 \cdot . . .
+\cdot A_k) \cdot (A_k+1 \cdot . . .
+\cdot A_j) , Khi đó Fi , j=Fi , k \cdot Fk+1 , j .
+Tóm_lại , công_thức QHĐ là : Fi , i=A_i Fi , i+1=A_i \cdot A_i+1 Fi , j=max(Fi , k \cdot Fk+1 , j) với k=i+1 , i+2 , . . j-1 .
+(Chú là_là các hạng tử của dãy đều không âm và các phép_toán là + hoặc nên Fi , k và Fk+1 , j đạt max thì Fi , k \cdot Fk+1 , j cũng đạt max) .
+6 .
+Ghép_cặp 6 . 1 . Mô_hình Có n lọ hoa sắp thẳng_hàng và k bó hoa được đánh_số thứ_tự từ nhỏ đến lớn .
+Cần cắm k bó hoa trên vào n lọ sao_cho hoa có_số thứ_tự nhỏ phải đứng trước hoa có_số thứ_tự lớn .
+Giá_trị thẩm_mỹ tương_ứng khi cắm hoa i vào lọ thứ j là v(i , j) .
+Hãy tìm 1 cách cắm sao_cho tổng_giá trị thẫm mỹ là lớn nhất .
+Chú_ý rằng mỗi bó hoa chỉ được cắm vào 1 lọ và mỗi lọ cũng chỉ cắm được 1 bó hoa .
+6 . 2 . Công_thức Nhận_xét rằng bài_toán nêu trên là một bài_toán ghép_cặp có yêu_cầu về thứ_tự nên ta có_thể giải_quyết bằng phương_pháp QHĐ .
+Hàm_mục_tiêu : f : tổng_giá trị thẩm_mỹ của cách cắm .
+Giá_trị thẩm_mỹ phụ_thuộc vào các hoa và các lọ đang được xét nên ta sẽ dùng mảng 2 chiều để lưu bảng phương_án .
+L(i , j) : tổng_giá trị thẩm_mỹ lớn nhất khi xét đến hoa i và lọ j .
+Khi tính L(i , j) hoa đang xét sẽ là hoa i và lọ j .
+Nếu i = j .
+Chỉ_có một_cách cắm Li , i : = V1 , 1+V2 , 2+ . . . +Vi , i Nếu igt;j .
+Không có cách cắm hợp_lý Nếu ilt;j .
+Có 2 trường_hợp xảy_ra : Cắm hoa i vào lọ j .
+Tổng_giá trị thẩm_mỹ là Li-1 , j-1+V(i , j) .
+(Bằng tổng_giá trị trước_khi cắm cộng với giá_trị thẩm_mỹ khi cắm hoa i vào lọ j) Không cắm hoa i vào lọ j (có thể cắm vào lọ trước j) , giá_trị thẫm mỹ của cách cắm là như_cũ : Li , j-1 6 . 3 . Cài_đặt L i , j : = - maxint ; For i : = 1 to k do For j : = i to n do If i = j then L i , j : = sum ( i ) else if i lt; j then L i , j : = max ( L i - 1 , j - 1 + v i , j , L i , j - 1 ); 6 . 4 . Một_số bài_toán khác Câu_lạc_bộ Bài_toán Có n phòng_học chuyên_đề và k nhóm học được đánh_số thứ_tự từ nhỏ đến lớn .
+Cần xếp k nhóm trên vào n phòng_học sao_cho nhóm có_số hiệu nhỏ được xếp vào phòng có_số hiệu nhỏ , nhóm có_số hiệu lớn phải được xếp vào phòng có_số hiệu lớn .
+Với mỗi phòng có_chứ học_sinh , các ghế thừa phải được chuyển ra hết , nếu thiếu ghế thì lấy vào cho đủ ghế .
+Biết phòng i có A_i ghế , nhóm j có B_j học_sinh .
+Hãy chọn 1 phương_án bố_trí sao_cho tổng_số lần chuyển ghế ra và vào là ít_nhất .
+Hướng_dẫn Khi xếp nhóm i vào phòng j thì số lần chuyển ghế chính là độ chênh_lệch giữa số ghế trong phòng i và số_học sinh trong nhóm .
+Đặt_Vi , j : =A_i - B_j Mua giày (Đề QG bảng B năm 2003) Bài_toán Trong hiệu có n đôi giày , đôi giày i có kích_thước H_i .
+Có k người cần mua giày , người i cần mua đôi giày kích_thước S_i .
+Khi người i chọn mua đôi giày j thì độ_lệch sẽ là H_i-S_j .
+Hãy tìm cách chọn mua giày cho k người trên sao_cho tổng_độ lệch là ít_nhất .
+Biết rằng mỗi người chỉ mua 1 đôi giày và 1 đôi giày cũng chỉ_có một người mua .
+Hướng_dẫn Lập_công thức giải như bài Câu_lạc_bộ .
+Chú_ý chứng_minh tính đúng_đắn của bổ_đề heuristic sau : Cho 2 dãy tăng dần các số_dương A_1 , A_2 , . . . , A_N , B_1 , B_2 , . . . , B_N .
+Gọi C_1 , C_2 , . . . , C_N là một hoán_vị bất_kỳ của dãy B .
+Khi đó : A_1-B_1 + A_2-B_2 + . . .
++ A_N-B_N \le A_1-C_1 + A_2 - C_2 + . . .
++ A_N-C_N 7 .
+Di_chuyển 7 . 1 . Mô_hình Cho bảng A gồm M_N ô .
+Từ ô (i , j) có_thể di_chuyển sang 3 ô (i+1 , j) , (i+1 , j-1) và (i+1 , j+1) .
+Hãy xác_định một lộ_trình đi từ hàng 1 đến hàng M sao_cho tổng_các ô đi_qua là lớn nhất .
+7 . 2 . Công_thức Gọi_F(i , j) là giá_trị lớn nhất có được khi di_chuyển đến ô (i , j) .
+Có 3 ô có_thể đi đến ô (i , j) là (i-1 , j) , (i-1 , j-1) và (i-1 , j+1) .
+Do_đó ta có_công thức QHĐ như_sau : F1 , j=A1 , j Fi , j=max(Fi-1 , j , F(i-1 , j-1 , Fi-1 , j+1)+Ai , j với igt;1 7 . 3 . Cài_đặt Bảng phương_án là bảng 2 chiều F0 . . m , 0 . . n .
+(Tất cả các ô trên biên đều cho giá_trị bằng 0) .
+Quá_trình tính như_sau : for i : = 1 to m do for j : = 1 to n do F i , j = max ( F i - 1 , j , F i - 1 , j - 1 , F i - 1 , j + 1 + A i , j ); Cách cài_đặt này cho độ phức_tạp bộ_nhớ và thời_gian đều là O(n2) .
+Ta có_thể tiết_kiệm không_gian nhớ bằng cách tính trực_tiếp trên mảng A .
+7 . 4 . Một_số bài_toán khác Tam_giác (IOI 1994) Bài_toán Cho một tam_giác gồm các số_nguyên không âm .
+Hãy tính tổng_lớn nhất các số trên đường_đi từ đỉnh tam_giác xuống một điểm nào_đó ở đáy tam_giác nào_đó .
+Tại mỗi ô ta chỉ_có đi_thẳng xuống , sang ô bên trái hoặc bên phải .
+Hướng_dẫn Mô_tả các phần_tử của tam_giác số như một ma_trận , Ai , j là phần_tử thứ j trên dòng i (với 1 \le i \le N và 1 \le j \le i) .
+Có 2 ô có_thể di_chưyển đến ô (i , j) là ô (i-1 , j-1) và ô (i-1 , j) .
+Gọi_F(i , j) là tổng_lớn nhất có_thể có_khi đi đến ô (i , j) ta có : F1 , 1=A1 , 1 Fi , 1=Fi-1 , 1+Ai , 1 Fi , j=max( Fi-1 , j-1 , Fi-1 , j ) + Ai , j

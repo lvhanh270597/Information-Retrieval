@@ -1,0 +1,17 @@
+Chọn phần tử lớn thứ k của mảng--Median Selection
+http://www.giaithuatlaptrinh.com/?p=35
+Nơi tổng hợp và chia sẻ những kiến thức liên quan tới giải thuật nói chung và lý thuyết khoa học máy tính nói riêng.   in  | Trong bài này chúng ta giải bài toán sau: 
+Có hai cách giải mà chúng ta có thể nghĩ đến ngay:Bài này giới thiệu phương pháp  để giải bài toán trên trong thời gian . Ý tưởng cơ bản của thuật toán như sau: Chọn một phần tử (bất kì), , và chia mảng ra thành hai phần (trong thời gian ): phần 1 gồm những phần tử nhỏ hơn  và phần 2 gồm những phần tử lớn hơn (hoặc bằng) . Ta có hai trường hợp: 
+Giả mã của thuật toán chia mảng với phân tử chọn (pivot) là , trả lại vị trí mới cuả phần tử có giá trị  trong mảng.  
+Dưới đây là code C của giả mã trên.  Như vậy ta đã thực hiện xong bước một: phân chia mảng bằng phần tử bất kì. Sau đây là giả mã thực hiện bước : 
+Dưới đây là code C của giả mã trên. Code đầy đủ với phần tử pivot là phần tử giữa của mảng được cho ở cuối bài viết.Nhìn vào  ta dễ thấy thời gian chạy trong trường hợp tồi nhất như sau:   
+Trường hợp xấu nhất khi , khi đó , không tốt hơn thuật toán vét cạn. Tuy nhiên, nếu ta chọn pivot sao cho  với , ta sẽ có 
+
+
+   
+Giải công thức  trên ta được . Trong những trường hợp không biết chọn phần tử nào là pivot tốt, cách đầu tiên có thể nghĩ tời là chọn  một phần tử của mảng làm pivot với xác suất như nhau. Với bài toán này, chọn ngẫu nhiên sẽ cho ta thuật toán với thời gian  là . Chi tiết phân tích bạn đọc có thể .Blum, Floyd, Pratt, Rivest và Tarjan [2] đề xuất một cách khác để chọn pivot như sau: nếu số phần tử của mảng là lớn ( trong giả mã), ta chia mảng thành  nhóm, mỗi nhóm gồm 5 phần tử. Dùng thuật toán vét cạn để tìm median của mỗi nhóm. Sau bước đó, ta thu được mảng gồm  phần tử là median của  nhóm. Gọi đệ quy để tìm median của mảng này. Lấy median làm pivot cho mảng ban đầu.  Giả mã như sau: 
+Dưới đây là code C của giả mã trên. Code đầy đủ được cho ở cuối bài viết.
+Ta thấy tìm median của medians mất thời gian . Vì phần tử pivot là median của median, mỗi bước đệ quy ta sẽ bỏ bớt được ít nhất là  phần tử (). Như vậy tổng thời gian của thuật toán là:    
+Giải  trên, ta được .Dưới đây là code và dữ liệu test: , 
+Bài viết dự chủ yêu trên notes của Jeff Erickson
+ , , Trackback link: Powered by  and 

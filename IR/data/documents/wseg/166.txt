@@ -1,0 +1,26 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Nói đến kết_quả đẹp trong khoa_học máy_tính , khó có_thể bỏ_qua .
+Xác_suất tìm được hai người có cùng ngày_sinh trong 23 người chọn ngẫu_nhiên ít_nhất_là .
+Một năm có 365 (hoặc 366) ngày mà chỉ_cần chọn ngẫu_nhiên ra 23 người_ta đã có_thể tìm được hai người có cùng ngày_sinh với xác_suất ít_nhất .
+Thật khó_tin phải không ?
+Thực_ra đây không hẳn_là nghịch_lý vì điều này không có gì trái_ngược với thực_tế .
+Nên coi đây là định_lý thì đúng hơn_là nghịch_lý .
+Tổng_quát_hóa của nghịch_lý này được phát_biểu như_sau : Chọn có hoàn_lại ở đây được hiểu là lấy ra rồi sau đỏ bỏ vào lại trong tập_hợp gốc .
+Trong bài , chúng_ta đã tìm_hiểu một_cách chứng_minh .
+Ở đây mình trình_bày một_cách chứng_minh khác với hằng_số tệ hơn trong Theorem 1 một_chút nhưng đơn_giản hơn .
+Cách chứng_minh này được trình_bày trong của Emanuele_Viola .
+Kí_hiệu Đầu_tiên chọn ra số_từ tập .
+Giả_sử không có cặp số nào trong số chọn ra có cùng giá_trị .
+Chọn tiếp ra số nữa .
+Xác_suất để_KHÔNG có_số nào trong số chọn ra trong lần 2 này có cùng giá_trị với số chọn ra trong lần 1 là : Do_đó , xác_suất để ít_nhất một_số chọn ra lần 2 bằng một_số trong tập_số chọn ra lần 1 là > .
+Chứng_minh trên có_thể được mở_rộng ra trong trường_hợp ta chọn số_từ tập , thì xác_suất tìm được hai số trùng nhau ít_nhất_là .
+Ứng_dụng nổi_bật nhất của nghịch_lý ngày_sinh là trong thuật tóa Pollards rho mà chúng_ta đã có dịp tìm_hiểu trước_đây .
+Một ứng_dụng khác là trong thiết_kế không_gian khóa của bảng_băm .
+Giả_sử hệ_thống của bạn có khoảng 100 triệu người dùng .
+Vì lí_do bảo_mật , bạn không muốn lưu tên đăng_nhập của người dùng mà muốn thiết_kế một hàm_băm để băm tên đăng_nhập thành một xâu kí_tự .
+Đương_nhiên bạn không muốn hai tên đăng_nhập khác_nhau cùng được băm vào một khóa .
+Vậy , bạn cần phải chọn khóa đầu_ra là ít_nhất bao_nhiêu bít để đảm_bảo điều này (với xác_suất cao) , giả_sử hàm_băm của bạn băm mỗi tên đăng_nhập thành một_số ngẫu_nhiên .
+Áp_dụng nghịch_lý ngày_sinh , bạn có_thể tính được nếu sử_dụng 32 bít đầu_ra , xác_suất hai người được băm vào một khóa khá cao .
+Nếu đầu_ra là 64 bít , xác_suất này giảm xuống chỉ còn cỡ , một con_số bạn có_thể tin_tưởng được . Nghịch_lý ngày_sinh cũng lí_giải tại_sao mà các hàm_băm mật_mã (cryptographic hash functions) như họ các hàm_băm thường có_số bít đầu_ra khá lớn , 256 bít hoặc 512 bít , vì các hàm_băm này thường được dùng để băm số_lượng rất lớn dữ_liệu mà vẫn đảm_bảo không có hai đoạn dữ_liệu nào có cùng mã_băm đầu_ra .
+Gần_đây , đã tìm_ra hai đoạn dữ_liệu khác_nhau mà có cùng mã_băm sau khi băm bằng SHA-1 .
+Nếu bạn làm bảo_mật thì_có lẽ nên tránh hàm_băm này , , , Trackback link : Powered by and

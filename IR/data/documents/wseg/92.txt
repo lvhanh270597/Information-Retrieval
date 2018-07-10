@@ -1,0 +1,33 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Đây là bài trả_lời cho bài_toán bug bug bug trên mà mình post mấy hôm_trước .
+Xin vui_lòng để_lại comment nếu bạn có lời_giải tốt hơn; mình sẽ cập_nhật vào bài viết chính (tất nhiên cả thông_tin của tác giả) .
+Bài_toán như_sau : Thông_thường , khi bạn được yêu_cầu viết code cho các câu_hỏi trên , bạn có_thể sẽ làm như_sau : Các đoạn code này thoạt nhìn có_vẻ đúng nhưng bên_trong nó tiềm_ẩn những lỗi nghiêm_trọng .
+Trong hai đoạn code trả_lời câu_hỏi (1) và (2) , lỗi cơ_bản mà ta có_thể gặp đó là tràn số .
+Ví_dụ thì tổng và tích không còn có_thể biểu_diễn được bằng kiểu nữa .
+Trong đoạn code cho câu_hỏi (3) , ngoài lỗi tràn số , kết_quả trả về sẽ bị sai khi < .
+Ví_dụ , đoạn mã sẽ trả về thay_vì . Một nhận_xét đơn_giản mà ta dễ thấy đó là kết_quả đầu_ra của các câu_hỏi trên có_thể biểu điên được bằng kiểu .
+Tuy_nhiên , khi bạn nghĩ sâu hơn về làm thể_nào để tránh tràn số , bạn sẽ thấy trả_lời câu_hỏi này một_cách trọn_vẹn không_hề đơn_giản . Ngược_lại với bài_toán tổng_modulo , bài_toán hiệu modulo có_thể tính được dễ_dàng mà không sợ tràn số .
+Ta có_thể giả_sử đều nhỏ hơn bằng cách lấy mod trước_khi tính hiệu .
+Hiệu_số luôn có_thể biểu_diễn được bằng kiểu int .
+Do_đó , nếu () ta tính tính .
+Nếu < , ta sẽ tính .
+Chú_ý ở đây ta giả_sử a , b đều nhỏ hơn , do_đó < .
+Code : Bài_toán tổng_modulo có_thể quy về hiệu modulo bằng mẹo sau : Trước_khi ta chuyển về tính hiệu , ta đảm_bảo đều nhỏ hơn bằng cách lấy modulo .
+Code : Tính tích , ta sử_dụng ý_tưởng trong bài_tính lũy_thừa .
+Ta sẽ gọi đệ_quy để tính và sử_dụng thủ_tục tính tổng_modulo để tính tổng .
+Code Thủ_tục đệ_quy có độ sâu .
+Mỗi lần gọi đệ_quy , ta mất thao_tác bít để tính_từ kết_quả của lời gọi đệ_quy .
+Do_đó , tổng_số thao_tác bít là : Nếu tràn số_không xảy_ra , thủ_tục semi_sum ở phần giới_thiệu sẽ trả_lại kết_quả đúng nếu và trả_lại nếu ngược_lại .
+Ta sẽ sử_dụng công_thức cơ_bản sau để biến_đổi nửa tổng về dạng mà ta có_thể tính đơn_giản được : Trường_hợp khác dấu , tràn số sẽ không bao_giờ xảy_ra .
+Do_đó , ta chỉ_cần kiểm_tra xem nếu , ta sẽ áp_dụng thủ_tục semi_sum , và áp_dụng nếu ngược_lại .
+Trường_hợp cùng dấu , ta giả_sử .
+Ta có : Do , phần nguyên theo (4) có_thể tính như trong semi_sum (mà không lo tràn số vì cùng dấu) .
+Code : Code ở trên ta sử_dụng phép XOR () để kiểm_tra xem hai số có cùn dấu hay_không .
+Hai số_nguyên cùng dấu khi và chỉ khi , ở đây là phép XOR bit .
+Code ở trên chỉ mang tính minh_họa .
+Để code hiệu_quả hơn , ta có_thể thay_thế một_số thao_tác đại_số (kể cả lệnh rẽ nhánh if , then) bằng các thao_tác bít .
+Ví_dụ , , . . . .
+Xem thêm tại bài các . Code đầy_đủ : .
+1 Ruggieri , Salvatore .
+Information_Processing_Letters 87 . 2 (2003) : 67-71 .
+, Trackback link : Powered by and

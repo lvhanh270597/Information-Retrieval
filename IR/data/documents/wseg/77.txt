@@ -1,0 +1,111 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Đây là bài thứ 3 trong loạt bài về cây khung nhỏ nhất .
+Mình khuyến_khích bạn_đọc xem_lại bài thuật_toán Kruskal và thuật_toán Prim .
+Một_số tính_chất của cây khung mình không nhắc_lại ở đây nữa . Thuật_toán Borůvka có_lẽ là một trong số những thuật_toán có "tuổi đời" khá lớn trong các thuật_toán mà mình blog .
+Thuật_toán được phát_triển bởi 1 Otakar_Borůvka năm 1926 .
+Trọng_tâm của thuật_toán này là phép (edge contraction) , một trong ba phép phổ_biến (xóa cạnh , xóa_đỉnh và co cạnh) hay áp_dụng trong lý_thuyết đồ_thị .
+Hình dưới_đây minh_họa một_phép co cạnh .
+Hình (3) là đồ_thị thu được sau khi co cạnh màu đỏ trong hình (1) Phép co một cạnh còn có_thể được mở_rộng ra một_tập cạnh .
+Gọi_là một_tập cạnh .
+Đồ_thị thu được sau phép co_tập cạnh , kí_hiệu là , là đồ_thị thu được sau lần liên_tục co lần_lượt các cạnh trong (thứ tự cạnh nào được co trước , co sau không quan trọng) . Hình dưới_đây minh_họa một_phép co một_tập cạnh .
+Hình (3) là đồ_thị thu được sau khi co_tập cạnh màu đỏ trong hình (1) Phép co cạnh thì_có liên_quan gì đến cây khung ?
+Thực_ra hai thuật_toán Kruskal và Prim mà chúng_ta tìm_hiểu ở hai bài trước đều có_thể được nhìn dưới góc_độ phép co cạnh .
+Lấy thuật_toán Kruskal làm ví_dụ .
+Thuật_toán Kruskal ban_đầu sắp_xếp các cạnh theo thứ_tự tăng dần của trọng số , sau_đó xét từng cạnh theo thứ_tự đã sắp_xếp và thêm cạnh vào rừng (kết quả trung_gian là một rừng (forest) chứ không_phải cây) hiện_tại .
+Nếu thêm cạnh đó vào mà không tạo ra chu_trình của rừng hiện_tại thì ta thêm .
+Nếu_không , ta xét cạnh tiếp_theo .
+Mình khuyến_khích bạn_đọc xem_lại ví_dụ trong bài trước .
+Nhìn dưới góc_độ của phép co cạnh , ta sẽ thực_hiện thuật_toán Kruskal bằng một câu như_sau : Tìm cạnh có trọng số nhỏ nhất và co . Ví_dụ thực_hiện ý_tưởng trên cho đồ_thị được minh_họa trong hình dưới_đây .
+Chú_ý khi co cạnh với đồ_thị có trọng số , ta sẽ giữ_lại cạnh có trong số các cạnh song_song .
+Thứ_tự các cạnh được co màu đỏ cũng chính là thứ_tự các cạnh được thêm vào cây khung trong thuật_toán Kruskal .
+Thuật_toán Borůvka có_ý tưởng tương_tự như_trên .
+Để phát_biểu thuật_toán , ta sẽ cần thêm khái_niệm (safe edge) : Chú_ý cụm_từ .
+Ví_dụ cạnh màu đỏ trong (1) là cạnh an_toàn ứng với đỉnh nhưng không_phải là cạnh an toán ứng với đỉnh .
+Các cạnh màu đỏ trong (2) là tập các cạnh an_toàn .
+Để việc mô_tả thuật_toán trở_nên đơn_giản , ta sẽ giả_thiết : Không có hai cạnh nào của đồ_thị đầu_vào có cùng trọng số .
+Ta sẽ sử_dụng giả_thiết này để chứng_minh tính đúng_đắn của thuật_toán Borůvka .
+Cuối bài ta sẽ thảo_luận phương_pháp để loại_bỏ giả_thiết này .
+Thuật_toán Borůvka có_thể được mô_tả đơn_giản bằng một câu sau : Tìm , thêm vào cây khung và co tất_cả các cạnh an_toàn cho_đến khi đồ_thị chỉ còn một đỉnh . Ví_dụ với đồ_thị hình dưới_đây , thuật_toán Borůvka chỉ_cần 3 bước để tìm_ra cây khung (là tập các cạnh màu đỏ bị co) . Giả mã : Thực_thi giả mã trên khá phức_tạp .
+Trước_khi đi_vào chi_tiết , chúng_ta thử phân_tích tính đúng_đắn và thời_gian_thực hiện của thuật_toán .
+Ta sẽ chứng_minh_tập các cạnh trả về ở cuối thuật_toán là cây khung nhỏ nhất .
+Dễ thấy phải là liên_thông vì cuối_cùng chỉ là một đỉnh .
+Để chứng_minh là một cây , ta sẽ chứng_minh_tập các cạnh an_toàn mà ta đưa_vào tập trong mỗi bước không chứa chu_trình .
+Thật_vậy , giả_sử là một chu_trình của .
+Theo định_nghĩa của cạnh an_toàn , ta có < .
+Không mất tính tổng_quát , ta giả_sử < .
+Do là cạnh an_toàn và < , ta suy ra < .
+Lập_luận tương_tự , ta có : < < < < < Đó là điều không_thể xảy_ra .
+Như_vậy phải là một cây . Để chứng_minh có trọng số nhỏ nhất , ta dựa vào nhận_xét : cạnh là an_toàn khi và chỉ khi nó là cạnh nhỏ nhất của ít_nhất một trong 2 lát cắt .
+Theo tính_chất (số 6 tại ) của cây khung nhỏ nhất , cạnh an_toàn phải nằm trong cây khung nhỏ nhất .
+Do_đó , tập cạnh an_toàn mà ta thực_hiện co tại mỗi bước phải nằm trong cây khung nhỏ nhất của đồ_thị tại bước đó .
+Điều này đã đủ để kết_luận tập cạnh an_toàn sẽ nằm trong cây khung nhỏ nhất của ?
+Thực_ra là chưa .
+Chúng_ta cần thêm một tính_chất nữa đó là : nếu là cây khung nhỏ nhất của thì_là cây khung nhỏ nhất của .
+Chứng_minh tính_chất này không khó và coi_như bài_tập cho bạn_đọc . Do_đó , đầu_ra là cây khung nhỏ nhất của đồ_thị .
+Mỗi lần_ta co một_tập cạnh trong mỗi bước lặp , số đỉnh của đồ_thị giảm đi ít_nhất một_nửa .
+Số đỉnh giảm đúng một_nửa khi và chỉ khi là một cặp ghép hoàn_hảo () .
+Do_đó , sau bước lặp , số đỉnh của đồ_thị chỉ còn_lại 1 .
+Lúc_này vòng_lặp kết_thúc . Nhiệm_vụ còn_lại của chúng_ta là thực_thi đoạn code trong_vòng lặp_while .
+Nếu chúng_ta thực_hiện được trong thời_gian thì , theo Lemma 1 , chúng_ta sẽ thu được thuật_toán . Trước_hết chúng_ta sẽ nghiên_cứu xem làm thế_nào để thực_thi phép co cạnh .
+Có 2 cách thực_thi thường được dùng : Cách đầu_tiên thì thường ít được dùng vì nó liên_quan đến việc sửa_đổi đồ thì và chúng_ta cũng có_thể "cảm nhận" thấy co cạnh theo cách đầu_tiên "thực sự" phức_tạp và có_thể mất thời_gian lên tới cho mỗi thao_tác co cạnh .
+Mặc_dù ta có_thể mở_rộng cách đầu_tiên ra để co với thời_gian , thực_hiện co thực_sự vẫn là một thao_tác tốn_kém .
+Lợi_thế của cách thực_thi này là kích_thước của đồ_thị thực_sự giảm sau mỗi phép co .
+Điều này có_ý nghĩa về_mặt lý_thuyết , như Eisner 3 đã chỉ ra (trang 19) , độ phức_tạp của thuật_toán với thực_thi co cạnh thực_sự là .
+Thuật_toán này thực_sự nhanh hơn các thực_thi của Kruskal và Prim mà chúng_ta đã tìm_hiểu trong blog này . Với cách thứ_hai , co một cạnh tương_ứng với gọi thao_tác và thao_tác kiểm_tra xem có thuộc cùng một_tập hay_không tương_ứng với .
+Cấu_trúc này có_thể được thực_thi kiểu danh_sách hoặc bằng cây (các bạn xem_lại bài ) .
+Trong thuật_toán , chúng_ta sẽ không thực_sự thực_hiện Union-Find giống_như thuật_toán Kruskal mà thực_hiện sử_dụng mảng nhãn (chi tiết xem tại dưới đây) , vì cách thực_thi này đơn_giản hơn mà có cùng (thậm chí tốt hơn) thời_gian tiệm_cận .
+Một vấn_đề nữa_là ta không thực_sự xóa cạnh/đỉnh khỏi đồ_thị , do_đó , sau khi co cạnh , kích_thước của đồ_thị không thay_đổi .
+Ta cần phải chú_ý điều này khi phân_tích các thuật_toán với phép co cạnh hàm_ẩn .
+Ở đây ta có hai đồ_thị : đồ_thị gốc và đồ_thị thu được sau khi đã co một (tập) cạnh .
+Ta sẽ gọi đỉnh và cạnh của đồ_thị_co (tại bước hiện_tại của thuật toán) lần_lượt là và .
+Đỉnh co thực_chất là một_tập hợp các đỉnh còn cạnh co thực_chất là cạnh của đồ_thị với trọng số nhỏ nhất trong số các cạnh song_song giữa hai đỉnh co .
+Sự nhập_nhằng giữa 2 đồ_thị này có_thể làm thuật_toán hơi khó_hiểu một_chút và mình sẽ cố_gắng viết rõ_ràng nhất có_thể .
+Mọi câu_hỏi xin để_lại ở phần comment . Ta sẽ dùng một mảng nhãn để biểu_diễn các đỉnh sau khi đã thực_hiện co cạnh .
+Cụ_thể , nếu thuộc đỉnh co trong đồ_thị_co .
+Ban_đầu , ta khởi tạo .
+Ta sẽ sử_dụng thêm một biến để đếm_số đỉnh trong đồ_thị hiện_tại sau khi đã co .
+Nhãn của các đỉnh sẽ có_giá trị từ tới .
+Ta sẽ không biểu_diễn đồ_thị_co một_cách trực_tiếp , mà sẽ thao_tác với nó thông_qua nhãn của các đỉnh của đồ_thị gốc .
+Ta sẽ lần_lượt thực_thi từng dọng trong_vòng lặp của thuật_toán ở trên . Để tìm các cạnh an_toàn , ta sẽ duyệt qua tất_cả các cạnh của đồ_thị_co bằng cách duyệt qua các cạnh của đồ_thị gốc .
+Với mỗi đỉnh co , ta sẽ lưu một_số và một cạnh (của đồ_thị gốc) trong đó , nếu cạnh co nhỏ nhất kề với mà ta phát_hiện_tại bước duyệt cạnh hiện_tại có trọng số , và nếu là cạnh của đồ_thị gốc tương_ứng với cạnh co nhỏ nhất kề với đó .
+Khi duyệt cạnh , ta sẽ : Mảng cạnh chính là các cạnh an_toàn của đồ_thị_co .
+Chú_ý là có_thể với hai đỉnh co khác_nhau .
+Do_đó , trước_khi trả_lại M , ta sẽ xóa các cạnh trùng_lặp .
+Dễ thấy thao_tác này có_thể thực_hiện trong thời_gian .
+Giả mã : Code_C : Ta sẽ biểu_diễn rừng trung_gian bằng danh_sách kề .
+Do_đó , để đưa mỗi cạnh vào rừng hiện_tại , ta chỉ việc xét mỗi cạnh trong tập và cập_nhật danh_sách kề .
+Code_C : Co_tập cạnh thực_chất là cập_nhật lại nhãn của các đỉnh .
+Để cập_nhật lại nhãn ta duyệt (dùng BFS hay DFS) để gán cho đỉnh của mỗi thành_phần liên_thông của một nhãn .
+Cuối_cùng ta_cập nhật lại biến , là số_thành_phần liên_thông của .
+Thao_tác này có_thể thực_hiện trong thời_gian .
+Code_C : Như_vậy ta đã thực_thi được vòng_lặp một_cách trọn_vẹn .
+Việc còn_lại là chúng_ta ghép mọi thứ lại với_nhau .
+Dễ thấy , trong thực_thi ở trên , mỗi thủ_tục con mất thời_gian .
+Ta có : Trong thuật_toán Borůvka là mỗi vòng_lặp , ta có_thể thực_hiện co_tập các cạnh an_toàn cùng một_lúc .
+Do_đó , ta có_thể dễ_dàng song_song_hóa thuật_toán Borůvka .
+Nếu biểu_diễn rừng trung_gian bằng danh_sách cạnh , bước thêm cạnh vào rừng đơn_giản chỉ là thêm phần_tử vào một danh_sách .
+Tuy_nhiên , khi đó ta không_thể dùng BFS hay DFS để gán lại nhãn trong bước co_tập cạnh (DFS và BFS với biểu_diễn d . s cạnh mất thời_gian bình phương) .
+Mặc_dù vậy , ta có cách khác để gán lại nhãn trong thời_gian .
+Mình không trình_bày phương_pháp này ở đây vì nó chỉ là vấn_đề kĩ_thuật và có_khi làm phức_tạp thêm bài_toán .
+Chi_tiết cụ_thể coi_như bài_tập cho bạn_đọc . Phần này ta sẽ thảo_luận phương_pháp để loại_bỏ giả_thiết trọng số duy_nhất ở trên .
+Tại_sao ta cần các cạnh có trọng số duy_nhất ?
+Xét đồ_thị tam_giác , với 3 cạnh bằng_nhau dưới_đây .
+Theo định_nghĩa của cạnh an_toàn , bất_kì cạnh nào cũng có_thể là cạnh an_toàn tương_ứng với các đỉnh_đầu mút .
+Do_đó , bước tìm cạnh an_toàn có_thể trả về tập cạnh là cả 3 cạnh này .
+Hay nói_cách_khác , tập trong giả mã có_thể chứa chu_trình , và khi thêm vào , không còn là một cây nữa .
+May_mắn là trường_hợp này chỉ xảy_ra khi đồ_thị có_một chu_trình mà tất_cả các cạnh trong chu_trình bằng_nhau ( bạn có_thể chứng_minh ? ) .
+Đây cũng là chìa_khóa để chúng_ta giải_quyết trường_hợp cạnh của đồ_thị có trọng số duy_nhất . Ta sẽ định_nghĩa một cạnh có trọng số "nhỏ hơn" một cạnh nếu một trong ba trường_hợp sau xảy_ra . Ta kí_hiệu "nhỏ hơn" là .
+Với định_nghĩa như_vậy , áp_dụng vào đồ_thị tam_giác trên ta sẽ có thứ_tự : Giả mã : Như_vậy , không có bất_kì hai cạnh nào có cùng trọng số theo thứ_tự mới này , và do_đó , ta đã biến trọng số của đồ_thị đầu_vào thành duy_nhất .
+Trong code đầy_đủ được attach dưới_đây , ta sẽ sử_dụng ý_tưởng này để giải_thuật đúng_với cả trường_hợp đồ_thị trọng số_không duy_nhất . Code đầy_đủ : .
+1 Borůvka , Otakar (1926) .
+"Příspěvek k řešení otázky ekonomické stavby elektrovodních sítí (Contribution to the solution of a problem of economical construction of electrical networks)" .
+Elektronický_Obzor (in Czech) 15 : 153–154 .
+2 Jeff_Erickson .
+.
+UIUC , 2014 .
+3 Jason_Eisner .
+, University of Pennsylvania , 1997 .
+4 Uri_Zwick .
+.
+Tel_Aviv_University , 2013 .
+, , , Trackback link : Powered by and

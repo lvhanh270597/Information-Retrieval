@@ -1,0 +1,79 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Các máy trạng_thái hữu_hạn (-FSM) thông_thường được định_nghĩa khá phức_tạp , tùy thuộc vào ngữ_cảnh ứng_dụng .
+Định_nghĩa ở đây mình gắn luôn với bài_toán tìm_kiếm xâu , do_đó , có đôi_chút khác_biệt so_với các định_nghĩa thông_thường .
+Nhắc_lại , trong bài_toán tìm_kiếm xâu , ta có_một văn_bản (text) biểu_diễn bới xâu và một mẫu (pattern) biểu_diễn bởi xâu .
+Ta muốn tìm vị_trí xâu xuất_hiện trong văn_bản .
+Chi_tiết các bạn xem thêm ở các bài viết khác trong cùng mục tìm_kiếm xâu .
+Máy trạng_thái hữu_hạn biểu_diễn xâu mẫu là một có nút sắp_xếp trên một đường_thẳng và được đánh_số từ đến .
+Giữa nút thứ và , , có_một cạnh có hướng được gọi_là (success edge) .
+Cạnh khớp này có nhãn là kí_tự của xâu .
+Mỗi nút , ngoại_trừ nút và nút thứ , còn có_một cạnh hướng ra khác được gọi_là .
+Nút có cạnh không khớp tới nút .
+Các cạnh không khớp khác nối nút thứ với một nút thứ nào_đó với .
+Ví_dụ về một máy trạng_thái hữu_hạn với được biểu_diễn bởi hình dưới_đây .
+Các cạnh có nhãn màu xanh là các cạnh khớp .
+Các cạnh màu đỏ (không có nhãn) là các cạnh không khớp .
+Mình sẽ giải_thích tại_sao các cạnh màu đỏ lại xuất_hiện trong hình trên theo thứ_tự như_vậy ngay sau_đây .
+Tạm_thời bây_giờ chưa cần chú_ý đến nó vội .
+Bạn_đọc hãy quan_sát kĩ hình_vẽ và tự đối_chiếu với các khái_niệm trong định_nghĩa máy trạng_thái hữu_hạn .
+Ta nhận_thấy nhãn của các cạnh màu xanh khi gộp lại chính là xâu .
+Hơn_nữa , nếu ta gộp nhãn của các cạnh từ nút tới nút thứ thì ta thu được_tiền tố của .
+Nếu quan_sát kĩ hơn thì ta có_thể thấy rằng : Nút có_một cạnh không khớp tới nút () khi và chỉ khi là số_lớn nhất nhỏ hớn sao_cho là hậu_tố của .
+Ví_dụ nhìn vào hình trên ta thấy nút có_một cạnh không khớp tới nút vì_là hậu_tố của .
+Bạn_đọc nên dành thời_gian để kiểm_tra luật trên với các nút khác .
+Bây_giờ ta sẽ biến luật cạnh không khớp trên thành giải_thuật để xác_định các cạnh không khớp .
+Hiển_nhiên với mỗi , ta chỉ_cần duyệt từ cho_đến khi tìm được thỏa_mãn luật cạnh không khớp .
+Như_vậy , ta có_thể xây_dựng cạnh không khớp cho nút trong thời_gian , do_đó : Tuy_nhiên , ta có_thể sử_dụng để xây_dựng cạnh không khớp nhanh hơn .
+Gọi_là mảng trong đó nếu có_một cạnh không khớp từ nút tới nút ( < ) .
+Ta có .
+Giả_sử_ta đã tính được .
+Làm_sao ta có_thể tính được ?
+(bạn đọc nên tự suy_nghĩ một_lúc trước_khi xem lời_giải dưới đây) . Nếu , ta suy ra là hậu_tố của (theo luật cạnh không khớp) .
+Do_đó nếu thì ta chỉ_cần gán (hình (a) trong hình minh_họa dưới đây) .
+Ví_dụ trên với , ta thấy và , do_đó ta gán .
+Tuy_nhiên , cuộc_sống không có_dễ dàng vậy nếu .
+Trong trường_hợp này , ta sẽ phải xét và lại so_sánh với .
+Chú_ý ở đây là hậu_tố của , do_đó , nó cũng là hậu_tố của vì ta đã biết là hậu_tố của .
+Từ_đó suy ra nếu , ta sẽ gán (xem hình (b) trong hình minh_họa dưới đây) .
+Nếu_không ta sẽ tiếp_tục lặp_lại như_trên .
+Trường_hợp xấu nhất , đến một_lúc nào_đó ta sẽ trở_về vị_trí sau bước (tại sao ? ) với một_số nào_đó , và do_đó , ta sẽ gán vì hiển_nhiên (theo quy ước) là một hậu_tố của .
+Ta có thuật_toán sau : Code_C : Việc chứng_minh (bằng quy nạp) rằng nếu nếu được gán bằng số nào_đó theo thuật_toán trên thì_là số_lớn nhất nhỏ hơn thỏa_mãn tính_chất của luật cạnh không khớp coi_như bài_tập cho bạn_đọc .
+Mặc_dù không có trong định_nghĩa , ta vẫn thêm vào mảng phần_tử để_cho việc viết giả mã sáng_sủa hơn .
+Thông_qua mảng , ta đã "biểu diễn" ngắn_gọn được toàn_bộ máy trạng_thái hữu_hạn .
+Ngoài_ra , nếu tinh_ý , các bạn sẽ phát_hiện ra rằng thuật_toán xây_dựng cạnh không khớp trên chính là thuật_toán tính hàm Failure trong .
+Nếu bạn_đọc đã đọc phân_tích của hàm Failure , có_thể dễ_dàng nhận_thấy thời_gian của thuật_toán này là .
+Ở đây mình nhắc_lại ngắn_gọn ý_tưởng : độ phức_tạp của thuật_toán có cùng tiệm_cận với số phép so_sánh bằng và số phép so_sánh không_bằng .
+Mỗi lần so_sánh bằng () thì ta tăng cả hai biến và lên .
+Mỗi lần so_sánh không_bằng () thì ta lại giảm .
+Do số lần_ta giảm không_thể vượt_quá số lần_ta tăng , số phép so_sánh không_bằng sẽ nhỏ hơn số phép so_sánh bằng .
+Do_đó , độ phức_tạp của thuật_toán có cùng tiệm_cận với số phép so_sánh bằng và là .
+Khi so_sánh hai xâu và , ta sẽ so_sánh từng kí_tự .
+Vấn_đề mấu_chốt là chúng_ta sẽ xử_lí như_thế nào nếu () khi ta đang so_sánh hai kí_tự tương_ứng trong văn_bản và trong xâu mẫu .
+sẽ lùi một_số đơ vị là và tiếp_tục so_sánh với .
+Do_đó trong trường_hợp xấu nhất , số phép so_sánh là .
+Tuy_nhiên , ta có_thể nhận_xét thấy là nếu ta đang so_sánh với , có_nghĩa là .
+Hay nói_cách_khác , là của .
+Do_đó , nếu , ta chỉ_cần đi_theo cạnh không khớp của nút để lùi về nút .
+Theo luật cạnh không khớp , là hậu_tố của và do_đó cũng là hậu_tố của .
+Hay nói_cách_khác , .
+Do_đó , ta chỉ_cần so_sánh với và đệ_quy .
+Dựa vào những quan_sát này , ta có thuật_toán sau : Code_C : Phân_tích thuật_toán (giống như phân_tích khi xây_dựng FSM) coi_như bài_tập cho bạn_đọc .
+Như_vậy máy trạng_thái hữu_hạn cho chúng_ta một_cách nhìn khác và đơn_giản hơn về thuật_toán KMP .
+Tuy_nhiên , nếu chỉ_có thể thì cũng không_thể nói_lên được hết tầm quan_trọng của máy trạng_thái hữu_hạn trong tìm_kiếm xâu .
+Trong bài tiếp_theo , mình sẽ trình_bày ứng_dụng khác của máy trạng_thái hữu_hạn trong tìm_kiếm đa mẫu (multiple patterns) mà cụ_thể là thuật_toán Aho-Corasick 2 .
+Code đầy_đủ : .
+1 Knuth , Donald_E . , James_H .
+Morris , Jr , and Vaughan_R .
+Pratt .
+.
+SIAM_Journal on Computing 6 . 2 (1977) : 323-350 .
+2 Aho , Alfred_V . , and Margaret_J .
+Corasick .
+Communications of the ACM 18 . 6 (1975) : 333-340 .
+3 Jeff_Erickson .
+, UIUC , 2014 .
+, , , , Trackback link : on trong chứng_minh lemma1 : cái chỗ Nếu_Fi−1=j0Fi−1=j0 , ta suy ra P1 , … , j0P1 , … , j0 là hậu_tố của P1 , 2 , i−1P1 , 2 , i−1 (theo luật cạnh không khớp) .
+Do_đó nếu Pj0+1=PiPj0+1=Pi thì ta chỉ_cần gán Pi=j0+1 (ý của anh chỗ này là Fi=j0+1 phải ko anh ) tại em lấn_cấn chỗ này , , mong anh giúp em thêm với ạ , , , , thank anh , on Đúng rồi đó bạn .
+Ý mình là .
+Mình gõ bị lỗi .
+Cám_ơn bạn đã spot giúp . HùngPowered by and

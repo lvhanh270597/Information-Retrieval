@@ -1,0 +1,78 @@
+Tác_giả : Hoàng_Gia_Minh Bài viết này nhằm giúp bạn_đọc nắm được ý_tưởng cơ_bản của các hệ mã_hóa khóa công_khai ( Public_Key_Cryptography ) và một_số ứng_dụng của chúng .
+Ngoài_ra , chúng_ta cũng sẽ tìm_hiểu về thuật_toán mã_hóa RSA , một hệ mã_hóa khóa công_khai được sử_dụng khá phổ_biến hiện_nay .
+Table of_Contents 1 .
+Một_số khái_niệm 2 .
+Lịch_sử 2 . 1 . Mã_hóa khóa đối_xứng (Symmetric-key cryptography) 2 . 2 . Mã_hóa khóa công_khai (Public-key cryptography) 3 .
+Ứng_dụng 3 . 1 . Mã_hóa công_khai (Public-key encryption) : 3 . 2 . Chữ_ký điện_tử (Digital signatures) : 4 .
+RSA 4 . 1 Mã_hóa 4 . 2 . Giải_mã 4 . 3 . Sinh khóa (Key generation) 4 . 4 . Sample code 5 .
+Tham_khảo 1 .
+Một_số khái_niệm Mã_hóa (Encryption) : Quá_trình chuyển_đổi thông_tin từ dạng thông_thường (có thể đọc được) sang dạng không đọc được (nếu không có khóa bí mật) , nhằm bảo_mật thông_tin .
+Giải_mã (Decryption) : Là quá_trình ngược của mã_hóa - chuyển_đổi từ_thông_tin đã mã_hóa về thông_tin ban_đầu .
+Khóa (Key) : Một đoạn thông_tin được sử_dụng để mã_hóa và/hoặc giải_mã .
+2 .
+Lịch_sử 2 . 1 . Mã_hóa khóa đối_xứng ( Symmetric-key cryptography ) Cho_đến trước năm 1976 , các phương_pháp mã_hóa đều là mã_hóa đối_xứng .
+Các hệ mã_hóa đối_xứng sử_dụng cùng một khóa cho cả bên gửi lẫn bên nhận .
+Nói một_cách chính_xác hơn , hai khóa này có_thể : giống nhau , hoặc khác_nhau nhưng có_thể dễ_dàng tìm_ra được khóa còn_lại nếu đã biết một khóa .
+Ưu_điểm của các phương_pháp này là đơn_giản , tốc_độ cao , mang_lại hiệu_quả tốt nếu bạn không chia_sẻ khóa của mình cho người khác .
+Tuy_nhiên , chúng lại có các nhược_điểm sau : Để có_thể trao_đổi thông_tin bí_mật với_nhau , hai bên phải thống_nhất với_nhau trước về khóa bí_mật .
+Bài_toán đặt ra là làm_sao có_thể đảm_bảo việc gửi khóa cho nhau là bí_mật .
+Để đảm_bảo trong 1 nhóm n người cần phải có 1 số_lượng khóa khá lớn - \fracn(n-1)2 khóa .
+Điều này dẫn đến một bài_toán về việc lưu_trữ , phân_phối một_số lượng lớn khóa mà vẫn phải đảm_bảo sự an_toàn của chúng .
+Do bên gửi và nhận sử_dụng chung khóa , chúng_ta không_thể xác_định được nguồn_gốc của một thông_điệp (message) .
+2 . 2 . Mã_hóa khóa công_khai ( Public-key cryptography ) Vào năm 1874 , William_Stanley_Jevons viết trong quyển The_Principles of Science về mối liên_hệ giữa các hàm một_chiều và mật_mã học .
+Đặc_biệt , ông đã đi_sâu vào bài_toán phân_tích ra thừa_số nguyên_tố (sau này được sử_dụng trong thuật_toán RSA) .
+Liệu rằng bạn_đọc có_thể đoán được 2 số_nguyên nào có tích bằng 8 , 616 , 460 , 799 ?
+Tôi nghĩ rằng ngoài tôi ra thì không_ai có_thể biết kết_quả được .
+Năm 1976 , Whitfield_Diffie và Martin_Hellman công_bố bài báo New_Directions in Cryptography , làm thay_đổi căn_bản về cách các hệ mật_mã hoạt_động .
+Bài báo đã đưa_ra một hệ_thống mã_hóa bất_đối_xứng trong đó nêu ra phương_pháp trao_đổi khóa công_khai , giải_quyết các hạn_chế của mã đối_xứng .
+Khác với mã đối_xứng , mã_hóa khóa bất_đối_xứng sử_dụng một cặp khóa : khóa công_khai ( public key ) và khóa bí_mật ( private key ) .
+Hai khóa này được xây_dựng sao_cho từ một khóa , rất khó có cách sinh_ra được khóa còn_lại .
+Một khóa sẽ dành để mã_hóa , khóa còn_lại dùng để giải_mã .
+Chỉ_có người sở_hữu nắm được khóa bí_mật trong_khi khóa công_khai được phổ_biến rộng_rãi .
+Hình_vẽ sau minh_họa việc mã_hóa và giải_mã : 3 .
+Ứng_dụng Mật_mã_hóa khóa công_khai hay còn gọi_là mã_hóa bất_đối_xứng có 2 ứng_dụng phổ_biến sau : 3 . 1 . Mã_hóa công_khai ( Public-key encryption ) : Một thông_điệp được mã_hóa bằng khóa công_khai của người nhận .
+Thông_điệp này chỉ_có thể giải_mã được bằng khóa bí_mật mà chỉ người nhận có .
+3 . 2 . Chữ_ký điện_tử ( Digital signatures ) : Chữ_ký điện_tử là thông_tin đi_kèm với dữ_liệu nhằm mục_đích xác_định chủ_sở_hữu của dữ_liệu đó .
+Một văn_bản được "ký" bằng khóa bí_mật của người_gửi và có_thể được xác_nhận bới bất_kỳ ai có khóa công_khai của người_gửi .
+Cụ_thể hơn , bên gửi sẽ tính ra mã_hash h của văn_bản , sau_đó dùng khóa bí_mật để mã_hóa h thành \sigma rồi gửi cho bên nhận văn_bản đó cùng_với "chữ ký" \sigma .
+Bên nhận_thực hiện xác_nhận như_sau : Tính mã_hash h của văn_bản .
+Giải_mã "chữ ký" \sigma thành h bằng khóa công_khai .
+So_sánh h và h , nếu chúng bằng_nhau thì quá_trình xác_thực thành_công , ngược_lại quá_trình xác_thực thất_bại .
+4 .
+RSA_RSA là một trong những phương_pháp mã_hóa khóa công_khai đầu_tiên được ứng_dụng rộng_rãi trong việc đảm_bảo an_toàn khi truyền_thông_tin .
+Sự bất_đối_xứng của hệ mã này được dựa trên quan_sát là khó có_thể phân_tích ra thừa_số nguyên_tố của một_số là tích của 2 số_nguyên_tố .
+RSA được tạo_thành bằng chữ_cái đầu_tiên của Ron_R ivest , Adi_S hamir , Lenonard_A dleman , 3 người đầu_tiên mô_tả thuật_toán vào năm 1977 .
+Nguyên_lý cơ_bản của RSA dựa trên nhận_định là có_thể tìm được 3 số_nguyên_dương rất lớn e , d và n mà : (me)d \equiv m \pmod n \quad \forall m và dù_cho có biết cả e , n hay cả m thì cũng rất khó để tìm_ra d .
+Tiếp_theo chúng_ta sẽ đi_sâu vào từng công_đoạn của 1 hệ mã , bao_gồm việc mã_hóa , giải_mã và sinh khóa .
+4 . 1 Mã_hóa Giả_sử rằng Bob muốn gửi mẫu tin M cho Alice .
+Đầu_tiên thông_điệp M thành từng phần nhỏ , mỗi phần biểu_diễn bởi một_số nguyên m sao_cho 0 \leq m lt; n .
+Việc chuyển_đổi này cần đảm_bảo là ngẫu_nhiên và m không nhận các giá_trị không an_toàn (ví dụ như số 0 hay 1) nhưng vẫn đảm_bảo là có_thể suy ra M từ m .
+Tiếp_theo , Bob tính ra bản mã_hóa c , sử_dụng khóa công_khai e của Alice như_sau : c \equiv me \pmod n Bob gửi c cho Alice .
+Lưu_ý rằng sao khi mã_hóa , chính Bob cũng không_thể giải_mã được từ c thành m .
+4 . 2 . Giải_mã Alice tính lại ra m từ c dựa vào khóa bí_mật d : cd \equiv (me)d \equiv m \pmod n Dựa vào m , Alice có_thể khôi_phục lại mẫu tin ban_đầu M .
+4 . 3 . Sinh khóa (Key generation) Chọn 2 số_nguyên_tố khác_nhau p và q .
+Tính n = p q .
+Độ_dài của n (tính theo bit) chính là độ_dài của khóa .
+Hiện_nay người_ta khuyến_cáo sử_dụng khóa có độ_dài tối thiếu 2048 bit .
+Tính \varphi(n) = \varphi(p)\varphi(q) = (p - 1)(q - 1) = n - (p + q - 1) .
+Trong đó \varphi(n) là phi_hàm Euler .
+\varphi(n) = số_lượng số_nguyên_dương nhỏ hơn n mà nguyên_tố cùng_nhau với n .
+Chọn một_số nguyên e thỏa_mãn 1 lt; e lt; \varphi(n) và gcd(e , \varphi(n)) = 1 .
+Tính ra d \equiv e-1 \pmod\varphi(n) .
+Chứng_minh Để chứng_minh tính đúng_đắn của thuật_toán sinh khóa trên , ta cần chứng_minh rằng med \equiv m \pmod n với n = pq .
+1 .
+Trường_hợp gcd(n , m) = 1 Ta có ed \equiv 1 \pmod\varphi(n) Do e và d nguyên dương nên ed = 1 + h\varphi(n) với h là một_số nguyên không âm .
+Do_đó med = m1 + h\varphin = m(m\varphi(n))h .
+Theo định_lý Euler , a\varphi(n) \equiv 1 \pmod n \quad \forall a , n : gcd(a , n) = 1 nên m(m\varphi(n))h \equiv m(1)h \equiv m \pmod n .
+2 .
+Trường_hợp gcd(n , m) \neq 1 Theo định_lý phần dư Trung_Hoa (Chinese Remainder_Theorem) , nếu p , q nguyên_tố cùng_nhau thì : x \equiv y \pmod p \quad và \quad x \equiv y \pmod q \Rightarrow x \equiv y \pmod pq .
+Do_vậy ta cần chứng mình 2 mệnh_đề sau : med \equiv m \pmod p med \equiv m \pmod q Vì gcd(m , n) \neq 1 \Rightarrow gcd(m , n) = p \quad hoặc \quad gcd(m , n) = q .
+Không mất tính tổng_quát , giả_sử gcd(m , n) = p .
+Ta có : gcd(m , p) = p \ \Rightarrow m \equiv 0 \pmod p \ \Rightarrow med \equiv 0 \equiv m \pmod p gcd(m , q) = 1 \ \Rightarrow med \equiv m \pmod q (chứng mình tương_tự trong trường_hợp 1) 4 . 4 . Sample code ! /usr/bin/env python -- coding : utf-8 -- import random def is_prime ( n ) : return all (( n % j ) for j in range ( 2 , int ( n 0 . 5 ) + 1 )) and n gt; 1 Sinh_ra số_nguyên_tố ngẫu_nhiên trong left , right) mà khác exclude def random_prime ( left , right , exclude = - 1 ) : p = random .
+randint ( left , right - 1 ); if is_prime ( p ) and p ! = exclude : return p else : return random_prime ( left , right - 1 , exclude ) Thuật_toán tìm nghịch_đảo modulo MMI(A , n) = x thỏa_mãn (Ax) mod n = 1 MMI = lambda A , n , s = 1 , t = 0 , N = 0 : ( n lt; 2 and t % N or MMI ( n , A % n , t , s - A / n t , N or n ) , - 1 ) n lt; 1 Thuật_toán sinh khóa def rsa_generate () : p = random_prime ( 1 , 255 ) q = random_prime ( 1 , 255 , p ) n = p q t = ( p - 1 ) ( q - 1 ) e = random_prime ( 1 , t ) d = MMI ( e , t ) Kết_quả trả về bao_gồm : - Khóa công_khai (n , e) - Khóa bí_mật (n , d) return n , e , d def rsa_encrypt ( message , n , e ) : return pow ( message , e , n ) def rsa_decrypt ( encrypt_message , n , d ) : return pow ( encrypt_message , d , n ) Example n , e , d = rsa_generate () print n=0 , e=1 , d=2 .
+format ( n , e , d ) message = random .
+randint ( 1 , n - 1 ) print Original message : 0 .
+format ( message ) encrypted_message = rsa_encrypt ( message , n , e ) print Encrypted_message : 0 .
+format ( encrypted_message ) decrypted_message = rsa_decrypt ( encrypted_message , n , d ) print Decrypted_message : 0 .
+format ( decrypted_message ) 5 .
+Tham_khảo Wiki - Public-key_Cryptography_Wiki - RSA_Wiki - History of Cryptography

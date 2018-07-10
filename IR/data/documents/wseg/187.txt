@@ -1,0 +1,79 @@
+Bài viết bởi bmerry .
+Nguồn : Topcoder_Table of_Contents Giới_thiệu Cơ_bản Tách từng bit Đếm_số bit Tất_cả các tập_con Cài_đặt : Chỉ_cần một bit sai cũng 0 điểm Một_số mẹo hay (và cute) Bài_tập mẫu Giới_thiệu Hầu_hết các kĩ_thuật tối_ưu dùng trong các kì_thi Topcoder đều là những kĩ_thuật cao_cấp , có_nghĩa là , các kĩ_thuật này tối_ưu trực_tiếp thuật_toán hơn_là tối_ưu cách cài_đặt .
+Tuy_nhiên , có_một kĩ_thuật tối_ưu cơ_bản nhưng sử_dụng rất hiệu_quả là thao_tác bit (bit manipulation) , hay sử_dụng những bit thuộc biểu_diễn của một_số nguyên để biểu_diễn một_tập hợp .
+Nó không chỉ làm tăng_tốc_độ chạy , giảm dung_lượng bộ_nhớ , mà_còn làm code chúng_ta trở_nên đơn_giản hơn .
+Mình sẽ bắt_đầu bằng việc nhắc_lại một_số kiến_thức cơ_bản về bit , trước_khi nghiên_cứu những kĩ_thuật sâu hơn .
+Cơ_bản Những thứ quan_trọng nhất trong thao_tác bit là những toán_tử trên bit (bit-wise operator) : amp; (and) , (or) , ~ (not) và (xor) .
+Chắc_hẳn các bạn đã quá quen với ba toán_tử đầu_tiên trong các phép_toán logic ( amp;amp; , , và ! ) .
+Dưới_đây là bảng chân_trị (truth tables) : A_B ! A_A amp;amp; B_A_B_A_B 0 0 1 0 0 0 0 1 1 0 1 1 1 0 0 0 1 1 1 1 0 1 1 0 Toán_tử bit trên số_nguyên cũng thực hiên giống_vậy , chỉ khác một thứ là thay_vì chuyển các tham_số về true hoặc false , thì các toán_tử bit được thực_hiện trên các bit của các tham_số .
+Do_đó , nếu A là 1010 và B là 1100 , thì A amp; B = 1000 A_B = 1110 A_B = 0110 ~A = 11110101 (số chữ_số 1 phụ_thuộc vào kiểu dữ_liệu của A)_Hai toán_tử mà chúng_ta cần phải_biết nữa đó là toán_tử dịch bit a lt;lt; b và a gt;gt; b .
+Toán_tử đầu_tiên là dịch tất_cả các bit của a sang trái b vị trí; Toán_tử thứ_hai cũng giống_vậy nhưng dịch sang phải .
+Với những giá_trị không âm (cũng là những số duy_nhất mà ta sẽ xét đến) , những bit mới xuất_hiện (do dịch trái) sẽ bằng 0 .
+Dịch trái (left-shifting) b bit đồng_nghĩa với việc nhân với 2b và dịch phải (right-shifting) đồng_nghĩa với chia nguyên cho 2b .
+Dịch bit được sử_dụng nhiều nhất để truy_cập vào một bit bất_kì , ví_dụ , 1 lt;lt; x là một_số nhị_phân với bit thứ x bằng 1 và các bit khác bằng 0 (bit luôn_luôn được đếm từ bên phải (least-significant) , đếm bắt_đầu_từ 0) .
+Thông_thường , chúng_ta sẽ sử_dụng một_số nguyên để biểu_diễn một_tập hợp với miền giá_trị lên đến 32 giá_trị (hoặc 64 nếu sử_dụng số_nguyên 64 bit) , với bit 1 cho_biết phần_tử đó có trong tập_hợp và bit 0 thì không có .
+Sau_đó thì các phép_toán thì không có gì phức_tạp , trong đó ALL_BITS trả về số bit 1 , tương_ứng với số phần_tử có trong tập_hợp : Phép_toán hợp (Set union) A_B Phép_toán giao (Set intersection) A amp; B Phép_toán hiệu (Set subtraction) A amp; ~B Phép_toán phủ_định (Set negation) ALL_BIT A_Gán bit bằng 1 (Set bit) A = 1 lt;lt; bit Gán bit bằng 0 (Clear bit) A amp;= ~(1 lt;lt; bit) Truy_cập giá_trị (Test bit) (A amp; 1 lt;lt; bit) ! = 0 Tách từng bit Trong phần này , chúng_ta sẽ bàn đến việc tìm vị_trí của bit 1 cao nhất (bit 1 nằm xa nhất về bên trái) và thấp nhất (bit 1 nằm xa nhất về bên phải) trong một_số .
+Đây là những phép_toán cơ_bản để tách một_tập hợp ra thành những phần_tử .
+Tìm bit 1 thấp nhất khá là đơn_giản , chỉ_cần kết_hợp đúng_đắn giữa toán_tử bit và phép_toán số_học .
+Giả_sử chúng_ta muốn tìm bit 1 thấp nhất của số x (x khác 0) .
+Nếu chúng_ta trừ 1 từ x thì bit này được xoá , nhưng tất_cả các bit một khác vẫn còn .
+Do_đó , x amp; ~(x - 1) chỉ chứa duy_nhất bit 1 thấp nhất của x .
+Tuy_nhiên , cách này chỉ cho chúng_ta biết giá_trị của bit đó , không_phải là vị_trí .
+Nếu chúng_ta muốn biết vị_trí của bit 1 cao nhất và thấp nhất , cách tiếp_cận đơn_giản nhất đó là duyệt qua các bit (từ trái qua hay từ phải qua) cho tới khi tìm được bit 1 đầu_tiên .
+Lúc đầu , ta có_thể cảm_thấy cách làm này hơi chậm vì không tận_dụng được lợi_thế gì về bit .
+Tuy_nhiên , nếu xác_suất 2N tập_con của miền giá_trị_N phần_tử đều bằng_nhau , thì trung_bình vòng_lặp chỉ_cần 2 lần chạy , thật_ra đây là phương_pháp nhanh nhất .
+CPU 386 có hỗ_trợ duyệt bit (bit scanning) : BSF (bit scan forward) và BSR (bit scan reverse) .
+GCC cung_cấp những hỗ_trợ này qua những hàm xây_dựng sẵn (built-in functions) __builtin_ctz (đếm số chữ_số 0 đứng cuối) và __builtin_clz (đếm số chữ_số 0 đứng đầu) .
+Đây là những cách tiện_lợi nhất để tìm vị_trí của bit dành cho lập_trình_viên C++ ở Topcoder .
+Lưu_ý : giá_trị trả về là undefined nếu tham_số đầu_vào bằng 0 .
+Cuối_cùng , còn một phương_pháp khác để thay_thế trong những testcase mà dùng vòng_lặp tốn nhiều thời_gian .
+Sử_dụng mỗi byte của số_nguyên 4 byte hoặc số_nguyên 8 byte để tính trước bảng 256 phần_tử lưu_trữ vị_trí của bit 1 cao nhất (thấp nhất) trong byte đó .
+Bit 1 cao nhất (thấp nhất) của số_nguyên là giá_trị lớn nhất (giá trị nhỏ nhất) của bảng này .
+Phương_pháp này được đề_cập đến để làm đa_dạng thêm các phương_pháp , tốc_độ cũng chưa được đánh_giá rõ_ràng qua các kì_thi Topcoder .
+Đếm_số bit Chúng_ta có_thể dễ_dàng kiểm_tra một_số có_phải là luỹ_thừa của 2 bằng cách xoá bit 1 thấp nhất và kiểm_tra xem nếu kết_quả có bằng 0 chưa .
+Tuy_nhiên , trong một_số trường_hợp chúng_ta cần phải_biết có bao_nhiêu bit đã được set (bit đã được set là bit 1 , bit chưa được set là bit bằng 0) , chúng_ta cần phải thực_hiện nhiều việc phức_tạp hơn tí .
+GCC có_một hàm gọi_là __builtin_popcount thực_hiện đúng những thứ ta cần .
+Tuy_nhiên , không giống_như hàm __builtin_ctz , nó không được chuyển thành những chỉ_thị trên phần_cứng (ít nhất_là trên x86) .
+Thay vào đó , nó sẽ sử_dụng phương_pháp lưu bảng giống_như trên đã trình_bày để tìm_kiếm bit .
+Phương_pháp này khá là hiệu_quả và cũng cực_kì tiện_lợi .
+Những người dùng các ngôn_ngữ khác không_thể dùng cách này (mặc dù họ có_thể cài_đặt lại nó) .
+Nếu một_số được dự_đoán rằng có rất ít bit 1 , một phương_pháp thay_thế là chỉ_cần lặp_lại quá_trình tìm bit 1 thấp nhất và xoá nó .
+Tất_cả các tập_con Một ưu_điểm lớn của thao_tác bit là việc duyệt qua tất_cả các tập_con của một_tập hợp N phần_tử rất đơn_giản : mỗi số_nguyên đại_diện cho một_tập con .
+Hơn_thế_nữa , nếu A là tập_con của B thì số_nguyên đại_diện cho A sẽ nhỏ hơn số_nguyên đại_diện cho B , rất tiện_lợi cho việc kết_hợp với quy_hoạch_động .
+Việc duyệt qua tất_cả các tập_con của một_tập con khác cũng rất dễ_dàng (được biểu_diễn bằng một dãy bit) , nếu bạn không quan_tâm đến thứ_tự duyệt ngược_lại (hoặc có_thể lưu các tập_hợp vào một danh_sách và đi ngược lại) .
+Mẹo được sử_dụng cũng giống_như việc tìm bit 1 thấp nhất vậy .
+Nếu chúng_ta trừ đi 1 từ tập_con , thì phần_tử đại_diện bởi bit 1 đó sẽ được xoá , và mỗi phần_tử 0 phía bên phải nó đều trở_thành 1 .
+Tuy_nhiên , chúng_ta chỉ muốn các phần_tử được chọn là những phần_tử có trong tập cha .
+Nên bước lặp chỉ_cần thay_thế ngắn_gọn bằng i = (i - 1) amp; superset .
+Cài_đặt : // xét tất_cả các tập_con khác rỗng của S for ( int i = S ; i gt; 0 ; i = ( i - 1 ) amp; S ); Chỉ_cần một bit sai cũng 0 điểm Có_một số lỗi mà mọi người_thường mắc_phải khi sử_dụng các thao_tác bit .
+Chú_ý cẩn_thận với code của bạn .
+Khi thực_hiện phép_toán dịch , a lt;lt; b , kiến_trúc x86 chỉ sử_dụng the 5 bit thấp nhất của b (6 cho số_nguyên 64 bit) .
+Điều này có_nghĩa là dịch trái (hoặc phải) 32 bit đồng_nghĩa_là không làm_gì cả , ngoài việc xoá tất_cả các bit .
+Việc này cũng được nhắc đến trong Java và C;_C99 đề_cập rằng việc dịch ít_nhất bằng giá_trị của số sẽ trả về kết_quả là undefined .
+Lịch_sử : máy 8086 sử_dụng full shift register , thường thao_tác này còn được dùng để kiểm_tra processor mới .
+Toán_tử amp; và có độ ưu_tiên thực_hiện thấp hơn phép so_sánh .
+Điều đó có_nghĩa là x amp; 3 == 1 bằng với x amp; (3 == 1) , đây là những lỗi bạn không_hề muốn mắc_phải .
+Nếu bạn muốn viết những dòng code C/C++ dùng ở nhiều nơi , hãy đảm_bảo rằng bạn sử_dụng kiểu unsigned , cụ_thể trong trường_hợp bạn có_ý định sử_dụng bit cao nhất (top-most) .
+C99 nói rằng dịch bit trên giá_trị âm sẽ trả về undefined .
+Java chỉ_có kiểu dữ_liệu có dấu : gt;gt; sẽ tự_động thay_đổi dấu của giá_trị nếu_cần thiết (nhưng đây là thứ bạn thường không muốn xảy ra) , nhưng toán_tử đặc_biệt này của Java là gt;gt;gt; sẽ thêm các số 0 vào phía trước_sau khi dịch .
+Một_số mẹo hay (và cute) Có_một số mẹo hay có_thể sử_dụng với thao_tác bit .
+Những mẹo này khá hay để đem đi_chém gió với bạn_bè , nhưng thông_thường hiệu_quả cũng không cải_thiện lắm ở thực_tế .
+Đảo thứ_tự các bit trong một_số nguyên x = ((x amp; 0xaaaaaaaa) gt;gt; 1) ((x amp; 0x55555555) lt;lt; 1); x = ((x amp; 0xcccccccc) gt;gt; 2) ((x amp; 0x33333333) lt;lt; 2); x = ((x amp; 0xf0f0f0f0) gt;gt; 4) ((x amp; 0x0f0f0f0f) lt;lt; 4); x = ((x amp; 0xff00ff00) gt;gt; 8) ((x amp; 0x00ff00ff) lt;lt; 8); x = ((x amp; 0xffff0000) gt;gt; 16) ((x amp; 0x0000ffff) lt;lt; 16); Bài_tập là bạn hãy dùng kĩ_thuật phía trên để đếm_số bit với kiểu dữ_liệu word .
+Duyệt qua tất_cả các tập_con có k phần_tử int s = (1 lt;lt; k) - 1; while ( ! (s amp; 1 lt;lt; N)) //làm gì đó với s int lo = s amp; ~(s - 1); //bit 1 thấp nhất int lz = (s + lo) amp; ~s; //bit 0 thấp nhất trên lo s = lz; //thêm lz vào tập_hợp s amp;= ~(lz - 1); //reset bit phía dưới lz s = (lz / lo / 2) - 1; //đặt lại đúng số bit ở cuối Trong_C , dòng cuối có_thể viết là s = (lz gt;gt; ffs(lo)) - 1 để tránh phép_chia .
+Xác_định x ?
+y : -y , trong đó x bằng 0 hoặc 1 (-x y) + x Câu_lệnh trên chạy được trên kiến_trúc số bù 2 (tồn tại ở hầu_hết các máy_tính bạn thấy ngày nay) , trong đó số_âm được biểu_diễn bằng cách đảo tất_cả các bit và cộng thêm cho 1 .
+Chú_ý rằng trên i686 và trước đó , câu_lệnh này chạy khá hiệu_quả (không cần rẽ nhánh ) nhờ vào lệnh CMOVE (di chuyển có_điều kiện) .
+Bài_tập mẫu TCCC 2006 , Round 1B Medium_Với mỗi thành_phố , giữ một bit-set của những thành_phố kề nó .
+Một_khi một phần của nhà_máy đã được chọn (đệ quy) , AND những bit-set đó lại sẽ cho ra một bit-set mới mô_tả những vị_trí có_thể của những phần của nhà_máy .
+Nếu bit-set này có k bit , thì_có Ck_m cách để chọn các phần của nhà_máy .
+TCO 2006 , Round 1 Easy Số_lượng nút nhỏ cho thấy rằng bài này có_thể giải_quyết bằng việc xét tất_cả các tập_con .
+Với mỗi tập_con ta xét 2 trường_hợp : nút nhỏ nhất không có trao_đổi gì cả , trong trường_hợp ta xét tập_con mà không có nó , hoặc nó trao_đổi với một_số nút , ta sẽ xét các tập_hợp không có nó và các nút mà nó trao_đổi .
+Code bài_giải rất ngắn_gọn : static int dp1 lt;lt; 18; int SeparateConnections : : howMany(vector lt;stringgt; mat) int N = mat . size(); int N2 = 1 lt;lt; N; dp0 = 0; for (int i = 1; i lt; N2; i++) int bot = i amp; ~(i - 1); int use = __builtin_ctz(bot); dpi = dpi bot; for (int j = use + 1; j lt; N; j++) if ((i amp; (1 lt;lt; j)) amp;amp; matusej == Y) dpi = max(dpi , dpi bot (1 lt;lt; j) + 2); return dpN2 - 1; SRM 308 , Division_Medium_Cái bảng chứa 36 hình_vuông và những con_cờ không_thể phân_biệt được , nên những vị_trí có_thể được mã_hoá vào số_nguyên 64 bit .
+Bước_đầu tiên là liệt_kê tất_cả các bước_đi hợp_lệ .
+Bất_kì bước_đi hợp_lệ nào cũng đều được mã_hoá sử_dụng 3 trường : 1 trạng_thái trước , 1 trạng_thái sau và một mask dùng để định_nghĩa phần_nào của trạng_thái trước là quan_trọng .
+Một_bước đi có_thể được tạo ra từ trạng_thái hiện_tại nếu (current amp; mask) == before .
+Nếu nó được tạo ra , thì trạng_thái mới là (current amp; ~mask) after .
+SRM 320 , Division 1 Hard Điều_kiện cho ta biết rằng chỉ_có nhiều nhất 8 cột (nếu có nhiều hơn , ta có_thể đổi giữa dòng và cột) , nên chúng_ta có_thể xét từng cách để một dòng .
+Một_khi chúng_ta có thông_tin này , ta có_thể giải_quyết vấn_đề còn_lại của bài_toán (xem tutorial để biết thêm chi tiết) .
+Do_đó ta cần một danh_sách tất_cả số_nguyên n bit mà không có 2 bit 1 kề nhau , và ta cũng cần biết_có bao_nhiêu bit 1 trong mỗi dòng như_vậy .
+Đây là code của mình : for (int i = 0; i lt; (1 lt;lt; n); i++) if (i amp; (i lt;lt; 1)) continue; pg . push_back(i); pgb . push_back(__builtin_popcount(i));

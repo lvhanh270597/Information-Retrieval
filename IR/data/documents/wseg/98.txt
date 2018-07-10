@@ -1,0 +1,72 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài viết này , chúng_ta sẽ tìm_hiểu một_số bài_toán khi mà đầu_vào là các số_nguyên lớn .
+Ta gọi các bài_toán NP-complete kiểu này là các bài_toán .
+Bài_toán đầu_tiên là bài_toán .
+Trong bài , chúng_ta đã tìm_hiểu thuật_toán giải bài_toán với thời_gian .
+Thoạt nhìn , thuật_toán này có_vẻ như có thời_gian đa_thức , vì ta không thấy lũy_thừa ở đâu cả .
+Tuy_nhiên , đây lại chính là thuật_toán với thời_gian lũy_thừa .
+Tại_sao vậy ?
+Nhắc_lại , ta luôn đo độ phức_tạp (thời gian) là một hàm của của input .
+Số_nguyên có_thể được biểu_diễn bằng bít , do_đó , nó có chiều_dài .
+Như_vậy , thời_gian chính là một hàm_lũy thừa .
+Các bạn có_thể xem_lại cách ta định_nghĩa .
+Trong bài này , ta sẽ chứng_minh , khi rất lớn , bài_toán là một bài_toán . Hai bài_toán khác chúng_ta cũng xét trong phần này là bài_toán và bài_toán .
+Bài_toán , về_mặt ứng_dụng , ít được biết đến hơn bài_toán .
+Tuy_nhiên , nó lại được dùng nhiều trong chứng_minh tính của rất nhiều bài_toán khác .
+Ta sẽ lần_lượt chứng_minh các bài_toán trên là dựa trên sơ_đồ quy dẫn sau .
+Bài_toán là bài_toán mà ta đã chứng_minh ở .
+Mình nhắc_lại bài_toán đó ở đây .
+Ta sẽ quy dẫn từ bài_toán như_sau .
+Gọi lần_lượt là số đỉnh của đồ_thị .
+Ta thực_hiện hai bước sau : Gọi_là tập các cạnh_kề với đỉnh .
+Ta có nhận_xét về tổng_trọng số mà đỉnh nhận được sau hai bước trên là : Nếu viết trong cơ_số , ta có_thể hiểu đại_lượng như_sau : chữ_số thứ của luôn là 1 và chữ_số thứ của là khi và chỉ khi kề với cạnh Mảng của chúng_ta bao_gồm tất_cả các đỉnh và cạnh , có kích_thước .
+Cạnh , , có_giá trị , và đỉnh , có_giá trị như trong phương_trình .
+Ta thiết_lập : Ta sẽ chứng_minh có_một tập phủ đỉnh kích_thước khi và chỉ khi có_một tập_con có tổng_giá trị định_nghĩa trong . Chiều thuận : Gọi_là tập phủ đỉnh của đồ_thị với kích_thước .
+Ta xây_dựng tập_con của bao_gồm : (i) tất_cả các đỉnh trong và (2) các cạnh của đồ_thị có_một đầu_mút trong .
+Do là một_tập phủ đỉnh , mỗi cạnh có_một đầu_mút trong .
+Việc kiểm_tra xem các phần_tử trong có tổng_giá trị coi_như bài_tập cho bạn_đọc . Chiều ngược : Gọi_là một_tập con của có tổng_giá trị .
+Do tổng_trọng số các cạnh của đồ_thị là , nhỏ hơn , tập gồm đúng đỉnh (và có_thể có thêm một_số cạnh) .
+Gọi_là tập các đỉnh trong .
+Ta chỉ còn phải chứng_minh mọi cạnh đều có_một dầu mút trong .
+Giả_sử có_một cạnh , ví_dụ cạnh có_số thứ_tự với , không có đầu_mút nào trong .
+Cạnh này có trọng số .
+Do_đó , cạnh nà đóng_góp vào .
+Tuy_nhiên , do cạnh này không kề với đầu_mút nào trong và nhỏ hơn , chỉ chứa tối_đa , trái với định_nghĩa trong là chứa .
+Nhận_thấy , bài_toán thực_ra là một trường_hợp đặc_biệt của bài_toán khi và .
+Do_đó , một_cách chứng_minh "đơn giản" Theorem 2 từ Theorem 1 là cho .
+Cách chứng_minh này thực_ra là một_cách chứng_minh sai .
+Lý_do tại_sao coi_như bài_tập cho bạn_đọc (xem lại định_nghĩa quy dẫn) .
+Ta đặt .
+Gọi_là tập gồm phần_tử , trong đó với mọi và , .
+Ta sẽ chứng_minh_tập có_một tập_con có tổng_giá trị khi và chỉ khi tập có_thể được chia thành hai tập_con có tổng_giá trị bằng_nhau .
+Chứng_minh chi_tiết coi_như bài_tập cho bạn_đọc , dựa trên nhận_xét rằng và không_thể cùng thuộc một_tập con .
+Ta quy dẫn từ bài_toán bằng cách cho và .
+Chi_tiết còn_lại chỉ mang tính thủ_tục và mình coi_như bài_tập cho bạn_đọc .
+1 J .
+Erickson .
+.
+UIUC .
+2014 2 T .
+H .
+Cormen , C .
+E .
+Leiserson , R .
+L .
+Rivest , C .
+Stein .
+.
+Chapter 36 .
+MIT_Press and McGraw-Hill .
+ISBN 0-262-03293-7 .
+(2001) .
+3 M .
+R .
+Garey and D .
+S .
+Johnson .
+.
+W .
+H .
+Freeman_Co . , New_York , NY , USA .
+1979 .
+, , , , , Trackback link : Powered by and

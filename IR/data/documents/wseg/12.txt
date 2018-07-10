@@ -1,0 +1,130 @@
+Tác_giả : Lê_Anh_Đức - A2K42-PBC Quy_hoạch_động (QHĐ) là một lớp thuật_toán rất quan_trọng và có nhiều ứng_dụng trong ngành khoa_học máy_tính .
+Trong các cuộc_thi Olympic tin_học hiện_đại , QHĐ luôn là một trong những chủ_đề chính .
+Tuy_vậy , theo tôi thấy , tài_liệu nâng_cao về QHĐ bằng tiếng Việt hiện còn cực_kỳ khan_hiếm , dẫn đến học sinh/sinh viên Việt_Nam bị hạn_chế khả_năng tiếp_cận với những kỹ_thuật hiện_đại .
+Trong bài viết này , tôi sẽ trình_bày một_vài kỹ_thuật để tối_ưu_hóa độ phức_tạp của một_số thuật_toán QHĐ .
+Table of_Contents 1 .
+Đổi biến Bài_tập ví_dụ : Longest_Common_Subsequence (LCS) Đề_bài Lời_giải Bài_tập ví_dụ : Computer (VNOI Marathon 2010) Đề_bài Lời_giải Đổi biến Bài luyện_tập 2 .
+Chia_để_trị Hai nhà_máy CEOI 2004 Đề_bài Lời_giải Bài ví_dụ : SEQPART Lời_giải Điều_kiện để Chia_để_trị đúng Điều_kiện theo best Điều_kiện theo cost Bài luyện_tập 1 .
+Đổi biến Nhiều khi trong trạng_thái QHĐ có_một thành_phần_nào đấy với khoảng giá_trị quá lớn , trong_khi kết_quả của hàm lại có khoảng giá_trị nhỏ .
+Trong một_vài trường_hợp , ta có_thể đảo nhãn để giảm số trạng_thái .
+Bài_tập ví_dụ : Longest_Common_Subsequence (LCS) Đề_bài Cho xâu A độ_dài m , xâu B độ_dài n .
+Hãy tìm độ_dài xâu con chung dài nhất của hai xâu , chú_ý là xâu con chung có_thể không liên_tiếp .
+Giới_hạn m \le 106 n \le 5000 Các kí_tự trong cả hai xâu là các chữ_cái tiếng Anh in hoa A . . Z Ví_dụ A = ADBCC_B = ABCD_LCS = ABC Kết_quả = 3 Lời_giải Thuật_toán đơn_giản Gọi_F(i , j) là LCS của hai tiền_tố A_1 . . i và B_1 . . j .
+Khi đó ta có_thể maximize F(i , j) theo F(i-1 , j) và F(i , j-1) .
+Nếu A_i = B_j thì ta có_thể cập_nhật F(i , j) theo F(i-1 , j-1) + 1 .
+Kết_quả bài_toán là F(m , n) .
+Độ phức_tạp của thuật_toán này là O(mn) , không khả_thi với giới_hạn của đề_bài .
+Đổi biến Đặt_L = min(m , n) Để_ý rằng trong hàm QHĐ trên , các giá_trị của F(i , j) sẽ không vượt_quá L , trong_khi đó chiều thứ_hai của trạng_thái có_thể khá lớn (lên tới MAXM = 106) .
+Để tối_ưu_hóa , ta sẽ đổi biến .
+Gọi dp(i , j) là vị_trí k nhỏ nhất sao_cho LCS(A_1 . . i , B_1 . . k) = j .
+Để tính các giá_trị của dp , ta sẽ QHĐ theo kiểu cập_nhật đi , thay_vì đi tìm công_thức trực_tiếp cho các dp(i , j) .
+Gọi nextPos(i , c) = j gt; i nhỏ nhất mà A_j = c (với c là một ký_tự từ A đến Z) .
+Mảng nextPos có_thể tính trong T(M26) .
+Như_vậy ta có_thể tính các giá_trị QHĐ như_sau : Ban_đầu khởi tạo các giá_trị dp(i , j) = \infty , dp(0 , 0) = 0 .
+For i và j tăng dần , với mỗi giá_trị dp(i , j) khác vô_cùng : Cập_nhật dp(i+1 , j) theo dp(i , j) .
+Gọi k là vị_trí xuất_hiện tiếp_theo của B_i+1 trong xâu A bắt_đầu_từ vị_trí dp(i , j) , tức_là k = nextPos(dp(i , j) , B_i+1) .
+Nếu tồn_tại k , cập_nhật dp(i+1 , j+1) theo k .
+Để tính kết_quả , ta sẽ chỉ_cần tìm j lớn nhất mà tồn_tại dp(i , j) khác vô_cùng .
+include lt;bits/stdc++ . hgt; using namespace std ; const int M = 1e6 + 6 ; const int N = 5005 ; int dp N_N ; char a M , b N ; int nextPos M 26 ; int m , n ; void minimize ( int amp; a , int b ) if ( a == - 1 a gt; b ) a = b ; int main () cin gt;gt; a + 1 gt;gt; b + 1 ; m = strlen ( a + 1 ); n = strlen ( b + 1 ); for ( int c = 0 ; c lt; 26 ; ++ c ) for ( int i = m - 1 ; i gt;= 0 ; -- i ) nextPos i c = ( a i + 1 - A == c ) ?
+i + 1 : nextPos i + 1 c ; int maxLength = min ( m , n ); memset ( dp , - 1 , sizeof dp ); dp 0 0 = 0 ; for ( int i = 0 ; i lt; n ; ++ i ) for ( int j = 0 ; j lt;= i ; ++ j ) if ( dp i j gt;= 0 ) minimize ( dp i + 1 j , dp i j ); int new_value = nextPos dp i j b i + 1 - A ; if ( new_value gt; 0 ) minimize ( dp i + 1 j + 1 , new_value ); int ans = 0 ; for ( int j = maxLength ; j gt; 0 ; -- j ) for ( int i = j ; i lt;= n ; ++ i ) if ( dp i j gt;= 0 ) ans = j ; if ( ans ! = 0 ) break ; cout lt;lt; ans lt;lt; endl ; return 0 ; Bài_tập ví_dụ : Computer (VNOI Marathon 2010) Problem_Link : COMPUTER - VOJ .
+Đề_bài Công_ty phần_mềm XYZ mới mua x máy_tính để bàn và y máy_tính xách_tay .
+Giá một máy_tính để bàn_là a đồng còn giá một máy_tính xách_tay là b đồng .
+Để tránh sự thắc_mắc giữa các phòng bàn , Tổng_giám_đốc đã đưa_ra cách phân_bố các máy_tính này về n phòng_ban như_sau : Sắp_xếp n phòng_ban theo thứ_tự về mức_độ quan_trọng của các phòng_ban .
+Tiến_hành phân_bố các máy_tính cho các phòng_ban bảo_đảm nếu phòng_ban i có mức_độ quan_trọng nhỏ hơn mức_độ quan_trọng của phòng_ban j thì tổng_giá trị máy_tính được phân_bố cho phòng_ban i không được vượt_quá tổng_giá trị máy_tính được phân_bố cho phòng_ban j .
+Phòng_ban nhận được tổng_giá trị máy_tính nhỏ nhất_là lớn nhất .
+Là một lập_trình_viên giỏi nhưng lại thuộc phòng_ban có mức_độ quan_trọng nhỏ nhất , Thắng muốn chứng_tỏ tay_nghề của mình với đồng_nghiệp nên đã lập_trình tính ra ngay được tổng_giá trị máy trình mà phòng_ban mình nhận được rồi mời bạn tính lại thử xem ! Yêu_cầu Cho x , a , y , b , n .
+Hãy tính tổng_giá trị máy_tính mà phòng Thắng nhận được .
+Input x , a , y , b , n không quá 1000 Ví_dụ Input 3 300 2 500 2 Output 900 Input 4 300 3 500 2 Output 1300 Lời_giải Trước_hết ta sẽ chặt nhị_phân kết_quả bài_toán .
+Với mỗi giá_trị chặt nhị_phân , ta cần kiểm_tra xem có tồn_tại phương_án thỏa_mãn hay_không .
+Thuật_toán sơ_khai Đặt_giá trị cần kiểm_tra là v .
+Xét các phòng_ban theo thứ_tự tăng dần về mức_độ quan_trọng , đánh_số từ 1 .
+Sử_dụng một mảng đa_chiều để đánh_dấu các trạng_thái có_thể đạt tới .
+Các giá_trị cần quản_lí là : chỉ_số của phòng_ban , đã dùng số máy_tính để bàn x , đã dùng số máy_tính xách_tay y , tổng_giá trị máy_tính của phòng_ban trước đó .
+Bắt_đầu_từ trạng_thái (0 , 0 , 0 , 0) , ta sử_dụng thuật_toán loang (BFS) .
+Cuối_cùng nếu trạng_thái (n , 0 , 0 , . . . ) có_thể đến được , thì ta sẽ có cách phân_hoạch các máy_tính vào các phòng_ban ứng với giá_trị cận_dưới v .
+Không cần tính_toán cụ_thể cũng có_thể thấy thuật_toán này không_thể đáp_ứng về_mặt thời_gian (và bộ nhớ) với giới_hạn của đề_bài .
+Nâng_cấp bằng nhận_xét Nhận_xét rằng ta không cần quan_tâm tới thứ_tự về mức_độ quan_trọng của các phòng_ban .
+Với một_cách phân_hoạch các máy_tính sao_cho mỗi phòng nhận được tổng_giá trị không nhỏ hơn v , ta luôn có_thể sắp_xếp các bộ theo giá_trị không giảm ứng với các phòng_ban .
+Ta có trạng_thái QHĐ là F(i , x , y , value) = true nếu có_thể phân_bổ máy_tính cho i phòng_ban , đã dùng x máy_tính để bàn và y máy_tính xách_tay , đã gom được tổng_giá trị v cho phòng thứ i+1 .
+Cách làm này số trạng_thái vẫn như trước nhưng ta đã có_thể chuyển trạng_thái trong O(1) .
+Cụ_thể từ F(i , x , y , value) ta chuyển đến F(i , x+1 , y , value+a) hoặc F(i , x , y+1 , value+b) , chú_ý là chỉ_có thể dùng thêm máy xách_tay nếu xlt;X và dùng thêm máy để bàn nếu ylt;Y , đồng_thời nếu giá_trị value đủ lớn hơn hoặc bằng v thì ta chuyển sang trạng_thái F(i+1 , x , y , 0) luôn .
+Đổi biến Ở bài này , ta có_thể dễ_dàng đổi biến value ra làm hàm_mục_tiêu .
+Nhưng không chỉ_có vậy , ta có_thể đẩy cả i ra ngoài ! Cụ_thể , F(x , y) = một cặp số (i , value) lần_lượt là số phòng phân_bố được và số tiền gom được .
+Hàm_mục_tiêu của F(x , y) là một cặp số hoàn_toàn có_thể so_sánh được , trong đó giá_trị đầu (i) được ưu_tiên so_sánh trước .
+Cách cập_nhật các F(x , y) giống_như phần trước , độ phức_tạp vẫn là O(1) cho bước chuyển trạng_thái , trong_khi số trạng_thái lúc_này là đủ nhỏ đối_với giới_hạn của đề_bài .
+include lt;bits/stdc++ . hgt; using namespace std ; const int N = 1010 ; int x , y , a , b , n ; pair lt; int , int gt; F_N_N ; pair lt; int , int gt; newState ( pair lt; int , int gt; s , int a , int v ) s .
+second += a ; if ( s .
+second gt;= v ) ++ s .
+first ; s .
+second = 0 ; return s ; bool dp ( int value ) for ( int i = 0 ; i lt;= x ; ++ i ) for ( int j = 0 ; j lt;= y ; ++ j ) F i j = make_pair ( 0 , 0 ); for ( int i = 0 ; i lt;= x ; ++ i ) for ( int j = 0 ; j lt;= y ; ++ j ) if ( F i j .
+first == n ) return 1 ; if ( i lt; x ) F i + 1 j = max ( F i + 1 j , newState ( F i j , a , value )); if ( j lt; y ) F i j + 1 = max ( F i j + 1 , newState ( F i j , b , value )); return 0 ; int solve () int l = 0 , r = ( a x + b y ) / n ; int ans = 0 ; while ( l lt;= r ) int mid = l + r gt;gt; 1 ; if ( dp ( mid )) ans = mid ; l = mid + 1 ; else r = mid - 1 ; return ans ; int main () cin gt;gt; x gt;gt; a gt;gt; y gt;gt; b gt;gt; n ; cout lt;lt; solve () lt;lt; endl ; cin gt;gt; x gt;gt; a gt;gt; y gt;gt; b gt;gt; n ; cout lt;lt; solve () lt;lt; endl ; return 0 ; Bài luyện_tập VOJ - BINPACK 2 .
+Chia_để_trị Đây là kỹ_thuật khá hiếm gặp , tuy_nhiên lại cực_kỳ mạnh .
+Hai nhà_máy CEOI 2004 Đề_bài Có n cây_cổ_thụ được trồng trên một con_đường từ đỉnh đổi đến chân đồi .
+Chính_phủ địa_phương quyết_định cắt_bỏ chúng .
+Để tránh hoang_phí , mỗi cái cây cần được chuyển đến một nhà_máy cưa .
+Cây chỉ_có thể được vận_chuyển theo một_chiều duy_nhất : hướng về chân đồi .
+Có_một nhà_máy cưa ở cuối con_đường .
+Hai nhà_máy cưa có_thể được xây_dựng dọc theo con_đường .
+Hãy xác_định vị_trí tối_ưu để xây_dựng chúng , để cực_tiểu_hóa chi_phí vận_chuyển .
+Chi_phí vận_chuyển 1kg gỗ đi 1 mét là 1 cent .
+Yêu_cầu Viết chương_trình : đọc dữ_liệu từ_đầu vào chuẩn số_lượng cây , khối_lượng và vị_trí của chúng , tính_toán chi_phí vận_chuyển tối_ưu nhất , xuất kết_quả ra đầu_ra chuẩn .
+Input_Dòng đầu_tiên chứa số n - số_lượng cây (2 \le n \le 20 , 000) .
+Các cây được đánh_số 1 , 2 , . . . , n , theo chiều từ đỉnh đồi đến chân đồi .
+n dòng tiếp_theo mỗi dòng chứa hai số_nguyên_dương cách nhau bởi dấu cách .
+Dòng thứ i + 1 chứa w_i - khối_lượng tính theo kg của cái cây thử i và d_i - khoảng_cách tính theo mét giữa cây thứ i và cây i + 1 , 1 \le w_i \le 10000 , 0 \le d_i \le 10000 .
+Số cuối_cùng , d_n là khoảng_cách từ cây thứ n đến chân đồi .
+Dữ_liệu vào đảm_bảo kết_quả của bài_toán không vượt_quá 2 109 cent .
+Output_Một dòng duy_nhất chứa một_số là kết_quả bài_toán : chi_phí vận_chuyển nhỏ nhất .
+Ví_dụ Input 9 1 2 2 1 3 3 1 1 3 2 1 6 2 1 1 2 1 1 Output 26 Hình_vẽ trên minh_họa cho test ví_dụ .
+Các hình_tròn được tô đen là các_vị trí có_nhà máy .
+Kết_quả sẽ là : 1 (2+1) + 2 1 + 1 (1 + 2) + 3 2 + 2 (1 + 2 + 1) + 1 (2 + 1) + 1 1 = 26 .
+Lời_giải Trước_hết ta sẽ giải_quyết vấn_đề tính chi_phí vận_chuyển nếu biết vị_trí của hai nhà_máy đặt thêm .
+Nếu ta có_thể tính được chi_phí này trong O(1) , bài_toán sẽ có_thể giải được trong O(N2) - ta có_thể for hết các cặp vị_trí có_thể đặt nhà_máy .
+Gọi : sumW_i là tổng của các w_j với i \le j .
+sumD_i là tổng của các d_j với i \le j .
+sumWS_i là tổng của các w_j sumD_j với i \le j .
+Khi đó cost(L , R) là chi_phí vận_chuyển các cây có chỉ_số trong đoạn L , R đến nhà_máy đặt ở R là : sumWS_L - sumWS_R - sumD_R (sumW_L - sumW_R) .
+Như_vậy ta có_thể xây_dựng hàm eval(i , j) = chi_phí nếu đặt thêm hai nhà_máy ở i và j = cost(1 , i) + cost(i + 1 , j) + cost(j + 1 , n + 1) .
+Tuy_nhiên lời_giải O(N2) là chưa đủ tốt để có_thể giải_quyết trọn_vẹn bài_toán này .
+Gọi best(i) là vị_trí j gt; i tốt nhất nếu ta đã đặt một nhà_máy ở i .
+Như_vậy kết_quả của bài_toán sẽ là min(eval(i , best_i) với 1 \le i lt; n .
+Nhận_xét : best_i \le best_i + 1 .
+Có_thể viết tường_minh công_thức để chứng_minh .
+Ta có_thể tính các best_i theo thứ_tự bất_kỳ .
+Vì các giá_trị best không liên_quan đến nhau nên VD ta có_thể tính best(3) rồi best(1) và best(2) .
+Như_vậy ta có thuật_toán sử_dụng tư_tưởng chia_để_trị như_sau : Hàm solve(L , R , from , to) sẽ đi tính các best(L . . R) , biết rằng chúng nằm trong đoạn from . . to .
+void solve ( int L , int R , int from , int to ) if ( L gt; R ) return ; int mid = L + R gt;gt; 1 ; best mid = from ; for ( int i = from + 1 ; i lt;= to ; ++ i ) if ( eval ( mid + 1 , best mid ) gt; eval ( mid + 1 , i )) best mid = i ; solve ( L , mid - 1 , from , best mid ); solve ( mid + 1 , R , best mid , to ); Đánh_giá độ phức_tạp thuật_toán : vì mỗi lần gọi để quy khoảng L , R được chia đôi , nên sẽ có O(logN) tầng , mỗi tầng vòng for chỉ chạy qua O(N) phần_tử , vì_vậy độ phức_tạp của thuật_toán là O(NlogN) .
+Bài ví_dụ : SEQPART_Link : Hackerrank_Cho dãy L số C1 . . L , cần chia dãy này thành G đoạn liên_tiếp .
+Với phần_tử thứ i , ta định_nghĩa chi_phí của nó là tích của Ci và số_lượng số nằm cùng đoạn liên_tiếp với nó .
+Chi_phí của dãy_số ứng với một_cách phân_hoạch là tổng_các chi_phí của các phần_tử .
+Hãy xác_định cách phân_hoạch dãy_số để chi_phí là nhỏ nhất .
+Input_Dòng đầu_tiên chứa 2 số L và G .
+L dòng tiếp_theo , chứa giá_trị của dãy C .
+Output_Một dòng duy_nhất chứa chi_phí nhỏ nhất .
+Giới_hạn 1 \le L \le 8000 .
+1 \le G \le 800 .
+1 \le C(i) \le 109 .
+Ví_dụ Input 6 3 11 11 11 24 26 100 Output 299 Giải_thích : cách tối_ưu là C = (11 , 11 , 11) , (24 , 26) , (100) .
+Chi_phí là 11 3 + 11 3 + 11 3 + 24 2 + 26 2 + 100 1 = 299 .
+Lời_giải Đây là dạng bài_toán phân_hoạch dãy_số có_thể dễ_dàng giải bài QHĐ .
+Gọi_F(g , i) là chi_phí nhỏ nhất nếu ta phân_hoạch i phần_tử đầu_tiên thành g nhóm , khi đó kết_quả bài_toán sẽ là F(G , L) .
+Để tìm công_thức truy_hồi cho hàm F(g , i) , ta sẽ quan_tâm đến nhóm cuối_cùng .
+Coi phần_tử 0 là phần_tử cầm_canh ở trước phần_tử thứ nhất , thì người cuối_cùng không thuộc nhóm cuối có chỉ_số trong đoạn 0 , i .
+Giả_sử đó là người với chỉ_số k , thì chi_phí của cách phân_hoạch sẽ là F(g-1 , k) + Cost(k+1 , i) , với Cost(i , j) là chi_phí nếu phân j-i+1 người có chỉ_số i , j vào một nhóm .
+Như_vậy : F(g , i) = min(F(g-1 , k) + Cost(k+1 , l)) với 0 lt;= k lt;= i .
+Chú_ý là công_thức này chỉ được áp_dụng với ggt;1 , nếu g=1 , F(1 , i) = Cost(1 , i) , đây là trường_hợp cơ_sở .
+Việc cài_đặt chỉ đơn_giản là dựng mảng 2 chiều F , code như_sau : include lt;iostreamgt; using namespace std ; const int MAXL = 8008 ; const int MAXG = 808 ; const long_long INF = ( long_long ) 1e18 ; long_long C_MAXL ; long_long sum MAXL ; long_long F_MAXG_MAXL ; long_long cost ( int i , int j ) return ( sum j - sum i - 1 ) ( j - i + 1 ); int main () int G , L ; cin gt;gt; L gt;gt; G ; for ( int i = 1 ; i lt;= L ; ++ i ) cin gt;gt; C i ; sum i = sum i - 1 + C i ; for ( int g = 1 ; g lt;= G ; ++ g ) for ( int i = 0 ; i lt;= L ; ++ i ) if ( g == 1 ) F g i = cost ( 1 , i ); else F g i = INF ; for ( int k = 0 ; k lt;= i ; ++ k ) long_long new_cost = F g - 1 k + cost ( k + 1 , i ); if ( F g i gt; new_cost ) F g i = new_cost ; cout lt;lt; F_G_L lt;lt; endl ; return 0 ; Chú_ý là ta sử_dụng mảng sum tiền xử_lí O(L) để có_thể truy_vấn tổng một đoạn (dùng ở hàm cost()) trong O(1) .
+Như_vậy độ phức_tạp của thuật_toán này là O(G_L_L) .
+Thuật_toán tối_ưu hơn Gọi_P(g , i) là k nhỏ nhất để cực_tiểu_hóa F(g , i) , nói_cách_khác , P(g , i) là k nhỏ nhất mà F(g , i) = F(g-1 , k) + Cost(k+1 , i) .
+Tính_chất quan_trọng để có_thể tối_ưu thuật_toán trên là dựa vào tính đơn_điệu của P(g , i) , cụ_thể : P(g , 0) \le P(g , 1) \le P(g , 2) \le \cdots \le P(g , L-1) \le P(g , L)_Ta sẽ không chứng_minh điều này ở đây , độc_giả có_thể tự thuyết_phục rằng điều này là đúng .
+Chia_để_trị Để_ý rằng để tính F(g , i) , ta chỉ_cần quan_tâm tới hàng trước F(g-1) của ma_trận : F(g-1 , 0) , F(g-1 , 1) , . . .
+, F(g-1 , L) .
+Như_vậy , ta có_thể tính hàng F(g) theo thứ_tự bất_kỳ .
+Ý_tưởng là với hàng g , trước_hết ta tính F(g , mid) và P(g , mid) với mid=L/2 , sau_đó sử_dụng tính_chất nêu trên P(g , i) \le P(g , mid) với i lt; mid và P(g , i) \ge P(g , mid) với i gt; mid để đi gọi đệ_quy đi tính hai nửa còn_lại .
+include lt;iostreamgt; const int MAXL = 8008 ; const int MAXG = 808 ; const long_long INF = ( long_long ) 1e18 ; using namespace std ; long_long F_MAXG_MAXL , sum MAXL , C_MAXL ; int P_MAXG_MAXL ; long_long cost ( int i , int j ) if ( i gt; j ) return 0 ; return ( sum j - sum i - 1 ) ( j - i + 1 ); void solve ( int g , int L , int R , int optL , int optR ) if ( L gt; R ) return ; int mid = ( L + R ) / 2 ; F g mid = INF ; for ( int i = optL ; i lt;= optR ; ++ i ) long_long new_cost = F g - 1 i + cost ( i + 1 , mid ); if ( F g mid gt; new_cost ) F g mid = new_cost ; P g mid = i ; solve ( g , L , mid - 1 , optL , P g mid ); solve ( g , mid + 1 , R , P g mid , optR ); int main () int G , L ; cin gt;gt; L gt;gt; G ; for ( int i = 1 ; i lt;= L ; ++ i ) cin gt;gt; C i ; sum i = sum i - 1 + C i ; for ( int i = 1 ; i lt;= L ; ++ i ) F 1 i = cost ( 1 , i ); for ( int g = 2 ; g lt;= G ; ++ g ) solve ( g , 1 , L , 1 , L ); cout lt;lt; F_G_L lt;lt; endl ; return 0 ; Chú_ý rằng ta không_thể đảm_bảo rằng P(g , mid) chia đôi đoạn optL , optR , thực_tế một_vài hàm solve() sẽ chạy chậm hơn nhiều hàm solve() khác .
+Tuy_nhiên ta có_thể chứng_minh được , xét về tổng_thế thuật_toán này chạy đủ nhanh .
+Mỗi lần_ta chia đôi đoạn L , R , nên ta sẽ đảm_bảo có tối_đa O(log(L)) tầng đệ_quy , như_vậy với mỗi hàng g , ta chỉ mất O(L logL) để tính .
+Toàn_bộ thuật_toán có độ phức_tạp là O(G_L logL) .
+Điều_kiện để Chia_để_trị đúng Điều_kiện theo best Như ở bài Hai nhà_máy CEOI 2004 : Nếu best(i) \le best(i+1) , ta có_thể sử_dụng chia_để_trị .
+Điều_kiện theo cost Nếu hàm_cost thoả_mãn quadrangle inequalities : cost(a , d) + cost(b , c) \ge cost(a , c) + cost(b , d) với mọi a lt; b lt; c lt; d , ta cũng có_thể sử_dụng QHĐ chia_để_trị .
+Bài luyện_tập F - ACM_ICPC_Vietnam_Regional 2017 Hackerrank - Mining

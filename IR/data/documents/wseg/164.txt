@@ -1,0 +1,91 @@
+Tác_giả : Khúc Anh_Tuấn Đôi lời về tác_giả : Khúc Anh_Tuấn được coi là huyền_thoại của Competitive_Programming Việt_Nam với nhiều thành_tích khủng : HCB_IOI 2006 Người Việt_Nam duy_nhất từng đạt được Đỏ_Target trên Topcoder (max rating là hơn 3000 , chỉ_có khoảng chưa đến 100 người trên thế_giới đạt được) .
+Rank 2 Facebook_Hackercup_Người Việt_Nam duy_nhất từng lọt vào chung_kết Google_Code_Jam .
+Giữ kỷ_lục thi_ACM ICPC_World final của Việt_Nam tính đến_thời điểm 2011 (rank 17 toàn cầu) .
+Bài viết này được đưa lên thư_viện VNOI cũ và được mình khôi_phục lại sau nhiều năm thất_truyền .
+Trước_khi đọc_bài viết này , bạn cần đọc_bài viết : Bài_toán RMQ và bài_toán LCA để nắm được những khái_niệm cơ_bản .
+Để giải bài_toán LCA ta có_thể chuyển sang bài_toán RMQ tương_ứng và có_thể giải bằng một_số cách khác_nhau .
+Trong bài viết này chúng_ta sẽ đề_cập tới một_số phương_pháp giải bài_toán LCA một_cách trực_tiếp .
+Bài_toán LCA (Least Common_Ancestor) : Input : 1 cây với n đỉnh .
+Truy_vấn : với 2 nút u , v bất_kỳ của cây T , truy_vấn LCA(u , v) cho_biết cha chung gần nhất của 2 đỉnh u , v trong cây T , tức_là cho_biết đỉnh xa gốc nhất_là cha của cả u và v .
+Cách 1 - Sparse_Table_Từ cây đầu_vào ta có_thể xây_dựng được mảng F1 . . n với Fi cho ta biết nút cha của nút i .
+Sau_đó ta có_thể xây_dựng mảng A1 . . n0 . . logN với Aij cho ta biết nút tổ_tiên thứ 2j của nút i .
+Xây_dựng mảng A mất O(Nlog(N)) sử_dụng phương_pháp QHĐ .
+Gọi d(i) là khoảng_cách tới gốc của nút i .
+Để xác_định LCA(u , v) ta thực_hiện các bước sau : Giả_sử d(u) gt; d(v) , ta thay u bằng một nút tổ_tiên của u đến khi d(u)=d(v) .
+Khi d(u)=d(v) ta thay u và v bằng 2 nút tổ_tiên tương_ứng sao_cho vẫn thỏa_mãn d(u)=d(v) đến khi u=v .
+Khi đó ta có được kết_quả cần tìm .
+Tất_nhiên trong quá_trình thay một nút bằng nút tổ_tiên của nó , ta sẽ sử_dụng mảng A để có_thể nhảy một_lần được nhiều bước .
+Khi đó độ phức_tạp của thuật_toán sẽ là lt; O(Nlog(N)) , O(log(N)) gt; .
+Cách 2 - Euler_Tour + Interval_Tree_Từ cây đầu_vào ta sử_dụng thủ_tục DFS để xây_dựng 2 mảng : prevnum1 . . n với prevnumi cho ta biết thứ_tự gọi thủ_tục DFS cho đỉnh i .
+postnum1 . . n với postnumi cho ta biết thứ_tự thoát_khỏi thủ_tục DFS cho đỉnh i .
+Từ 2 mảng prevnum và postnum ta có_thể thấy điều_kiện_cần và đủ để u là cha của v là prevnumu \le prevnumv và postnumu \ge postnumv .
+Do_đó thao_tác chất_vấn LCA(u , v) thực_chất là tìm một đỉnh i sao_cho : prevnumi \le min(prevnumu , prevnumv) postnumi \ge max(postnumu , postnumv) prevnumi lớn nhất có_thể (hoặc postnumi nhỏ nhất có_thể ) .
+2 điều_kiện đầu đảm_bảo i sẽ là cha chung của u và v , điều_kiện thứ 3 đảm_bảo i sẽ là đỉnh xa gốc nhất , tức i = LCA(u , v) .
+Xây_dựng mảng A1 . . n với Ai cho ta biết postnumk với k là đỉnh sao_cho prevnumk=i .
+Ta hoàn_toàn có_thể xây_dựng mảng A trong thời_gian O(N) .
+Như_vậy ta cần tìm trong mảng con A1 . . min(prevnumu , prevnumv) phần_tử cuối_cùng sao_cho giá_trị của nó không nhỏ hơn max(postnumu , postnumv) .
+Ta có_thể sử_dụng cấu_trúc dữ_liệu Interval_Tree để làm_việc này , mỗi nút của cây Interval sẽ lưu giá_trị lớn nhất của một đoạn và khi thực_hiện thủ_tục DFS trên cây Interval_ta ưu_tiên đi sang cây_con bên phải .
+Khi biết được_giá trị postnum (và cả prevnum) của đỉnh cần tìm rồi ta sẽ dễ_dàng biết được đỉnh đó .
+Độ phức_tạp của thuật_toán này cũng giống_như thuật_toán 1 với thời_gian là như chỉ mất O(N) bộ_nhớ .
+Cách 3 Cũng tương_tự cách 2 ta khởi tạo các mảng prevnum1 . . n và postnum1 . . n .
+Mảng_A1 . . n với Ai cho ta biết đỉnh k sao_cho prevnumk = i .
+Như_vậy ta cần tìm LCA(u , v) trong mảng con A1 . . min(prevnumu , prevnumv) .
+Ta có_thể sử_dụng phương_pháp chặt nhị_phân kết_hợp đệ_quy để làm cận (khá tốt) như_sau : Xét thủ_tục Find_LCA(left , right , u , v : Integer) tìm cha chung gần nhất của u , v trong mảng con Aleft . . right .
+Không mất tính tổng_quát giả_sử prevnumult;prevnumv .
+Nếu postnumugt;postnumv thì LCA(u , v)=u và đây là trường_hợp dễ_dàng tìm_ra đáp_án .
+Nếu postnumult;postnumv , gọi mid = (left+right)/2 .
+Xét phần_tử chính giữa đoạn i = Amid sẽ có các khả_năng sau : postnumigt;postnumv : i sẽ là cha chung của u và v nhưng chưa chắc đã_là LCA(u , v) .
+Hiển_nhiên prevnumi \le prevnumLCA(u , v) nên ta gọi đệ_quy : Find_LCA( mid , right , u , v) .
+postnumvgt;postnumigt;postnumu : i là cha của u nhưng không_phải là cha của v .
+Vì_vậy LCA(u , v) = LCA(i , v) , ta gọi đệ_quy : Find_LCA( left , mid , i , v) .
+postnumilt;postnumu : đỉnh i là đỉnh được rẽ nhánh ra từ một nút cha nào_đó của u , nhưng ta hoàn_toàn chưa biết nút cha này nằm dưới hay trên LCA(u , v) .
+Ta có_thể xử_lý theo 2 cách : gọi đệ_quy Find_LCA(left , right , cha(u) , cha(v)) hoặc lấy j = Find_LCA(left , mid , i , u) và j sẽ rơi vào 2 trường_hợp đầu .
+Thuật_toán trên nếu chỉ_thực hiện 2 trường_hợp đầu thì độ phức_tạp cho mỗi lần chất_vấn là LogN , còn nếu chỉ_thực hiện_trường hợp 3 thì độ phức_tạp sẽ là N .
+Qua khảo_sát bằng việc chạy chương_trình cho thấy thời_gian_thực hiện trung_bình của thuật_toán này ngang với các thuật_toán với độ phức_tạp .
+Thuật_toán này tuy có độ phức_tạp lớn nhưng lại là phương_pháp tiết_kiệm bộ_nhớ và cài_đặt dễ_dàng nên đây là thuật_toán có ứng_dụng cao trong làm_bài .
+Cách 4 - Heavy_Light_Decomposition Sử_dụng Heavy_Light_Decomposition .
+Xuất_phát từ_trường hợp suy_biến của cây : mỗi nút của cây chỉ_có đúng 1 con (trừ 1 nút lá không có con) .
+Với một cây suy_biến ta hoàn_toàn có_thể tìm LCA(u , v) trong thời_gian O(1) (đỉnh nào gần gốc hơn trong 2 đỉnh u , v sẽ là LCA(u , v)) .
+Tư_tưởng của Heavy_Light_Decomposition sẽ là chia cây ban_đầu ra thành nhiều cây suy_biến .
+Những đoạn cùng màu là một cây suy_biến .
+Nếu coi mỗi cây suy_biến là một đỉnh thì ta sẽ được một cây mới gọi_là cây rút_gọn .
+Sau_đây là một_cách chia cây để cây rút_gọn thu được có độ_cao O(LogN) với N là số nút của cây ban_đầu : Xuất_phát từ đỉnh gốc Với mỗi đỉnh nếu là lá thì nó sẽ là kết_thúc của một cây suy_biến Nếu_không ta sẽ phát_triển tiếp_cây suy_biến này xuống đỉnh con có trọng_lượng lớn nhất , các đỉnh con khác sẽ là nút gốc của những cây suy_biến mới .
+Trọng_lượng của một nút được định_nghĩa_là số nút nhận nút đó là tổ_tiên (hiểu một_cách trực_quan thì nếu coi mỗi nút có_một “sức nặng” thì trọng_lượng của một nút chính là “sức nặng” mà nút đó phải gánh) .
+Chứng_minh : Gọi_F(n) là hàm cho ta chiều_cao tối_đa của một cây rút_gọn có n đỉnh .
+Ta sẽ chứng_minh F(n) \le log(N)+1 .
+Với n=1 thì F(1) = log(1)+1 .
+Giả_sử điều cần chứng_minh đã đúng đến n-1 .
+Với một cây có N đỉnh và nút gốc sẽ có các cây_con với số đỉnh là x_1 , . . . , x_k .
+Giả_sử x_1 = max(x1 . . xk) .
+Ta có 2max(x_2 . . x_k) \le max(x_2 . . x_k) + x_1 \le N \rightarrow max(x2…xk) \le N/2 .
+Theo cách xây_dựng cây thì : F(N) = max( F(x_1) , F(x_2)+1 , F(x_3)+1 , . . , F(x_k)+1 ) Mà : - F(x_1) \le F(N-1) \le LogN+1 - F(x_2) +1 \le F(N/2)+1 \le LogN+1 - . . .
+- F(x_k) +1 \le F(N/2)+1 \le LogN+1_Vậy_F(N) \le LogN+1 (Điều phải chứng minh) .
+Để thực_hiện chất_vấn LCA(u , v) ta lần_lượt nhảy từ u và v trở_về gốc của cây .
+Từ một đỉnh ta thực_hiện lần_lượt một_bước nhảy_dài tới gốc của cây suy_biến chứa nó và một_bước nhảy ngắn tới nút cha (qua đó chuyển sang cây suy_biến mới) .
+Sau khi xác_định được cây suy_biến chứa LCA(u , v) , ta có_thể xác_định được đỉnh u_1 , v_1 tương_ứng là nút đầu_tiên_ta gặp khi nhảy từ u , v tới cây suy_biến chứa LCA(u , v) .
+Sau_đó chỉ_cần sử_dụng một_phép so_sánh xem u_1 hay v_1 gần gốc hơn_là có_thể xác_định được LCA(u , v) .
+Tuy về ý_tưởng ta quan_tâm nhiều đến việc chia cây ban_đầu ra thành nhiều cây suy_biến nhưng về_mặt cài_đặt , ta chỉ_cần quan_tâm với mỗi nút của cây đầu_vào , nút gốc của cây suy_biến chứa nó là nút nào .
+Dễ thấy khi thực_hiện thủ_tục DFS (có ưu_tiên gọi đệ_quy tới nút con có trọng_lượng lớn nhất trước) các nút sẽ được liệt_kê lần_lượt theo từng cây suy_biến .
+Vì_vậy ta có_thể khởi tạo mảng Head1 . . n với Headi cho ta biết nút gốc của cây suy_biến chứa nút i chỉ với O(N) .
+Thuật_toán này sẽ chạy trong thời_gian .
+Thuật_toán này khá linh_hoạt và có_thể mở_rộng ra để ứng_dụng vào nhiều bài_toán khác trên cây .
+Để_ý rằng nếu cây ban_đầu có trọng số ở mỗi cạnh , sau khi chia thành các cây suy_biến thì cạnh của mỗi cây suy_biến sẽ giống_như các phần_tử liên_tiếp của một mảng .
+Do_đó ta hoàn_toàn có_thể sử_dụng các cấu_trúc dữ_liệu như Interval_Tree để quản_lý việc thay_đổi hay chất_vấn thông_tin về các cạnh này .
+Đây chính là ý_tưởng để làm_bài QTREE .
+Cách 5 - Xử_lý offline Đây là một phương_pháp để giải bài_toán LCA khi đã biết trước mọi câu_hỏi chất_vấn .
+Cách làm này tuy không linh_hoạt nhưng thời_gian chạy khá nhanh và tiết_kiệm bộ_nhớ .
+Tư_tưởng của phương_pháp này là trả_lời các câu chất_vấn theo một thứ_tự khác dễ_dàng hơn .
+Với mỗi nút của cây_ta sẽ lưu nó trong một_tập hợp có nhãn .
+Ban_đầu mỗi nút thuộc một_tập hợp khác_nhau và nhãn của tập_hợp chính là chỉ_số của nút đó .
+Sau_đó ta thực_hiện thủ_tục DFS , trước_khi thoát ra khỏi thủ_tục DFS ta thực_hiện 2 thao_tác sau : Tìm cha chung của u với các đỉnh v mà thủ_tục DFS(v) đã được thực_thi .
+Đỉnh cha chung chính là nhãn của tập_hợp chứa v .
+Hợp_nhất tập_hợp chứa u với tập_hợp chứa cha(u) và lấy nhãn là cha(u) .
+Ta sẽ chứng_minh “Đỉnh cha chung chính là nhãn của tập_hợp chứa v” .
+Giả_sử i=LCA(u , v) .
+Sau khi thực_thi thủ_tục DFS(v) xong , từ v thủ_tục DFS phải đi_về i và rẽ xuống u để có_thể thực_hiện DFS(u) .
+Trong quá_trình đi_về i , nó sẽ hợp_nhất v với cha v , ông v , . .
+rồi với i .
+Do_đó nhãn của tập chứa v chính là i .
+Để thực_hiện thao_tác hợp_nhất 2 tập_hợp với thời_gian ngắn , ta có_thể sử_dụng cấu_trúc disjoint set giống_như trong thuật_toán Kruskal .
+Độ phức_tạp của phương_pháp này là (M+N)log(N) với M là số thao_tác .
+Các bài_tập áp_dụng : VOJ - LUBENICA_SPOJ - LCA_SPOJ - QTREE_VOJ - QTREE3_VOJ - VOTREE

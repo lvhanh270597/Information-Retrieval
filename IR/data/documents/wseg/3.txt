@@ -1,0 +1,47 @@
+Tác_giả : Đinh Hoàng_Phong Một_số điểm cần lưu_ý trong_khi viết resume Với những bạn đang học đại_học thì thường resume không nên dài quá 1 trang Bạn nên viết rõ mục_tiêu của bạn (objective) vào trong resume để nhà tuyển_dụng hiểu rõ bạn đang tìm_kiếm điều gì trong công_việc tiếp_theo .
+Nhấn_mạnh những kĩ_năng có liên_quan đến công_việc bạn đang tìm_kiếm , và nếu_cần thiết thì_phải bỏ_đi những phần không liên_quan .
+Nếu bạn còn đang là sinh_viên thì nên ghi_rõ trường bạn đang học và điểm trung_bình tới thời_điểm gần nhất .
+Khi bạn viết resume xong , hãy đưa thử một người khác đọc và hỏi họ xem , nếu họ là nhà tuyển_dụng , họ có chú_ý đến bạn hay_không , từ_đó bạn hãy lắng_nghe những gì họ nói và sửa_đổi để hoàn_thiện resume của mình hơn Ví_dụ : một resume được trình_bày rõ_ràng Những bước cơ_bản để nộp hồ_sơ và thu_hút nhà tuyển_dụng Nếu bạn có quen_biết ai trong một công_ty nào nó , hãy nhờ họ giới_thiệu bạn vào công_ty đấy (ask for referral) .
+Đây là cách dễ nhất để được chọn phỏng_vấn , tất_nhiên với điều_kiện là bạn cũng phải là một người có thực_lực .
+Có nhiều cách để giới_thiệu bản_thân đến các công_ty như hội_chợ việc_làm , Linkedin . . .
+Bạn có_thể liên_hệ trực_tiếp nhà tuyển_dụng để giới_thiệu bản_thân .
+Một_số công_ty lớn thì sẽ yêu_cầu bạn nộp hồ_sơ qua Internet .
+Họ sẽ yêu_cầu bạn có resume , thỉnh_thoảng có cả thư xin_việc (cover letter) , và học_bạ (transcript) .
+Nếu bạn đang tìm_kiếm một công_việc có liên_quan đến nghiên_cứu khoa_học , và bạn có_một bài báo ở một hội_nghị khoa_học lớn , bạn nên tham_dự vì sẽ có rất nhiều nhà tuyển_dụng của các công_ty hàng_đầu thế_giới đến để mời_chào bạn .
+Quy_trình phỏng_vấn thông_thường Coding assessment : Phần này bạn sẽ phải giải 1 đến 2 bài_toán trong một_thời gian quy_định .
+Các bài_toán này chủ_yếu tập_trung vào thuật_toán (algorithms) và cấu_trúc dữ_liệu (data structure) đơn_giản , không quá phức_tạp .
+Phone screening : Phần này bạn sẽ phải trả_lời phỏng_vấn trực_tiếp qua điện_thoại (hoặc Skype/Hangouts/ . . . ) Onsite_Interview : Đến vòng phỏng_vấn này , bạn sẽ được mời đến công_ty và sẽ có 3-5 người phỏng_vấn bạn trực_tiếp tại_chỗ .
+Ở mỗi lần phỏng_vấn , sẽ có khoảng 1 đến 3 nhân_viên đưa_ra những câu_hỏi khác_nhau cho bạn .
+Một_số công_ty sẽ có_nhân_viên dẫn bạn đi ăn sáng/trưa/tối để đánh_giá con_người của bạn .
+Interview with hiring manager : Một_số công_ty sẽ yêu_cầu bạn thêm một phần phỏng_vấn với một hiring manager , người đưa_ra quyết_định cuối_cùng về việc có tuyển_dụng bạn hay_không .
+Ở vòng này có_thể là technical hoặc behavioral skills .
+Những điều cần biết khi trả_lời phỏng_vấn Nếu bạn không bị bắt_buộc về ngôn_ngữ_lập_trình khi phỏng_vấn , hãy nói_rõ cho người phỏng_vấn_biết ngôn_ngữ bạn lựa_chọn để phỏng_vấn là gì .
+Khi đọc câu_hỏi xong , bạn nên xác_định lại với người phỏng_vấn rằng bạn đã hiểu rõ câu_hỏi để tránh thời_gian bạn hiểu sai câu_hỏi , dẫn đến lãng_phí thời_gian .
+Bạn không nên hỏi người phỏng_vấn về độ phức_tạp của thuật_toán mà họ yêu_cầu .
+Đây là một phần đánh_giá mà thường thì người phỏng_vấn sẽ đặt ra để bạn tự tìm_kiếm cách trả_lời tối_ưu .
+Trong quá_trình suy_nghĩ trả_lời câu_hỏi , bạn cần phải nghĩ đến cả các giới_hạn và những điều bạn có_thể giả_định trước được .
+Ví_dụ như nếu bài_toán có đầu_vào là một dãy_số , bạn cần biết đó là dãy_số tự_nhiên hay số_thực , và dãy_số có độ_dài là bao_nhiêu , và định_dạng của đầu_vào như_thế nào .
+Khi bạn trả_lời một câu_hỏi phỏng_vấn thì hãy đưa_ra một_cách giải đơn_giản nhất , không cần phải tối_ưu (trừ khi bạn chắc_chắn rằng cách giải tối_ưu của bạn là đúng , và bạn có_thể lập_trình trong một_thời gian ngắn) .
+Nếu_như bạn không nghĩ_ra cách giải tối_ưu thì ít nhật bạn cũng có_một cách giải để giải_quyết được bài_toán .
+Trong thực_tế thì_có những bài_toán thì cách giải tối_ưu cũng chỉ là một_phép tối_ưu_hoá từ những cách giải đơn_giản .
+Khi bạn trả_lời phỏng_vấn qua điện_thoại thì_phải nói hết ra những gì bạn suy_nghĩ .
+Quá_trình này ban_đầu có_vẻ rất khó để luyện_tập , nhưng nếu_như bạn không làm như_vậy thì không cách nào người phỏng_vấn có_thể biết được bạn đang suy_nghĩ gì , và cách họ đánh_giá về bạn cũng không được rõ_ràng và chính_xác nhất .
+Nếu_như trong_vòng 2 đến 3 phút và bạn không có_một ý_tưởng để trả_lời câu_hỏi thì bạn có_thể yêu_cầu một gợi_ý để bạn có_thể giải_quyết bài_toán .
+Đây là một điều chấp_nhận được và rất bình_thường trong phỏng_vấn .
+Điều quan_trọng nhất của một cuộc phỏng_vấn đó là hãy xem nó như một cuộc trò_chuyện về một bài_toán giữa hai lập_trình_viên với_nhau .
+Bạn cần phải thoải_mái bởi_vì họ cũng sẽ đánh_giá ở tiêu_chí này .
+Người phỏng_vấn cần biết được rằng bạn có_thể là một người đồng_nghiệp của họ trong tương_lai được hay_không .
+Bạn cũng có_thể tham_khảo thêm hướng_dẫn phỏng_vấn của Google_Những dạng câu_hỏi và cách luyện_tập trả_lời Dạng câu_hỏi về kĩ_thuật (technical questions) 90% các câu_hỏi sẽ thuộc về dạng này .
+Các câu_hỏi ở dạng này sẽ có những loại như_sau : Câu_hỏi về thuật_toán (algorithms) Câu_hỏi về cấu_trúc dữ_liệu (data structure) Câu_hỏi về khả_năng thiết_kế hệ_thống (system design) Dạng câu_hỏi về kĩ_năng ứng_xử (behavioral questions) Một_số công_ty sẽ yêu_cầu bạn trả_lời những tình_huống nhất_định để đánh_giá về con_người của bạn có phù_hợp với yêu_cầu nhất_định hay_không .
+Với những bạn chưa có nhiều kiến_thức hoặc muốn ôn_tập lại kiến_thức về thuật_toán và cấu_trúc dữ_liệu thì các bạn có_thể tìm đọc những cuốn sách (như sách của thầy Lê_Minh Hoàng) hoặc những bài viết tiếp_theo của chúng_tôi về những kiến_thức cơ bản/nâng cao cần biết về thuật_toán .
+Với những bạn đã có những kiến_thức cơ_bản về thuật_toán và cấu_trúc dữ_liệu thì cơ_bản các bạn chỉ_cần luyện_tập kĩ_năng trả_lời câu_hỏi sao_cho thật_là thuần_thục .
+Một_số trang_web để các bạn luyện_tập như leetcode , hackerrank , . . .
+Nếu bạn có quen một ai đó có_thể giúp_đỡ bạn , bạn hãy nhờ họ làm một cuộc phỏng_vấn thử .
+Trong_lúc phỏng_vấn thử này , họ sẽ đưa cho bạn một câu_hỏi , và nhiệm_vụ của bạn là hãy trả_lời một_cách suôn_sẻ , và họ sẽ đưa_ra ý_kiến của_riêng họ về những điều bạn có_thể cải_thiện để tiến_bộ hơn .
+Những điều mà các nhà tuyển_dụng thường chú_ý Khả_năng chuyên_môn giỏi : Điều này thể_hiện qua cách bạn giải_quyết các vấn_đề , bài_toán mà họ đưa_ra .
+Bạn có_thể không_phải là người giỏi nhất , nhưng chỉ_cần bạn thể_hiện đúng năng_lực của mình với sự tự_tin và kiến_thức của bản_thân , họ sẽ có_một đánh_giá công_bằng nhất về trình_độ hiện_tại và có_thể là tương_lai của bạn .
+Khả_năng giao_tiếp thuần_thục : Họ đang tìm_kiếm những nhân_viên tương_lai mà họ đánh_giá rằng họ có_thể huấn luyện/làm việc chung với chính_bản thân họ được .
+Vì_vậy , hãy cứ thoải_mái chia_sẻ và trao_đổi với người phỏng_vấn để họ biết được khả_năng thật_sự của bạn ở mức_độ nào .
+Sự trung thật : Bạn sẽ không bao_giờ thành_công nếu thiếu yếu_tố này .
+Một ví_dụ đơn_giản như nếu bạn đã biết chắc_chắn đáp_án của câu_hỏi mà nhà tuyển_dụng đưa_ra , hãy thành_thật nói với họ như_vậy .
+

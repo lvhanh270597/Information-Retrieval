@@ -1,0 +1,107 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong , chúng_ta đã tìm_hiểu hai lớp bài_toán : và .
+Nói ngắn_gọn , là lớp bài_toán quyết_định mà chúng_ta có_thể giải trong thời_gian đa_thức còn là lớp bài_toán mà chúng_ta có_thể kiểm_tra lời_giải trong thời_gian đa_thức .
+Về_mặt trực_quan , các bài_toán dễ giải cũng là các bài_toán dễ kiểm_tra .
+Do_đó , .
+Câu_hỏi vs "Liệu các bài_toán dễ kiểm_tra lời_giải thì_có dễ giải hay_không ? " vẫn là một câu_hỏi mở chưa có lời_giải .
+Trong bài này , chúng_ta sẽ xem một_cách tiếp_cận đối_với câu_hỏi vs thông_qua một lớp các bài_toán trong số các bài_toán trong lớp .
+Những bài_toán đó được gọi_là bài_toán thuộc lớp .
+Nhưng làm thế_nào để biết được bài_toán nào_là khó nhất trong số vô_hạn các bài_toán trong ?
+Cook và Levin độc_lập đưa_ra câu trả_lời cho câu_hỏi này , câu trả_lời trở_thành .
+Định_lý này (cùng một_số công_trình khác) mang về cho Cook giải Turing .
+Công_cụ sử_dụng trong chứng_minh của định_lý Cook-Levin chính là quy dẫn (reduction) .
+Phần đầu_tiên của bài viết_ta sẽ nghiên_cứu công_cụ này .
+Trong lớp có cả những bài_toán khó và dễ .
+Lớp các bài_toán khó nhất_là lớp dưới_đây .
+Một input của một bài_toán quyết_định A được gọi_là một -instance nếu đầu_ra tương_ứng của input này là .
+Ngược_lại , ta gọi_là một -instance của bài_toán A .
+Ta sẽ dùng để kí_hiệu chiều_dài của input .
+Chữ_Karp ở trên là tên của nhà_khoa_học , người đưa_ra định_nghĩa này .
+Quy dẫn có nhiều dạng khác_nhau , nhưng ở đây ta chỉ xét quy dẫn Karp (Karp reduction) định_nghĩa ở trên .
+Do_đó , ta sẽ nói ngắn_gọn là quy dẫn .
+Ta có nhận_xét : nếu là một đa_thức bậc , là một đa_thức bậc thì_là một đa_thức bậc .
+Một_cách ngắn_gọn , ta có : Gọi_là một input của bài_toán .
+Gọi lần_lượt là giải_thuật quy dẫn từ sang và từ sang .
+Gọi_là một giải_thuật quy dẫn từ sang , trong đó , với mỗi , ta thu được đầu_ra .
+Theo định ngĩa , thời_gian tính_toán của thuật_toán là : Do là giải_thuật có thời_gian đa_thức , ta có (một giải_thuật đa_thức không_thể có đầu_ra có chiều_dài lũy thừa) .
+Theo , ta có (dpcm) .
+Gọi_là một đầu_vào của bài_toán .
+Để xác_định xem có_phải là một -instance của hay_không , ta sẽ : Theo , , cả hai bước trên đều có_thể thực_hiện được trong thời_gian đa_thức (dpcm) .
+Quy dẫn cung_cấp cho chúng_ta một công_cụ rất đẹp để định_lượng "độ khó" giữa hai bài_toán .
+Nếu , Lemma 1 cho chúng_ta biết bài_toán sẽ dễ hơn bài_toán , theo nghĩa , nếu ta giải được trong thời_gian đa_thức thì ta cũng giải được trong thời_gian đa_thức .
+Điều ngược_lại có_thể sẽ không đúng .
+Sau_đây ta xét ví_dụ minh_họa quy dẫn giữa hai bài_toán và .
+Ví_dụ : (a) Một bàn_cờ và một_số ô bị xóa (các ô bị tô_màu đen) và (b) một_cách xếp các quân domino phủ kín bàn_cờ .
+Ví_dụ : Đồ_thị hai phía với các đỉnh tô_màu xám ở một phía và các đỉnh màu trắng ở phía còn_lại .
+Các cạnh tô đậm màu đỏ là một cặp ghép hoàn_hảo .
+Đồ_thị này được xây_dựng từ thuật_toán quy dẫn trình_bày dưới_đây áp_dụng cho Figure 1(a) . Ta có : Từ bàn_cờ kích_thước , ta tạo ra một đồ_thị trong đó mỗi đỉnh của đồ_thị là một ô (chưa bị xóa) của bàn_cờ và mỗi cạnh nối hai đỉnh tương_ứng với hai ô kề nhau của bàn_cờ (hai ô_vuông có chung một cạnh) .
+Đồ_thị là đồ_thị hai phía vì ta có_thể lấy các đỉnh tương_ứng với các ô đen của bàn_cờ là một phía và các đỉnh tương_ứng với các ô trắng là phía còn_lại .
+Ta chỉ_cần chứng_minh bàn_cờ có_thể phủ được bằng các quân Domino khi và chỉ khi đồ_thị có cặp ghép hoàn_hảo .
+Thật_vậy , nếu bàn_cờ có_thể phủ kín được bằng cách quân Domino , mỗi quan Domino sẽ tương_ứng với một cạnh của cặp ghép .
+Do_đó , có_một cặp ghép hoàn_hảo .
+Ngược_lại , với mỗi cạnh của cặp ghép hoàn_hảo của , ta đặt một quân Domino phủ hai đỉnh tương_ứng của cạnh đó .
+Do cặp ghép là hoàn_hảo , các quân Domino sẽ phủ kín bàn_cờ (dpcm) . Bài_toán tìm cặp ghép hoàn_hảo của đồ_thị hai phía có_thể giải được trong , ta suy ra .
+Do_đó , theo Lemma 1 , . Ta đã có trong tay công_cụ để xác_định độ khó giữa các bài_toán .
+Giờ ta có_thể định_nghĩa một lớp các bài_toán "khó" , khó hơn tất_cả các bài_toán trong lớp .
+Nếu bài_toán trong định_nghĩa trên cũng thuộc lớp , ta nói thuộc lớp .
+= Nhắc_lại : một bài_toán quyết_định được gọi_là thuộc lớp nếu bài_toán đó có_một bằng_chứng đơn_giản dễ kiểm_tra .
+Theo định_nghĩa trên , chỉ là một lớp bài_toán con của lớp .
+Lớp còn bao_gồm những bài_toán mà kể_cả cho máy_tính vô_hạn thời_gian , nó cũng không giải được .
+Ngược_lại , tất_cả các bài_toán thuộc lớp ta đều có_thể giải được trong một_thời gian hữu hạn; cụ_thể là thời_gian lũy_thừa . Cũng theo định_nghĩa trên , một bài_toán thuộc thì cũng thuộc .
+Do_đó , nó là một bài_toán "khó nhất" trong số các bài_toán trong lớp .
+Nếu ta có_thể giải được một bài_toán nào_đó trong lớp trong thời_gian đa_thức thì ta có_thể giải được tất_cả các bài_toán trong lớp trong thời_gian đa_thức . Lớp bài_toán theo định_nghĩa ở trên thực_sự là một lớp bài_toán thú_vị .
+Tuy_nhiên , liệu một bài_toán có tồn_tại hay_không ?
+Nếu tồn_tại thì nó trông như_thế nào ?
+Cook và Levin chứng_minh rằng không_những tồn_tại một bài_toán mà_còn tồn_tại một bài_toán rất "đẹp" .
+Định_nghĩa bài_toán , bạn_đọc có_thể xem .
+Chứng_minh định_lý Cook-Levin vượt_quá khuôn_khổ của bài viết .
+Bạn_đọc có_thể xem tại CLRS_Chapter 36 2 .
+Nếu nghĩ sâu hơn về định lính này , thực_sự đây là một kết_quả ngạc_nhiên .
+Tất_cả các bài_toán đều "dễ" hơn .
+Bài_toán thực_sự mà Cook-Levin chứng_minh thuộc NP-complete là , một phiên_bản dạng mạch_điện tử của .
+Richard_Karp chính là người_chứng minh mà ta định_nghĩa ở blog này thuộc .
+Do không muốn đi "đường vòng" qua nên mình cho vào định_lí Cook-Levin . Sau định_lý Cook-Levin , Richard_Karp 3 chứng_minh 21 bài_toán khác cũng thuộc lớp .
+Một_vài trong số đó là các bài_toán mà ta đã định_nghĩa ở .
+Trong post tới đây , ta sẽ chứng_minh một_số bài_toán đó là .
+Các chứng_minh của Karp đều dựa trên bổ_đề sau : Gọi_là một bài_toán trong .
+Vì , ta có .
+Do , theo tính bắc_cầu của quy dẫn , ta suy ra .
+Như_vậy , mọi bài_toán trong đều có_thể quy về , do_đó , .
+Do , ta suy ra dpcm . Sau_đây ta sẽ chứng_minh thuộc để minh_họa ý_tưởng .
+Bài_toán là bài_toán trong đó mỗi mệnh_đề chỉ_có tối_đa 3 literals (xem định_nghĩa đầy_đủ tại) .
+Theo_Lemma 3 và Cook-Levin theorem , ta chỉ_cần chứng_minh Gọi_là một input .
+Ta sẽ tìm cách biến_đổi , trong thời_gian , thành một biểu_thức sao_cho và thỏa_mãn được (satisfiable) khi và chỉ khi thỏa_mãn được .
+Lấy một mệnh_đề trong mà mệnh_đề này có biến với .
+Các biểu_thức 3 biến ta chỉ_cần giữ_nguyên .
+Không mất tính tổng_quát , giả_sử .
+Chú_ý , ở đây dấu phủ trên hai biến và không đóng_vai trò gì đặc_biệt .
+Thêm một biến (không xuất_hiện trong ) và thay bằng hai mệnh_đề mới : và gọi_là biểu_thức thu được .
+Ta thấy : Để thu được biểu_thức , ta chỉ_cần áp_dụng phép biến_đổi trên nhiều lần đối_với mọi mệnh_đề có ít_nhất 4 biến cho_đến khi_nào ta thu được biểu_thức mà các mệnh_đề chỉ_có không quá 3 biến .
+Số lần áp_dụng phép biến_đổi trên tối_đa là , do_đó , tổng thời_gian của các phép biến_đổi là .
+Theo tính chât 3 , biểu_thức cuối_cùng thỏa_mãn được khi và chỉ khi biểu_thức ban_đầu thỏa_mãn được (dpcm) . 1 S .
+A .
+Cook .
+Proceedings of the Third_Annual_ACM_Symposium on Theory of Computing .
+pp .
+151-158 .
+ACM , 1971 .
+2 T .
+H .
+Cormen , C .
+E .
+Leiserson , R .
+L .
+Rivest , C .
+Stein .
+.
+Chapter 36 .
+MIT_Press and McGraw-Hill .
+ISBN 0-262-03293-7 .
+(2001) .
+3 R .
+M .
+Karp .
+Complexity of Computer_Computations .
+Springer_US , 1972 .
+85-103 .
+, , , , , , , , Trackback link : Powered by and

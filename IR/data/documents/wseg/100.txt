@@ -1,0 +1,14 @@
+Nguồn : e-maxx Người dịch : Nguyễn_Thành_Trung (RR) Table of_Contents Định_nghĩa : Extended_Euclid_Tính nghịch_đảo modulo bằng ab % c Tính tất_cả nghịch_đảo modulo m Các bài luyện_tập Định_nghĩa : Xét số_nguyên_dương m .
+Xét các số_nguyên trên modulo m (từ 0 đến m-1) .
+Với một_số nguyên a , ta gọi nghịch_đảo modulo m (modular multiplicative inverse) của a là a-1 là số_nguyên thoả_mãn : a a-1 \equiv 1 \; \pmodm Ta cần chú_ý rằng không_phải lúc nào a-1 cũng tồn_tại .
+Ví_dụ , với m = 4 , a = 2 , ta không_thể tìm được a-1 thoả_mãn đẳng_thức trên .
+Có_thể chứng_minh rằng a-1 luôn_luôn tồn_tại nếu gcd(a , m) = 1 .
+Trong bài viết này , mình sẽ trình_bày 2 cách khác_nhau để tìm nghịch_đảo modulo , dựa trên các kiến_thức đã được trình_bày ở các bài viết trên VNOI : Extended_Euclid_Tính ab % c bằng chia_để_trị Phi_hàm Euler_Extended_Euclid_Như đã trình_bày trong bài viết Số_học 1 , nếu gcd(a , m) = 1 , ta luôn_luôn tìm được 2 số_nguyên x và y thoả_mãn : a x + m y = 1 .
+Vì ta đang làm_việc trên modulo m , ta có_thể bỏ m y và viết lại đẳng_thức trên như_sau : a x \equiv 1 \pmodm .
+Do_đó , x chính là a-1 .
+Cài_đặt : int x , y ; int g = extended_euclidean ( a , m , x , y ); if ( g ! = 1 ) cout lt;lt; "No solution ! " ; else x = ( x % m + m ) % m ; cout lt;lt; x lt;lt; endl ; Tính nghịch_đảo modulo bằng ab % c Khi gcd(a , m) = 1 , theo định_lý Euler , ta có : aphi(m) \equiv 1 \pmodm .
+Với Phi_hàm Euler đã được giải_thích ở bài viết Số_học 4 .
+Trong trường_hợp m là số_nguyên_tố , phi(m) = m - 1 , nên ta có : am-1 \equiv 1 \pmodm .
+Nhân cả 2 vế với a-1 , ta được : Với m bất_kỳ , aphi(m) - 1 \equiv a-1 \pmodm , Với m nguyên_tố , am-2 \equiv a-1 \pmodm .
+Như_vậy , ta có_thể dùng thuật_toán Tính ab % c bằng chia_để_trị để tính nghịch_đảo modulo với độ phức_tạp O(\logm) .
+Tính tất_cả nghịch_đảo modulo m Trong trường_hợp m là số_nguyên_tố , ta cũng có_thể tính tất_cả nghịch_đảo modulo của toàn_bộ 1 , m-1 với độ phức_tạp O(m) như_sau : r 1 = 1 ; for ( int i = 2 ; i lt; m ; ++ i ) r i = ( m - ( m / i ) r m % i % m ) % m ; Chứng_minh : m \% i = m - floor(m/i) i m \% i \equiv -floor(m/i) i \pmodm Nhân cả 2 vế với nghịch_đảo modulo của i và nghịch_đảo modulo của m \% i : ri \equiv -floor(m/i) rm \% i \pmodm Các bài luyện_tập UVa 11904 - One_Unit_Machine_Hackerrank - Longest_Increasing_Subsequence_Arrays_Codeforces 300C - Beautiful_Numbers_Codeforces 622F - The_Sum of the k-th Powers_Codeforces 717A - Festival_Organization

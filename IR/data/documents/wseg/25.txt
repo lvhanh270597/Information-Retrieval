@@ -1,0 +1,85 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Chủ_đề của bài này là bổ_đề Johnson-Lindenstrauss 1 , một công_cụ được sử_dụng rất nhiều để giảm chiều dữ_liệu .
+Về các ứng_dụng cụ_thể của bổ_đề mình khuyến_khích các bạn tự Google , do ở đây mình không có nhiều không_gian để viết về vấn_đề đó . Bài này mang tính_chất giới_thiệu ý_tưởng là chính , sau_đó là một_chút "hương vị" trong chứng_minh bổ_đề .
+Lối trình_bày của bài này xuất_phát từ 8 .
+Mình sẽ vạch_ra con_đường để chứng_minh và khuyến_khích bạn_đọc tự "lấp đầy" những đoạn bỏ_trống của bài viết .
+Lời_giải đầy_đủ của những đoạn bỏ_trống mình sẽ liên_kết đến tài_liệu tham_khảo .
+Trước_hết chúng_ta phát_biểu bổ_đề : Ở đây là .
+Từ nay về_sau , ta viết tắt ohnson-indenstrauss emma là JLL .
+Trong một_số ứng_dụng big data , số chiều của dữ_liệu rất lớn , xấp_xỉ số điểm dữ_liệu .
+Ví_dụ .
+Sử_dụng JLL , ta có_thể chiếu lượng dữ_liệu này về_không gian cỡ để đảm_bảo khoảng_cách giữa hai điểm dữ_liệu bất_kì thay_đổi không quá lần .
+Ta có_thể lấy thì số chiều cần_thiết là không quá 2400 , nhỏ hơn nhiều lần số chiều gốc là .
+Con_số là con_số lý thyết để đảm_bảo sự tồn_tại của .
+Con_số thực_tế cần_thiết thường nhỏ hơn rất nhiều (cỡ vài trăm) .
+Phát_biểu của bổ_đề trên mới đảm_bảo tồn_tại của hàm .
+Chứng_minh dưới_đây sẽ cho chúng_ta một thuật_toán (ngẫu nhiên) để tìm_ra .
+Bổ_đề JLL thường được ứng_dụng để tiền xử_lí (preprocess) dữ_liệu trước_khi đi_vào xử_lí sâu hơn (ví dụ phân_loại hoặc phần cụm dữ liệu) .
+JLL chỉ_bảo toàn khoảng_cách giữa mọi cặp điểm , do_đó , chúng_ta cần phải cẩn_thận trong việc ứng_dụng JLL tiền xử_lí .
+Ví_dụ ta muốn phân_loại dữ_liệu thì tiền xử_lí bằng JLL chưa chắc đã_là tốt (có thể dùng thay thế) .
+Nếu muốn phân cụm dữ_liệu thì_có lẽ JLL áp_dụng được .
+Trong phần Example của note 3 , Jelani_Nelson chứng_minh rằng JLL dùng để tiền xử_lí cho .
+Theo_JLL , .
+Quan_hệ phụ_thuộc giữa và đã được Larsen và Nelson 5 chứng_minh là tối_ưu về_mặt lý_thuyết .
+Có hai phiển bản khác của JLL : phiên_bản Fast_JLL 6 và phiên_bản Sparse_JLL 7 .
+Bạn_đọc có_thể tham_khảo thêm trong note 4 của Jelani_Nelson . Trong phần này mình sẽ phác_họa (sketch) chứng_minh (cũng như đi tìm hàm ) của JLL .
+Lemma 1 dưới_đây cho ta biết , hàm chỉ đơn_giản là một ma_trận với các phần_tử được chọn ngẫu_nhiên từ phân_bố chuẩn () .
+Cuối bài mình sẽ thảo_luận 2 cách khác để tìm hàm .
+Phương_pháp chứng_minh là sử_dụng union-bound .
+Bạn có_thể xem_lại một_số khái_niệm cơ_bản về xác_suất . Xác_suất để một cặp bất_kì phương_trình , theo Lemma 1 (cho ) , là không quá .
+Do_đó , xác_suất đề một cặp bất_phương_trình là không quá .
+Do_đó , xác xuất để thỏa_mãn phương_trình cặp là : Xác_suất này lớn hơn khi .
+Một sự_kiện có xác_suất lớn hơn không khi và chỉ khó nó .
+Điều đó có_nghĩa là tồn_tại thỏa_mãn JLL .
+Từ_đây về_sau , ta sẽ tập_trung chứng_minh Lemma 1 .
+Bằng cách chia hay vế của bất_đẳng_thức : cho , ta có_thể giả_sử .
+Do_đó , ta chỉ_cần chứng_minh : Đặt : Ta có : Do , từ suy ra chính là một tổ_hợp tuyến_tính (linear combination) của các biến ngẫu_nhiên Gauss đồng_nhất và phân_phối độc_lập .
+Ta nhắc_lại tính_chất sau của phân_phối : Fact 1 kết_hợp với quy_nạp và điều_kiện , ta suy ra : Ta biến_đổi vế trái của như_sau : Ở đây , là với bậc tự_do vì nó là tổng bình_phương của biến ngẫu_nhiên độc_lập có cùng phân_bố . Để chứng_minh , ta chỉ_cần chứng_minh : Mình sẽ dừng chứng_minh ở đây vì chứng_minh thực_ra là tính tail-bound của phân_bố chi-squared , một bài_toán khá cổ_điển trong xác_suất thống_kê .
+Bạn_đọc có_thể tiếp_cận bằng 2 cách : (a) sử_dụng tích chất của phân_phối chi-squared và (b) sử_dụng và giống_như trong chứng_minh của và .
+Cách (a) thì bạn chịu_khó đọc trang wikipedia của chi-squared còn cách (b) đã được trình_bày trong note 8 . Có hai cách khác để sinh_ra hàm như trong Lemma 1 .
+Tuy_nhiên , chứng_minh bổ_đề JLL với cả hai cách trọn trên đều không đơn_giản .
+Các bạn có_thể tham_khảo note 2 của Jiri_Matousek . 1 W .
+B .
+Johnson and J .
+Lindenstrauss .
+.
+Conference in modern analysis and probability (New Haven , Conn . , 1982) , 189–206 .
+Contemp .
+Math 26 (1984) .
+2 J .
+Matousek .
+.
+3 J .
+Nelson .
+.
+August , 2015 .
+4 J .
+Nelson .
+.
+August , 2015 .
+5 K .
+G .
+Larsen and J .
+Nelson .
+(2016) .
+6 N .
+Ailon and B .
+Chazelle .
+.
+Proceedings of the 38th Annual_ACM_Symposium on Theory of Computing .
+pp .
+557–563 .
+2006 .
+7 D .
+M .
+Kane and J .
+Nelson .
+.
+Proceedings of the 23rd Annual_ACM-SIAM_Symposium on Discrete_Algorithms , pp .
+1195–1203 .
+2012 .
+8 S .
+Kakade and G .
+Shakhnarovich , .
+2009 .
+, , , , Trackback link : Powered by and

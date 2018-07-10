@@ -1,0 +1,67 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta sẽ làm_quen với một cấu_trúc dữ_liệu sử_dụng trong hình_học tính_toán (computational geometry) tên_gọi là (Priority Search_Tree - PST) .
+Cây_PST được McCreight 1 phát_triển vào năm 1985 (cũng là người phát_triển thuật_toán tuyến_tính ) .
+Cấu_trúc cây PST là sự kết_hợp của hàng đợi ưu_tiên (Priority Queue) và cây nhị_phân tìm_kiếm (Binary Search_Tree) vào trong cùng một cấu_trúc .
+Cấu_trúc PST có nhiều ứng_dụng trong hình_học tính_toán (xem thêm tại 1) .
+Một trong những ứng_dụng nổi_bật là dùng để truy_vấn các điểm trong một vùng hình_chữ_nhật vô_hạn một bên .
+Chúng_ta sẽ thảo_luận ứng_dụng đó ở cuối bài .
+Để đơn_giản cho việc trình_bày và ứng_dụng cây PST , chúng_ta xét bài_toán sau : Ví du_tập (các điểm màu xanh_trong hình dưới đây) và (điểm màu tím trong hình dưới đây) .
+Các điểm nhỏ hơn điểm là (là các điểm nằm trong hoặc nằm trên đường_bao của vùng màu xanh_trong hình dưới đây) . Biểu_diễn các nút trong C : Chúng_ta có_thể dễ_dàng thiết_kế giải_thuật có độ phức_tạp giải bài_toán trên bằng cách với mỗi điểm trong , ta duyệt qua tất_cả các điểm trong và in ra những điểm nhỏ hơn .
+Trong trường_hợp tồi nhất khi với mọi thì thuật_toán trên là thuật_toán tối_ưu .
+Tuy_nhiên trong trường_hợp với mỗi , chỉ_có điểm trong nhỏ hơn thì thuật_toán trên quá tốn_kém .
+Sử_dụng PST , chúng_ta có_thể thiết_kế giải_thuật tốt hơn nhiều khi lớn .
+Trọng_tâm của bài này là định_lý sau : Như_vậy , sử_dụng cấu_trúc cây PST , ta có_thể giải Problem 1 trong thời_gian trong đó là số điểm cần phải in ra trong lời_giải tối_ưu .
+Cấu_trúc cây PST là kết_hợp của cấu_trúc nổi_tiếng và Binary_Search_Tree .
+Nếu bạn_đọc đã từng thực_thi thuật_toán tìm cây khung nhỏ nhất (Minimum Spanning_Tree) thì_có lẽ đã bắt_gặp cấu_trúc Heap rồi .
+Trước_hết_mình nhắc_lại một_số khái_niệm cơ_bản nhất của min-Heap .
+Min-Heap là một cấu_trúc cây nhị_phân thỏa_mãn các tính_chất sau : Ví du_tập các giá_trị có cấu_trúc Heap biểu_diễn minh_họa trong hình dưới_đây : Từ_tính chất Heap ta có_thể chứng_minh (bằng quy nạp) được rằng giá_trị khóa ở gốc là giá_trị nhỏ nhất trong tập các khóa của cây (do đó gọi_là min-heap) .
+Từ_tính cân_bằng mạnh_ta có_thể suy ra_chiều cao của một Heap với nút tối_đa là .
+Tính cân_bằng này gọi_là mạnh vì nút ở mức lá phải là liên_tục từ trái sang phải .
+So_với các cây nhị_phân tìm_kiếm thì Heap đơn_giản hơn , mềm_dẻo hơn và là một cấu_trúc cân_bằng mà sự cân_bằng đó có_thể được duy_trì khá đơn_giản khi thực_hiện các thao_tác trên heap mà không cần phải có thêm thông_tin phụ .
+Do_đó các thao_tác với Heap thông_thường chỉ mất thời_gian .
+Chi_tiết thêm về Heap có_lẽ mình sẽ blog vào một_lúc nào_đó , tạm_thời bạn_đọc tham_khảo thêm tại 2 .
+Một cây nhị_phân PST biểu_diễn_tập điểm là một cây thỏa_mãn tính_chất sau : Chú_ý trong tính chia đôi , ta cho_phép cả cây_con trái và con phải của có các điểm tung_độ bằng .
+Điều này là cần_thiết để đảm_bảo tính cân_bằng .
+Ví_dụ nếu ta chỉ cho cây_con trái có điểm có tọa_độ và con phải có tọa_độ thì không_thể đảm_bảo tính cân_bằng trong trường_hợp tất_cả các điểm trong có cùng tung_độ . Ví_dụ cây PST với tập như_trên được biểu_diễn ở hình sau .
+Các cặp giá_trị ở phần background màu xanh của mỗi nút là một điểm biểu_diễn bởi nút đó .
+Giá_trị ở phần dưới là điểm chia . Ta có_thể quan_sát thấy việc tìm_kiếm theo tọa_độ của các điểm được "tích hợp" vào cây thông_qua tính_chất Heap và tìm_kiếm theo tọa_độ của các điểm được "tích hợp" thông_qua tính chia đôi .
+Tính cân_bằng đảm_bảo chiều_cao của cây là .
+Với các tính_chất đó , ta có_thể nhận_thấy rằng PST là một cấu_trúc phù_hợp để tìm_kiếm hai chiều với độ phức_tạp của mỗi thao_tác tìm_kiếm là .
+Dễ thấy cấu_trúc cây PST có bộ_nhớ là .
+Giả_sử chúng_ta đã xây_dựng được cây PST , kí_hiệu là , biểu_diễn_tập điểm , ta sẽ thực_hiện truy_vấn với mỗi điểm .
+Để in ra các điểm nhỏ hơn , ta sẽ so_sánh với cây , bắt_đầu_từ nút gốc .
+Gọi_là một nút trong mà ta đang so_sánh với : Giả mã của thủ_tục truy_vấn như_sau : Code_C : Từ phân_tích ở trên , ta suy ra : Phần tiếp_theo chúng_ta sẽ tìm_hiểu cách xây_dựng cây PST trong thời_gian Gọi_là tập các điểm trong .
+Ta sẽ xây_dựng cây PST một_cách đệ_quy như_sau : Ví_dụ với tập , các bước xây_dựng cây PST được mô_tả trong hình sau : Giả mã của thuật_toán : Thủ_tục chọn ra điểm chia như mô_tả ở bước 1 trong thời_gian .
+Thủ_tục này mình đã blog trước_đây , các bạn xem_lại tại bài viết .
+Ta thấy chọn điểm với hoành_độ nhỏ nhất có_thể thực_hiện trong bằng cách duyệt qua tất_cả các phần_tử trong mảng .
+Chọn cũng có_thể thực_hiện trong như đã nói ở trên .
+Chia ra thành 2 phần và mất .
+Gọi_là thời_gian xây_dựng cây PST .
+Do và xấp_xỉ , ta suy ra_công thức đệ_quy : trên ta được .
+Do_đó : Từ_Lemma 1 và Lemma 2 , ta dễ_dàng suy ra Theorem 1 .
+Thực_thi theo đúng thuật_toán trên cũng khá mất thời_gian do phải thực_thi thuật_toán chọn median trong thời_gian .
+Trong bước chọn median , để đơn_giản , ta có_thể sắp_xếp các điểm theo , sau_đó thực_hiện chọn .
+Thời_gian của bước sắp_xếp là và do_đó thời_gian của thuật_toán là : Từ_đó suy ra .
+Không quá tệ ! ! ! ! Tuy_nhiên , ta có_thể cải_tiến ý_tưởng này thành như_sau : Sắp_xếp các điểm trong theo tọa_độ ngay từ ban_đầu với thời_gian .
+Khi đó , việc chọn median có_thể thực_hiện trong thời_gian vì các điểm trong là đã sắp_xếp theo .
+Do_đó , thuật_toán xây_dựng cây PST sẽ như_sau : Code_C : Coming soon ! Code đầy_đủ của bài viết : 1 McCreight , Edward_M .
+SIAM_Journal on Computing 14 . 2 (1985) : 257-276 .
+2 Todd_Wittman , , UCLA , 2010 .
+3 de Berg , Mark; van Kreveld , Marc;_Overmars , Mark;_Schwarzkopf , Otfried (2000) .
+.
+Computational_Geometry : algorithms and applications (2nd ed . ) .
+Springer-Verlag_Berlin_Heidelberg_New_York .
+doi : 10 . 1007/978-3-540-77974-2 Trong một trò_chơi chỉ_có một người chơi và có lá_bài .
+Người chơi đó có hai thuộc_tính được biểu_diễn bởi hai biến_số nguyên và .
+Mỗi lá_bài có 4 thuộc_tính được biểu_diễn bới 4 số nguyên; lá_bài thứ có thuộc_tính là .
+Trong mỗi bước , người chơi được chọn một con_bài .
+Tuy_nhiên , người chơi đó chỉ_có thể chọn con_bài có hai thuộc_tính .
+Khi người chơi chọn con_bài đó , thì thuộc_tính của người chơi đổi thành .
+Người chơi chiến_thắng khi chọn được con_bài thứ .
+Ban_đầu người chơi có thuộc_tính là .
+Bài_toán đặt ra là tìm số nước đi ít để nhất người chiến_thắng . : Dòng đầu_tiên là số_nguyên_dương với .
+dòng tiếp_theo , mỗi dòng là 4 số_nguyên_dương .
+Dòng đầu_tiên in ra số_nguyên , là số nước đi ít_nhất để chiến_thắng .
+Dòng tiếp_theo in ra số_nguyên , số thứ là số thứ_tự của quân_bài mà người chơi sẽ chọn trong nước thứ của lời_giải tối_ưu .
+Nếu có nhiều cách đi thì chỉ_cần in ra một trong số đó . Nếu_không có cách nào để người chơi có_thể chiến_thắng , in ra -1 .
+Test 1 : 4 0 0 3 4 2 2 5 3 4 1 1 7 5 3 8 8 Ouptut : 3 1 2 4Test 2 : 2 0 0 4 6 5 1 1000000000 1000000000 Ouptut : -1 , , , , , , Trackback link : Powered by and

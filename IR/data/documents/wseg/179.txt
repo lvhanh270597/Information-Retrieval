@@ -1,0 +1,204 @@
+Hẳn mọi người đã từng giải_quyết một loạt bài_tập trên VOJ có những chiếc cầu dừa thơ_mộng cùng anh_chàng Pirate .
+Tác_giả những bài đó là anh Nguyễn_Xuân_Khánh , một trong những Admin đóng_góp rất nhiều đường_lối quan_trọng trong việc phát_triển của VNOI .
+Anh_Khánh là cựu_học_sinh trường Phổ_thông Năng_Khiếu , anh đạt được Huy_chương đồng IOI năm 2009 .
+Sau khi kết_thúc 12 năm_học ở Việt_Nam , anh đã sang University of Massachusetts , Amherst và sau_đó anh tiếp_tục theo học PhD ngành Machine learning tại Đại_học Maryland , College_Park .
+Tại đây anh nghiên_cứu về Machine learning và Natural language processing .
+Anh_Khánh cũng từng đi thực_tập ở Google trong 3 năm 2014 , 2015 và 2016 ở nhiều team khác_nhau , có nhiều kinh_nghiệm với các project khủng về Machine_Learning và Deep_Learning .
+Anh_Khánh nổi_tiếng với những bài viết trên VNOI wiki như bài viết “Tôi đã học tin thế nào" gồm 2 phần : Tôi đã học tin thế_nào phần 1 Tôi đã học tin thế_nào phần 2 Anh còn kỳ_công viết một cuốn sách Machine learning cơ_bản bằng tiếng Việt : https : //ml-book-vn . khanhxnguyen . com/ 1 vài của anh Khánh trên VOJ : KBUILD_KHISTORY_KTREEC Trả_lời nhanh 1 .
+Có_một bài viết của giáo_sư John_Martinis nhận_định rằng : “Các thuật_toán_học máy (machine learning) thực_ra khá là ngớ_ngẩn và chúng cần không biết_bao_nhiêu ví_dụ để máy_tính học được một điều cơ bản” .
+Anh nghĩ sao về điều này ?
+Mình có Google thực_sự xem ông giáo_sư này nguyên_văn nói_gì và trong văn_cảnh như_thế nào .
+Nếu chúng_ta trích_dẫn câu_nói này một_cách đơn_lẻ dễ gây hiểu_lầm .
+Ý_muốn nói đến của câu này tức_là về khả_năng "tổng quát hóa" của các thuật_toán machine learning vẫn còn xa mới bằng_được con_người .
+Điều này đúng .
+Các model machine learning thường chỉ được huấn_luyện để giải_quyết một bài_toán riêng_biệt .
+Chúng thiếu đi khả_năng liên_kết và suy_luận giữa các bài_toán như ở con_người .
+Con_người có khả_năng học với rất ít ví_dụ là do chúng_ta có_thể tổng_hợp kiến_thức từ nhiều nguồn .
+Vì dụ như_ta đọc một đoạn văn tả một con_đường thì trong đầu lại có_thể mường_tượng được hình_ảnh của nó , thậm_chí có_thể vẽ ra được .
+Hoặc nhìn_thấy con_đường thật thì nhớ_lại con_đường trong văn_thơ .
+Các thuật_toán machine learning hiện_giờ vẫn chưa giỏi trong việc kết_hợp nhiều dạng dữ_liệu khác_nhau .
+Tuy_nhiên , nói_là machine learning học chậm_chạp cũng không đúng .
+Thực_tế là Google có_thể huấn_luyện được một model dịch_thuật Anh-Pháp từ level không biết_gì đến level làm hài_lòng con_người trong_vòng vài tuần .
+Liệu bạn có_thể làm được điều đó với một đứa_bé chưa biết nói hoặc kể_cả một người_lớn ?
+Machine learning , đặc_biệt là deep learning cần rất nhiều dữ_liệu , đó vừa là nhược_điểm nhưng vừa là ưu_điểm .
+Trong_khi sức_học của con_người là có giới_hạn , sức_học của machine learning là không biết mệt_mỏi và vô_hạn trên lý_thuyết .
+Mặt_khác , nói machine learning cần nhiều dữ_liệu cũng chưa hoàn_toàn chính_xác vì con_người , để có được khả_năng tổng quá_hóa cao , cũng phải có rất nhiều trải_nghiệm .
+Nhiều kinh_nghiệm của một người được để_lại từ đời ông đời cha , trải_qua hàng trăm_năm mới tích_lũy được .
+Chỉ là_vì con_người có_thể sử_dụng kiến_thức dùng làm_việc A để làm_việc B , nên trông có_vẻ như_là học rất ít về việc B để làm được_việc .
+Tương_lai của machine learning cũng sẽ hướng đến_điều đó .
+2 .
+Ý_tưởng sử_dụng machine learning trong thực_tế điên_rồ nhất anh từng nghĩ_ra là gì ?
+Mình có_một ý_tưởng khá hay nhưng_mà khó quá chưa làm được đó là xây_dựng các model để dạy lại cho các model khác .
+Bây_giờ đa_phần các model đều mô_phỏng một "learner" học trực_tiếp từ chỉ dạy của con_người .
+Tuy_nhiên , thì cách học của con_người mà máy lại khác_nhau .
+Mình muốn xây_dựng một model trung_gian , hiểu cách học của hai bên để giúp các model learner học nhanh hơn .
+3 .
+Theo anh thì điều gì là quan_trọng nhất anh học được ở đại_học ?
+Và anh nghĩ sao về việc đi du_học ?
+Khi ở đại_học , mình học được chữ "nhẫn" .
+Khi mới vào năm đầu mình buồn rất nhiều .
+Mình may_mắn được học trong một trường trung_học đầy nhân_tài ở Việt_Nam , trường PTNK .
+Nhưng_mà đó cũng là áp_lực rất lớn , vì phải nỗ_lực rất nhiều để_không cảm_thấy thua_kém bạn_bè .
+Năm ấy , bạn_bè mình đậu vào những trường top rất nhiều còn mình thì lại không thành_công lắm trong việc apply .
+Mùa_hè , các bạn đi thực_tập ở những công_ty lớn còn mình thì lại phải lủi_thủi về Việt_Nam .
+Khi mình viết cái resume đầu_tiên trong đời thì cảm_thấy rất xấu_hổ vì không có gì để viết .
+Tuy_nhiên , mình học được cách chắt_chiu từng cơ_hội và quý_trọng bản_thân .
+Mình nhận_ra là nếu có xuất_phát_điểm thấp , thì không_thể bước_một bước tới trời được mà phải bước từng bước nhỏ .
+Dù nhỏ nhưng vẫn phải bước , vì không bước thì sẽ chẳng đi đến đâu cả .
+Thay_đổi trong tư_tưởng bắt_đầu_từ việc viết resume .
+Suy_nghĩ của nhiều người khi viết resume lần đầu đó là "mình thấy mình chẳng có thành_tích để ghi vào cả .
+Mình tòan làm những thứ vớ_vẩn thôi" .
+Tuy_nhiên , đó là suy_nghĩ cần nên được vượt_qua , nhất_là khi bạn ở Mỹ .
+Người_Mỹ rất giỏi trong việc nâng tầm những việc tưởng_chừng_như rất bình_thường của họ .
+Đó không_phải là ba_hoa , mà thể_hiện sự trân_trọng và tự_hào về bản_thân .
+Khi mình trân_trọng bản_thân thì mới làm_cho người khác cũng trân_trọng mình được .
+Năm thứ_hai , mình đi thực_tập ở một công_ty không_phải là quá lớn để lấy kinh_nghiệm , đồng_thời cũng apply thử một lớp_học kéo_dài chỉ_có một tuần ở Google .
+Không_ngờ sau_đó mình đậu .
+Lớp_học này sau_đó lại được ghi vào resume , giúp hồ_sơ của mình thân_thiện hơn với người tuyển_dụng ở Google .
+Cho_nên , mình cũng có lời_khuyên với các bạn muốn làm ở các công_ty tốt là hãy cố_gắng săn_lùng và tham_gia các hoạt_động của các công_ty này tổ_chức (Hackathon , Summer_School , . . . ) , vì các công_ty rất thích tuyển "người quen" .
+Sau khi học đại_học , tư_tưởng của mình thoáng hơn nhiều .
+Bây_giờ mình có tới sơ_sơ chục người bạn dạng thân_từ cấp 3 học ở Stanford , MIT và Harvard .
+Mình cũng chẳng phải học Ph . D . ở trường top .
+Thế nên , mình không câu_nệ việc học trường lớn trường nhỏ nữa vì nghĩ nhiều chỉ khổ mình thôi .
+Mình cũng rất mong xã_hội sẽ thoáng hơn khi nghĩ về việc này .
+Việc anh học trường nào có_thể làm bệ_phóng rất tốt cho tương_lai .
+Nhưng năm mười năm sau , người_ta chỉ nghĩ đến việc anh làm , chứ chẳng_ai nhớ anh đã học trường gì .
+Mình nói như_vậy không_phải để bớt tủi_thân khi_không học trường top , mà nói với trải_nghiệm của một người học trường "không top" và thấy được_cái lợi của nó .
+Malcolm_Gladwell có_một bài thuyết_giảng rất hay về chuyện này với luận_điểm tóm_tắt là : người đứng top ở các trường mới thực_sự thành_công chứ không_phải người đứng ở trường top .
+Cho_nên hãy chọn trường phù_hợp với khả_năng để có_cơ hội cao đứng top .
+Câu_hỏi chính 1 .
+Theo em biết thì anh đã từng làm intern Google research về Machine_Learning , Anh có_thể cho_biết quá_trình phỏng_vấn khác thế_nào so_với phỏng_vấn Software_Engineering ko ạ ?
+Internship của mình vẫn là Engineer internship dù mình làm trong một team thuộc Google_Research .
+Cho_nên quá_trình phỏng_vấn của giống_như các chia_sẻ của các bạn khác trên VNOI đã làm ở Google .
+Google research thực_ra là rất rộng .
+Có rất nhiều team trong đó , dù toàn là Ph . D . , nhưng chỉ_có nhiệm_vụ chính là engineer .
+Còn nói về phỏng_vấn để làm Research_Scientist ở Google thì mình không rõ lắm .
+Năm_nay thì mình có_một Research_Internship thật_sự ở Microsoft .
+Quá_trình phỏng_vấn cũng khá đơn_giản gồm 2 cuộc phỏng_vấn .
+Một cuộc là về research interest , một cuộc là về coding ability .
+2 .
+Việc học_thuật_toán hồi cấp 3 để luyện thi Quốc_gia , Quốc_tế có giúp_ích nhiều cho anh không ?
+Giúp_ích rất nhiều ! Khả_năng code và thói_quen thích code là một lợi_thế .
+Ví_dụ trong việc phỏng_vấn chẳng_hạn thì rõ_ràng những tay chuyên luyện algorithm sẽ trả_lời các câu_hỏi coding một_cách khá trơn_tru .
+Trong việc nghiên_cứu , khả_năng đọc code và sửa code có_thể giúp ta tự_chủ và tiết_kiệm thời_gian hơn .
+Tuy_nhiên , lợi_thế đó chỉ là tương_đối và cần phải_biết cách khai_phá .
+Tương_đối tức_là không_phải mình biết code thì mình sẽ hơn_hẳn người khác .
+Người có xuất_thân_học toán có_lợi thế của họ , người xuất_thân_học ngôn_ngữ có_lợi thế của họ .
+Ai cũng có_lợi thế_nào đó , quan_trọng là có biết nhìn ra và khai_phá hay_không .
+Khai_phá không đúng cách thì lợi_thế sẽ biến thành bất_lợi .
+Ví_dụ , những người đi luyện thi như mình thì quen với kiểu thi_thố , code nhanh , cấu_trúc không quan_trọng miễn_là ra được kết_quả đúng .
+Đặc_biệt , vì thời_gian chạy code ngắn nên code sai thì lại sửa , chủ_yếu là nhanh hoàn_thành .
+Tuy_nhiên , trong nghiên_cứu thì đòi_hỏi phải code chuẩn_mực .
+Code chạy là phải đúng vì thậm_chí thời_gian compile code cũng đã rất lâu .
+Học deep learning thì càng phải chú ý; như mình sai một bug là mất luôn 2 tiếng chạy chương_trình .
+Code phải được cấu_trúc rõ_ràng để có_thể sau_này mở_rộng dễ_dàng , sử_dụng cho nhiều mục_đích khác_nhau .
+Đặc_biệt là khi nghiên_cứu với tập_thể , code dễ_hiểu sáng_sủa phải được đề_cao .
+Cho_nên , mình luôn giữ tâm thế mở , sẵn_sàng thay_đổi tư_duy tùy_theo hoàn_cảnh và chỉ giữ_lại những cái bản_sắc thật cốt_lõi thôi .
+3 .
+Anh có định_hướng lộ_trình phát_triển nào cho học_sinh muốn theo con_đường làm PhD_Computer_Science không ạ ?
+Và anh có so_sánh gì về làm research với làm software engineering không ?
+Muốn làm Ph . D . thì đầu_tiên bạn phải hiểu về nó đã .
+Sau khi biết nó là gì thì bạn suy_nghĩ xem là bạn có thực_sự cần nó hay_không .
+Bản_thân mình không xem việc học Ph . D . là một cái học_vị và không có tư_tưởng "học Ph . D . để mở_mày_mở_mặt với làng xóm" .
+Mình xem Ph . D . là một sở_thích , cũng giống_như ra trường tìm một công_việc để làm_vậy thôi .
+Mình học Ph . D . là_vì mình có đam_mê nghiên_cứu , cũng giống_như một người có đam_mê về ẩm_thực tốt_nghiệp mở quán bán phở thế thôi .
+Chứ mình không nghĩ Ph . D . là thông_minh hơn người_ta .
+Mình cũng mong xã_hội hiểu về Ph . D . như một công_việc , một sở_thích chứ không_phải là một học_vị nên mặc_định là mấy ông tiến_sĩ này biết hết mọi thứ để chê_trách khi họ không làm được_việc gì đó .
+Nếu bạn không có_một đam_mê nghiên_cứu thì Ph . D . là một sự lãng_phí thời_gian .
+Cho_nên muốn bắt_đầu học Ph . D . bạn phải xác_định được đam_mê của mình là gì .
+Sau khi xác_định được bạn tìm lấy một giáo_sư trong trường có ngành nghiên_cứu bạn có_hứng thú và xin ông ta giao một việc_gì đó cho bạn .
+Có_một số giáo_sư khó bạn sẽ không thuyết_phục ông ấy trong lần đầu_tiên .
+Nếu_thế thì hãy học_một lớp mà ông ta dạy rồi cố_gắng làm ông ấy ấn_tượng bằng cách đặt các câu_hỏi thông_minh , nói_chuyện nhiều với ông ấy .
+Sau khi kết_thúc đại_học , ông thầy bạn làm cùng sẽ là người viết thư giới_thiệu cho bạn .
+Thường thì bạn sẽ cần tới 3 lá thư giới_thiệu , nhưng chỉ một lá thư viết thật tốt là được rồi .
+Để được một lá thư giới_thiệu thật tốt , tối_ưu là bạn nên ra được một paper với ông thầy của bạn .
+Nếu_không có paper cũng đừng hoảng , chỉ_cần nghiên_cứu của bạn đang trên hướng tốt là được .
+Mối quan_hệ_xã_hội của ông thầy bạn sẽ quyết_định rằng bạn sẽ đi_học Ph . D . ở đâu .
+Cho_nên , bạn nên chọn làm với những thầy có_tiếng tăm tốt hoặc có paper gây tiếng_vang trong thời_gian gần_đây .
+Hồi mình nộp Ph . D . , mình không có paper nào cả nhưng vẫn đậu được Master của CMU , là do thầy mình là cựu_Ph . D . CMU mới tốt_nghiệp ra làm giáo_sư .
+Tuy nói vậy nhưng cuối_cùng vẫn là do năng_lực của bạn thôi .
+Tưởng_tượng bạn làm với một ông giáo_sư trùm nhưng_mà lại biểu_hiện rất tệ thì lại phản_tác_dụng .
+Với việc so_sánh giữa Ph . D . và software engineer thì mình nghĩ không nên so_sánh như_vậy .
+Tại_vì đa_số Ph . D . ra trường là đi_làm software engineer cả .
+Vấn_đề chỉ làm trước hay_làm sau mà_thôi .
+Nếu nói thế_thì học Ph . D . được lợi gì ?
+Thứ nhất , tuy mình không coi Ph . D . là một cái Ph . D . là một cái học_vị nhưng một_số nơi sẽ coi nó như một tiêu_chuẩn tuyển_dụng luôn .
+Không_phải Ph . D . không cho vào .
+Những nơi này thường công_việc rất cao_cấp và thú_vị .
+Thứ_hai , là học Ph . D . giúp bạn có thời_gian để tích_lũy kiến_thức sâu_sắc về một lĩnh_vực nào_đó .
+Thứ_ba , học Ph . D . giúp bạn luyện khả_năng về viết , nói và khả_năng suy_nghĩ giải_quyết vấn_đề .
+Thật_ra , theo kinh_nghiệm thì mình thấy môi_trường Ph . D . với software engineer cũng không khác mấy lắm đâu .
+Có_khác ở đây là học Ph . D . có nhiều tự_do hơn nhưng_mà áp_lực với bản_thân nhiều hơn .
+Còn làm engineer áp_lực đến từ cấp_trên , mục_tiêu bị giới_hạn vào mục_tiêu của_công ty , và được trả nhiều tiền hơn .
+4 .
+Dành cho những bạn muốn tự_học machine learning , anh có gợi_ý gì về hướng tiếp_cận cũng_như lộ_trình để có_thể tự_phát_triển không ạ ?
+Mình có viết một cuốn sách về machine learning cơ_bản ( https : //ml-book-vn . khanhxnguyen . com ) .
+Bạn có_thể bắt_đầu học từ_đó hoặc những khóa học cơ_bản như của Andrew_Ng - Coursera , Richard_Socher_CS224D , Karpathy_CS231n .
+Nếu mới bắt_đầu thì nguyên_tắc là bạn vừa học vừa bổ_sung kiến_thức .
+Nếu đọc gì bạn không hiểu thì bạn nên dừng lại và bổ_sung thêm kiến_thức đó .
+Lý_thuyết Machine learning thực_chất là không có khó học lắm vì mảng toán không quá nặng .
+Tuy_nhiên , bạn phải hiểu kỹ và có hệ_thống một_chút .
+Ví_như cuốn sách mình viết với với tư_tưởng là không đi_sâu vào một dạng model nào hết nhưng_mà nếu học theo cách tổng_quát như_vậy thì gặp dạng model nào cũng thấy quen_thuộc .
+Một_lời khuyên nữa_là bạn nên chăm_chỉ thực_hành chứ không chỉ ngồi nghe bài_giảng suông .
+Lý_thuyết machine learning thì dễ nhưng_mà thực_hành thì rất khó .
+Nếu nghe bài_giảng có bài_tập hoặc demo nào thì bạn nên ngồi lấy ra làm thử .
+Bạn nên tìm lấy một framework ML phổ_biến nào_đó (Tensorflow , Torch , Chainer) rồi lập_trình hoặc chạy thử các model ML trên đó (có thể tìm được trên GitHub) .
+5 .
+Về xử_lý ngôn_ngữ_tự_nhiên (NLP) , theo anh thì những challenges của NLP là gì và những người mới học ML cần biết những gì để bắt_đầu đi_sâu vào lĩnh_vực NLP ạ ?
+Challenge của NLP có rất nhiều .
+NLP bây_giờ tập_trung vào deep learning .
+Cho_nên những khó_khăn của deep learning cũng là khó_khăn của NLP , ví_dụ như về làm_sao để học với ít dữ_liệu hơn , làm_sao để chuyển_đổi kiến_thức giữa các model và giữa các task .
+Về_mặt ngôn_ngữ_học , thì NLP bây_giờ thực_chất là ELP (English language processing) nên còn rất nhiều đất để nghiên_cứu về các ngôn_ngữ khác .
+Một thách_thức lớn của NLP bây_giờ đơn_giản là làm_sao để tạo ra ngôn_ngữ một_cách tự_nhiên để máy_tính thực_sự giao_tiếp được với con_người .
+Tạo ra một câu_nói đúng ngữ_pháp thì không khó , nhưng_mà làm_cho nó có_ý nghĩa , và ý_nghĩa đó phải_điều khiển được theo ý_muốn của chúng_ta là rất khó .
+Việc này lại liên_quan đến việc_làm sao để biểu_diễn được "ý nghĩa" chỉ với những con_số 0 1 mà máy_tính hiểu được Để đi_vào lĩnh_vực NLP thì cần có nền_tảng ML tốt .
+Lộ_trình học ML mình đã trả_lời ở câu trước rồi .
+Ngoài_ra , để làm NLP tốt_bạn cần có_một chút kiến_thức và đam_mê về ngôn_ngữ_học nữa .
+NLP bây_giờ có hai thái_cực , một thái_cực thiên_về ML và một thái_cực thiên_về ngôn_ngữ_học .
+Ở thái_cực thiên_về ML , bạn tạo ra một model ML tốt và muốn áp_dụng nó trên một bài_toán về ngôn_ngữ để chứng_minh là nó tốt .
+Thái_cực này quan_trọng là model ML đó giải được những bài_toán nào , có_phải về ngôn_ngữ hay_không thì không quan_trọng .
+Ở thái_cực khác thiên_về ngôn_ngữ_học , bạn có_một bài_toán về ngôn_ngữ và sử_dụng ML như một công_cụ để giải .
+Bạn không quan_tâm model nào được sử_dụng miễn_là bài_toán về ngôn_ngữ của bạn được giải .
+Theo mình thì dung_hòa giữa hai thái_cực này là tốt nhất .
+6 .
+Hiện_giờ deep learning đang rất hot , nhưng về lâu_dài thì anh có dự_đoán gì không ạ , liệu nó có_phải chỉ là một xu_hướng nhất_thời hay nó sễ hoàn_toàn thay_thế các mô_hình machine learning truyền_thống ạ ?
+Trong một bài blog gần_đây ( http : //khanhxnguyen . com/deep-learning-1-goc-nhin-giao-duc/ ) , mình có phân_tích tại_sao deep learning là một sự phát_triển tự_nhiên và tất_yếu từ các model truyền_thống .
+Mình thì thường không phân_biệt model theo tên_gọi và trường_phái .
+Khi mình nhìn_thấy một model , mình chỉ nghĩ đến à , nó có bao_nhiêu lớp (layer) , kiến_trúc của nó là gì , hàm mất_mát của nó là gì .
+Nếu kiến_trúc là feed-forward , chỉ_có một layer và hàm mất_mát là logistic loss thì sẽ được Logistic_Regression .
+Nếu lại đổi sang hinge loss và thêm vào L2-regularization thì ta lại được Support_Vector_Machine .
+Đổi_Logistic_Regression với kiến_trúc recurrent thay_vì feed-forward ta được Hidden_Markov_Model hoặc_là Conditional_Random_Fields .
+Đổi hàm loss của HMM hoặc CRF thành hinge loss ta lại được structured SVM .
+Tóm_lại là nó chỉ vòng_vòng thế thôi .
+Các model đều có bà_con với_nhau cả .
+Cho_nên thực_chất là không có gì thay_thế cái_gì cả , model chỉ đang trở_nên to_lớn hơn thôi .
+Thế nên mình dự_đoán rằng trong tương_lai thì các model sẽ còn "deep" hơn_nữa .
+Tuy_nhiên , đó không_phải là giải_pháp cho tất_cả .
+Deep learning hiện_giờ phải đi_đôi với Big_Data .
+Có rất nhiều nơi mà Big_Data không có_sẵn , những nơi đó gọi_là Small_Data .
+Ví_dụ như một model muốn học ý_thích của từng cá_nhân để phục_vụ_việc cá_nhân_hóa (personalization) .
+Vì lượng dữ_liệu mà một cá_nhân sinh_ra không_thể dồi_dào , các model deep learning sẽ không_thể tốt bằng các model truyền_thống đơn_giản hơn .
+Thế nên trong tương_lai , người_ta sẽ phải tìm cách tổng_quát_hóa kiến_thức từ nhiều nguồn và học với ít dữ_liệu hơn .
+7 .
+Anh có_thể chia_sẻ những khó_khăn trong việc anh viết sách về machine learning bằng tiếng việt , trong_khi anh đã học và vận_dụng các kiến_thức đó bằng tiếng anh không ạ ?
+Câu_hỏi này rất thú_vị .
+Thú_thực là mình đã định viết một bài blog , chỉ để nói_riêng về chuyện có nên dịch hay_không dịch những thuật_ngữ tiếng anh .
+Bạn mình từng đưa cho mình một cuốn sách về machine learning tiếng Việt .
+Mình đọc thấy chữ "thuật toán xuống_thang đạo hàm" mãi mới đoán ra là "gradient descent" .
+Quan_điểm của mình là không dịch các thuật_ngữ bằng tiếng anh .
+Trường_hợp duy_nhất mình thấy nên dịch đó là để phục_vụ thẩm_mỹ văn_học và giữ_gìn sự trong_sáng của tiếng Việt .
+Ví_dụ như thay_vì nói "model này được train bằng thuật_toán X" , nghe nửa Việt_nửa Anh hơi kì , mình sẽ dùng từ "huấn luyện" thay cho "train" , dù thực_chất "train" là một thuật_ngữ của ML .
+Trong các bài viết ban_đầu , mình cũng có dịch những thuật_ngữ khác nhưng là để thân_thiện hơn với người đọc .
+Càng về_sau , khi bạn_đọc quen_thuộc hơn với ngành ML , mình sẽ ít dịch đi .
+Và nếu mình có dịch , mình sẽ ghi kèm_theo thuật_ngữ tiếng anh tương_đương trong dấu ngoặc .
+Lý_lẽ cho_rằng nên dịch sang tiếng Việt hết để giữ_gìn sự trong_sáng của tiếng Việt mình không đồng_tình lắm .
+Ta nên giữ_gìn cái_gì là của ta tạo ra mà_thôi .
+Còn đối_với ML , các thuật_ngữ nguyên gốc bằng tiếng Anh .
+Nếu dùng những cụm_từ dị_hợm để dịch ra , vô_tình chúng_ta bôi xấu tiếng Việt , và cũng làm mất đi "trong sáng của ML" .
+Thực_tế là có nhiều từ mình cũng chẳng biết dịch thế_nào cho sát với môi_trường Việt_Nam , nhất_là các thuật_ngữ trong xác_suất thống_kê .
+Mục_tiêu tối_thượng của cuốn sách mình viết ra không_phải để thay_thế các tài_liệu nước_ngoài , mà là làm cầu_nối giữa mọi người với các tài_liệu nước_ngoài .
+Thế mình không viết hết , mà chỉ muốn viết dạng như một cuốn từ_điển các thuật_ngữ ML cơ_bản .
+Mình biết là các bạn_học ở trong nước sẽ gặp khó_khăn với các thuật_ngữ này nhưng chúng_ta phải chịu_khó tra_cứu để hội_nhập với thế_giới thôi .
+Về lâu về dài , người nghiên_cứu ML tất_yếu phải đọc được , viết được paper bằng tiếng Anh .
+Có_thế thì vị_thế của Việt_Nam trong cộng_đồng khoa_học thế_giới mới được nâng_cao .
+

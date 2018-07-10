@@ -1,0 +1,146 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này mình lượt qua cấu_trúc dữ_liệu bảng_băm (hash table) , hàm_băm (hash functions) và một_số cơ_chế giải_quyết xung_đột (collision handling) .
+Mục_tiêu của bài này là đưa_ra một_cách nhìn tổng_quan về cách_thức thiết_kế bảng_băm .
+Mọi cơ_sở toán_học mình sẽ viết và link trong các bài sau .
+Một cấu_trúc dữ_liệu mà chúng_ta cũng thường_xuyên áp_dụng cho thao_tác tìm_kiếm đó là cây cân_bằng (ví dụ hoặc ) .
+trong Java chính là sử_dụng cây Red-Black để hỗ_trợ tìm_kiếm .
+Do tính cân_bằng , cấu_trúc dữ_liệu cây này sẽ cho_phép chúng_ta thực_hiện tìm_kiếm trong thời_gian .
+Bảng_băm chúng_ta sẽ thảo_luận trong bài này sẽ cho_phép chúng_ta thực_hiện thao_tác tìm_kiếm trong thời_gian kì_vọng .
+Gọi_là tập phần_tử ta muốn lưu_trữ trong bảng_băm .
+Các phần_tử của tập_hợp mà chúng_ta lưu_trữ thường từ một_tập lớn hơn mà ta gọi_là (ground set) .
+Tập gốc ta xét ở đây có lực_lượng hữu_hạn nhưng rất lớn so_với và .
+Ví_dụ : nếu tập gốc là tập các tên người với tối_đa là kí_tự thì kích_thước tối_đa của tập gốc là (ta sử_dụng bảng_chữ_cái tiếng Việt) .
+Nếu giả_sử tập dữ_liệu trong bảng_băm là tên của người thực thì con_số lớn hơn rất nhiều so_với (dân số Việt_Nam) .
+Bảng_băm là một mảng có kích_thước .
+Để lưu_trữ dữ_liệu vào bảng_băm , ta sẽ dùng một (hash function) .
+Một hàm_băm : là một ánh_xạ gán cho mỗi phần_tử của tập một vị_trí trong bảng .
+Cụ_thể , phần_tử sẽ được lưu tại ô của bảng và ta nói được băm vào vị_trí và được gọi_là (hash code) của .
+Xem hình minh_họa dưới_đây . Hai thao_tác chính của bảng_băm đó là : đưa một phần_tử mới vào bảng_băm và tìm xem một phần_tử có nằm ở trong bảng_băm hay_không .
+Giả mã : Do lớn hơn , theo nguyên_lí , một hoặc nhiều phần_tử của tập có_thể sẽ được băm vào cùng một vị_trí của bảng .
+Ta gọi hiện_tượng đó là (collision) .
+Do xung_đột làm quá_trình tìm_kiếm trở_nên phức_tạp hơn , ta sẽ cần một chiến_lược để đối_phó với nó mà ta gọi_là chiến_lược giải_quyết xung_đột .
+Trước_khi thảo_luận các cách chiến_lược này , ta sẽ thảo_luận về cách chọn hàm_băm trước vì xung_đột nhiều hay ít đều phụ_thuộc vào hăm băm mà ta chọn . Tuy xung_đột không_thể tránh được , ta có_thể làm giảm được xung_đột bằng cách chọn một hàm_băm tốt .
+Chú_ý ta chỉ lưu phần_tử của tập gốc vào bảng .
+Do ta có_thể không có bất_kì thông_tin nào về các phần_tử mà ta sẽ lưu trong bảng , ta chọn một hàm_băm tất_định được vì theo nguyên_lí nhốt chim , với bất_kì hàm_băm nào , ít_nhất phần_tử trong tập sẽ có cùng một mã_băm .
+Do_đó , nếu phần_tử của tập_hợp ta muốn lưu trong bảng đều có cùng mã_băm thì sẽ là một điều vô_cùng tồi_tệ .
+Đây chính là lúc ta cần đến .
+Thay_vì sử_dụng một hàm_băm cố_định , ta sẽ chọn ra ngẫu_nhiên một hàm_băm từ một họ các hàm_băm mà ta thiết_kế từ trước sao_cho khi chọn ngẫu_nhiên như_vậy , xác_suất đụng_độ là nhỏ : Ta dùng dấu xấp_xỉ ở trên vì các phân_tích dưới_đây sẽ không thay_đổi nhiều nếu thay 1 bằng một hằng_số bất_kì .
+(băm nhân-multiplicative hashing) Ta chọn một_số nguyên_tố lớn hơn và định định_nghĩa : Họ hàm_băm ta xây_dựng là .
+(băm nhân nhị phân-binary multiplicative hashing) Gọi_là số_nguyên_dương nhỏ nhấ tsao cho .
+Chọn .
+Với mỗi số_nguyên_dương không lớn quá , ta định_nghĩa : Họ hàm_băm ta xây_dựng là .
+Trong bài , nếu chọn ngẫu_nhiên một hàm_băm (hoặc ) từ ( hoặc từ ) để thực_hiện băm thì xác_suất đụng_độ sẽ là cỡ . Hàm_băm tốt , bên_cạnh tính_chất làm giảm sự đụng_độ , phải là một hàm có_thể nhanh_chóng tính được mã_băm với một khóa cho trước .
+Rõ_ràng một hàm_băm có xác xuất đụng_độ nhỏ nhưng mỗi lần tính mã_băm của một khóa mất đến vài giây thì ta không nên chọn .
+Do_đó , việc thiết_kế hàm_băm tốt sẽ là một bài_toán cực_kì khó .
+Trong hai họ hàm_băm ở hai ví_dụ trên , họ hàm_băm trong ví_dụ 2 có_thể được tính nhanh hơn rất nhiều họ hàm_băm trong ví_dụ 1 vì các thao_tác mod và chia_đều được thực_hiện tương_đương bằng thao_tác và dịch phải (shift-right) : Xem thêm tại các .
+Có_lẽ nhiều bạn_đọc biết một_cách chọn hàm_băm rất phổ_biến đó là .
+Như đã nói ở trên , đây là một ý_tưởng tồi_tệ vì hàm_băm này là một hàm_băm tất_định .
+Nếu các khóa đều có cùng đồng dư với thì đụng_độ sẽ rất lớn .
+của Java jdk-7 sử_dụng hàm_băm này với .
+Ưu_điểm khi chọn chính là : , do_đó , hàm_băm được tính rất hiệu_quả bằng các phép_toán bit .
+Điểm yếu , như đã nói ở trên , là nếu các giá_trị đầu_vào có cùng bít cuối (cùng đồng dư với ) thì sẽ được băm vào cùng một vị_trí .
+Để tránh điều này , trước_khi băm , HashMap của java sẽ dùng một hàm để "băm lại" hashcode đầu_vào .
+Mục_đích của băm lại là làm_cho đầu_vào trông giống ngẫu_nhiên .
+Dù như_vậy thì về_mặt lý_thuyết , đây cũng không_phải cách tốt .
+Bạn_đọc nếu có sử_dụng HashMap của Java thì cũng_nên biết rõ những vấn_đề này .
+Tóm_lại hai điều cần nhớ khi thiết_kế hàm_băm tốt : Giả_sử_ta đã có_một hàm_băm tốt (thỏa mãn ) , sau_đây ta sẽ thảo_luận các chiến_lược giải_quyết xung_đột . Ta sẽ nghiên_cứu ba phương_pháp giải_quyết xung_đột chủ_yếu : xích ngăn_cách (separate chaining) , băm địa_chỉ mở (open addressing) và băm hoàn_hảo (perfect hashing) .
+Đây có_lẽ là cách_thức giải_quyết xung_đột đơn_giản nhất và trực_quan nhất .
+Ta sẽ dùng một danh_sách liên_kết , gọi_là xích ngăn_cách , để liên_kết các phần_tử có cùng mã_băm (xem hình dưới đây) .
+HashMap trong Java sử_dụng ý_tưởng này .
+Giả mã : Code_C : Gọi_là biến ngẫu_nhiên chiều_dài của danh_sách chứa khóa .
+Trong bài cơ_sở toán_học của , ta sẽ chứng_minh : Như_vậy , theo , kì_vọng thời_gian để tìm_kiếm một_số tỉ_lệ với hệ_số tải .
+Điều này cũng khá trực_quan vì nếu bảng càng lớn thì khả_năng đụng_độ càng nhỏ .
+Hệ_số tải mặc_định trong HashMap của Java là 0 . 75 .
+Phương_trình cho chúng_ta biết kì_vọng chiều_dài của danh_sách là (giả sử hệ_số tải là ) .
+Tuy_nhiên , mình muốn lưu_ý bạn_đọc , trong tất_cả các danh_sách của bảng là cỡ (chứng minh sử_dụng mô_hình ném , chi_tiết bạn_đọc xem thêm tại bài cơ_sở toán_học của xích ngăn cách) .
+Điều đó cho thấy trong trường_hợp xấu nhất , ta có_thể phải trả một_thời gian tìm_kiếm xấp_xỉ .
+May_mắn là sẽ không có nhiều danh_sách trong bảng có chiều_dài lớn như_vậy vì kì_vọng chiều_dài chỉ là hằng_số mà_thôi . Một ý_tưởng khác để giảm chiều_dài của danh_sách dài nhất đó là sử_dụng hai hàm_băm để băm vào hai vị_trí khác_nhau của bảng .
+Trong hai danh_sách , nếu danh_sách nào ngắn hơn thì ta sẽ đặt phần_tử vào đó .
+Khi tìm_kiếm thì ta phải duyệt cả hai danh_sách để tìm .
+Cũng theo mô_hình ném bóng vào rổ (phân tích phức_tạp hơn rất nhiều , xem thêm tại bài cơ_sở toán_học của xích ngăn cách) , danh_sách dài nhất có kì_vọng chiều_dài cỡ .
+Hàm này gần_như có_thể coi là hằng_số . Trong phương_pháp giải_quyết xung_đột bằng xích ngăn_cách , khá nhiều ô của bảng rỗng trong_khi một_số ô khác lại chứa khá nhiều phần_tử .
+Ngoài_ra , ta cần duy_trì một danh_sách các con_trỏ để liên_kết các phần_tử lại với_nhau .
+Các liên_kết này đương_nhiên là sẽ tốn thêm bộ_nhớ . Ý_tưởng của (open addressing) là mỗi ô của bảng chỉ lưu , do_đó ta không cần danh_sách móc_nối .
+Chú_ý : Xung_đột sẽ được băm địa_chỉ mở giải_quyết bằng cách sử_dụng hàm_băm độc_lập , sao_cho : Khi băm một khóa , ta sẽ lần_lượt kiểm_tra từ ô của bảng cho_đến .
+Nếu tìm_thấy một ô trống đầu_tiên thì lưu vào đó .
+Do là một hoán_vị của , quá_trình tìm_kiếm ô trống luôn kết_thúc sau tối_đa bước .
+Giả mã : Hình ví_dụ dưới_đây minh_họa băm 4 khóa vào bảng sử_dụng địa_chỉ mở .
+Ngay lần đầu_tiên băm khoá "Huy" sử_dụng , ta tìm được ô trống , do_đó , ta đặt khóa "Huy" vào ô trống này .
+Khi băm khóa "Hà" lần đầu_tiên (sử dụng ) vào ô 7 , ta thấy ô này đã có khóa .
+Do_đó , ta băm lần hai (sử dụng ) vào ô 5 .
+Ô 5 cũng đã có khóa , do_đó , ta phải băm lần ba (sử dụng ) vào ô 2 .
+Vì ô 2 trống , ta đặt khóa "Hà" vào đó .
+Hình chính là trạng_thái của bảng_băm sau khi đã băm 4 khóa . Để tìm_kiếm bảng_băm địa_chỉ mở_ta sẽ thực_hiện dò bảng (probing) : bắt_đầu_từ vị_trí cho_đến vị_trí .
+Nếu có trong bảng thì ta sẽ tìm được ở một ô nào_đó .
+Nếu_không chứa trong bảng , trong quá_trình dò , ta sẽ bắt_gặp một ô rỗng hoặc duyệt qua đến mà vẫn chưa tìm được .
+Giả mã : Code_C : Trong phần cơ_sở toán_học của băm địa_chỉ mở () , ta sẽ chứng_minh hai định_lý sau : Hai định_lý trên cho chúng_ta biết thời_gian khi dò một khóa trong bảng .
+Tuy_nhiên , trong trường_hợp xấu nhất , số phép dò kì_vọng là .
+Chúng_ta sẽ tìm_hiểu thêm tại phần cơ_sở toán_học . Trong thực_tế , việc thiết_kế hàm_băm ngẫu_nhiên thỏa_mãn mã_băm đôi một khác_nhau với một khóa cho trước là việc vô_cùng khó .
+Cho_dù ta có thực_hiện được thì chi_phí thời_gian có_lẽ cũng không nhỏ .
+Do_đó , trong thực_tế , ta chấp_nhận các hàm_băm "phụ thuộc" với_nhau ở một_mức độ_nào đó , mỗi mức_độ cho chúng_ta một_phép dò khác_nhau .
+Ta sẽ nghiên_cứu : dò tuyến_tính , dò nhị_phân , dò bậc hai và băm_kép . Trong phép dò tuyến_tính (linear probing) , ta sẽ chỉ sử_dụng hàm_băm tốt để định_nghĩa hàm_băm như_sau : Điểm mạnh_của phương_pháp dò tuyến_tính này là thực_thi đơn_giản .
+Tuy_nhiên , các giá_trị băm sẽ có xu_hướng tụm lại với_nhau thành một dãy con liên_tục của .
+Ngoài_ra , khi hệ_số tải gần bằng 1 thì tìm_kiếm với dò tuyến_tính cực_kì kém hiệu_quả .
+Dò nhị_phân (binary probing) vừa lợi_dụng điểm mạnh_của dò tuyến_tính , vừa có_thể tính nhanh được trong thực_tế .
+Như đã nhắc đến ở trên , chọn cho_phép chúng_ta chuyển các thao_tác nhân , chia , mod về các thao_tác xử_lí bít .
+Do_đó , ta có_thể tính được hàm_băm rất nhanh .
+Dò nhị_phân cũng sử_dụng tư_tưởng này .
+Chọn và sử_dụng một hàm_băm tốt để định_nghĩa hàm_băm : Trong đó là phép XOR bít . Tương_tự như trong phép dò tuyến_tính , nhưng thay_vì sử_dụng hàm tuyến_tính , trong phép dò bậc hai (quadratic probing) , ta sẽ dùng hàm bậc 2 để thiết_kế hàm_băm : Phương_pháp dò bậc hai về_mặt lý_thuyết tốt hơn dò tuyến_tính .
+Ta sẽ đi_sâu chi_tiết trong bài sau . Băm_kép (double hashing) sử_dụng hai hàm_băm độc_lập để định_nghĩa hàm_băm : Cũng_như dò bậc hai , phương_pháp này tốt hơn về_mặt lý_thuyết .
+Tuy_nhiên , trong thực_tế , phương_pháp này sẽ hơi chậm hơn . Như chúng_ta thảo_luận ở phần xích ngăn_cách , mặc_dù kì_vọng thời_gian tìm_kiếm là (giả sử hệ_số tải là hằng số) , trong trường_hợp xấu nhất , thời_gian tìm_kiếm có_thể lên tới gần xấp_xỉ .
+Đôi_khi là một con_số không_hề nhỏ .
+Ta có_thể làm giảm hiệu_ứng xấu nhất đó bằng cách giảm hệ_số tải (tăng kích_thước của bảng băm) .
+Giả_sử chúng_ta sử_dụng bảng_băm với số_lượng ô .
+Ta sẽ chứng_minh ngắn_gọn , nếu ta chọn như_vậy , số_lượng đụng_độ chỉ là hằng_số .
+Nếu số_lượng đụng_độ là hằng_số thì đương_nhiên danh_sách dài nhất trong bảng cũng có kì_vọng chiều_dài là hằng_số . Gọi_là biến ngẫu_nhiên 0/1 trong đó nếu hai khóa xảy_ra đụng_độ , i . e , , và nếu ngược_lại .
+Theo , .
+Gọi_là tổng_số đụng_độ trong bảng_băm .
+Ta có : Do là biến ngẫu_nhiên 0/1 , .
+Ta có : Tuy_nhiên , là một con_số quá lớn và không thực_tế .
+Tưởng_tượng ta chỉ băm 1000 phần_tử mà cần tới 1 triệu bộ_nhớ .
+Băm hoàn kết_hợp cả nhận_xét trên và ý_tưởng của xích ngăn_cách để làm giảm thời_gian tìm_kiếm xấu nhất xuống mà bảng chỉ_cần bộ_nhớ (nó được gọi_là băm hoành hảo là_vì thế) .
+Băm hoàn_hảo sẽ sử_dụng hai hàm_băm tốt và bảng_băm hai chiều .
+Mỗi hàng của bảng_băm sẽ được coi_như một bảng_băm phụ , có kích_thước phụ_thuộc vào đầu_vào .
+Khi băm vào bảng , ta thực_hiện băm theo 2 pha : Pha đầu_tiên , sử_dụng để băm vào của bảng .
+Gọi_là số_lượng phần_tử được băm cùng vào hàng thứ sau pha đầu_tiên .
+Trong pha thứ 2 , với mỗi hàng , ta cấp_phát một bộ_nhớ cho hàng .
+Sau_đó , ta coi hàng này như một bảng_băm và dùng để băm các phần_tử có cùng mã_băm vào ô của hàng này .
+Đụng_độ lần 2 này sẽ được giải_quyết sử_dụng xích ngăn_cách .
+Xem hình minh_họa dưới_đây .
+Như phân_tích ở trên , do bảng_băm phụ này có kích_thước là bình_phương số_lượng phần_tử được lưu trong hàng , đụng_độ khi băm lần 2 này là .
+Do_đó , tìm_kiếm có_thể được thực_hiện trong .
+Một điểm cần lưu_ý nữa_là kích_thước của các bảng_băm con tương_ứng với các hàng khác_nhau có_thể khác_nhau .
+Cụ_thể , bảng_băm con_thứ (là ) có kích_thước .
+Do_đó , khi băm vào bảng_băm con trong pha 2 sử_dụng hàm_băm , địa_chỉ thực_sự trong bảng_băm con là . Giả mã : Để tìm một khóa , theo định_nghĩa , khóa này nằm trong danh_sách .
+Do_đó , ta chỉ_cần duyệt qua danh_sách đó .
+Theo phân_tích ở trên , thời_gian duyệt qua danh_sách trong trường_hợp xấu nhất_là .
+Code_C : Vấn_đề quan tam_còn lại của chúng_ta là bảng_băm hoàn_hảo sẽ cần_dùng đến bao_nhiêu bộ_nhớ .
+Trong phần cơ_sở toán_học của băm hoàn_hảo , chúng_ta sẽ chứng_minh kì_vọng bộ_nhớ của băm hoàn_hảo là khi : Chúng_ta đã tìm_hiểu 3 phương_pháp chính để giải_quyết xung_đột : xích ngăn_cách , địa_chỉ mở và băm hoàn_hảo .
+Trong thực_tế thiết_kế bảng_băm , iên ta nên chọn phương_pháp nào ?
+Sau_đây là một_số yếu_tố có_thể giúp ta chọn được phương_án giải_quyết xung_đột tốt nhất . Trong các ứng_dụng mà chúng_ta phải thường_xuyên thêm và xóa phần_tử khỏi bảng , xích ngăn_cách sẽ là một lựa_chọn tốt .
+Băm hoàn_hảo , bên_cạnh việc khó thực_thi , có_lẽ không phù_hợp với các ứng_dụng này .
+Như mô_tả ở trên , khi băm trong pha 2 , chúng_ta cần phải_biết trước_số lượng phần_tử xung_đột trong một ô để cấp_phát bộ_nhớ .
+Việc cấp_phát này sẽ rất mất thời_gian nếu ta liên_tục thêm và xóa phần_tử khỏi bảng .
+Định địa_chỉ mở cũng khó áp_dụng trong trường_hợp này vì nếu hệ_số tải lên tới xấp_xỉ 1 thì tìm_kiếm trong định địa_chỉ mở cực_kì chậm (xem công_thức và ) .
+Với xích ngăn_cách , ngay_cả khi , danh_sách dài nhất cũng chỉ khoảng .
+Ngược_lại , trong các ứng_dụng mà chúng_ta chủ_yếu thực_hiện tìm_kiếm , ít_khi phải thêm hay xóa phần_tử khỏi bảng (ví dụ ứng_dụng từ_điển chẳng hạn) thì băm hoàn_hảo sẽ là một lựa_chọn tốt .
+Như đã nhắc đến ở trên , băm hoàn_hảo có thời_gian kì_vọng trong trường_hợp cũng chỉ là và bộ_nhớ kì_vọng là .
+Tương_tự như băm hoàn_hảo , nếu ứng_dụng của chúng_ta chủ_yếu thực_hiện tìm_kiếm nhưng chúng_ta lại có thêm thông_tin về tần_suất truy_nhập khóa , thì ta có_thể sử_dụng băm địa_chỉ mở .
+Cơ_chế của băm địa_chỉ mở cho ta thấy các khóa băm càng sớm thì số bước dò trong tìm_kiếm càng ngắn .
+Do_đó , ta có_thể băm các khóa theo thứ_tự giảm_dần của tần_suất truy_nhập .
+Một điểm chú_ý duy_nhất với băm địa_chỉ mở là không nên để hệ_số tải vượt qúa . Trong code dưới_đây , mình sử_dụng hàm_băm nhân nhị_phân (họ hàm_băm trong ví_dụ 2)Code : , , .
+1 Donald_E .
+Knuth .
+, Volume 3 : (2nd Ed . ) Sorting and Searching .
+Addison_Wesley_Longman_Publishing_Co . , Inc . , Redwood_City , CA , USA , 1998 .
+2 Jeff_Erickson .
+.
+UIUC , 2013 .
+3 Thomas_H .
+Cormen , Clifford_Stein , Ronald_L .
+Rivest , and Charles_E .
+Leiserson .
+(2nd ed . ) .
+Chapter 12 .
+McGraw-Hill_Higher_Education , 2001 .
+, , , , , , , Trackback link : Powered by and

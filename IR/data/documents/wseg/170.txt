@@ -1,0 +1,89 @@
+Nguồn : P3G_Người dịch : Phan_Minh Hoàng_Table of_Contents Lịch_sử Bài_toán cơ_bản Thuật_toán duyệt Kĩ_thuật Ý_nghĩa của tên kĩ_thuật Thêm một đường vào tập Phân_tích thuật_toán Ví_dụ 1 : USACO_Tháng 3 năm 2008 "Acquire" Bài_toán Nhận_xét 1 : Tồn_tại các hình_chữ_nhật không quan_trọng Nhận_xét 2 : Đoạn liên_tiếp Lời_giải Quy_Hoạch_Động Nhận_xét 3 : Sử_dụng bao lồi Ví_dụ 2 : APIO 2010 Commando Bài_toán Biến_thể động (Fully Dynamic_Variant)_Code Bài_tập : Kĩ_thuật bao lồi là kĩ_thuật (hoặc là cấu_trúc dữ liệu) dùng để xác_định hiệu_quả , có tiền xử_lý , cực_trị của một_tập các hàm tuyến_tính tại một giá_trị của biến độc_lập .
+Mặc_dù tên_gọi giống nhưng kĩ_thuật này lại khá khác_biệt so_với thuật_toán bao lồi của hình_học tính_toán .
+Ngoài_ra có_một kĩ_thuật liên_quan đến kĩ_thuật bao lồi là IT đoạn_thẳng Lịch_sử Kĩ_thuật bao lồi được biết đến nhiều nhất có_lẽ vì nó cần để ăn trọn toàn_bộ số điểm trong nhiều bài_toán USACO , như_là bài Acquire trong bảng gold của USACO tháng 3 năm 2008 .
+Thuật_toán được đưa_vào các cuộc_thi lập_trình một_cách rộng_rãi sau bài Batch_Scheduling trong kì_thi IOI 2002 .
+Đây là một kĩ_thuật khá lạ và ít_có nguồn trên mạng về vấn_đề này .
+Bài_toán cơ_bản Cho một_tập lớn các hàm tuyến_tính có dạng y = m_i x + b_i và một_số lượng lớn truy_vấn .
+Mỗi truy_vấn là một_số x và hỏi giá_trị cực_tiểu y có_thể đạt được nếu chúng_ta thế x vào một trong những phương_trình đã cho .
+Ví_dụ , cho các phương_trình y=4 , y=\frac43+\frac23x , y=12-3x và y=3-\frac12x và truy_vấn x=1 .
+Chúng_ta phải tìm phương_trình mà trả về giá_trị cực_tiểu hoặc giá_trị cực_tiểu đó (trong trường_hợp này là phương_trình y=\frac43+\frac23x và giá_trị cực_tiểu đó là 2) .
+Biến_thể của bài_toán có_thể là tìm giá_trị cực_đại có_thể giải_quyết với một thay_đổi nhỏ vì_vậy trong bài viết này chỉ tập_trung vào bài_toán tìm giá_trị cực_tiểu .
+Sau khi ta vẽ các đường_thẳng lên hệ trục tọa_độ , dễ thấy rằng : chúng_ta muốn xác_định , tại x=1(đường màu đỏ) đường nào có tọa_độ y nhỏ nhất .
+Ở trong trường_hợp này là đường_nét đứt đậm y=\frac43+\frac23x .
+Thuật_toán duyệt Với mỗi truy_vấn trong Q truy_vấn , ta duyệt qua từng hàm_số và thử từng từng hàm và xem thử hàm nào trả_giá_trị cực_tiểu cho giá_trị x .
+Nếu có M đường_thẳng và Q truy_vấn , độ phức_tạp của thuật_toán sẽ \mathcalO(MQ) .
+Kĩ_thuật bao lồi sẽ giúp giảm độ phức_tạp xuống còn \mathcalO((Q+M)\log M , một_độ phức_tạp hiệu quá hơn nhiều .
+Kĩ_thuật Xét hình_vẽ ở trên .
+Đường_thẳng y=4 sẽ không bao_giờ là giá_trị nhỏ nhất với tất_cả giá_trị của x .
+Mỗi đường_trong mỗi đường_thẳng còn_lại sẽ lại trả_lại giá_trị cực_tiểu trong một_và chỉ một đoạn liên_tiếp (có thể có_một biên là +\infty hoặc -\infty) .
+Đường chấm đậm sẽ cho giá_trị cực_tiểu với tất_cả giá_trị nằm bên trái điểm giao với đường đen đậm .
+Đường đen đậm sẽ cho giá_trị cực_tiểu với tất_cả giá_trị giữa giao_điểm của nó với đường nhạt và đường chấm đậm .
+Và đường nhạt sẽ nhận cực_tiểu cho tất_cả giá_trị bên phải giao_điểm với đường đậm .
+Một nhận_xét nữa_là với giá_trị của x càng tăng thì hệ_số góc của các hàm_số sẽ giảm , \frac23 , \frac-12 , -3 .
+Với một_chút chứng_minh dễ thấy rằng điều này luôn đúng .
+Điều này giúp chúng_ta hiểu phần_nào thuật_toán : Bỏ_đi các đường_thẳng không quan_trọng như y=4 trong ví_dụ (những đường_thẳng mà không nhận giá_trị cực_tiểu trong bất_kì đoạn nào) Sắp_xếp các đoạn_thẳng còn_lại theo hệ_số góc và được một_tập N đoạn_thẳng (của N đường_thẳng còn lại) mà mỗi đoạn có_một đường_thẳng nhận giá_trị cực_tiểu .
+Dùng thuật_toán tìm_kiếm nhị_phân cơ_bản để có_thể tìm_kiếm đáp_án cho từng truy_vấn .
+Ý_nghĩa của tên kĩ_thuật Cụm_từ bao lồi được sử_dụng để chỉ hình_bao trên/dưới (upper / lower envelope) .
+Trong ví_dụ , nếu chúng_ta coi mỗi phần đoạn_thẳng tối_ưu của đường_thẳng (bỏ qua_đường y=4) , chúng_ta sẽ thấy những đoạn đó tạo_thành một hình_bao dưới (lower envelope) , một_tập các đoạn_thẳng chứa tất_cả điểm cực_tiểu cho mọi giá_trị của x (hình bao dưới được tô bằng màu xanh_trong hình .
+Cái tên kĩ_thuật bao lồi xuất_phát từ việc đường_bao trên tạo_thành một đường lồi , từ_đó thành bao lồi của một_tập điểm .
+Thêm một đường vào tập Ta có_thể thấy nếu ta có_một tập đường_thẳng đã được xác_định sắp_xếp , ta có_thể dễ_dàng trả_lời bất_kì truy_vấn nào với độ phức_tạp là \mathcalO(\log M) với tìm_kiếm nhị_phân .
+Vậy nếu chúng_ta tìm_ra cách thêm một đường_thẳng vào tính_toán lại một_cách hiệu_quả là chúng_ta đã có_một thuật_toán hoạt_động ngon_lành .
+Giả_sử chúng_ta được xử_lý tất_cả đường_thẳng trước_khi làm các truy_vấn thì chúng_ta chỉ_cần đơn_giản sắp_xếp các đường_thẳng theo hệ_số góc và thêm từng đường một vào .
+Sẽ có_thể một_số đường không quan_trọng và sẽ bị bỏ_đi .
+Chúng_ta sẽ sử_dụng cấu_trúc dữ_liệu Stack để cài_đặt , bỏ từng đường_thẳng vào stack và nếu đường nào không quan_trọng sẽ bị bỏ ra ngoài đến khi chỉ còn một đường_thẳng (đường thẳng cuối không_thể bỏ) Vậy làm_sao để có_thể xác_định đường_thẳng nào sẽ bị bỏ khỏi stack ?
+Giả_sử l_1 , l_2 và l_3 là đường_thẳng áp_chót (gần cuối ) trên stack , đường_thẳng cuối_cùng trong stack và đường_thẳng được thêm vào stack .
+Đoạn l_2 không quan trọng(không có_giá trị cực_tiểu ở điểm nào) khi và chỉ khi giao_điểm của l_1 và l_3 nằm bên trái giao_điểm của l_1 và l_2 (Đoạn mà l_3 nhận giá_trị cực_tiểu đã nằm đè lên đoạn của l_2) .
+Giả_sử rằng không có ba đường nào trùng hay song_song với_nhau (có thể giải_quyết một_cách đơn giản) .
+Phân_tích thuật_toán Độ phức_tạp bộ_nhớ sẽ là \mathcalO(M) : chúng_ta cần một danh_sách lưu lại các đoạn_thẳng , biểu_diễn bởi hai số_thực .
+Độ phức_tạp thời_gian cho phần tiền xây_dựng : Để sắp_xếp các đoạn_thẳng theo tăng dần hệ_số góc sẽ tốn \mathcalO(M\logM) .
+Duyệt qua các đường_thẳng mỗi đường_được cho vào stack và bỏ khỏi stack tối_đa một_lần vậy_nên sẽ tốn \mathcalO(M) cho bước này .
+Vậy thời_gian cho việc xây_dựng sẽ là \mathcalO(M\logM) .
+Với mỗi truy_vấn dùng chặt nhị_phân sẽ cho độ phúc tạp tốt nhất \mathcalO(\log M) .
+Ví_dụ 1 : USACO_Tháng 3 năm 2008 "Acquire" Bài_toán Cho_N(N \le 50000) hình_chữ_nhật khác_nhau về hình_dạng , mục_tiêu của bài_toán là phải lấy_được tất_cả hình_chữ_nhật .
+Một_tập hình_chữ_nhật có_thể thu được với chi_phí bằng tích của chiều_dài dài nhất và chiều_rộng dài nhất .
+Chúng_ta cần phân_hoạch tập các hình_chữ_nhật này một_cách khôn_khéo sao_cho tổng_chi_phí có_thể được tối_thiểu_hóa và tính chi_phí này .
+Hình_chữ_nhật không_thể được xoay (đổi chiều_dài và chiều rộng) .
+Nhận_xét 1 : Tồn_tại các hình_chữ_nhật không quan_trọng Giả_sử tồn_tại hai hình_chữ_nhật A và B mà mà_cả chiều_dài và chiều_rộng của hình B đều bé hơn hình A thì ta có_thể nói hình B là không quan_trọng vì ta có_thể để hình B chung với hình A từ_đó chi_phí của hình B không còn quan_trọng .
+Sau khi đã loại hết tất_cả hình không quan_trọng đi và sắp_xếp lại các hình theo chiều_dài giảm_dần thì chiều_rộng các hình đã sắp_xếp sẽ theo chiều tăng .
+Nhận_xét 2 : Đoạn liên_tiếp Sau khi sắp_xếp , ta có_thể hình_dung được rằng nếu chúng_ta chọn hai hình_chữ_nhật ở vị_trí i và ở vị_trí j thì ta có_thể chọn tất_cả hình_chữ_nhật từ i+1 đến j-1 mà không tốn chi_phí nào cả .
+Vậy_ta có_thể thấy rằng cách phân_hoạch tối_ưu là một_cách phân dãy thành các đoạn liên_tiếp và chi_phí của một đoạn là bằng tích của chiều_dài của hình_chữ_nhật đầu_tiên và chiều_rộng của hình_chữ_nhật cuối_cùng .
+Lời_giải Quy_Hoạch_Động Vậy bài_toán trờ về bài_toán phân dãy sao_cho tổng_chi_phí của các dãy là tối_ưu .
+Đây là một dạng bài quy_hoạch_động hay gặp và chúng_ta có_thể dễ_dàng nghĩ_ra thuật_toán \mathcalO(N2) như mã giả phía dưới .
+(Giả sử các hình đã được sắp_xếp và bỏ_đi những hình_chữ_nhật không quan trọng) input N for i ∈ 1 . . N input recti . h input recti . w let cost0 = 0 for i ∈ 1 . . N let costi = ∞ for j ∈ 0 . . i-1 costi = min(costi , costj+recti . hrectj+1 . w) print costN Ở trên costk lưu lại chi_phí cực_tiểu để lấy_được k hình_chữ_nhật đầu_tiên .
+Hiển_nhiên , cost0=0 .
+Để tính_toán được costi với i khác 0 , ta có tính tổng_chi_phí để lấy_được các tập trước và cộng nó với chi_phí của tập cuối cùng(có chứa i ) .
+Chi_phí của một_tập có_thể dễ_dàng tính bằng cách lấy tích của chiều_dài hình_chữ_nhật đầu_tiên và chiều_rộng của hình_chữ_nhật cuối_cùng .
+Vậy_ta có min(costi , costj+recti . hrectj+1 . w) với j là hình_chữ_nhật đầu_tiên của tập cuối_cùng .
+Với_N=50000 thì thuật_toán \mathcalO(N2) này là quá chậm .
+Nhận_xét 3 : Sử_dụng bao lồi Với m_j=rectj+1 . w , b_j=costj , x=recti . h với rectx . h là chiều_rộng của hình_chữ_nhật x và rectx . w là chiều_dài của hình_chữ_nhật x .
+Vậy_thì bài_toán trờ về tìm hàm cực_tiểu của y=m_jx+b_j bằng cách tìm j tối_ưu .
+Nó giống hoàn_toàn bài_toán chúng_ta đã đề_cập ở trên .
+Giả_sử_ta đã hoàn_thành việc cài_đặt cấu_trúc đã đề_cập ở trên chúng_ta có_thể có_mã giả ở dưới_đây : input N for i ∈ 1 . . N input recti . h input recti . w let E = empty lower envelope structure let cost0 = 0 add the line y=mx+b to E , where m=rect1 . w and b=cost0 //b is zero for i ∈ 1 . . N costi = E . query(recti . h) if ilt;N E . add(m=recti+1 . w , b=costi) print costN Rõ_ràng các đường_thẳng đã được sắp_xếp giảm_dần về độ lớn của hệ_số góc do chúng_ta đã sắp_xếp các chiều_dài giảm_dần .
+Do mỗi truy_vấn có_thể thực_hiện trong thời_gian \mathcalO(\logN) , ta có_thể dễ_dàng thấy thời_gian_thực hiện của cả bài_toán là \mathcalO(N\logN) .
+Do các truy_vấn của chúng_ta cũng tăng dần (do chiều_rộng đã được sắp_xếp tăng tần) ta có_thể thay_thế việc chặt nhị_phân bằng một con_trỏ chạy song_song với việc quy_hoạch_động đưa bước quy_hoạch_động còn \mathcalO(N) nhưng tổng_độ phức_tạp vẫn là \mathcalO(N\logN) do chi_phí sắp_xếp .
+Vậy là ta đã giải_quyết thành_công bài_toán sử_dụng kĩ_thuật bao lồi đầu_tiên của chúng_ta : D .
+Ví_dụ 2 : APIO 2010 Commando Bài_toán Bạn được cho : Một dãy có N số_nguyên_dương (1\le N \le 106) Một hàm_số bậc 2 với hệ_số_nguyên duong f(x)= ax2 + bx +c , a\lt0 .
+Mục_tiêu cũng của bài_toán là phân dãy này ra thành các đoạn liên_tiếp sao tổng_các hàm f trên các dãy là lớn nhất ( giá_trị của hàm f lên dãy là f(x) với x là tổng_dãy đó) .
+Tương_tự như bài trên công_thức quy_hoạch_động có_thể dễ thấy công_thức \mathcalO(N2) .
+Định_nghĩa rằng : sum(i , j) = xi + xi+1 + . . .
++ xj adjust(i , j) = asum(i , j)2 + bsum(i , j) + c Ta có : dp(n) = max_k=0n-1dp(k)+adjust(k+1 , n) Mã giả : dp0 ← 0 for n ∈ 1 . . N for k ∈ 0 . . n-1 dpn ← max(dpn , dpk + adjust(k + 1 , n)) Hãy thử biến_đổi hàm "adjust" một_tí nào .
+Định_nghĩa sum(1 , x) là \delta(x) .
+Vậy với một_số k bất_kì ta có_thể viết là : dp(n)=dp(k)+a(\delta(n)-\delta(k))2+b(\delta(n)-\delta(k))+c dp(n)=dp(k)+a(\delta(n)2+\delta(k)2-2\delta(n)\delta(k))+b(\delta(n)-\delta(k))+c dp(n)=(a\delta(n)2 +b\delta(n) +c)+dp(k)-2a\delta(n)\delta(k)+a\delta(k)2-b\delta(k) Nếu : z=\delta(n) m=-2a\delta(k) p=dp(k)+a\delta(k)2-b\delta(k) Ta có_thể thấy mz+p là đại_lượng mà chúng_ta muốn tối_ưu_hóa bằng cách chọn k .
+dp(n) sẽ bằng đại_lượng đó cộng thêm với a\delta(n)+b\delta(n)+c(độc lập so_với k) .
+Trong đó z cũng độc_lập với k , và m và p phụ_thuộc vào k .
+Ngược với bài "acquire" khi chúng_ta phải tối_thiểu_hóa hàm quy_hoạch_động thì bài này chúng_ta phải cực_đại_hóa nó .
+Chúng_ta phải xây_dựng một hình_bao trên với các đường_thẳng tăng dần về hệ_số góc .
+Do đề_bài đã cho a\lt0 hệ_số góc của chúng_ta tăng dần và luôn dương_thỏa với điều_kiện của cấu_trúc chúng_ta .
+Do dễ thấy \delta(n)gt;\delta(n-1) , giống_như bài "acquire" các truy_vấn chúng_ta cũng tăng dần theo thứ_tự do_vậy chúng_ta có_thể khơi tạo một biến chạy để chạy song_song khi làm quy_hoạch_động (bỏ được phần chặt nhị phân) .
+Biến_thể động (Fully Dynamic_Variant) Kĩ_thuật này có_thể dễ_dàng được thực_hiện khi các đường_thẳng được thêm trước tất_cả các truy_vấn hay các đường_thẳng được thêm vào theo thứ_tự giảm_dần của hệ_số góc .
+Hoặc với cấu_trúc deque chúng_ta cũng có_thể thêm những đường_thẳng có hệ_số góc lớn hơn_hết các đường_thẳng đã có .
+Nhưng có những lúc sẽ có các bài_toán khi chúng_ta phải giải_quyết các truy_vấn và thêm đường_thẳng lồng vào nhau với các hệ_số góc ngẫu_nhiên .
+Chúng_ta không_thể sắp_xếp lại trước (do bị lồng vào truy vấn) và không_thể sắp_xếp lại với mỗi lần thêm đường_thẳng (vậy sẽ cho ta một_độ phức_tạp tuyến_tính với mỗi truy vấn) .
+Có tồn_tại một_cách để thêm các đường_thẳng ngẫu_nhiên vào trong độ phức_tạp log .
+Chúng_ta lưu các đoạn_thẳng trong một cấu_trúc có thứ_tự động như std : : set của C++ .
+Mỗi đường_thẳng chứa hệ_số góc và giao_điểm y (sắp xếp theo hệ_số góc trước rồi theo y) cùng_với một biến left thêm , x nhỏ nhất sao_cho đường_thẳng này đạt cực_tiểu trong tập các đường_thẳng .
+Sắp đường_thẳng này vào vị_trí đúng của nó và những đường bị loại sẽ là các đường liên_tiếp kế bên nó .
+Chúng_ta dùng các điều_kiện tương_tự trên để bỏ các đường_thẳng bên trái và bên phải nó .
+Để trả_lời truy_vấn , chúng_ta dùng một set nữa dùng chính các biến ấy nhưng lại sắp_xếp theo left .
+Vậy mỗi lần truy_vấn ta có_thể dễ_dàng chặt nhị_phân để tìm_ra kết_quả như đã nói ở trên .
+Code_Code_C++ cho "acquire" Code_C++ cho "commando" Bài_tập : Bài_J - ACM_ICPC_Vietnam_Regional 2017

@@ -1,0 +1,52 @@
+Tác_giả : Nguyễn_Hoành Tiến_Table of_Contents Bài 1 : Kiểm_tra Palindrome_Bài 2 : Xâu con Palindrome dài nhất Cách 1 : QHĐ_Cách 2 : Duyệt có cận Bài 3 : Chia một xâu thành ít_nhất các Palindrome_Bài 4 : Pal - Ioicamp - Marathon 2005-2006 Bài 5 : Palindrome - IOI 2000 Bài_tập luyện_tập : Palindrome hay còn gọi_là xâu đối_xứng , xâu đối gương là tên_gọi của những xâu kí_tự mà khi viết từ phải qua trái hay từ trái qua phải_thì xâu đó không thay_đổi .
+VD : MADAM , IOI , . . .
+Nhờ tính_chất đặc_biệt đó mà có khá nhiều bài_tập có liên_quan đến Palindrome , phần_lớn trong chúng thường đi_kèm với QHĐ .
+Tôi xin giới_thiệu với các bạn một_vài bài_tập như_vậy .
+Bài 1 : Kiểm_tra Palindrome Bài_toán : Cho 1 xâu .
+Kiểm_tra nó có_phải là Palindrome hay_không ?
+Đây là một bài cơ_bản , nhưng quan_trọng vì nó được đề_cập đến trong nhiều bài_tập khác .
+Cách làm tốt nhất_là duyệt đơn_thuần mất O(N) .
+function is_palindrome ( s : string ) : boolean ; var i , n : integer ; begin n : = length ( s ); for i : = 1 to ( n div 2 ) do if s i lt;gt; s n + 1 - i then exit ( false ); exit ( true ); end ; Một đoạn chương_trình khác : function is_palindrome ( s : string ) : boolean ; var i , j : integer ; begin i : = 1 ; j : = length ( n ); while ( i lt; j ) begin if s i lt;gt; s j then exit ( false ); inc ( i ); dec ( j ); end ; exit ( true ); end ; Bài 2 : Xâu con Palindrome dài nhất Bài_toán : Cho một xâu S , độ_dài không quá 1000 kí_tự .
+Tìm palindrome dài nhất_là xâu con của S (Xâu con là một dãy các kí_tự liên tiếp) .
+Đây cũng là một bài cơ_bản với nhiều cách làm .
+Cách 1 : QHĐ_Dùng mảng Fi , j có_ý nghĩa : Fi , j = true/false nếu đoạn gồm các kí_tự từ i đến j của S có/không là palindrome .
+Ta có_công thức là : Fi , i = True : xâu 1 ký_tự luôn đối_xứng .
+Fi , j = Fi+1 , j-1 nếu S_i = S_j .
+Fi , j = False nếu S_i \ne S_j .
+Đoạn chương_trình như_sau : FillChar ( F , sizeof ( F ) , false ); for i : = 1 to n do F i , i : = True ; for k : = 1 to ( n - 1 ) do for i : = 1 to ( n - k ) do begin j : = i + k ; F i , j : = ( F i + 1 , j - 1 ) and ( s i = s j ); end ; Kết_quả là : Max(j-i+1) \le j thỏa Fi , j = True .
+Độ phức_tạp thuật_toán là O(N2) .
+Chú_ý : Với_N lớn , ta phải thay mảng 2 chiều F bằng 3 mảng 1 chiều và dùng thêm biến max lưu giá_trị tối_ưu .
+Cách 2 : Duyệt có cận Ta xét từng vị_trí i : Xem S_i có_phải là tâm của Palindrome có lẻ kí_tự không ?
+(ví dụ Palindrome_MADAM có tâm là kí_tự D)_Xem S_i và S_i+1 có_phải là tâm của Palindrome có chẵn kí_tự không ?
+(ví dụ Palindrome_ABBA có tâm là 2 kí_tự BB)_Với mỗi kí_tự ta tìm palindrome dài nhất nhận nó là tâm , cập nhập lại kết_quả khi duyệt .
+Ta duyệt từ giữa ra để dùng kết_quả hiện_tại làm cận .
+Đoạn chương_trình như_sau : Procedure_Lam ; var i , j : Longint ; procedure try ( first , last : Longint ); var dd : Longint ; begin if first = last then begin dd : = 1 ; dec ( first ); inc ( last ); end else dd : = 0 ; repeat if ( first lt; 1 ) or ( last gt; N ) then break ; if s i = s j then begin dd : = dd + 2 ; first : = first - 1 ; last : = last + 1 ; end else break ; until false ; if max lt; dd then max : = dd ; end ; begin i : = n div 2 ; j : = n div 2 + 1 ; max : = 1 ; while ( i gt; max div 2 ) and ( j lt;= N - max div 2 ) do begin if i gt; max div 2 then begin try ( i , i ); try ( i , i + 1 ); end ; if j lt;= N - max div 2 then begin try ( j , j ); try ( j , j + 1 ); end ; i : = i - 1 ; j : = j + 1 ; end ; end ; Cách làm này có độ phức_tạp : max (N-max) .
+Vì_vậy nó chạy nhanh hơn cách QHĐ trên , thời_gian chậm nhất khi tất_cả các ký_tự giống nhau (khi đó , max = N/2) : cũng chỉ mất N2/4 và nhanh gấp 4 lần cách dùng QHĐ .
+Nhờ vậy , chúng_ta biết là : không_phải lúc nào QHĐ cũng chấp_nhận được về_mặt thời_gian và không_phải lúc nào duyệt lúc nào cũng chậm .
+Bài này còn có_một cách NlogN nữa_là dùng Suffix_Aray , thậm_chí có cách O(N) là sử_dụng Suffix_Tree và thuật_toán tìm LCA .
+Đương_nhiên cách cài_đặt không_hề dễ_dàng , tôi sẽ thảo_luận với các bạn vào một dịp khác .
+Bài 3 : Chia một xâu thành ít_nhất các Palindrome Bài_toán : Cho 1 xâu độ_dài không quá 1000 .
+Chia nó thành ít_nhất các Palindrome .
+Bài này phức_tạp hơn bài trên , cách làm thì vẫn là QHĐ .
+Gọi_F(i) là số palindrome ít_nhất mà đoạn 1 . . i chia thành được .
+Ta có_công thức : Fi = min(Fi , Fj + 1) với j lt; i thỏa_mãn : đoạn j+1 . . i là palindrome Đoạn chương_trình như_sau : F 0 : = INFINITY ; for i : = 1 to n do for j : = i - 1 downto 0 do if ( isPalindrome ( j + 1 , i )) then F i : = min ( F i , F j + 1 ); Hai vòng for lồng nhau mất O(N2) , phần kiểm_tra đoạn j+1 . . i là palindrome hay_không mất O(N) , vậy độ phức_tạp thuật_toán là O(N3) .
+Sẽ không được khả_thi nếu N = 1000 .
+Để giảm độ phức_tạp thuật_toán , ta sử_dụng mảng Li , j có_ý nghĩa tương_tự như mảng Fi , j ở bài 1 .
+QHĐ lập mảng Li , j mất O(N2) .
+Tổng_cộng là O(N2) vì mỗi lần kiểm_tra chỉ mất O(1) .
+Một_cách khác sử_dụng ít bộ_nhớ hơn_là dùng hai mảng một_chiều L_i và C_i có_ý nghĩa : L_i là độ_dài lớn nhất của palindrome độ_dài lẻ nhận S_i làm tâm C_i là độ_dài lớn nhất của palindrome độ_dài chẵn nhận S_i và S_i+1 làm tâm .
+L_i và C_i có_thể tính được bằng cách 2 bài 2 trong O(N2) .
+Phần kiểm_tra ta viết lại như_sau : function is_palindrome ( i , j : integer ) : boolean ; var dd : integer ; begin dd : = j - i + 1 ; if odd ( dd ) then is_palindrome : = ( L ( i + j ) div 2 gt;= n ) else is_palindrome : = ( C ( i + j ) div 2 gt;= n ) end ; Vậy thuật_toán của chúng_ta có độ phức_tạp tính_toán là O(N2) , chi_phí bộ_nhớ là O(N) .
+Bài 4 : Pal - Ioicamp - Marathon 2005-2006 Bài_toán : Cho một xâu , hỏi nó có bao_nhiêu xâu con là palindrome; xâu con_ở đây gồm các kí_tự không cần liên_tiếp độ_dài không quá 120 .
+Ví_dụ , xâu "IOICAMP" có 9 xâu con là palindrome : I_O_I_C_A_M_P_II_IOI_Đây là một bài_tập rất thú_vị .
+Phương_pháp là dùng QHĐ .
+Gọi_Fi , j là số palindrome là xâu con của đoạn i , j .
+Ta có_công thức : Fi , i = 1 Fi , j = Fi+1 , j + Fi , j-1 - Fi+1 , j-1 + T_Nếu S_i = S_j thì T = Fi+1 , j-1 + 1 Nếu S_i \ne S_j thì T = 0 Đoạn chương_trình như_sau : procedure lam ; var k , i , j : integer ; begin n : = length ( s ); for i : = 1 to n do F i , i : = 1 ; for k : = 1 to n - 1 do for i : = 1 to n - k do begin j : = i + k ; F i , j : = F i , j - 1 + F i + 1 , j - F i + 1 , j - 1 ; if s i = s j then F i , j : = F i , j + F i + 1 , j - 1 + 1 ; end ; end ; Để chương_trình chạy nhanh hơn , chúng_ta sửa_lại đoạn mã một_chút như_sau : procedure lam2 ; var k , i , j : integer ; begin n : = length ( s ); for i : = 1 to n do F i , i : = 1 ; for k : = 1 to n do for i : = 1 to n - k do begin j : = i + k ; F i , j : = F i , j - 1 + F i + 1 , j ; if s i = s j then F i , j : = F i , j + 1 else F i , j : = F i , j - F i + 1 , j - 1 ; end ; end ; Đoạn chương_trình trên chỉ_có tính mô_phỏng , muốn hoàn_thiện bạn phải cài_đặt các phép_tính cộng_trừ số_lớn vì kết_quả có_thể lên tới 2n-1 .
+Độ phức_tạp của thuật_toán là O(N2) .
+Vì_vậy , chúng_ta hoàn_toàn có_thể làm với N = 1000 , khí đó cần rút_gọn mảng F thành ba mảng một_chiều .
+Bài 5 : Palindrome - IOI 2000 Bài_toán : Cho một xâu độ_dài không quá 500 , hỏi phải thêm vào nó ít_nhất bao_nhiêu xâu kí_tự để nó trở_thành một palindrome .
+Bài này cũng sử_dụng QHĐ : Gọi_Fi , j là số phép biến_đổi ít_nhất cần thêm vào đoạn i , j để đoạn i , j trở_thành palindrome .
+Ta có_công thức : Fi , i = 0 Nếu S_i = S_j thì Fi , j = Fi+1 , j-1 Nếu S_i \ne S_j thì Fi , j = Min(_Fi , j-1 , Fi+1 , j ) + 1 Bài này được ra từ thời năm 2000 , khi đó bộ_nhớ cho_phép rất nhỏ .
+Muốn chương_trình chạy với n = 500 thì cần rút_gọn F thành ba mảng một_chiều .
+Muốn truy vết , bạn phải dùng mảng bit hoặc dùng dữ_liệu động .
+Bài_tập luyện_tập : SPOJ - PALIN

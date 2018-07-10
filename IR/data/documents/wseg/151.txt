@@ -1,0 +1,120 @@
+Nguồn : Understanding_Probabilities - Topcoder_Table of_Contents Cơ_bản Ví_dụ Biến_cố độc_lập BirthdayOdds_Các kiến_thức nâng_cao Biến ngẫu_nhiên (Random variable) Giá_trị kỳ_vọng (Expected value) : Linearity of Expectation_Tính xác_suất từng bước_một Nested_Randomness_GeneticCrossover Khái_niệm Tóm_tắt_đề bài Phân_tích Thuật_toán ngẫu_nhiên Bài_tập luyện_tập Xác_suất là một nhánh của Toán_học có rất nhiều ứng_dụng trong thực_tế , chẳng_hạn như trong phân_tích giá_cả thị_trường , chuẩn_bị chiến_lược trong thi_đấu thể_thao , dự_báo thời_tiết . .
+Bạn có_thể đọc thêm về ứng_dụng của xác_suất trên Quora .
+Đa_số các bài_toán về xác_suất đều được lấy ví_dụ từ_thực tế .
+Ví_dụ : Kỳ thi sắp đến , có 20 chủ_đề cần học và bạn chỉ_có đủ thời_gian để học 15 chủ_đề .
+Nếu trong bài kiểm_tra chỉ_có 2 câu_hỏi (mỗi câu_hỏi về 1 chủ đề) , thì xác_suất bạn có_thể trả_lời đc cả 2 câu là bao_nhiêu ?
+Không khó để nhận_ra bài_tập nào cần_dùng kiến_thức về xác_suất nhưng giải được chúng là một câu_chuyện hoàn_toàn khác .
+Biết cách để tiếp_cận những bài_toán như_vậy là một lợi_thế lớn trong các cuộc_thi lập_trình , và bài viết dưới_đây sẽ trang_bị những kiến_thức nền_tảng cho bạn .
+Cơ_bản Ta hình_dung làm_việc với xác_suất như tiến_hành một cuộc thí_nghiệm .
+Tập_hợp của tất_cả những kết_quả (outcome) có_thể xảy_ra của thí_nghiệm được gọi_là không_gian mẫu ( sample space ) , thường được kí_hiệu bởi S .
+Mỗi kết_quả có_thể xảy_ra được biểu_diễn bởi một_và chỉ một điểm trong không_gian mẫu .
+Chúng_ta cùng xem_xét ví_dụ dưới_đây : Tung xúc sắc một_lần Không_gian mẫu S = 1 , 2 , 3 , 4 , 5 , 6 Tung hai đồng xu Không_gian mẫu S = (0 , 0) , (0 , 1) , (1 , 0) , (1 , 1) với 0 thể_hiện đồng xu sấp và 1 thể_hiện đồng xu ngửa .
+Ta định_nghĩa một biến_cố ( event ) là một_tập hợp các kết_quả của một_thí_nghiệm .
+Do_đó , một biến_cố là một_tập con của không_gian mẫu S .
+Nếu ta đặt biến_cố là E , thì E \subseteq S .
+Một biến_cố có_thể chỉ bao_gồm một kết_quả duy_nhất trong không_gian mẫu .
+Biến_cố bao_gồm nhiều hơn một kết_quả được gọi_là biến_cố phức_hợp ( compound event ) , ví_dụ như trong thí_nghiệm tung 2 đồng xu ở trên .
+Cái chúng_ta quan_tâm nhất_là xác_suất để một biến_cố nhất_định xảy_ra , P(E) .
+Theo định_nghĩa , P(E) là một_số thực trong_khoảng từ 0 đến 1 , trong đó 0 thể_hiện biến_cố không có khả_năng xảy_ra và 1 thể_hiện biến_cố chắc_chắn xảy_ra (hay là toàn_bộ không_gian mẫu) .
+Impossible_Event : biến_cố chắc_chắn ko thể xảy_ra Certain : biến_cố chắc_chắn xảy_ra Even chance : biến_cố có xác_suất 50-50 .
+Như đã đề_cập , mỗi kết_quả khả_thi được biểu_diễn bởi đúng một điểm trong không_gian mẫu .
+Điều này đưa ta đến công_thức : P(E) = \frac\left E \right \left S \right Nói_cách_khác , ta có_thể tính xác_suất để một biến_cố xảy_ra bằng cách chia số kết_quả thuộc biến_cố E cho tổng_số kết_quả có_thể xảy_ra (theo không_gian mẫu S) .
+Để diễn_tả mối quan_hệ giữa các biến_cố , bạn có_thể dùng các quy_ước từ lý_thuyết về tập_hợp .
+Xét trường_hợp tung con xúc sắc một_lần .
+Như_trên , ta có S = 1 , 2 , 3 , 4 , 5 , 6 .
+Xem_xét những biến_cố dưới_đây : Biến_cố A : điểm gt; 3 : 4 , 5 , 6 Biến_cố B : điểm là số_lẻ : 1 , 3 , 5 Biến_cố C : điểm là 7 : \varnothing A \cup B : điểm gt; 3 hoặc điểm là số_lẻ : =1 , 3 , 4 , 5 , 6 A \cap B : điểm gt; 3 và là số_lẻ : 5 A : biến_cố A không xảy_ra : 1 , 2 , 3 Xác_suất : P(A \cup B) = 5/6 P(A \cap B) = 1/6 P(A’) = 1 – P(A) = 1 – 1/2 = 1/2 P(C) = 0 Bước_đầu tiên khi giải một bài_toán về xác_suất là xác_định được không_gian mẫu .
+Tiếp_theo , bạn sẽ phải xác_định số_lượng phần_tử của biến_cố thỏa_mãn .
+Đây là cách tiếp_cận cơ_bản , nhưng khi áp_dụng , nó có_thể thay_đổi tùy vào từng bài_tập .
+Ví_dụ QuizShow (SRM 223 , Div 1 – Easy) .
+Tóm_tắt_đề bài Trong một cuộc_thi , bạn đang_đấu với 2 người nữa để tiến vào câu_hỏi cuối_cùng .
+Mỗi người đang sở_hữu một_số điểm nhất_định giành được từ các câu_hỏi trước .
+Tại câu_hỏi này , mỗi người sẽ đưa_ra số điểm cược trong_khoảng từ 0 đến số điểm đang có , nếu trả_lời đúng sẽ được số điểm cược này , trả_lời sai sẽ bị trừ đúng bằng số điểm đã cược .
+Để chiến_thắng , bạn phải là người sở_hữu số điểm_cao nhất sau khi hoàn_thành câu_hỏi cuối_cùng .
+Bạn biết điểm hiện_tại của cả 3 người (số nguyên không quá 104) , và giá_trị tiền cược của 2 người kia .
+Hỏi bạn nên cược bao_nhiêu để xác_suất thắng là lớn nhất .
+Phân_tích Mấu_chốt để giải_quyết bài_toán là xét đến tất_cả các khả_năng có_thể , số_lượng này không nhiều .
+Sau một_lúc đánh_giá , ta sẽ xác_định được không_gian mẫu : S = ( người 1 đúng , người 2 sai , bạn sai) , ( người 1 đúng , người 2 sai , bạn đúng) , ( người 1 đúng , người 2 đúng , bạn sai) , ( người 1 đúng , người 2 đúng , bạn đúng) , ( người 1 sai , người 2 sai , bạn sai) , ( người 1 sai , người 2 sai , bạn đúng) , ( người 1 sai , người 2 đúng , bạn sai) , ( người 1 sai , người 2 đúng , bạn đúng) Đề_bài yêu_cầu bạn tìm số tiền cược để tối_đa_số kết_quả mà trong đó bạn thắng .
+Để đếm được số kết_quả như_vậy cho từng số tiến_cược , ta cần xác_định xem cả ba người chơi sẽ kết_thúc với bao_nhiêu điểm trong 8 trường_hợp có_thể xảy_ra .
+Ý_tưởng được_thể hiện trong code dưới_đây int wager ( vector scores , int wager1 , int wager2 ) int best , bet , odds , wage , I , J , K ; best = 0 ; bet = 0 ; for ( wage = 0 ; wage lt;= scores 0 ; wage ++ ) odds = 0 ; // odds dem so ket qua tot for ( I = - 1 ; I lt;= 1 ; I = I + 2 ) for ( J = - 1 ; J lt;= 1 ; J = J + 2 ) for ( K = - 1 ; K lt;= 1 ; K = K + 2 ) if ( scores 0 + I wage gt; scores 1 + J wager1 amp;amp; scores 0 + I wage gt; scores 2 + K wager2 ) odds ++ ; // mot so tien cuoc tot hon duoc tim thay , cap nhat ket qua if ( odds gt; best ) bet = wage ; best = odds ; return bet ; Một bài thú_vị khác là PipeCuts (SRM 233 , Div 1 – Easy) , bài này có_thể giải bằng cách tương_tự như_trên .
+Biến_cố độc_lập Xét n biến_cố độc_lập ( independent events ) : E_1 , E_2 , . . . , E_n .
+Hai câu_hỏi thường gặp là : Xác_suất để tất_cả biến_cố xảy_ra ? : P(all) Xác_suất để ít_nhất một biến_cố trong số chúng xảy_ra ?
+P(any)_Để trả_lời câu_hỏi thứ nhất , ta xét biến_cố đầu_tiên (E_1) : Nếu E_1 không xảy_ra , giả_thuyết không còn đúng nữa .
+Vì_vậy , phải chắc rằng E1 sẽ xảy_ra với xác_suất P(E_1) .
+Điều này có_nghĩa là có xác_suất P(E_1) để ta kiểm_tra sự xảy_ra của biến_cố tiếp_theo (gọi là E_2) .
+Biến_cố E_2 xảy_ra với xác_suất là P(E_2) , và chúng_ta có_thể tiếp_tục quá_trình này tương_tự như_vậy .
+Vì xác_suất được định_nghĩa_là một_số thực nằm trong_khoảng từ 0 đến 1 , ta tổng_hợp được xác_suất để tất_cả các biến_cố xảy_ra bằng công_thức dưới_đây : P(all) = P(E_1) P(E_2) . . .
+P(En)_Cách tốt nhất để trả_lời câu_hỏi thứ_hai là tìm xác_suất để_không có biến_cố nào diễn ra và lấy phần bù .
+P(any) = 1 - P(E_1) P(E_2) . . .
+P(E_n) Những công_thức trên được ứng_dụng rất nhiều , cần nắm_chắc để đi đền phần tiếp_theo .
+BirthdayOdds_Một ví_dụ điển_hình để mô_tả nội_dung xác_suất được bàn_luận ở phần trên là Nghịch_lí về ngày_sinh ( Birthday_Paradox ) : Nếu có ít_nhất 23 người trong một căn phòng , xác_suất để 2 người bất_kì trong số họ có cùng ngày_sinh là lớn hơn 0 . 5 . Thoạt nhìn , kết_quả này có_vẻ trái_ngược với trực_giác thông_thường nhưng nó hoàn_toàn có_thể được chứng_minh bằng toán_học .
+Bây_giờ , một bài_toán đặt ra là tìm số người nhỏ nhất để xác_suất có ít_nhất 2 người trong số họ cùng ngày_sinh_nhật là lớn hơn x % .
+Đôi_khi trong các bài_toán xác_suất , cách tiếp_cận dễ_dàng hơn_là thử giải bài_toán ngược : "Tìm xác_suất để N người ngẫu_nhiên có ngày_sinh khác_nhau ? " .
+Chiến_thuật là bắt_đầu với một cái phòng rỗng và lần_lượt thêm từng người một vào và so_sánh ngày_sinh của người đó với tất_cả những người đã có trong phòng .
+int minPeople ( int minOdds , int days ) int nr ; double target , p ; target = 1 - ( double ) minOdds / 100 ; nr = 1 ; p = 1 ; while ( p gt; target ) p = p ( ( double ) 1 - ( double ) nr / days ); nr ++ ; return nr ; Các bài_toán về xác_suất có_thể rất phức_tạp và nhiều khi kết_quả tạo cảm_giác mâu_thuẫn với những nhận đinh thông_thường của chúng_ta (Ví dụ như Nghịch_lí về ngày_sinh ở trên hoặc một ví_dụ khác là Bài_toán Monty_Hall ) .
+Để có_thể giải nhưng bài_toán như_vậy một_cách thành_thạo , ngoài việc nắm_chắc các công_thức_toán học , các bạn cũng cần luyện_tập cho mình một lối tư_duy , trực_giác toán_học nhạy_bén để tránh đưa_ra những nhận_định sai_lầm về bài_toán .
+Các bạn có_thể làm_bài kiểm_tra để đánh_giá trực_giác toán_học của mình .
+Các kiến_thức nâng_cao Biến ngẫu_nhiên (Random variable) Random_Variable là một biến mà giá_trị của nó là kết_quả của một_lần thí_nghiệm .
+Ví_dụ : X1 là giá_trị của xúc sắc .
+X2 là 2 lần giá_trị xúc sắc (có thể viết 2 X1)_X3 là bình_phương giá_trị xúc sắc . . .
+Giá_trị kỳ_vọng (Expected value) : Với_X là 1 random variable , E(X) là giá_trị trung_bình của X , nếu ta thực_hiện thí_nghiệm vô_số lần .
+Ta cũng có_thể hình_dung như giá_trị trung_bình có trọng số .
+Ví_dụ : Có 2 lớp_học : lớp A có 40 học_sinh và điểm trung_bình là 5 lớp B có 30 học_sinh và điểm trung_bình là 6 Điểm trung_bình của tất_cả học_sinh là : (5 40 + 6 30) / (40 + 30) = 5 (40 / 70) + 6 (30 / 70) Các trọng số 40 / 70 và 30 / 70 được nhân thêm do số_lượng trường_hợp điểm 5 và 6 khác_nhau .
+Công_thức tổng_quát : E(X) = prob(X = 1) 1 + prob(X = 2) 2 + . . .
+Linearity of Expectation_Linearity of Expectation là 1 kĩ_năng rất quan_trọng nhất khi làm các bài về Expected value .
+Ví_dụ : Tung 2 xúc sắc Tính_Expected value của tổng_giá trị 2 xúc sắc .
+Xét riêng từng xúc sắc : Đặt_E(X1) là expected value của giá_trị xúc sắc 1 Đặt_E(X2) là expected value của giá_trị xúc sắc 2 E(X1) = E(X2) = (1/6) 1 + (1/6) 2 + . . .
++ (1/6) 6 = 3 . 5 . Linearity of Expectation cho ta công_thức sau : E(X1 + X2) = E(X1) + E(X2) = 7 .
+Phát_biểu chính_xác : Nếu_X1 , X2 , . . . , Xk là các random variable có cùng không_gian mẫu : E(X1 a1 + X2 a2 + . . .
++ Xk ak) = a1 E(X1) + a2 E(X2) + . . .
++ ak E(Xk) .
+Chú_ý rằng các biến không cần độc_lập .
+Tính xác_suất từng bước_một Trong phần dưới_đây , chúng_ta sẽ tiếp_tục thảo_luận một_vài bài_tập trên Topcoder mà trong đó : Xác_suất của một biến_cố bị ảnh_hưởng bởi biến_cố khác .
+Chúng_ta có_thể hình_dung nó như một đồ_thị mà trong đó : Mỗi nút là một biến_cố Mỗi cạnh thể_hiện sự phụ_thuộc giữa các biến_cố .
+So_sánh này hơi gượng_ép , nhưng cách chúng_ta tính_toán xác_suất cho các biến_cố rất giống cách chúng_ta duyệt qua các đỉnh của đồ_thị : Ta bắt_đầu ở gốc - là trạng_thái ban_đầu và có xác_suất là 1 .
+Sau_đó , ta xem_xét các cạnh_kề để đến các khả_năng khác_nhau kèm_theo các xác_suất tương_ứng .
+Nested_Randomness Tóm_tắt_đề bài : Hàm random(N) trả về một_số nguyên ngẫu_nhiên trong_khoảng từ 0 đến N-1 , mỗi số có xác_suất được trả_lại như_nhau và bằng 1/N .
+Giờ xét random(random(N)) .
+Để dễ hình_dung , ta xét N=4 : random(N) trả_lại các số_nguyên 0 đến 3 với xác_suất bằng_nhau là 1/4 .
+random(random(N)) , ta có 4 trường_hợp với xác_suất bằng_nhau (phụ thuộc vào kết_quả của hàm_random bên trong) : random(0) : được gọi với xác_suất 1/4 : báo lỗi random(1) : được gọi với xác_suất 1/4 : luôn trả về 0 random(2) : được gọi với xác_suất 1/4 : trả về 0 hoặc 1 với xác_suất 1/2 .
+random(3) : được gọi với xác_suất 1/4 : trả về 0 , 1 , hoặc 2 với xác_suất 1/3 .
+Nếu xét tiếp random(random(random(N))) : random(0) : được gọi với xác_suất 1/4 + 1/8 + 1/12 = 11/24 random(1) : được gọi với xác_suất 1/8 + 1/12 = 5/24 random(2) : được gọi với xác_suất 1/12 . . .
+Ta hình_dung bằng hình sau : Code để giải bài này double probability ( int N , int nestings , int target ) int I , J , K ; double A 1001 , B 2001 ; // AI la xac suat de so I xuat hien for ( I = 0 ; I lt; N ; I ++ ) A_I = ( double ) 1 / N ; for ( K = 2 ; K lt;= nestings ; K ++ ) for ( I = 0 ; I lt; N ; I ++ ) B_I = 0 ; // voi moi I giua 0 den N-1 , ta goi ham random(I) // theo yeu cau de bai for ( I = 0 ; I lt; N ; I ++ ) for ( J = 0 ; J lt; I ; J ++ ) B_J += ( double ) A_I / I ; for ( I = 0 ; I lt; N ; I ++ ) A_I = B_I ; return A target ; Bài_tập tương_tự : ChessKnight , DiceThrows , RockSkipping , PointSystem , VolleyBall_GeneticCrossover Khái_niệm Ở bài này có khái_niệm về xác_suất có_điều kiện ( conditional probability ) : Xác_suất có_điều kiện là xác_suất để một biến_cố A nào_đó xảy_ra , biết rằng một biến_cố B khác đã xảy_ra .
+Ký_hiệu P(AB) , và đọc là "xác suất của A , biết B" .
+Nếu_A và B là các biến_cố , và P(B) gt; 0 , thì xác_suất có_điều kiện của A nếu biết B là : P(AB) = \fracP(A \cap B)P(B) Tương_đương , ta có P(A \cap B) = P(AB)_P(B) Tóm_tắt_đề bài Theo di_truyền_học ở động_vật , mỗi cặp gen sẽ biểu_thị một tính_trạng .
+Mỗi gen có hai dạng_cơ_bản là trội hoặc lặn .
+Nếu trong cặp gen có gen trội thì tính_trạng của gen trội này sẽ được_thể hiện ra ngoài , ngược_lại , trường_hợp cả hai đều là gen lặn thì tính_trạng của gen lặn này sẽ được_thể hiện ra ngoài .
+Ngoài_ra , một_số gen còn có tính phụ_thuộc .
+Nếu một gen phụ_thuộc vào một gen khác thì gen đó chỉ_có thể thể_hiện tính_trội nếu gen nó phụ_thuộc vào cũng_thể hiện tính_trội .
+Bên_cạnh đó , có những gen không phụ_thuộc vào bất_cứ gen nào khác và tính_trạng của nó sẽ được_thể hiện như trong đoạn đầu .
+Đảm_bảo không có trường_hợp một gen phụ_thuộc vào chính nó hay chuỗi phụ_thuộc tạo_thành một vòng (ví dụ I phụ_thuộc J , J phụ_thuộc K , K phụ_thuộc I) .
+Cho n cặp gen của cá_thể bố_mẹ và một_số thông_tin về chúng .
+Với mỗi cặp gen , cá_thể bố/mẹ sẽ cho con của chúng một trong hai gen .
+Ví_dụ như cá_thể mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì với cặp gen đầu_tiên , cá_thể mẹ có_thể cho cá_thể con gen ‘a’ hoặc ‘A’ , với cặp thứ_hai là ‘b’ hoặc ‘B’ và cứ thế .
+Tương_tự cá_thể bố sẽ cho cá_thể con_một gen trong từng cặp như_vậy .
+Sau_cùng , cá_thể con sẽ nhận được n cặp gen từ bố và mẹ .
+Chất_lượng con_giống của cá_thể con được đánh_giá dựa vào tính_trạng thể_hiện ở mỗi cặp gen .
+Nếu cặp gen thứ i thể_hiện tính_trạng trội , chất_lượng con_giống sẽ được cộng thêm troii , còn nếu là tính_trạng lặn thì sẽ cộng thêm lani .
+Nhiệm_vụ của bạn là tính giá_trị kì_vọng của chất_lượng con_giống .
+Bạn sẽ được cung_cấp 2 chuỗi gen thể_hiện n (n \le 50) cặp gen của cá_thể mẹ; 2 chuỗi gen thể_hiện n cặp gen của cá_thể bố; 1 mảng n số_nguyên thể_hiện quan_hệ phụ_thuộc giữa các gen , 2 mảng n số_nguyên troii va lani là giá_trị công thêm cho chất_lượng con_giống gen thứ i thể_hiện tính_trạng trội / lăn .
+Từ những dữ_liệu trên , bạn cần xuất ra giá_trị kì_vọng cần tìm .
+(ND : Giá_trị kì_vọng được tính bằng cách lấy tổng của tất_cả tích các giá_trị có_thể xảy_ra với xác_suất để xảy_ra giá_trị đó .
+Ví_dụ : Giá_trị chất_lượng con_giống : xác_suất để đạt giá_trị này 17 : 0 . 5625 13 : 0 . 1875 9 : 0 . 25 Vậy giá_trị kì_vọng của chất_lượng con_giống sẽ là 17 0 . 5625 + 13 0 . 1875 + 9 0 . 25 = 14 . 25) Phân_tích Dựa vào mô_tả đề_bài , có hai trường_hợp có_thể xảy_ra : một gen không phụ_thuộc vào gen khác , hoặc gen này có phụ_thuộc .
+Trường_hợp thứ nhất , gọi p là xác_suất mà gen này là gen trội .
+Có 4 trường_hợp : Ít_nhất bố hoặc mẹ có hai gen trội (p = 1) Mỗi bố hoặc mẹ có đúng một gen trội (p = 0 . 5) Mỗi bố hoặc mẹ có_một gen trội và người còn_lại có duy_nhất một gen lặn (p = 0 . 25) Cả hai bố_mẹ có hai gen lặn (p = 0) Trường_hợp thứ_hai , gen này có phụ_thuộc vào một gen khác .
+Điều này làm_bài toán trở_nên phức_tạp hơn do gen bị phụ_thuộc có_thể lại phụ_thuộc vào một gen khác nữa và cứ thế . . .
+Do_đó , để xác_định được xác_suất mà một gen phụ thộc là gen trội , ta cần xét xác_suất để mỗi gen trong chuỗi phụ_thuộc (bắt đầu_từ gen đang xét) đều là gen trội .
+Xác_suất để gen đang xét là gen trội sẽ bằng tích của tất_cả các xác_suất đó .
+Thuật_toán thực_hiện một_cách đệ_quy , và đây code hoàn_chỉnh cho bài_tập này : int n , d 200 ; double power 200 ; // here we determine the characteristic for each gene (in powerI // we keep the probability of gene I to be expressed dominantly) double detchr ( string p1a , string p1b , string p2a , string p2b , int nr ) double p , p1 , p2 ; p = p1 = p2 = 1 . 0 ; if ( p1a nr lt;= Z ) p1 = p1 - 0 . 5 ; // is a dominant gene if ( p1b nr lt;= Z ) p1 = p1 - 0 . 5 ; if ( p2a nr lt;= Z ) p2 = p2 - 0 . 5 ; if ( p2b nr lt;= Z ) p2 = p2 - 0 . 5 ; p = 1 - p1 p2 ; if ( d nr ! = 1 ) power nr = p detchr ( p1a , p1b , p2a , p2b , d nr ); // gene nr is dependent on gene dnr else power nr = p ; return power nr ; double cross ( string p1a , string p1b , string p2a , string p2b , vector dom , vector rec , vector dependencies ) int I ; double fitness = 0 . 0 ; n = rec .
+size (); for ( I = 0 ; I lt; n ; i ++ ) d i = dependencies i ; for ( I = 0 ; I lt; n ; I ++ ) power i = - 1 . 0 ; for ( I = 0 ; I lt; n ; i ++ ) if ( power I == - 1 . 0 ) detchr ( p1a , p1b , p2a , p2b , i ); // we check if the dominant character of gene I has // not already been computed for ( I = 0 ; I lt;= n ; I ++ ) fitness = fitness + ( double ) power i dom i - ( double ) ( 1 - power i ) rec i ; // we compute the expected quality of an animal based on the // probabilities of each gene to be expressed dominantly return fitness ; Bài tương_tự : ProbabilityTree Thuật_toán ngẫu_nhiên Ta gọi những thuật_toán ngẫu_nhiên là những thuật_toán sử_dụng hàm ngẫu_nhiên để đưa_ra quyết_định trong quá_trình chạy .
+Không giống_như những thuật_toán đã xác_định trước , với mỗi dữ_liệu vào xác_định thì sẽ cho ra duy_nhất một kết_quả ra cũng_như thời_gian chạy , thuật_toán ngẫu_nhiên có_thể biểu_hiện khác_nhau trong mỗi lần chạy .
+Về cơ_bản , ta sẽ phân_biệt hai loại của thuật_toán ngẫu_nhiên : Thuật_toán Monte_Carlo : có_thể đưa_ra kết_quả sai - tuy_nhiên xác_suất của sai_sót là chấp_nhận được .
+Thuật_toán Las_Vegas : luôn cho kết_quả đúng , và điểm khác_biệt giữa các lần chạy với cùng một dữ_liệu vào là thời_gian chạy - ta sẽ nghiên_cứu và sự phân_phối theo xác_suất của thời_gian chạy .
+Tham_khảo tài_liệu từ College of Engineering at UIUC để xem cách các thuật_toán này hoạt_động .
+Mục_tiêu chính của thuật_toán ngẫu nhiêu là để tìm_kiếm một hướng tiếp_cận đơn_giản hơn cho những bài_toán phức_tạp hoặc không có lời_giải .
+Những thuật_toán ngẫu_nhiên không đảm_bảo sẽ luôn tìm được kết_quả tối_ưu nhất , nhưng chúng có_thể tìm được một kết_quả đủ tốt trong một giới_hạn về thời_gian và bộ_nhớ "chấp nhận được" .
+Một câu_hỏi thú_vị được đưa_ra là liệu những thuật_toán như_vậy có_ích trong các kì_thi lập_trình hay_không .
+Khi bạn không nghĩ_ra một_cách nào để giải , hướng đi hợp_lý là thử cài một_cách random .
+Độ tốt của việc random phụ_thuộc nhiều vào tính_chất của bài_toán , và khi có_kinh nghiệm cũng_như cảm_nhận Toán_học tốt , bạn có_thể đoán được là random có_thể chạy đúng được với bài_toán hay_không .
+Tham_khảo QueenInterference_Trong các bài_toán tối_ưu_hóa , nếu số nghiệm tối_ưu khá nhiều so_với số khả_năng có_thể xảy_ra , một thuật_toán random đơn_giản như_sau cũng có_thể có hi_vọng chạy đúng : Max = 1000000 ; attempt = 0 ; while ( attempt lt; Max ) answer = solve_random ( . . . ); if ( better ( answer , optimum )) // Tìm được kết_quả tốt hơn optimum = answer ; cout lt;lt; "Solution " lt;lt; answer lt;lt; " found on step " lt;lt; attempt lt;lt; " \n " ; attempt ++ ; Bài_tập luyện_tập ND : Mình không chép lại danh_sách bài_tập trong bài viết gốc ở Topcoder do sau_này tác_giả có_thể chỉnh_sửa hay bổ_sung .
+Các bạn xem cuối bài viết gốc trên Topcoder để luyện_tập thêm .
+

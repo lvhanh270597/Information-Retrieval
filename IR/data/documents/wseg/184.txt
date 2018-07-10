@@ -1,0 +1,71 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta sẽ tìm_hiểu cách thực_hiện xóa_một nút khỏi cây AVL .
+Bài này tiếp_nối về phép chèn một nút vào cây AVL; mình khuyến_khích bạn_đọc xem_lại các kí_hiệu đã dùng trong bài trước .
+Ta nhắc_lại tính_chất sau của cây AVL : Tạm_thời bỏ_qua các điều_kiện cân_bằng của cậy , ta tập_trung vào xóa_một nút mà đảm_bảo cây nhị_phân sau khi xóa vẫn là cây nhị_phân tìm_kiếm .
+Sau_đó ta sẽ tìm_hiểu cách cân_bằng lại cây .
+Giả_sử nút ta muốn xóa là nút có_con trái hoặc con phải là .
+Trong trường_hợp này , ta chỉ việc thay_thế bởi nút con (duy nhất) khác của nó và xóa ra khỏi cây .
+Không khó để thấy rằng cây thu được vẫn là cây nhị_phân tìm_kiếm .
+Tuy_nhiên , nếu có cả hai con đều khác , ta có_thể quy về trường_hợp một trong hai nút con bằng_như sau .
+Gọi_là nút có khóa nhỏ nhất trong cây_con của .
+Ta thay_thế bằng và sau_đó xóa ra khỏi cây .
+Ở đây , thay_thế có_nghĩa là ta gán lại khóa và dữ_liệu của nút bằng khóa và dữ_liệu của nút .
+Theo cách ta chọn , không khó để thấy rằng cây thu được vẫn là cây nhị_phân tìm_kiếm .
+Xem minh_họa trong Figure 5 .
+(a) Xóa nút có khóa 19 (nút màu đỏ) ra khỏi cây AVL .
+Do 19 có hai nút con đều khác , ta sẽ thay_thế nút 20 (nút màu xanh) vào vị_trí của nút 19 .
+(b) Cây thu được sau khi xóa 19 .
+Chú_ý sự thay_đổi của các kí_hiệu .
+Ý_nghĩa của các kí_hiệu này ta đã giải_thích trong .
+Nút 20 bị mất cân_bằng sau khi xóa (lệch trái) .
+Giả mã của thủ_tục xóa : Trong giả mã trên , ta giả_sử luôn tồn_tại một nút có khóa trong cây . Để thực_hiện cân_bằng sau khi xóa , trước_hết chúng_ta phải xem_xét cấu_trúc của cây tại nút bị mất cân_bằng .
+Gọi_là nút gần lá nhất mà tại đó cây AVL bị mất cân_bằng .
+Ta sẽ lặp_lại các phân_tích như trong để xác_định cấu_trúc của cây_con có gốc .
+Mình sẽ không phân_tích các cấu_trúc một_cách tỉ_mỉ như bài trước nữa , mà sẽ chỉ ra cụ_thể các cấu_trúc này .
+Phần chứng_minh (không thay_đổi nhiều so_với bài trước) coi_như bài_tập cho bạn_đọc .
+Gọi_là chiều_cao của khi ta xóa_một nút ra khỏi cây AVL .
+Không khó để thấy nút ta xóa_khỏi cây cũng là nút con_cháu (desancendt) của .
+Chú_ý , nút ta xóa_khỏi cây luôn có_con phải hoặc con trái là . Không giảm tính tổng_quát , ta giả_sử cây_con trái của có chiều_cao lớn hơn cây_con phải của .
+Ta có : Gọi .
+Để cây bằng , ta sẽ thực_hiện các phép quay_phải , trái , kép như_ta đã thực_hiện trong bài trước .
+Để biết khi_nào thực_hiện phép quay nào , ta cần phải phân_tích kĩ hơn cấu_trúc của cây_con gốc tại .
+Ta xét các trường_hợp sau : Xem minh_họa trong Figure 6(a) .
+Ta sẽ thực_hiện phép (right rotation) tại .
+Xem minh_họa trong Figure 6(b) .
+(a) Trường_hợp cây_con trái có chiều_cao .
+(b) Cây thu được sau khi thực_hiện quay_phải tại .
+Các nút mà ta không đánh_dấu bằng các kí_hiệu có tính cân_bằng chưa xác_định vì ta chưa biết chiều_cao của tất_cả các cây_con của nó .
+Giả mã : Code_C : Để tìm_hiểu tính cân_bằng của cây sau khi quay , ta xét hai trường_hợp con : có chiều_cao .
+Trong trường_hợp này , sau khi quay , có chiều_cao và có chiều_cao .
+Chiều_cao của bằng chiều_cao trước_khi thực_hiện phép xóa của .
+Do_đó , tính cân_bằng của cây AVL đã được phục_hồi .
+Xem minh_họa trong Figure 6(b) .
+có chiều_cao .
+Sau khi quay , có chiều_cao và do_đó , có chiều_cao .
+Chiều_cao của nhỏ hơn chiều_cao trước_khi thực_hiện phép xóa của một đơn_vị .
+Do_đó , sau khi quay , cây AVL có_thể bị mất cân_bằng tại nút tổ_tiên (ancestor) nào_đó của .
+Để phục_hồi lại cân_bằng , ta phải đệ_quy trên nút tổ_tiên của để thực_hiện quay .
+Trong trường_hợp xấu nhất , ta phải thực_hiện quay đến lần .
+Xem minh_họa trong Figure 6(b) . Vì có chiều_cao , con phải của có chiều_cao .
+Gọi .
+Ta có .
+Ta thực_hiện phép quay kép phải (doubly right rotation) tại .
+Xem minh_họa trong Figure 7 . Giả mã : Code_C : Sau khi quay , không khó để chứng_minh rằng : Vì sau khi quay chiều_cao của nhỏ hơn chiều_cao trước_khi thực_hiện phép xóa của một đơn_vị , mất cân_bằng có_thể xảy_ra tại nút tổ_tiên của .
+Trong trường_hợp này , ta phải thực_hiện đệ_quy trên các nút tổ_tiên của .
+Trong trường_hợp xấu nhất , ta phải quay lần để khôi_phục tính cân_bằng của cây .
+(a) Trường_hợp cây_con trái của có chiều_cao .
+(b) Cây thu được sau khi ta quay kép phải tại .
+Chú_ý sự thay_đổi của các kí_hiệu .
+Cây sau khi quay kép có chiều_cao nhỏ hơn cây trước_khi quay đơn_vị , do_đó , vẫn có khả_năng mất cân_bằng xảy_ra tại nút tổ_tiên . Giả mã đầy_đủ của thủ_tục xóa và cân_bằng lại cây AVL : Code_C : Code đầy_đủ : Do mỗi phép quay đơn hoặc kép ta có_thể thực_hiện được trong thời_gian , tổng thời_gian để cây bằng lại cây là .
+Ta có : Áp_dụng phép quay để cân_bằng lại cây trong Figure 5(b) .
+Sửa_đổi lại cây ví_dụ trong Figure 5(a) sao_cho sau khi quay , cây vẫn bị mất cân_bằng .
+Tìm một cấu_trúc cây AVL có nút sao_cho khi xóa_một nút khỏi cây , ta phải sử_dụng phép quay để khôi_phục lại sự cân_bằng của cây AVL . 1 R .
+Sedgewick and K .
+Wayne .
+.
+Addison-Wesley_Professional , 2011 .
+2 D .
+Knuth .
+, Third_Edition .
+Addison-Wesley , 1997 .
+, , Trackback link : Powered by and

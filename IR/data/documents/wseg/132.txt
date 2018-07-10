@@ -1,0 +1,35 @@
+Nguồn bài : Codeforces_Table of_Contents Bài_toán Thuật_toán Độ phức_tạp : Cài_đặt : Áp_dụng Trước_khi đọc_bài này , các bạn có_thể đọc_bài Xử_lý xâu để nắm được các thuật_ngữ cơ_bản .
+Z_Algorithm hay còn gọi_là Z_Function là thuật_toán áp_dụng cho các bài so khớp chuỗi .
+Bài_toán Cho một chuỗi S có độ_dài n , thuật_toán_Z Function tạo ra một mảng Z mà tại mỗi vị_trí i , ta có Z_i là độ_dài chuỗi con dài nhất_là tiền_tố của S bắt_đầu tại_vị trí S_i , hay nói một_cách khác Z_i là một_số nguyên k lớn nhất mà S_j=S_i + j với mọi 0 \le j lt; k .
+Trường_hợp S_i \ne S_0 thì Z_i = 0 .
+Thuật_toán Ta duyệt qua tất_cả các ký_tự của S (chỉ số i từ 1 đến n - 1) .
+Trong quá_trình duyệt , ta duy_trì một đoạn L , R với R là một_số lớn nhất thỏa 1 \le L \le i \le R và L , R là một tiền_tố của S (Nếu không xuất_hiện các đoạn như_vậy thì đặt L = R = -1) .
+Với i = 1 ta có_thể dễ_dàng tính L và R bằng phép so_sánh S0 . .
+với S1 . . .
+Đồng_thời , ta có_thể tính giá_trị Z_1 .
+Giả_sử_ta đã xây_dựng được đoạn L , R và các giá_trị Z1 . . i - 1 , ta sẽ tính Z_i và cập_nhật đoạn L , R mới như_sau : Nếu i gt; R , khi đấy không tồn_tại một chuỗi con là tiền_tố của S bắt_đầu tại một vị_trí trước i và kết_thúc tại ví trí i hoặc sau i .
+Bởi nếu_như có_một tiền_tố như_vậy , thì đoạn L , i sẽ là chuỗi tiền_tố tối_ưu chứ không_phải L , R .
+Do_đó , ta sẽ cập_nhật lại đoạn L , R bằng cách so_sánh S0 . .
+với Si . .
+và lấy giá_trị Z_i hiện_tại (Z_i = R - L + 1) .
+Ngược_lại , i \le R thì đoạn L , R hiện_tại kéo_dài ít_nhất đến i .
+Đặt k = i - L .
+Ta biết rằng Z_i \ge min(Z_k , R - i + 1) bởi_vì Si . .
+bằng với Sk . .
+ít_nhất_là R - i + 1 ký_tự .
+Xét các trường_hợp sau : Nếu Z_k lt; R - i + 1 thì sẽ không có chuỗi con nào_là tiền_tố của S dài hơn Z_k bắt_đầu tại S_i .
+Nghĩa_là Z_i = Z_k và đoạn L , R vẫn giữ_nguyên (do đoạn L , R chỉ thay_đổi nếu chuỗi tiền_tố bắt_đầu tại S_i vượt ra khỏi đoạn L , R) .
+Nếu Z_k \ge R - i + 1 thì chuỗi Si . .
+là tiền_tố của S và có nhiều hơn R - i + 1 ký_tự (tức là kết_thúc sau vị_trí R) .
+Như_vậy ta cần cập_nhật đoạn L , R bằng cách đặt lại L = i và so_sánh từ_vị trí SR + 1 trở_đi để được một vị_trí R mới .
+Đồng_thời , ta tính được_giá trị của Z_i .
+Độ phức_tạp : Tại mỗi bước trong_vòng lặp , chúng_ta không cần so_sánh ký_tự tại các_vị trí nhỏ hơn R , và mỗi lần ký_tự R phù_hợp thì ta tăng R lên một , vì_thế ta sẽ tốn nhiều nhất n phép so_sánh .
+Ngoài_ra , với mỗi giá_trị i , ta chỉ tìm_thấy một ký_tự không phù_hợp (điều kiện tăng R) .
+Vì_thế không_thể có nhiều hơn n phép so_sánh cho kết_quả sai .
+Đưa đến độ phức_tạp thuật_toán là O(n) .
+Cài_đặt : Có_thể dễ_dàng cài_đặt .
+Chú_ý việc tối_ưu_hóa L = R = i được sử_dụng khi S_0 \ne S_i (Điều đó không làm ảnh_hưởng đến thuật_toán kể_từ giá_trị kế_tiếp i gt; R không phân biệt) .
+int L = 0 , R = 0 ; Z 0 = n ; for ( int i = 1 ; i lt; n ; i ++ ) if ( i gt; R ) L = R = i ; while ( R lt; n amp;amp; S_R == S_R - L ) R ++ ; Z i = R - L ; R -- ; else int k = i - L ; if ( Z k lt; R - i + 1 ) Z i = Z k ; else L = i ; while ( R lt; n amp;amp; S_R == S_R - L ) R ++ ; Z i = R - L ; R -- ; Áp_dụng VOJ - SUBSTR Có_thể dùng ZFuntion để giải bài này .
+Ta tạo ra một chuỗi S=B+A , sao đó xây_dựng mảng Z .
+Những vị_trí có Z_i \ge Length(B) (Với Length(B) \le i lt; Length(A)+Length(B)) là vị_trí tương_ứng của B trong A .
+

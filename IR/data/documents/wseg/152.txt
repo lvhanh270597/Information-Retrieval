@@ -1,0 +1,45 @@
+Nguồn bài : link Tác_giả : Yên_Vũ Kĩ_thuật sử_dụng Deque tìm Min/Max trên đoạn tịnh_tiến xuất_hiện nhiều trong các bài_tập tin_học , thông_thường để cải_tiến chương_trình , làm giảm độ phức_tạp .
+Chúng_ta sẽ tìm_hiểu kĩ_thuật này qua một_vài ví_dụ cụ_thể và xem_xét khả_năng mở_rộng ứng_dụng của nó trong các bài_toán khác .
+Bài_toán Cho dãy_số nguyên không âm A có N phần_tử (N \le 106) .
+Ta cần xây_dựng 2 mảng L và R có N phần_tử , được định_nghĩa như_sau : 1 \le L_i \le i \le R_i \le N .
+A_i = \min AL_i , AL_i + 1 , . . . , AR_i .
+R_i - L_i là lớn nhất (nói cách khác là số phần_tử trong đoạn L_i , R_i là lớn nhất) .
+Nói một_cách đơn_giản hơn : Với mỗi phần_tử i của mảng A , ta cần tìm đoạn L_i , R_i dài nhất , sao_cho i \in L_i , R_i và A_i = \minA_L_i , . . . , A_R_i .
+Với_N nhỏ , ta có_thể giải_quyết bài_toán một_cách đơn_giản như_sau : Với mỗi i , ta kiểm_tra các phần_tử xung_quanh i để mở_rộng phạm_vi L_i , R_i .
+Cụ_thể : for ( int i = 1 ; i lt;= n ; i ++ ) L i = i ; while ( L i gt; 0 amp;amp; a i lt;= a L i ) -- L i ; ++ L i ; R i = i ; while ( R i lt; n amp;amp; a i lt;= a R i ) ++ R i ; -- R i ; Cách làm trâu_bò này có độ phức_tạp là \mathcalO(N2) .
+Ta có_thể cải_tiến dựa vào các nhận_xét sau : Li - 1 bằng 0 hoặc_là số_lớn nhất mà Li - 1 lt; i và ALi - 1 lt; Ai (1) Ri + 1 bằng n+1 hoặc_là số nhỏ nhất mà Ri + 1 gt; i và ARi + 1 lt; Ai (2) Từ nhận_xét này , ta xây_dựng Deque bằng cách "lọc" lại dãy như_sau : Trong quá_trình duyệt dãy A , luôn đưa i vào cuối Deque hiện_tại , nhưng loại_bỏ tất_cả các_vị trí j đã được đưa_vào trong Deque mà Aj \ge Ai . Như_vậy , tại mọi thời_điểm i , ta luôn có danh_sách các_vị trí trên Deque mà các giá_trị tương_ứng trên mảng A là tăng dần .
+Ví_dụ A = 1 , 3 , 5 , 4 , 2 , 8 i = 1 : Deque = 1 i = 2 : Deque = 1 , 2 i = 3 : Deque = 1 , 2 , 3 i = 4 : Deque = 1 , 2 , 4 i = 5 : Deque = 1 , 5 i = 6 : Deque = 1 , 5 , 6 Code for ( int i = 1 ; i lt;= n ; ++ i ) while ( top gt; 0 amp;amp; a D top gt;= a i ) -- top ; //cap nhat Deque_D ++ top = i ; //dua i vao cuoi Deque_Theo cách hoạt_động của Deque , ta có : Giả_sử tại bước i , đã xác_định được i ở vị_trí top trong Deque .
+Khi đó : Li = Dequetop - 1 + 1 Chứng_minh Từ (1) ta có : ALi – 1 lt; Ai , nên Li - 1 không bị loại khỏi Deque trong quá_trình cập_nhật lại Deque .
+Mặt_khác , cũng từ (1) ta có Li - 1 lớn nhất , mọi số j \in Li , i-1 đều đã bị loại khỏi Deque do Aj \ge Ai , nên Li - 1 sẽ đứng liền sát i trong Deque .
+Ta đưa i vào vị_trí_cuối (top) của Deque , nên Li - 1 chính bằng Dequetop - 1 , hay Li = Dequetop - 1 + 1 .
+Vậy , ta xác_định được L của một phần_tử bất_kỳ ngay khi đưa phần_tử đó vào Deque .
+Bên_cạnh đó , gọi t là vị_trí các phần_tử của A bị loại khỏi Deque trong quá_trình cập_nhật Deque .
+t bị loại khỏi Deque tại thời_điểm i , chứng_tỏ i là số đầu_tiên xuất_hiện trong Deque mà Ai lt; At (vì nếu tồn_tại một_số k thỏa_mãn t lt; k lt; i mà Ak lt; At thì t đã bị loại tại thời_điểm k) .
+D 0 = 0 ; for ( int i = 1 ; i lt;= n ; ++ i ) while ( top gt; 0 amp;amp; a D top gt;= a i ) -- top ; L i = D top + 1 ; D ++ top = i ; Để tính mảng R , ta làm ngược_lại : D 0 = n + 1 ; for ( int i = n ; i gt;= 1 ; -- i ) while ( top gt; 0 amp;amp; a D top gt;= a i ) -- top ; R i = D top - 1 ; D ++ top = i ; Độ phức_tạp của đoạn chương_trình trên có_thể đánh_giá như_sau : Với mỗi số trong dãy A , ta chỉ đưa_vào Deque 1 lần duy_nhất và cũng chỉ lấy ra khỏi Deque 1 lần duy_nhất .
+Do_vậy chi_phí thực_hiện chỉ là 2N , hay độ phức_tạp của chương_trình là \mathcalO(n) .
+Áp_dụng Chúng_ta xem các bài_tập sau_đây : Áp_dụng 1 : VOJ - KAGAIN Tóm_tắt_đề Cho dãy A gồm n phần_tử .
+Ta chọn các đoạn liên_tiếp i , j bất_kì .
+“Sức mạnh” của đoạn i , j được định_nghĩa như_sau : SMi , j = (j – i + 1) \minA_i , . . . , A_j .
+Yêu_cầu : Cho_biết SM lớn nhất có_thể trong dãy A .
+Lời_Giải Để tìm kết_quả , ta xét tất_cả n trường_hợp có A_k chính bằng min của đoạn i , j .
+Do ta đã cố_định min của đoạn i , j , sức_mạnh lớn nhất đạt được khi j - i là lớn nhất , nói_cách_khác là khi dãy dài nhất .
+Rõ_ràng , đây chính là ứng_dụng trực_tiếp của mảng L và R .
+Xây_dựng mảng L , R và cập_nhật kết_quả bằng (Ri – Li+1)_Ai . Áp_dụng 2 VOJ - QBRECT Tóm_tắt_đề Cho bảng_số A chỉ gồm các phần_tử 0 , 1 kích_thước m n .
+Tìm diện_tích hình_chữ_nhật lớn nhất chỉ gồm các số 1 có cạnh song_song với bảng .
+Lời_Giải Xét hàng i .
+Với mỗi ô i , j có_giá trị 1 , ta xét các ô ngay bên_trên nó : i-1 , j , i-2 , j , . . . , 1 , j .
+Giả_sử ô_đầu tiên bằng 0 là k , j .
+Nói_cách_khác , tất_cả các ô i , j , i-1 , j , . . . , k+1 , j đều bằng 1 .
+Ta đặt Hi , j = k+1 .
+Nếu i , j có_giá trị 0 , ta đặt Hi , j = 0 .
+Ví_dụ : A = 0 1 0 1 1 1 0 0 0 1 0 1 0 1 1 1 H = 0 1 0 1 1 2 0 0 0 3 0 1 0 4 1 2 Ta có_thể tính bảng H bằng quy_hoạch_động với độ phức_tạp \mathcalO(n2) như_sau : Hij = 0 nếu Aij = 0 , Ngược_lại Hij = Hi – 1j + 1 .
+Tiếp đó , ta thấy rằng : Hình_chữ_nhật có cạnh_đáy nằm ở hàng i , cột trái ở j1 , cột phải ở j2 có độ_cao tối_đa là \minH_i , j1 , . . , H_i , j2 .
+Và diện_tích của hình_chữ_nhật này là : (j - i + 1) \minH_i , j1 , . . . , H_i , j2 .
+Đến đây , ta làm tương_tự bài KAGAIN : giả_sử hình_chữ_nhật có cạnh_đáy nằm ở hàng i , và có H_i , j là min , tìm đoạn j1 , j2 dài nhất để có được hình_chữ_nhật lớn nhất .
+Áp_dụng cách làm như bài KAGAIN , ta có thuật_toán với độ phức_tạp \mathcalO(n2) cho bước này .
+Do_đó , ta giải_quyết được bài_tập này với \mathcalO(n2) .
+Chú_ý đây là độ phức_tạp tối_ưu do phần đọc ma_trận A đã mất \mathcalO(n2) rồi .
+Áp_dụng 3 VOJ-MINK Tóm_tắt_đề Với mỗi 1lt;=ilt;=n-k+1 tính min(a_i . . a_i+k-1) Lời_giải Ta thấy rằng khi dùng deque tương_tự bài KAGAIN thì ở mỗi vị_trí i , D1 là min(a_1 . . a_i) .
+Vậy phần còn_lại là loại đi các phần từ_đầu deque có_vị trí nhỏ hơn i-k+1 .
+Sau_đó , phần_tử đầu deque sẽ là câu trả_lời .
+Bài_tập tương_tự : VOJ - CREC01_VOJ - CRECT_VOJ - NKGOLF Một_vài bài_tập khác sử_dụng Kĩ_thuật tịnh_tiến Deque_VOJ - KDIFF_VOJ - BLAND_VOJ - C11CIR_VOJ - VMQUABEO

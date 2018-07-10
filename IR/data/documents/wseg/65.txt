@@ -1,0 +1,124 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này và loạt bài tiếp_theo chúng_ta sẽ làm_quen với đồ_thị và các thuật_toán với đồ_thị .
+Đồ_thị là một đối_tượng tổ_hợp (combinatorial object) được nghiên_cứu và ứng_dụng rất nhiều trong thực_tế (có lẽ hơi thừa khi viết điều này) .
+Phần này chúng_ta sẽ : Bạn_đọc có_thể bỏ_qua các phần mà các bạn đã quen_thuộc .
+Note 1 của Jeff_Erickson vẫn là tài_liệu tham_khảo chính của bài này .
+Một , kí_hiệu là , gồm hai thành_phần : Ta sẽ kí_hiệu lần_lượt là số đỉnh và số cạnh của đồ_thị , i . e , .
+Số đỉnh của đồ_thị đôi_khi ta cũng gọi_là (order of the graph) .
+Các đỉnh ta sẽ kí_hiệu bằng các chữ_in thường như .
+Cạnh giữa hai đỉnh có_thể là hoặc .
+Trong trường_hợp đầu ta sẽ kí_hiệu cạnh là , còn trong trường_hợp sau ta sẽ kí_hiệu là để chỉ rõ hướng của cạnh là từ đến .
+Thông_thường_khi ta nói_cạnh thì ta ám_chỉ cạnh vô_hướng còn với một cạnh có hướng ta sẽ gọi nó là một (arc) .
+Hình của hình dưới_đây biểu_diễn một đồ_thị vô_hướng (các cạnh là vô hướng) và hình phải của hình dưới_đây biểu_diễn một đồ_thị có hướng . Trong hình , cạnh được gọi_là (loop) và hai cạnh giữa cặp đỉnh được gọi_là hai (parallel edges) .
+Một đồ_thị được gọi_là một (simple graph) nếu nó không có cạnh_lặp và cạnh song_song (hình ) .
+Nếu một đồ_thị không_phải là đơn đồ_thị thì chúng_ta sẽ goị nó là (multigraph) .
+Trong các loạt bài đồ_thị ở đây , ta chủ_yếu xét đơn đồ_thị .
+Do_đó , khi nói đồ_thị_ta sẽ ngầm hiểu là đơn đồ_thị .
+Ta có : Nếu đồ_thị vô_hướng , với mỗi cạnh , đỉnh được gọi_là kề (incident) với cạnh .
+Đỉnh được gọi_là hàng_xóm (neighbor) của .
+(degree) của đỉnh , thường kí_hiệu là , là số hàng_xóm của đỉnh .
+Nếu đồ_thị có hướng , với mỗi cung , đỉnh được gọi_là (successor) của và đỉnh được gọi_là (predecessor) của .
+(in-degree) của là số đỉnh liền trước và (out-degree) của là số đỉnh liền sau .
+Ví_dụ bậc tới của trong hình là 1 và bậc lui là . Ta gọi_là (subgraph) của nếu và .
+Một (walk) là một dãy các cạnh trong đó hai cạnh liền kề bất_kì và đều có chung một đỉnh .
+Chú_ý là đường_đi có_thể đi_qua một đỉnh nhiều lần .
+Trong trường_hợp mỗi đỉnh được thăm đúng 1 lần , ta sẽ gọi đó là (path) .
+Ví_dụ trong đồ thì ở hình dưới_đây , là một đường_đi giữa và và là một đường_đi đơn giữa và .
+Một (closed walk) là một đường_đi bắt_đầu và kết thục tại cùng một điểm .
+Một (cycle) là một đường_đi đơn bắt_đầu và kết_thúc tại cùng một điểm .
+Có_thể nói một chu_trình là một đường_đi đóng đi_qua mỗi điểm đúng 1 lần ngoại_trừ điểm đầu và điểm cuối .
+Các khái_niệm vừa_rồi nếu áp_dụng cho đồ_thị có hướng thì ta sẽ thêm từ "có hướng" vào đằng_trước .
+Một đồ_thị vô_hướng được gọi_là (connected) nếu tồn_tại một đường_đi giữa mọi cặp điểm .
+Một đồ_thị có hướng gọi_là liên_thông (yếu) nếu đồ_thị vô_hướng thu được từ đồ_thị đó bằng cách bỏ_qua hướng của cạnh là liên_thông .
+Một đồ_thị có hướng gọi_là (strongly connected) nếu tồn_tại một đường_đi có hướng giữa mọi cặp điểm .
+Hiển_nhiên nếu một đồ_thị có hướng liên_thông mạnh thì nó cũng liên_thông yếu .
+Tuy_nhiên điều ngược_lại chưa chắc đúng (ví dụ ? ) .
+Ví_dụ đồ_thị dưới_đây là không liên_thông , đồ_thị liên_thông , đồ_thị liên_thông yếu (nhưng không mạnh) và đồ_thị liên_thông mạnh .
+Nếu một đồ_thị (vô hướng) không liên_thông , tập các đỉnh liên_thông với_nhau tạo_thành một (connected component) .
+Tương_tự như_vậy ta có_thể định_nghĩa thành_phần liên_thông (yếu hay mạnh) cho đồ_thị có hướng .
+Một đồ_thị (acyclic) thì ta gọ là một (forest) .
+Một rừng chỉ_có một thành_phần liên_thông thì ta gọi nó là một (tree) .
+Khái_niệm cây và rừng có hướng tương_tự như đồ_thị có hướng .
+Có_lẽ ta sẽ dừng định_nghĩa khái_niệm ở đây .
+Còn các khái_niệm khác chúng_ta sẽ định_nghĩa khi mà chúng_ta cần .
+Gần_như tất_cả các khái_niệm cơ_bản đã được liệt_kê ở 2 mà bạn_đọc có_thể tham_khảo thêm .
+Trong phần tiếp_theo , ta xét vô_hướng .
+Các thao_tác với đồ_thị có hướng có_thể được mở_rộng và áp_dụng một_cách tương_tự . Chúng_ta có_thể biểu_diễn đồ_thị bằng một (adjacency matrix) có kích_thước trong đó : Có_thể thấy ngay là kích_thước của cách biểu_diễn này là bất_kể số_lượng cạnh là nhiều hay ít .
+Theo_Fact 1 , số_lượng cạnh của một đồ_thị có_thể lên tới cạnh (ta gọi_là đồ_thị dầy) .
+Do_đó , cách biểu_diễn này có_thể nói_là phù_hợp với đồ_thị dầy .
+Tuy_nhiên , nhiều đồ_thị (đặc biệt các đồ_thị thực_tế như mạng xã hôi) , số_lượng cạnh (ta gọi_là đồ_thị thưa) .
+Do_đó cách biểu_diễn này khá tốn_kém với đồ_thị_thưa .
+Để tiết_kiệm bộ_nhớ , với mỗi đỉnh , ta lưu_trữ một danh_sách các đỉnh kề với nó .
+Như_vậy , đỉnh cần một danh_sách có phần_tử .
+Do_đó tổng_số phần_tử của các danh_sách là : Tổng là do mỗi cạnh được đếm hai lần trong tổng_bậc của hai đỉnh kề với nó .
+Cách biểu_diễn như_trên gọi_là biểu_diễn bằng (adjacency list) .
+Cách biểu_diễn này phù_hợp với cả đồ_thị_thưa .
+Mặc_dù tiết_kiệm bộ_nhớ , cách biểu_diễn này không phù_hợp với một_số thao_tác của đồ_thị .
+Bảng dưới_đây so_sánh hai cách biểu_diễn vừa trình_bày .
+Ví_dụ về hai cách biểu_diễn đồ_thị cho trong hình dưới_đây : Ta còn có_thể kết_hợp cách biểu_diễn danh_sách kề với một_vài cấu_trúc dữ_liệu khác .
+Cụ_thể , thay_vì dùng danh_sách liên_kết để biểu_diễn các đỉnh kề với một đỉnh , ta còn có_thể dùng bảng_băm hoặc cấu_trúc cây để biểu_diễn .
+Trong khuôn_khổ các bài viết ở đây , ta ít dùng (hoặc không dùng) các cấu_trúc như_vậy . Ngoài_ra ta có_thể biểu_diễn đồ_thị bằng cách liệt_kê tất_cả các cặp thỏa_mãn .
+Cách biểu_diễn này có bộ_nhớ là .
+Tuy_nhiên , việc thực_hiện các thao_tác cơ_bản trong cách biểu_diễn này sẽ rất tốn_kém .
+Đôi_khi , ta có_thể kết_hợp cách biểu_diễn này với cách biểu_diễn danh_sách kề để tận_dụng ưu_thế của cả hai cách biểu_diễn mà bộ_nhớ vẫn là tuyến_tính .
+Ta gọi bài_toán trên là bài_toán duyệt đồ_thị từ một đỉnh .
+Để đơn_giản , ta sẽ giả_sử đồ_thị là liên_thông .
+Trường_hợp đồ_thị không liên_thông sẽ được mở_rộng ở cuối phần này .
+Cách_thức chung để duyệt đồ_thị như_sau : Ta sẽ sử_dụng 2 loại nhãn để gán cho các đỉnh của đồ_thị : (unvisited) và (visited) .
+Ban_đầu tất_cả các đỉnh được đánh_dấu là chưa thăm (unvisited) .
+Ta sẽ duy_trì một_tập hợp (thực thi_tập thế_nào ta sẽ tìm_hiểu sau) , ban_đầu khởi tạo rỗng .
+Ta sẽ thực_hiện lặp 2 bước sau : Thuật_toán dừng khi .
+Giả mã như_sau : Một đỉnh có_thể được đưa nhiều lần vào tập (do đó không hẳn_là tập_hợp vì có nhiều phần_tử giống nhau) .
+Ví_dụ xét 3 đỉnh đôi một kề nhau .
+Đỉnh được lấy ra từ_đầu tiên; đánh_dấu là đã thăm .
+Ngay sau_đó , và sẽ được đưa_vào .
+Tiếp_theo , lấy ra khỏi và đánh_dấu là đã thăm .
+Lúc_này ta lại tiếp_tục đưa_vào một_lần nữa vì theo giả mã trên , là hàng_xóm của và có nhãn chưa thăm .
+Ở đây , ta sẽ kiểm_tra xem một đỉnh đã nằm trong hay chưa trước_khi đưa_vào . Từ giả mã trên , ta thấy , tập lưu các đỉnh .
+Giả_sử rằng ta sử_dụng một cấu_trúc để thực_thi sao_cho việc thêm vào hoặc lấy một đỉnh bất_kì (dòng và dòng cuối cùng) được thực_hiện trong thời_gian (ví dụ nếu thưc thi bằng danh_sách liên_kết thì thêm vào hoặc lấy ra đỉnh ở đầu danh_sách có_thể được thực_hiện trong thời_gian ) .
+Ta có_một vài nhận_xét sau : Từ các nhận_xét trên , ta suy ra tổng thời_gian tính_toán của thuật_toán là .
+Trong trường_hợp đồ_thị không liên_thông , ta phải duyệt qua từng thành_phần liên_thông một .
+Do đồ_thị có tối_đa thành_phần liên_thông , ta có : Nếu ta thực_thi bằng danh_sách liên_kết thì_có lẽ không có gì thú_vị cả .
+Tuy_nhiên , nếu ta thực_thi bằng hàng đợi (Queue) hoặc ngăn_xếp (Stack) thì ta sẽ thu được một_số tính_chất thú_vị từ đồ_thị .
+Trường_hợp ta thực_thi bằng hàng đợi , ta gọi thuật_toán là (Breath First_Search - BFS) .
+Trường_hợp ta thực_thi bằng ngăn_xếp , ta gọi thuật_toán là (Depth First_Search - DFS) .
+Sau_đây ta sẽ thảo_luận cả hai thuật_toán .
+Như đã nói ở trên , thuật_toán BFS sẽ thực_thi bằng hàng đợi .
+Ta sẽ thay thủ_tục bằng thủ_tục và thủ_tục bằng thủ_tục .
+Ngoài khung_cơ_bản như thuật_toán ở trên , ta sẽ gán cho mỗi đỉnh một nhãn .
+Giá_trị của , như_ta sẽ chỉ ra dưới_đây , là khoảng_cách ngắn nhất từ tới .
+Giả mã như_sau : Code của giả mã bằng C : Ví_dụ ta thực_thi thuật_toán trên với đồ_thị trong hình bên trái và kết qủa thu được trong hình bên phải .
+Các số ứng với các đỉnh tương_ứng là nhãn của các đỉnh đó .
+Những cạnh màu đỏ laf những cạnh mà có nhãn unvisited ở dòng được thăm bởi BFS .
+Gọi mức (level) của một đỉnh , kí_hiệu là , là khoảng_cách ngắn nhất từ đỉnh tới .
+Trong ví_dụ trên , đỉnh có mức , có mức 2 , . . . .
+Bằng quy_nạp , ta có_thể chứng_minh rằng (coi như bài_tập cho bạn đọc) : Các đỉnh ở mức sẽ được thăm sau các đỉnh ở các mức .
+Ta quy_nạp trên biến để chứng_minh rằng nhãn của cũng chính là mức của , i . e , . Xét một đỉnh .
+Lần đầu_tiên được đưa_vào hàng đợi là khi ta thăm một đỉnh nào_đó kề với và theo Claim trên , mức của sẽ nhỏ hơn mức của .
+Từ định_nghĩa của mức ta suy ra .
+Theo giả_thiết quy_nạp , ta suy ra .
+Theo giả mã , khi đưa_vào hàng đợi , ta_cập nhật .
+Do_đó , , dpcm . Kết_hợp Theorm 1 và Theorem 2 ta có hệ_quả sau : Corollary 1 có_ý nghĩa rất lớn vì ta sẽ thấy (trong bài ) , thuật_toán tốt nhất tìm đường_đi ngắn nhất với đồ_thị có trong số có thời_gian ngay_cả trong đồ_thị_thưa (m = O(n)) .
+Thuật_toán BFS sẽ là thuật_toán đơn_giản và hiệu_quả để tìm đường_đi ngắn nhất trong đồ_thị không có trong số .
+Trong duyệt theo chiều_sâu DFS , ta thực_thi sử_dụng ngăn_xếp .
+Ta sẽ thay thủ_tục bằng thủ_tục và thủ_tục bằng thủ_tục .
+Code của giả mã bằng C : Nếu chỉ nhìn qua thi không thấy sự khác_biệt qúa nhiều giữa DFS và thuật_toán chung để duyệt đồ_thị .
+Tuy_nhiên bằng cách cập_nhật thêm một_vài thông_tin trong quá_trình duyệt đồ_thị (giống như BFS) , ta có_thể phát_hiện ra những tính_chất rất thú_vị của DFS .
+Ta sẽ thảo_luận những tính_chất đó ở bài sau .
+Hình dưới_đây là một ví_dụ thực_thi DFS trên đồ_thị .
+Số tương_ứng của mỗi đỉnh ở bên phải là thứ_tự của đỉnh thăm bởi DFS .
+Ngoài thủ_tục lặp_DFS sử_dụng ngăn_xếp như_trên , có_lẽ một trong số chúng_ta cũng khá quen_thuộc với thủ_tục thực_thi DFS sử_dụng đệ_quy sau : Code của giả mã bằngTa thấy cách thứ_hai đơn_giản hơn do không_phải thực_thi Stack .
+Tuy_nhiên , cách này sẽ sử_dụng nhiều Call_Stack của máy_tính và trong trường_hợp độ sâu đệ_quy lớn có_thể gây ra Stack_Overflow .
+Một trong những ứng_dụng đơn_giản nhất để duyệt đồ_thị là phát_hiện ra các thành_phần liên_thông .
+Để phát_hiện ra các thành_phần liên_thông của đồ_thị (vô hướng) , ta thực_hiện lặp_lại thao_tác sau : chọn một đỉnh chưa thăm và thực_hiện thăm các đỉnh trong thành_phần liên_thông chứa .
+Thủ_tục sau_đây trả_lại số_thành_phần liên_thông của đồ_thị đầu_vào .
+Code_C : Code đầy_đủ : , .
+1 Jeff_Erickson , , UIUC .
+2 Diestel , Reinhard .
+Grad .
+Texts in Math (2005) .
+3 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 23 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+, , , , , Trackback link : Powered by and

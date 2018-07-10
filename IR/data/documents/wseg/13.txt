@@ -1,0 +1,57 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này mình sẽ giới_thiệu những kiến_thức cơ_bản về xác_suất .
+Do xác_suất là một lĩnh_vực rất rộng , rất khó để viết toàn_bộ những kiến_thức cở bản trong một bài viết .
+Do_đó , mình chỉ chọn ra những phần nhất_định để trình_bày .
+Những phần này sẽ được áp_dụng trong những bài viết sau về phân_tích thuật_toán ngẫu_nhiên .
+Trước_hết chúng_ta định_nghĩa những khái_niệm cơ_bản nhất về_không gian xác_suất : Dựa vào định_nghĩa 1 , ta có bổ_đề sau : dựa vào định_nghĩa của hàm xác_suất , ta có : Từ_đó , suy ra định_lý 1 .
+Định_lý 1 còn được mở_rộng ra trong trường_hợp hữu_hạn các sự_kiện gọi_là Tương_tự như_vậy , các sự_kiện được gọi_là độc_lập nếu : Một luật rất quan_trọng để tính xác_suất là luật . : : Do các sự_kiện là đôi một không giao nhau , áp_dụng tính_chất của hàm xác_suất ta có : Đẳng_thức sau được rút ra từ định_nghĩa của xác_suất có_điều kiện .
+Ta có_thể dễ_dàng chứng_minh công_thức Bayes dựa vào luật tổng xác_suất . Ví_dụ : là một bài_toán nối tiếng minh_họa việc áp_dụng công_thức Bayes .
+Bài_toán như_sau : Giả_sử trong một trò_chơi có 3 cánh_cửa , đằng_sau một trong 3 cánh của đó là một chiệc xe ô_tô và đằng_sau hai cánh_cửa còn_lại là hai con dê .
+Bạn chỉ được phép mở cánh_cửa một_lần và phần_thưởng cuả bạn là thứ đằng_sau cánh_cửa đó (tất nhiên là bạn muốn ô tô) .
+Giả_sử bạn đã chọn một cánh_cửa (nhưng chưa mở) , giả_sử cánh_cửa 1 , ban tổ_chức trò_chơi đó sẽ mở một cánh_cửa có_con dê , giả_sử cánh_cửa 2 , trong hai cánh_cửa còn_lại .
+Bây_giờ trước_khi bạn quyết_định mở , ban tổ_chức cho_phép bạn đổi cánh_cửa 1 và 3 .
+Câu_hỏi là bạn có đổi hay_không , giả_sử xác_suất mỗi cánh_cửa có ô_tô là như_nhau và bằng ? Phần_lớn mọi người khi lần đầu_tiên gặp bài_toán này sẽ cho_rằng đổi hay_không cũng không quan_trọng vì xác xuất ô_tô ở trong cánh_cửa 1 và 3 đều bằng_nhau và bằng khi bạn đã biết cánh_cửa 2 không có ô_tô .
+Ngay_cả nhà toán_học nổi_tiếng lúc đầu cũng không tin là bạn nên đổi; ông chỉ tin bạn nên đổi sau khi ông đã thử_nghiệm giả lập với máy_tính .
+Vậy tại_sao bạn nên đổi .
+Về_mặt trực_quan , lý_do như_sau : ban_đầu bạn chọn cánh_cửa 1 , xác_suất ô_tô nằm trong cánh_cửa 1 là .
+Suy ra nếu bạn không_đổi thì xác_suất bạn có được ô_tô là .
+Còn nếu bạn đổi , xác_suất bạn có được ô_tô sẽ là .
+Rõ_ràng là bạn nên đổi .
+Bây_giờ chúng_ta áp_dụng công_thức Bayes vào bài_toán này : Gọi_là xác_suất ô_tô ở sau cánh_cửa .
+Gọi_là sự_kiện người chơi chọn cánh_cửa 1 và là sự_kiện ban tổ_chức mở cánh_cửa 2 .
+Như_vậy sự_kiện ô_tô ở cánh_cửa thứ 3 là .
+Do_đó xác_suất ô_tô ở trong cánh_cửa thứ 3 là .
+Ta có : Chú_ý độc_lập với với mọi , do_đó .
+Áp_dụng công_thức Bayes ta có : Trong ứng_dụng của xác_suất trong phân_tích thuật_toán ngẫu_nhiên , chúng_ta chủ_yếu (nhưng không_phải tất cả) bắt_gặp biến ngẫu_nhiên rời_rạc .
+Cụ_thể trong định_nghĩa trên , với một biến ngẫu_nhiên và một giá_trị , sự_kiện "" là tập_hợp , và xác_suất của sự_kiện này được kí_hiệu là và bằng : Ví_dụ : Gọi_là biến ngẫu_nhiên biểu_diễn tổng của hai con xúc_xắc 6 mặt .
+Ở đây và : Như_vậy , sự_kiện sẽ tương_đương với tập_hợp và có xác_suất là : Tương_tự như các sự_kiện , ở đây chúng_ta cũng có khái_niệm các biến ngẫu_nhiên độc_lập .
+Tương_tự như_vậy , các biến ngẫu_nhiên được gọi_là độc_lập với_nhau khi và chỉ khi với mọi tập_con và mọi giá_trị , ta có : Với ví_dụ biến ngẫu_nhiên là tổng của hai con xúc_xắc 6 mặt được định_nghĩa trong ví_dụ trên , kì_vọng của : Một tính_chất vô_cùng quan trong đó là tính tuyến_tính của kì_vọng .
+Tính_chất này chúng_ta sẽ sử_dụng trong gần_như tất_cả các phân_tích xác_suất .
+Ta chỉ_cần chứng_minh trong trường_hợp hai biến ngẫu_nhiên và sau_đó quy_nạp để chứng_minh định_lý .
+Gọi hai biến ngẫu_nhiên là và với kì_vọng tương_ứng .
+Theo định_nghĩa , ta có : Điểm mạnh_của định_lý 3 chính là đẳng_thức đúng trong cả trường_hợp các biến ngẫu_nhiên phụ_thuộc .
+Tương_tự như định_lý 3 , ta có_thể chứng_minh : Tương_tự như xác_suất có_điều kiện , ta có_thể định_nghĩa kì_vọng có_điều kiện .
+Dựa vào định_nghĩa ta cũng có_thể chứng_minh được tính tuyến_tính của kì_vọng : Với mỗi , kì_vọng phụ_thuộc vào .
+Do_đó ta có_thể coi kì_vọng như_là một biến ngẫu_nhiên , .
+Do_đó ta có_thể định_nghĩa kì_vọng cho biến ngẫu_nhiên đó .
+Định_lý sau có_thể được chứng_minh trực_tiếp dựa vào định_nghĩa : Một hàm được gọi_là lồi nếu với mọi và , ta có : Định_nghĩa này rộng hơn định_nghĩa trong giải_tích mà chúng_ta đã biết : nếu một hàm có đạo_hàm_cấp 2 với mọi thì_là hàm lồi .
+Ta có bất_đẳng_thức Jensen cho hàm lồi : Trong trường_hợp có đạo_hàm_cấp 2 , bất_đẳng_thức này có_thể được chứng_minh bằng khai_triển Taylor và áp_dụng tính tuyến_tính của kì_vọng .
+Mình bỏ_qua chứng_minh (bạn đọc có_thể xem trong 1) . Một hệ_qủa của định_lý trên đó là : của một biến ngẫu_nhiên là một đại_lượng đặc_trưng cho sự dao_động của biến ngẫu_nhiên xung_quanh giá_trị kì_vọng và được định_nghĩa như_sau : Từ bổ_đề 6 có_thể thấy với mọi biến ngẫu_nhiên .
+Ta xét một ứng_dụng của phân_tích xác_suất trong bài_toán người sưu_tập Coupon () .
+Bài_toán này cũng được giới_thiệu ở với cái tên Bài_toán Mai_Siêu_Phong .
+Gọi_là số_lượng coupon cần mua để thu được ít_nhất một coupon trong mỗi loại và gọi_là số_lượng coupon cần phải mua khi bạn đã thu_thập được loại coupon khác_nhau .
+Theo tính tuyến_tính của kì_vọng , ta có : Bây_giờ ta sẽ tính kì_vọng của với mỗi .
+Do bạn đã thu_tập được loại khác_nhau , xác_suất khi bạn mua hộp kẹo có coupon loại mới là Ở đây ta cần phải hiểu rõ ý_nghĩa của .
+Nếu có_nghĩa là hộp kẹo đầu_tiên bạn mua không có coupon nào mới cả và hộp kẹo thứ có môt coupon loại mới .
+Do_đó , Do_đó tuân theo với tham_số .
+Ta có : Do_đó , ta có : Trong đó là số thứ .
+Về_mặt tiệm_cận , hay chính_xác hơn , . Trong phân_tích thuật_toán , biến ngẫu_nhiên 0/1 (indicator random variable) rất hay được sự dụng như một phương_pháp để chuyển_đổi giữa kì_vọng và xác_suất .
+Như cái tên của nó , biến ngẫu_nhiên 0/1 chỉ nhận hai giá_trị 0 và 1 .
+Dựa vào định_nghĩa , ta dễ_dàng chứng_minh định_lý sau : Một tính_chất quan_trọng của biến ngẫu_nhiên 0/1 mà ta thường hay sử_dụng trong các phân_tích xác_suất là : , trong đó là xác_suất . 1 Mitzenmacher , Michael , and Eli_Upfal .
+.
+Cambridge_University_Press , 2005 .
+2 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+.
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 .
+, , Trackback link : Powered by and

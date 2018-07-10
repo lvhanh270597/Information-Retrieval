@@ -1,0 +1,43 @@
+Nguồn : Achoums blog Trong bài viết trước ( link ) , chúng_ta đã cùng tìm_hiểu về Classification .
+Chúng_ta cũng đã đưa_ra vài ví_dụ về ứng_dụng của nó và cũng đã làm_quen với the Iris dataset .
+Nếu có thời_gian , bạn nên đọc_bài viết đó để có_thể hiểu cặn_kẽ những nội_dung trong bài viết này .
+Trở_lại câu_chuyện về hoa diên vĩ (Iris flower) : Chúng_ta có_một danh_sách các bông_hoa diên vĩ được mô_tả bằng độ_dài và độ dày của đài_hoa và cánh_hoa ( attributes ) .
+Chúng_ta cũng đã biết chủng_loại của tất_cả các bông_hoa trừ một cái duy_nhất (chúng ta sẽ gọi nó là "bông diên vĩ bí ẩn" ) và mục_tiêu cuối_cùng là tìm_ra chủng_loại của bông diên vĩ bí_ẩn này .
+Với bài_toán này , chúng_ta giả_sử rằng những thuộc_tính trên là đặc_trưng của chủng_loại .
+Giải_pháp 1 : Quan_sát tương_đồng ( The same observation solution ) Giải_pháp đầu_tiên mà ta thường nghĩ đến trong trường_hợp này là tìm_kiếm một bông diên vĩ khác với độ_dài và độ dày của đài_hoa và cánh_hoa giống với bông diên vĩ bí_ẩn .
+Nếu có , nhiều khả_năng chủng_loại của bông_hoa này cũng tương_đồng với bông_hoa bí_ẩn .
+Không may_mắn thay , rất hiếm khi chúng_ta tìm được hai bông diên vĩ với những thông_số giống_hệt nhau .
+Trên thực_tế , tìm_kiếm một quan_sát với các thuộc_tính giống_hệt hiếm khi là một giải_pháp tốt , sẽ luôn có những sự khác_biệt dù là rất nhỏ .
+Giải_pháp 2 : Hàng_xóm gần nhất ( The 1-nearest neighbors solution ) Thay_vì tìm_kiếm một bông diên vĩ với các giá_trị thuộc_tính tương_đồng , chúng_ta sẽ tìm_kiếm những bông_hoa gần giống với bông_hoa bí_ẩn .
+Nếu hai bông diên vĩ có kích_thước rất gần giống nhau , chúng trông sẽ rất giống nhau và vì_vậy , có_thể chúng thuộc cùng một chủng_loại .
+Tuy_nhiên , cách này sẽ không hiệu_quả nếu_như có_một vài bông diên vĩ thuộc các chủng_loại khác_nhau nhưng đều có_giá trị thuộc_tính gần giống với bông diên vĩ bí_ẩn .
+Vì_vậy , chúng_ta chỉ tìm_ra bông diên vĩ giống nhất với bông diên vĩ bí_ẩn .
+Điều đó có_nghĩa là chúng_ta phải định_nghĩa chính_xác thế_nào là hai bông diên vĩ giống nhau .
+Chúng_ta cũng phải định_nghĩa thế_nào là một bông diên vĩ giống bông diên vĩ này hơn so_với một bông khác .
+Giải_pháp được sử_dụng bởi các nhà nghiên_cứu là định_nghĩa khoảng_cách giữa hai bông diên vĩ .
+Khoảng_cách giữa hai bông diên vĩ càng nhỏ , chúng càng giống nhau .
+Có rất nhiều cách để định_nghĩa khoảng_cách .
+Một trong những khoảng_cách thường được sử_dụng nhất trong Khoa_học Máy_tính là khoảng_cách Euclide (the Euclidean distance) .
+Nghe có_vẻ nguy_hiểm , nhưng thực_ra khoảng_cách Euclide chính là những gì bạn vẫn thường hiểu về khoảng_cách hay đường_chim_bay .
+Tuy_nhiên , mặc_dù khoảng_cách Euclide giữa hai điểm trên bản_đồ rất dễ_hiểu , sẽ khó tưởng_tượng hơn một_chút khi bạn nói đến khoảng_cách giữa hai bông diên vĩ .
+Để tính khoảng_cách Euclide , bạn phải tính tổng bình_phương của hiệu các thuộc_tính tương_đương , rồi lấy căn bậc hai của tổng_đó .
+Hãy áp_dụng công_thức đó cho hai bông_hoa đầu_tiên được biểu_diễn trong bảng sau : Khoảng_cách giữa hai bông diên vĩ đầu_tiên là : \sqrt(6 . 3 - 6 . 2)2 + (2 . 3 - 3 . 4)2 + (4 . 4 - 5 . 4)2 + (1 . 3 - 2 . 3)2 = 1 . 79 Khoảng_cách giữa bông_hoa đầu_tiên và bông_hoa thứ_ba là : \sqrt(6 . 3 - 5 . 2)2 + (2 . 3 - 3 . 4)2 + (4 . 4 - 1 . 4)2 + (1 . 3 - 0 . 2)2 = 3 . 55 Giá_trị đầu_tiên nhỏ hơn (1 . 79 lt; 3 . 55) , điều này có_nghĩa là bông diên vĩ đầu_tiên giống bông_hoa thứ_hai hơn so_với bông_hoa thứ_ba .
+Nhờ những bước tính_toán và so_sánh như_trên , bạn có_thể tìm_ra bông_hoa giống bông_hoa bí_ẩn nhất .
+Đơn_giản là chúng_ta chỉ_cần tính khoảng_cách giữa bông_hoa bí_ẩn với mỗi bông_hoa khác , và tìm bông_hoa có khoảng_cách nhỏ nhất .
+Phương_pháp tưởng_chừng_như đơn_giản này thực_ra lại được sử_dụng bởi rất nhiều nhà nghiên_cứu .
+Nó có tên là Hàng_xóm gần nhất ( The 1-nearest neighbors solution ) Giải_pháp 3 : k-hàng xóm gần nhất ( The k-nearest neighbors solution ) Thông_thường , giải_pháp hàng_xóm gần nhất ( The 1-nearest neighbors solution ) cho kết_quả tốt , nhưng trong nhiều trường_hợp , vì nhiều nguyên_nhân khác_nhau mà giải_pháp này cho kết_quả thiếu chính_xác .
+Một trong những nguyên_nhân có_thể là sự thiếu chính_xác trong phép_đo các thuộc_tính .
+Điều này dẫn đến việc tính khoảng_cách không đúng , và như_vậy thuật_toán không_thể tìm_ra lớp ( class ) đúng nhất .
+Các nhà nghiên_cứu đã tìm_ra một giải_pháp đơn_giản cho vấn_đề này : Thay_vì tìm_ra bông diên vĩ giống nhất , chúng_ta sẽ tìm 5 .
+Nói_cách_khác , chúng_ta tìm 5 bông diên vĩ có khoảng_cách nhỏ nhất so_với bông diên vĩ bí_ẩn .
+Nếu cả 5 bông diên vĩ thuộc cùng một chủng_loại , vấn_đề trở_nên rất đơn_giản : chủng_loại (hay lớp ) của bông diên vĩ bí_ẩn chính là chủng_loại của 5 bông diên vĩ đó .
+Tuy_nhiên , sẽ thế_nào nếu 5 bông diên vĩ trên thuộc về các chủng_loại khác_nhau ?
+Trong trường_hợp này , chúng_ta sẽ đếm_số lượng các bông diên vĩ trong một chủng_loại , và chủng_loại với số bông diên vĩ lớn nhất sẽ được coi là chủng_loại của bông diên vĩ bí_ẩn .
+Ví_dụ , nếu trong 5 bông diên vĩ giống nhất , có 1 bông thuộc loại Setosa , 1 thuộc Versicolour và 3 bông còn_lại thuộc loại Viginica , chúng_ta có_thể khá chắc_chắn khi kết_luận rằng bông_hoa bí_ẩn thuộc loại Viginica (xem hình minh_hoạ phía dưới) .
+Giải_thuật trên được gọi_là 5-hàng xóm gần nhất ( 5-nearest neighbors ) Có_thể bạn thắc_mắc tại_sao chúng_ta lại tìm 5 hàng_xóm gần nhất thay_vì 2 , 10 hay 50 .
+Chọn ra k tốt nhất trong giải_thuật k-hàng xóm gần nhất_là một câu_hỏi rất khó trả_lời vì nó phụ_thuộc vào rất nhiều vấn_đề .
+Chúng_ta sẽ không giải_thích chi_tiết ở đây , nhưng bạn nên biết rằng , trong thực_tế , các nhà nghiên_cứu thường thử rất nhiều trường_hợp để tìm_ra phương_án tốt nhất .
+Bài viết đến đây là hết .
+Hi_vọng bạn đã có_một hiểu_biết sơ_lược về thuật_toán nổi_tiếng k-hàng xóm gần nhất (hay k-nearest neighbors ) .
+Trong bài viết tiếp_theo , tác_giả sẽ giới_thiệu một thuật_toán mới hơn , phức_tạp và rất mạnh gọi_là Random_Forest .
+Hẹn gặp lại các bạn trong bài viết tới !

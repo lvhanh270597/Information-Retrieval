@@ -1,0 +1,79 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Mình viết Appendix này mục_đích để hỗ_trợ cho loạt bài về các giải_thuật ngẫu_nhiên (randomized algorithms) .
+Tính tổng và tích với mình luôn là bài_toán đau_đầu khi mới bắt_đầu cho_đến khi mình đọc Chương 1 . 2 . 3 của Knuth 1 .
+Do_đó , bài này mình tổng_hợp ngắn_gọn Chương 1 . 2 . 3 của Knuth theo cách hiểu của bản_thân .
+Mình khuyến_khích bạn_đọc đọc bản_gốc tiếng anh của Knuth . (từ ) .
+Tính tổng : A(n) = \sum_i=1n \sum_j = i+1n \frac1j-i+1 \qquad (1) Biết rằng : \sum_i=1n \frac1i = H(n) \qquad (2) trong đó H(n) là thứ n .
+Có_lẽ nếu bạn nào đã từng gặp tổng_này thì_có thể sẽ_biết được các bước tính A(n) như_sau : \beginarraylcl A(n) = \sum_i=1n \sum_k = 2n-i+1 \frac1k \\ = \sum_k=2n \sum_i = 1n-k+1 \frac1k \\ = \sum_k=2n\fracn-k+1k \\ = (n+1)\sum_k=2n\frac1k - \sum_k=2n 1 \\ = (n+1)(H(n)-1) - (n-1) \\ = (n+1)H(n)- 2n \endarray \qquad (3) Để thu được phương_trình đầu_tiên , ta đổi biến bằng cách đặt k = j - i +1 .
+Do_đó , điều_kiện j = i+1 \rightarrow n trở_thành k = 2 \rightarrow n-i+1 .
+Các phương_trình ở dòng thứ 3 , 4 , 5 và 6 thì ta chỉ việc sử_dụng các phép tách và nhóm cơ_bản .
+Khó nhất_là làm_sao để thu được phương_trình thứ 2; đổi chỗ biến chạy i và k từ trong ra ngoài .
+Tất_nhiên việc kiểm_chứng không_phải là khó lắm vì chỉ_cần viết ra .
+Cái khó là hiểu được trên cơ_sở nào mà ta có_thể đổi chỗ như_vậy để ta có_thể áp_dụng vào các tình_huống tương_tự .
+Bài này chúng_ta sẽ đi tìm_hiểu cơ_sở đó .
+Phần này mình nhắc_lại một_số tổng_cơ_bản và cách chứng_minh .
+Các tổng B_p(n) dưới_đây khá cổ_điển nên mình không nhắc_lại chứng_minh nữa mà khuyến_khích bạn_đọc xem tại các liên_kết đính kèm : \beginarraylcl B_1(n) = \sum_i=1n i = \fracn(n+1)2 = O(n2)\\ B_2(n) = \sum_i=1n i2 = \fracn(n+1)(2n+1)6 = O(n3)\\ B_3(n) = \sum_i=1n i3 = \left\fracn(n+1)2\right2 = O(n4)\\ \ldots \\ B_p(n) = \sum_i=1n ip = O(np+1) \endarray \qquad (4) Tổng B_1(n) gọi_là ; tổng B_2(n) gọi_là tổng ; tổng B_3(n) được gọi_là ; tổng B_p(n) được gọi_là tổng_Faulhaber do công_thức tổng_quát của nó , theo , được tìm_ra bởi Faulhaber năm 1631 . Tổng B_1(n) còn có_thể được khái_quát_hóa cho trường_hợp cấp_số_cộng () .
+Một cấp_số_cộng a_1 , a_2 , \ldots , a_n với công_sai d sẽ có tổng : AP_d(n) = a_1 + a_2 + \ldots a_n = \fracn(a_1+a_n)2 \qquad (5) Dễ thấy nếu chọn a_1 = 1 và công_sai d = 1 thì AP_1(n) chính là tổng B_1(n) .
+Chúng_ta cũng đã biết tổng của một cấp_số_nhân () với công_bội r cũng có_thể tính được dưới đạng đóng (closed form) : GP_r(a , n) = a + ar1 + ar2 + \ldots + arn = a\fracrn-1r-1 \qquad (6) Tổng GP_r(a , n) còn có_thể được mở_rộng hơn_nữa để tìm tổng của tích của một cấp_số_cộng và một cấp_số_nhân () : \beginarraylcl PGP_d , r(a , n) = a + (a+d)r1 + (a+2d)r2 + \ldots + (a+nd)rn)\\ = \fraca - (a+nd)rn+1r-1 + \fracrd(1-rn)(1-r)2 \endarray \qquad (7) Nếu bạn_đọc đã từng đọc_bài về , trong phần phân_tích xây_dựng Heap từ một mảng ở cuối bài viết , mình có sử_dụng tổng (có cả cách chứng minh) PGP_1 , 2(0 , n) .
+Chứng_minh công_thức (7) tương_tự như cách chứng_minh của mình với tổng PGP_1 , 2(0 , n) và coi_như bài_tập cho bạn_đọc . Mặc_dù không có dạng đóng , số đồng_điều thứ n cũng có_thể coi là một tổng_cơ_bản và đáng nhớ vì tổng_này hay xuất_hiện trong các phân_tích thuật_toán .
+Về_mặt tiệm_cận , H(n) \sim \ln(n) .
+Do giới_hạn chiều_dài của bài viết , mình xin dừng liệt_kê các tổng "cơ bản" ở đây .
+Bạn_đọc có_thể tham_khảo thêm các tổng_cơ_bản khác và phương_pháp chứng_minh trong các sách 2 , 3 , 4 .
+Tổng (có thể không_phải tất cả) các số_hạng thuộc dãy a_0 , a_1 , a_2 , \ldots , a_n thường được viết dưới dạng ngắn_gọn sử_dụng kí_hiệu \Sigma như_sau : \sum_R(i)a_i \qquad (8) trong đó R(i) là một của biến chạy i .
+Ví_dụ a_0 + a_2 + \ldots a_2\lfloor n/2 \rfloor là tổng_các hạng có chỉ_số_chẵn có_thể viết ngắn_gọn thành dạng (8) với quan_hệ của biến chạy i là R(i) : i là các số_chẵn .
+Dạng ngắn_gọn đó không chỉ dễ nhìn hơn mà_còn cho_phép chúng_ta phát_triển các để thao_tác với nó .
+\left(\sum_R(i)a_i \right)\left(\sum_S(j)b_j \right) = \sum_R(i)\sum_S(j) a_ib_j\qquad (9) Trong đó R(i) và S(j) lần_lượt là quan_hệ của biến chạy i và j và hai quan_hệ này với_nhau .
+Ở đây mình nhấn_mạnh từ . Thông_thường , trong các bài_toán , ta sẽ phải tính tổng bên về phải và sử_dụng (9) đưa về vế trái để tính .
+Ví_dụ tính tổng : C(n) = \sum_i=1n\sum_j=1n ij2 \qquad (10) Tổng_C(n) nhìn có_vẻ phức_tạp nhưng thực rất đơn_giản .
+Áp_dụng (9) , ta có_thể đưa tổng C_n về dạng : \beginarray l C(n) = \sum_i=1n i \sum_j=1n j2 \\ = \fracn(n+1)2\fracn(n+1)(2n+1)6 = O(n5) \endarray trong đó , phương_trình cuối_cùng ta thu được là nhờ tổng B_1(n) và B_2(n) .
+\sum_R(i)a_i = \sum_R(j)a_j = \sum_R(f(i))a_f(i) \qquad (11) Ở đây , f( . ) là một hàm tùy_ý trên miền các số_nguyên .
+Phép đổi biến đầu_tiên của (11) chỉ đơn_giản là đổi tên của biến .
+Ví_dụ \sum_i=1n i và \sum_j=1n j đều là tổng B_1(n) mặc_dù ta dùng hai biến có "tên" khác_nhau .
+Phép đổi biến thứ (2) thường hữu_dụng hơn_cả và cũng khó_hiểu hơn một_chút .
+Để hiểu hơn phép này , bạn_đọc nên dừng đọc_tiếp và xem_lại phép đổi biến k = j-i+1 trong Ví_dụ 1 để thu được phương_trình đầu_tiên trong (3) .
+\sum_j = i+1n \frac1j-i+1 = \sum_k = 2n-i+1 \frac1k Chi_tiết phép đổi biến trong (3) viết theo ngôn_ngữ của hằng_đẳng_thức (11) là như_sau : Ta đặt f(j) = j + i -1 .
+Ở đây R(j) : i + 1 \leq j \leq n và a_j = \frac1j-i+1 .
+Do_đó : a_f(j) = \frac1f(j)-i+1 = \frac1(j+i-1)-i+1 = \frac1j và R(f(j)) : i+ 1 \leq j+i-1 \leq n Quan_hệ này tương_đương với R(f(j)) : 2 \leq j \leq n .
+Áp_dụng (11) ta sẽ thu được phép đổi biến ban_đầu .
+Nếu bạn nào đã quen với tích_phân thì_có thể thấy phép đổi biến này giống_như phép đổi biến của tích_phân . Nếu_R(i) và S(j) là hai quan_hệ độc_lập , ta có : \sum_R(i) \sum_S(j) a_ij = \sum_S(j) \sum_R(i) a_ij \qquad (12) Nếu_R(i) là một quan_hệ của i và S(i , j) là một quan_hệ của j phụ_thuộc vào i , ta có : \sum_R(i) \sum_S(i , j) a_ij = \sum_S(j) \sum_R(i , j) a_ij \qquad (13) Trong đó : (i) S(j) là quan_hệ của j sao_cho : thỏa_mãn cả hai quan_hệ R(i) và S(i , j) và (ii) R(i , j) là quan_hệ của i sao_cho cả R(i) và S(i , j) đều thỏa_mãn .
+Phần in đậm chính là sự khác_nhau cơ_bản giữa S(j) và R(i , j) . Để hiểu hơn về hằng_đẳng_thức này , ta sẽ kiểm_tra nó với (3) .
+Trong (3) , ta thực_hiện đổi thứ_tự như_sau : \sum_i=1n \sum_j=2n-i+1 \frac1j = \sum_j=2n \sum_i=1n-j+1\frac1j \qquad (14) Ở đây R(i) : 1 \leq i \leq n và S(i , j) : 2 \leq j \leq n-i+1 .
+Ta sẽ tìm S(j) trước .
+S(j) sẽ là quan_hệ của j sao_cho tồn_tại i để 1 \leq i \leq n và 2 \leq j \leq n-i+1 .
+Trước_hết ta thấy nếu j < 2 thì không tồn_tại i để bất_đẳng_thức 2 \leq j \leq n-i+1 đúng .
+Với lí_do tương_tự thì j \leq n .
+Nếu ta cố_định giá_trị j bất_kì trong đoạn 2 , n thì từ hai bất_đẳng_thức 1 \leq i \leq n và j \leq n-i+1 , ta suy ra 1 \leq i \leq n+1-j .
+Vì j \leq n , đoạn 1 , n+1-j luôn không rỗng , do_đó luôn tồn_tại i thỏa_mãn 1 \leq i \leq n+1-j .
+Như_vậy , S(j) : 2 \leq j \leq n . Tìm_R(i , j) thường sẽ dễ hơn .
+Theo định_nghĩa : R(i , j) là quan_hệ của i sao_cho 1 \leq i \leq n và 2 \leq j \leq n-i+1 .
+Ta suy ra 1 \leq i \leq n-j+1 .
+Do_đó , R(i , j) : 1 \leq i \leq n-j+1 .
+Áp_dụng (13) ta sẽ suy ra (14) . Nếu_R(i) và S(j) là hai quan_hệ độc_lập , ta có : \sum_R(i)a_i + \sum_S(i) a_i = \sum_R(i) \mbox or S(i)a_i + \sum_R(i) \mbox and S(i) a_i \qquad (15) Ví_dụ : \sum_1m a_i + \sum_i = m-1n a_i = \sum_i=1na_i + \sum_i=m-1m a_i = \sum_i=1na_i + a_m-1 + a_m Chứng_minh : \sum_i=0n \sum_j = 0i a_ia_j = \frac12\left( \left(\sum_i=0n a_i\right)2 + \left(\sum_i=0n a2_i\right)\right) \qquad (16) Đặt S_1 = \sum_i=0n \sum_j = 0i a_ia_j Áp_dụng phép thay_đổi thứ_tự phụ_thuộc ta được : \beginarray lS_1 = \sum_j=0n \sum_i=jn a_ia_j \\ = \sum_i=0n \sum_j=in a_ia_j \endarrayỞ phương_trình thứ_hai , ta áp_dụng phép đổi biến để đổi "tên" i và j .
+Đặt : S_2 = \sum_i=0n \sum_ j= in a_ia_j Ta có : \beginarray l2S_1 = S_1 + S_2 \\ = \sum_i=0n \left( \sum_j = 0i a_ia_j + \sum_j = in a_ia_j \right) \\ = \sum_i=0n \left( \sum_j = 0n a_ia_j + a_ia_i \right)\\ = \sum_i=0n \sum_j = 0n a_ia_j + \sum_i=0n a2_i \\ = \left(\sum_i=0n a_i\right)\left(\sum_j=0n a_j\right) + \sum_i=0n a2_i \\ = \left(\sum_i=0n a_i\right)2 + \sum_i=0n a2_i \endarrayTừ đó ta suy ra dpcm . 1 .
+E .
+Knuth .
+.
+Chapter 1 . 2 . 3 . Addison_Wesley_Longman_Publishing_Co . , Inc . , Redwood_City , CA , USA .
+1997 .
+2 P .
+Flajolet and R .
+Sedgewick .
+.
+Cambridge_University_Press , 2009 .
+3 P .
+Marko , H .
+S .
+Wilf , and D .
+Zeilberger .
+.
+AK_Peters_Ltd .
+Wellesley .
+MA 30 1996 .
+4 R .
+P .
+Stanley .
+.
+Wadsworth_Publ .
+Co . , Belmont , CA , USA .
+1986 .
+, , Trackback link : Powered by and

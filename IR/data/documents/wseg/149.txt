@@ -1,0 +1,25 @@
+Nguồn : Facebook_VNOI_Khi có 1 bạn hỏi Quy_hoạch_động trạng_thái là gì trong bài QBSELECT , thầy Lê_Minh Hoàng có trả_lời như_sau : Bạn cứ hiểu quy_hoạch_động là quy_hoạch_động .
+Đừng quan_tâm đến cách_thức lưu_trữ (một chiều , hai chiều , rời_rạc . . . ) , cũng đừng quan_tâm tới thứ_tự tính_toán (quét ngang , băm chéo , trên cây , trên DAG , trên đường , dưới ao . . . ) thì sẽ thấy vấn_đề là do dân competitive programmers tự thêm thuật_ngữ mới vào , chứ bản_chất rất đơn_giản : Dynamic_Programming = Solving_Recurrence + Memoization Ví_dụ như cái bài QBSELECT , chắc bạn tiếp_cận và dựng công_thức truy_hồi như_thế này : cách chọn trong cái bảng gồm n cột nó bao_hàm cách chọn trong n - 1 cột .
+Suy_nghĩ tự_nhiên là ta thử mọi cách chọn trong cột cuối , với mỗi cách đó thử khớp với cách chọn tối_ưu nhất trong n - 1 cột đầu mà không xung_đột với cột cuối =gt; Với mỗi cách chọn trong n - 1 cột đầu , ta phải phân_loại theo cách chọn cột n - 1 để khớp với cách chọn trong cột n sau_này .
+Bài_toán trở_thành dựng một hàm_mục_tiêu f(x) trong đó biến x xác_định bài_toán .
+Vậy để xác_định bài_toán , biến x cần chứa đủ thông_tin : Ta đang tính tới cột nào và ở cột cuối_cùng ta chọn các ô như_thế nào .
+Cái biến x này người_ta gọi_là tham_số xác_định bài_toán hay dân Việt gọi_là "Trạng Thái" .
+Tức_là biến x = một bộ i , a , b , c , d cho_biết tính đến cột i , a = có chọn (1 , i) không; b = có chọn ô (2 , i) không , c = có chọn ô (3 , i) không và d = có chọn ô (4 , i) không .
+Bây_giờ mới nghĩ về cách_thức lưu_trữ và tính_toán .
+Ta biết rằng hàm_mục_tiêu f(x) xác_định bởi giá_trị x = (i , a , b , c , d) .
+Trong đó a , b , c , d chỉ là 0 hoặc 1 =gt; có_thể nén 4 tham_số này vào 4 bit của một biến nguyên .
+Bạn cũng có_thể để rời và lưu_trữ hàm_mục_tiêu dưới dạng mảng 5 chiều fx = fiabcd . . . .
+Nhưng tùy vào cách_thức triển_khai tính_toán mà bạn tìm cách mã_hóa x theo cách nào hợp_lý nhất .
+nhằm thuận_lợi cho các thao_tác : Xác_định xem một bài_toán đã giải chưa , nếu giải rồi_thì giá_trị hàm_mục_tiêu = mấy ?
+Giải công_thức truy_hồi và lưu_trữ lời_giải Chẳng_hạn nếu bạn giải kiểu quét ngang bảng phương_án (for i = 1 . . . . n) thì không nên mã_hóa cái i vào cùng_với a , b , c , d .
+Nếu bạn giải bằng TOP-DOWN + Memoization (mà ta thường gọi_là đệ_quy có nhớ) thì chẳng_cần mã_hóa .
+Cứ giải xong f(i , a , b , c , d) nào lưu nó vào một_tập hợp S , muốn xem một bài_giải chưa thì tìm nó trong S . . . .
+Tập_S có_thể cài bằng Hash-Map (Pascal) hoặc Unordered-Map(C++11) có tốc_độ lưu_trữ và truy_vấn O(1) . . .
+Nói như_vậy mọi bài QHĐ đều phải tìm cách xác_định bài_toán , tức_là không_gian các x = các trạng_thái của nó .
+Hay nói_cách_khác QHĐ là QHĐ trạng_thái và ngược_lại .
+Những chuyện xử_lý bit , nén , . . .
+là encoding , nó là kỹ_thuật cơ_bản không liên_quan gì tới QHĐ hết mà chỉ dùng để mã_hóa bài_toán .
+Những chuyện DFS , Topological_Sorting cũng là để xác_định thứ_tự tính , chứ không_phải đặc_trưng của QHĐ .
+Bạn nên coi các cái này là kỹ_thuật bổ_trợ nhằm tăng tính hiệu_quả của phép cài_đặt mà_thôi .
+Còn_về căn_bản như bài_toán ở trên , mọi ct truy_hồi ta có_thể giải kiểu dùng hash-map , lúc_đó ta chẳng_cần quan_tâm tới encoding và thứ_tự tính nữa .
+

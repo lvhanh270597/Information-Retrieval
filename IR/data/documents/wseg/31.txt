@@ -1,0 +1,53 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này , chúng_ta sẽ tìm_hiểu tìm thành_phần liên_thông mạnh_của một đồ_thị có hướng .
+Trước_đây mình có_một bài về cho bài_toán này .
+Ưu_điểm của thuật_toán Kosaraju là dễ_hiểu hơn thuật_toán Tarjan .
+Tuy_nhiên , thuật_toán Kosaraju chậm hơn so_với thuật_toán Tarjan do nó duyệt qua đồ_thị hai lần , trong_khi thuật_toán Tarjan chỉ duyệt qua đồ_thị một_lần .
+Ngoài_ra , ta có_thể dễ_dàng sửa_đổi thuật_toán Tarjan để áp_dụng cho bài_toán tìm các thành_phần song liên_thông (biconnected components) của đồ_thị vô_hướng (bài tập 2) . Trước_khi đi_sâu vào chi_tiết , mình khuyến_khích bạn_đọc xem_lại bài và bài .
+Bài viết này của mình ít_nhiều giống bài viết trên .
+Khái_niệm thế_nào là một thành_phần bạn_đọc xem tại bài ; mình sẽ không nhắc_lại khái_niệm này ở đây . Gọi_G(V , E) là đồ_thị (có hướng) đầu_vào .
+Gọi_F là một rừng (forest) sau khi áp_dụng DFS trên G .
+Gọi_C là một thành_phần liên_thông mạnh (nào đó) của G .
+Từ định nghĩ của thành_phần liên_thông mạnh , ta có : Observation 1 cho ta biết đỉnh của cùng một thành_phần liên_thông mạnh không_thể nằm trên 2 cây khác_nhau của F .
+Do_đó , ta có_thể liệt_kê các thành_phần liên_thông mạnh_của G băng cách lần_lượt xét mỗi cây của F .
+Gọi_T là một cây DFS của G(V , E) có gốc tại nút r .
+Giả_sử C là một thành_phần liên_thông mạnh có các đỉnh thuộc T .
+Đỉnh v được gọi_là gốc của C nếu v là nút gần gốc r nhất trong C , i . e , v được thăm sớm nhất trong số các đỉnh của C trong quá_trình thực_hiện thăm DFS .
+Từ định_nghĩa của thành_phần liên_thông mạnh , ta có : Để phát_hiện thành_phần liên_thông mạnh C , đầu_tiên_ta sẽ tìm gốc v của nó .
+Đâu là sự khác_biệt của v so_với các nút khác cùng nằm trong C ?
+Vì v là đỉnh được thăm sớm nhất trong quá_trình DFS , ta có : Nếu bằng cách nào_đó , trong quá_trình duyệt đồ_thị , ta đánh_dấu được các đỉnh u có đường_đi tới ít_nhất một đỉnh w đã được thăm trước u và nằm trong cùng một thành_phần liên_thông mạnh với u thì ít_nhất ta có_thể phát_hiện được các đỉnh gốc của các thành_phần liên_thông mạnh .
+Để minh_họa ý_tưởng , trước_hết ta xét trường_hợp đặc_biệt khi đồ_thị không có chung chéo . . Nhắc_lại , trong bài , ta đã phân_loại các cung của G ra 4 loại sau khi thực_hiện DFS : cung của cây DFS (tree arc) , cung ngược (back arc) , cung xuôi (forward arc) và cung chéo (cross arc) .
+Ta sẽ sử_dụng DFS để đánh_dấu các đỉnh không_phải gốc .
+Khi thực_hiện DFS , mỗi lần_ta thăm một đỉnh mới u , ta gán cho nó một biến thời_gian Iu đánh_dấu thời_điểm mà u được thăm .
+(Ir = 0 với r là gốc của cây T . ) Ta sẽ coi Iu như một định_danh (id) của đỉnh u .
+Gọi_Au là định_danh của một đỉnh w (bất kì) đã được thăm trước u , cùng nằm trong một thành_phần liên_thông mạnh với u và tồn_tại một đường_đi có hướng từ u tới w .
+Ban_đầu ta gán Au=_Iu và ta sẽ cập_nhật lại Au trong quá_trình thăm DFS .
+Nếu sau khi thăm DFS , Au = Iu thì ta biết rằng u là gốc của một thành_phần liên_thông mạnh chứa u .
+Giả mã như_sau : Chứng_minh tính đúng_đắn của thủ_tục ta coi_như bài_tập cho bạn_đọc .
+Gợi_ý : chứng_minh của bạn phải sử_dụng tính_chất đồ_thị không có cung chéo .
+Nếu đồ_thị có cung chéo thì thủ_tục trên không còn đúng nữa , như sẽ chỉ ra dưới_đây .
+Mình khuyến_khích bạn_đọc tự tìm phản ví_dụ trước_khi đọc_tiếp . Nhắc_lại , cung chéo là các cung (u \rightarrow v) trong đó , v được thăm trước u nhưng không_phải là tổ_tiên (ancestor) của u .
+Xét ví_dụ trong Figure 1 dưới_đây : Các cung màu đỏ là các cung của cây DFS .
+Cung màu xanh là cung chéo (duy nhất) của đồ_thị .
+Mỗi đỉnh được đánh_dấu bằng một cặp Iu , Au trong đó Iu là định_danh của u và Au là giá_trị thu được sau khi áp_dụng thủ_tục .
+Để_ý vào đỉnh được tô đậm e .
+Đỉnh này có Ie < Ae nhưng nó lại là gốc của thành_phần liên_thông mạnh \e , f , g\ . Tổng_quát_hóa lên , thuật_toán cập_nhật sẽ sai nếu_như ta gặp một cung chéo u \rightarrow w mà w lại không nằm trong cùng một thành_phần liên_thông mạnh với u .
+Tuy_nhiên , trong trường_hợp này , theo Observation 2 , thành_phần liên_thông mạnh chứa w trong quá_trình DFS trước_khi ta thăm u .
+Trở_lại ví_dụ trong Figure 1 , giá_trị Ae bị sai vì sự xuất_hiện của cung chéo (e \rightarrow d) , trong_khi d được thăm trước e và không nằm trong cùng một thành_phần liên_thông mạnh với e .
+Nếu bằng cách nào_đó , mỗi khi thăm xong một thành_phần liên_thông mạnh mà ta có_thể "xóa" nó ra khỏi đồ_thị thì thủ_tục vẫn đúng .
+Đó là điểm chính trong ý_tưởng của Tarjan . Trong quá_trình thăm , Tarjan sử_dụng thêm một cấu_trúc ngăn_xếp S .
+Khi thăm mỗi đỉnh , Tarjan sẽ đẩy đỉnh đó vào S .
+Mỗi khi thăm xong các đỉnh của một thành_phần liên_thông mạnh C , Tarjan sẽ xóa các đỉnh của C ra khỏi S .
+Việc xóa ra khỏi S sẽ tương_đương với việc "đánh dấu" C đã bị xóa ra khỏi đồ_thị .
+Giả mã của thuật_toán Tarjan như_sau : Code_C : Phần bôi đỏ là sự thay_đổi chính so_với thủ_tục tìm gốc của các thành_phần liên_thông mạnh khi_không có cung chéo .
+Thủ_tục (S , u) , (S) và (S) lần_lượt là thủ_tục đẩy một đỉnh u vào ngăn_xếp , thủ_tục lấy giá_trị của phần_tử trên đầu ngăn_xếp (mà không xóa_khỏi ngăn xếp) , và thủ_tục xóa_một đỉnh ra khỏi ngăn_xếp . Để chứng_minh tính đúng_đắn của thuật_toán Tarjan , ta cần phải chứng_minh 3 điều : (1) mỗi khi một thành_phần liên_thông mạnh được DFS thăm xong thì đều bị xóa ra khỏi ngăn_xếp , (2) nếu v là gốc của một thành_phần liên_thông mạnh khi và chỉ khi Av = Iv và (3) một đỉnh chỉ bị xóa_khỏi ngăn_xếp khi thành_phần liên_thông mạnh chứa nó đã được thăm xong .
+Tất_cả đều có_thể chứng_minh bằng quy_nạp , và mình coi đó như bài_tập cho bạn_đọc . Điều (2) có_thể suy ra được từ điều (1) , phỏng theo lập_luận như trong trường_hợp không có cung chéo .
+Điều (2) và (3) sẽ đảm_bảo mỗi khi ta phát_hiện được điểm gốc v thì toàn_bộ phần của ngăn_xếp từ_đầu cho_đến đỉnh v đều thuộc thành_phần liên_thông mạnh gốc tại v . 1 R .
+Tarjan .
+SIAM_Journal on Computing 1 . 2 (1972) : 146-160 .
+Áp_dụng thuật_toán Tarjan cho đồ_thị trong Figure 1 , vẽ lại trạng_thái của ngăn_xếp S trong mỗi bước_đi của thuật_toán .
+Cho một đồ_thị_đơn , liên_thông , vô_hướng G(V , E) .
+Ta gọi u \in V là một đỉnh khớp (cut vertex) nếu_như G\setminus \u\ có ít_nhất 2 thành_phần liên_thông .
+Ta gọi cạnh e \in E là một cầu (bridge edge) nếu G\setminus \e\ có ít_nhất 2 thành_phần liên_thông .
+Hãy thay_đổi thuật_toán Tarjan để liêt kê tất_cả cầu và khớp của đồ_thị G(V , E) trong thời_gian O(V+E) .
+, , , , , Trackback link : Powered by and

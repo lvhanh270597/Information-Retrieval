@@ -1,0 +1,22 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VB(lấy)  NNP(median)  NP(NNP(median))  VB(làm)  NNP(pivot)  NP(NNP(pivot))  IN(cho)  NN(mảng)  NN(ban_đầu)  NNP(.)  NP(NN(ban_đầu)NNP(.))  NP(NN(mảng)NP(NN(ban_đầu)NNP(.)))  PP(IN(cho)NP(NN(mảng)NP(NN(ban_đầu)NNP(.))))  VP(VB(làm)NP(NNP(pivot))PP(IN(cho)NP(NN(mảng)NP(NN(ban_đầu)NNP(.)))))  VP(VB(lấy)NP(NNP(median))VP(VB(làm)NP(NNP(pivot))PP(IN(cho)NP(NN(mảng)NP(NN(ban_đầu)NNP(.))))))  S(VP(VB(lấy)NP(NNP(median))VP(VB(làm)NP(NNP(pivot))PP(IN(cho)NP(NN(mảng)NP(NN(ban_đầu)NNP(.)))))))  gamma(S(VP(VB(lấy)NP(NNP(median))VP(VB(làm)NP(NNP(pivot))PP(IN(cho)NP(NN(mảng)NP(NN(ban_đầu)NNP(.))))))))  
+
+
+
+
+
+gamma()  

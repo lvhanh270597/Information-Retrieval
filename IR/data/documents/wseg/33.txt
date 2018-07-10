@@ -1,0 +1,165 @@
+Những lời_khuyên trước_khi thi QG 2017 - Phạm_Văn_Hạnh (skyvn97) Nguồn : Facebook_VNOI_Vậy là chỉ còn hơn 10 ngày nữa , kì_thi học_sinh giỏi quốc_gia sẽ bắt_đầu .
+Để giúp các bạn đạt được kết_quả cao trong kì_thi này , mình xin được ra_mắt chuyên_mục Mỗi ngày_một lời_khuyên .
+Kể_từ mai cho_đến trước_khi thi , mỗi ngày mình sẽ chia_sẻ một kinh_nghiệm nho_nhỏ để chuẩn_bị cho kì_thi .
+Đồng_thời , chuyên_mục cũng_như chiếc đồng_hồ đếm ngược từng ngày tới kì_thi , làm tăng thêm phần hồi_hộp , kịch_tính , gay_cấn , căng_thẳng .
+Hy_vọng rằng , với chiếc đồng_hồ này , các bạn thí_sinh sẽ cảm_thấy thêm áp_lực , thêm lo_lắng , thêm sợ_hãi , tăng xông , tăng huyết_áp , ngất_xỉu , đột_quỵ , rối_loạn tiêu_hoá , biếng_ăn , chậm lớn , còi_xương , suy_dinh_dưỡng , chán_đời , thất_tình , muốn tự_tử .
+Mình xin cam_kết rằng , sau loạt bài viết này , bạn nào vẫn còn đủ can_đảm bước_vào phòng thi quốc_gia thì cũng có đủ sức_mạnh để vượt_qua mọi sóng_gió của kì_thi . . .
+tuyển_sinh vào đại_học và sẵn_sàng tham_gia kì_thi này .
+Đừng quên check Facebook_VNOI mỗi ngày để có được những lời_khuyên bổ_ích .
+Lưu_ý rằng đây chỉ là những lời_khuyên dựa trên kinh_nghiệm thi VOI của mình , vì_vậy các bạn nên tham_khảo và áp_dụng cho phù_hợp .
+Chúc các bạn một năm_mới tràn_đầy niềm_vui và gặt_hái nhiều may_mắn , khởi_đầu bằng một kỳ thi HSG thành_công rực_rỡ .
+10 .
+Làm_lại đề VOI 5 năm trước Nguồn : Facebook_VNOI_Trước mỗi kì_thi , bạn cần tìm_hiểu đề_ra những năm trước để ngửi được "hương vị" của nó .
+Con_số 5 năm là vừa đủ , bởi kỳ thi ở những năm trước nữa có_thể khác_xa so_với hiện_tại , lại vừa khó kiếm được đề , và trên hết , bạn không_phải là một nhà_sử_học nên không có nhu_cầu tìm_hiểu xem vào thời Vua Hùng_dựng nước , kỳ thi HSGQG đã diễn ra như_thế nào; hay vào thời_kỳ đồ_đá , người_ta đã thi lập_trình hay chưa .
+Quan_trọng là , bạn cần chú_ý đến văn_phong ra đề , một_số chủ_đề hay xuất_hiện , hoặc độ khó (trung bình) của nó .
+Lưu_ý rằng , ĐỀ_RA NĂM_NAY KHÔNG ĐẢM_BẢO SẼ TƯƠNG_TỰ NHƯ_NHỮNG_NĂM_TRƯỚC .
+Bạn cố_gắng làm thử , nếu được , giành ra 3h đồng_hồ liên_tục .
+Tránh việc_làm đc 1h , đi wc 5h , r làm nốt 2h nữa .
+Vì những j diễn ra trong wc k đảm_bảo chất_lượng bài_thi sẽ giống_như lúc bạn thi thật : v Ngoài_ra , bạn có_thể tìm_hiểu mức điểm thi của năm đó để đánh gái trình_độ của mình .
+Điểm thi từng năm có_thể khác_biệt , nhưng nhìn_chung , chất_lượng thí_sinh thì k thay_đổi nhiều .
+Dưới_đây là danh_sách các bài_thi chính_thức của HSGQG (trên VOJ) , kèm_theo bảng điểm trong các năm gần_đây : 2016 : SEQ198 , VOHAUCAN , IDCODE , RBULL , VOIEXAM , VODONCAY 2015 : TFIELD , CRYPTKEY , REFORM , MINCUT , VODIVIDE , VOITSORT 2014 : MINROAD , LCS2X , AZNET , BALLGMVN , QOS , JOBSET 2013 : ORGAN , TOURS13 , STMERGE , COMNET , MESSAGE1 , BONUS13 2012 : TRAVEL12 , MOVE12 , HAM12 , ROBOCON , CROSS12 , FIBVAL 2011 : TREELINE , BONUS , COLOREC , BWPOINTS , PARIGAME , UPGRANET Kết_quả thi chính_thức : 2016 2015 2014 9 .
+Đọc lại phần Đồ_thị trong cuốn sách của thầy Hoàng_Nguồn : Facebook_VNOI Đồ_thị là chủ_đề phổ_biến nhất trong mỗi đề thi quốc_gia .
+Năm nào cũng có đồ_thị , ít thì một bài , nhiều thì_có thể là hai (2016 , 2013 , 2012) hay thậm_chí ba bài (2014) .
+Không chỉ các đoạn mã nguồn và thuật_toán , bạn cần chú_ý đến cả phần lý_thuyết và những khái_niệm như chu trình/đường đi euler/hamilton , chu trình/đường đi đơn , đa đồ_thị , khuyên , . . .
+để tránh việc không nắm được đề_bài nếu_như các khái_niệm này xuất_hiện trong đề .
+Các thuật_toán như khớp , cầu , FordBellman dễ bị lãng_quên do số_lượng bài về nó không nhiều , nhưng hoàn_toàn có_thể gặp lại trong đề thi .
+Bài_REFORM (VOI 2015 ) là điển_hình của việc nhiều bạn không nhớ các thuật_toán về cầu nên không giải được bài này , dù thuật_toán của nó khá tự_nhiên và đơn_giản .
+8 .
+Chú_trọng việc rèn_luyện kĩ_năng code hơn_là suy_nghĩ Nguồn : Facebook_VNOI Có_một sự_thật là , VOI là kì_thi đòi_hỏi kĩ_năng hơn_là tư_duy thuật_toán .
+Câu_nói "cứ trâu hết là vào vòng hai" không_phải là không có_cơ sở , khi luật thi offline đang đẩy vai_trò của sự cẩn_thận lên_cao hơn_bao_giờ_hết .
+Nếu bạn đảm_bảo toàn_bộ code của bạn là không bug , nghĩa_là điểm của bạn đúng_với khả_năng bạn làm được , thì đó đã_là lợi_thế quá lớn .
+Mình nghĩ rằng không có quá 30 bạn thí_sinh có khả_năng giữ được sự ổn_định và tính cẩn_thận trong_khi làm_bài , nghĩa_là sẽ có rất ít bạn giữ được phong_độ thi_đấu ổn_định giữa hai kì_thi PreVOI và VOI .
+Vì_vậy , bạn không được chủ_quan .
+Giải nhất PreVOI hoàn_toàn có_thể đi_kèm với giải ba VOI .
+Và ở chiều ngược_lại , cũng không việc_gì phải lo_lắng , bởi nếu bạn chịu_khó và nỗ_lực , một giải ba PreVOI sẽ được nối_tiếp bởi giải khuyến_khích VOI .
+Vì tương_lai con_em chúng_ta , ngay từ lúc_này , bạn nên chịu_khó code nhiều , code chắc_tay , code cẩn_thận thay_vì nghĩ những bài quá khó .
+7 .
+Tận_dụng các kì_thi thử để xác_định chiến_thuật trong kì_thi thật Nguồn : Facebook_VNOI 180p là quá ngắn_ngủi để bạn có_thể làm trọn_vẹn và chắc_chắn cả ba bài trong đề thi .
+Trong 180p , bạn có quá nhiều việc để làm : Đọc đề , nghĩ thuật_toán , code , kiểm_tra tên file , sinh test chạy trâu so kết_quả , đi wc , ăn_uống , ngủ nghỉ , chơi dò mìn . . .
+Bởi_thế , việc phân_chia thời_gian sao_cho hiệu_quả đóng_vai trò rất quan_trọng .
+Tiếc rằng , chiến_lược tối_ưu cho mỗi người không giống nhau , tùy thuộc vào khả_năng nghĩ , tốc_độ code , đặc_điểm tâm sinh_lý , . . .
+Vì_vậy , trong hai ngày_thi VO tới , bạn cần thực_hiện mọi công_việc trên như một kì_thi thật .
+Sau khi thi xong , bạn nên nhớ_lại quá_trình mình làm_bài thi , phân_tích và đánh_giá nó (Thời gian phân_chia vào công_việc nào bị quá ít , quá nhiều , sắp_xếp thứ_tự làm_bài đã hợp_lý chưa , . . . ) Những phân_tích này là rất quan_trọng , nó giúp bạn rút kinh_nghiệm cho ngày_thi chính .
+Vì_vậy , ngoài việc tập_trung thi , cần ghi_nhớ thật kĩ quá_trình mình đã làm_bài như_thế nào .
+Chúc các bạn thi tốt : D 6 .
+Đánh_giá tốc_độ của một thuật_toán Nguồn : Facebook_VNOI_Sau khi nghĩ_ra một thuật_toán , bạn biết được độ phức_tạp của nó .
+Nhưng câu_hỏi đặt ra là , làm thế_nào để biết một thuật_toán là đủ nhanh hay chưa .
+Nếu biết trước timelimit , thông_thường , một thuật_toán được coi là đủ nhanh nếu giá_trị độ phức_tạp ứng với test max là dưới timelimit 1e8 .
+Ví_dụ , nếu có_một thuật_toán O(Nlog2N) và bài_toán có giới_hạn N \le 3e5 thì khi đó Nlog2N ~ 11e7 , nghĩa_là nếu timelimt 1s thì sẽ hơi chậm một_chút , còn nếu timelimit 2s thì_có thể chấp_nhận được .
+Tuy_nhiên , cách đánh_giá trên khá phiến_diện , vì nhiều lý_do : Hàm đánh_giá độ phức_tạp không_thể_hiện chính_xác thời_gian chạy (không tính hằng số) , cách cài_đặt và tốc_độ của mỗi máy chấm một khác .
+Tệ_hại hơn , nếu_không biết trước timelimit , thì cũng còn chẳng biết đánh_giá ra làm_sao .
+Tuy_nhiên , theo mình nghĩ , nếu một thuật_toán có độ phức_tạp tầm 3e8 trở_xuống có_thể coi là chấp_nhận được .
+Chấp_nhận được ở đây không có_nghĩa là thuật_toán đó là đủ hiệu_quả để đạt điểm tối_đa , mà có_nghĩa là , bạn nên bắt_tay vào việc code thuật_toán đó thay_vì cố_gắng tối_ưu thêm .
+Đôi_khi , việc tối_ưu thuật_toán từ NlogN xuống N hay Nlog2N xuống NlogN là không đơn_giản , tốn nhiều thời_gian và đôi_khi sự tăng độ khó trong cài_đặt sẽ khiến bạn thiếu_thời gian làm_bài .
+Chưa kể , những thuật_toán có độ phức_tạp khoảng tầm 3e8 trở_xuống thường chỉ bị TLE một_vài test , chứ không_phải cả subtask , nên không làm thay_đổi quá nhiều điểm_số .
+Ví_dụ , bài MINROAD 2014 , hồi đấy mình nghĩ_ra một thuật_toán O(Nlog2N) , với giới_hạn N lt;= 3e5 .
+Mình ngồi code luôn bài đấy , mà không nghĩ để tối_ưu xuống O(NlogN) .
+Về_sau , mình phát_hiện ra mình là người duy_nhất code thuật đó , tất_cả mọi người khác trong đội đều làm O(NlogN) hay O(N) .
+Mình nghĩ quyết_định lúc_đó khá hợp_lý , bởi hồi đấy mình code khá chậm và rất tệ , nên cần ưu_tiên việc code và kiểm_tra hơn và chấp_nhận không được điểm tối_đa bài đó .
+5 .
+Không sử_dụng các thuật_toán "lạ" trong kỳ thi VOI .
+Nguồn : Facebook_VNOI Gần_đây , theo khảo_sát của một_số tổ_chức giấu_tên , xuất_hiện tình_trạng nhiều thí_sinh của kì_thi VOI thích khoe hàng trong phòng thi .
+Đặc_điểm chung , những thí_sinh này thường inbox tâm_sự riêng với GS .
+PVH về ham_muốn được_thể hiện những thuật_toán hàng khủng như thuật_toán Lehman , Suffix_Array , DFS khử đệ_quy bằng stack , . . .
+Qua điều_tra sơ_bộ , chúng_tôi đã xác_định được ba nguyên_nhân chính dẫn tới căn_bệnh nghiện show hàng này như_sau : Đã hoặc đang sử_dụng ma_túy đá , cơ_thể thường_xuyên ở trong tình_trạng phê , ngáo , dẫn đến mất kiểm_soát hành_vi , lệch_lạc trong suy_nghĩ , Có tiền_sử về các bệnh liên_quan đến não , bị mất não hoặc thường_xuyên bỏ_quên não ở ngoài phòng thi .
+Ăn thức_ăn_không đảm_bảo vệ_sinh , chứa nhiều Progesterone , là chất kích_thích cực_mạnh làm tăng ham_muốn tham_dự kì_thi tuyển_sinh vào đại_học .
+Căn_bệnh này đang có xu_hướng lây_lan nhanh trong giới học_sinh giỏi tin của các trường chuyên , và diễn_biến rất phức_tạp .
+Vì_vậy , mình khuyến_cáo các bậc phụ_huynh cần theo_dõi con_em mình chặt_chẽ , hạn_chế cho trẻ tiếp_xúc với ma_túy , thực_phẩm bẩn , nhắc trẻ mang theo não thường_xuyên .
+Nếu thấy con có biểu_hiện lạ , cần đưa đến trung_tâm GS .
+PVH gần nhất để được chữa_trị kịp_thời .
+Xin cảm_ơn .
+Mình nghĩ có_lẽ không cần nhắc các bạn vấn_đề này , nhưng gần_đây có mấy bạn rất hổ báo vào inbox mình hỏi về thuật_toán Leman jj đó liên_quan đế số_nguyên_tố .
+Mình thú_thật là mình ứ biết cái thuật_toán này là gì , và có_lẽ nó khó có_thể xuất_hiện trong kỳ thi tới .
+Tất_nhiên , không có bất_kỳ giới_hạn kiến_thức nào trong kì_thi này .
+Nhưng mình vẫn muốn nhắc_lại rằng , với những thuật_toán dù biết nhưng cài_đặt không thành_thạo , không dùng thường_xuyên , hoặc rất phức_tạp (KMP , Suffix_Array , Dinitz , DFS khử đệ_quy , . . . ) thì bạn không nên cài_đặt trong phòng thi .
+Nếu cài sai , bạn sẽ trong trạng_thái tiến_thoái_lưỡng_nan : Debug thì mất quá nhiều thời_gian , xóa hết thì phí_công code .
+Nhớ rằng , VOI không là chỗ thích_hợp cho việc phô_trương sức_mạnh , hãy cẩn_thận và chắc_chắn để đảm_bảo những sự_cố thương_tâm không xảy_ra .
+4 .
+Về các bài multitest Nguồn : Facebook_VNOI_Sau một ngày gián_đoạn , hôm_nay chuyên_mục "mỗi ngày_một lời_khuyên xin_phép đc tiếp_tục .
+Những bài toán có đặc tính multitest là những bài mà trong đó một file input chứa nhiều bộ dữ liệu .
+Các bộ dữ liệu (test) này luôn độc lập với nhau , và luôn được chương trình của chúng ta xử lý theo kiểu tuần tự , nghĩa là đọc từng bộ dữ liệu , xử lý , in ra output , rồi mới đọc bộ dữ liệu tiếp theo .
+Có ba lý do chính dẫn tới kiểu input này : Người ra đề muốn giới hạn độ phức tạp của thuật toán tới mức rất nhỏ (Ví dụ : O(logN) với N lt;= 1e8) .
+Bài toán có output dạng YES/NO , đặt nhiều test trong một file input sẽ vô hiệu hoá việc “output bừa” của thí sinh .
+Một số hệ thống chấm bài giới hạn số lượng file input được đặt vào .
+Trừ trường hợp đầu tiên , khi đó , số lượng test trong một file input sẽ rất lớn (1e3 , 1e4 , …) , và được chỉ rõ trong đề bài , còn hai trường hợp còn lại , số lượng test thường khá nhỏ (và đa số các test trong file input không phải test max) , số lượng test có thể không được nhắc đến trong đề , và thuật giải bài toán sẽ y hệt như khi trong file input chỉ có một test .
+Trong kỳ thi quốc gia , đa số các bài multitest đều thuộc hai nguyên_nhân dưới .
+Bởi thế , trong quá trình tìm kiếm thuật toán , bạn không cần quan_tâm đến số lượng test có trong một file input .
+Tuy_nhiên , trong_khi code , bạn lại cần rất chú ý đến vấn đề multitest , bởi trước khi xử lý một test , bạn cần khởi tạo lại biến , mảng , . . .
+để xoá dấu vết của bộ test cũ .
+Khi có multitest , việc code bug hoặc quên khởi tạo sẽ tạo hậu quả rất nghiêm trọng (90% là bạn sẽ được 0 điểm) .
+Do đó bạn cần ưu_tiên_sinh test và kiểm tra kĩ những bài này .
+Tuy_nhiên , việc sinh test trong những bài này lại có lợi thế , bởi khi bạn sinh một file input gồm nhiều test , số test bạn test được lớn hơn rất nhiều .
+Có một kinh nghiệm nhỏ để giúp các bạn tránh việc khởi tạo thiếu mảng : Các biến , mảng cần khởi tạo nên để là biến toàn cục .
+Đối với các bạn code C++ , các biến toàn cục cần được để ở cùng một chỗ Khi đọc code , bạn điểm danh từng biến , với mỗi biến , bạn tìm lệnh khởi tạo của biến đó trong code , sau đó mới kiểm tra đến biến tiếp theo… Thay vì viêc khởi tạo theo kiểu “For i : = 1 -gt; N ai = 0” , nên dùng fillChar hoặc memset .
+3 .
+Điều_chỉnh đồng_hồ máy thi cho đúng_với thời_gian_thực Nguồn : Facebook_VNOI_Đây là một kĩ_năng nhỏ nhưng quan_trọng , trong_khi làm_bài , bạn luôn phải để_ý lượng thời_gian còn_lại , để xem mình nên nghĩ tiếp một bài hay k , hay bắt_đầu việc code trâu luôn , hoặc_là bạn có_thể đi wc thêm bao_nhiêu lần nữa , . . .
+Hoặc đơn_thuần bạn cần biết là sắp hết giờ r để cảm_thấy tăng huyết_áp , sợ_hãi và k làm nổi cái j nữa : v Tưởng_tượng , 8h bắt_đầu thi , máy_tính bạn chỉ 7h .
+Đến khi máy_tính chỉ 9h45 , bạn yên_tâm còn 75p , quá thừa để AC cả 3 bài , và bắt_đầu chìm vào giấc_ngủ .
+Thế_nhưng , 15p sau thình_lình gv gọi bạn dậy và bạn chợt nhận_ra tương_lai sụp_đổ , cuộc_đời bế_tắc .
+Do_đó , việc kiểm_soát thời_gian là vô_cùng quan_trọng .
+Một trong những lỗi về chiến_lược mà kể_cả những ng đã thi nhiều lần mà vẫn mắc , đó là quá cay_cú đi tìm lời_giải cho một bài_toán , kết_quả là không còn thời_gian chạy trâu các bài còn_lại .
+Nên nhớ rằng , đôi_khi sub cuối bài 2 khó hơn rất nhiều , nhưng lại ít điểm hơn sub 1 bài 3 , do_đó trước_khi bắt_đầu nghĩ một bài , bạn cần đặt gia_hạn mức thời_gian nghĩ bài đó .
+2 .
+Sử_dụng thư_viện thay_thế bits/stdc++ . h Với các bạn code C++ , việc include vô_cùng tiện_lợi , nó giúp bạn khỏi bận_tâm về việc include mọi thư_viện khác .
+Tuy_nhiên , cách đây ba năm , mọi bản G++ tích_hợp sẵn trong Themis đều quá cũ , việc sử_dụng thư_viện này chắc_chắn dẫn tới lỗi biên_dịch .
+Cách đây hai năm , việc sử_dụng thư_viện này vẫn được coi là điều cấm_kỵ trong kì_thi học_sinh giỏi quốc_gia .
+Ngày_nay , do các bản Themis đã được cập_nhật , việc sử_dụng thư_viện trên đã được chấp_nhận .
+Do_vậy , theo quan_điểm cá_nhân , include không_phải là lựa_chọn mạo_hiểm .
+Tuy_nhiên , không một quy_định nào nói_rõ phiên_bản Themis nào sẽ được sử_dụng , nên cũng không lấy gì đảm_bảo rằng include không_phải là tai_họa .
+Bởi_vậy , các bạn nên nhớ tên các thư_viện sau_đây để include thay_thế cho thư_viện huyền_thoại kia .
+Trong hai ngày tới , hãy code một_số bài đơn_giản để thay_đổi thói_quen include , sẽ không vất_vả đâu : ) Ghi_chú : Với các bạn cảm_thấy lo_lắng , hãy vứt_bỏ .
+Nó cũng_như việc bạn vứt_bỏ một gánh_nặng tâm_lý trong kỳ thi đáng_sợ này .
+Các bạn được khuyến_khích include TẤT_CẢ các thư_viện sau_đây .
+Với những địa_điểm thi cài phiên_bản G++ 5 . 0 trở_lên , VIỆC_INCLUDE_THIẾU_KHÔNG_GẶP_LỖI_KHI_CODE_TRÊN_MÁY , NHƯNG_VẪN_BỊ_LỖI_KHI_CHẤM_BẰNG_THEMIS .
+Các bạn cần đặc_biệt lưu_ý trong trường_hợp này .
+Trong_khi test máy vào ngày khai_mạc (ngày mai) , các bạn nên include thử hết các thư_viện trên để đảm_bảo bộ dịch trên máy thi không gặp vấn_đề .
+Danh_sách các thư_viện hay dùng : Thư_viện cơ_bản của C : cstdio , cstring , cstdlib , cassert (nếu bạn sử_dụng hàm assert) , . . .
+Thư_viện STL của C++ hay dùng : algorithm (chứa hàm sort , chặt nhị_phân , . . ) , iostream (kh sử_dụng cin , cout) , iomanip , . . .
+Các thư_viện cấu_trúc dữ_liệu STL : vector , queue , stack , set , map , string , . . .
+Các bạn thấy thư_viện nào_hay dùng mà chưa được liệt_kê trong bài viết này , hãy để_lại comment để mình bổ_sung nhé : ) 1 .
+Một_số kinh_nghiệm nho_nhỏ khác : Kỳ thi quốc_gia đã đến thật gần .
+Các bạn đã bỏ ra rất nhiều công_sức , tâm_huyết và niềm_tin vào những tháng học đôij tuyển rồi phải không : ) để có những bước chuẩn_bị hoàn_hảo cuối_cùng , hãy tham_khảo bài viết dưới_đây .
+(NOTE : Post này chỉ nhằm mục_đích giải_trí .
+Bạn nào cảm_thấy quá căng_thẳng hoặc có tính mê_tín thì_có thể k đọc nữa . ) a/ Lựa_chọn thức_ăn phù_hợp : Ăn gì trong những ngày_thi là một câu_hỏi khó .
+Bạn sẽ phải gạch tên rất nhiều những món_ăn khoái_khẩu của mình để có_một kì_thi suôn_sẻ : Không ăn trứng , ngỗng , chuối , thịt bò , mực . . . , nhứng thứ biểu_tượng cho sự đen_đủi .
+Không ăn_xôi đỗ với chả , Truyền_thuyết kể rằng .
+một thí_sinh đã bị fail VOI vì ăn món xôi "chả đỗ" bổ béo này trước_khi đi_thi .
+b/ Không nghe các bài_hát mang nội_dung "nhạy cảm" .
+Nếu_như ăn chuối là điều cấm_kị vì nó khiến đề thi của bạn bị chuối , thì cũng_như vậy , những bài_hát có những từ_ngữ xấu cũng_nên bị loại_bỏ trong giờ_phút căng_thẳng này .
+Ví_dụ , nghe những bài_hát có chữ "trôi" hay_chữ "lạc" sẽ khiến bạn làm_bài lạc_đề , kiến_thức bị trôi_nổi giữa đời , vì_thế bạn nên tránh xa những bài như_vậy .
+(Đùa tí , các bạn nóng_nảy vl .
+Đừng phẫn_nộ mình sau khi đọc đến dòng này nhé) c/ Không tắm trước_khi thi .
+Nhiều người không gội đầu trước_khi thi vò lo_sợ kiến_thức trên đầu sẽ bị rửa_trôi . Thực_tế , kiến_thức còn được lưu_trữ ở nhiều nơi bí_ẩn khác trong cơ_thể .
+do_đó , bạn không nên tắm nếu thuật_toán được lưu trên da , ghét hay gàu .
+Ngoài_ra , nếu bạn lưu ở bộ_phận tích_trữ khác , bạn nên kìm_nén , nhịn không được phép xả ra ngoài trước_khi thi xong .
+d/ Chọn chỗ_ngồi hợp phong_thủy Phong_thủy mang ý_nghĩa rất quan_trọng với con_người .
+Trước_khi làm những việc lớn , như xây nhà , lấy_vợ , người_ta đều phải xem phong_thủy .
+Thi_HSGQG cũng_vậy , vì nó ảnh_hưởng rất lớn đến tương_lai bạn , bạn cũng_nên chọn chỗ_ngồi , kê bàn_ghế theo hướng hợp với phong_thủy của mình để có được chất_lượng bài_thi cao hơn .
+e/ Chọn thời_gian thi phù_hợp .
+Giờ_hoàng_đạo luôn đem lại sự suôn_sẻ và những điều tốt_lành .
+Vì_vậy , các bạn hãy lựa_chọn thời_gian thi vào những giờ_hoàng_đạo để làm_bài tốt hơn .
+Ngày 5/1 , các giờ_hoàng_đạo bao_gồm Sửu (1h - 3h) , Ngọ (11h - 13h) , Mùi (13h - 15h) , Tuất (19h - 21h) và Hợi (21h - 23h) .
+Nếu có_thể , hãy làm_bài thi quốc_gia vào những khoảng thời_gian này , sẽ có_lợi cho bạn hơn .
+Trong ngày_mai , mình sẽ cố_gắng liệt_kê thêm những kinh_nghiệm khác để chia_sẻ với các bạn .
+Chúc các bạn nghỉ_ngơi thoải_mái và có_một buổi khai_mạc rực_rỡ : ) 0 .
+Nghỉ ngơi thư giãn thoải mái .
+Giờ k phải là lúc lo_âu căng thẳng hay xám hối vì sự lười nhác của bạn nữa .
+Hãy nghỉ ngơi , thư giản thoải mái , làm những gì khiến bạn sung sướng nhất trong ngày cuối cùng này .
+Chuyên mục của chúng tôi cũng xin được kết thúc tại đây .
+Rất cám ơn sự chú ý theo dõi và ủng hộ nhiệt tình của các bạn giành cho mình .
+Hy vọng rằng , qua series bài viết này , bạn tìm ra được cho mình những bài học bổ ích và sẽ áp dụng được chúng một cách hợp lý cho hai ngày sắp tới .
+Chắc chắn , sang_năm mình sẽ mở ra những chuyên mục hay hơn nữa : D_Cuối cùng , xin chúc các bạn gặp nhiều may mắn , và mọi thứ suôn sẻ trong hay ngày thi sắp tới .
+Ai_ai cũng đạt được ước nguyện của mình .
+À quên , chúc 5 bạn NDT , GTTV , DXB , NPD và TQA ngày mai vui vẻ : ) Ahihi 1 vài góp_ý sau kỳ thi VO17 - RR_Nguồn : Facebook_VNOI 1 Khi đi_thi các bạn cần chú_ý tránh những code có_thể dẫn đến Compile_Error : pas : không thêm uses crt; C++ : Nắm rõ những hàm mình hay dùng ở những thư_viện nào , ví_dụ hàm memset thuộc cstring .
+Thông_thường thì mình luôn include cả 1 đống cstdio , cstdlib , cstring , cmath .
+Biết rõ những biến nào có_thể bị trùng với biến của thư_viện , ví_dụ y1 , next . .
+(bạn có_thể xem code I_love_Tanya_Romanova có define tất_cả những biến hay dùng mà trùng thư_viện nào_đó để tránh trùng tên biến .
+Ngoài_ra cách khác là cho tất_cả mọi thứ vào 1 namespace : namespace A int y1 , next ; void solve () cout lt;lt; "OK" lt;lt; endl ; y1 = next = 1 ; cout lt;lt; y1 lt;lt; lt;lt; next lt;lt; endl ; ; int main () A : : solve (); 2 Bài 2 ngày 1 (VO17TV) có 1 số bạn dùng Suffix_array .
+Cách này đúng nhưng cài_đặt phức_tạp hơn rất nhiều so_với dùng hash .
+Khi đi_thi mỗi lựa_chọn sai_lầm về thuật_toán kiểu này sẽ làm_bạn tiêu tốn rất nhiều thời_gian , và thường không sửa_chữa kịp .
+Vì_vậy khi nghĩ_ra bất_kỳ thuật_toán nào , bạn nên tiếp_tục suy_nghĩ xem có cách nào đơn_giản hơn không .
+Chỉ bắt_đầu code khi thật_sự chắc_chắn không có cách nào tốt hơn .
+3 Có chiến_thuật rõ_ràng cho 1 bài .
+Với những bài cài_đặt phức_tạp như bài VO17BACH , bạn cần có chiến_thuật rõ_ràng ngay từ_đầu là debug như_thế nào .
+Ví_dụ : Đầu_tiên code duyệt Sau khi duyệt + sort , in tất_cả ra rồi kiểm_tra bằng mắt với 1 giá_trị_N tương_đối lớn (e . g . 100) Cài_đặt subtask 2 hoặc 3 Dùng subtask 1 , viết thêm trình sinh test tự_động để kiểm_tra độ_chính_xác với 1 số_lượng test tương_đối lớn (104 - 105 test) .
+

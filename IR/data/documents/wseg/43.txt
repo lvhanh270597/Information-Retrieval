@@ -1,0 +1,81 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Bài này là tiếp_nối của về bài_toán phân_tích ra thừa_số .
+Trong bài này , chúng_ta sẽ thảo_luận thuật_toán Pollard-Rho được đề_xuất bởi Pollard 1 và năm 1975 .
+Độ phức_tạp của thuật_toán là .
+Chúng_ta tạm quên bài_toán phân_tích ra thừa_số để xét hai bài_toán thú_vị sau : Như_ta đã biết theo nguyên_lý Dirichlet (hay ) , trong 366 người thì sẽ có ít_nhất hai người có cùng ngày_sinh (không tính năm_nhuận nhé) .
+Không có gì đặc_biệt trong phát_biểu này .
+Tuy_nhiên nhìn dưới quan_điểm của xác_suất thì mở_rộng của phát_biểu này có những tính_chất rất thú_vị .
+Theo quan_điểm của xác_suất , phát_biểu trên có_thể được phát_biểu lại như_sau : trong 366 người , xác_suất tìm được hai người có cúng ngày_sinh là .
+Giả_sử xác xuất một người bất_kì có ngày_sinh vào một ngày nào_đó trong năm là .
+Ta mở_rộng phát_biểu đó ra_bài toán sau : Lời_giải của bài_toán trên vô_cùng kinh_ngạc : chỉ_cần 23 người .
+Lời_giải đó minh_họa cho một nghịch_lí mà người_ta gọi_là ngịch lí ngày_sinh nhất () .
+Gọi_là sự_kiện trong người không có hai người nào có cùng ngày_sinh .
+Cố_định ngày_sinh của người thứ nhất .
+Ta có : Do_đó , ta có : Với , ta có () , do_đó , xác_suất để ít_nhất hai người có cùng ngày_sinh là .
+Bằng phân_tích tương_tự như_trên , xác_suất để_không có hai người nào trong số người có cùng ngày_sinh trong thế_giới là : Giả_sử nhỏ hơn nhiều so_với (như với cũng là nhỏ hơn nhiều rồi) , sử_dụng xấp_xỉ , ta có : Thay thì ta có .
+Từ_đó suy ra xác_suất tìm được hai người có cùng ngày_sinh ít_nhất_là .
+Để giải bài_toán này , chúng_ta có_thể tiến_hành duyệt danh_sách từ phần_tử , lưu_giữ thông_tin về những phần_tử đã duyệt qua .
+Mỗi lần duyệt đến phần_tử mới , ta lại so_sánh với các phần_tử đã duyệt qua để phát_hiện vòng .
+Thuật_toán này sẽ mất thời_gian và bộ_nhớ .
+Tuy_nhiên , thuật_toán rùa và thỏ ( , hay còn gọi thuật_toán Floy) sẽ cho ta lời_giải với thời_gian và bộ_nhớ .
+Như cái tên của thuật_toán , ta sẽ sử_dụng hai con_trỏ .
+Một con_trỏ "chạy" với vận_tốc và con kia "chạy" với vận_tốc .
+Nếu hai con_trỏ gặp nhau thì danh_sách có vòng .
+Giả mã như_sau : Bây_giờ chúng_ta sẽ quay trở_lại bài_toán phân_tích ra thừa_số . Thuật_toán Pollard kết_hợp ý_tưởng từ hai bài_toán tưỏng chừng_như chả liên_quan gì ở trên .
+Để việc phân_tích và trình_bày thuật_toán đơn_giản , giả_sử trong đó là hai số_nguyên_tố .
+Việc mở_rộng phân_tích ra trường_hợp tổng_quát coi_như bài_tập cho bạn_đọc . Giả_sử_ta chọn số ngẫu_nhiên trong_khoảng .
+Xét dãy .
+Nếu tồn_tại hai số sao_cho , thì ta có .
+Từ_đó suy ra chia_hết_cho .
+Do_đó ta có_thể tính : Tính ước_chung lớn nhất có_thể được thực_hiện khá hiệu_quả , sử_dụng thao_tác bít .
+Một câu_hỏi đặt ra là cần sinh bao_nhiêu số ngẫu_nhiên thì xác_suất tìm được là khá cao ?
+Nếu phân_tích kĩ bài_toán này thì đây chính là bài_toán trong nghịch_lý ngày_sinh .
+Thế_giới ở đây chính là "thế giớ" đồng dư modulo và số ngày ở đây là .
+Do_đó , nếu chọn thì xác_suất tìm được hai số (ta gọi_là cặp số tốt) như_vậy ít_nhất_là .
+Để tăng xác_suất tìm được cặp số tốt , ta chỉ việc tăng lên .
+Cụ_thể , nếu tăng lên thì xác_suất là (chứng minh coi_như bài_tập - chỉ_cần mở_rộng chứng_minh ở trên) .
+Ví_dụ ta muốn xác_suất là thì ta sẽ tăng lên () .
+Nhưng ở đây ta đang đi tìm , làm_sao ta xác_định được ?
+Thực_tế , ta không cần xác_định mà ta cứ sinh ngẫu_nhiên (có thể vô hạn) cho_đến khi ta tìm được thỏa_mãn .
+Phân_tích trên chỉ ra rằng quá_trình sinh đó sẽ .
+Gỉa sử_ta đã sinh được số ngẫu_nhiên và ta cũng đã biết rằng sẽ tồn_tại một cặp số tốt trong số các số đã sinh đó .
+Để tìm cặp số tốt này , ta phải duyệt qua cặp .
+Thời_gian để duyệt đó là (nhắc lại ); cách này không tốt hơn thuật_toán mà chúng_ta đã biết .
+Wait ! Bài_toán phát_hiện vòng trong danh_sách liên_kết có_thể có liên_quan gì đó ở đây ?
+Sự thông_minh của thuật_toán Pollard chính là ở chỗ này . Để giải_quyết vấn để này , Pollard đề_xuất sử_dụng một hàm_giả ngẫu_nhiên để sinh dãy .
+Hàm đơn_giản nhất thỏa_mãn tính_chất này là : Mình không đi_sâu giải_thích tại_sao , Knuth 2 là nguồn tham_khảo khá đầy_đủ của vấn_đề này .
+Như_vậy , ta sẽ chỉ sinh một_số hoàn_toàn ngẫu_nhiên và các phần_tử còn_lại sẽ sinh được sinh dựa trên .
+Dãy_số ngẫu_nhiên ta thu được cuối_cùng là : Do dãy được sinh bởi hàm , nếu tồn_tại thì ta dễ_dàng suy ra : Nói_cách_khác , ta sẽ có_một vòng (cycle) trong các dãy_số bở khi lấy (giống như hình_vẽ vòng của danh_sách liên_kết ở trên) .
+Để tìm được_giá trị thỏa_mãn (hay tương_đương với ) , ta chỉ_cần phát_hiện ra vòng trong dãy này .
+Đó chính là vấn_đề chúng_ta đã giải_quyết trong phần phát_hiện vòng của danh_sách liên_kết .
+Như_vậy , ta đã có đầy_đủ các công_cụ cần_thiết để thực_thi thuật_toán Pollard .
+Giả mã như_sau : Code của giả mã bằng C .
+Code đầu đủ được đính ở cuối bài : Thủ_tục kiểm_tra xem có_phải là số_nguyên_tố hay_không sử_dụng . Chú_ý do các phân_tích trên chỉ đúng khi đủ lớn .
+Do_đó , nếu quá nhỏ , ta có_thể sử_dụng thuật_toán (chính là dòng trong giả mã trên) .
+Gọi_là ước_số nguyên_tố nhỏ nhất của .
+Gọi_là thời_gian để thuật_toán tìm được .
+Do có tối_đa ước_số (xem phần phân_tích thuật_toán của ) , thuật_toán sẽ mất để phân_tích thành các thừa_số nguyên_tố .
+Theo phân_tích ở trên , thủ_tục () có thời_gian kì_vọng là để tìm_ra một thừa_số của (có thể không nguyên_tố do phép lấy ước chúng ở dòng của giả mã) mà là một thừa_số nguyên_tố của .
+Sau khi đã tìm được , thuật_toán tiếp_tục gọi đệ_quy để tìm .
+Nếu_không quá nhỏ (nếu không ta có_thể tìm được với thời_gian hằng số) , ta sẽ tiếp_tục sử_dụng () , trong thời_gian kì_vọng , để tìm_ra một thừa_số của mà là một thừa_số nguyên_tố của .
+Tiếp_tục như_vậy , ta sẽ phả mất thời_gian là , trong đó là số_thừa số_nguyên_tố của .
+Do , ta có .
+Do_đó , ta có : Code : . 1 Pollard , J .
+M .
+(1975) .
+, BIT_Numerical_Mathematics 15 (3) : 331–334 .
+3 Knuth , Donald_E .
+Seminumerical_Algorithms (1981) .
+3 Cormen , Thomas_H . ; Leiserson , Charles_E . , Rivest , Ronald_L . , Stein , Clifford .
+, Chapter 31 .
+MIT_Press and McGraw-Hill (2001) .
+ISBN 0-262-03293-7 , , , Trackback link : on Vì_sao T(n) = 4√N .
+logN , thời_gian tính là O(T(N)logN) mà kết_quả định_lý lại là O(4√N) ạ .
+Với_lại chỗ Knuth giải_thích cho việc chọn f(x)=x2+1 nằm ở phần_nào của quyển sách_vậy ạ .
+Cám_ơn a ạ .
+on Hi_BK , Cám_ơn bạn đã đặt_câu hỏi .
+Về câu_hỏi đầu_tiên , bạn chú_ý và là hai kí_hiệu khác_nhau .
+Kí_hiệu sẽ bỏ_qua nhân_tử vì nó quá bé so_với khi đủ lớn .
+Kí_hiệu ít được dùng trong khoa_học máy_tính .
+Mình dùng kí_hiệu này vì nó cho biểu_thức đẹp hơn . Về câu_hỏi 2 , bạn xem trang 369 , đoạn văn cuối_cùng , của Vol 2 , TAoCP .
+Hùng on Vâng ạ , cám_ơn a nhiềuPowered by and

@@ -1,0 +1,17 @@
+
+
+
+
+
+
+VB(là)  NNP(.)  NP(NNP(.))  VP(VB(là)NP(NNP(.)))  S(VP(VB(là)NP(NNP(.))))  gamma(S(VP(VB(là)NP(NNP(.)))))  
+
+
+
+
+
+
+
+
+
+gamma()  

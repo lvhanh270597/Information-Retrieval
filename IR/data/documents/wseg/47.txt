@@ -1,0 +1,107 @@
+Nguồn : Topcoder_Table of_Contents Các định_nghĩa Bài_toán Range_Minimum_Query (RMQ) Bài_toán Lowest_Common_Ancestor (LCA) Bài_toán RMQ Thuật_toán lt; O(1) , O(N) gt; Thuật_toán lt; O(N2) , O(1) gt; Thuật_toán lt; O(N) , O(\sqrt_N) gt; Sparse_Table (ST) Cây phân_đoạn (segment tree , interval tree , range tree) Bài_toán LCA Thuật_toán lt; O(N) , O(N) gt; Thuật_toán lt; O(N) , O(\sqrt_N) gt; Thuật_toán lt; O(NlogN) , O(logN) gt; Từ_LCA đến RMQ_Từ_RMQ đến LCA Thuật_toán lt; O(N) , O(1) gt; cho bài_toán RMQ thu_hẹp Một_số bài để luyện_tập Trong bài viết này , tác_giả sẽ giới_thiệu với bạn 2 bài_toán cơ_bản : Bài_toán RMQ và bài_toán LCA , cũng_như mối liên_hệ giữa 2 bài_toán này .
+Các định_nghĩa Gỉa sử thuật_toán có thời_gian tiền xử_lý là f(n) và thời_gian trả_lời 1 truy_vấn là g(n) .
+Ta ký_hiệu độ phức_tạp tổng_quát của thuật_toán là lt; f(n) , g(n) gt; .
+Trong bài này , khi viết \logN , chúng_ta hiểu là log cơ_số 2 của N .
+Bài_toán Range_Minimum_Query (RMQ) Cho mảng A0 , N-1 .
+Bạn cần trả_lời Q truy_vấn .
+Mỗi truy_vấn gồm 2 số i , j và bạn cần đưa_ra vị_trí của phần_tử có_giá trị nhỏ nhất trong đoạn từ i đến j của mảng A , ký_hiệu là RMQ_A(i , j) .
+Bài_toán Lowest_Common_Ancestor (LCA) Cho cây có gốc T .
+Bạn cần trả_lời Q truy_vấn .
+Mỗi truy_vấn gồm 2 số u , v và bạn cần tìm nút xa gốc nhất mà là tổ_tiên của cả 2 nút u và v , ký_hiệu là LCA_T(u , v) .
+Bài_toán RMQ Thuật_toán lt; O(1) , O(N) gt; Thuật_toán hiển_nhiên nhất cho bài RMQ là ta không cần tiền xử_lý gì cả .
+Với mỗi truy_vấn , ta xét lần_lượt từng phần_tử từ i đến j để tìm phần_tử nhỏ nhất .
+Hiển_nhiên , độ phức_tạp thuật_toán này là lt; O(1) , O(N) gt; .
+Thuật_toán lt; O(N2) , O(1) gt; Lưu giá_trị của RMQ_A(i , j) trong một bảng M0 , N-10 , N-1 .
+Thuật_toán sẽ có độ phức_tạp lt; O(N3) , O(1) gt; .
+Tuy_nhiên ta có_thể sử_dụng quy_hoạch_động để giảm độ phức_tạp xuống lt; O(N2) , O(1) gt; như_sau : for i = 0 . .
+N-1_Mii = i; for i = 0 . .
+N-1 for j = i+1 . .
+N-1 if (AMij - 1 lt; Aj)_Mij = Mij - 1; else Mij = j; Có_thể thấy thuật_toán này khá chậm và tốn bộ_nhớ O(N2) nên sẽ không hữu_ích với những dữ_liệu lớn hơn .
+Thuật_toán lt; O(N) , O(\sqrt_N) gt; Ta có_thể chia mảng thành \sqrt N phần .
+Ta sử_dụng một mảng M0 , \sqrt N để lưu giá_trị mỗi phần .
+M có_thể dễ_dàng tính được trong O(N) : Để tính RMQ_A(i , j) , chúng_ta xét giá_trị M của \sqrt N phần nằm trong đoạn i , j , và những phần_tử ở đầu và cuối đoạn i , j là giao giữa các phần .
+Ví_dụ , để tính RMQ_A(2 , 7) ta chỉ_cần so_sánh A2 , AM1 , A6 và A7 .
+Dễ thấy thuật_toán không sử_dụng quá 3\sqrt N phép_toán cho mỗi truy_vấn .
+Sparse_Table (ST) Đây là một hướng tiếp_cận tốt hơn để tiền xử_lý RMQ cho các đoạn con có độ_dài 2k , sử_dụng quy_hoạch_động .
+Ta sử_dụng mảng M0 , N-10 , logN với Mij là chỉ_số của phần_tử có_giá trị nhỏ nhất trong đoạn có độ_dài 2j và bắt_đầu ở i .
+Ví_dụ : Để tính Mij , ta xét M của 2 nửa đầu và nửa cuối của đoạn , mỗi phần sẽ có độ_dài 2j-1 : void process2 ( int M_MAXN_LOGMAXN , int A_MAXN , int N ) int i , j ; // Khởi tạo M với các khoảng độ_dài 1 for ( i = 0 ; i lt; N ; i ++ ) M i 0 = i ; // Tính_M với các khoảng dài 2j for ( j = 1 ; 1 lt;lt; j lt;= N ; j ++ ) for ( i = 0 ; i + ( 1 lt;lt; j ) - 1 lt; N ; i ++ ) if ( A_M i j - 1 lt; A_M i + ( 1 lt;lt; ( j - 1 )) j - 1 ) M i j = M i j - 1 ; else M i j = M i + ( 1 lt;lt; ( j - 1 )) j - 1 ; Để tính RMQ_A(i , j) ta dựa vào 2 đoạn con độ_dài 2k phủ hết i , j , với k= \lfloor log(j-i+1) \rfloor : Độ phức_tạp tổng_quát của thuật_toán này là lt; O(NlogN) , O(1) gt; Cây phân_đoạn (segment tree , interval tree , range tree) Ta biểu_diễn cây bằng một mảng M1 , 22logN+1 với Mi là vị_trí có_giá trị nhỏ nhất trong đoạn mà nút i quản_lý .
+Khởi tạo : void initialize ( intnode , int b , int e , int M_MAXIND , int A_MAXN , int N ) if ( b == e ) M node = b ; else // Khởi tạo nút con trái và nút con phải initialize ( 2 node , b , ( b + e ) / 2 , M , A , N ); initialize ( 2 node + 1 , ( b + e ) / 2 + 1 , e , M , A , N ); // Tính giá_trị nhỏ nhất dựa trên 2 nút con if ( A_M 2 node lt;= A_M 2 node + 1 ) M node = M 2 node ; else M node = M 2 node + 1 ; Truy_vấn : int query ( int node , int b , int e , int M_MAXIND , int A_MAXN , int i , int j ) int p1 , p2 ; // Đoạn cần tính không giao với đoạn của nút hiện_tại // --gt; return -1 if ( i gt; e j lt; b ) return - 1 ; // Đoạn cần tính nằm trong hoàn_toàn trong đoạn của nút hiện_tại // --gt; return Mnode if ( b gt;= i amp;amp; e lt;= j ) return M node ; // Tìm giá_trị nhỏ nhất trong 2 cây_con trái và cây_con phải p1 = query ( 2 node , b , ( b + e ) / 2 , M , A , i , j ); p2 = query ( 2 node + 1 , ( b + e ) / 2 + 1 , e , M , A , i , j ); // Tìm giá_trị nhỏ nhất trong các cây_con if ( p1 == - 1 ) return M node = p2 ; if ( p2 == - 1 ) return M node = p1 ; if ( A p1 lt;= A p2 ) return M node = p1 ; return M node = p2 ; Mỗi truy_vấn sẽ được thực_hiện trong O(logN) và thuật_toán có độ phức_tạp tổng_quát là lt; O(N) , O(logN) gt; Bài_toán LCA Thuật_toán lt; O(N) , O(N) gt; Thuật_toán đơn_giản nhất như_sau : Đặt h(u) là độ_cao của đỉnh u .
+Để trả_lời truy_vấn u , v .
+Không làm mất tính tổng_quát , giả_sử h(u) gt; h(v) .
+Ta đi từ u đến u , với u là tổ_tiên của u và h(u) = h(v) .
+Ta đồng_thời đi từ u và v lên cha của nó , đến khi 2 đỉnh này trùng nhau (lúc đó cả 2 đỉnh đều ở LCA) .
+Ví_dụ : Ta cần tìm LCA của u và v .
+Ban_đầu h(u) gt; h(v) .
+Ta đi từ u đến tổ_tiên của u mà có h(u) = h(v) : Đi từ u lên u4 lên u3 .
+Sau_đó đồng_thời đi từ u và v lên cha của nó đến khi 2 đỉnh bằng_nhau : u = u2 , v = v2 u = u1 , v = v1 u = v = lca function LCA(u , v) : if h(u) lt; h(v) : swap(u , v) while h(u) gt; h(v) : u = parent(u) while u ! = v : u = parent(u) v = parent(v) return u Thuật_toán lt; O(N) , O(\sqrt_N) gt; Ý_tưởng chia input thành các phần bằng_nhau như trong bài_toán RMQ cũng có_thể được sử_dụng với LCA .
+Chúng_ta sẽ chia cây thành \sqrt H phần , với H là chiều_cao cây .
+Phần đầu bao_gồm các tầng từ 0 đến \sqrt H-1 , phần 2 sẽ gồm các tầng từ \sqrt H đến 2\sqrt H-1 , . . . : Giờ với mỗi nút chúng_ta có_thể biết được nút tổ_tiên ở phần ngay trên nó .
+Ta sẽ tính giá_trị này sử_dụng mảng P1 , MAXN : Ta có_thể tính P bằng DFS (Ti là cha của i , nr=\sqrt H và Li là tầng của nút i) void dfs ( int node , int T_MAXN , int N , int P_MAXN , int L_MAXN , int nr ) int k ; // Nếu nút ở phần đầu_tiên , thì Pnode = 1 // Nếu nút ở đầu của 1 phần , thì Pnode = Tnode // Trường_hợp còn_lại , Pnode = PTnode if ( L node lt; nr ) P node = 1 ; else if ( ! ( L node % nr )) P node = T node ; else P node = P_T node ; // DFS xuống các con for each_son k of node dfs ( k , T , N , P , L , nr ); Truy_vấn : int LCA ( int T_MAXN , int P_MAXN , int L_MAXN , int x , int y ) // Nếu còn nút ở phần tiếp_theo không_phải là tổ_tiên của cả x và y , // ta nhảy lên phần tiếp_theo .
+Đoạn này cũng tương_tự như thuật_toán // lt;O(1) , O(N)gt; nhưng thay_vì nhảy từng nút , ta nhảy từng đoạn .
+while ( P x ! = P y ) if ( L x gt; L y ) x = P x ; else y = P y ; // Giờ x và y ở cùng phần .
+Ta tìm LCA giống_như thuật lt;O(1) , O(N)gt; while ( x ! = y ) if ( L x gt; L y ) x = T x ; else y = T y ; return x ; Hàm này sử_dụng tối_đa 2\sqrt H phép_toán .
+Với cách tiếp_cận này chúng_ta có thuật_toán lt; O(N) , O(\sqrt_H) gt; , trong trường_hợp tệ nhất_thì N=H nên độ phức_tạp tổng_quát của thuật_toán là lt; O(N) , O(\sqrt_N) gt; .
+Thuật_toán lt; O(NlogN) , O(logN) gt; Ứng_dụng Sparse_Table chúng_ta có_một thuật_toán nhanh hơn .
+Đầu_tiên chúng_ta tính một bảng P1 , N1 , logN với Pij là tổ_tiên thứ 2j của i : Code : void process3 ( int N , int T_MAXN , int P_MAXN_LOGMAXN ) int i , j ; // Khởi tạo for ( i = 0 ; i lt; N ; i ++ ) for ( j = 0 ; 1 lt;lt; j lt; N ; j ++ ) P i j = - 1 ; // Khởi tạo cha thứ 20 = 1 của mỗi nút for ( i = 0 ; i lt; N ; i ++ ) P i 0 = T i ; // Quy_hoạch_động for ( j = 1 ; 1 lt;lt; j lt; N ; j ++ ) for ( i = 0 ; i lt; N ; i ++ ) if ( P i j - 1 ! = - 1 ) P i j = P_P i j - 1 j - 1 ; Bước khởi tạo này tốn O(NlogN) bộ_nhớ lẫn thời_gian .
+Cách tìm LCA giống_hệt như thuật_toán , nhưng để tăng_tốc , thay_vì nhảy lên cha ở mỗi bước , thì ta dùng mảng P để nhảy , từ_đó thu được độ phức_tạp O(logN) cho mỗi bước .
+Cụ_thể : Gọi h(u) là độ_cao của nút u .
+Để tính LCA(u , v) , giả_sử h(u) gt; h(v) , đầu_tiên_ta tìm u là tổ_tiên của u và có h(u) = h(v) : Rõ_ràng , ta cần nhảy từ u lên cha thứ h(u) - h(v) .
+Ta chuyển h(u) - h(v) sang hệ 2 .
+Duyệt j từ log(h(u)) xuống 0 , nếu tổ_tiên thứ 2j của u không cao hơn v thì ta cho p nhảy lên tổ_tiên thứ 2j của nó .
+Sau khi u và v đã ở cùng tầng , ta sẽ tính LCA(u , v) : cũng_như trên , ta sẽ duyệt j từ log(h(u)) xuống 0 , nếu tổ_tiên thứ 2j của u và v khác_nhau thì chắc_chắn LCA(u , v) sẽ ở cao hơn , khi đó ta sẽ cho cả u và v nhảy lên tổ_tiên thứ 2j của nó .
+Cuối_cùng thì u và v sẽ có cùng cha , vậy_nên khi đó LCA(u , v) = Tu = Tv . Code : function LCA(N , PMAXNMAXLOGN , TMAXN , hMAXN , u , v) : if h(u) lt; h(v) : // Đổi u và v swap(u , v) log = log2( h(u) ) // Tìm tổ_tiên u của u sao_cho h(u) = h(v) for i = log . .
+0 : if h(u) - 2i gt;= h(v) : u = Pui if u == v : return u // Tính_LCA(u , v) : for i = log . .
+0 : if Pui ! = -1 and Pui ! = Pvi : u = Pui v = Pvi return Tu;_Mỗi lần gọi hàm này chỉ tốn tối_đa 2logH phép_toán .
+Trong trường_hợp tệ nhất_thì H=N nên độ phức_tạp tổng_quát của thuật_toán này là lt; O(NlogN) , O(logN) gt; .
+Bài_toán LCA còn có nhiều cách giải thú_vị khác .
+Các bạn có_thể tham_khảo thêm trong bài viết này .
+Từ_LCA đến RMQ_Ta có_thể biến_đổi bài_toán LCA thành bài_toán RMQ trong thời_gian tuyến_tính , do_đó mà mọi thuật_toán để giải bài_toán RMQ đều có_thể sử_dụng để giải bài_toán LCA .
+Hãy cùng xét ví_dụ sau : Để_ý rằng LCA_T(u , v) là nút gần gốc nhất xuất_hiện giữa lúc thăm u và v trong phép duyệt DFS .
+Vì_thế ta có_thể xét tất_cả các phần_tử giữa các cặp_chỉ số bất_kì của u và v trong dãy Euler_Tour và tìm nút cao nhất .
+Ta xây_dựng 3 mảng : E1 , 2N-1 : dãy thứ_tự thăm của các nút trên đường_đi Euler , Ei là nút được thăm thứ i trên đường_đi .
+L1 , 2N-1 : tầng của các nút , Li là tầng của nút Ei_H1 , N : Hi là vị_trí xuất_hiện đầu_tiên của nút i trên Euler_Tour_Gỉa sử Hult;Hv . Dễ thấy việc cần làm lúc_này là tìm nút có L nhỏ nhất trên EHu . . Hv . Do_đó LCA_T(u , v)=ERMQ_L(Hu , Hv)) .
+Ví_dụ : Cũng dễ thấy là mỗi 2 phần_tử liên_tiếp trong L đều hơn kém nhau đúng 1 đơn_vị .
+Từ_RMQ đến LCA_Một cây Cartesian của một dãy A0 , N-1 là một cây nhị_phân C(A) có gốc là phần_tử nhỏ nhất trong A và có_vị trí i .
+Cây_con trái của C(A) là cây Cartesian của A0 , i-1 nếu igt;0 , ngược_lại thì không có .
+Cây_con phải của C(A) là cây Cartesian của Ai+1 , N-1 .
+Dễ thấy rằng RMQ_A(i , j)=LCA_C(i , j) .
+Bây_giờ việc cần làm chỉ còn là tính C(A) trong thời_gian tuyến_tính .
+Chúng_ta sẽ sử_dụng một cái stack .
+Ban_đầu stack rỗng .
+Ta lần_lượt đẩy các phần_tử của A vào stack .
+Tại bước thứ i , Ai sẽ được đẩy vào ngay cạnh phần_tử cuối_cùng không lớn hơn Ai trong stack , các phần_tử lớn hơn Ai bị loại khỏi stack .
+Phần_tử trong stack ở vị_trí của Ai trước_khi chèn Ai vào sẽ là con trái của i , còn i sẽ là con phải của phần_tử trước nó trong stack .
+Ở mỗi bước thì phần_tử đầu_tiên trong stack sẽ là gốc của cây Cartesian .
+Ví_dụ đối_với cây ở trên : Bước_Stack_Sự hình_thành cây 0 0 0 là nút duy_nhất trong cây 1 0 1 1 được đẩy vào cuối stack .
+Giờ 1 là con phải của 0 2 0 2 A2 lt; A1) .
+Lúc_này 2 là con phải của 0 và con trái của 2 là 1 3 3 A3 hiện đang là phần_tử nhỏ nhất cho_nên mọi phần_tử của stack bị lấy ra ra và 3 trở_thành gốc cây .
+Con trái của 3 là 0 4 3 4 4 được thêm vào cạnh 3 và con phải của 3 là 4 5 3 4 5 5 được thêm vào cạnh 4 , con phải của 4 là 5 6 3 4 5 6 6 được thêm vào cạnh 5 , con phải của 5 là 6 7 3 4 5 6 7 7 được thêm vào cạnh 6 , con phải của 6 là 7 8 3 8 8 được thêm vào cạnh 3 , các phần_tử lớn hơn bị loại_bỏ .
+8 giờ là con phải của 3 và con trái của 8 là 4 9 3 8 9 9 được thêm vào cạnh 8 , con phải của 8 là 9 Vì mỗi phần_tử của A đều chỉ đẩy vào và lấy ra 1 lần nên độ phức_tạp thuật_toán là O(N) .
+void computeTree ( int A_MAXN , int N , int T_MAXN ) int st MAXN , i , k , top = - 1 ; // Bắt_đầu với stack rỗng // Ở bước thứ i ta đẩy i và stack for ( i = 0 ; i lt; N ; i ++ ) //Tìm vị_trí của phần_tử đầu_tiên nhỏ hơn hoặc bằng Ai trong stack k = top ; while ( k gt;= 0 amp;amp; A st k gt; A i ) k -- ; // Chỉnh_sửa cây theo mô_tả ở trên if ( k ! = - 1 ) T i = st k ; if ( k lt; top ) T st k + 1 = i ; // Đẩy i vào stack rồi xóa các phần_tử lớn hơn Ai st ++ k = i ; top = k ; // Phần_tử đầu_tiên trong stack là gốc cây nên nó không có cha T st 0 = - 1 ; Thuật_toán lt; O(N) , O(1) gt; cho bài_toán RMQ thu_hẹp Bài_toán RMQ phát_sinh khi giải bài_toán LCA chỉ là trường_hợp đặc_biệt của bài_toán RMQ tổng_quát , do ta có_điều kiện Ai-Ai-1=1 với mọi i\in1 , N-1 (lý do là 2 phần_tử liên_tiếp có quan_hệ cha con với nhau) .
+Ta gọi bài_toán RMQ này là bài_toán RMQ thu_hẹp .
+Trong 1 số tài_liệu còn được gọi_là bài_toán \pm 1 RMQ .
+Trong mục này , ta sẽ nghiên_cứu một thuật_toán có độ phức_tạp tốt hơn cho bài_toán RMQ thu_hẹp .
+Hãy biến_đổi A thành một dãy nhị_phân có N-1 phần_tử , với Bi=Ai-Ai-1 .
+Như_vậy Ai=A0+B1+ . . +Bi và Bi chỉ nhận giá_trị 1 hoặc -1 .
+Chúng_ta chia A thành các block kích_thước l=log(N)/2 .
+Gọi_Mi là giá_trị nhỏ nhất trong block thứ i và Di là vị_trí của giá_trị nhỏ nhất này trong A .
+Cả_M và D đều có N/l phần_tử .
+Tính_Sparse_Table cho M , tốn O(N/llog(N/l))=O(N) về bộ_nhớ và thời_gian .
+Dùng sparse table cho mảng M , ta tính được_giá trị nhỏ nhất của 1 vài block trong O(1) .
+Nhưng ta vẫn cần tính RMQ giữa 2 vị_trí bất_kì trong cùng một block .
+Để làm được điều này , nhận_thấy B là một dãy nhị_phân , mà mỗi block có l phần_tử .
+Vì số_lượng dãy nhị_phân_độ dài l là 2l=\sqrt N là một_số khá nhỏ nên chúng_ta có_thể tính được mảng P\sqrt(N)ll , với P(b , i , j) là giá_trị nhỏ nhất trong các bit từ i đến j của dãy nhị_phân b .
+Dễ_dàng khởi tạo P bằng quy_hoạch_động trong cả thời_gian và bộ_nhớ O(\sqrt_Nl2) .
+Chú_ý rằng , ta cũng cần biết giá_trị b trong O(1) với mỗi block của mảng A .
+Do_đó , ta cần khởi tạo mảng T với N/l phần_tử , mỗi phần_tử cho_biết giá_trị b của block tương_ứng .
+Kết_hợp mảng T , P với Sparse table cho mảng M , ta có_thể trả_lời truy_vấn RMQ_A(i , j) trong O(1) .
+Ta có 2 trường_hợp : i và j thuộc cùng block .
+Ta dùng mảng T để biết dãy nhị_phân b ở block chứa i và j .
+Tính u và v là vị_trí của i và j trong block .
+Kết_quả chính là P(b , u , v) .
+i và j thuộc 2 block khác_nhau : kết_quả sẽ là giá_trị nhỏ nhất của 3 giá_trị : Giá_trị nhỏ nhất của các phần_tử trong block chứa i và nằm bên phải i : Dùng mảng T để biết được_giá trị của dãy nhị_phân của block chứa i là b .
+Tính chỉ_số của i trong block chứa i là u .
+Kết_quả chính là P(b , i , l) .
+Giá_trị nhỏ nhất của các phần_tử trong block chứa j và nằm bên trái j : làm tương_tự trường_hợp trên Giá_trị nhỏ nhất của các phần_tử thuộc các block nằm giữa block chứa i và block chứa j .
+Dùng_Sparse table cho M , ta dễ_dàng tính được_giá trị này trong O(1) .
+Một_số bài để luyện_tập CF 278 Div 1 - B_Bayan 2015 Contest_Warm_Up - D_Hello 2015 (Div . 1) - A_LCA_QTREE2_HBTLCA_UPGRANET_VOTREE_SRM 310 - Floating_Median_Lorenzo_Von_Matterhorn http : //acm . pku . edu . cn/JudgeOnline/problem ? id=1986 http : //acm . pku . edu . cn/JudgeOnline/problem ? id=2374 http : //acmicpc-live-archive . uva . es/nuevoportal/data/problem . php ? p=2045 http : //acm . pku . edu . cn/JudgeOnline/problem ? id=2763 http : //acm . uva . es/p/v109/10938 . html http : //acm . sgu . ru/problem . php ? contest=0amp;problem=155

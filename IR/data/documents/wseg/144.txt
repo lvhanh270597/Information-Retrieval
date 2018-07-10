@@ -1,0 +1,136 @@
+Table of_Contents Giới_thiệu Tầm quan_trọng của những lý_luận Ví_dụ 1 Mẹo gộp hai thuật_toán Thế_nào là độ hiệu_quả của thuật_toán ?
+Ví_dụ 2 Lưu_ý về kích_cỡ tập đầu_vào Tính_toán độ hiệu_quả của thuật_toán như_thế nào ?
+Các khái_niệm cơ_bản Xác_định thời_gian chạy dựa vào đánh_giá cận_trên Lưu_ý khi phân_tích độ phức_tạp thuật_toán Ví_dụ 3 Kết_luận Nguồn bài : Topcoder Giới_thiệu Trong bài viết này tôi sẽ giới_thiệu tới các bạn về chủ_đề độ phức_tạp tính_toán .
+Trước_khi đi_vào định_nghĩa chính_xác của các khái_niệm , bài viết sẽ giải_thích các lý_luận đằng_sau những khái_niệm đó .
+Tôi cho_rằng việc hiểu các lý_luận này có_thể còn quan_trọng hơn bản_thân định_nghĩa của các khái_niệm .
+Tầm quan_trọng của những lý_luận Ví_dụ 1 Giả_sử bạn được phân_công viết một chương_trình để xử_lý một_tập dữ_liệu gồm nhiều bản ghi mà công_ty của bạn đã thu_thập .
+Bạn cài_đặt hai thuật_toán và kiểm_tra chúng bằng một_vài tập dữ_liệu khác_nhau .
+Thời_gian chạy được thống_kê trong bảng 1 .
+Số_lượng bản ghi 10 20 50 100 1000 5000 Thuật_toán 1 0 . 00s 0 . 01s 0 . 05s 0 . 47s 23 . 92s 47min Thuật_toán 2 0 . 05s 0 . 05s 0 . 06s 0 . 11s 0 . 78s 14 . 22s Bảng 1 : Thời_gian chạy_của hai thuật_toán 1 , 2 Từ bảng 1 ta có_thể đánh_giá một_cách không chính_thức rằng thuật_toán nào tốt hơn (vì thường là ta có_thể ước_lượng số_lượng bản ghi cần xử lý) .
+Với một công_ty thì kết_luận dựa trên việc chạy thử như_vậy có_thể chấp_nhận được .
+Nhưng với người lập_trình , nó sẽ tốt hơn nếu có_thể đánh_giá thời_gian chạy_của hai thuật_toán trước_khi viết code và chạy thử - sau_đó chỉ_cần cài_đặt thuật_toán tốt hơn .
+Các kỳ thi lập_trình cũng đòi_hỏi việc đánh_giá tương_tự : kích_cỡ của tập dữ_liệu được cho trước trong đề_bài .
+Giả_sử_ta đã nghĩ_ra được một thuật_toán .
+Câu_hỏi cần đặt ra trước_khi bắt_tay vào cài_đặt là : thuật_toán này có đáng để cài_đặt không ?
+Liệu nó có_thể chạy trên bộ test lớn nhất trong thời_gian cho_phép không ?
+Nếu ta có_thể nghĩ_ra một_vài thuật_toán khác , nên chọn thuật nào để cài_đặt ?
+Các câu_hỏi trên dẫn tới câu_hỏi cốt_lõi hơn : Làm_sao để so_sánh hai thuật_toán với_nhau ?
+Quay trở_lại ví_dụ 1 , ta có_thể ước_lượng rằng khi số bản ghi vượt_quá 1000 , thuật_toán 2 sẽ chạy nhanh hơn nhiều lần thuật_toán 1 .
+Nói_cách_khác , xét trên tất_cả các tập dữ_liệu có_thể , thuật_toán 2 sẽ chạy tốt hơn trong hầu_hết các trường_hợp .
+Có_thể kết_luận được rằng trong hầu_hết các trường_hợp - cho trước 2 thuật_toán , hoặc_là một thuật_toán gần_như luôn_luôn tốt hơn , hoặc_là cả hai xấp_xỉ tốt như_nhau .
+Như_vậy , chúng_ta sẽ định_nghĩa độ tốt của thuật_toán dựa vào đánh_giá độ hiệu_quả chạy trên toàn_bộ tập dữ_liệu như_trên .
+Đánh_giá này sẽ là ý_tưởng chính đằng_sau các định_nghĩa cụ_thể mà chúng_ta sẽ đề_cập về_sau .
+Mẹo gộp hai thuật_toán Nếu đối_chiếu với hai thuật_toán ví_dụ 1 , không khó để thấy rằng có_một thuật_toán với thời_gian chạy tương_tự với chúng trong bảng 2 Số_lượng bản ghi 10 20 50 100 1000 5000 Thuật_toán 3 N 0 . 00s 0 . 01s 0 . 05s 0 . 11s 0 . 78s 14 . 22s Bảng 2 : Thời_gian chạy_của thuật_toán 3 Ý_tưởng của thuât toán 3 : nếu số_lượng bản ghi nhỏ thì ta áp_dụng thuật_toán 1 , ngược_lại áp_dụng thuật_toán 2 .
+Ý_tưởng tương_tự thường được áp_dụng vào thực_tế .
+Một ví_dụ là trong các hàm sắp_xếp sort() được cung_cấp bởi thư_viện của các ngôn_ngữ_lập_trình thường được cài_đặt theo thuật_toán QuickSort với nhiều cải_tiến , ví_dụ : Nếu số_lượng phần_tử quá nhỏ , chạy thuật_toán sắp_xếp chèn InsertSort (vì InsertSort chạy nhanh hơn với tập dữ_liệu kích_thước nhỏ) .
+Nếu vị_trí phần_tử chốt không tốt , chuyển sang chạy thuật_toán sắp_xếp trộn MergeSort .
+Thế_nào là độ hiệu_quả của thuật_toán ?
+Ví_dụ 2 Giả_sử bạn có đoạn mã sau : for ( int i = 0 ; i lt; N ; i ++ ) for ( int j = i + 1 ; j lt; N ; j ++ ) if ( A i gt; A j ) swap ( A i , A j ); (Đây thực_ra là một_cách cài_đặt của thuật_toán MinSort ) Giả_sử chúng_ta được cho một mảng dữ_liệu đầu_vào (mảng A và số phần_tử N) , ta có_thể tính chính_xác số bước chạy_của thuật_toán trên đầu_vào đã cho .
+Ta thậm_chí có_thể tính chính_xác số lệnh thực_thi trong bộ vi xử_lý nếu ta muốn (ND : chuyển đoạn mã C++ trên thành mã Assembly) .
+Tuy_nhiên , có rất nhiều giá_trị mà bộ dữ_liệu đầu_vào có_thể nhận nên việc tính_toán số bước như_trên với mọi khả_năng đầu_vào là không_thể .
+Thực_tế trên dẫn ta tới câu_hỏi quan_trọng hơn : đánh_giá quan_trọng nhất về độ hiệu_quả mà chúng_ta cần tới là gì ?
+Thông_thường thì đó là tốc_độ chạy thuật_toán trong trường_hợp xấu nhất - ta cần tìm_ra một đánh_giá cận_trên của tốc_độ chạy thuật_toán .
+Tuy_nhiên , thế_nào là_là trường_hợp xấu nhất ?
+Một_cách đơn_giản để làm_cho thuật_toán chạy chậm hơn_là tăng kích_cỡ đầu_vào .
+Vì cận_trên của số phần_tử đã bị chặn bởi đề_bài , các câu_hỏi quan_trọng hơn_là : tập đầu_vào xấu nhất trong các tập có cùng số phần_tử là tập nào ?
+Khi tăng kích_cỡ tập đầu_vào thì độ phức_tạp trong trường_hợp xấu nhất tăng như_thế nào ?
+Lưu_ý về kích_cỡ tập đầu_vào Hiểu chính_xác thì "kích cỡ tập đầu vào" là đại_lượng gì ?
+Theo định_nghĩa chính_thống , kích_cỡ tập đầu_vào được viết thành một_tập hữu_hạn các ký_tự (với ít_nhất 02 ký tự) .
+Trong bài này ta có_thể coi tập ký_tự đó là các số_tự_nhiên từ 0 tới 255 .
+Như_vậy "kích cỡ tập đầu vào" được tính đúng bằng số bytes của tệp chứa dữ_liệu đầu_vào (input file) .
+Thường thì một phần của bộ dữ_liệu sẽ là một_số (hoặc một_vài số) , mà kích_cỡ của tập đầu_vào sẽ tỉ_lệ_thuận với số này .
+Chẳng_hạn như trong ví_dụ 2 , ta có_một số_tự_nhiên N và một mảng với N số integer .
+Kích_cỡ theo đơn_vị bytes của file đầu_vào sẽ xấp_xỉ 5N (phụ thuộc vào hệ_điều_hành và cấu_trúc máy_tính , nhưng sẽ luôn tuyến_tính với N) .
+Trong các trường_hợp này , ta có_thể chọn số (hoặc các số) đó để biểu_diễn kích_cỡ tập đầu_vào .
+Vì_vậy khi nói về các bài_toán có mảng / chuỗi , kích_cỡ tập đầu_vào là độ_dài của mảng / chuỗi đó , khi nói về các bài_toán đồ_thị_ta biểu_thị bằng cả hai đại_lượng số_lượng đỉnh và số_lượng cạnh , . . .
+Với cách tiếp_cận đó , kể_từ đây cho tới cuối bài viết_ta ký_hiệu N là kích_cỡ tập đầu_vào .
+Một trường_hợp cần lưu_ý là khi viết một_số N ta chỉ_cần log(N) khoảng_trống (ví dụ để viết 123456 trong hệ cơ_số 10 ta chỉ_cần log_10(123456) chữ số) .
+Cần phân_biệt hai đại_lượng này - với thuật_toán kiểm_tra số_nguyên_tố đơn_giản có độ phức_tạp đa_thức trên độ lớn của số được kiểm_tra chứ không_phải là trên số_lượng chữ_số của số đó ! Nếu bạn chưa_từng gặp khái_niệm độ phức_tạp đa_thức thì cũng không cần lo_lắng vì khái_niệm này sẽ được giải_thích trong phần sau .
+Tính_toán độ hiệu_quả của thuật_toán như_thế nào ?
+Nhắc_lại rằng cho trước một bộ dữ_liệu đầu_vào , ta có_thể đếm_số bước thực_hiện các phép_toán của một thuật_toán bằng cách mô_phỏng các bước chạy thuật_toán đó trên bộ dữ_liệu được cho .
+Giả_sử_ta tiến_hành đếm như_vậy với tất_cả các bộ dữ_liệu có kích_thước tối_đa N .
+Ký_hiệu f(N) là số bước cần thực_hiện nhiều nhất (trường hợp xấu nhất) .
+Hàm f được gọi_là độ phức_tạp thời_gian , hoặc ngắn_gọn thời_gian chạy_của thuật_toán .
+Nói_cách_khác , nếu ta có dữ_liệu vào với kích_cỡ N , việc thực_hiện thuật_toán mất tối_đa f(N) bước .
+Quay trở_lai thuật_toán trong ví_dụ 2 .
+Tập đầu_vào xấu nhất có N phần_tử là tập nào ?
+Nói_cách_khác , trong số các mảng có N phần_tử , mảng nào khiến cho thuật_toán phải thực_hiện nhiều bước nhất ?
+Từ đoạn mã của thuật_toán ta thấy : Bước thứ nhất được thực_hiện đúng N lần Bước thứ_hai và thứ_ba được thực_hiện đúng \fracN(N-1)2 lần Bước thứ_tư được thực_hiện nhiều nhất \fracN(N-1)2 lần Dễ thấy nếu các phần_tử trong mảng A được sắp_xếp theo chiều giảm_dần ngay từ_đầu , bước thứ 4 sẽ luôn_luôn được thực_hiện .
+Vì_vậy thuật_toán sẽ chạy trong \frac3N(N-1)2 + N = 1 . 5N2 - 0 . 5N bước .
+Vì_vậy thuật_toán trên có_số bước tối_đa là f(N) = 1 . 5N2 - 0 . 5N .
+Có_thể thấy rằng việc xác_định chính_xác hàm f cho các chương_trình phức_tạp hơn_là khá khó_khăn .
+Thêm vào đó , trong nhiều trường_hợp dạng chính_xác của hàm f là không cần_thiết .
+Trong tính_toán trên giá_trị -0 . 5N có_thể bỏ_qua , vì khi N lớn thì 0 . 5N nhỏ hơn rất nhiều so_với 1 . 5N2 và không ảnh_hưởng lớn tới thời_gian chạy .
+Mệnh_đề "f(N) xấp_xỉ bằng 1 . 5N2" cho ta tất_cả thông_tin mà ta cần .
+Tiếp_theo chúng_ta sẽ thấy rằng , khi so_sánh thuật_toán này với một thuật_toán nào_đó khác để giải cùng một bài_toán , hằng_số 1 . 5 cũng không thật quan_trọng .
+Xét hai thuật_toán , một có thời_gian chạy N2 và một có thời_gian chạy 0 . 0001N3 .
+Dễ nhận_thấy rằng với N gt; 1000 thì thuật_toán đầu_tiên chạy nhanh hơn - khi N tăng , khoảng_cách về độ hiệu_quả giữa hai thuật_toán càng trở_nên rõ_ràng .
+Trong_khi thuật_toán đầu_tiên có_thể giải_quyết bài_toán với N = 20 000 chỉ trong thời_gian tính bằng giây , thuật_toán thứ_hai phải mất tới vài phút trên các máy_tính hiện_đại .
+Sự khác_biệt như_trên sẽ luôn xảy_ra nếu một trong hai thuật_toán có thời_gian chạy tăng tiệm_cận nhanh hơn so_với thời_gian chạy_của thuật_toán còn_lại (nói cách khác , khi N đủ lớn để kết_quả phép_tính giới_hạn lim của tỷ_lệ giữa hai đại_lượng này bằng 0 hoặc \infty .
+ND : trong bài này tác_giả không nói_rõ việc so_sánh độ phức_tạp theo phép_tính giới_hạn , chỉ_cần hiểu khái_niệm tiệm_cận có_nghĩa là kích_cỡ đầu_vào đủ lớn .
+Như_vậy tiệm_cận nhanh hơn có_nghĩa là nhanh hơn khi_đầu vào đủ lớn ) .
+Bất_kể các hằng_số nhận giá_trị nào , một thuật_toán có thời_gian chạy tỷ_lệ (thuận) với N2 sẽ luôn_luôn hiệu_quả hơn một thuật_toán khác có thời_gian chạy tỷ_lệ với N3 trong hầu_hết các trường_hợp của tập đầu_vào .
+Nhận_định này chính là ý_tưởng chủ_đạo để xây_dựng định_nghĩa chính_thức của các khái_niệm .
+Các khái_niệm cơ_bản Gọi f , g là các hàm_số_dương không giảm trên tập_số nguyên dương (lưu ý rằng hàm thời_gian chạy thỏa_mãn điều_kiện này) .
+Ta nói rằng "f(N) thuộc O(g(N))" (cách đọc : "f thuộc O-lớn của g") nếu tồn_tại các giá_trị c và N_0 thỏa_mãn điều_kiện sau : \forall N gt; N_0; f(N) lt; c . g(N) Mệnh_đề trên có_thể diễn_dịch như_sau : f(N) thuộc O(g(N)) nếu với c nào_đó toàn_bộ đồ_thị của hàm f nằm dưới đồ_thị của hàm c . g . Chú_ý rằng điều này có_nghĩa là tốc_độ tăng của hàm f không vượt_quá độ tăng của hàm g .
+(ND : ký_hiệu O-lớn là ký_hiệu chỉ tập_hợp của các hàm_số , vì_vậy ở đây quan_hệ giữa f và O(g(N)) là (phần tử) thuộc (tập hợp) . ) Thay_vì viết "f(N) thuộc O(g(N))" ta thường viết là "f(N) = O(g(N))" .
+Chú_ý là dấu "=" không có tính đối_xứng - viết "O(g(N)) = f (N)" là sai và không có_ý nghĩa gì , đồng_thời mệnh_đề "g(N) = O(f (N))" cũng không_phải luôn đúng (sẽ được chỉ ra ở phần sau của bài viết) .
+Định_nghĩa trên được biết tới là ký pháp O-lớn và được sử_dụng để chỉ ra cận_trên của tốc_độ tăng của một hàm_số .
+Xét hàm_số f (N) = 1 . 5N2 – 0 . 5N trong ví_dụ 2 .
+Ta có_thể phát_biểu rằng f (N) = O(N2) (một trường_hợp khả_dĩ cho các hằng_số là c = 2 và N_0 = 0) .
+Điều này có_nghĩa là hàm f không tăng (tiệm cận) nhanh hơn N2 .
+Lưu_ý rằng thời_gian chạy chính_xác của hàm f không cho ta câu trả_lời cho câu_hỏi "Chương trình trên chạy mất bao_lâu trên máy_tính ? " .
+Nhận_định quan_trọng rút ra từ ví_dụ trên là thời_gian chạy_của hàm f đó là hàm bậc hai .
+Nếu ta tăng gấp_đôi kích_cỡ đầu_vào , thời_gian chạy sẽ tăng xấp_xỉ 4 lần thời_gian chạy ban_đầu , không quan_trọng máy_tính của ta nhanh như_thế nào .
+Việc xác_định được cận_trên O(N2) của f(N) cũng đưa ta tới_cùng nhận_định như_trên - đảm_bảo rằng độ tăng của hàm thời_gian chạy tối_đa là hàm bậc hai .
+Vì_vậy , chúng_ta sẽ sử_dụng ký pháp O-lớn để mô_tả độ phức_tạp thời_gian (và đôi_khi là cả bộ_nhớ ) của các thuật_toán .
+Với thuật_toán trong ví_dụ 2 ta sẽ nói "Độ phức_tạp thời_gian của thuật_toán này là O(N2)" hoặc ngắn_gọn hơn "Thuật toán này là O(N2)" .
+Theo cách tương_tự ta sẽ định_nghĩa \Omega (Omega-lớn) and \Theta (Theta-lớn) .
+Ta nói rằng f (N)= \Omega(g(N)) nếu g(N) = O(f (N)) , nói_cách_khác nếu f tăng nhanh hơn hoặc bằng g .
+Ta nói rằng f (N) = \Theta(g(N)) nếu f (N) = O(g(N)) và g(N) = O(f (N)) , nói_cách_khác nếu cả hai hàm_số có độ hiệu_quả xấp_xỉ bằng_nhau .
+Dễ_dàng nhận_thấy là hàm Omega-lớn dùng để chỉ cận_dưới và hàm Theta-lớn dùng để chỉ đánh_giá chặt (cả hai cận) của một hàm_số .
+Có những đánh_giá cận khác tương_tự nhưng ít phổ_biến hơn .
+Một_vài mệnh_đề sử_dụng các ký pháp trên : 1 . 5N2 -0 . 5N = O(N2) .
+47N log N = O(N2) .
+N log N + 1 000 047N = \Theta(N log N) .
+Tất_cả các đa_thức bậc k là O(Nk) .
+Độ phức_tạp thời_gian của thuật_toán trong ví_dụ 2 là \Theta(N2) .
+Nếu một thuật_toán thuộc O(N2) , nó cũng thuộc O(N5) .
+Các thuật_toán sắp_xếp dựa trên phép so_sánh đều là \Omega(N log N) .
+Thuật_toán sắp_xếp trộn MergeSort chạy trên mảng gồm N phần_tử thực_hiện xấp_xỉ N log N phép so_sánh .
+Vì_vậy độ phức_tạp thời_gian của MergeSort là \Theta(N log N) .
+Nếu mệnh_đề trước đó là đúng thì MergeSort tiệm_cận thuật_toán tối_ưu nhất trong các thuật_toán sắp_xếp dựa trên phép so_sánh .
+Thuật_toán trong ví_dụ 2 sử_dụng \Theta(N) bytes bộ_nhớ .
+Hàm_số cho_biết số răng của một người_ở một_thời điểm xác_định là O(1) .
+Một thuật_toán quay lui đơn_giản giải các bài_toán trên bàn_cờ_vua là O(1) vì cây vị_trí mà thuật_toán duyệt qua có kích_cỡ giới_hạn .
+(Tuy nhiên giá_trị hằng_số trong O(1) này lại rất lớn) Mệnh_đề "Độ phức_tạp thời_gian của thuật_toán này tối_thiểu là O(N2)" là vô_nghĩa .
+(Diễn dịch : "Giá trị tối_thiểu của độ phức_tạp thời_gian của thuật_toán này tối_đa là xấp_xỉ hàm bậc hai") .
+Phát_biểu đúng là : "Độ phức_tạp thời_gian của thuật_toán này là \Omega(N2) . " Khi nói về độ phức_tạp thời gian/bộ nhớ của một thuật_toán , thay_vì sử_dụng ký pháp Theta-lớn \Theta(f (N)) ta có_thể đơn_giản chỉ ra tên của lớp hàm_chứa hàm f .
+Ví_dụ với f (N) = \Theta(N) , ta gọi thuật_toán đó là tuyến_tính .
+Một_vài ví_dụ khác : f (N) = \Theta(log N) : hàm_log f (N) = \Theta(N2) : hàm bậc 2 f (N) = \Theta(N3) : hàm bậc 3 f (N) = O(Nk) : hàm đa_thức f (N) = \Omega(2N) : hàm mũ Với các bài_toán trên đồ_thị , độ phức_tạp \Theta(N + M) được gọi_là "tuyến tính theo độ lớn của đồ thị" .
+Xác_định thời_gian chạy dựa vào đánh_giá cận_trên Với hầu_hết các thuật_toán thường gặp trong thực_tế , giá_trị hằng_số của O (hoặc \Theta) thường là khá nhỏ .
+Nếu một thuật_toán là \Theta(N2) , độ phức_tạp chính_xác là vào_khoảng 10N2 chứ không_phải 107N2 .
+Nói_cách_khác : nếu hằng_số là lớn thì thường là các hằng_số đó có liên_quan tới các đại_lượng có_sẵn trong đề_bài .
+Trong trường_hợp này cách làm thông_thường là gán một tên_gọi cho hằng_số đó và thêm nó vào đánh_giá độ phức_tạp theo ký pháp , thay_vì bỏ_qua như_ta đã làm với số 1 . 5 ở ví_dụ 2 .
+Ví_dụ : bài_toán yêu_cầu đếm_số lần xuất_hiện của mỗi loại ký_tự trong một chuỗi độ_dài N ký_tự .
+Thuật_toán đơn_giản nhất_là duyệt cả chuỗi một_lần cho mỗi loại ký_tự .
+Kích_cỡ bảng_chữ_cái không thay_đổi (ví dụ nhiều nhất_là 255 ký_tự trong ngôn_ngữ C) , vì_vậy thuật_toán là tuyến_tính với N .
+Mặc_dù vậy , ta nên viết độ phức_tạp thời_gian là \Theta(S . N) , trong đó S là bảng_chữ_cái được sử_dụng (Lưu ý là có_một thuật_toán tốt hơn giải bài_toán này trong \Theta( S + N) .
+Trong một kỳ thi trên TopCoder , một thuật_toán thực_thi 1 000 000 000 phép_nhân hiếm khi chạy trong giới_hạn thời_gian cho_phép .
+Thực_tế này cộng với quan_sát ở trên và một_vài kinh_nghiệm với các bài_toán trên TopCoder giúp ta tổng_kết bảng sau : complexity maximum N \Theta(N) 100 000 000 \Theta(N log N) 40 000 000 \Theta(N2) 10 000 \Theta(N3) 500 \Theta(N4) 90 \Theta(2N) 20 \Theta(N ! ) 11 Bảng 3 : Giá_trị_N lớn nhất để các thuật_toán có độ phức_tạp khác_nhau chạy trong tối_đa 8 giây Lưu_ý khi phân_tích độ phức_tạp thuật_toán Thông_thường_khi trình_bày một thuật_toán , cách tốt nhất để đánh_giá độ phức_tạp của nó là ký pháp Theta \Theta .
+Tuy_nhiên , trong thực_tế thường_ta chỉ trình_bày cận O-lớn vì ký pháp này dễ viết hơn và phổ_biến hơn .
+Nhắc_lại rằng O-lớn chỉ mang ý_nghĩa cận_trên .
+Thông_thường ta tìm cận_trên O-lớn nhỏ nhất có_thể .
+Ví_dụ 3 Cho một mảng A đã được sắp_xếp .
+Xác_định xem liệu có tồn_tại 02 phần_tử trong mảng mà cách nhau D đơn_vị hay_không .
+Xét lời_giải sau int j = 0 ; for ( int i = 0 ; i lt; N ; i ++ ) while ( ( j lt; N - 1 ) amp;amp; ( A i - A j gt; D ) ) j ++ ; if ( A i - A j == D ) return 1 ; Thoạt nhìn ta có_thể sẽ đánh_giá thuật_toán trên có cận O(N2) - vòng_lặp trong cùng chạy N lần , mỗi lần tăng biến j tối_đa N lần .
+Phân_tích kỹ hơn , ta thấy rằng cận_trên có đánh_giá tốt hơn_là O(N) - thật_ra tổng_thể số lần chạy câu_lệnh j++ trong toàn_bộ thuật_toán không vượt_quá N lần .
+Mệnh_đề "thuật toán trên là O(N2)" vẫn là một mệnh_đề đúng .
+Tuy_nhiên bằng việc nói rằng "thuật toán trên là O(N)" ta cung_cấp nhiều thông_tin hơn về thuật_toán đó .
+Kết_luận Chúng_ta đã chỉ ra cách viết các cận (trên , dưới) theo độ phức_tạp tính_toán của thuật_toán .
+Ta cũng đã chứng_minh rằng các cận đó là các thuộc_tính cơ_bản và thường là hiệu_quả để đánh_giá các thuật_toán .
+Trong phần sau chúng_ta sẽ phân_tích làm thế_nào để ước_lượng độ phức_tạp tính_toán của các thuật_toán .
+Như_ta đã thấy trong Ví_dụ 3 việc phân_tích này có_thể trở_nên khá khó_khăn .
+Một nguyên_nhân khác làm_cho việc phân_tích khó_khăn là các thuật_toán đệ_quy .
+Các vấn_đề này sẽ được xử_lý trong phần 2 của bài viết .
+

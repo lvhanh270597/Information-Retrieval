@@ -1,0 +1,104 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài viết này chúng_ta sẽ tìm_hiểu trò_chơi bắt trộm .
+Trò_chơi phát_biểu như_sau : Trộm được gọi_là bị bắt nếu tồn_tại một cảnh_sát cùng nằm trên một đỉnh với trộm .
+Một chiến_lược được gọi_là một winning strategy cho \mathcalC (\mathcalR) nếu theo chiến_lược đó , \mathcalC luôn bắt_được trộm , bất_kể \mathcalR (\mathcalC) đi như_thế nào .
+Câu_hỏi đặt ra là cần ít_nhất bao_nhiêu cảnh_sát để tồn_tại một winning strategy cho \mathcalC ?
+Giả_sử trò_chơi trên là trò_chơi complete information , i . e , tất_cả các người chơi đều biết vị_trí của người chơi khác trong đồ_thị .
+Trò_chơi bắt trộm trên (a) cây , (b) đồ_thị đầy_đủ K_6 và (c) chu_trình .
+Trong đồ_thị chu_trình (c) , một cảnh_sát không_thể bắt_được trộm .
+Để hiểu hơn về bài_toán này ta xét một_vài đồ_thị đặc_biệt .
+Nếu_G(V , E) là một cây (tree) (Figure 1(a)) , hoặc một đồ_thị đầy_đủ (complete graph) (Figure 1(b)) thì dễ thấy chỉ_cần 1 cảnh_sát là có_thể bắt_được trộm rồi .
+Nếu_G(V , E) là một chu_trình thì ta cần đúng 2 cảnh_sát (Figure 1(c)) .
+Tuy_nhiên , một tính_chất thú_vị là nếu G(V , E) là một (planar graph) thì chỉ_cần đúng 3 cảnh_sát là ta có_thể bắt_được trộm .
+Để bạn_đọc hình_dung được_cái hay của định_lý này , xét đồ_thị trong Figure 2 .
+Hình_vẽ minh_họa một đồ_thị_phẳng kiểu grid kích_thước 12\times 13 (12 hàng 13 cột) .
+Theorem 1 cho ta biết chỉ_cần 3 cảnh_sát là có_thể bắt_được tên trộm .
+Tổng_quát hơn , mọi grid kích_thước p \times q , với p , q lớn tùy_ý , cũng chỉ_cần 3 cảnh_sát là đủ .
+Thực_tế , chứng_minh dưới_đây sẽ chỉ ra , với mọi grid kích_thước p \times q thì chỉ_cần 2 cảnh_sát cũng đủ bắt_được trộm .
+Một grid kích_thước 12 hàng 13 cột .
+3 cảnh_sát luôn có_thể bắt_được trộm trong grid này .
+Thực_tế chỉ_cần 2 cảnh_sát là có_thể bắt_được trộm . Ý_tưởng duy_nhất mà cũng là quan_trọng nhất trong chứng_minh Theorem 1 đó là chỉ_cần đúng một cảnh_sát là người chơi \mathcalC có_thể kiểm_soát được một đường_đi ngắn nhất bất_kì trong đồ_thị bằng cách đuổi_theo cái bóng (shadow) của tên trộm .
+Trong_Lemma 1 , ta nói cảnh s đường_đi ngắn nhất P .
+Trước_khi đi_vào chứng_minh Lemma 1 , ta xét ý_nghĩa của nó .
+Gọi H_p , q là một grid kích_thước p\times q .
+Ta sử_dụng Lemma 1 để chứng_minh chỉ_cần 2 cảnh_sát \s_1 , s_2\ là có_thể bắt_được một tên trộm trong H_p , q (xem Figure 3) .
+Do bất_kì cột nào của grid cũng là đường_đi ngắn nhất giữa hai đầu_mút của cột đó , ta lần_lượt cho s_1 kiểm_soát cột C_1 (sau hữu_hạn bước) .
+Khi s_1 đã kiểm_soát được C_1 , ta cho s_2 kiểm_soát C_2 .
+Sau khi s_2 đã kiểm_soát được C_2 , ta cho s_1 kiểm_soát C_3 , blah blah .
+Cứ_như vậy cho_đến khi tên trộm bị dồn vào cột cuối_cùng và lúc_này ta dễ_dàng bắt_được nó .
+Chú_ý , theo Lemma 1 , nếu một cảnh_sát đã kiểm_soát được một cột thì tên trộm không_thể bước_vào cột đó vì nếu_không nó sẽ bị bắt ngay_lập_tức .
+Đường màu đỏ là đường_đi đã bị kiểm_soát và đường màu xanh là đường mà một cảnh_sát đang trong quá_trình kiểm_soát .
+(a) Ta cho s_1 kiểm_soát cột C_1 và s_2 kiểm_soát C_2 .
+(b) Sau khi s_2 đã kiểm_soát được C_2 , s_1 không còn cần kiểm_soát C_1 nữa và ta cho nó kiểm_soát C_3 .
+(c) s_1 đang kiểm_soát C_3 .
+Cứ lặp_lại quá_trình này thì cuối_cùng tên trộm cũng bị bắt .
+Gọi z là vị_trí hiện_tại của tên trộm và s là cảnh_sát mà ta muốn nó kiểm_soát P .
+Kí_hiệu d_G(x , y) là khoảng_cách ngắn nhất giữa hai đỉnh riêng_biệt x , y của đồ_thị .
+Ta định_nghĩa cái bóng (shadow) của tên trộm là đỉnh w trên đường_đi P sao_cho : d_G(u , w) = \min(d_G(u , z) , d_G(u , v)) \qquad (1) (a) Cái bóng của trộm w trên đường_đi ngắn nhất P .
+(b) Cảnh_sát sẽ kiểm_soát P bằng cách đi_theo "cái bóng" của trộm trên P . Xem ví_dụ cái bóng của trộm trong Figure 4(a) .
+Chú_ý , do P là đường_đi ngắn nhất nên d_G(u , v) chính là độ_dài của P .
+Khi trộm thay_đổi vị_trí thì cái bóng cũng thay_đổi theo .
+Tuy_nhiên , do u\not= v , sau hữu_hạn bước , s sẽ bắt_được cái bóng của tên trộm , i . e , s sẽ đứng ở vị_trí w .
+Do mỗi nước đi , tên trộm chỉ được phép đi sang đỉnh kề với vị_trí nó đang đứng , cái bóng cũng chỉ thay_đổi sang trái hoặc sang phải 1 bước .
+Do_đó , s luôn bắt_được "cái bóng" sau mỗi nước đi . Tại_sao ta lại quan_tâm đến cái bóng ?
+Đó là do nếu s đứng trên vị_trí của cái bóng w thì : d_G(z , x) \geq d_P(s , x) \quad \forall x \in P \qquad (2) Xem minh_họa trong Figure 4(b) .
+Ý_nghĩa của (2) là nếu tên trộm đi_vào P thì sẽ tồn_tại x sao_cho d_G(z , x) = 0 .
+Từ (2) ta suy ra d_P(s , x) = 0 .
+Hay nói_cách_khác , s cũng đứng tại đỉnh x , i . e , tên trộm ngay_lập_tức sẽ bị bắt . Để chứng_minh (2) , ta xét hai trường_hợp : Ta sẽ sử_dụng Lemma 1 để tìm_ra chiến_lược bắt trộm bằng 3 cảnh_sát \s_1 , s_2 , s_3\ .
+Đầu_tiên mình sẽ trình_bày ý_tưởng , và sau_đó đi_vào chứng_minh hình_thức hơn .
+Ý_tưởng của chiến_lược bắt trộm khá đơn_giản .
+Ta sẽ định_nghĩa_là một đồ_thị con H của G , sao_cho nếu trộm đi_ra ngoài vùng an_toàn đó thì lập_tức nó bị bắt .
+Ban_đầu H là một thành_phần liên_thông của G chứa tên trộm nếu ta xóa các đỉnh bị chiếm bởi cảnh_sát ra khỏi đồ_thị .
+Ta sẽ tìm chiến_lược để thu_hẹp dần vùng an_toàn sau một_số hữu_hạn vòng chơi , đến cuối_cùng , H = \emptyset .
+Lúc_đó tên trộm sẽ bị bắt .
+Ta sẽ cho s_1 kiểm_soát một đường_đi ngắn nhất P_1 từ u tới v , u\not= v , bất_kì .
+Sau_đó tìm một đường_đi ngắn nhất khác P_2 từ u tới v sao_cho P_1 và P_2 không có đỉnh_chung , ngoại_trừ các đầu_mút .
+P_2 có_thể tìm được bằng cách xóa tất_cả các đỉnh khác u , v nằm trên P_1 khỏi đồ_thị và áp_dụng thuật_toán tìm đường_đi ngắn nhất .
+P_1\cup P_2 tạo_thành một chu_trình phân_chia mặt_phẳng thành hai phần , phần bên_trong và bên_ngoài .
+Ta sẽ cho s_2 kiểm_soát P_2 .
+Vùng tô_màu xanh là vùng an_toàn của kẻ_trộm .
+Không mất tính tổng_quát , giả_sử tên trộm nằm bên_ngoài chu_trình P_1\cup P_2 (Xem Figure 5(a)) .
+Hay nói_cách_khác , vùng an_toàn H của tên trộm lúc_này là phần đồ_thị con bên_ngoài chu_trình P_1\cup P_2 .
+Ta sẽ tìm một đường_đi thứ 3 , P_3 cũng từ u tới v nằm bên_ngoài chu_trình P_1\cup P_2 , có độ_dài ngắn nhất , sao_cho P_3 không có đỉnh_chung với P_1 , P_2 , ngoại_trừ hai đầu_mút .
+P_3 có_thể tìm được xóa tất các đỉnh , ngoại_trừ u , v , của P_1 , P_2 và các đỉnh nằm trong đường chu_trình P_1\cup P_2 ra khỏi đồ_thị , và sau_đó áp_dụng thuật_toán tìm đường_đi ngắn nhất .
+Ta sẽ cho s_3 kiểm_soát P_3 . Lúc_này , tên trộm sẽ chỉ_có thể nằm ở 1 trong 2 vùng của mặt_phẳng có biên là P_1\cup P_3 và P_2\cup P_3 .
+Nếu tên trộm nằm trong P_2\cup P_3 , thì ta có_thể bỏ_đi P_1 và giải_phóng cảnh_sát s_1 cho vòng tiếp_theo (Figure 5(b)) .
+Nếu tên trộm nằm ngoài P_1\cup P_3 , thì ta có_thể bỏ_đi P_2 và giải_phóng cảnh_sát s_2 (Figure 5(c)) .
+Trong cả hai trường_hợp , vùng an_toàn của kẻ_trộm bị thu_hẹp .
+Lặp_lại quá_trình đó cho_đến khi vùng an_toàn H = \emptyset và ta sẽ bắt_được trộm .
+Chuyển ý_tưởng trên thành một chứng_minh hình_thức cũng khá dài_dòng .
+Lí_do là không_phải lúc nào cũng tồn_tại các đường_đi P_2 , P_3 .
+Trong trình_bày ở trên thì ta luôn giả_sử P_2 , P_3 tồn_tại .
+Ta sẽ chứng_minh rằng nếu_không tồn_tại P_2 , P_3 thì đồ_thị sẽ có những cấu_trúc khác đặc_biệt hơn mà ta có_thể sử_dụng . Ta cần thêm một_số khái_niệm .
+Giả_sử x , y là hai đỉnh của đường_đi P .
+Ta kí_hiệu đường_đi con của P từ x tới y bởi Px , y .
+Nếu_P , Q là hai đường_đi , trong đó điểm cuối của P trùng với điểm đầu của Q , ta kí_hiệu P\circ_Q là đường_đi thu được bằng cách nối điểm cuối của P và điểm đầu của Q .
+Gọi_H là vùng an_toàn của trộm , i . e , nếu trộm cố_gắng đi_ra khỏi H thì nó bị bắt ngay_lập_tức .
+Ta sẽ luôn đảm_bảo H là một đồ_thị liên_thông .
+Ban_đầu H = G .
+Ta định_nghĩa hai cấu_hình cho người chơi \mathcalC như_sau : Không mất tính tổng_quát , ta giả_sử ban_đầu người chơi \mathcalC ở cấu_hình 1 vì ta có_thể di_chuyển tất_cả các cảnh_sát về cùng một đỉnh của đồ_thị .
+Ý_tưởng là ta sẽ tìm cách di_chuyển \mathcalC từ cấu_hình hiện_tại , sau một hữu_hạn bước , sang 1 trong 2 cấu_hình ở trên , sao_cho sau khi C đạt sang cấu_hình mới , vùng an_toàn H của tên trộm bị thu_hẹp .
+Ta xét hai trường_hợp : \mathcalC đang ở cấu_hình 1 .
+Gọi u là đỉnh mà_cả 3 cảnh_sát đang đứng và v là đỉnh kề với u trong H .
+Có hai hai trường_hợp con : Vùng màu xanh là vùng an_toàn của kẻ_trộm .
+\mathcalC đang ở cấu_hình 2 .
+Không mất tính tổng_quát , giả_sử trộm đang ở ngoài chu_trình P_1\cup P_2 .
+Gọi H_1 = H\setminus V(P_1\cup P_2) là thành_phần liên_thông chứa tên trộm sau khi xóa P_1 , P_2 ra khỏi vùng an_toàn hiện_tại H .
+Trước_hết ta xét trương hợp tồn_tại duy_nhất 1 đỉnh x \in P_1\cup P_2 có cạnh nối tới các đỉnh của H_1 .
+Ta sẽ di_chuyển s_3 về u và sau_đó di_chuyển s_1 , s_2 về x; ta quay trở_lại cấu_hình 1 với H = H_1 .
+(Không nhất_thiết vùng an_toàn phải bị thu_hẹp trong bước này vì ta đã quay_lại cấu_hình 1 và như_ta đã chỉ ra ở trên , nếu cảnh ở cấu_hình 1 thì sau_đó người chơi \mathcalC luôn thu_hẹp được H . ) Vùng màu xanh là vùng an_toàn của kẻ_trộm . Do_đó , ta có_thể giả_sử tồn_tại ít_nhất hai đỉnh trên P_1\cup P_2 có cạnh nối tới H .
+Như_vậy , tồn_tại ít_nhất một đường_đi từ u tới v chứa ít_nhất 1 cạnh của H .
+Gọi P_3 là đường_đi ngắn nhất trong số các đường_đi đó .
+Gọi x , y là đường_đi con của P_3 sao_cho x , y \in P_1\cup P_2 và không đỉnh nào khác của P_3 nằm trên P_1\cup P_2 .
+Ta xét vài trường_hợp : Chò trơi bắt trộm được đề_xuất trong bài báo của Aigner và Michael 1 .
+Trong bài báo đó , Aigner và Michael chứng_minh rằng 3 canh sát có_thể bắt_được trộm trên mọi đồ_thị_phẳng .
+Chứng_minh trình_bày ở đây lấy ý_tưởng từ_đó .
+Adreaae 2 mở_rộng kết_quả của Aigner và Michale cho .
+1 M .
+Aigner and F .
+Michael .
+Discrete_Applied_Mathematics 8 . 1 (1984) : 1-12 .
+2 T .
+Andreae .
+Journal of Combinatorial_Theory , Series_B 41 . 1 (1986) : 37-47 .
+, , , Trackback link : Powered by and

@@ -1,0 +1,94 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Thuật_toán BoyerMoore (BM) là một thuật_toán tìm_kiếm xâu khá hiệu_quả trong thực_tế , tuy_rằng về_mặt lý_thuyết , số phép so_sánh trong trường_hợp tồi nhất_là (không tốt hơn thuật_toán ) .
+Ta phát_biểu lại bài_toán tìm_kiếm xâu như_sau : Thuật_toán BM gồm hai bước chính , bắt_đầu_từ vị_trí của văn_bản : Như_vậy , thuật_toán BM sẽ đối_sánh và theo chiều từ phải sang trái của .
+Liệu so_sánh từ phải sang trái có tốt hơn từ trái sang phải_như trong thuật_toán trâu_bò ?
+Bằng cách áp_dụng thêm luật kí_tự tồi (bad character rule) và luật hậu_tố tốt , thuật_toán BM trong thực_tế nhanh hơn_hẳn thuật_toán trâu_bò .
+Trước_hết chúng_ta hãy xem_xét ví_dụ sau để hiểu luật này .
+Ví_dụ : và . Hi_vọng ví_dụ trên đã thuyết_phục bạn rằng đối_sánh thừ phải sang trái thực_sự nhanh hơn từ trái sang phải .
+Tại bước 1 và 3 trong ví_dụ trên , ta có_thể dịch lên đơn_vị ở mỗi bước chỉ dùng 1 phép so_sánh .
+Do_đó , ta có_thể suy ra trong trường_hợp tốt nhất , ta chỉ_cần phép so_sánh để tìm_ra trong . Luật kí_tự tồi sẽ cho_phép chúng_ta xác_định giá_trị của trong bước thứ 2 của thuật_toán BM .
+Tại mỗi bước đối_sánh một xâu con của với , kí_tự gọi_là nếu_không khớp xảy_ra tại kí_tự này .
+Trong ví_dụ trên , tại bước thứ 1 , kí_tự là kí_tự tồi .
+Hay trong bước 2 , kí_tự là kí_tự tồi .
+Mỗi lần bắt_gặp một kí_tự tồi , chúng_ta dịch theo luật sau : Dịch lên một_số đơn_vị sao_cho kí_tự tồi khớp với kí_tự là kí_tự xuất_hiện gần với nhất ( lớn nhất) .
+Nếu hoặc không tồn_tại kí_tự như_vậy thì ta dịch lên 1 . Áp_dụng luật kí_tự tồi vào bước thứ 2 của ví_dụ trên , () , ta dịch lên đơn_vị sao_cho khớp với vì_là kí_tự xuất_hiện gần với nhất và khớp với () .
+Do_đó , ta phải dịch lên đơn_vị .
+Để thực_thi luật kí_tự tồi , với mỗi kí_tự , gọi_là vị_trí xuất_hiện của kí_tự gần với nhất .
+Nếu , .
+Theo quy_luật kí_tự tồi , mỗi bước chúng_ta sẽ dịch một đoạn là : Thủ_tục dưới_đây cập_nhật bảng trong thời_gian .
+Giả mã của thuật_toán BM sử_dụng luật kí_tự tồi như_sau : Code của giả mã bằng C : Xét ví_dụ khi bạn đang so_sánh một đoạn của văn_bản nào_đó với , bạn sẽ thấy không khớp xảy_ra ở vị_trí () .
+Ta có kí_tự khớp với và gần nhất_là , theo luật kí_tự tồi , ta dịch lên đơn_vị vì .
+Tuy_nhiên ta có_thể dịch lên 3 đơn_vị để khớp với (thay vì ) .
+Luật kí_tự tồi mở_rộng phát_biểu như_sau : Dịch lên một_số đơn_vị sao_cho kí_tự tồi khớp với kí_tự xuất_hiện gần nhất bên trái của . Như_vậy , với mỗi gía_trị không khớp , ta phải tìm lớn nhất sao_cho : và dịch sao_cho . Gọi_là bảng 2 chiều trong đó tương_ứng với và vị_trí xảy_ra không khớp là trong mẫu .
+Thủ_tục cập_nhật bảng trong thời_gian ( nếu số kí_tự trong bảng_chữ_cái không nhiều) .
+Thuật_toán BM với luật kí_tự tồi mở_rộng như_sau : Code của giả mã bằng C : Chúng_ta có_thể tiết_kiệm bộ_nhớ bằng cách thay bảng bằng danh_sách liên_kết , mỗi danh_sách cho một kí_tự của và mỗi danh_sách của một kí_tự lưu các_vị trí xuất_hiện của kí_tự đó trong , sắp_xếp theo chiều giảm_dần của vị_trí .
+Bằng phân_tích khấu_trừ như trong , chúng_ta cũng có_thể chứng_minh rằng lưu_trữ bằng danh_sách liên_kết như_vậy tối_đa sẽ mất thời_gian thuật_toán với mảng hai chiều (không tính thời_gian khởi tạo ) .
+Một_cách khác là chúng_ta cũng có_thể thay_thế danh_sách liên_kết bằng các cấu_trúc khác để tăng thời_gian tìm_kiếm .
+Ở đây mình không đi_sâu vào các vấn_đề như_vậy .
+Cũng_như luật kí_tự tồi , thời_gian tiệm_cận của thuật_toán BM trong trường_hợp xấu nhất vẫn không_đổi và bằng . Chỉ sử_dụng luật kí_tự tồi không đủ để giảm thời_gian tiệm_cận của thuật_toán BM và thực_tế , thuật_toán vẫn chưa đủ nhanh và khó mở_rộng một_cách hiệu_quả ra trường_hợp tìm tất_cả sự xuất_hiện của trong .
+Ví_dụ khi bạn muốn tìm tất_cả các_vị trí xuất_hiện của xâu ( kí_tự ) trong ( kí_tự ) .
+Kể_cả áp_dụng luật kí_tự tồi mở rông , thời_gian chaỵ vẫn là .
+Một luật nữa được đề_xuất để cải_tiến thuật_toán đó là luật hậu_tố tốt (good suffix rule) .
+Phiên_bản đầu_tiên của luật hậu_tố tốt vẫn có thời_gian tồi nhất .
+Phiên_bản mình trình_bày ở đây bao_gồm cả cải_tiến của Galil 5 có thời_gian trong trường_hợp tồi nhất .
+Luật hậu_tố tốt chúng_ta phát_biểu trong phần này mạnh hơn phát_biểu gốc cuả thuật_toán Boyer-Moore 1 .
+Phát_biểu gốc của thuật_toán vẫn chưa đủ để chứng_minh thời_gian trong trường_hợp tồi nhất_là tuyến_tính .
+Trước_khi đi_sâu vào phát_biểu và thực_thi luật hậu_tố tốt , mình recommend bạn_đọc trước vì thực_thi luật này sẽ sử_dụng hàm trong bước tiền xử_lí .
+Luật hậu_tố tốt khá dài và khó_hiểu .
+Giả_sử khi so_sánh , một xâu con của văn_bản khớp với hậu_tố của mẫu , nhưng kí_tự liền kề bên trái của không khớp với kí_tự tương_ứng trong .
+Tìm một xâu con (nếu có) phải nhất (right most-- gần với kí_tự cuối nhất) của thỏa_mãn : không_phải là hậu_tố của và kí_tự liền kề bên trái của khác với kí_tự liền kề bên trái của hậu_tố của .
+Dịch sao_cho khớp với trong .
+Nếu_không tồn taị , dịch một_số lượng ít_nhất sao_cho : Kí_tự đầu_tiên của vượt_quá kí_tự đầu_tiên của và tiền_tố của khớp với hậu_tố của .
+Nếu_không thể_dịch để thỏa_mãn điều_kiện đó , dịch lên đơn_vị Trường_hợp ta tìm tất_cả sự xuất_hiện của trong , sau khi đã tìm_thấy , ta dịch một lượng ít_nhất (> 0) sao_cho tiền_tố của khớp với hậu_tố của trong .
+Trong trường_hợp không_thể dịch như_vậy , dịch lên đơn_vị . Có_lẽ chỉ đọc luật thôi đã mệt rồi .
+Nếu bạn_đọc một_lần chưa hiểu thì . . . .
+đọc lại vậy .
+Xét ví_dụ sau : và khi so_sánh với , nhận_thấy , theo , ta có_thể dịch hoặc đơn_vị để khớp với .
+Tuy_nhiên , theo , ta dịch sẽ dịch đơn_vị . Xét một ví_dụ khác , và , khi so_sánh với , nhận_thấy .
+không tồn_tại trong trường_hợp này , theo ta dịch ít_nhất đơn_vị và theo , ta sẽ dịch đơn_vị .
+Trường_hợp muốn tìm tất_cả sự xuất_hiện của trong khá dễ_hiểu và có_lẽ không cần thêm ví_dụ . Trước_hết ta chứng_minh luật hậu_tố tốt không bỏ_sót bất_kì kí_tự nào .
+Giả_sử thẳng_hàng với trước_khi luật hậu_tố tốt dịch sang vị_trí mới để thẳng_hàng với .
+Giả_sử tồn_tại sao_cho : Nếu tồn_tại , sẽ tồn_tại là xâu con của gần hơn hiện_tại khi thẳng_hàng với hoặc tồn_tại một tiền_tố dài hơn của khớp với hậu_tố của .
+Do_đó , luật hậu_tố tốt sẽ dịch sao_cho thẳng_hàng với thay_vì . Trước_hết để_ý luật hậu_tố tốt phát_biểu chỉ phụ_thuộc vào , do_đó ta có_thể áp_dụng tiền xử_lí để thực_thi luật này (có gì đó hơi giống ) .
+Nhận_xét thấy luôn là một hậu_tố của .
+Trước_hết ta thực_thi và trong luật hậu_tố tốt .
+Gọi_là vị_trí lớn nhất nhỏ hơn sao_cho xâu khớp với hậu_tố của và là vị_trí lớn nhất nhỏ hơn sao_cho xâu khớp với hậu_tố của và kí_tự liền kề bên trái của hậu_tố khớp trong khác .
+Ví_dụ : , Nếu ta đã tính được và với mọi , theo trường_hợp (1) và (2) của luật hậu_tố tốt , ta sẽ dịch một đoạn là ( là vị_trí ngay trước vị_trí xảy_ra không khớp) .
+Ta sẽ tìm cách tính và trong thời_gian .
+Với mỗi , gọi_là chiều_dài của hậu_tố dài nhất của khớp với hậu_tố của .
+Nhắc_lại : với một xâu , hàm Z của có là chiều_dài của xâu con dài nhất của bắt_đầu_từ và khớp với một tiền_tố của .
+Do_đó gọi_là xâu đảo_ngược của , ta có_thể tính được thông_qua Z của như_sau : Ta có quan_hệ sau giữa và như_sau : và là chỉ_số lớn nhất sao_cho : Lemma 2 có_thể được chứng_minh trực_tiếp từ định_nghĩa của và coi_như bài_tập cho bạn_đọc .
+Ta có thuật_toán sau tính : Code của giả mã bằng C : Bây_giờ chúng_ta chỉ_cần phải thực_hiện và trong luật hậu_tố tốt và luật dịch khi ta muốn tìm tất_cả các_vị trí xuất_hiện của trong .
+Gọi_là chiều_dài của hậu_tố dài nhất (có thể có ) của khớp với một tiền_tố của .
+Nếu_không tồn_tại hậu_tố như_vậy , .
+Dựa vào định_nghĩa của , ta có là số_lớn nhất sao_cho .
+Ta có giả mã tính trong thời_gian như_sau : Code của giả mã bằng C : Tổng_kết lại , gọi_là kí_tự khớp cuối_cùng khi so_sánh với một xâu con của () .
+Ta sẽ dịch một lượng bằng : Giả mã của thuật_toán Boyer-Moore đầy_đủ với luật kí_tự tồi và luật hậu_tố tốt : Code của giả mã bằng C : Nếu mẫu không xuất_hiện trong văn_bản , Knuth , Morris and Pratt 4 chứng_minh rằng thời_gian tìm_kiếm của thuật_toán Boyer-Moore với luật kí_tự tồi và hậu_tố tốt là .
+Phiên_bản đầu_tiên của thuật_toán Boyer-Moore 1 tìm tất_cả sự xuất_hiện của trong có thời_gian trong trường_hợp tồi nhất_là .
+Galil 5 sửa_đổi thuật_toán Boyer-Moore tìm tất_cả sự xuất_hiện của trong thời_gian .
+Ở giả mã trên mình chỉ tìm một sự xuất_hiện của .
+Code tìm sự tất_cả sự xuất_hiện của được đính kèm ở dưới (mình sử_dụng code này cho bài_toán trên spoj) .
+Trong trường_hợp chỉ sử_dụng luật kí_tự tồi với văn_bản đầu_vào là các kí_tự được sinh ngẫu_nhiên , thời_gian của thuật_toán Boyer-Moore là (sub-linear) .
+Trong thực_tế , thuật_toán Boyer-Moore cũng có thời_gian sub-linear , do_đó , thuật_toán này được ưu_tiên sử_dụng hơn các thuật_toán khác .
+Code : , . 1 Boyer , Robert_S . , and J .
+Strother_Moore .
+.
+Communications of the ACM 20 . 10 (1977) : 762-772 .
+2 Gusfield , Dan .
+.
+Cambridge university press , 1997 .
+3 Sedgewick , R . , Wayne , K .
+(2011) .
+.
+Addison-Wesley .
+ISBN : 978-0-321-57351-3 4 Knuth , Donald_E . , James_H .
+Morris , Jr , and Vaughan_R .
+Pratt .
+Fast pattern matching in strings .
+SIAM journal on computing 6 . 2 (1977) : 323-350 .
+5 Galil , Zvi .
+.
+Automata , Languages and Programming .
+Springer_Berlin_Heidelberg , 1978 .
+241-250 .
+, , Trackback link : Powered by and

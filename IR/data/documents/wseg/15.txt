@@ -1,0 +1,50 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Trong bài này chúng_ta sẽ thảo_luận bài_toán xây_dựng cây nhị_phân tìm_kiếm tối_ưu .
+Chúng_ta cũng thảo_luận giải_thuật cuả Knuth trong bài_toán này .
+Ý_tưởng của Knuth sau_này được Yao mở_rộng với trường_hợp Bất_Đẳng_Thức Hình_Chữ_Nhật (Quadrangle Inequality) để cải_tiến quy_hoạch_động , một kĩ_thuật mà mình sẽ giới_thiệu ở phần sau . Cây nhị_phân tìm_kiếm (binary search tree) là một cây nhị_phân có tính_chất sau : Ví_dụ : Ta có mảng và mảng tần_số tương_ứng .
+Một trong số các cây nhị_phân tìm_kiếm hợp_lệ như trong hình sau : Các số trong hình_vuông nhỏ là tần_số tìm_kiếm , các số trong hình_tròn là khóa tìm_kiếm .
+Ta có_thể thấy : Như_vậy tổng_số phép so_sánh là .
+Có_thể kiểm_tra (bằng cách thử xây_dựng các cây nhị_phân tìm_kiếm hợp_lệ khac nhau) rằng cây nhị_phân trong hình tương_ứng với và trong ví_dụ có tổng_số_lượng các phép so_sánh là nhỏ nhất .
+Qua ví_dụ trên có_thể rút ra số lần so_sánh thực_hiện ở nút gốc không phụ_thuộc vào cách chọn khóa cho nút gốc và luôn là .
+Ta sẽ phát_triển công_thức đệ_quy cho bài_toán này .
+Gọi_là số phép so_sánh của cây nhị_phân tìm_kiếm tối_ưu cho mảng .
+Nếu là khóa của nút gốc , ta có : Vì ta không biết nút nào_là nút gốc , ta có_thể thử tất_cả các lựa_chọn có_thể có cho nút gốc .
+Do_đó ta có : Gọi_là số phép so_sánh của cây nhị_phân tìm_kiếm tối_ưu cho mảng con .
+Đặt .
+Ta có : Như các bài_toán khác , quy_hoạch_động trong bài_toán nay quy về cập_nhật các phần_tử của mảng .
+Tuy_nhiên , một điểm cần chú_ý ở đây chính là thứ_tự cập_nhật các phần_tử của mảng .
+Trong hình trên , các phân_tử của mảng tô_màu xanh là các phần_tử và được khởi tạo .
+Giả_sử_ta muốn cập_nhật phần_tử được tô_màu đen của mảng (ảnh ngoài_cùng bên trái) , ta phải chắc_chắn rằng các phần_tử được tô_màu đỏ đã được cập_nhật trước đó .
+Do_đó ta có_thể có 3 cách cập_nhật bảng (3 hình với các mũi tên) như_trên hình trên .
+Các mũi_tên chỉ thứ_tự các phần_tử được cập_nhật .
+Trong giả mã dưới_đây , bảng được cập_nhật theo hình thứ nhất (cập nhật kiểu đường chéo) .
+Mũi_tên xanh sẽ tương_ứng với vòng_lặp ngoài_cùng của giả mã .
+Các kiểu cập_nhật khác coi_như bài_tập cho bạn_đọc .
+Hàm tính .
+Hàm () tính theo công_thức đệ_quy .
+Ta lưu thêm mảng trong đó lưu lại gốc của cây nhị_phân tìm_kiếm tối_ưu của mảng con .
+Mảng có_thể được sử_dụng để truy vết in ra cây nhị_phân tìm_kiếm tối_ưu .
+Code_bằng C của giả mã .
+Code đầy_đủ của thuật_toán được cho ở cuối bài . Bảng có_thể được tính bằng quy_hoạch_động trong thời_gian dựa vào công_thức : .
+Giả mã như_sau : Code_bằng C của giả mã : Giả mã của hàm () .
+Code_bằng C của giả mã : Thời_gian để cập_nhật mảng trong hàm là .
+Mỗi phần_tử của mảng được cập_nhật trong thời_gian (có thể phân_tích chặt hơn nhưng thời_gian tiệm_cận vẫn không đổi) .
+Như_vậy thuật_toán có thời_gian tính là .
+Thuật_toán cần hai mảng 2 chiều và kích thướng .
+Như_vậy bộ_nhớ cần_dùng là .
+Hiện_tại chưa có thuật_toán nào tính chính_xác cây nhị_phân tìm_kiếm tối_ưu mà bộ_nhớ .
+Với ví_dụ trên , mảng đầu_ra của thuật_toán là : \beginbmatrix 122344 \\ 022344 \\ 003444 \\ 000445 \\ 000056 \\ 000006 \endbmatrix Với ví_dụ trên , ta quan_sát thấy mảng đầu_ra có hàng và cột là các dãy tăng dần .
+Tính_chất này không_phải ngãu nhiên mà đúng_với mọi và được chứng_minh lần đầu_tiên bởi .
+Knuth sử_dụng tính_chất này để giảm thời_gian của thuật_toán quy_hoạch_động xuống còn .
+Mỗi mảng con có_thể có nhiều hơn một cây nhị_phân tìm_kiếm tối_ưu .
+Trong số các cây nhị_phân tìm_kiếm tối_ưu đó , chọn cây có gốc có khóa lớn nhất (đồng nghĩa với trong số các gốc của các cây nhị_phân tìm_kiếm tối_ưu , có chỉ_số trong mảng lớn nhất) .
+Gọi_là gốc đó .
+Nếu để_ý kĩ thủ_thục () với điều_kiện so_sánh : tmp (thay vì tmp ) , thủ_tục đó trả_lại cây của mảng có gốc lớn nhất .
+Knuth chứng_minh bổ_đề sau : Mình sẽ chứng_minh bổ_đề này trong bài viết thảo_luận các kĩ_thuật nâng_cao áp_dụng trong quy_hoạch_động .
+Do_đó trong thủ_tục () , thay_vì duyệt từ đến để tìm gốc , ta chỉ_cần duyệt từ đến .
+Giả mã như_sau : Code_bằng C của giả mã : Các thủ_tục khác không thay_đổi , ta chỉ việc thay_thế thủ_tục bằng Ta có bổ_đề sau : Với mỗi , số thao_tác thuật_toán thực_hiện là : Do_đó , tổng_số thao_tác thực_hiện của thuật_toán là : Code : , .
+2 Jeff_Erickson , , UIUC .
+3 Nagaraj , S .
+V .
+"Optimal binary search trees . " Theoretical_Computer_Science 188 . 1 (1997) : 1-44 .
+, , , , , Trackback link : on Great article thank you for sharing . Powered by and

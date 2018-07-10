@@ -1,0 +1,65 @@
+Nguồn : Achoums blog Có_thể bạn đã nghe đến cụm_từ Machine_Learning (hay Data_Mining , Big_Data , Data_Science , . . . ) nhưng bạn chưa bao_giờ hiểu ý_nghĩa thực_sự của chúng là gì .
+Có_thể tất_cả những gì bạn biết là "À ! Đó là những thuật_ngữ trong Toán_học và Tin học" , và . . . thế_là hết .
+Có_thể bạn phải sử_dụng những phần_mềm dựa trên Machine_Learning trong công_việc nhưng với bạn , chúng hoạt_động như_là ma_thuật vậy .
+Nếu bạn vẫn đang còn tò_mò , thì Machine_Learning được dùng trong hầu_hết mọi lĩnh_vực .
+Ví_dụ , Machine_Learning được sử_dụng bởi các ngân_hàng để phát_hiện gian_lận và dự_đoán rủi_ro , được dùng bởi nhà quản_lí email để phát_hiện thư rác .
+Các bác_sĩ dùng Machine_Learning để hỗ_trợ chẩn_đoán , các nhà sinh_học ứng_dụng Machine_Learning trong việc phân_tích DNA .
+Chúng_ta cũng đang tiếp_xúc với nó hàng_ngày khi Google/Bing/Yahoo đều sử_dụng Machine_Learning để xử_lý mỗi khi bạn gõ lệnh tìm_kiếm .
+Mục_tiêu của tác_giả với chuỗi bài viết này là giúp các bạn có_một hiểu_biết sơ_lược về Machine_Learning và một cái nhìn trực_quan về cách mà kỹ_thuật này hoạt_động .
+Thay_vì nêu ra một đống lý_thuyết , bài viết này sẽ chủ_yếu dựa trên các ví_dụ .
+Để đọc hiểu bài viết này , bạn không cần phải là một nhà_khoa_học máy tính; thậm_chí , bạn không cần phải_biết bất_cứ điều gì liên_quan đến máy_tính và toán_học .
+Chuỗi bài viết trong chủ_đề này gồm có 3 bài .
+Bài viết đầu_tiên sẽ giới_thiệu về một trong những nhiệm_vụ chính của Machine_Learning : Phân_loại ( Classification ) .
+Bài viết thứ_hai trình_bày và minh_hoạ hai kỹ_thuật quan_trọng của Machine_Learning được áp_dụng trong bài_toán phân_loại : một trong số đó tuy rất đơn_giản nhưng được sử_dụng rộng_rãi , cái còn_lại là một kỹ_thuật rất mới .
+Cuối_cùng , bài viết thứ_ba sẽ nói về cách các nhà_khoa_học máy_tính đánh_giá chất_lượng của một kỹ_thuật trong Machine_Learning .
+Định_nghĩa Thật_sự không dễ để có_thể đưa_ra một định_nghĩa chính_xác của Machine_Learning .
+Nói một_cách nôm_na , Machine_Learning là các chương_trình giúp đưa_ra dự_đoán hoặc giúp người dùng hiểu về các hiện_tượng phức_tạp .
+Machine_Learning là một chủ_đề rộng_lớn với rất nhiều chủ_đề con .
+Thay_vì cố_gắng đưa_ra những định_nghĩa chung_chung , bài viết sẽ chỉ tập_trung vào một chủ_đề duy_nhất : Phân_loại (Classification) .
+Bài_toán phân_loại chỉ là một trong rất nhiều chủ_đề của Machine_Learning , nhưng là một trong những chủ_đề quan_trọng nhất .
+Khi người_ta nói đến Machine_Learning , thông_thường họ nói đến bài_toán phân_loại (nếu họ không chỉ rõ chủ_đề khác) .
+Phân_loại (Classification) Ý_tưởng của bài_toán phân_loại bắt_đầu như_sau : Chúng_ta có_một danh_sách các quan_sát ( observation ) .
+Một quan_sát là một khái_niệm chung_chung .
+Với_Machine_Learning , một quan_sát thường là sự mô_tả một đối_tượng trong một trạng_thái nào_đó .
+Để hiểu rõ hơn , hãy xét một ví_dụ rất phổ_biến trong Machine_Learning : hoa diên vĩ (Iris flowers) .
+Giả_sử một quan_sát là sự mô_tả một bông_hoa .
+Với mỗi bông_hoa , chúng_ta có bốn thông_số : độ dày và chiều_dài của đài_hoa (sepal) và cánh_hoa (petal) .
+Trên thực_tế , ví_dụ về hoa diên vĩ nổi_tiếng với cái tên the Iris dataset và đây là bộ dữ_liệu được sử_dụng rất rộng_rãi trong giới nghiên_cứu Machine_Learning để tìm_hiểu về các thuật_toán phân_loại .
+Bốn thông_số của mỗi bông_hoa được gọi_là các thuộc_tính ( attributes ) .
+Trong_Machine_Learning , một quan_sát đơn_thuần chỉ là một danh_sách các thuộc_tính .
+Khi so_sánh các quan_sát , thực_ra chúng_ta so_sánh các thuộc_tính .
+Ví_dụ : "Bông hoa này có cánh_hoa dài hơn bông_hoa kia" .
+Các thuộc_tính có_thể đại_diện cho những thứ rất khác_nhau .
+Ví_dụ : độ_dài của máy_bay , thời_gian của cơn bão , nhiệt_độ của căn phòng , màu_sắc của bức tường , . . .
+Nói_chung , các thuộc_tính thường được chia thành hai loại : thuộc_tính dạng số (numbers) và thuộc_tính dạng thể_loại (categories) .
+Sự khác_biệt của hai loại thuộc_tính này không quá nghiêm_ngặt , nhưng thông_thường , khi thuộc_tính có_thể so_sánh được ( gt; hoặc lt; ) , ta coi nó là thuộc_tính dạng số (ví dụ như độ_dài của cánh_hoa diên vĩ) , ngược_lại chúng_ta coi nó là thuộc_tính dạng thể_loại (ví dụ như màu_sắc của một bông_hoa hay chủng_loại của một chú chó) .
+Ngoài_ra , với mỗi quan_sát (hay với mỗi bông_hoa diên vĩ) , chúng_ta có_một lớp ( class ) .
+Một lớp là một thông_tin bổ_sung về một quan_sát .
+Trong ví_dụ về hoa diên vĩ , ta giả_sử rằng lớp của một bông_hoa diên vĩ chính là loài của nó .
+Trong ví_dụ này , chúng_ta chỉ quan_tâm ba loài hoa diên vĩ : Setosa , Versicolour và Viginica .
+Tóm_lại , chúng_ta có_một tập_hợp các quan_sát (các bông_hoa diên vĩ) .
+Với mỗi quan_sát , chúng_ta có_một số các thuộc_tính và một lớp .
+Bảng dưới_đây minh_hoạ một_tập hợp các quan_sát trong ví_dụ về hoa diên vĩ .
+Một bảng kiểu này thường được gọi_là một dataset hay bộ dữ_liệu .
+Giả_sử rằng chúng_ta có 150 quan_sát như_vậy (tương ứng với 150 bông_hoa diên vĩ) .
+Tuy_nhiên , với quan_sát cuối_cùng (hay bông_hoa diên vĩ cuối cùng) , chúng_ta không biết lớp của nó là gì (hay không biết bông_hoa thuộc loài gì) .
+Chúng_ta có_thể tự_hỏi : Liệu loài hoa có liên_quan đến kích_thước của cánh_hoa và đài_hoa không ?
+Có_chăng một loài hoa có cánh_hoa dài hơn so_với các loài diên vĩ khác ?
+Nói_cách_khác , liệu chúng_ta có_thể sử_dụng 149 bông_hoa diên vĩ mà chúng_ta đã biết lớp của nó , và tìm_ra lớp của bông_hoa cuối_cùng không ?
+Đó chính_xác là bài_toán phân_loại .
+Diễn_đạt theo cách khác , bài_toán phân_loại có_thể mô_tả như_sau : Giả_sử chúng_ta có_một tập_hợp các quan_sát được đánh nhãn (hay các quan_sát mà chúng_ta đã biết lớp của nó) và một quan_sát chưa được đánh nhãn .
+Làm thế_nào để tìm_ra lớp của quan_sát đó ?
+Trong thực_tế , dĩ_nhiên các kỹ_thuật phân_loại không chỉ được dùng để phân_loại hoa .
+Các ngân_hàng sử_dụng nó để phân_loại khách_hàng (ví dụ : liệu khách_hàng có hoàn_lại nợ tín_dụng hay_không ? ) .
+Các bệnh_viện ứng_dụng nó để phân_loại bệnh_nhân , các công_ty bảo_hiểm dùng trong việc phân_loại các thân_chủ của mình . . .
+Phân_loại còn có_thể được sử_dụng ở một_mức độ sâu_sắc hơn .
+Ví_dụ , các loại camera hiện_đại dùng classification để nhận_diện khuôn_mặt , dịch_vụ bưu_điện sử_dụng nó trong việc nhận_dạng địa_chỉ viết_tay .
+Các thương_gia dự_đoán thị_trường bằng các thuật_toán phân_loại , trong_khi những nhà khí_tượng sử_dụng nó để dự_báo thời_tiết .
+Điểm khác_biệt chính giữa những ví_dụ trên chính là các thuộc_tính .
+Với khách_hàng của các ngân_hàng , thuộc_tính là thu_nhập hàng tháng , điểm tín_dụng , số lần sử_dụng thẻ gần_đây , . . .
+Với bệnh_nhân thì thuộc_tính là giới_tính , nhịp tim , huyết_áp , . . .
+Với các bức ảnh , thuộc_tính chính là giá_trị màu của từng điểm_ảnh .
+Trong bài viết tiếp_theo , tác_giả sẽ trình_bày cách giải bài_toán phân_loại .
+Chính_xác hơn , tác_giả sẽ trình_bày hai thuật_toán phân_loại được sử_dụng rộng_rãi mà bất_cứ nhà nghiên_cứu về Machine_Learning nào cũng biết .
+Hẹn gặp lại các bạn trong bài viết tiếp_theo .
+

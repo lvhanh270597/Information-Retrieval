@@ -1,0 +1,98 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Cho đồ_thị , với trọng số_không âm .
+Gọi_là hai tập đỉnh rời nhau , i . e , .
+Ta sẽ sử_dụng để kí_hiệu tập các cạnh của đồ_thị có đầu_mút trong và đầu_mút còn_lại trong .
+Trọng số của tập cạnh , kí_hiệu là , được định_nghĩa_là tổng_trọng số của các cạnh trong : Gọi_là một_tập đỉnh con của đồ_thị .
+Một_lát cắt tương_ứng với là tập cạnh .
+Bài_toán đặt ra cho chúng_ta là thiết_kế thuật_toán hiệu_quả để tìm lát cắt cực_tiểu .
+Bài viết này giới_thiệu giải_thuật Stoer-Wagner tìm lát cắt cực_tiểu trong thời_gian .
+Theo mình , đây là một thuật_toán khá đơn_giản (chứng minh tính đúng_đắn hơi phức tạp) và cần phải được phổ_biến rộng_rãi hơn_nữa .
+Ta có_thể áp_dụng bài_toán luồng cực_đại_để tìm lát cắt cực_tiểu .
+Cụ_thể , với mỗi cặp , ta sẽ tìm một_lát cắt cực_tiểu trong đồ_thị áp_dụng luồng cực_đại .
+Thuật_toán nhanh nhất tìm (do đó lắt cắt cực tiểu) là .
+Bằng cách thử tất_cả các cặp (có cặp) và lấy min , ta có_thể tìm được lắt cắt cực_tiểu trong thời_gian .
+Ta có_thể giảm thuật_toán này xuống còn bằng cách gộp đỉnh , như thuật_toán trình_bày dưới_đây .
+Tuy_nhiên , độ phức_tạp vẫn khá lớn .
+Ngoài_ra thực_thi luồng trong thời_gian không_hề đơn_giản .
+Thuật_toán Stoer-Wagner về cơ_bản có nhiều điểm tương_đồng với tìm cây khung nhỏ nhất .
+Đặc_biệt trong cách thực_thi của thuật_toán này , ta có_thể áp_dụng nhiều nhận_xét trong các thực_thi thuật_toán Prim .
+Do_đó , mình khuyến_khích (nhưng không bắt buộc) bạn_đọc xem_lại thuật_toán Prim trước_khi đọc phần thực_thi thuật_toán . Gọi_là một cây (không nhất_thiết là cây khung) trong đồ_thị .
+Gọi_là một đỉnh nằm trong .
+Độ (stickiness) của với , kí_hiệu là , được định_nghĩa_là tổng_trọng số của các cạnh từ tới các đỉnh trong : Thuật_toán Stoer-Wagner thực_hiện theo từng pha (phase) độc_lập với_nhau .
+Mỗi pha thuật_toán sẽ tìm một cây khung của đồ_thị bằng cách liên_tục thêm đỉnh vào cây khung hiện_tại (điểm này giống thuật_toán Prim) .
+Trong số các đỉnh chưa được thêm vào cây , ta sẽ thêm đỉnh có độ kết_dính lớn nhất với cây hiên tại .
+Trong giả mã dưới_đây , mảng sẽ là mảng độ kết_dính , i . e , với là cây khung xây_dựng trong bước hiện_tại .
+Thủ_tục trả_lại đỉnh có độ kết_dính với lớn nhất trong số các đỉnh nằm trong (ta sẽ mô_tả thủ_tục này kĩ hơn trong phần thực_thi thuật toán) .
+Hai đỉnh trong giả mã trên là hai đỉnh được thêm vào cây .
+Theo định_nghĩa chính là độ kết_dính của với cây tại bước cuối_cùng , do_đó : Như_vậy , thủ_tục () sẽ trả về tổng_trọng số của các cạnh đi_ra từ , trong đó là đỉnh cuối_cùng trong một pha của thuật_toán .
+Thủ_tục sẽ gộp hai đỉnh thành một đỉnh mới .
+Gọi_là đỉnh mới sau khi gộp .
+Với mỗi , ta sẽ gán : Trong phương_trình , ta coi nếu cạnh không nằm trong .
+Tương_tự như_vậy với .
+Nếu tồn_tại cạnh trong đồ_thị , ta sẽ xóa_cạnh này sau phép gộp .
+Ví_dụ gộp hai cạnh được minh_họa trong Figure 1 .
+Gộp hai đỉnh trong hình (a) thành một đỉnh trong hình (b) . Thủ_tục () sẽ trả_lại nhỏ nhất trong tất_cả các pha của thuật_toán .
+Chú_ý , mỗi pha_ta sẽ gộp hai đỉnh lại làm một , do_đó , tổng_số pha tối_đa là .
+Trong các phân_tích dưới_đây , ta sẽ chứng_minh rằng giá_trị nhỏ nhất này chính là trọng số của lát cắt nhỏ nhất của .
+Việc tìm lát cắt không khó , vì ta chỉ_cần ghi lại lát cắt tương_ứng với giá_trị nhỏ nhất đó .
+Trước_khi đi_sâu vào chi_tiết phân_tích thuật_toán , ta sẽ thử xem thuật_toán thực_hiện như_thế nào với đồ_thị trong ví_dụ sau .
+Hình (a) là đồ_thị đầu_vào .
+Hình (b , c , d , e , f) , mỗi hình tương_ứng với một pha .
+Giá_trị trả về của mỗi pha tương_ứng là .
+Do_đó , giá_trị cực_tiểu trong tất_cả các pha là , và đây cũng chính là trọng số của lát cắt cực_tiểu của đồ_thị . Điểm kì_diệu của thuật_toán Stoer-Wagner chính là mỗi pha của thuật_toán sẽ trả_lại trọng số của lát cắt cực_tiểu giữa và ( là hai đỉnh cuối_cùng được xét trong mỗi pha) .
+Giả_sử Lemma 1 là đúng (ta chứng_minh sau) , ta có : Gọi_là lát cắt cực_tiểu của đồ_thị .
+Ta xét pha hiện_tại của thuật_toán .
+Nếu và thì theo Lemma 1 , pha hiện_tại sẽ trả về lát cắt cực_tiểu giữa hai đỉnh và .
+Do_đó , lát cắt đó cũng là lát cắt cực_tiểu của đồ_thị .
+Nếu cả hai đỉnh đều thuộc (trường hợp cả hai đỉnh thuộc tương tự) , ta có_thể gộp hai đỉnh này vào làm một đỉnh và tìm lát cắt cực_tiểu của đồ_thị sau khi gộp .
+Do_đó , giá_trị lát cắt cực_tiểu của đồ_thị sau khi gộp cũng chính là giá_trị lát cắt cực_tiểu của đồ_thị ban_đầu .
+Pha tiếp_sau đó của thuật_toán Stoer-Wagner đi tìm chính lát cắt này .
+Do_đó , thuật_toán Stoer-Wagner trả về giá_trị của lát cắt cực_tiểu của đồ_thị .
+Gọi_là một_lát cắt giữa và .
+Ta sẽ chứng_minh , bằng quy_nạp , lát cắt này có trọng số_lớn hơn trọng số của lát cắt (chính là ) .
+Gọi_là thứ_tự các đỉnh được thêm vào trong thủ_tục () .
+Ta có và .
+Gọi .
+Đỉnh được gọi_là (critical vertex) nếu và không_cùng nằm trong .
+Gọi và .
+Gọi_là tập các cạnh của lát cắt , sao_cho đầu_mút của các cạnh này chỉ nằm trong .
+Một_cách hình_thức , ta có : Ta sẽ chứng_minh , với mọi đỉnh tới_hạn : Chú_ý là một đỉnh tới_hạn , và .
+Do_đó , .
+Bất_đẳng_thức sẽ tương_đương với , đó là dpcm .
+Trong đoạn dưới_đây , ta sẽ tập_trung chứng_minh bằng quy_nạp . Gọi_là đỉnh tới_hạn đầu_tiên .
+Nếu , phải là tập_rỗng do là điểm tới_hạn đầu_tiên .
+Do_đó , .
+Tương_tự , Nếu , và .
+Như_vậy , chính là các cạnh .
+Do_đó , bất_đẳng_thức đúng . Gọi < là hai số trong đó là hai đỉnh tới_hạn liên_tiếp nhau , i . e , với mọi < < thì không_phải là đỉnh tới_hạn .
+Ta xét trường_hợp (trường hợp tương_tự và coi_như bài_tập cho bạn đọc) .
+Trong trường_hợp này , .
+Do , tất_cả các đỉnh đều thuộc .
+Do_đó , ta suy ra : .
+Ta có (xem thêm Figure 3) : Hình minh_họa chứng_minh bất_đẳng_thức . Ta sẽ từng bước kiểm_tra .
+Ba (bất) đẳng_thức đầu_tiên bạn_đọc có_thể dễ_dàng kiểm_tra .
+Bất_đẳng_thức thứ_tư là do là đỉnh có độ kết_dính lớn nhất tại bước .
+Bất_đẳng_thức thứ_năm là do quy_nạp trên .
+Chú_ý ở đây .
+Bất_đẳng_thức thứ 7 cũng dễ_dàng kiểm_tra .
+Từ_đó ta suy ra dpcm . Phần này có nhiều điểm tương_đồng với thuật_toán Prim .
+Mình sẽ ôn lại một_chút về thực_thi thuật_toán Prim tại đây .
+Ta có hai cách thực_thi thuật_toán Prim , một_cách trong thời_gian và cách khác trong thời_gian sử_dụng .
+Nếu thay Heap nhị_phân bằng , ta có giảm thời_gian_thực thi thuật_toán Prim xuống còn .
+Do_đó , mỗi pha của thuật_toán Stoer-Wagner , ta có_thể thực_thi trong thời_gian sử_dụng Fibonacci_Heap .
+Do thuật_toán Stoer-Wagner thực_hiện trong tối_đa pha , ta suy ra : Sau_đây , mình sẽ minh_họa một_cách thực_thi với thời_gian , mỗi pha thực_hiện trong thời_gian .
+Cách thực_thi này hoàn_toàn khớp với Theorem 2 khi đồ_thị đầu_vào là một đồ_thị dầy , i . e , .
+Gọi lần_lượt là số đỉnh , cạnh của đồ_thị đầu_vào .
+Ta sẽ dùng ma_trận kề để biểu_diễn đồ_thị , kí_hiệu là , trong đó Do mỗi pha_ta được phép sử_dụng thời_gian , ta sẽ được phép thực_thị thi mỗi vòng_lặp trong thủ_tục () với thời_gian .
+Như_vậy , ta có_thể đơn_giản thực_thi bằng cách duyệt qua toàn_bộ mảng và tìm đỉnh không nằm trong có_giá trị lớn nhất .
+Để thực_thi thủ_tục , ta sẽ gộp vào .
+Cụ_thể , ta sẽ đánh_dấu là đỉnh đã bị xóa (sử dụng một mảng boolean) và cập_nhật lại trọng số của các cạnh_kề với : Code_C : Code đầy_đủ : . 1 M .
+Stoer and F .
+Wagner .
+European_Symposium on Algorithms .
+Springer_Berlin_Heidelberg , 1994 .
+2 H .
+Nagamochi and T .
+Ibaraki .
+SIAM_Journal on Discrete_Mathematics 5 . 1 (1992) : 54-66 .
+, , , Trackback link : Powered by and

@@ -1,0 +1,61 @@
+Nơi tổng_hợp và chia_sẻ những kiến_thức liên_quan tới giải_thuật nói_chung và lý_thuyết khoa_học máy_tính nói_riêng .
+in Đồ_thị_phẳng là một trong những đồ_thị đặc_biệt nhận được nhiều sự quan_tâm trong lý_thuyết đồ_thị do cấu_trúc đặc_biệt và ứng_dụng rộng_khắp của nó .
+đồ_thị đầy_đủ K_4 là một đồ_thị_phẳng và đồ_thị Petersen không_phải là một đồ tị phẳng .
+Xem_Figure 1 .
+(a) Đồ_thị đầy_đủ K_4 .
+(b) Một_cách vẽ K_4 trên mặt_phẳng sao_cho không có hai cạnh nào cắt nhau .
+Do_đó K_4 là một đồ_thị_phẳng .
+(c) đồ_thị Petersen .
+Ta không_thể vẽ đồ_thị Petersen sao_cho các cạnh chỉ cắt nhau tại các đầu_mút do_đó , đồ_thị Petersen không_phải là một đồ_thị_phẳng .
+đồ_thị_phẳng còn được dùng trong xử_lí ảnh .
+Coi mỗi pixel là một đỉnh của đồ_thị và ta thêm cạnh giữa hai đỉnh nếu hai pixel tương_ứng kề nhau .
+Một bài_toán thường gặp trong xử_lí ảnh là phân_vùng ảnh (image segmentation) .
+Bài_toán này có_thể quy về tìm một_lát cắt cực_tiểu của đồ_thị (phẳng) .
+Xem_Figure 2 .
+(a) một ảnh số có kích_thước 3x3 và (b) một đồ_thị_phẳng biểu_diễn bức ảnh đó .
+Mạng giao_thông , nếu_không có cầu_vượt , có_thể coi là một đồ_thị_phẳng .
+Mỗi khi hai đường giao nhau thì nó giao tại một nút giao_thông .
+Ta sẽ coi mỗi nút giao_thông là một đỉnh và đường nói giữa hai nút giao_thông tương_ứng với cạnh nói hai đỉnh đó . Hai đồ_thị đặc_biệt mà ta quan_tâm trong bài này là K_5 và K_3 , 3 .
+K_5 là đồ_thị đầy_đủ có 5 đỉnh còn K_3 , 3 là đồ_thị hai phía đầy_đủ có 6 đỉnh .
+(Xem Figure 3 . ) Hai đồ_thị này đều không_phải là đồ_thị_phẳng và ta sẽ chứng_minh tính_chất này trong phần tiếp_theo .
+(a) đồ_thị đầy_đủ K_5 và (b) đồ_thị hai phía đầy_đủ K_3 , 3 .
+Trước_khi đọc_tiếp , mình khuyến_khích bạn_đọc xem_lại bài giới_thiệu về đồ_thị để làm_quen với một_số khái_niệm cơ_bản .
+Ta sẽ không nhắc_lại các khái_niệm đó ở đây .
+Gọi_G là một đồ_thị_phẳng có n = V(G) đỉnh và m = E(G) cạnh .
+Cố_định một_cách vẽ G trên mặt_phẳng .
+Nếu ta xóa tất_cả các điểm của mặt_phẳng nằm trên cạnh và đỉnh cùa đồ_thị , ta sẽ thu được một_số các vùng (regions) của mặt_phẳng , trong đó có đúng một vùng vô_hạn (infinite region) .
+Ta gọi mỗi vùng đó là một_mặt (face) của đồ_thị , và mặt tương_ứng với vùng vô_hạn ta gọi nó là một_mặt vô_hạn (infinite face) của đồ_thị .
+Gọi f là số mặt của đồ_thị .
+Ta có : n - m + f = 2 \qquad (1) Ta chứng_minh bằng quy_nạp trên số cạnh của đồ_thị .
+Chú_ý , đồ_thị liên_thông và có ít cạnh nhất_là .
+Gọi_T là một cây khung bất_kì của G .
+Dễ thấy T có n đỉnh , n-1 cạnh và 1 mặt .
+Do_đó , (1) đúng .
+Giả_sử (1) đúng_với mọi đồ_thị con G của G có cùng số đỉnh và số cạnh m-1 .
+Gọi f(G)là số mặt của G .
+theo giả_thiết quy_nạp , ta có : n - (m-1) + f(G) = 2 \qquad (2) Gọi e = E(G)\setminus_E(G) .
+Do khi ta thêm e vào một_mặt nào_đó của G , e chia mặt đó ra làm 2 mặt mới .
+Do_đó , f(G) = f(G) +1 .
+Thay vào (2) , ta được : n - (m-1) + f(G)-1 = 2 Từ_đó suy ra dpcm .
+Trong_Figure 1(b) , đồ_thị K_4 có 4 đỉnh , 6 cạnh và khi vẽ trên mặt_phẳng đồ_thị này có 4 mặt .
+Dễ_dàng thấy rằng công_thức Euler đúng trong trường_hợp này . Ta định_nghĩa độ_dài của một_mặt (length of a face) f , kí_hiệu \ell(f) , là số cạnh của đồ_thị nằm trên biên của mặt f .
+Do mỗi cạnh nằm trên biên của tối_đa hai_mặt , ta có : Từ_Observation 1 và công_thức Euler , ta có : m \leq 3n-6 \qquad (3) Do đồ_thị là đơn , mỗi mặt có ít_nhất 3 cạnh .
+Do_đó , theo Observation 1 (d = 3) , f \leq \frac23m .
+Áp_dụng công_thức Euler , ta có : 2 \leq n - m + \frac23m Từ_đó ta suy ra dpcm . Lemma 1 cho ta biết đồ_thị_phẳng là một đồ_thị rất thưa .
+Do_đó , một_cách kiểm_tra đơn_giản xem một đồ_thị có_thể là đồ_thị_phẳng hay_không bằng cách kiểm_tra xem số cạnh m có vượt_quá 3n-6 hay_không .
+Một trong số đồ_thị có nhiều cạnh như_vậy là K_5 .
+Do K_5 có 5 đỉnh và 10 cạnh , ta có : Cũng từ Observation 1 và công_thức Euler , ta có : m \leq 2n-4 \qquad (4) Chứng_minh Lemma 2 tương_tự như chứng_minh Lemma 1 , mình coi đây là bài_tập cho bạn_đọc .
+Do K_3 , 3 có 6 đỉnh , 9 cạnh và mọi chu_trình đều có 4 cạnh , theo Lemma 2 , ta có : Một đa_diện (polyhedron) được gọi_là đều nếu các mặt là các đa_giác đều và các đỉnh của đa_diện đều có cùng bậc .
+Một khối Plato (Platonic solid) là một đa_diện lồi và đều .
+Trong thực_tế , chúng_ta chỉ_có đúng : tứ_diện đều (tetrahedron) , hình_lập_phương (hexahedron) , bát_diện đều (octahedron) , thập nhị_diện đều (dodecahedron) và nhị_thập diện đều (icosahedron) .
+Xem_Figure 4 .
+5 khối Plato , với số đỉnh , mặt và cạnh .
+Hình_vẽ được cắt từ .
+Tất_cả các khối Plato đều là đồ_thị_phẳng , do_đó , nó cũng tuân theo công_thức Euler ở trên .
+Sử_dụng công_thức Euler , ta sẽ chứng_minh chỉ_có đúng 5 khối Plato .
+Gọi p và q lần_lượt là chiều_dài mặt và bậc của đỉnh của khối Plato .
+Do mỗi cạnh chỉ nằm trên đúng 2 mặt , ta có : pf = 2m \qquad \mboxand \qquad qn = 2m \qquad (5) Thay phương_trình (5) vào công_thức Euler , ta được 2m/q - m + 2m/p = 2 .
+Từ_đó ta suy ra : \frac1p + \frac1q \mbox> \frac12 \qquad (6) Chú_ý , p , q \geq 3 .
+Từ (6) ta suy ra \min(p , q) = 3 và 3 \leq \max(p , q) \leq 5 .
+Do_đó , tồn_tại đúng 5 cặp (p , q) \in \(3 , 3) , (3 , 4) , (3 , 5) , (4 , 3) , (5 , 3)\ tương_ứng với 5 khối Plato mô_tả trong Figure 4 .
+() , , , Trackback link : Powered by and

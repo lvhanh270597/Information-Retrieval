@@ -1,0 +1,12 @@
+1 .
+Giải_thuật và lập_trình - thầy Lê_Minh Hoàng Chắc_hẳn những bạn_học chuyên tin đều biết đến cuốn sách này , bởi nó như_là một cuốn sách_giáo_khoa cho chuyên tin với các kiến_thức cơ_bản từ quay lui , sắp_xếp đến quy_hoạch_động , đồ_thị .
+Link_Download 2 .
+Tài_liệu giáo_khoa chuyên tin Về cơ_bản , phần một_và phần hai giống với giải_thuật và lập_trình , tuy_nhiên được bổ_sung thêm một_số kiến_thức như : số Catalan , xử_lý_số lớn bằng xâu , . . .
+Kèm_theo đó là những bài_tập vô_cùng hấp_dẫn để các bạn luyện_tập .
+Phần ba chứa các kiến_thức nâng_cao hơn , đó là hình_học và lý_thuyết trò_chơi .
+Link_Download : Tập 1 Tập 2 Tập 3 - phần 2 Tập 3 - phần 2 3 .
+Một_số vấn_đề đáng chú_ý trong môn tin_học Cuốn sách này được viết bởi các cựu_học_sinh trường chuyên Phan_Bội_Châu - Nghệ_An . Nó chứa các kiến_thức tuyệt hay mà tài_liệu giáo_khoa chuyên tin hay giải_thuật và lập_trình đều không có như : duyệt ưu_tiên , thuật_toán tìm_kiếm chuỗi KMP , quy_hoạch_động trạng_thái , quy_hoạch_động vị_trí cấu_hình , quy_hoạch_động trên cây , tô_màu đồ_thị , thuật_toán Dijkstra với đỉnh ảo , Interval_Tree , Binary_Index_Tree , . . .
+Link_Download 4 .
+Bản dịch Introduction to Algorithm_Link download (Cảm ơn bạn Nguyễn_Văn_Khởi đã chia_sẻ link) .
+5 .
+KC_Book Quyển 1 Quyển 3
